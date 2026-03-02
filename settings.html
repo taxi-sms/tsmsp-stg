@@ -787,7 +787,9 @@ import { fetchCurrentSubscriptionState, isSubscriptionActive } from "./subscript
       location.href = url;
     } catch (err) {
       const msg = String(err && err.message ? err.message : "");
-      const hint = msg.includes("missing_session") || msg.includes("Missing authorization header")
+      const hint = msg.includes("missing_session")
+        || msg.includes("Missing authorization header")
+        || msg.includes("invalid JWT")
         ? "（再ログイン後に再試行）"
         : "";
       const reason = await summarizeCheckoutError(err);
