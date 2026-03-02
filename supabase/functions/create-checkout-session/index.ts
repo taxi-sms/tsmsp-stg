@@ -56,6 +56,17 @@ function safeHttpUrl(value: unknown, fallback: string) {
   return fallback;
 }
 
+async function createStripeCustomer(userId: string, email: string, planCode: string) {
+  const customer = await stripe.customers.create({
+    email: email || undefined,
+    metadata: {
+      tsms_user_id: userId,
+      tsms_plan_code: planCode
+    }
+  });
+  return customer.id;
+}
+
 Deno.serve(async (req) => {
   if (req.method === "OPTIONS") {
     return new Response("ok", { headers: CORS_HEADERS });
@@ -118,19 +129,11 @@ Deno.serve(async (req) => {
 
     let customerId = String(existing?.stripe_customer_id || "").trim();
     if (!customerId) {
-      const customer = await stripe.customers.create({
-        email: user.email || undefined,
-        metadata: {
-          tsms_user_id: user.id,
-          tsms_plan_code: planCode
-        }
-      });
-      customerId = customer.id;
+      customerId = await createStripeCustomer(user.id, user.email || "", planCode);
     }
 
-    const session = await stripe.checkout.sessions.create({
+    const checkoutPayload: Stripe.Checkout.SessionCreateParams = {
       mode: "subscription",
-      customer: customerId,
       line_items: [{ price: priceId, quantity: 1 }],
       success_url: successUrl,
       cancel_url: cancelUrl,
@@ -146,7 +149,23 @@ Deno.serve(async (req) => {
           tsms_plan_code: planCode
         }
       }
-    });
+    };
+
+    let session: Stripe.Checkout.Session;
+    try {
+      session = await stripe.checkout.sessions.create({
+        ...checkoutPayload,
+        customer: customerId
+      });
+    } catch (e) {
+      const message = detailOf(e).message || "";
+      if (!customerId || !message.includes("No such customer")) throw e;
+      customerId = await createStripeCustomer(user.id, user.email || "", planCode);
+      session = await stripe.checkout.sessions.create({
+        ...checkoutPayload,
+        customer: customerId
+      });
+    }
 
     if (!session.url) {
       return json({ ok: false, error: "checkout_url_missing" }, 500);
