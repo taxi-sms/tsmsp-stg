@@ -582,6 +582,7 @@ import { fetchCurrentSubscriptionState, isSubscriptionActive } from "./subscript
   const statusEl = document.getElementById("subscriptionStatus");
   const startBtn = document.getElementById("btnStartSubscription");
   const params = new URLSearchParams(location.search);
+  let checkoutPending = false;
 
   function removeSubscriptionQuery() {
     if (!params.has("subscription")) return;
@@ -748,6 +749,7 @@ import { fetchCurrentSubscriptionState, isSubscriptionActive } from "./subscript
 
   async function startCheckout() {
     if (!startBtn) return;
+    checkoutPending = true;
     startBtn.disabled = true;
     const originalText = startBtn.textContent;
     startBtn.textContent = "決済ページを準備中...";
@@ -797,16 +799,30 @@ import { fetchCurrentSubscriptionState, isSubscriptionActive } from "./subscript
       alert(`決済ページの起動に失敗しました。時間をおいて再試行してください。${hint}${reason ? `\n原因: ${reason}` : ""}`);
     } finally {
       if (!redirected) {
+        checkoutPending = false;
         startBtn.disabled = false;
         startBtn.textContent = originalText || "月額プランを開始";
       }
     }
   }
 
+  function recoverCheckoutButtonIfNeeded() {
+    if (!checkoutPending || !startBtn) return;
+    checkoutPending = false;
+    startBtn.disabled = false;
+    startBtn.textContent = "月額プランを開始";
+    refreshSubscriptionState();
+  }
+
   setGateNoticeIfNeeded();
   showCheckoutFlowMessage();
   refreshSubscriptionState();
   if (startBtn) startBtn.addEventListener("click", startCheckout);
+  window.addEventListener("pageshow", recoverCheckoutButtonIfNeeded);
+  window.addEventListener("focus", recoverCheckoutButtonIfNeeded);
+  document.addEventListener("visibilitychange", () => {
+    if (!document.hidden) recoverCheckoutButtonIfNeeded();
+  });
 })();
 </script>
 
