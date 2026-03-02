@@ -753,8 +753,8 @@ import { fetchCurrentSubscriptionState, isSubscriptionActive } from "./subscript
     startBtn.textContent = "決済ページを準備中...";
     let redirected = false;
     try {
-      const successUrl = new URL("settings.html?subscription=success", location.origin).toString();
-      const cancelUrl = new URL("settings.html?subscription=cancel", location.origin).toString();
+      const successUrl = new URL("settings.html?subscription=success", location.href).toString();
+      const cancelUrl = new URL("settings.html?subscription=cancel", location.href).toString();
       const payload = {
         planCode: "starter_monthly",
         successUrl,
