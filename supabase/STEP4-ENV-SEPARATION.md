@@ -33,10 +33,11 @@ bash scripts/deploy-edge-functions.sh prod <prod-project-ref> supabase/env/prod.
 補足:
 - `SUPABASE_*` は Edge Functions の組み込み環境変数として提供されるため、スクリプトでは Stripe 系と `APP_BASE_URL` のみを `secrets set` する。
 
-## 3. SQL (Step2/Step3) の反映確認
+## 3. SQL (Step1/Step2/Step3) の反映確認
 対象環境ごとに SQL Editor で以下を実行済みにする。
-1. `supabase/step2-subscription-rls.sql`
-2. `supabase/step3-stripe-webhook.sql`
+1. `supabase/step1-app-state.sql`
+2. `supabase/step2-subscription-rls.sql`
+3. `supabase/step3-stripe-webhook.sql`
 
 ## 4. 受け入れ確認（環境ごと）
 1. `settings -> checkout -> success` が完走
