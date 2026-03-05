@@ -74,7 +74,7 @@
   <main class="main auth-main">
     <section class="auth-card">
       <h1 class="auth-title">メールアドレスで登録</h1>
-      <p class="auth-muted">登録後、確認メールが届きます。リンクを開いて認証完了後にログインしてください。</p>
+      <p class="auth-muted">「認証メールを送信」ボタンを押すとメールを送信します。メール内リンクで認証を完了してからログインしてください。</p>
 
       <div class="field">
         <label class="label" for="email">メール</label>
@@ -86,7 +86,7 @@
         <input id="password" class="input" type="password" autocomplete="new-password" placeholder="********" />
       </div>
 
-      <button id="btn" class="btn next" type="button">登録してメール認証へ</button>
+      <button id="btn" class="btn next" type="button">認証メールを送信</button>
       <div class="auth-msg" id="msg"></div>
 
       <div class="auth-links">
@@ -101,17 +101,35 @@
 
     const $ = (id) => document.getElementById(id);
     const setMsg = (t) => { $("msg").textContent = t || ""; };
+    const btn = $("btn");
+    const initialBtnLabel = btn.textContent || "認証メールを送信";
+    let clickArmed = false;
+    let sending = false;
 
-    $("btn").addEventListener("click", async () => {
-      const btn = $("btn");
-      if (btn.disabled) return;
+    btn.addEventListener("pointerdown", () => { clickArmed = true; });
+    btn.addEventListener("keydown", (ev) => {
+      if (ev.key === "Enter" || ev.key === " " || ev.key === "Spacebar") clickArmed = true;
+    });
+
+    btn.addEventListener("click", async () => {
+      if (btn.disabled || sending) return;
+      if (!clickArmed) {
+        setMsg("「認証メールを送信」ボタンを押したときだけ送信されます。");
+        return;
+      }
+      clickArmed = false;
+      sending = true;
       setMsg("");
       const email = $("email").value.trim();
       const password = $("password").value;
 
-      if (!email || !password) return setMsg("メールとパスワードを入力してね。");
+      if (!email || !password) {
+        sending = false;
+        return setMsg("メールとパスワードを入力してください。");
+      }
 
       btn.disabled = true;
+      btn.textContent = "送信中...";
 
       const { error } = await supabase.auth.signUp({
         email,
@@ -123,10 +141,14 @@
 
       if (error) {
         btn.disabled = false;
+        btn.textContent = initialBtnLabel;
+        sending = false;
         return setMsg("エラー: " + error.message);
       }
 
-      setMsg("メールを送信しました！\n確認メールを開いて認証を行なってください。");
+      btn.textContent = "認証メール送信済み";
+      sending = false;
+      setMsg("認証メールを送信しました。\n受信ボックス（迷惑メールも）を確認し、メール内リンクを開いて認証を完了してください。");
     });
   </script>
   <script src="./cache-version.js"></script>
