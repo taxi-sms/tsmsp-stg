@@ -97,12 +97,7 @@
   </main>
 
   <script type="module">
-    import { createClient } from "https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/+esm";
-
-    const SUPABASE_URL = "https://gsvehqeywmjqlvuzwvuo.supabase.co";
-    const SUPABASE_ANON_KEY = "sb_publishable_PCpsmoo77V5L0YQfT2yKnA_QCEFpARJ";
-
-    const supabase = createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
+    import { supabase } from "./supabase-client.js";
 
     const $ = (id) => document.getElementById(id);
     const setMsg = (t) => { $("msg").textContent = t || ""; };

@@ -8,7 +8,6 @@
   <link rel="icon" href="favicon.svg" type="image/svg+xml">
   <meta name="theme-color" content="#ffffff">
   <script>(function(){try{var t=localStorage.getItem("tsms_theme")==="dark"?"dark":"light";document.documentElement.setAttribute("data-theme",t);var m=document.querySelector('meta[name="theme-color"]');if(m)m.setAttribute("content",t==="dark"?"#0F1417":"#F3F6F8");}catch(e){}})();</script>
-  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
   <link rel="stylesheet" href="./tsms-design.css?v=20260227-3">
   <style id="auth-callback-layout-tweaks">
     main.auth-main{
@@ -76,38 +75,12 @@
   </section>
 </main>
 
-<script>
+<script type="module">
+import { supabase } from "./supabase-client.js";
+
 (async function(){
   const statusEl = document.getElementById("status");
   function setStatus(text){ statusEl.textContent = text; }
-
-  const CONFIG_KEY = "tsms_supabase_config";
-  const FALLBACK_URL = "https://gsvehqeywmjqlvuzwvuo.supabase.co";
-  const FALLBACK_ANON_KEY = "sb_publishable_PCpsmoo77V5L0YQfT2yKnA_QCEFpARJ";
-
-  function readConfig(){
-    try{
-      const cfg = JSON.parse(localStorage.getItem(CONFIG_KEY) || "null") || {};
-      return {
-        url: String(cfg.url || "").trim() || FALLBACK_URL,
-        anonKey: String(cfg.anonKey || "").trim() || FALLBACK_ANON_KEY
-      };
-    }catch(_){
-      return { url: FALLBACK_URL, anonKey: FALLBACK_ANON_KEY };
-    }
-  }
-
-  const cfg = readConfig();
-  if(!window.supabase || !window.supabase.createClient){
-    setStatus("Supabase SDKの読み込みに失敗しました。");
-    return;
-  }
-  if(!cfg.url || !cfg.anonKey){
-    setStatus("Supabase設定が未完了です。settings.html で URL / Anon Key を設定してください。");
-    return;
-  }
-
-  const supabase = window.supabase.createClient(cfg.url, cfg.anonKey);
 
   try{
     const url = new URL(location.href);
