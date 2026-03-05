@@ -107,7 +107,7 @@ begin
     coalesce(p_payload, '{}'::jsonb),
     now()
   )
-  on conflict (provider, provider_event_id) do nothing;
+  on conflict do nothing;
 end;
 $$;
 
@@ -129,4 +129,3 @@ comment on function public.apply_subscription_webhook(
 is 'Applies Stripe webhook state to billing_subscriptions and logs billing_subscription_events.';
 
 commit;
-

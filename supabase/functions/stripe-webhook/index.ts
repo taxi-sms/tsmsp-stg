@@ -124,6 +124,94 @@ function pickSubscriptionId(event: Stripe.Event) {
   return "";
 }
 
+type RpcPayload = {
+  p_user_id: string;
+  p_plan_code: string;
+  p_status: string;
+  p_trial_ends_at: string | null;
+  p_current_period_end: string | null;
+  p_cancel_at_period_end: boolean;
+  p_stripe_customer_id: string | null;
+  p_stripe_subscription_id: string | null;
+  p_event_type: string;
+  p_provider_event_id: string | null;
+  p_payload: Record<string, unknown>;
+};
+
+async function applySubscriptionFallback(rpcPayload: RpcPayload) {
+  const userId = rpcPayload.p_user_id;
+  const subscriptionPatch = {
+    plan_code: rpcPayload.p_plan_code || "starter_monthly",
+    status: rpcPayload.p_status,
+    trial_ends_at: rpcPayload.p_trial_ends_at,
+    current_period_end: rpcPayload.p_current_period_end,
+    cancel_at_period_end: !!rpcPayload.p_cancel_at_period_end,
+    stripe_customer_id: rpcPayload.p_stripe_customer_id,
+    stripe_subscription_id: rpcPayload.p_stripe_subscription_id,
+    updated_at: new Date().toISOString()
+  };
+
+  const { data: updatedRows, error: updateError } = await supabase
+    .from("billing_subscriptions")
+    .update(subscriptionPatch)
+    .eq("user_id", userId)
+    .select("user_id")
+    .limit(1);
+  if (updateError) throw updateError;
+
+  if (!updatedRows || updatedRows.length === 0) {
+    const insertPayload = {
+      user_id: userId,
+      created_at: new Date().toISOString(),
+      ...subscriptionPatch
+    };
+    const { error: insertError } = await supabase
+      .from("billing_subscriptions")
+      .insert(insertPayload);
+    if (insertError) {
+      const code = String(insertError.code || "").trim();
+      const msg = String(insertError.message || "").trim();
+      const isDup = code === "23505" || msg.includes("duplicate key");
+      if (!isDup) throw insertError;
+      const { error: retryUpdateError } = await supabase
+        .from("billing_subscriptions")
+        .update(subscriptionPatch)
+        .eq("user_id", userId)
+        .limit(1);
+      if (retryUpdateError) throw retryUpdateError;
+    }
+  }
+
+  const providerEventId = String(rpcPayload.p_provider_event_id || "").trim();
+  if (providerEventId) {
+    const { data: existingEventRows, error: existingEventError } = await supabase
+      .from("billing_subscription_events")
+      .select("id")
+      .eq("provider", "stripe")
+      .eq("provider_event_id", providerEventId)
+      .limit(1);
+    if (existingEventError) throw existingEventError;
+    if (existingEventRows && existingEventRows.length > 0) return;
+  }
+
+  const { error: insertEventError } = await supabase
+    .from("billing_subscription_events")
+    .insert({
+      user_id: userId,
+      provider: "stripe",
+      provider_event_id: providerEventId || null,
+      event_type: rpcPayload.p_event_type || "unknown",
+      payload: rpcPayload.p_payload || {},
+      created_at: new Date().toISOString()
+    });
+  if (insertEventError) {
+    const code = String(insertEventError.code || "").trim();
+    const msg = String(insertEventError.message || "").trim();
+    const isDup = code === "23505" || msg.includes("duplicate key");
+    if (!isDup) throw insertEventError;
+  }
+}
+
 async function applySubscription(event: Stripe.Event) {
   const eventType = event.type;
   const payload = event.data.object as Record<string, unknown>;
@@ -155,7 +243,7 @@ async function applySubscription(event: Stripe.Event) {
     ? subscription.customer
     : subscription.customer?.id || "";
 
-  const rpcPayload = {
+  const rpcPayload: RpcPayload = {
     p_user_id: userId,
     p_plan_code: planCodeFromSubscription(subscription),
     p_status: normalizeStatus(subscription.status, eventType),
@@ -170,7 +258,15 @@ async function applySubscription(event: Stripe.Event) {
   };
 
   const { error } = await supabase.rpc("apply_subscription_webhook", rpcPayload);
-  if (error) throw error;
+  if (error) {
+    const detail = errorDetail(error);
+    const message = String(detail.message || "").toLowerCase();
+    const shouldFallback = String(detail.code || "") === "42P10"
+      || message.includes("no unique or exclusion constraint");
+    if (!shouldFallback) throw error;
+    // Some environments still have a partial-unique index shape that breaks ON CONFLICT inference in RPC.
+    await applySubscriptionFallback(rpcPayload);
+  }
 
   return { applied: true, userId, subscriptionId: subscription.id, status: rpcPayload.p_status };
 }
