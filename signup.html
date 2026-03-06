@@ -179,7 +179,9 @@
 
       btn.textContent = "認証メール送信済み";
       sending = false;
-      setMsg("認証メールを送信しました。\n受信ボックス（迷惑メールも）を確認し、メール内リンクを開いて認証を完了してください。");
+      const guideUrl = new URL("./signup-check-email.html", location.href);
+      guideUrl.searchParams.set("email", email);
+      location.href = guideUrl.toString();
     });
   </script>
   <script src="./cache-version.js"></script>

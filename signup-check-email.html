@@ -1,0 +1,131 @@
+<!doctype html>
+<html lang="ja">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>認証メールの確認</title>
+  <link rel="icon" href="favicon.ico" sizes="any">
+  <link rel="icon" href="favicon.svg" type="image/svg+xml">
+  <meta name="theme-color" content="#ffffff">
+  <script>(function(){try{var t=localStorage.getItem("tsms_theme")==="dark"?"dark":"light";document.documentElement.setAttribute("data-theme",t);var m=document.querySelector('meta[name="theme-color"]');if(m)m.setAttribute("content",t==="dark"?"#0F1417":"#F3F6F8");}catch(e){}})();</script>
+  <link rel="stylesheet" href="./tsms-design.css?v=20260227-3">
+  <style>
+    main.auth-main{
+      max-width:620px;
+      min-height:calc(100dvh - var(--header-h));
+      display:flex;
+      flex-direction:column;
+      justify-content:center;
+      gap:var(--space-2);
+    }
+    .auth-card{
+      border:var(--line-regular) solid var(--border);
+      background:var(--surface-1);
+      border-radius:var(--radius-md);
+      padding:var(--space-3);
+      box-shadow:var(--shadow-sm);
+      display:grid;
+      gap:12px;
+    }
+    .auth-title{
+      margin:0;
+      font-size:var(--font-3xl);
+      line-height:1.35;
+      font-weight:900;
+      color:var(--text-primary);
+    }
+    .auth-muted{
+      margin:0;
+      color:var(--text-secondary);
+      font-size:var(--font-md);
+      line-height:1.5;
+    }
+    .mail-box{
+      border:var(--line-regular) solid var(--border);
+      background:var(--surface-2);
+      border-radius:var(--radius-sm);
+      padding:12px;
+      display:grid;
+      gap:8px;
+    }
+    .mail-title{
+      font-size:var(--font-xl);
+      font-weight:800;
+      margin:0;
+    }
+    .mail-link{
+      color:#0a58ca;
+      text-decoration:underline;
+      font-weight:700;
+    }
+    .auth-steps{
+      margin:0;
+      padding-left:20px;
+      display:grid;
+      gap:6px;
+      line-height:1.6;
+      color:var(--text-primary);
+    }
+    .auth-actions{
+      display:flex;
+      flex-wrap:wrap;
+      gap:10px;
+      margin-top:2px;
+    }
+    .auth-actions .btn{
+      text-decoration:none;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      min-height:44px;
+      padding:0 14px;
+    }
+  </style>
+</head>
+<body>
+  <header class="header">認証メールの確認</header>
+  <main class="main auth-main">
+    <section class="auth-card">
+      <h1 class="auth-title">認証メールを送信しました</h1>
+      <p class="auth-muted" id="mailToText">メールを送信しました。受信ボックスを確認してください。</p>
+
+      <ol class="auth-steps">
+        <li>差出人が <strong>Supabase Auth &lt;noreply@mail.app.supabase.io&gt;</strong> のメールを開きます。</li>
+        <li>件名 <strong>Confirm your signup</strong> のメールを探します（迷惑メールも確認）。</li>
+        <li>本文内の青いリンク <strong>Confirm your mail</strong> をクリックします。</li>
+        <li>ブラウザが開いたら認証完了です。完了後にログインしてください。</li>
+      </ol>
+
+      <section class="mail-box" aria-label="メール本文イメージ">
+        <p class="mail-title">Confirm your signup</p>
+        <p class="auth-muted">Follow this link to confirm your user:</p>
+        <p class="mail-link">Confirm your mail</p>
+      </section>
+
+      <div class="auth-actions">
+        <a class="btn next" href="./login.html">ログインへ進む</a>
+        <a class="btn" href="./signup.html">メールを再送する</a>
+      </div>
+    </section>
+  </main>
+
+  <script>
+    (function () {
+      const el = document.getElementById("mailToText");
+      const email = new URLSearchParams(location.search).get("email") || "";
+      if (!el || !email) return;
+
+      const at = email.indexOf("@");
+      if (at <= 1) {
+        el.textContent = "メールを送信しました。受信ボックスを確認してください。";
+        return;
+      }
+      const name = email.slice(0, at);
+      const domain = email.slice(at + 1);
+      const masked = `${name.slice(0, 2)}***@${domain}`;
+      el.textContent = `送信先: ${masked}。受信ボックス（迷惑メール含む）を確認してください。`;
+    })();
+  </script>
+  <script src="./cache-version.js"></script>
+</body>
+</html>
