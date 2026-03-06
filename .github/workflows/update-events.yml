@@ -1,0 +1,52 @@
+name: Update Events Feed
+
+on:
+  schedule:
+    # Every day 03:10 JST (18:10 UTC)
+    - cron: '10 18 * * *'
+    # Every Sunday 04:10 JST (Saturday 19:10 UTC)
+    - cron: '10 19 * * 6'
+  workflow_dispatch: {}
+
+jobs:
+  refresh:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+
+      - name: Select crawl mode
+        id: mode
+        shell: bash
+        run: |
+          MODE="delta"
+          if [[ "${{ github.event_name }}" == "schedule" && "${{ github.event.schedule }}" == "10 19 * * 6" ]]; then
+            MODE="full"
+          fi
+          echo "mode=$MODE" >> "$GITHUB_OUTPUT"
+          echo "Selected mode: $MODE"
+
+      - name: Crawl event sources
+        run: node scripts/update-events.mjs --mode=${{ steps.mode.outputs.mode }}
+
+      - name: Commit and push if changed
+        shell: bash
+        run: |
+          if git diff --quiet -- data/events.json; then
+            echo "No change in data/events.json"
+            exit 0
+          fi
+
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add data/events.json
+          git commit -m "chore: update events feed (${{ steps.mode.outputs.mode }})"
+          git push

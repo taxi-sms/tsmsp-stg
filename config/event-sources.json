@@ -1,39 +1,523 @@
 {
-  "schema_version": 1,
-  "updated_at": "1970-01-01T00:00:00Z",
+  "schema_version": 2,
+  "updated_at": "2026-03-07T00:00:00Z",
+  "timezone": "Asia/Tokyo",
+  "schedules": {
+    "daily_jst": "03:10",
+    "weekly_full_jst": "Sunday 04:10"
+  },
   "sources": [
     {
-      "id": "official-news",
-      "name": "Official News",
-      "url": "https://example.com/news",
-      "enabled": true,
-      "parserType": "html_list",
-      "timezone": "Asia/Tokyo",
-      "priority": 100,
-      "tags": ["official", "public"],
-      "notes": "Replace with your production source URL"
+      "id": "www-city-sapporo-jp-keizai-kanko-event-event-html",
+      "name": "札幌市（イベントカレンダー）",
+      "url": "https://www.city.sapporo.jp/keizai/kanko/event/event.html",
+      "category": "官公庁・都市公式",
+      "priority": "S",
+      "enabled": true
     },
     {
-      "id": "official-events",
-      "name": "Official Events",
-      "url": "https://example.com/events",
-      "enabled": true,
-      "parserType": "html_detail",
-      "timezone": "Asia/Tokyo",
-      "priority": 90,
-      "tags": ["official", "event"],
-      "notes": "Use lower priority for secondary sources"
+      "id": "www-sapporo-travel-event",
+      "name": "ようこそさっぽろ（イベント）",
+      "url": "https://www.sapporo.travel/event/",
+      "category": "観光公式ポータル",
+      "priority": "S",
+      "enabled": true
     },
     {
-      "id": "backup-feed",
-      "name": "Backup Feed",
-      "url": "https://example.com/feed.xml",
-      "enabled": false,
-      "parserType": "rss",
-      "timezone": "Asia/Tokyo",
-      "priority": 10,
-      "tags": ["backup"],
-      "notes": "Set enabled=true when needed"
+      "id": "www-conventionsapporo-jp",
+      "name": "札幌コンベンションビューロー",
+      "url": "https://www.conventionsapporo.jp/",
+      "category": "MICE・誘致支援",
+      "priority": "S",
+      "enabled": true
+    },
+    {
+      "id": "www-jetro-go-jp-j-messe-country-asia-jp-001",
+      "name": "J-messe（JETRO）",
+      "url": "https://www.jetro.go.jp/j-messe/country/asia/jp/001/",
+      "category": "展示会DB（一次に近い）",
+      "priority": "S",
+      "enabled": true
+    },
+    {
+      "id": "www-jma-or-jp-toshiken-hkd-index-php",
+      "name": "日本能率協会（北海道展示会総合ページ）",
+      "url": "https://www.jma.or.jp/toshiken/hkd/index.php",
+      "category": "展示会主催（一次）",
+      "priority": "S",
+      "enabled": true
+    },
+    {
+      "id": "www-business-expo-jp",
+      "name": "ビジネスEXPO（北海道 技術・ビジネス交流会）",
+      "url": "https://www.business-expo.jp/",
+      "category": "ビジネス大型イベント（一次）",
+      "priority": "S",
+      "enabled": true
+    },
+    {
+      "id": "www-sapporo-dome-co-jp-dome",
+      "name": "大和ハウス プレミストドーム",
+      "url": "https://www.sapporo-dome.co.jp/dome/",
+      "category": "大規模会場（会場公式）",
+      "priority": "S",
+      "enabled": true
+    },
+    {
+      "id": "www-sapporo-sport-jp-tsudome-calendar",
+      "name": "つどーむ（札幌市スポーツ協会）",
+      "url": "https://www.sapporo-sport.jp/tsudome/calendar/",
+      "category": "市スポーツ施設（会場公式）",
+      "priority": "S",
+      "enabled": true
+    },
+    {
+      "id": "www-sora-scc-jp",
+      "name": "札幌コンベンションセンター",
+      "url": "https://www.sora-scc.jp/",
+      "category": "コンベンション会場（会場公式）",
+      "priority": "S",
+      "enabled": true
+    },
+    {
+      "id": "www-axes-or-jp",
+      "name": "アクセスサッポロ",
+      "url": "https://www.axes.or.jp/",
+      "category": "展示会場（会場公式）",
+      "priority": "S",
+      "enabled": true
+    },
+    {
+      "id": "www-sapporo-community-plaza-jp-event-php",
+      "name": "札幌市民交流プラザ",
+      "url": "https://www.sapporo-community-plaza.jp/event.php",
+      "category": "文化複合施設（会場公式）",
+      "priority": "S",
+      "enabled": true
+    },
+    {
+      "id": "www-kitara-sapporo-or-jp-event",
+      "name": "札幌コンサートホール Kitara",
+      "url": "https://www.kitara-sapporo.or.jp/event/",
+      "category": "コンサートホール（会場公式）",
+      "priority": "S",
+      "enabled": true
+    },
+    {
+      "id": "www-zepp-co-jp-hall-sapporo-schedule",
+      "name": "Zepp Sapporo",
+      "url": "https://www.zepp.co.jp/hall/sapporo/schedule/",
+      "category": "大型ライブ会場（会場公式）",
+      "priority": "S",
+      "enabled": true
+    },
+    {
+      "id": "www-sapporo-shiminhall-org",
+      "name": "カナモトホール（札幌市民ホール）",
+      "url": "https://www.sapporo-shiminhall.org/",
+      "category": "市民ホール（会場公式）",
+      "priority": "A",
+      "enabled": true
+    },
+    {
+      "id": "www-kyobun-org-event-schedule-html",
+      "name": "札幌市教育文化会館",
+      "url": "https://www.kyobun.org/event_schedule.html",
+      "category": "公共ホール（会場公式）",
+      "priority": "A",
+      "enabled": true
+    },
+    {
+      "id": "chieria-slp-or-jp-schedule",
+      "name": "札幌市生涯学習センター ちえりあ",
+      "url": "https://chieria.slp.or.jp/schedule/",
+      "category": "公共学習施設",
+      "priority": "A",
+      "enabled": true
+    },
+    {
+      "id": "homepage-kaderu27-or-jp-event-news-index-html",
+      "name": "かでる2・7",
+      "url": "https://homepage.kaderu27.or.jp/event/news/index.html",
+      "category": "公共施設（道）",
+      "priority": "A",
+      "enabled": true
+    },
+    {
+      "id": "artpark-or-jp-tenrankai-events",
+      "name": "札幌芸術の森",
+      "url": "https://artpark.or.jp/tenrankai-events/",
+      "category": "文化施設（会場公式）",
+      "priority": "A",
+      "enabled": true
+    },
+    {
+      "id": "sapporofactory-jp-event",
+      "name": "サッポロファクトリー（イベント）",
+      "url": "https://sapporofactory.jp/event/",
+      "category": "商業施設（一次）",
+      "priority": "A",
+      "enabled": true
+    },
+    {
+      "id": "odori-park-jp",
+      "name": "大通公園",
+      "url": "https://odori-park.jp/",
+      "category": "地域公式（公園運営）",
+      "priority": "A",
+      "enabled": true
+    },
+    {
+      "id": "www-snowfes-com",
+      "name": "さっぽろ雪まつり公式サイト",
+      "url": "https://www.snowfes.com/",
+      "category": "年次大型祭り（一次）",
+      "priority": "A",
+      "enabled": true
+    },
+    {
+      "id": "www-yosakoi-soran-jp",
+      "name": "YOSAKOIソーラン祭り 公式ホームページ",
+      "url": "https://www.yosakoi-soran.jp/",
+      "category": "年次大型祭り（一次）",
+      "priority": "A",
+      "enabled": true
+    },
+    {
+      "id": "www-sapporo-travel-autumnfest",
+      "name": "さっぽろオータムフェスト公式",
+      "url": "https://www.sapporo.travel/autumnfest/",
+      "category": "年次グルメ大型イベント（一次）",
+      "priority": "A",
+      "enabled": true
+    },
+    {
+      "id": "www-sapporo-travel-summerfes",
+      "name": "さっぽろ夏まつり公式",
+      "url": "https://www.sapporo.travel/summerfes/",
+      "category": "年次夏の大型イベント（一次）",
+      "priority": "A",
+      "enabled": true
+    },
+    {
+      "id": "www-sapporo-travel-white-illumination",
+      "name": "さっぽろホワイトイルミネーション公式",
+      "url": "https://www.sapporo.travel/white-illumination/",
+      "category": "冬季大型イベント（一次）",
+      "priority": "A",
+      "enabled": true
+    },
+    {
+      "id": "www-sapporo-travel-white-illumination-event-munich",
+      "name": "ミュンヘン・クリスマス市 in Sapporo",
+      "url": "https://www.sapporo.travel/white-illumination/event/munich/",
+      "category": "クリスマスマーケット（一次）",
+      "priority": "A",
+      "enabled": true
+    },
+    {
+      "id": "www-sapporo-travel-lilacfes-about",
+      "name": "さっぽろライラックまつり公式",
+      "url": "https://www.sapporo.travel/lilacfes/about/",
+      "category": "初夏の大型イベント（一次）",
+      "priority": "A",
+      "enabled": true
+    },
+    {
+      "id": "sapporocityjazz-jp",
+      "name": "SAPPORO CITY JAZZ",
+      "url": "https://sapporocityjazz.jp/",
+      "category": "音楽フェス（一次）",
+      "priority": "A",
+      "enabled": true
+    },
+    {
+      "id": "www-pmf-or-jp-jp-schedule",
+      "name": "PMF（パシフィック・ミュージック・フェスティバル札幌）",
+      "url": "https://www.pmf.or.jp/jp/schedule/",
+      "category": "国際音楽祭（一次）",
+      "priority": "A",
+      "enabled": true
+    },
+    {
+      "id": "no-maps-jp-program",
+      "name": "NoMaps",
+      "url": "https://no-maps.jp/program/",
+      "category": "都市型カンファレンス（一次）",
+      "priority": "A",
+      "enabled": true
+    },
+    {
+      "id": "sapporo-caretex-jp",
+      "name": "CareTEX札幌",
+      "url": "https://sapporo.caretex.jp/",
+      "category": "商談型展示会（一次）",
+      "priority": "A",
+      "enabled": true
+    },
+    {
+      "id": "seminar-sapporosansin-jp",
+      "name": "札幌市産業振興センター（セミナー情報）",
+      "url": "https://seminar.sapporosansin.jp/",
+      "category": "産業支援（準一次）",
+      "priority": "A",
+      "enabled": true
+    },
+    {
+      "id": "www-city-sapporo-jp-keizai-seminar-index-html",
+      "name": "札幌市（企業向けセミナー情報）",
+      "url": "https://www.city.sapporo.jp/keizai/seminar/index.html",
+      "category": "官公庁（ビジネス系）",
+      "priority": "A",
+      "enabled": true
+    },
+    {
+      "id": "www-keioplaza-sapporo-co-jp-banq-hall",
+      "name": "京王プラザホテル札幌",
+      "url": "https://www.keioplaza-sapporo.co.jp/banq/hall/",
+      "category": "ホテル（会議・宴会）",
+      "priority": "B",
+      "enabled": true
+    },
+    {
+      "id": "grand1934-com-meeting-banquet",
+      "name": "札幌グランドホテル",
+      "url": "https://grand1934.com/meeting/banquet/",
+      "category": "ホテル（会議・宴会）",
+      "priority": "B",
+      "enabled": true
+    },
+    {
+      "id": "www-okura-nikko-com-ja-japan-sapporo-jr-tower-hotel-nikko-sa",
+      "name": "JRタワーホテル日航札幌",
+      "url": "https://www.okura-nikko.com/ja/japan/sapporo/jr-tower-hotel-nikko-sapporo/meetings-events/",
+      "category": "ホテル（会議・宴会）",
+      "priority": "B",
+      "enabled": true
+    },
+    {
+      "id": "grand-mercure-sapporo-odoripark-jp-events",
+      "name": "グランドメルキュール札幌大通公園",
+      "url": "https://grand-mercure-sapporo-odoripark.jp/events/",
+      "category": "ホテル（大型宴会）",
+      "priority": "B",
+      "enabled": true
+    },
+    {
+      "id": "www-hotelgp-sapporo-com-banquet-hall-large",
+      "name": "ホテル札幌ガーデンパレス",
+      "url": "https://www.hotelgp-sapporo.com/banquet/hall/large/",
+      "category": "ホテル（会議・宴会）",
+      "priority": "B",
+      "enabled": true
+    },
+    {
+      "id": "www-acu-h-jp-sapporo",
+      "name": "ACU（札幌）",
+      "url": "https://www.acu-h.jp/sapporo/",
+      "category": "貸し会議室（一次）",
+      "priority": "B",
+      "enabled": true
+    },
+    {
+      "id": "www-kashikaigishitsu-net-facilitys-gc-sapporo",
+      "name": "TKPガーデンシティ札幌駅前",
+      "url": "https://www.kashikaigishitsu.net/facilitys/gc-sapporo/",
+      "category": "貸し会議室（一次）",
+      "priority": "B",
+      "enabled": true
+    },
+    {
+      "id": "www-pl24-jp-schedule-html",
+      "name": "PENNY LANE24",
+      "url": "https://www.pl24.jp/schedule.html",
+      "category": "ライブハウス（会場公式）",
+      "priority": "B",
+      "enabled": true
+    },
+    {
+      "id": "www-cube-garden-com-live-php",
+      "name": "cube garden",
+      "url": "https://www.cube-garden.com/live.php",
+      "category": "ライブハウス（会場公式）",
+      "priority": "B",
+      "enabled": true
+    },
+    {
+      "id": "mole-sapporo-jp-schedule",
+      "name": "Sound Lab mole",
+      "url": "https://mole-sapporo.jp/schedule/",
+      "category": "ライブハウス（会場公式）",
+      "priority": "B",
+      "enabled": true
+    },
+    {
+      "id": "spice-sapporo-jp-schedule",
+      "name": "SPiCE",
+      "url": "https://spice-sapporo.jp/schedule/",
+      "category": "ライブハウス（会場公式）",
+      "priority": "B",
+      "enabled": true
+    },
+    {
+      "id": "www-hbc-co-jp-event",
+      "name": "HBC北海道放送（イベント）",
+      "url": "https://www.hbc.co.jp/event/",
+      "category": "地域メディア（主催/後援）",
+      "priority": "A",
+      "enabled": true
+    },
+    {
+      "id": "www-stv-jp-event-index-html",
+      "name": "STV札幌テレビ（イベント）",
+      "url": "https://www.stv.jp/event/index.html",
+      "category": "地域メディア（主催/後援）",
+      "priority": "A",
+      "enabled": true
+    },
+    {
+      "id": "www-htb-co-jp-event",
+      "name": "HTB北海道テレビ（イベント）",
+      "url": "https://www.htb.co.jp/event/",
+      "category": "地域メディア（主催/後援）",
+      "priority": "A",
+      "enabled": true
+    },
+    {
+      "id": "www-uhb-jp-event",
+      "name": "UHB北海道文化放送（イベント）",
+      "url": "https://www.uhb.jp/event/",
+      "category": "地域メディア（主催/後援）",
+      "priority": "A",
+      "enabled": true
+    },
+    {
+      "id": "doshin-playguide-jp",
+      "name": "道新プレイガイド",
+      "url": "https://doshin-playguide.jp/",
+      "category": "ローカルチケット",
+      "priority": "A",
+      "enabled": true
+    },
+    {
+      "id": "t-pia-jp-hokkaido",
+      "name": "チケットぴあ",
+      "url": "https://t.pia.jp/hokkaido/",
+      "category": "チケット（一次プラットフォーム）",
+      "priority": "A",
+      "enabled": true
+    },
+    {
+      "id": "eplus-jp-sf-area-hokkaido-tohoku-hokkaido-sapporo",
+      "name": "イープラス",
+      "url": "https://eplus.jp/sf/area/hokkaido-tohoku/hokkaido/sapporo",
+      "category": "チケット（一次プラットフォーム）",
+      "priority": "A",
+      "enabled": true
+    },
+    {
+      "id": "l-tike-com-hokkaido",
+      "name": "ローソンチケット（ローチケ）",
+      "url": "https://l-tike.com/hokkaido/",
+      "category": "チケット（一次プラットフォーム）",
+      "priority": "A",
+      "enabled": true
+    },
+    {
+      "id": "ticket-rakuten-co-jp-area-all-hokkaido",
+      "name": "楽天チケット",
+      "url": "https://ticket.rakuten.co.jp/area/all/hokkaido/",
+      "category": "チケット（一次プラットフォーム）",
+      "priority": "B",
+      "enabled": true
+    },
+    {
+      "id": "connpass-com",
+      "name": "connpass",
+      "url": "https://connpass.com/",
+      "category": "イベントプラットフォーム",
+      "priority": "B",
+      "enabled": true
+    },
+    {
+      "id": "www-doorkeeper-jp",
+      "name": "Doorkeeper",
+      "url": "https://www.doorkeeper.jp/",
+      "category": "イベントプラットフォーム",
+      "priority": "B",
+      "enabled": true
+    },
+    {
+      "id": "peatix-com",
+      "name": "Peatix",
+      "url": "https://peatix.com/",
+      "category": "イベントプラットフォーム",
+      "priority": "B",
+      "enabled": true
+    },
+    {
+      "id": "eventregist-com",
+      "name": "EventRegist",
+      "url": "https://eventregist.com/",
+      "category": "イベント運営SaaS",
+      "priority": "B",
+      "enabled": true
+    },
+    {
+      "id": "t-livepocket-jp",
+      "name": "LivePocket-Ticket-",
+      "url": "https://t.livepocket.jp/",
+      "category": "チケット/受付",
+      "priority": "B",
+      "enabled": true
+    },
+    {
+      "id": "sapporo-magazine-events",
+      "name": "サツイベ",
+      "url": "https://sapporo.magazine.events/",
+      "category": "イベント告知メディア",
+      "priority": "C",
+      "enabled": true
+    },
+    {
+      "id": "www-gutabi-jp-event",
+      "name": "ぐうたび北海道（イベント）",
+      "url": "https://www.gutabi.jp/event/",
+      "category": "旅行・地域メディア",
+      "priority": "C",
+      "enabled": true
+    },
+    {
+      "id": "www-walkerplus-com-spot-ar0101s03469-e-list-html",
+      "name": "ウォーカープラス（イベント）",
+      "url": "https://www.walkerplus.com/spot/ar0101s03469/e_list.html",
+      "category": "マス向けイベントDB",
+      "priority": "C",
+      "enabled": true
+    },
+    {
+      "id": "www-pref-hokkaido-lg-jp-ks-bns-217522-html",
+      "name": "北海道（後援イベント一覧）",
+      "url": "https://www.pref.hokkaido.lg.jp/ks/bns/217522.html",
+      "category": "官公庁（道の後援一覧）",
+      "priority": "C",
+      "enabled": true
+    },
+    {
+      "id": "www-kokuchpro-com",
+      "name": "こくちーずプロ",
+      "url": "https://www.kokuchpro.com/",
+      "category": "イベント告知（汎用）",
+      "priority": "C",
+      "enabled": true
+    },
+    {
+      "id": "www-eventbank-jp",
+      "name": "イベントバンク",
+      "url": "https://www.eventbank.jp/",
+      "category": "イベントデータ/API",
+      "priority": "C",
+      "enabled": true
     }
   ]
 }

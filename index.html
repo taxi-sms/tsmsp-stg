@@ -319,6 +319,10 @@ body{padding-bottom:78px;}
   font-variant-numeric:tabular-nums;
   color:var(--text-secondary);
 }
+.event-label{
+  flex:1;
+  min-width:0;
+}
 .event-arrow{
   margin-left:auto;
   color:var(--text-muted);
@@ -326,6 +330,14 @@ body{padding-bottom:78px;}
   line-height:1;
 }
 :root[data-theme="dark"] .event-arrow{ color:#7fb9ff; }
+.event-empty{
+  border:2px dashed var(--border);
+  border-radius:10px;
+  background:var(--surface-2);
+  color:var(--text-secondary);
+  padding:10px;
+  font-size:14px;
+}
 .modal-bg{
   position:fixed;
   inset:0;
@@ -338,7 +350,7 @@ body{padding-bottom:78px;}
 }
 .modal-bg.show{display:flex;}
 .modal{
-  width:min(420px,100%);
+  width:min(560px,100%);
   border:2px solid var(--border);
   border-radius:12px;
   background:var(--surface-1);
@@ -349,6 +361,24 @@ body{padding-bottom:78px;}
 }
 .modal h3{margin:0 0 8px;font-size:20px;}
 .modal p{margin:0 0 10px;font-size:14px;color:var(--text-secondary);}
+.modal-flyer-wrap{
+  margin:0 0 10px;
+  border:1px solid var(--border);
+  border-radius:10px;
+  overflow:hidden;
+  background:var(--surface-2);
+}
+.modal-flyer{
+  display:block;
+  width:100%;
+  max-height:320px;
+  object-fit:contain;
+  background:#fff;
+}
+.modal-link{
+  color:var(--accent);
+  font-weight:800;
+}
 .modal .btn{
   appearance:none;
   width:100%;
@@ -472,6 +502,12 @@ body{padding-bottom:78px;}
       min-width:56px;
       font-size:var(--font-lg);
     }
+    .event-empty{
+      border:var(--line-strong) dashed var(--border);
+      border-radius:var(--radius-sm);
+      padding:var(--space-2);
+      font-size:var(--font-md);
+    }
     .event-arrow{
       font-size:var(--font-3xl);
     }
@@ -487,6 +523,14 @@ body{padding-bottom:78px;}
     .modal p{
       margin:0 0 var(--space-2);
       font-size:var(--font-lg);
+    }
+    .modal-flyer-wrap{
+      border:var(--line-thin) solid var(--border);
+      border-radius:var(--radius-sm);
+      margin:0 0 var(--space-2);
+    }
+    .modal-flyer{
+      max-height:360px;
     }
     .modal .btn{
       min-height:var(--touch-min);
@@ -540,26 +584,10 @@ body{padding-bottom:78px;}
     <p class="calendar-info" id="calendarInfo">日付をタップすると勤務情報を表示します。</p>
   </section>
 
-  <section class="card" aria-label="本日・近日イベント">
-    <h2 class="group-title">本日・近日イベント</h2>
+  <section class="card" aria-label="本日のイベント">
+    <h2 class="group-title">本日のイベント</h2>
     <p class="group-note" id="dailyEventNote">イベントリストは毎日自動更新されます。</p>
-    <div class="event-list" id="dailyEventList">
-      <button type="button" class="event-btn" data-daily-event-index="0" data-event-title="イベント #1" data-event-detail="TBA（イベント連携未実装）">
-        <span class="event-time">TBA</span>
-        <span class="event-label">当日イベント（準備中）</span>
-        <span class="event-arrow">›</span>
-      </button>
-      <button type="button" class="event-btn" data-daily-event-index="1" data-event-title="イベント #2" data-event-detail="TBA（イベント連携未実装）">
-        <span class="event-time">TBA</span>
-        <span class="event-label">近日イベント（準備中）</span>
-        <span class="event-arrow">›</span>
-      </button>
-      <button type="button" class="event-btn" data-daily-event-index="2" data-event-title="イベント #3" data-event-detail="TBA（イベント連携未実装）">
-        <span class="event-time">TBA</span>
-        <span class="event-label">近日イベント（準備中）</span>
-        <span class="event-arrow">›</span>
-      </button>
-    </div>
+    <div class="event-list" id="dailyEventList"></div>
   </section>
 
   <section class="card" aria-label="アカウント">
@@ -575,7 +603,12 @@ body{padding-bottom:78px;}
 <div class="modal-bg" id="eventModalBg" aria-hidden="true">
   <div class="modal" role="dialog" aria-modal="true" aria-labelledby="eventModalTitle">
     <h3 id="eventModalTitle">イベント</h3>
+    <p id="eventModalMeta"></p>
+    <div class="modal-flyer-wrap" id="eventModalFlyerWrap" hidden>
+      <img id="eventModalFlyer" class="modal-flyer" alt="イベントフライヤー">
+    </div>
     <p id="eventModalDetail">TBA</p>
+    <p><a id="eventModalSourceLink" class="modal-link" href="#" target="_blank" rel="noopener" hidden>元サイトを開く</a></p>
     <button type="button" class="btn" id="eventModalCloseBtn">閉じる</button>
   </div>
 </div>
@@ -608,8 +641,13 @@ body{padding-bottom:78px;}
   })();
   var eventModalBg = document.getElementById("eventModalBg");
   var eventModalTitle = document.getElementById("eventModalTitle");
+  var eventModalMeta = document.getElementById("eventModalMeta");
   var eventModalDetail = document.getElementById("eventModalDetail");
+  var eventModalFlyerWrap = document.getElementById("eventModalFlyerWrap");
+  var eventModalFlyer = document.getElementById("eventModalFlyer");
+  var eventModalSourceLink = document.getElementById("eventModalSourceLink");
   var eventModalCloseBtn = document.getElementById("eventModalCloseBtn");
+  var dailyEventData = [];
 
   function nowISO(){ return new Date().toISOString(); }
   function localYmd(){
@@ -795,32 +833,87 @@ body{padding-bottom:78px;}
     if(shift === "absence") return {label:"欠勤", dot:"absence"};
     return {label:"未設定", dot:""};
   }
+  function normalizeEventRecord(raw){
+    if(!raw || typeof raw !== "object") return null;
+    var title = String(raw.title || "").trim();
+    var startDate = String(raw.start_date || "").trim();
+    if(!title || !startDate) return null;
+    return {
+      title: title,
+      start_date: startDate,
+      start_time: String(raw.start_time || "").trim(),
+      end_time: String(raw.end_time || "").trim(),
+      venue: String(raw.venue || "").trim(),
+      summary: String(raw.summary || "").trim(),
+      flyer_image_url: String(raw.flyer_image_url || "").trim(),
+      detail_url: String(raw.detail_url || "").trim(),
+      source_name: String(raw.source_name || "").trim()
+    };
+  }
+  function eventTimeLabel(ev){
+    if(!ev) return "終日";
+    if(ev.start_time && ev.end_time) return ev.start_time + "-" + ev.end_time;
+    if(ev.start_time) return ev.start_time;
+    return "終日";
+  }
+  function setEventEmptyState(text){
+    if(!dailyEventList) return;
+    dailyEventList.innerHTML = "";
+    var empty = document.createElement("div");
+    empty.className = "event-empty";
+    empty.textContent = text || "本日のイベントはありません。";
+    dailyEventList.appendChild(empty);
+  }
   function renderDailyEvents(){
     if(!dailyEventList) return;
-    var labels = ["当日イベント", "翌日イベント", "近日イベント"];
-    var details = [
-      "当日の予定です。",
-      "翌日の予定です。",
-      "近日の予定です。"
-    ];
-    var base = new Date();
-    var buttons = dailyEventList.querySelectorAll(".event-btn[data-daily-event-index]");
-    buttons.forEach(function(btn){
-      var idx = Number(btn.getAttribute("data-daily-event-index"));
-      if(!Number.isFinite(idx) || idx < 0) idx = 0;
-      var eventDate = new Date(base.getFullYear(), base.getMonth(), base.getDate() + idx);
-      var dateText = fmtYmdJa(eventDate);
+    var today = localYmd();
+    var todayEvents = dailyEventData.filter(function(ev){ return ev.start_date === today; });
+    dailyEventList.innerHTML = "";
+    if(!todayEvents.length){
+      setEventEmptyState("本日のイベントはありません。");
+      if(dailyEventNote) dailyEventNote.textContent = "イベントリストは毎日03:10に自動更新されます。";
+      return;
+    }
+    todayEvents.forEach(function(ev, idx){
+      var btn = document.createElement("button");
+      btn.type = "button";
+      btn.className = "event-btn";
+      btn.setAttribute("data-daily-event-index", String(idx));
+      btn.innerHTML = '' +
+        '<span class="event-time"></span>' +
+        '<span class="event-label"></span>' +
+        '<span class="event-arrow">›</span>';
       var timeEl = btn.querySelector(".event-time");
       var labelEl = btn.querySelector(".event-label");
-      var label = labels[idx] || "イベント";
-      var detail = details[idx] || "予定を確認してください。";
-      if(timeEl) timeEl.textContent = dateText;
-      if(labelEl) labelEl.textContent = label + "（自動更新）";
-      btn.dataset.eventTitle = label + " " + dateText;
-      btn.dataset.eventDetail = dateText + " " + detail;
+      if(timeEl) timeEl.textContent = eventTimeLabel(ev);
+      if(labelEl) labelEl.textContent = ev.title;
+      dailyEventList.appendChild(btn);
     });
     if(dailyEventNote){
-      dailyEventNote.textContent = "イベントリストは毎日0:00に自動更新されます。";
+      dailyEventNote.textContent = "本日のイベント " + todayEvents.length + "件（毎日03:10 更新）";
+    }
+  }
+  async function loadDailyEvents(){
+    var url = "./data/events.json?t=" + encodeURIComponent(localYmd() + "-" + Date.now());
+    var res = await fetch(url, { cache: "no-store" });
+    if(!res.ok) throw new Error("event_feed_http_" + res.status);
+    var payload = await res.json();
+    var events = Array.isArray(payload && payload.events) ? payload.events : [];
+    dailyEventData = events.map(normalizeEventRecord).filter(Boolean);
+    dailyEventData.sort(function(a, b){
+      return (a.start_date || "").localeCompare(b.start_date || "") ||
+             (a.start_time || "99:99").localeCompare(b.start_time || "99:99") ||
+             (a.title || "").localeCompare(b.title || "", "ja");
+    });
+  }
+  async function refreshDailyEvents(){
+    try{
+      await loadDailyEvents();
+      renderDailyEvents();
+    }catch(_){
+      dailyEventData = [];
+      setEventEmptyState("イベントの取得に失敗しました。時間をおいて再読み込みしてください。");
+      if(dailyEventNote) dailyEventNote.textContent = "イベントリストの取得でエラーが発生しました。";
     }
   }
   function msUntilNextMidnight(){
@@ -831,7 +924,7 @@ body{padding-bottom:78px;}
   function scheduleDailyEventRefresh(){
     if(dailyEventTimer) clearTimeout(dailyEventTimer);
     dailyEventTimer = setTimeout(function(){
-      renderDailyEvents();
+      refreshDailyEvents();
       scheduleDailyEventRefresh();
     }, msUntilNextMidnight());
   }
@@ -893,6 +986,42 @@ if(calendarNextBtn){
     eventModalBg.classList.remove("show");
     eventModalBg.setAttribute("aria-hidden", "true");
   }
+  function openEventModalByIndex(idx){
+    if(!eventModalBg || !eventModalTitle || !eventModalDetail) return;
+    var ev = dailyEventData[idx];
+    if(!ev) return;
+    eventModalTitle.textContent = ev.title || "イベント";
+    if(eventModalMeta){
+      var metaParts = [];
+      metaParts.push(ev.start_date || "");
+      if(ev.start_time || ev.end_time) metaParts.push(eventTimeLabel(ev));
+      if(ev.venue) metaParts.push(ev.venue);
+      if(ev.source_name) metaParts.push(ev.source_name);
+      eventModalMeta.textContent = metaParts.filter(Boolean).join(" / ");
+    }
+    eventModalDetail.textContent = ev.summary || "詳細は元サイトをご確認ください。";
+    if(eventModalFlyerWrap && eventModalFlyer){
+      if(ev.flyer_image_url){
+        eventModalFlyer.src = ev.flyer_image_url;
+        eventModalFlyerWrap.hidden = false;
+      }else{
+        eventModalFlyer.removeAttribute("src");
+        eventModalFlyerWrap.hidden = true;
+      }
+    }
+    if(eventModalSourceLink){
+      if(ev.detail_url){
+        eventModalSourceLink.href = ev.detail_url;
+        eventModalSourceLink.hidden = false;
+      }else{
+        eventModalSourceLink.removeAttribute("href");
+        eventModalSourceLink.hidden = true;
+      }
+    }
+    eventModalBg.classList.add("show");
+    eventModalBg.setAttribute("aria-hidden", "false");
+    if(eventModalCloseBtn) eventModalCloseBtn.focus();
+  }
   if(eventModalCloseBtn){
     eventModalCloseBtn.addEventListener("click", closeEventModal);
   }
@@ -901,21 +1030,19 @@ if(calendarNextBtn){
       if(e.target === eventModalBg) closeEventModal();
     });
   }
-  document.querySelectorAll(".event-btn").forEach(function(btn){
-    if(btn.id === "accountLogoutLink") return;
-    btn.addEventListener("click", function(){
-      if(!eventModalBg || !eventModalTitle || !eventModalDetail) return;
-      eventModalTitle.textContent = btn.dataset.eventTitle || "イベント";
-      eventModalDetail.textContent = btn.dataset.eventDetail || "TBA";
-      eventModalBg.classList.add("show");
-      eventModalBg.setAttribute("aria-hidden", "false");
-      if(eventModalCloseBtn) eventModalCloseBtn.focus();
+  if(dailyEventList){
+    dailyEventList.addEventListener("click", function(e){
+      var btn = e.target && e.target.closest ? e.target.closest(".event-btn[data-daily-event-index]") : null;
+      if(!btn) return;
+      var idx = Number(btn.getAttribute("data-daily-event-index"));
+      if(!Number.isFinite(idx) || idx < 0) return;
+      openEventModalByIndex(idx);
     });
-  });
+  }
 
   updateSyncStatus();
   renderDispatchState();
-  renderDailyEvents();
+  refreshDailyEvents();
   scheduleDailyEventRefresh();
   renderCalendar();
 })();

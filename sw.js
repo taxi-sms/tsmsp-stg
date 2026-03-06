@@ -1,4 +1,4 @@
-const CACHE_NAME = 'tsms-cache-v150';
+const CACHE_NAME = 'tsms-cache-v151';
 const ASSETS = [
   './',
   './index.html',
@@ -28,7 +28,8 @@ const ASSETS = [
   './tsms-design.css',
   './storage-schema.js',
   './sw-update-ui.js',
-  './subscription-state.js'
+  './subscription-state.js',
+  './data/events.json'
 ];
 
 self.addEventListener('install', (event) => {
