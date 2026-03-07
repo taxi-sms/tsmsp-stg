@@ -760,6 +760,98 @@ function extractSapporoCommunityPlazaSiteRuleEvent({ source, url, html, nowYmd }
   });
 }
 
+function extractPl24ScheduleEvents({ source, url, html, nowYmd }) {
+  if (source.id !== 'www-pl24-jp-schedule-html') return [];
+  if (!/\/schedule(?:_n+)?\.html$/i.test(url)) return [];
+  const blocks = [...html.matchAll(/<div id="waku_sp">([\s\S]*?)<\/div>/gi)];
+  const events = [];
+  for (const match of blocks) {
+    const block = String(match[1] || '');
+    const dayLine = stripTags((block.match(/<p id="font_day">([\s\S]*?)<\/p>/i) || [])[1] || '');
+    const title = textPreview(stripTags((block.match(/<p id="font_title">([\s\S]*?)<\/p>/i) || [])[1] || ''), 120);
+    const artist = textPreview(stripTags((block.match(/<p id="font_name">([\s\S]*?)<\/p>/i) || [])[1] || ''), 80);
+    const dates = parseDatesFromText(dayLine, nowYmd);
+    if (!dates.length) continue;
+    const body = stripTags(block);
+    const time = parseEventTimes(body);
+    const detailUrl = absolutizeUrl(url, (block.match(/<a\b[^>]*href="([^"]+)"[^>]*>/i) || [])[1] || '') || url;
+    const eventTitle = textPreview([artist, title].filter(Boolean).join(' ').trim() || title || artist, 120);
+    if (!eventTitle || BAD_TITLE_RE.test(eventTitle) || WEAK_TITLE_RE.test(eventTitle)) continue;
+    const ev = buildSiteRuleEvent({
+      source,
+      detailUrl,
+      title: eventTitle,
+      startDate: dates[0].ymd,
+      venue: 'PENNY LANE24',
+      time,
+      summary: body,
+      flyerImageUrl: absolutizeUrl(url, (block.match(/<img\b[^>]*src="([^"]+)"/i) || [])[1] || '') || ''
+    });
+    if (ev) events.push(ev);
+  }
+  return uniqueBy(events, (ev) => ev.id);
+}
+
+function extractCubeGardenScheduleEvents({ source, url, html, nowYmd }) {
+  if (source.id !== 'www-cube-garden-com-live-php') return [];
+  if (!/\/live\.php/i.test(url)) return [];
+  const blocks = [...html.matchAll(/<div id="e[^"]+" class="cubeEvent">([\s\S]*?)<b class="cubeEvent_pageTop/gi)];
+  const events = [];
+  for (const match of blocks) {
+    const block = String(match[1] || '');
+    const title = textPreview(stripTags((block.match(/<h3\b[^>]*class="cubeEventTitle_name"[^>]*>([\s\S]*?)<\/h3>/i) || [])[1] || ''), 120);
+    const dateText = stripTags((block.match(/<th>\s*開催日\s*<\/th>\s*<td>([\s\S]*?)<\/td>/i) || [])[1] || '');
+    const dates = parseDatesFromText(dateText, nowYmd);
+    if (!title || !dates.length) continue;
+    const artist = textPreview(stripTags((block.match(/<th>\s*出演\s*<\/th>\s*<td>([\s\S]*?)<\/td>/i) || [])[1] || ''), 100);
+    const timeText = stripTags((block.match(/<th>\s*開場開演\s*<\/th>\s*<td>([\s\S]*?)<\/td>/i) || [])[1] || '');
+    const ticketHref = absolutizeUrl(url, (block.match(/<a\b[^>]*href="([^"]+)"[^>]*>\s*チケット詳細はこちら/i) || [])[1] || '') || url;
+    const imageUrl = absolutizeUrl(url, (block.match(/<img\b[^>]*src="([^"]+)"[^>]*>/i) || [])[1] || '') || '';
+    const body = stripTags(block);
+    const ev = buildSiteRuleEvent({
+      source,
+      detailUrl: ticketHref,
+      title: textPreview([artist, title].filter(Boolean).join(' ').trim() || title, 120),
+      startDate: dates[0].ymd,
+      venue: 'cube garden',
+      time: parseEventTimes(timeText || body),
+      summary: body,
+      flyerImageUrl: imageUrl
+    });
+    if (ev) events.push(ev);
+  }
+  return uniqueBy(events, (ev) => ev.id);
+}
+
+function extractDoshinPlayguideSiteRuleEvent({ source, url, html, nowYmd }) {
+  if (source.id !== 'doshin-playguide-jp') return null;
+  if (!/doshin-playguide\.jp\/(?:ticket\/detail\/\d+|event\/)/i.test(url)) return null;
+
+  const title = String(extractTitle(html) || '').split('|')[0].trim();
+  if (!title || BAD_TITLE_RE.test(title) || WEAK_TITLE_RE.test(title)) return null;
+
+  const dateMatch = html.match(/(20\d{2}年\d{1,2}月\d{1,2}日(?:\([^)]+\))?)/);
+  const dateText = dateMatch ? decodeHtmlEntities(dateMatch[1]).replace(/\\u3000/g, ' ') : '';
+  const dates = parseDatesFromText(dateText, nowYmd);
+  if (!dates.length) return null;
+
+  const timeMatch = html.match(/(開場\s*[0-2]?\d[:：][0-5]\d\s*[^"]*?開演\s*[0-2]?\d[:：][0-5]\d)/);
+  const timeText = timeMatch ? decodeHtmlEntities(timeMatch[1]).replace(/\\u3000/g, ' ') : '';
+  const hallMatch = html.match(/(札幌[^"]+(?:ホール|会館|劇場|アリーナ|ドーム|センター|プラザ|きたえーる|Kitara)[^"]*)/);
+  const venue = hallMatch ? decodeHtmlEntities(hallMatch[1]).replace(/\\u3000/g, ' ').replace(/\\+$/,'').trim() : '';
+
+  return buildSiteRuleEvent({
+    source,
+    detailUrl: url,
+    title,
+    startDate: dates[0].ymd,
+    venue,
+    time: parseEventTimes(timeText || dateText),
+    summary: pickMeta(html, 'description') || `${dateText} ${timeText}`.trim(),
+    flyerImageUrl: pickMeta(html, 'og:image') || ''
+  });
+}
+
 function extractMountAliveSiteRuleEvent({ source, url, html, nowYmd }) {
   if (source.id !== 'www-mountalive-com-schedule') return null;
   if (!/\/schedule\/more\.php/i.test(url)) return null;
@@ -1159,6 +1251,12 @@ function extractEventsFromPage({ source, url, html, titleHint, nowYmd }) {
   if (seasonEvent) events.push(withQuality(seasonEvent));
   const plazaEvent = extractSapporoCommunityPlazaSiteRuleEvent({ source, url, html, nowYmd });
   if (plazaEvent) events.push(withQuality(plazaEvent));
+  const pl24Events = extractPl24ScheduleEvents({ source, url, html, nowYmd });
+  for (const ev of pl24Events) events.push(withQuality(ev));
+  const cubeEvents = extractCubeGardenScheduleEvents({ source, url, html, nowYmd });
+  for (const ev of cubeEvents) events.push(withQuality(ev));
+  const doshinEvent = extractDoshinPlayguideSiteRuleEvent({ source, url, html, nowYmd });
+  if (doshinEvent) events.push(withQuality(doshinEvent));
   const mountAliveEvent = extractMountAliveSiteRuleEvent({ source, url, html, nowYmd });
   if (mountAliveEvent) events.push(withQuality(mountAliveEvent));
   const zeppEvent = extractZeppSapporoSiteRuleEvent({ source, url, html, nowYmd });
@@ -1385,6 +1483,45 @@ async function crawlWessSource(source, options) {
   };
 }
 
+async function crawlDoshinPlayguideSource(source, options) {
+  const { nowYmd } = options;
+  let root;
+  try {
+    root = await fetchText(source.url, 12000);
+  } catch (error) {
+    return { sourceId: source.id, events: [], error: String(error?.message || error) };
+  }
+
+  const urls = [...root.html.matchAll(/https:\/\/doshin-playguide\.jp\/(ticket\/detail\/\d+|event\/[a-zA-Z0-9._/-]+)/g)]
+    .map((m) => `https://doshin-playguide.jp/${m[1]}`);
+  const detailPages = await mapLimit(uniqueBy(urls, (x) => x), 4, async (url) => {
+    try {
+      return await fetchText(url, 10000);
+    } catch (_) {
+      return null;
+    }
+  });
+
+  const events = [];
+  for (const page of detailPages) {
+    if (!page || page.error) continue;
+    const pageEvents = extractEventsFromPage({
+      source,
+      url: page.url,
+      html: page.html,
+      titleHint: extractTitle(page.html) || source.name,
+      nowYmd
+    });
+    for (const ev of pageEvents) events.push(withQuality(ev));
+  }
+
+  return {
+    sourceId: source.id,
+    events: uniqueBy(events, (x) => x.id),
+    error: ''
+  };
+}
+
 async function crawlMonthlyDetailSource(source, options, buildMonthUrl, detailUrlRe) {
   const { nowYmd, maxDate } = options;
   const months = enumerateMonthStarts(nowYmd, maxDate);
@@ -1496,6 +1633,45 @@ async function crawlSeededDetailSource(source, options, seedUrls, detailUrlRe) {
   };
 }
 
+async function crawlSeededListSource(source, options, seedUrls, pageParser = null) {
+  const { nowYmd } = options;
+  const pages = await mapLimit(seedUrls, 4, async (url) => {
+    try {
+      return await fetchText(url, 12000);
+    } catch (_) {
+      return null;
+    }
+  });
+
+  const events = [];
+  for (const page of pages) {
+    if (!page || page.error) continue;
+    const pageEvents = pageParser
+      ? pageParser({ source, url: page.url, html: page.html, nowYmd })
+      : extractEventsFromPage({
+          source,
+          url: page.url,
+          html: page.html,
+          titleHint: extractTitle(page.html) || source.name,
+          nowYmd
+        });
+    for (const ev of pageEvents) events.push(withQuality(ev));
+  }
+
+  return {
+    sourceId: source.id,
+    events: uniqueBy(events, (x) => x.id),
+    error: ''
+  };
+}
+
+async function crawlMonthlyListSource(source, options, buildMonthUrl, pageParser) {
+  const { nowYmd, maxDate } = options;
+  const months = enumerateMonthStarts(nowYmd, maxDate);
+  const seedUrls = months.map((monthYmd) => buildMonthUrl(monthYmd));
+  return crawlSeededListSource(source, options, seedUrls, pageParser);
+}
+
 function resolveSourceStrategy(source, strategyMap) {
   const raw = String(
     source?.crawl_strategy ||
@@ -1545,6 +1721,9 @@ async function crawlSource(source, options) {
   if (source.id === 'wess-jp-concert-schedule') {
     return crawlWessSource(source, options);
   }
+  if (source.id === 'doshin-playguide-jp') {
+    return crawlDoshinPlayguideSource(source, options);
+  }
   if (source.id === 'www-kitara-sapporo-or-jp-event') {
     return crawlMonthlyDetailSource(
       source,
@@ -1574,6 +1753,29 @@ async function crawlSource(source, options) {
         'https://www.sapporo-community-plaza.jp/event_scarts.php'
       ],
       /\/event\.php\?num=\d+/i
+    );
+  }
+  if (source.id === 'www-pl24-jp-schedule-html') {
+    return crawlSeededListSource(
+      source,
+      options,
+      [
+        'https://www.pl24.jp/schedule.html',
+        'https://www.pl24.jp/schedule_n.html',
+        'https://www.pl24.jp/schedule_nn.html',
+        'https://www.pl24.jp/schedule_nnn.html',
+        'https://www.pl24.jp/schedule_nnnn.html',
+        'https://www.pl24.jp/schedule_nnnnn.html'
+      ],
+      extractPl24ScheduleEvents
+    );
+  }
+  if (source.id === 'www-cube-garden-com-live-php') {
+    return crawlMonthlyListSource(
+      source,
+      options,
+      (monthYmd) => `https://www.cube-garden.com/live.php?month=${monthYmd.slice(0, 7).replace('-', '')}`,
+      extractCubeGardenScheduleEvents
     );
   }
   const plan = buildCrawlPlan(source, mode, strategy);
