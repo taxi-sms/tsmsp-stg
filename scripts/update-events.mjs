@@ -2,6 +2,7 @@
 import { promises as fs } from 'node:fs';
 import path from 'node:path';
 import crypto from 'node:crypto';
+import { pathToFileURL } from 'node:url';
 
 const TIMEZONE = 'Asia/Tokyo';
 const SOURCE_PATH = path.resolve(process.cwd(), 'config/event-sources.json');
@@ -10,7 +11,7 @@ const OUTPUT_PATH = path.resolve(process.cwd(), 'data/events.json');
 
 const PRIORITY_SCORE = { S: 4, A: 3, B: 2, C: 1 };
 const EVENT_TEXT_RE = /(event|events|schedule|festival|concert|live|seminar|exhibition|show|meetup|fair|開催|公演|展示|ライブ|フェス|祭|イベント|セミナー)/i;
-const BAD_TITLE_RE = /(宴会場|会議室|客室|宿泊|ご案内|施設案内|貸し会議室|トップページ|無料で使える|他のイベントを見る|今週末のおすすめイベント|公演・チケット情報|イベント一覧|大宴会場案内|^明日\(\)開催$|一覧表示|リスト表示|公演一覧|イベントスケジュール|主催公演|公演情報|イベント情報|近日開催イベント|歴史と開催結果|期間中の様々なイベント|託児サービス対象公演|ビジネスセミナー|セミナー情報|チケット詳細はこちら|NEW\s*キャンペーン|キャンペーン)/i;
+const BAD_TITLE_RE = /(宴会場|会議室|客室|宿泊|ご案内|施設案内|貸し会議室|トップページ|無料で使える|他のイベントを見る|今週末のおすすめイベント|公演・チケット情報|イベント一覧|大宴会場案内|^明日\(\)開催$|一覧表示|リスト表示|公演一覧|イベントスケジュール|主催公演|公演情報|イベント情報|近日開催イベント|歴史と開催結果|期間中の様々なイベント|託児サービス対象公演|ビジネスセミナー|セミナー情報|チケット詳細はこちら|NEW\s*キャンペーン|キャンペーン|調査結果|結果報告|入札情報|審議会)/i;
 const WEAK_TITLE_RE = /^(イベント|イベント情報|event|events|schedule)(\s*[|｜:].*)?$/i;
 const BAD_URL_RE = /\/banq\/|\/banquet\/|\/stay\/|\/guestroom\//i;
 const BAD_VENUE_RE = /(ご案内|ご了承ください|公開される場合|お問い合わせ|お問合せ|チケット|SOLD\s*OUT|当日券|販売|先行|整列|詳細|一覧|トップ|公式サイト|アクセスはこちら)/i;
@@ -46,6 +47,101 @@ const SOURCE_DETAIL_LIMIT_OVERRIDE = {
   'eplus-jp-sf-area-hokkaido-tohoku-hokkaido-sapporo': { full: 40, delta: 28, minScore: 2 },
   't-pia-jp-hokkaido': { full: 35, delta: 24, minScore: 2 }
 };
+const SAPPORO_AREA_TERMS = [
+  '札幌',
+  '札幌市',
+  '中央区',
+  '北区',
+  '東区',
+  '白石区',
+  '厚別区',
+  '豊平区',
+  '清田区',
+  '南区',
+  '西区',
+  '手稲区',
+  '北広島',
+  '北広島市',
+  '江別',
+  '江別市',
+  '石狩',
+  '石狩市',
+  '恵庭',
+  '恵庭市',
+  '千歳',
+  '千歳市',
+  '小樽',
+  '小樽市',
+  '当別',
+  '当別町',
+  '新千歳空港',
+  '大通公園',
+  '中島公園',
+  '真駒内',
+  'すすきの',
+  'さっぽろ',
+  'サッポロ',
+  'Zepp Sapporo',
+  'Zepp札幌',
+  'Kitara',
+  'hitaru',
+  'SCARTS',
+  'cube garden',
+  'PENNY LANE24',
+  'SPiCE',
+  'カナモトホール',
+  '札幌市民交流プラザ',
+  '札幌文化芸術劇場',
+  '札幌コンサートホール',
+  '札幌コンベンションセンター',
+  'アクセスサッポロ',
+  'サッポロファクトリー',
+  'プレミストドーム',
+  'つどーむ',
+  '札幌芸術の森'
+];
+const NON_SAPPORO_AREA_TERMS = [
+  '東京',
+  '東京都',
+  '大阪',
+  '大阪市',
+  '名古屋',
+  '愛知',
+  '福岡',
+  '仙台',
+  '横浜',
+  '神戸',
+  '京都',
+  '広島',
+  '那覇',
+  '旭川',
+  '函館',
+  '帯広',
+  '釧路',
+  '北見',
+  '網走',
+  '稚内',
+  '留萌',
+  '室蘭',
+  '苫小牧',
+  '岩見沢',
+  '滝川',
+  '富良野',
+  '音更',
+  '中標津',
+  '奈井江',
+  'ニセコ',
+  '登別',
+  '旭川市',
+  '函館市',
+  '帯広市',
+  '釧路市',
+  '北見市',
+  '苫小牧市'
+];
+const GEO_ADDRESS_NOISE_RE = /(市長|総合受付|事務局|お問い合わせ|お問合せ|お気に入りに追加|追加しました|印刷|リスト表示|代表|経済センター\d*F)/i;
+const SAPPORO_AREA_RE = new RegExp(SAPPORO_AREA_TERMS.map(escapeRegExp).join('|'), 'i');
+const NON_SAPPORO_AREA_RE = new RegExp(NON_SAPPORO_AREA_TERMS.map(escapeRegExp).join('|'), 'i');
 
 function parseArgs(argv) {
   const out = { mode: 'delta' };
@@ -56,6 +152,10 @@ function parseArgs(argv) {
     }
   }
   return out;
+}
+
+function escapeRegExp(input) {
+  return String(input || '').replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
 }
 
 function ymdInJst(input = new Date()) {
@@ -111,6 +211,10 @@ function textPreview(input, max = 180) {
   const t = String(input || '').replace(/\s+/g, ' ').trim();
   if (!t) return '';
   return t.length > max ? `${t.slice(0, max - 1)}…` : t;
+}
+
+function normalizeGeoText(input) {
+  return String(input || '').replace(/\s+/g, ' ').trim();
 }
 
 function pickMeta(html, key) {
@@ -358,6 +462,14 @@ function isInvalidVenueCandidate(value) {
   if (v.length > 70) return true;
   if (/。/.test(v)) return true;
   if (BAD_VENUE_RE.test(v)) return true;
+  return false;
+}
+
+function isInvalidAddressCandidate(value) {
+  const v = normalizeGeoText(value);
+  if (!v) return true;
+  if (v.length > 140) return true;
+  if (GEO_ADDRESS_NOISE_RE.test(v)) return true;
   return false;
 }
 
@@ -623,6 +735,44 @@ function isGenericHallName(text) {
 function sourceVenueName(source) {
   if (!source || !source.id) return '';
   return String(SOURCE_VENUE_FALLBACK[source.id] || '').trim();
+}
+
+function hasSapporoAreaSignal(text) {
+  const t = normalizeGeoText(text);
+  if (!t) return false;
+  return SAPPORO_AREA_RE.test(t);
+}
+
+function hasNonSapporoAreaSignal(text) {
+  const t = normalizeGeoText(text);
+  if (!t) return false;
+  return NON_SAPPORO_AREA_RE.test(t);
+}
+
+export function isSapporoAreaEvent(ev, source = null) {
+  if (!ev || typeof ev !== 'object') return false;
+
+  const title = normalizeGeoText(ev.title || '');
+  const venue = cleanVenue(ev.venue || '');
+  const rawAddress = normalizeGeoText(ev.venue_address || '');
+  const address = isInvalidAddressCandidate(rawAddress) ? '' : rawAddress;
+  const sourceVenue = cleanVenue(sourceVenueName(source));
+  const hasTrustedSourceVenue = !!(sourceVenue && hasSapporoAreaSignal(sourceVenue));
+
+  const locationText = [venue, address, sourceVenue].filter(Boolean).join('\n');
+  const broadText = [title, venue, address].filter(Boolean).join('\n');
+
+  const hasLocalLocation = hasSapporoAreaSignal(locationText);
+  const hasLocalBroad = hasSapporoAreaSignal(broadText);
+  const hasOutsideBroad = hasNonSapporoAreaSignal(broadText);
+  const hasMultiLocationListing = /[／/]/.test(venue) || /[／/]/.test(address);
+
+  if (hasOutsideBroad && !hasLocalLocation) return false;
+  if (hasMultiLocationListing && hasOutsideBroad && hasLocalBroad) return false;
+  if (venue && hasNonSapporoAreaSignal(venue) && !hasSapporoAreaSignal(venue)) return false;
+  if (address && hasNonSapporoAreaSignal(address) && !hasSapporoAreaSignal(address)) return false;
+
+  return hasLocalLocation || (hasLocalBroad && hasTrustedSourceVenue);
 }
 
 function enrichVenue(ev, source, contextText) {
@@ -1216,6 +1366,10 @@ async function main() {
   const mergedCanonical = Array.from(bestByCanonical.values())
     .filter((ev) => withinWindow(ev, minDate, maxDate))
     .filter((ev) => isPublishable(ev))
+    .filter((ev) => {
+      const source = crawlTargets.find((row) => row.id === ev.source_id) || null;
+      return isSapporoAreaEvent(ev, source);
+    })
     .sort(sortEvents);
 
   const bestByUrlDate = new Map();
@@ -1263,7 +1417,19 @@ async function main() {
   console.log(`[events] mode=${mode} sources=${crawlTargets.length}/${enabledSources.length} errors=${errorCount} events=${mergedPublic.length} today=${todayCount}`);
 }
 
-main().catch((error) => {
-  console.error('[events] failed:', error);
-  process.exitCode = 1;
-});
+const isDirectRun = (() => {
+  const entry = process.argv[1];
+  if (!entry) return false;
+  try {
+    return import.meta.url === pathToFileURL(path.resolve(entry)).href;
+  } catch (_) {
+    return false;
+  }
+})();
+
+if (isDirectRun) {
+  main().catch((error) => {
+    console.error('[events] failed:', error);
+    process.exitCode = 1;
+  });
+}
