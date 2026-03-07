@@ -86,9 +86,20 @@ const SAPPORO_AREA_TERMS = [
   'Kitara',
   'hitaru',
   'SCARTS',
+  '北海きたえーる',
+  '北海道立総合体育センター',
+  'KLUB COUNTER ACTION',
+  'COUNTER ACTION',
+  'PENNY LANE 24',
+  'ペニーレーン24',
   'cube garden',
   'PENNY LANE24',
   'SPiCE',
+  'SPIRITUAL LOUNGE',
+  '札幌近松',
+  'BESSIE HALL',
+  'Crazy Monkey',
+  'Sound Lab mole',
   'カナモトホール',
   '札幌市民交流プラザ',
   '札幌文化芸術劇場',
@@ -260,10 +271,42 @@ function extractLinks(html, baseUrl) {
     if (!url) continue;
     const text = stripTags(m[2]).replace(/\s+/g, ' ').trim();
     if (!text || text.length < 2) continue;
-    links.push({ url, text });
+    const contextStart = Math.max(0, m.index - 180);
+    const contextEnd = Math.min(html.length, re.lastIndex + 220);
+    const context = stripTags(html.slice(contextStart, contextEnd)).replace(/\s+/g, ' ').trim();
+    links.push({ url, text, context });
     if (links.length > 1200) break;
   }
   return links;
+}
+
+function compactYmd(ymd) {
+  return String(ymd || '').replace(/\D/g, '').slice(0, 8);
+}
+
+function monthStartYmd(ymd) {
+  const [y, m] = String(ymd || '').split('-').map((n) => Number(n));
+  if (!y || !m) return '';
+  return `${String(y).padStart(4, '0')}-${String(m).padStart(2, '0')}-01`;
+}
+
+function nextMonthYmd(ymd) {
+  const [y, m] = String(ymd || '').split('-').map((n) => Number(n));
+  if (!y || !m) return '';
+  const dt = new Date(Date.UTC(y, m - 1, 1));
+  dt.setUTCMonth(dt.getUTCMonth() + 1);
+  return `${dt.getUTCFullYear()}-${String(dt.getUTCMonth() + 1).padStart(2, '0')}-01`;
+}
+
+function enumerateMonthStarts(fromYmd, toYmd) {
+  const out = [];
+  let current = monthStartYmd(fromYmd);
+  const last = monthStartYmd(toYmd);
+  while (current && last && current <= last) {
+    out.push(current);
+    current = nextMonthYmd(current);
+  }
+  return out;
 }
 
 function parseDatesFromText(text, nowYmd) {
@@ -302,6 +345,13 @@ function parseDatesFromText(text, nowYmd) {
 function parseIsoDateParts(value) {
   const raw = String(value || '').trim();
   if (!raw) return { date: '', time: '' };
+  const compact = raw.match(/^(\d{4})(\d{2})(\d{2})$/);
+  if (compact) {
+    return {
+      date: `${compact[1]}-${compact[2]}-${compact[3]}`,
+      time: ''
+    };
+  }
   const m = raw.match(/^(\d{4})[-/.年](\d{1,2})[-/.月](\d{1,2})(?:日)?(?:[T\s](\d{1,2}):?(\d{2})?)?/);
   if (!m) return { date: '', time: '' };
   const yyyy = m[1] || '';
@@ -1108,6 +1158,26 @@ async function fetchText(url, timeoutMs = 10000) {
   }
 }
 
+async function fetchJson(url, timeoutMs = 10000) {
+  const controller = new AbortController();
+  const timer = setTimeout(() => controller.abort(), timeoutMs);
+  try {
+    const res = await fetch(url, {
+      redirect: 'follow',
+      signal: controller.signal,
+      headers: {
+        'user-agent': 'TSMS-EventCrawler/1.0 (+https://taxi-sms.github.io/tsmsp/)'
+      }
+    });
+    if (!res.ok) {
+      throw new Error(`http_${res.status}`);
+    }
+    return await res.json();
+  } finally {
+    clearTimeout(timer);
+  }
+}
+
 function uniqueBy(array, keyFn) {
   const out = [];
   const seen = new Set();
@@ -1118,6 +1188,51 @@ function uniqueBy(array, keyFn) {
     out.push(row);
   }
   return out;
+}
+
+function eventFromWessPost(post, source) {
+  const meta = (post && typeof post === 'object' && post.meta && typeof post.meta === 'object') ? post.meta : {};
+  const startDate = parseIsoDateParts(String(meta.kouenbi || '')).date;
+  if (!startDate) return null;
+
+  const artist = textPreview(meta.artist || '', 80);
+  const concertTitle = textPreview(meta.concerttitle || '', 120);
+  const title = textPreview([artist, concertTitle].filter(Boolean).join(' ').trim() || String(post.title || ''), 120);
+  if (!title || BAD_TITLE_RE.test(title) || WEAK_TITLE_RE.test(title)) return null;
+
+  const summary = textPreview(
+    stripTags(meta.freeareaahonbun || meta.koenjoho || meta.tentohanbaicomment || meta.ryokincomment || ''),
+    220
+  );
+  const venue = textPreview(meta.kaijo || '', 80);
+  const openTime = String(meta.kaijojikan || '').trim().replace('：', ':');
+  const startTime = String(meta.kaienjikan || '').trim().replace('：', ':');
+  const detailUrl = absolutizeUrl(source.url, post.link || '') || '';
+  if (!detailUrl) return null;
+
+  return {
+    id: makeEventId(`${detailUrl}|${startDate}|${openTime}|${startTime}|${title}`),
+    title,
+    start_date: startDate,
+    end_date: '',
+    open_time: openTime,
+    start_time: startTime,
+    end_time: '',
+    all_day: !(openTime || startTime),
+    venue,
+    venue_address: '',
+    summary,
+    flyer_image_url: absolutizeUrl(source.url, meta.thumbnail_url || '') || '',
+    detail_url: detailUrl,
+    source_id: source.id,
+    source_name: source.name,
+    source_url: source.url,
+    source_category: source.category || '',
+    source_priority: source.priority || 'B',
+    source_priority_score: PRIORITY_SCORE[source.priority] || 0,
+    extraction_method: 'site_rule',
+    updated_at: new Date().toISOString()
+  };
 }
 
 async function mapLimit(items, limit, mapper) {
@@ -1140,6 +1255,57 @@ async function mapLimit(items, limit, mapper) {
   const workers = Array.from({ length: Math.max(1, limit) }, () => worker());
   await Promise.all(workers);
   return results;
+}
+
+async function crawlWessSource(source, options) {
+  const { nowYmd, maxDate } = options;
+  const months = enumerateMonthStarts(nowYmd, maxDate);
+  const events = [];
+
+  for (const monthYmd of months) {
+    const from = compactYmd(monthYmd);
+    const to = compactYmd(nextMonthYmd(monthYmd));
+    const nowCompact = compactYmd(nowYmd);
+    const params = new URLSearchParams();
+    params.set('filter[posts_per_page]', '100');
+    params.set('filter[offset]', '0');
+    params.set('filter[meta_query][0][key]', 'kouenbi');
+    params.set('filter[meta_query][0][value]', from);
+    params.set('filter[meta_query][0][compare]', '>=');
+    params.set('filter[meta_query][0][type]', 'NUMERIC');
+    params.set('filter[meta_query][1][key]', 'kouenbi');
+    params.set('filter[meta_query][1][value]', to);
+    params.set('filter[meta_query][1][compare]', '<');
+    params.set('filter[meta_query][1][type]', 'NUMERIC');
+    params.set('filter[meta_query][2][key]', 'kouenbi');
+    params.set('filter[meta_query][2][value]', nowCompact);
+    params.set('filter[meta_query][2][compare]', '>=');
+    params.set('filter[meta_query][2][type]', 'NUMERIC');
+    params.set('filter[meta_query][relation]', 'AND');
+    params.set('filter[orderby]', 'meta_value');
+    params.set('filter[order]', 'ASC');
+    params.set('filter[meta_key]', 'kouenbi');
+
+    const url = `https://wess.jp/wp-json/posts?${params.toString()}`;
+    let rows = [];
+    try {
+      const payload = await fetchJson(url, 15000);
+      rows = Array.isArray(payload) ? payload : [];
+    } catch (_) {
+      continue;
+    }
+
+    for (const row of rows) {
+      const ev = eventFromWessPost(row, source);
+      if (ev) events.push(withQuality(ev));
+    }
+  }
+
+  return {
+    sourceId: source.id,
+    events: uniqueBy(events, (x) => x.id),
+    error: ''
+  };
 }
 
 function resolveSourceStrategy(source, strategyMap) {
@@ -1188,6 +1354,9 @@ function buildCrawlPlan(source, mode, strategy) {
 
 async function crawlSource(source, options) {
   const { mode, nowYmd, strategy } = options;
+  if (source.id === 'wess-jp-concert-schedule') {
+    return crawlWessSource(source, options);
+  }
   const plan = buildCrawlPlan(source, mode, strategy);
 
   let root;
@@ -1216,6 +1385,8 @@ async function crawlSource(source, options) {
       if (EVENT_TEXT_RE.test(x.text)) score += 3;
       if (EVENT_TEXT_RE.test(x.url)) score += 2;
       if (/\d{1,2}[\/.月]\d{1,2}日?/.test(x.text) || /20\d{2}[\/.\-年]/.test(x.text)) score += 2;
+      if (parseDatesFromText(String(x.context || ''), nowYmd).length) score += 2;
+      if (hasEventSignal(x.text, String(x.context || ''))) score += 1;
       if (hasDetailUrlSignal(x.url)) score += 3;
       return { ...x, score };
     })
@@ -1339,6 +1510,7 @@ async function main() {
   const results = await mapLimit(crawlTargets, 5, (source) => crawlSource(source, {
     mode,
     nowYmd: today,
+    maxDate,
     strategy: source.crawl_strategy
   }));
 
@@ -1460,7 +1632,7 @@ async function main() {
   console.log(`[events] mode=${mode} sources=${crawlTargets.length}/${enabledSources.length} errors=${errorCount} events=${mergedPublic.length} today=${todayCount}`);
 }
 
-export { extractTicketPiaLocalSiteRuleEvents };
+export { eventFromWessPost, extractTicketPiaLocalSiteRuleEvents };
 
 const isDirectRun = (() => {
   const entry = process.argv[1];

@@ -104,6 +104,49 @@ async function testExtractTicketPiaLocalCardDate() {
   assert.strictEqual(events[0].venue, "真駒内セキスイハイムアイスアリーナ (北海道)");
 }
 
+async function testAllowKnownSapporoVenueWithoutCityName() {
+  const mod = await loadModule();
+  const ev = {
+    title: "SUPER BEAVER 20th Anniversary TOUR 2026",
+    venue: "北海道立総合体育センター 北海きたえーる",
+    venue_address: ""
+  };
+  assert.strictEqual(mod.isSapporoAreaEvent(ev), true);
+}
+
+async function testBuildWessEventFromApiPost() {
+  const mod = await loadModule();
+  const source = {
+    id: "wess-jp-concert-schedule",
+    name: "WESS",
+    url: "https://wess.jp/concert-schedule/",
+    category: "コンサートプロモーター",
+    priority: "S"
+  };
+  const post = {
+    title: "SUPER BEAVER|03.08(日)|札幌 北海道立総合体育センター 北海きたえーる",
+    link: "https://wess.jp/superbeaver2/",
+    meta: {
+      kouenbi: "20260308",
+      artist: "SUPER BEAVER",
+      concerttitle: "SUPER BEAVER 20th Anniversary 「都会のラクダ TOUR 2026 〜 ラクダトゥインクルー 〜」",
+      kaijo: "北海道立総合体育センター 北海きたえーる",
+      kaijojikan: "16:00",
+      kaienjikan: "17:00",
+      thumbnail_url: "https://wess.jp/example.jpg",
+      freeareaahonbun: "<p>札幌公演です</p>"
+    }
+  };
+
+  const ev = mod.eventFromWessPost(post, source);
+  assert.ok(ev);
+  assert.strictEqual(ev.start_date, "2026-03-08");
+  assert.strictEqual(ev.title.includes("SUPER BEAVER"), true);
+  assert.strictEqual(ev.venue, "北海道立総合体育センター 北海きたえーる");
+  assert.strictEqual(ev.open_time, "16:00");
+  assert.strictEqual(ev.start_time, "17:00");
+}
+
 async function runTests() {
   const tests = [
     ["札幌圏会場は通す", testAllowSapporoAreaVenue],
@@ -111,7 +154,9 @@ async function runTests() {
     ["札幌文字列ノイズでは通さない", testRejectOutsideAreaWithLocalNoiseAddress],
     ["複数都市まとめ会場は落とす", testRejectMultiLocationListing],
     ["タイトルだけ札幌は通さない", testRejectTitleOnlyLocalWithoutVenueProof],
-    ["ぴあ bundle は札幌カードの日付を使う", testExtractTicketPiaLocalCardDate]
+    ["ぴあ bundle は札幌カードの日付を使う", testExtractTicketPiaLocalCardDate],
+    ["札幌既知会場は地名なしでも通す", testAllowKnownSapporoVenueWithoutCityName],
+    ["WESS API から札幌公演を組み立てる", testBuildWessEventFromApiPost]
   ];
   let passed = 0;
   for (const [name, fn] of tests) {
