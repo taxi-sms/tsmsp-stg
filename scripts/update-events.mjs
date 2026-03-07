@@ -5,6 +5,7 @@ import crypto from 'node:crypto';
 
 const TIMEZONE = 'Asia/Tokyo';
 const SOURCE_PATH = path.resolve(process.cwd(), 'config/event-sources.json');
+const STRATEGY_PATH = path.resolve(process.cwd(), 'config/event-source-strategies.json');
 const OUTPUT_PATH = path.resolve(process.cwd(), 'data/events.json');
 
 const PRIORITY_SCORE = { S: 4, A: 3, B: 2, C: 1 };
@@ -15,7 +16,13 @@ const BAD_URL_RE = /\/banq\/|\/banquet\/|\/stay\/|\/guestroom\//i;
 const DETAIL_URL_SIGNAL_RE = /(event[_-]?detail|\/detail\/|eventid=|eventcd=|eventbundlecd=|[?&](id|num|no|eid)=|\/seminar\/\d+|\/\d{4}\/\d{1,2}\/\d{1,2}\/)/i;
 const JSONLD_SCRIPT_RE = /<script\b[^>]*type=["']application\/ld\+json["'][^>]*>([\s\S]*?)<\/script>/gi;
 const MIN_QUALITY_SCORE = 0.56;
-const MIN_QUALITY_SCORE_HEURISTIC = 0.66;
+const MIN_QUALITY_SCORE_HEURISTIC = 0.58;
+const SOURCE_CUSTOM_RULE_IDS = new Set([
+  'www-sapporo-travel-autumnfest',
+  'www-sapporo-travel-lilacfes-about',
+  'www-sapporo-travel-summerfes',
+  'www-sapporo-travel-white-illumination'
+]);
 
 function parseArgs(argv) {
   const out = { mode: 'delta' };
@@ -331,6 +338,112 @@ function pickImage(html, baseUrl) {
   return '';
 }
 
+function pickSectionById(html, id) {
+  const escaped = String(id || '').replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+  const re = new RegExp(`<dt\\b[^>]*id=["']${escaped}["'][^>]*>[\\s\\S]*?<\\/dt>\\s*<dd\\b[^>]*>([\\s\\S]*?)<\\/dd>`, 'i');
+  const m = html.match(re);
+  if (!m || !m[1]) return '';
+  return stripTags(m[1]);
+}
+
+function buildSiteRuleEvent({
+  source,
+  detailUrl,
+  title,
+  startDate,
+  endDate = '',
+  venue = '',
+  venueAddress = '',
+  time = { open: '', start: '', end: '', allDay: true },
+  summary = '',
+  flyerImageUrl = ''
+}) {
+  if (!source || !detailUrl || !title || !startDate) return null;
+  const seed = `${detailUrl}|${startDate}|${time.open || ''}|${time.start || ''}|${time.end || ''}|${title}`;
+  return {
+    id: makeEventId(seed),
+    title: textPreview(title, 120),
+    start_date: startDate,
+    end_date: endDate,
+    open_time: time.open || '',
+    start_time: time.start || '',
+    end_time: time.end || '',
+    all_day: !!time.allDay,
+    venue: textPreview(venue || '', 80),
+    venue_address: textPreview(venueAddress || '', 140),
+    summary: textPreview(summary || '', 220),
+    flyer_image_url: flyerImageUrl || '',
+    detail_url: detailUrl,
+    source_id: source.id,
+    source_name: source.name,
+    source_url: source.url,
+    source_category: source.category || '',
+    source_priority: source.priority || 'B',
+    source_priority_score: PRIORITY_SCORE[source.priority] || 0,
+    extraction_method: 'site_rule',
+    updated_at: new Date().toISOString()
+  };
+}
+
+function extractKitaraSiteRuleEvent({ source, url, html, nowYmd }) {
+  if (source.id !== 'www-kitara-sapporo-or-jp-event') return null;
+  const titleRaw = extractTitle(html);
+  const title = String(titleRaw || '').split('|')[0].trim();
+  if (!title || BAD_TITLE_RE.test(title) || WEAK_TITLE_RE.test(title)) return null;
+
+  const dateBlock = pickSectionById(html, 'd_time');
+  if (!dateBlock) return null;
+  const dates = parseDatesFromText(dateBlock, nowYmd);
+  if (!dates.length) return null;
+  const startDate = dates[0].ymd;
+  const endDate = dates.length >= 2 ? dates[1].ymd : '';
+  const time = parseEventTimes(dateBlock);
+  const venue = textPreview((html.match(/<b\b[^>]*class=["'][^"']*place[^"']*["'][^>]*>([^<]+)<\/b>/i) || [])[1] || '', 80);
+  const summary = pickMeta(html, 'description') || dateBlock;
+  const venueAddress = '札幌市中央区中島公園1番15号';
+
+  return buildSiteRuleEvent({
+    source,
+    detailUrl: url,
+    title,
+    startDate,
+    endDate,
+    venue,
+    venueAddress,
+    time,
+    summary,
+    flyerImageUrl: pickImage(html, url)
+  });
+}
+
+function extractSapporoTravelSeasonEvent({ source, url, html, nowYmd }) {
+  if (!SOURCE_CUSTOM_RULE_IDS.has(source.id)) return null;
+  const bodyText = stripTags(html);
+  const dates = parseDatesFromText(bodyText, nowYmd);
+  if (!dates.length) return null;
+  const startDate = dates[0].ymd;
+  const endDate = dates.length >= 2 ? dates[1].ymd : '';
+  const ctxStart = Math.max(0, dates[0].idx - 120);
+  const ctxEnd = Math.min(bodyText.length, dates[0].idx + 220);
+  const context = bodyText.slice(ctxStart, ctxEnd);
+  const summary = pickMeta(html, 'description') || context || bodyText;
+  const address = pickAddress(bodyText) || '札幌市内';
+  const venue = pickVenue(bodyText) || '札幌市内';
+
+  return buildSiteRuleEvent({
+    source,
+    detailUrl: url,
+    title: source.name,
+    startDate,
+    endDate,
+    venue,
+    venueAddress: address,
+    time: { open: '', start: '', end: '', allDay: true },
+    summary,
+    flyerImageUrl: pickImage(html, url)
+  });
+}
+
 function makeEventId(seed) {
   return crypto.createHash('sha1').update(seed).digest('hex').slice(0, 20);
 }
@@ -405,8 +518,17 @@ function isPublishable(ev) {
   if (BAD_URL_RE.test(String(ev.detail_url || ''))) return false;
   if (isLikelyListingEvent(ev)) return false;
   const method = String(ev.extraction_method || 'heuristic');
-  if (method !== 'jsonld' && !hasDetailUrlSignal(ev.detail_url || '')) return false;
-  if (method !== 'jsonld' && !(EVENT_TEXT_RE.test(title) || /(ライブ|コンサート|公演|展示|フェス|祭|イベント)/.test(title))) return false;
+  if (method !== 'jsonld') {
+    const hasStrongSignal = (
+      hasDetailUrlSignal(ev.detail_url || '') ||
+      !!ev.open_time ||
+      !!ev.start_time ||
+      !!ev.end_time ||
+      !!ev.venue ||
+      !!ev.venue_address
+    );
+    if (!hasStrongSignal) return false;
+  }
   const score = Number(ev.quality_score || 0);
   if (method === 'jsonld') return score >= MIN_QUALITY_SCORE;
   return score >= MIN_QUALITY_SCORE_HEURISTIC;
@@ -436,7 +558,7 @@ function buildEvent({ source, detailUrl, title, bodyText, html, nowYmd }) {
   if (!eventTitle || eventTitle.length < 4) return null;
   if (BAD_TITLE_RE.test(eventTitle)) return null;
   if (WEAK_TITLE_RE.test(eventTitle)) return null;
-  if (!hasEventSignal(eventTitle, dateContext)) return null;
+  if (!hasEventSignal(eventTitle, dateContext) && !hasDetailUrlSignal(detailUrl)) return null;
   if (normalizeUrlForCompare(detailUrl) === normalizeUrlForCompare(source.url) && normalizeTitle(eventTitle) === normalizeTitle(source.name)) {
     return null;
   }
@@ -529,6 +651,11 @@ function extractJsonLdEvents({ html, source, detailUrl }) {
 
 function extractEventsFromPage({ source, url, html, titleHint, nowYmd }) {
   const events = [];
+  const kitaraEvent = extractKitaraSiteRuleEvent({ source, url, html, nowYmd });
+  if (kitaraEvent) events.push(withQuality(kitaraEvent));
+  const seasonEvent = extractSapporoTravelSeasonEvent({ source, url, html, nowYmd });
+  if (seasonEvent) events.push(withQuality(seasonEvent));
+
   const jsonLdEvents = extractJsonLdEvents({ html, source, detailUrl: url });
   for (const ev of jsonLdEvents) events.push(ev);
 
@@ -607,14 +734,47 @@ async function mapLimit(items, limit, mapper) {
   return results;
 }
 
-async function crawlSource(source, options) {
-  const { mode, nowYmd } = options;
+function resolveSourceStrategy(source, strategyMap) {
+  const raw = String(
+    source?.crawl_strategy ||
+    strategyMap?.[source?.id] ||
+    ''
+  ).trim().toLowerCase();
+  const allowed = new Set(['detail', 'detail_light', 'feed_then_detail', 'custom_rule', 'browser_required']);
+  if (allowed.has(raw)) return raw;
+  return 'detail';
+}
+
+function buildCrawlPlan(source, mode, strategy) {
   const priority = String(source.priority || 'B').toUpperCase();
   let detailLimit = 3;
   if (priority === 'S') detailLimit = mode === 'full' ? 14 : 10;
   else if (priority === 'A') detailLimit = mode === 'full' ? 10 : 7;
   else if (priority === 'B') detailLimit = mode === 'full' ? 6 : 4;
   else detailLimit = mode === 'full' ? 4 : 3;
+
+  let minScore = 3;
+  let skipDetails = false;
+
+  if (strategy === 'detail_light') {
+    detailLimit = Math.max(2, Math.floor(detailLimit * 0.6));
+  } else if (strategy === 'feed_then_detail') {
+    detailLimit += mode === 'full' ? 4 : 2;
+    minScore = 3;
+  } else if (strategy === 'custom_rule') {
+    detailLimit = Math.max(2, Math.floor(detailLimit * 0.5));
+    minScore = 3;
+  } else if (strategy === 'browser_required') {
+    detailLimit = 0;
+    skipDetails = true;
+  }
+
+  return { detailLimit, minScore, skipDetails };
+}
+
+async function crawlSource(source, options) {
+  const { mode, nowYmd, strategy } = options;
+  const plan = buildCrawlPlan(source, mode, strategy);
 
   let root;
   try {
@@ -647,26 +807,29 @@ async function crawlSource(source, options) {
     })
     .filter((x) => !BAD_TITLE_RE.test(x.text))
     .filter((x) => !BAD_URL_RE.test(x.url))
-    .filter((x) => x.score >= 4)
+    .filter((x) => x.score >= plan.minScore)
     .sort((a, b) => b.score - a.score)
-    .slice(0, detailLimit);
+    .slice(0, plan.detailLimit);
 
-  const perSourceConcurrency = mode === 'full' ? 4 : 3;
-  const detailResults = await mapLimit(detailCandidates, perSourceConcurrency, async (link) => {
-    try {
-      const page = await fetchText(link.url, 9000);
-      const pageEvents = extractEventsFromPage({
-        source,
-        url: page.url,
-        html: page.html,
-        titleHint: link.text || extractTitle(page.html) || source.name,
-        nowYmd
-      });
-      return pageEvents;
-    } catch (_) {
-      return [];
-    }
-  });
+  let detailResults = [];
+  if (!plan.skipDetails && detailCandidates.length) {
+    const perSourceConcurrency = mode === 'full' ? 4 : 3;
+    detailResults = await mapLimit(detailCandidates, perSourceConcurrency, async (link) => {
+      try {
+        const page = await fetchText(link.url, 9000);
+        const pageEvents = extractEventsFromPage({
+          source,
+          url: page.url,
+          html: page.html,
+          titleHint: link.text || extractTitle(page.html) || source.name,
+          nowYmd
+        });
+        return pageEvents;
+      } catch (_) {
+        return [];
+      }
+    });
+  }
 
   for (const row of detailResults) {
     if (!row || row.error) continue;
@@ -733,22 +896,26 @@ async function main() {
   const mode = args.mode;
 
   const sourceDoc = await loadJson(SOURCE_PATH, { sources: [] });
+  const strategyDoc = await loadJson(STRATEGY_PATH, { strategies: {} });
+  const strategyMap = (strategyDoc && typeof strategyDoc === 'object' && strategyDoc.strategies && typeof strategyDoc.strategies === 'object')
+    ? strategyDoc.strategies
+    : {};
   const allSources = Array.isArray(sourceDoc.sources) ? sourceDoc.sources : [];
   const enabledSources = allSources.filter((s) => s && s.enabled !== false && s.url);
 
   const crawlTargets = enabledSources
-    .filter((s) => {
-      if (mode === 'full') return true;
-      const score = PRIORITY_SCORE[s.priority] || 0;
-      return score >= PRIORITY_SCORE.A;
-    })
+    .map((s) => ({ ...s, crawl_strategy: resolveSourceStrategy(s, strategyMap) }))
     .sort((a, b) => (PRIORITY_SCORE[b.priority] || 0) - (PRIORITY_SCORE[a.priority] || 0));
 
   const today = ymdInJst();
   const minDate = addDays(today, -2);
   const maxDate = addDays(today, 365);
 
-  const results = await mapLimit(crawlTargets, 5, (source) => crawlSource(source, { mode, nowYmd: today }));
+  const results = await mapLimit(crawlTargets, 5, (source) => crawlSource(source, {
+    mode,
+    nowYmd: today,
+    strategy: source.crawl_strategy
+  }));
 
   const nextEvents = [];
   let errorCount = 0;
