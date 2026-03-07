@@ -155,11 +155,23 @@ const SAPPORO_AREA_RE = new RegExp(SAPPORO_AREA_TERMS.map(escapeRegExp).join('|'
 const NON_SAPPORO_AREA_RE = new RegExp(NON_SAPPORO_AREA_TERMS.map(escapeRegExp).join('|'), 'i');
 
 function parseArgs(argv) {
-  const out = { mode: 'delta' };
+  const out = { mode: 'delta', today: '', sourceIds: [], outputPath: '' };
   for (const arg of argv) {
     if (arg.startsWith('--mode=')) {
       const v = arg.slice('--mode='.length).trim();
       if (v === 'delta' || v === 'full') out.mode = v;
+    } else if (arg.startsWith('--today=')) {
+      const v = arg.slice('--today='.length).trim();
+      if (/^\d{4}-\d{2}-\d{2}$/.test(v)) out.today = v;
+    } else if (arg.startsWith('--source=')) {
+      const v = arg.slice('--source='.length).trim();
+      out.sourceIds = v
+        .split(',')
+        .map((x) => String(x || '').trim())
+        .filter(Boolean);
+    } else if (arg.startsWith('--output=')) {
+      const v = arg.slice('--output='.length).trim();
+      if (v) out.outputPath = path.resolve(process.cwd(), v);
     }
   }
   return out;
@@ -1490,6 +1502,7 @@ async function writeJson(filePath, data) {
 async function main() {
   const args = parseArgs(process.argv.slice(2));
   const mode = args.mode;
+  const outputPath = args.outputPath || OUTPUT_PATH;
 
   const sourceDoc = await loadJson(SOURCE_PATH, { sources: [] });
   const strategyDoc = await loadJson(STRATEGY_PATH, { strategies: {} });
@@ -1497,13 +1510,15 @@ async function main() {
     ? strategyDoc.strategies
     : {};
   const allSources = Array.isArray(sourceDoc.sources) ? sourceDoc.sources : [];
-  const enabledSources = allSources.filter((s) => s && s.enabled !== false && s.url);
+  const enabledSources = allSources
+    .filter((s) => s && s.enabled !== false && s.url)
+    .filter((s) => args.sourceIds.length === 0 || args.sourceIds.includes(String(s.id || '')));
 
   const crawlTargets = enabledSources
     .map((s) => ({ ...s, crawl_strategy: resolveSourceStrategy(s, strategyMap) }))
     .sort((a, b) => (PRIORITY_SCORE[b.priority] || 0) - (PRIORITY_SCORE[a.priority] || 0));
 
-  const today = ymdInJst();
+  const today = args.today || ymdInJst();
   const minDate = addDays(today, -2);
   const maxDate = addDays(today, 365);
 
@@ -1533,7 +1548,7 @@ async function main() {
   for (const ev of nextEvents) mergedById.set(ev.id, withQuality(ev));
 
   if (mode !== 'full') {
-    const previous = await loadJson(OUTPUT_PATH, { events: [] });
+    const previous = await loadJson(outputPath, { events: [] });
     const previousEvents = Array.isArray(previous.events) ? previous.events : [];
     const keepUntil = addDays(today, 120);
     for (const ev of previousEvents) {
@@ -1543,7 +1558,7 @@ async function main() {
     }
   }
   if (mode === 'full' && failedSourceIds.size > 0) {
-    const previous = await loadJson(OUTPUT_PATH, { events: [] });
+    const previous = await loadJson(outputPath, { events: [] });
     const previousEvents = Array.isArray(previous.events) ? previous.events : [];
     const keepUntil = addDays(today, 90);
     for (const ev of previousEvents) {
@@ -1627,12 +1642,12 @@ async function main() {
     events: mergedPublic
   };
 
-  await writeJson(OUTPUT_PATH, payload);
+  await writeJson(outputPath, payload);
 
   console.log(`[events] mode=${mode} sources=${crawlTargets.length}/${enabledSources.length} errors=${errorCount} events=${mergedPublic.length} today=${todayCount}`);
 }
 
-export { eventFromWessPost, extractTicketPiaLocalSiteRuleEvents };
+export { crawlSource, eventFromWessPost, extractTicketPiaLocalSiteRuleEvents, isPublishable, parseArgs, resolveSourceStrategy };
 
 const isDirectRun = (() => {
   const entry = process.argv[1];

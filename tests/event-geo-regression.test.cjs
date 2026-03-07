@@ -147,6 +147,20 @@ async function testBuildWessEventFromApiPost() {
   assert.strictEqual(ev.start_time, "17:00");
 }
 
+async function testParseArgsSupportsTodayAndSource() {
+  const mod = await loadModule();
+  const args = mod.parseArgs([
+    "--mode=full",
+    "--today=2026-07-01",
+    "--source=wess-jp-concert-schedule,spice-sapporo-jp-schedule",
+    "--output=tmp/events.json"
+  ]);
+  assert.strictEqual(args.mode, "full");
+  assert.strictEqual(args.today, "2026-07-01");
+  assert.deepStrictEqual(args.sourceIds, ["wess-jp-concert-schedule", "spice-sapporo-jp-schedule"]);
+  assert.strictEqual(args.outputPath.endsWith(path.join("tmp", "events.json")), true);
+}
+
 async function runTests() {
   const tests = [
     ["札幌圏会場は通す", testAllowSapporoAreaVenue],
@@ -156,7 +170,8 @@ async function runTests() {
     ["タイトルだけ札幌は通さない", testRejectTitleOnlyLocalWithoutVenueProof],
     ["ぴあ bundle は札幌カードの日付を使う", testExtractTicketPiaLocalCardDate],
     ["札幌既知会場は地名なしでも通す", testAllowKnownSapporoVenueWithoutCityName],
-    ["WESS API から札幌公演を組み立てる", testBuildWessEventFromApiPost]
+    ["WESS API から札幌公演を組み立てる", testBuildWessEventFromApiPost],
+    ["CLI 引数で未来日と対象ソースを指定できる", testParseArgsSupportsTodayAndSource]
   ];
   let passed = 0;
   for (const [name, fn] of tests) {
