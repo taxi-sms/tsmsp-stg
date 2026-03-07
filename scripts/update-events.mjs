@@ -13,6 +13,7 @@ const EVENT_TEXT_RE = /(event|events|schedule|festival|concert|live|seminar|exhi
 const BAD_TITLE_RE = /(宴会場|会議室|客室|宿泊|ご案内|施設案内|貸し会議室|トップページ|無料で使える|他のイベントを見る|今週末のおすすめイベント|公演・チケット情報|イベント一覧|大宴会場案内|^明日\(\)開催$|一覧表示|リスト表示|公演一覧|イベントスケジュール|主催公演|公演情報|イベント情報|近日開催イベント|歴史と開催結果|期間中の様々なイベント|託児サービス対象公演|ビジネスセミナー|セミナー情報|チケット詳細はこちら|NEW\s*キャンペーン|キャンペーン)/i;
 const WEAK_TITLE_RE = /^(イベント|イベント情報|event|events|schedule)(\s*[|｜:].*)?$/i;
 const BAD_URL_RE = /\/banq\/|\/banquet\/|\/stay\/|\/guestroom\//i;
+const BAD_VENUE_RE = /(ご案内|ご了承ください|公開される場合|お問い合わせ|お問合せ|チケット|SOLD\s*OUT|当日券|販売|先行|整列|詳細|一覧|トップ|公式サイト|アクセスはこちら)/i;
 const DETAIL_URL_SIGNAL_RE = /(event[_-]?detail|\/detail\/|eventid=|eventcd=|eventbundlecd=|[?&](id|num|no|eid)=|\/seminar\/\d+|\/\d{4}\/\d{1,2}\/\d{1,2}\/)/i;
 const JSONLD_SCRIPT_RE = /<script\b[^>]*type=["']application\/ld\+json["'][^>]*>([\s\S]*?)<\/script>/gi;
 const MIN_QUALITY_SCORE = 0.56;
@@ -330,15 +331,30 @@ function normalizeUrlForCompare(url) {
 function pickVenue(text) {
   const m = text.match(/(?:会場名|会場|開催場所|場所|venue)\s*[：:]?\s*([^\n]{2,80})/i);
   if (!m || !m[1]) return '';
-  return textPreview(m[1], 80);
+  const v = cleanVenue(m[1]);
+  if (!v) return '';
+  if (isInvalidVenueCandidate(v)) return '';
+  if (!hasVenueSuffix(v) && v !== 'オンライン') return '';
+  return textPreview(v, 80);
 }
 
 function cleanVenue(text) {
   return String(text || '')
+    .replace(/&nbsp;/gi, ' ')
     .replace(/\s+/g, ' ')
     .replace(/^[\s:：\-ー〜~・]+/, '')
     .replace(/\s*(?:入場料|料金|お問い合わせ|問合せ|チケット|主催|出演|詳細|アクセス).*/i, '')
     .trim();
+}
+
+function isInvalidVenueCandidate(value) {
+  const v = String(value || '').trim();
+  if (!v) return true;
+  if (/^[のをはが]/.test(v)) return true;
+  if (v.length > 70) return true;
+  if (/。/.test(v)) return true;
+  if (BAD_VENUE_RE.test(v)) return true;
+  return false;
 }
 
 function hasVenueSuffix(value) {
@@ -351,7 +367,7 @@ function pickVenueLoose(text) {
   const labeled = t.match(/(?:会場名|会場|開催場所|場所|venue)\s*[：:]?\s*([^]{2,100}?)(?:\s+(?:入場料|料金|お問い合わせ|問合せ|主催|出演|チケット|開場|開演|終演)|$)/i);
   if (labeled && labeled[1]) {
     const v = cleanVenue(labeled[1]);
-    if (v && hasVenueSuffix(v)) return textPreview(v, 80);
+    if (v && hasVenueSuffix(v) && !isInvalidVenueCandidate(v)) return textPreview(v, 80);
   }
 
   const tokenRe = /([A-Za-z0-9\u3040-\u30FF\u4E00-\u9FFF・＆&\-－\s]{2,80}(?:ホール|アリーナ|ドーム|劇場|会館|センター|スタジオ|プラザ|ファクトリー|きたえーる|Kitara|hitaru|SCARTS|Zepp\s*[A-Za-z0-9\u3040-\u30FF\u4E00-\u9FFF]+))/gi;
@@ -360,6 +376,7 @@ function pickVenueLoose(text) {
     const cand = cleanVenue(m[1]);
     if (!cand) continue;
     if (/イベント|スケジュール|チケット|一覧|案内|トップ|公式|発売/.test(cand)) continue;
+    if (isInvalidVenueCandidate(cand)) continue;
     return textPreview(cand, 80);
   }
   if (/オンライン/.test(t)) return 'オンライン';
@@ -502,6 +519,79 @@ function extractSapporoTravelSeasonEvent({ source, url, html, nowYmd }) {
   });
 }
 
+function extractMountAliveSiteRuleEvent({ source, url, html, nowYmd }) {
+  if (source.id !== 'www-mountalive-com-schedule') return null;
+  if (!/\/schedule\/more\.php/i.test(url)) return null;
+  const desc = pickMeta(html, 'description') || pickMeta(html, 'og:description') || '';
+  const bodyText = stripTags(html);
+  const dateMatch = desc.match(/日程：\s*(\d{4})年(\d{1,2})月(\d{1,2})日/);
+  let startDate = '';
+  if (dateMatch) {
+    startDate = `${dateMatch[1]}-${String(dateMatch[2]).padStart(2, '0')}-${String(dateMatch[3]).padStart(2, '0')}`;
+  } else {
+    const dates = parseDatesFromText(bodyText, nowYmd);
+    startDate = dates[0]?.ymd || '';
+  }
+  if (!startDate) return null;
+
+  const eventName = textPreview((desc.match(/イベント名：([^｜\n]+)/) || [])[1] || '', 120);
+  const artist = textPreview((desc.match(/アーティスト名：([^｜\n]+)/) || [])[1] || '', 80);
+  const venueRaw = cleanVenue((desc.match(/会場名：([^：｜\n]+)/) || [])[1] || '');
+  const venueAddress = textPreview(cleanVenue((desc.match(/会場名：[^：｜\n]+：([^｜\n]+)/) || [])[1] || ''), 140);
+  const timeLine = stripTags((html.match(/<p\b[^>]*id=["']op_st_time["'][^>]*>([\s\S]*?)<\/p>/i) || [])[1] || '');
+  const time = parseEventTimes(timeLine || bodyText);
+
+  const title = eventName || artist || textPreview(extractTitle(html).split('|')[0], 120);
+  if (!title || BAD_TITLE_RE.test(title) || WEAK_TITLE_RE.test(title)) return null;
+
+  return buildSiteRuleEvent({
+    source,
+    detailUrl: url,
+    title,
+    startDate,
+    venue: isInvalidVenueCandidate(venueRaw) ? '' : venueRaw,
+    venueAddress,
+    time,
+    summary: desc || bodyText,
+    flyerImageUrl: pickImage(html, url)
+  });
+}
+
+function extractZeppSapporoSiteRuleEvent({ source, url, html, nowYmd }) {
+  if (source.id !== 'www-zepp-co-jp-hall-sapporo-schedule') return null;
+  if (!/\/schedule\/single\//i.test(url)) return null;
+  const bodyText = stripTags(html);
+  const year = (html.match(/sch-single-headelin-date__year[^>]*>\s*(\d{4})\s*</i) || [])[1] || '';
+  const md = html.match(/sch-single-headelin-date__month[^>]*>\s*(\d{1,2})\.(\d{1,2})\s*</i);
+  let startDate = '';
+  if (year && md) {
+    startDate = `${year}-${String(md[1]).padStart(2, '0')}-${String(md[2]).padStart(2, '0')}`;
+  } else {
+    startDate = parseDatesFromText(bodyText, nowYmd)[0]?.ymd || '';
+  }
+  if (!startDate) return null;
+
+  const eventTitle = textPreview(stripTags((html.match(/<h2\b[^>]*class=["'][^"']*sch-single-headelin-ttl[^"']*["'][^>]*>([\s\S]*?)<\/h2>/i) || [])[1] || ''), 120);
+  const artist = textPreview(stripTags((html.match(/<h3\b[^>]*class=["'][^"']*sch-single-headeline02[^"']*["'][^>]*>([\s\S]*?)<\/h3>/i) || [])[1] || ''), 80);
+  const title = textPreview(`${artist} ${eventTitle}`.replace(/\s+/g, ' ').trim(), 120);
+  if (!title || BAD_TITLE_RE.test(title) || WEAK_TITLE_RE.test(title)) return null;
+
+  const open = (html.match(/sch-single-table-time__open[^>]*>\s*([0-2]?\d[:：][0-5]\d)\s*</i) || [])[1] || '';
+  const start = (html.match(/sch-single-table-time__start[^>]*>\s*([0-2]?\d[:：][0-5]\d)\s*</i) || [])[1] || '';
+
+  return buildSiteRuleEvent({
+    source,
+    detailUrl: url,
+    title,
+    startDate,
+    venue: 'Zepp Sapporo',
+    venueAddress: '',
+    time: { open: open.replace('：', ':'), start: start.replace('：', ':'), end: '', allDay: !(open || start) },
+    summary: pickMeta(html, 'description') || bodyText,
+    flyerImageUrl: pickImage(html, url)
+  });
+}
+
 function makeEventId(seed) {
   return crypto.createHash('sha1').update(seed).digest('hex').slice(0, 20);
 }
@@ -534,9 +624,12 @@ function sourceVenueName(source) {
 function enrichVenue(ev, source, contextText) {
   if (!ev) return ev;
   let venue = cleanVenue(ev.venue || '');
+  if (isInvalidVenueCandidate(venue)) venue = '';
   const srcVenue = sourceVenueName(source);
   if (!venue) venue = cleanVenue(pickVenue(contextText));
+  if (isInvalidVenueCandidate(venue)) venue = '';
   if (!venue) venue = cleanVenue(pickVenueLoose(`${ev.summary || ''}\n${ev.title || ''}\n${contextText || ''}`));
+  if (isInvalidVenueCandidate(venue)) venue = '';
   if (!venue && srcVenue) venue = srcVenue;
   if (venue && isGenericHallName(venue) && srcVenue) venue = `${srcVenue} ${venue}`;
   return { ...ev, venue: textPreview(venue, 80) };
@@ -744,6 +837,10 @@ function extractEventsFromPage({ source, url, html, titleHint, nowYmd }) {
   if (kitaraEvent) events.push(withQuality(kitaraEvent));
   const seasonEvent = extractSapporoTravelSeasonEvent({ source, url, html, nowYmd });
   if (seasonEvent) events.push(withQuality(seasonEvent));
+  const mountAliveEvent = extractMountAliveSiteRuleEvent({ source, url, html, nowYmd });
+  if (mountAliveEvent) events.push(withQuality(mountAliveEvent));
+  const zeppEvent = extractZeppSapporoSiteRuleEvent({ source, url, html, nowYmd });
+  if (zeppEvent) events.push(withQuality(zeppEvent));
 
   const jsonLdEvents = extractJsonLdEvents({ html, source, detailUrl: url });
   for (const ev of jsonLdEvents) {
@@ -770,15 +867,17 @@ function extractEventsFromPage({ source, url, html, titleHint, nowYmd }) {
     }
   }
 
-  const heuristicEvent = buildEvent({
-    source,
-    detailUrl: url,
-    title: titleHint || extractTitle(html) || source.name,
-    bodyText,
-    html,
-    nowYmd
-  });
-  if (heuristicEvent) events.push(heuristicEvent);
+  if (!mountAliveEvent && !zeppEvent) {
+    const heuristicEvent = buildEvent({
+      source,
+      detailUrl: url,
+      title: titleHint || extractTitle(html) || source.name,
+      bodyText,
+      html,
+      nowYmd
+    });
+    if (heuristicEvent) events.push(heuristicEvent);
+  }
 
   return uniqueBy(events, (ev) => ev.id)
     .map((ev) => enrichVenue(ev, source, bodyText))
