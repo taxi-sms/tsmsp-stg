@@ -161,6 +161,26 @@
   <script src="./custom-confirm.js"></script>
   <link rel="stylesheet" href="./tsms-design.css?v=20260227-3">
   <style id="confirm-unified-layout-tweaks">
+    :root{
+      --bg:#F3F6F8;
+      --surface-1:#FFFFFF;
+      --surface-2:#EEF3F6;
+      --border:#D5DEE6;
+      --text-primary:#0F1720;
+      --text-secondary:#344554;
+      --text-muted:#5B6D7C;
+      --accent:#2580ED;
+    }
+    :root[data-theme="dark"]{
+      --bg:#0F1417;
+      --surface-1:#0e1a2d;
+      --surface-2:#0a1630;
+      --border:#2f4d77;
+      --text-primary:#ecf3ff;
+      --text-secondary:#b6c8e6;
+      --text-muted:#89a3c7;
+      --accent:#4da3ff;
+    }
     body{
       background:var(--bg);
       color:var(--text-primary);
@@ -226,6 +246,7 @@
       font-size:var(--font-2xl);
       color:var(--text-primary);
     }
+    .kv.payment-row .value{color:var(--text-primary);}
     .note{
       margin-top:var(--space-1);
       font-size:var(--font-md);
