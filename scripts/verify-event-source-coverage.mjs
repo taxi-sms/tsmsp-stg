@@ -8,6 +8,19 @@ const SOURCE_PATH = path.resolve(ROOT, 'config/event-sources.json');
 const STRATEGY_PATH = path.resolve(ROOT, 'config/event-source-strategies.json');
 const OUTPUT_PATH = path.resolve(ROOT, 'data/event-source-verification.json');
 
+function ymdInJst(input = new Date()) {
+  const parts = new Intl.DateTimeFormat('en-CA', {
+    timeZone: 'Asia/Tokyo',
+    year: 'numeric',
+    month: '2-digit',
+    day: '2-digit'
+  }).formatToParts(input);
+  const y = parts.find((p) => p.type === 'year')?.value || '1970';
+  const m = parts.find((p) => p.type === 'month')?.value || '01';
+  const d = parts.find((p) => p.type === 'day')?.value || '01';
+  return `${y}-${m}-${d}`;
+}
+
 function addDays(ymd, days) {
   const [y, m, d] = String(ymd || '').split('-').map((n) => Number(n));
   if (!y || !m || !d) return ymd;
@@ -17,8 +30,9 @@ function addDays(ymd, days) {
 }
 
 function parseArgs(argv) {
+  const today = ymdInJst();
   const out = {
-    dates: ['2026-04-01', '2026-07-01', '2026-10-01', '2027-01-01']
+    dates: [today]
   };
   for (const arg of argv) {
     if (arg.startsWith('--dates=')) {
@@ -35,7 +49,11 @@ function parseArgs(argv) {
 
 function withinWindow(event, startYmd, endYmd) {
   const start = String(event?.start_date || '');
+  const end = String(event?.end_date || '');
   if (!/^\d{4}-\d{2}-\d{2}$/.test(start)) return false;
+  if (/^\d{4}-\d{2}-\d{2}$/.test(end)) {
+    return start <= endYmd && end >= startYmd;
+  }
   return start >= startYmd && start <= endYmd;
 }
 
@@ -106,21 +124,23 @@ report.sources = await mapLimit(enabledSources, 4, async (source) => {
 
   const bestCount = snapshots.reduce((max, row) => Math.max(max, row.event_count), 0);
   const hasError = snapshots.some((row) => row.error);
+  const hasSuccessfulSnapshot = snapshots.some((row) => !row.error);
   return {
     id: source.id,
     name: source.name,
     url: source.url,
     strategy: source.crawl_strategy,
-    status: hasError ? 'error' : bestCount > 0 ? 'ok' : 'zero_events',
+    status: hasError ? 'error' : bestCount > 0 ? 'ok' : hasSuccessfulSnapshot ? 'no_future_events' : 'error',
     best_event_count: bestCount,
     snapshots
   };
 });
 
 report.ok_sources = report.sources.filter((row) => row.status === 'ok').length;
-report.zero_event_sources = report.sources.filter((row) => row.status === 'zero_events').length;
+report.no_future_event_sources = report.sources.filter((row) => row.status === 'no_future_events').length;
+report.zero_event_sources = report.no_future_event_sources;
 report.error_sources = report.sources.filter((row) => row.status === 'error').length;
 
 await fs.writeFile(OUTPUT_PATH, `${JSON.stringify(report, null, 2)}\n`, 'utf8');
 
-console.log(`[verify] sources=${report.source_total} ok=${report.ok_sources} zero=${report.zero_event_sources} errors=${report.error_sources}`);
+console.log(`[verify] sources=${report.source_total} ok=${report.ok_sources} no_future=${report.no_future_event_sources} errors=${report.error_sources}`);

@@ -44,6 +44,12 @@ const SOURCE_CUSTOM_RULE_IDS = new Set([
   'www-sapporo-travel-summerfes',
   'www-sapporo-travel-white-illumination'
 ]);
+const SAPPORO_TRAVEL_JSON_BASE = {
+  'www-sapporo-travel-summerfes': 'https://www.sapporo.travel/summerfes',
+  'www-sapporo-travel-lilacfes-about': 'https://www.sapporo.travel/lilacfes',
+  'www-sapporo-travel-white-illumination': 'https://www.sapporo.travel/white-illumination',
+  'www-sapporo-travel-white-illumination-event-munich': 'https://www.sapporo.travel/white-illumination'
+};
 const SOURCE_DETAIL_LIMIT_OVERRIDE = {
   'eplus-jp-sf-area-hokkaido-tohoku-hokkaido-sapporo': { full: 40, delta: 28, minScore: 2 },
   't-pia-jp-hokkaido': { full: 35, delta: 24, minScore: 2 }
@@ -110,7 +116,10 @@ const SAPPORO_AREA_TERMS = [
   'サッポロファクトリー',
   'プレミストドーム',
   'つどーむ',
-  '札幌芸術の森'
+  '札幌芸術の森',
+  'THE FLYING PENGUINS',
+  'Sapporo Social Innovation Hub',
+  'IKEUCHI LAB'
 ];
 const NON_SAPPORO_AREA_TERMS = [
   '東京',
@@ -539,7 +548,7 @@ function cleanVenue(text) {
     .replace(/&nbsp;/gi, ' ')
     .replace(/\s+/g, ' ')
     .replace(/^[\s:：\-ー〜~・]+/, '')
-    .replace(/\s*(?:入場料|料金|お問い合わせ|問合せ|チケット|主催|出演|詳細|アクセス).*/i, '')
+    .replace(/\s*(?:入場料|料金|お問い合わせ|問合せ|チケット|主催|出演|詳細).*/i, '')
     .trim();
 }
 
@@ -638,6 +647,31 @@ function pickLabeledValue(html, label) {
   return '';
 }
 
+function pickLabeledValueByPattern(html, labelPattern) {
+  const pattern = String(labelPattern || '').trim();
+  if (!pattern) return '';
+  const patterns = [
+    new RegExp(`<dt\\b[^>]*>\\s*${pattern}\\s*<\\/dt>\\s*<dd\\b[^>]*>([\\s\\S]*?)<\\/dd>`, 'i'),
+    new RegExp(`<th\\b[^>]*>\\s*${pattern}\\s*<\\/th>\\s*<td\\b[^>]*>([\\s\\S]*?)<\\/td>`, 'i')
+  ];
+  for (const re of patterns) {
+    const m = html.match(re);
+    if (m && m[1]) return stripTags(m[1]);
+  }
+  return '';
+}
+
+function readNextDataBodyHtml(html) {
+  const match = String(html || '').match(/<script\b[^>]*id=["']__NEXT_DATA__["'][^>]*>([\s\S]*?)<\/script>/i);
+  if (!match || !match[1]) return '';
+  try {
+    const data = JSON.parse(match[1]);
+    return String(data?.props?.pageProps?.body || '');
+  } catch (_) {
+    return '';
+  }
+}
+
 function buildSiteRuleEvent({
   source,
   detailUrl,
@@ -733,6 +767,292 @@ function extractSapporoTravelSeasonEvent({ source, url, html, nowYmd }) {
     time: { open: '', start: '', end: '', allDay: true },
     summary,
     flyerImageUrl: pickImage(html, url)
+  });
+}
+
+function buildSiteRuleEventFromText({
+  source,
+  detailUrl,
+  title,
+  text,
+  nowYmd,
+  venue = '',
+  venueAddress = '',
+  summary = ''
+}) {
+  const dates = parseDatesFromText(text, nowYmd);
+  if (!dates.length) return null;
+  return buildSiteRuleEvent({
+    source,
+    detailUrl,
+    title,
+    startDate: dates[0].ymd,
+    endDate: dates.length >= 2 ? dates[1].ymd : '',
+    venue,
+    venueAddress,
+    time: parseEventTimes(text),
+    summary: summary || text
+  });
+}
+
+function parseJapaneseDateRange(text) {
+  const value = String(text || '');
+  const range = value.match(/(20\d{2})年\s*(\d{1,2})月\s*(\d{1,2})(?:\s*日)?[^0-9]{0,16}[～\-ー〜]\s*(?:(20\d{2})年\s*)?(\d{1,2})月\s*(\d{1,2})(?:\s*日)?/);
+  if (range) {
+    return {
+      startDate: `${range[1]}-${String(range[2]).padStart(2, '0')}-${String(range[3]).padStart(2, '0')}`,
+      endDate: `${range[4] || range[1]}-${String(range[5]).padStart(2, '0')}-${String(range[6]).padStart(2, '0')}`
+    };
+  }
+  const pair = value.match(/(20\d{2})年\s*(\d{1,2})月\s*(\d{1,2})(?:\s*日)?[^0-9]{0,16}[、,]\s*(\d{1,2})(?:\s*日)?/);
+  if (pair) {
+    return {
+      startDate: `${pair[1]}-${String(pair[2]).padStart(2, '0')}-${String(pair[3]).padStart(2, '0')}`,
+      endDate: `${pair[1]}-${String(pair[2]).padStart(2, '0')}-${String(pair[4]).padStart(2, '0')}`
+    };
+  }
+  const single = value.match(/(20\d{2})年\s*(\d{1,2})月\s*(\d{1,2})日/);
+  if (single) {
+    return {
+      startDate: `${single[1]}-${String(single[2]).padStart(2, '0')}-${String(single[3]).padStart(2, '0')}`,
+      endDate: ''
+    };
+  }
+  return null;
+}
+
+function buildSiteRuleEventFromRangeText({
+  source,
+  detailUrl,
+  title,
+  text,
+  venue = '',
+  venueAddress = '',
+  summary = ''
+}) {
+  const range = parseJapaneseDateRange(text);
+  if (!range || !range.startDate) return null;
+  return buildSiteRuleEvent({
+    source,
+    detailUrl,
+    title,
+    startDate: range.startDate,
+    endDate: range.endDate,
+    venue,
+    venueAddress,
+    time: parseEventTimes(text),
+    summary: summary || text
+  });
+}
+
+function sliceTextAroundPattern(text, pattern, span = 220) {
+  const sourceText = String(text || '');
+  const re = pattern instanceof RegExp ? pattern : new RegExp(escapeRegExp(String(pattern || '')), 'i');
+  const match = sourceText.match(re);
+  const index = match ? match.index || 0 : -1;
+  if (index < 0) return '';
+  return sourceText.slice(index, Math.min(sourceText.length, index + span));
+}
+
+function extractSummerfesDetailEvents({ source, detail, detailUrl, nowYmd }) {
+  if (source.id !== 'www-sapporo-travel-summerfes') return [];
+  const text = stripTags(detail?.content || '');
+  const rows = [
+    {
+      title: '福祉協賛さっぽろ大通ビアガーデン',
+      key: '福祉協賛さっぽろ大通ビアガーデン',
+      pattern: /福祉協賛さっぽろ大通ビアガーデン[\s\S]{0,40}?((?:20\d{2}年)?\d{1,2}月\d{1,2}(?:\s*日)?[^0-9]{0,16}[～\-ー〜]\s*(?:20\d{2}年)?\d{1,2}月\d{1,2}(?:\s*日)?)/,
+      venue: '大通公園',
+      venueAddress: '札幌市中央区大通公園'
+    },
+    {
+      title: '北海盆踊り',
+      key: '北海盆踊り',
+      pattern: /北海盆踊り[\s\S]{0,32}?((?:20\d{2}年)?\d{1,2}月\d{1,2}(?:\s*日)?[^0-9]{0,16}[～\-ー〜]\s*(?:20\d{2}年)?\d{1,2}月\d{1,2}(?:\s*日)?)/,
+      venue: '大通公園西2丁目',
+      venueAddress: '札幌市中央区大通西2丁目'
+    },
+    {
+      title: 'すすきの祭り',
+      key: 'すすきの祭り',
+      pattern: /第62\s*回すすきの祭り[\s\S]{0,32}?((?:20\d{2}年)?\d{1,2}月\d{1,2}(?:\s*日)?[^0-9]{0,16}[～\-ー〜]\s*(?:20\d{2}年)?\d{1,2}月\d{1,2}(?:\s*日)?)/,
+      venue: 'すすきの',
+      venueAddress: '札幌市中央区すすきの'
+    },
+    {
+      title: '狸まつり',
+      key: '狸まつり',
+      pattern: /第73回狸まつり[\s\S]{0,32}?((?:20\d{2}年)?\d{1,2}月\d{1,2}(?:\s*日)?[^0-9]{0,16}[～\-ー〜]\s*(?:20\d{2}年)?\d{1,2}月\d{1,2}(?:\s*日)?)/,
+      venue: '狸小路',
+      venueAddress: '札幌市中央区狸小路'
+    }
+  ];
+  const events = [];
+  for (const row of rows) {
+    const snippet = (text.match(row.pattern) || [])[1] || sliceTextAroundPattern(text, row.key, 80);
+    const ev = buildSiteRuleEventFromRangeText({
+      source,
+      detailUrl,
+      title: row.title,
+      text: snippet,
+      venue: row.venue,
+      venueAddress: row.venueAddress,
+      summary: snippet || textPreview(text, 220)
+    });
+    if (ev) events.push(ev);
+  }
+  return events;
+}
+
+function extractLilacfesDetailEvents({ source, detail, detailUrl, nowYmd }) {
+  if (source.id !== 'www-sapporo-travel-lilacfes-about') return [];
+  const text = stripTags(detail?.content || '');
+  const rows = [
+    {
+      title: 'さっぽろライラックまつり 大通会場',
+      key: '大通会場',
+      pattern: /大通会場[^0-9]{0,40}(\d{4}年\d{1,2}月\d{1,2}(?:\s*日)?[^0-9]{0,16}[～\-ー〜]\s*\d{1,2}(?:\s*日)?)/,
+      venue: '大通公園',
+      venueAddress: '札幌市中央区大通西5丁目〜7丁目'
+    },
+    {
+      title: 'さっぽろライラックまつり 川下会場',
+      key: '川下会場',
+      pattern: /川下会場[^0-9]{0,40}(\d{4}年\d{1,2}月\d{1,2}(?:\s*日)?[^0-9]{0,16}[、,]\s*\d{1,2}(?:\s*日)?)/,
+      venue: '川下公園',
+      venueAddress: '札幌市白石区川下2651番地3外'
+    }
+  ];
+  const events = [];
+  for (const row of rows) {
+    const snippet = (text.match(row.pattern) || [])[1] || sliceTextAroundPattern(text, row.key, 90);
+    const ev = buildSiteRuleEventFromRangeText({
+      source,
+      detailUrl,
+      title: row.title,
+      text: snippet,
+      venue: row.venue,
+      venueAddress: row.venueAddress,
+      summary: snippet || textPreview(text, 220)
+    });
+    if (ev) events.push(ev);
+  }
+  return events;
+}
+
+function extractWhiteIlluminationDetailEvents({ source, detail, detailUrl, nowYmd }) {
+  const text = stripTags(detail?.content || '');
+  if (!text) return [];
+  if (source.id === 'www-sapporo-travel-white-illumination-event-munich') {
+    const snippet = sliceTextAroundPattern(text, /ミュンヘン・クリスマス市 in Sapporo/, 180);
+    const ev = buildSiteRuleEventFromText({
+      source,
+      detailUrl,
+      title: 'ミュンヘン・クリスマス市 in Sapporo',
+      text: snippet || text,
+      nowYmd,
+      venue: '大通公園2丁目',
+      venueAddress: '札幌市中央区大通西2丁目',
+      summary: snippet || textPreview(text, 220)
+    });
+    return ev ? [ev] : [];
+  }
+  if (source.id !== 'www-sapporo-travel-white-illumination') return [];
+  const snippet = sliceTextAroundPattern(text, /次回は|大通会場/, 220) || text;
+  const ev = buildSiteRuleEventFromText({
+    source,
+    detailUrl,
+    title: 'さっぽろホワイトイルミネーション',
+    text: snippet,
+    nowYmd,
+    venue: '大通公園ほか札幌市内各会場',
+    venueAddress: '札幌市中央区大通公園ほか',
+    summary: textPreview(snippet, 220)
+  });
+  return ev ? [ev] : [];
+}
+
+function extractNoMapsNearlyEvent({ source, url, html, nowYmd }) {
+  if (source.id !== 'no-maps-jp-program') return null;
+  if (!/\/nearly-event\//i.test(url)) return null;
+  const rawTitle = String(extractTitle(html) || '').trim();
+  const pageText = stripTags(html);
+  const title = textPreview(
+    stripTags((html.match(/<h1\b[^>]*class=["'][^"']*page_article_title[^"']*["'][^>]*>([\s\S]*?)<\/h1>/i) || [])[1] || '') ||
+    rawTitle.split('|').slice(1).join('|').trim() ||
+    rawTitle.split('|')[0].trim(),
+    120
+  );
+  if (!title || BAD_TITLE_RE.test(title) || WEAK_TITLE_RE.test(title)) return null;
+  const dateBlock = pickLabeledValue(html, '日時');
+  const venue = cleanVenue(pickLabeledValue(html, '会場').replace(/\s*\/\s*/g, ' ')) || '札幌市内会場';
+  const hasOnlineVenue = /(オンライン|YouTube|Zoom|Teams|配信)/i.test(`${title}\n${venue}\n${pageText}`);
+  const ev = buildSiteRuleEventFromText({
+    source,
+    detailUrl: url,
+    title,
+    text: dateBlock,
+    nowYmd,
+    venue,
+    venueAddress: !hasOnlineVenue && hasSapporoAreaSignal(`${venue}\n${pageText}`) ? (pickAddress(pageText) || '札幌市内会場') : '',
+    summary: pickMeta(html, 'description') || dateBlock || pageText
+  });
+  return ev;
+}
+
+function extractGrand1934EventDetailEvent({ source, url, html, nowYmd }) {
+  if (source.id !== 'grand1934-com-meeting-banquet') return null;
+  if (!/https:\/\/grand1934\.com\/event\/[^/?#]+\/?$/i.test(url) || /\/event\/?$/i.test(url)) return null;
+  const title = textPreview(
+    stripTags((html.match(/<h2\b[^>]*class=["'][^"']*eventDetail-info_ttl[^"']*["'][^>]*>([\s\S]*?)<\/h2>/i) || [])[1] || '') ||
+    String(extractTitle(html) || '').split('|')[0].trim(),
+    120
+  );
+  if (!title || BAD_TITLE_RE.test(title) || WEAK_TITLE_RE.test(title)) return null;
+  const dateBlock = pickLabeledValueByPattern(html, '開催日') ||
+    stripTags((html.match(/<p\b[^>]*>\s*開催日\s*<\/p>\s*<div\b[^>]*>\s*<p\b[^>]*>([\s\S]*?)<\/p>/i) || [])[1] || '') ||
+    stripTags((html.match(/<p\b[^>]*>\s*開催日\s*<\/p>\s*<p\b[^>]*>([\s\S]*?)<\/p>/i) || [])[1] || '');
+  const venue = cleanVenue(
+    pickLabeledValueByPattern(html, '会場') ||
+    stripTags((html.match(/<p\b[^>]*>\s*会場\s*<\/p>\s*<p\b[^>]*>([\s\S]*?)<\/p>/i) || [])[1] || '')
+  ) || '札幌グランドホテル';
+  const summary = pickMeta(html, 'description') || stripTags((html.match(/<section\b[^>]*class=["'][^"']*eventDetail-summary[^"']*["'][^>]*>([\s\S]*?)<\/section>/i) || [])[1] || html);
+  return buildSiteRuleEventFromText({
+    source,
+    detailUrl: url,
+    title,
+    text: dateBlock,
+    nowYmd,
+    venue,
+    venueAddress: '札幌市中央区北1条西4丁目',
+    summary
+  });
+}
+
+function extractKeioPlazaEventDetailEvent({ source, url, html, nowYmd }) {
+  if (source.id !== 'www-keioplaza-sapporo-co-jp-banq-hall') return null;
+  if (!/\/event\/detail_\d+\.html$/i.test(url)) return null;
+  const title = textPreview(
+    stripTags((html.match(/<p\b[^>]*class=["'][^"']*ja_nameonly[^"']*["'][^>]*>([\s\S]*?)<\/p>/i) || [])[1] || '') ||
+    String(extractTitle(html) || '').split('|')[0].trim(),
+    120
+  );
+  if (!title || BAD_TITLE_RE.test(title) || WEAK_TITLE_RE.test(title)) return null;
+  const bodyText = stripTags(html);
+  let dateBlock = pickLabeledValue(html, '開催日') || pickLabeledValue(html, '日時');
+  if (!dateBlock) {
+    const candidates = bodyText.match(/20\d{2}[年./]\d{1,2}[月./]\d{1,2}日?(?:\([^)]*\))?(?:\s*[～\-ー〜]\s*(?:20\d{2}[年./])?\d{1,2}[月./]\d{1,2}日?(?:\([^)]*\))?)?/g) || [];
+    dateBlock = candidates.find((row) => /20(?:26|27)/.test(row) && !/\b20(?:23|24)\b/.test(row)) || '';
+  }
+  return buildSiteRuleEventFromText({
+    source,
+    detailUrl: url,
+    title,
+    text: dateBlock,
+    nowYmd,
+    venue: '京王プラザホテル札幌',
+    venueAddress: '札幌市中央区北5条西7丁目2番地1',
+    summary: pickMeta(html, 'description') || bodyText
   });
 }
 
@@ -1093,6 +1413,92 @@ function extractChieriaHallScheduleEvents({ source, url, html, nowYmd }) {
   return uniqueBy(events, (ev) => ev.id);
 }
 
+function extractAxesCalendarEvents({ source, url, html }) {
+  if (source.id !== 'www-axes-or-jp') return [];
+  if (!/\/event_calendar\/index\.php/i.test(url)) return [];
+  const year = Number((url.match(/[?&]input\[year\]=(\d{4})/i) || html.match(/this\.year\s*=\s*['"](\d{4})['"]/i) || [])[1] || '');
+  const month = Number((url.match(/[?&]input\[month\]=(\d{1,2})/i) || [])[1] || '');
+  if (!year || !month) return [];
+
+  const grouped = new Map();
+  const entryRe = /this\.events\[\d+\]\s*=\s*\{\};\s*this\.events\[\d+\]\.id\s*=\s*'(\d+)';\s*this\.events\[\d+\]\.day\s*=\s*'(\d{1,2})';\s*this\.events\[\d+\]\.title\s*=\s*'([^']+)'/g;
+  for (const match of html.matchAll(entryRe)) {
+    const eventId = String(match[1] || '').trim();
+    const day = Number(match[2] || 0);
+    const title = textPreview(stripTags(match[3] || '').trim(), 120);
+    if (!eventId || !day || !title || BAD_TITLE_RE.test(title) || WEAK_TITLE_RE.test(title)) continue;
+    const row = grouped.get(eventId) || { title, days: [] };
+    row.days.push(day);
+    grouped.set(eventId, row);
+  }
+
+  const events = [];
+  for (const [eventId, row] of grouped.entries()) {
+    const days = [...new Set(row.days)].sort((a, b) => a - b);
+    if (!days.length) continue;
+    const startDate = `${String(year).padStart(4, '0')}-${String(month).padStart(2, '0')}-${String(days[0]).padStart(2, '0')}`;
+    const endDate = days.length >= 2
+      ? `${String(year).padStart(4, '0')}-${String(month).padStart(2, '0')}-${String(days[days.length - 1]).padStart(2, '0')}`
+      : '';
+    const detailUrl = absolutizeUrl(url, `./event_detail.php?input[event_id]=${eventId}`) || url;
+    const ev = buildSiteRuleEvent({
+      source,
+      detailUrl,
+      title: row.title,
+      startDate,
+      endDate,
+      venue: 'アクセスサッポロ',
+      venueAddress: '札幌市白石区流通センター4丁目3-55',
+      time: { open: '', start: '', end: '', allDay: true },
+      summary: row.title
+    });
+    if (ev) events.push(ev);
+  }
+
+  return uniqueBy(events, (ev) => ev.id);
+}
+
+function extractKaderuVenueEvents({ source, url, html }) {
+  if (source.id !== 'homepage-kaderu27-or-jp-event-news-index-html') return [];
+  if (!/\/event\/(?:index|exhibition|rooms|self\/index)\.html$/i.test(url)) return [];
+
+  const pageText = stripTags(String(extractTitle(html) || '').split('|')[0] || '');
+  let venue = 'かでる2・7';
+  if (/\/event\/self\/index\.html$/i.test(url)) {
+    venue = 'かでる2・7';
+  } else if (/\/event\/index\.html$/i.test(url) || /かでるホール/i.test(pageText)) {
+    venue = 'かでるホール';
+  } else if (/\/event\/exhibition\.html$/i.test(url) || /展示ホール/i.test(pageText)) {
+    venue = 'かでる2・7 展示ホール';
+  } else if (/\/event\/rooms\.html$/i.test(url) || /会議室/i.test(pageText)) {
+    venue = 'かでる2・7 会議室';
+  }
+
+  const events = [];
+  const cardRe = /<li>\s*<a href="([^"]+)">[\s\S]*?<p class="eventDate">[\s\S]*?<time class="start" datetime="(\d{4}-\d{2}-\d{2})">[\s\S]*?(?:<time class="end" datetime="(\d{4}-\d{2}-\d{2})">[\s\S]*?)?<b class="title">([\s\S]*?)<\/b>[\s\S]*?(?:<span class="org">([\s\S]*?)<\/span>)?[\s\S]*?<\/a><\/li>/gi;
+  for (const match of html.matchAll(cardRe)) {
+    const detailUrl = absolutizeUrl(url, match[1] || '') || '';
+    const startDate = String(match[2] || '').trim();
+    const endDate = String(match[3] || '').trim();
+    const title = textPreview(stripTags(match[4] || '').trim(), 120);
+    const summary = textPreview(stripTags(match[5] || '').trim(), 180);
+    if (!detailUrl || !startDate || !title || BAD_TITLE_RE.test(title) || WEAK_TITLE_RE.test(title)) continue;
+    const ev = buildSiteRuleEvent({
+      source,
+      detailUrl,
+      title,
+      startDate,
+      endDate,
+      venue,
+      venueAddress: '札幌市中央区北2条西7丁目',
+      time: { open: '', start: '', end: '', allDay: true },
+      summary
+    });
+    if (ev) events.push(ev);
+  }
+  return uniqueBy(events, (ev) => ev.id);
+}
+
 function extractDoshinPlayguideSiteRuleEvent({ source, url, html, nowYmd }) {
   if (source.id !== 'doshin-playguide-jp') return null;
   if (!/doshin-playguide\.jp\/(?:ticket\/detail\/\d+|event\/)/i.test(url)) return null;
@@ -1120,6 +1526,132 @@ function extractDoshinPlayguideSiteRuleEvent({ source, url, html, nowYmd }) {
     summary: pickMeta(html, 'description') || `${dateText} ${timeText}`.trim(),
     flyerImageUrl: pickMeta(html, 'og:image') || ''
   });
+}
+
+function extractCaretexSiteRuleEvent({ source, url, html }) {
+  if (source.id !== 'sapporo-caretex-jp') return null;
+  const bodyText = stripTags(html);
+  const match = bodyText.match(/(20\d{2})年\s*(\d{1,2})\s*月\s*(\d{1,2})\s*日[^0-9]{0,12}[・～\-ー〜]\s*(\d{1,2})\s*日[\s\S]{0,120}?アクセスサッポロ/i);
+  if (!match) return null;
+  const startDate = `${match[1]}-${String(match[2]).padStart(2, '0')}-${String(match[3]).padStart(2, '0')}`;
+  const endDate = `${match[1]}-${String(match[2]).padStart(2, '0')}-${String(match[4]).padStart(2, '0')}`;
+  const timeMatch = bodyText.match(/開場時間\s*(\d{1,2})[:：](\d{2})\s*[～\-ー〜]\s*(\d{1,2})[:：](\d{2})/);
+  const time = timeMatch
+    ? {
+        open: '',
+        start: `${String(timeMatch[1]).padStart(2, '0')}:${timeMatch[2]}`,
+        end: `${String(timeMatch[3]).padStart(2, '0')}:${timeMatch[4]}`,
+        allDay: false
+      }
+    : { open: '', start: '', end: '', allDay: true };
+  const summary = textPreview(match[0], 220);
+  return buildSiteRuleEvent({
+    source,
+    detailUrl: url,
+    title: 'CareTEX札幌',
+    startDate,
+    endDate,
+    venue: 'アクセスサッポロ',
+    venueAddress: '札幌市白石区流通センター4丁目3-55',
+    time,
+    summary,
+    flyerImageUrl: pickImage(html, url)
+  });
+}
+
+function extractSapporoCityJazzNewsEvents({ source, url, html, nowYmd }) {
+  if (source.id !== 'sapporocityjazz-jp') return [];
+  if (!/\/20\d{2}\/\d{2}\/\d{2}\/news-\d+\/?$/i.test(url)) return [];
+  const title = textPreview(String(extractTitle(html) || '').split('|')[0].trim(), 120);
+  const bodyText = stripTags(html);
+  const events = [];
+
+  const liveMatch = bodyText.match(/パークジャズライブ[^\n]*?(20\d{2})年(\d{1,2})月(\d{1,2})日[^0-9]{0,8}[、・]\s*(\d{1,2})日/i);
+  if (liveMatch) {
+    const startDate = `${liveMatch[1]}-${String(liveMatch[2]).padStart(2, '0')}-${String(liveMatch[3]).padStart(2, '0')}`;
+    const endDate = `${liveMatch[1]}-${String(liveMatch[2]).padStart(2, '0')}-${String(liveMatch[4]).padStart(2, '0')}`;
+    const venueLine = textPreview((bodyText.match(/会場[：:]\s*([^\n]+)/i) || [])[1] || '札幌市内各会場', 120);
+    const ev = buildSiteRuleEvent({
+      source,
+      detailUrl: url,
+      title: 'SAPPORO CITY JAZZ パークジャズライブ',
+      startDate,
+      endDate,
+      venue: venueLine,
+      venueAddress: '札幌市内各会場',
+      time: { open: '', start: '', end: '', allDay: true },
+      summary: textPreview(title || bodyText, 220),
+      flyerImageUrl: pickImage(html, url)
+    });
+    if (ev) events.push(ev);
+  }
+
+  const contestMatch = bodyText.match(/パークジャズライブコンテスト[^\n]*?(20\d{2})年(\d{1,2})月(\d{1,2})日/i);
+  if (contestMatch) {
+    const startDate = `${contestMatch[1]}-${String(contestMatch[2]).padStart(2, '0')}-${String(contestMatch[3]).padStart(2, '0')}`;
+    const contestVenue = textPreview((bodyText.match(/パークジャズライブコンテスト[^\n]*?会場[：:]\s*([^\n]+)/i) || [])[1] || '札幌市民交流プラザ3階クリエイティブスタジオ', 120);
+    const ev = buildSiteRuleEvent({
+      source,
+      detailUrl: `${url}#contest`,
+      title: 'SAPPORO CITY JAZZ パークジャズライブコンテスト',
+      startDate,
+      venue: contestVenue,
+      venueAddress: '札幌市中央区北1条西1丁目',
+      time: { open: '', start: '', end: '', allDay: true },
+      summary: textPreview(title || bodyText, 220),
+      flyerImageUrl: pickImage(html, url)
+    });
+    if (ev) events.push(ev);
+  }
+
+  return uniqueBy(events, (ev) => ev.id);
+}
+
+function buildHtbEventFromSection({ source, url, html, title, sectionHtml, nowYmd }) {
+  const dateBlock = pickLabeledValue(sectionHtml, '公演日時');
+  const venue = pickLabeledValueByPattern(sectionHtml, '会[^<]{0,4}場');
+  if (!dateBlock || !venue) return null;
+  const dates = parseDatesFromText(dateBlock, nowYmd);
+  if (!dates.length) return null;
+  return buildSiteRuleEvent({
+    source,
+    detailUrl: url,
+    title,
+    startDate: dates[0].ymd,
+    endDate: dates.length >= 2 ? dates[1].ymd : '',
+    venue,
+    venueAddress: pickAddress(stripTags(sectionHtml)) || '',
+    time: parseEventTimes(dateBlock),
+    summary: textPreview(stripTags(sectionHtml), 220),
+    flyerImageUrl: pickImage(html, url)
+  });
+}
+
+function extractHtbEventDetailEvents({ source, url, html, nowYmd }) {
+  if (source.id !== 'www-htb-co-jp-event') return [];
+  if (!/^https:\/\/www\.htb\.co\.jp\/event\//i.test(url)) return [];
+  const bodyHtml = readNextDataBodyHtml(html) || html;
+  const title = textPreview(pickMeta(html, 'og:title') || extractTitle(html) || source.name, 120);
+  const events = [];
+
+  const sapporoSections = [...bodyHtml.matchAll(/<section\b[^>]*class=["'][^"']*venueMunicipalities[^"']*["'][^>]*>([\s\S]*?)<\/section>/gi)]
+    .map((match) => String(match[1] || ''))
+    .filter((sectionHtml) => /札幌公演|札幌コンサートホール|札幌文化芸術劇場|カナモトホール|hitaru|Kitara/i.test(sectionHtml));
+
+  if (sapporoSections.length) {
+    for (const sectionHtml of sapporoSections) {
+      const ev = buildHtbEventFromSection({ source, url, html, title, sectionHtml, nowYmd });
+      if (ev) events.push(ev);
+    }
+    return uniqueBy(events, (ev) => ev.id);
+  }
+
+  const summaryMatch = bodyHtml.match(/<section\b[^>]*class=["'][^"']*eventSummary[^"']*["'][^>]*>([\s\S]*?)<\/section>/i);
+  if (!summaryMatch || !summaryMatch[1]) return [];
+  const summaryHtml = String(summaryMatch[1] || '');
+  if (!SAPPORO_AREA_RE.test(stripTags(summaryHtml))) return [];
+  const ev = buildHtbEventFromSection({ source, url, html, title, sectionHtml: summaryHtml, nowYmd });
+  return ev ? [ev] : [];
 }
 
 function extractJetroJmesseSiteRuleEvents({ source, url, html, nowYmd }) {
@@ -1465,7 +1997,7 @@ function isPublishable(ev) {
     if (!hasStrongSignal) return false;
   }
   const score = Number(ev.quality_score || 0);
-  if (method === 'jsonld') return score >= MIN_QUALITY_SCORE;
+  if (method === 'jsonld' || method === 'site_rule') return score >= MIN_QUALITY_SCORE;
   return score >= MIN_QUALITY_SCORE_HEURISTIC;
 }
 
@@ -1622,8 +2154,24 @@ function extractEventsFromPage({ source, url, html, titleHint, nowYmd }) {
   for (const ev of shiminhallEvents) events.push(withQuality(ev));
   const chieriaEvents = extractChieriaHallScheduleEvents({ source, url, html, nowYmd });
   for (const ev of chieriaEvents) events.push(withQuality(ev));
+  const axesEvents = extractAxesCalendarEvents({ source, url, html, nowYmd });
+  for (const ev of axesEvents) events.push(withQuality(ev));
+  const kaderuEvents = extractKaderuVenueEvents({ source, url, html, nowYmd });
+  for (const ev of kaderuEvents) events.push(withQuality(ev));
   const doshinEvent = extractDoshinPlayguideSiteRuleEvent({ source, url, html, nowYmd });
   if (doshinEvent) events.push(withQuality(doshinEvent));
+  const caretexEvent = extractCaretexSiteRuleEvent({ source, url, html, nowYmd });
+  if (caretexEvent) events.push(withQuality(caretexEvent));
+  const cityJazzNewsEvents = extractSapporoCityJazzNewsEvents({ source, url, html, nowYmd });
+  for (const ev of cityJazzNewsEvents) events.push(withQuality(ev));
+  const htbEvents = extractHtbEventDetailEvents({ source, url, html, nowYmd });
+  for (const ev of htbEvents) events.push(withQuality(ev));
+  const noMapsEvent = extractNoMapsNearlyEvent({ source, url, html, nowYmd });
+  if (noMapsEvent) events.push(withQuality(noMapsEvent));
+  const grandEvent = extractGrand1934EventDetailEvent({ source, url, html, nowYmd });
+  if (grandEvent) events.push(withQuality(grandEvent));
+  const keioEvent = extractKeioPlazaEventDetailEvent({ source, url, html, nowYmd });
+  if (keioEvent) events.push(withQuality(keioEvent));
   const jetroEvents = extractJetroJmesseSiteRuleEvents({ source, url, html, nowYmd });
   for (const ev of jetroEvents) events.push(withQuality(ev));
   const jetroDetailEvent = extractJetroTradefairDetailEvent({ source, url, html, nowYmd });
@@ -1662,7 +2210,8 @@ function extractEventsFromPage({ source, url, html, titleHint, nowYmd }) {
     }
   }
 
-  if (!mountAliveEvent && !zeppEvent && ticketPiaEvents.length === 0) {
+  const hasCuratedExtraction = events.some((ev) => String(ev?.extraction_method || '') === 'site_rule');
+  if (!hasCuratedExtraction && !mountAliveEvent && !zeppEvent && ticketPiaEvents.length === 0) {
     const heuristicEvent = buildEvent({
       source,
       detailUrl: url,
@@ -2038,6 +2587,360 @@ async function crawlSeededListSource(source, options, seedUrls, pageParser = nul
   };
 }
 
+async function crawlSlowSeededListSource(source, options, seedUrls, pageParser = null, timeoutMs = 25000) {
+  const { nowYmd } = options;
+  const pages = await mapLimit(seedUrls, 2, async (url) => {
+    try {
+      return await fetchText(url, timeoutMs);
+    } catch (_) {
+      return null;
+    }
+  });
+
+  const events = [];
+  let successCount = 0;
+  for (const page of pages) {
+    if (!page || page.error) continue;
+    successCount += 1;
+    const pageEvents = pageParser
+      ? pageParser({ source, url: page.url, html: page.html, nowYmd })
+      : extractEventsFromPage({
+          source,
+          url: page.url,
+          html: page.html,
+          titleHint: extractTitle(page.html) || source.name,
+          nowYmd
+        });
+    for (const ev of pageEvents) events.push(withQuality(ev));
+  }
+
+  return {
+    sourceId: source.id,
+    events: uniqueBy(events, (x) => x.id),
+    error: successCount > 0 ? '' : 'fetch_failed'
+  };
+}
+
+async function crawlHtbEventSource(source, options) {
+  const { nowYmd, maxDate } = options;
+  let rows;
+  try {
+    rows = await fetchJson('https://www.htb.co.jp/event/event.json', 15000);
+  } catch (error) {
+    return { sourceId: source.id, events: [], error: String(error?.message || error) };
+  }
+  const candidates = uniqueBy(
+    (Array.isArray(rows) ? rows : [])
+      .map((row) => {
+        const startDate = parseIsoDateParts(String(row?.startDate || '')).date;
+        const endDate = parseIsoDateParts(String(row?.endDate || '')).date || startDate;
+        return {
+          url: String(row?.url || '').trim(),
+          startDate,
+          endDate
+        };
+      })
+      .filter((row) => /^https:\/\/www\.htb\.co\.jp\/event\//i.test(row.url))
+      .filter((row) => !row.startDate || row.startDate <= maxDate)
+      .filter((row) => !row.endDate || row.endDate >= nowYmd),
+    (row) => row.url
+  );
+
+  const pages = await mapLimit(candidates, 3, async (row) => {
+    try {
+      return await fetchText(row.url, 15000);
+    } catch (_) {
+      return null;
+    }
+  });
+
+  const events = [];
+  for (const page of pages) {
+    if (!page || page.error) continue;
+    const pageEvents = extractHtbEventDetailEvents({
+      source,
+      url: page.url,
+      html: page.html,
+      nowYmd
+    });
+    for (const ev of pageEvents) events.push(withQuality(ev));
+  }
+
+  return {
+    sourceId: source.id,
+    events: uniqueBy(events, (ev) => ev.id),
+    error: ''
+  };
+}
+
+async function crawlSapporoCityJazzSource(source, options) {
+  const { nowYmd } = options;
+  const seedUrls = [
+    'https://sapporocityjazz.jp/',
+    'https://sapporocityjazz.jp/news/',
+    'https://sapporocityjazz.jp/event/'
+  ];
+  const pages = await mapLimit(seedUrls, 2, async (url) => {
+    try {
+      return await fetchText(url, 25000);
+    } catch (_) {
+      return null;
+    }
+  });
+
+  const events = [];
+  const detailCandidates = [];
+  for (const page of pages) {
+    if (!page || page.error) continue;
+    const links = extractLinks(page.html, page.url)
+      .filter((link) => /^https:\/\/sapporocityjazz\.jp\//i.test(link.url))
+      .filter((link) => /\/event\/|\/20\d{2}\/\d{2}\/\d{2}\//i.test(link.url));
+    for (const link of links) detailCandidates.push(link);
+  }
+
+  const detailPages = await mapLimit(
+    uniqueBy(detailCandidates, (link) => link.url).slice(0, 16),
+    2,
+    async (link) => {
+      try {
+        return await fetchText(link.url, 25000);
+      } catch (_) {
+        return null;
+      }
+    }
+  );
+
+  for (const page of detailPages) {
+    if (!page || page.error) continue;
+    const pageEvents = /\/20\d{2}\/\d{2}\/\d{2}\/news-\d+\/?$/i.test(page.url)
+      ? extractSapporoCityJazzNewsEvents({
+          source,
+          url: page.url,
+          html: page.html,
+          nowYmd
+        })
+      : extractEventsFromPage({
+          source,
+          url: page.url,
+          html: page.html,
+          titleHint: extractTitle(page.html) || source.name,
+          nowYmd
+        });
+    for (const ev of pageEvents) events.push(withQuality(ev));
+  }
+
+  return {
+    sourceId: source.id,
+    events: uniqueBy(events, (ev) => ev.id),
+    error: ''
+  };
+}
+
+async function crawlSapporoTravelSeasonJsonSource(source, options) {
+  const { nowYmd } = options;
+  const base = SAPPORO_TRAVEL_JSON_BASE[source.id];
+  if (!base) return { sourceId: source.id, events: [], error: 'unsupported_source' };
+
+  let archive;
+  try {
+    archive = await fetchJson(`${base}/data/json/archive.json`, 15000);
+  } catch (error) {
+    return { sourceId: source.id, events: [], error: String(error?.message || error) };
+  }
+
+  const rows = Array.isArray(archive) ? archive.slice(0, 12) : [];
+  const detailIds = rows
+    .map((row) => Number(row?.id || 0))
+    .filter((id) => Number.isFinite(id) && id > 0);
+  const detailPayloads = await mapLimit(detailIds, 3, async (id) => {
+    try {
+      const detail = await fetchJson(`${base}/data/json/detail/${id}.json`, 15000);
+      return { id, detail };
+    } catch (_) {
+      return null;
+    }
+  });
+
+  const events = [];
+  for (const row of detailPayloads) {
+    if (!row || !row.detail) continue;
+    const detailUrl = absolutizeUrl(base, row.detail?.important_link || row.detail?.permalink || row.detail?.link || '') || `${base}/`;
+    let pageEvents = [];
+    if (source.id === 'www-sapporo-travel-summerfes') {
+      pageEvents = extractSummerfesDetailEvents({ source, detail: row.detail, detailUrl, nowYmd });
+    } else if (source.id === 'www-sapporo-travel-lilacfes-about') {
+      pageEvents = extractLilacfesDetailEvents({ source, detail: row.detail, detailUrl, nowYmd });
+    } else {
+      pageEvents = extractWhiteIlluminationDetailEvents({ source, detail: row.detail, detailUrl, nowYmd });
+    }
+    for (const ev of pageEvents) events.push(withQuality(ev));
+  }
+
+  const bestByTitle = new Map();
+  const spanDays = (ev) => {
+    const start = String(ev?.start_date || '');
+    const end = String(ev?.end_date || '');
+    if (!/^\d{4}-\d{2}-\d{2}$/.test(start) || !/^\d{4}-\d{2}-\d{2}$/.test(end)) return 0;
+    const a = new Date(`${start}T00:00:00Z`);
+    const b = new Date(`${end}T00:00:00Z`);
+    return Math.max(0, Math.round((b.getTime() - a.getTime()) / 86400000));
+  };
+  for (const ev of events) {
+    const key = String(ev?.title || '');
+    if (!key) continue;
+    const prev = bestByTitle.get(key);
+    if (!prev) {
+      bestByTitle.set(key, ev);
+      continue;
+    }
+    const prevFuture = String(prev.start_date || '') >= nowYmd;
+    const nextFuture = String(ev.start_date || '') >= nowYmd;
+    if (nextFuture && !prevFuture) {
+      bestByTitle.set(key, ev);
+      continue;
+    }
+    if (nextFuture === prevFuture && spanDays(ev) > spanDays(prev)) {
+      bestByTitle.set(key, ev);
+      continue;
+    }
+    if (nextFuture === prevFuture && spanDays(ev) === spanDays(prev) && String(ev.start_date || '') > String(prev.start_date || '')) {
+      bestByTitle.set(key, ev);
+    }
+  }
+
+  return {
+    sourceId: source.id,
+    events: Array.from(bestByTitle.values()),
+    error: ''
+  };
+}
+
+async function crawlNoMapsSource(source, options) {
+  const { nowYmd } = options;
+  let root;
+  try {
+    root = await fetchText('https://no-maps.jp/nearly-event/', 20000);
+  } catch (error) {
+    return { sourceId: source.id, events: [], error: String(error?.message || error) };
+  }
+  const detailLinks = uniqueBy(
+    extractLinks(root.html, root.url)
+      .filter((link) => /^https:\/\/no-maps\.jp\/nearly-event\/[^/?#]+\/?$/i.test(link.url))
+      .filter((link) => !/\/page\/\d+/i.test(link.url)),
+    (link) => link.url
+  ).slice(0, 16);
+
+  const pages = await mapLimit(detailLinks, 3, async (link) => {
+    try {
+      return await fetchText(link.url, 20000);
+    } catch (_) {
+      return null;
+    }
+  });
+
+  const events = [];
+  for (const page of pages) {
+    if (!page || page.error) continue;
+    const ev = extractNoMapsNearlyEvent({
+      source,
+      url: page.url,
+      html: page.html,
+      nowYmd
+    });
+    if (ev) events.push(withQuality(ev));
+  }
+
+  return {
+    sourceId: source.id,
+    events: uniqueBy(events, (ev) => ev.id),
+    error: ''
+  };
+}
+
+async function crawlGrand1934EventSource(source, options) {
+  const { nowYmd } = options;
+  let root;
+  try {
+    root = await fetchText(source.url, 15000);
+  } catch (error) {
+    return { sourceId: source.id, events: [], error: String(error?.message || error) };
+  }
+  const detailLinks = uniqueBy(
+    extractLinks(root.html, root.url)
+      .filter((link) => /^https:\/\/grand1934\.com\/event\/[^/?#]+\/?$/i.test(link.url))
+      .filter((link) => !/\/event\/?$/i.test(link.url))
+      .filter((link) => !/\/feed\/?$/i.test(link.url)),
+    (link) => link.url
+  ).slice(0, 16);
+
+  const pages = await mapLimit(detailLinks, 3, async (link) => {
+    try {
+      return await fetchText(link.url, 15000);
+    } catch (_) {
+      return null;
+    }
+  });
+
+  const events = [];
+  for (const page of pages) {
+    if (!page || page.error) continue;
+    const ev = extractGrand1934EventDetailEvent({
+      source,
+      url: page.url,
+      html: page.html,
+      nowYmd
+    });
+    if (ev) events.push(withQuality(ev));
+  }
+
+  return {
+    sourceId: source.id,
+    events: uniqueBy(events, (ev) => ev.id),
+    error: ''
+  };
+}
+
+async function crawlKeioPlazaEventSource(source, options) {
+  const { nowYmd } = options;
+  let root;
+  try {
+    root = await fetchText(source.url, 15000);
+  } catch (error) {
+    return { sourceId: source.id, events: [], error: String(error?.message || error) };
+  }
+  const detailLinks = uniqueBy(
+    extractLinks(root.html, root.url)
+      .filter((link) => /^https:\/\/www\.keioplaza-sapporo\.co\.jp\/event\/detail_\d+\.html$/i.test(link.url)),
+    (link) => link.url
+  ).slice(0, 24);
+
+  const pages = await mapLimit(detailLinks, 3, async (link) => {
+    try {
+      return await fetchText(link.url, 15000);
+    } catch (_) {
+      return null;
+    }
+  });
+
+  const events = [];
+  for (const page of pages) {
+    if (!page || page.error) continue;
+    const ev = extractKeioPlazaEventDetailEvent({
+      source,
+      url: page.url,
+      html: page.html,
+      nowYmd
+    });
+    if (ev) events.push(withQuality(ev));
+  }
+
+  return {
+    sourceId: source.id,
+    events: uniqueBy(events, (ev) => ev.id),
+    error: ''
+  };
+}
+
 async function crawlMonthlyListSource(source, options, buildMonthUrl, pageParser) {
   const { nowYmd, maxDate } = options;
   const months = enumerateMonthStarts(nowYmd, maxDate);
@@ -2128,6 +3031,14 @@ async function crawlSource(source, options) {
       /\/event\.php\?num=\d+/i
     );
   }
+  if (
+    source.id === 'www-sapporo-travel-summerfes' ||
+    source.id === 'www-sapporo-travel-lilacfes-about' ||
+    source.id === 'www-sapporo-travel-white-illumination' ||
+    source.id === 'www-sapporo-travel-white-illumination-event-munich'
+  ) {
+    return crawlSapporoTravelSeasonJsonSource(source, options);
+  }
   if (source.id === 'www-jetro-go-jp-j-messe-country-asia-jp-001') {
     return crawlSeededListSource(
       source,
@@ -2197,6 +3108,12 @@ async function crawlSource(source, options) {
       extractSoraConventionEvents
     );
   }
+  if (source.id === 'sapporocityjazz-jp') {
+    return crawlSapporoCityJazzSource(source, options);
+  }
+  if (source.id === 'no-maps-jp-program') {
+    return crawlNoMapsSource(source, options);
+  }
   if (source.id === 'www-kyobun-org-event-schedule-html') {
     return crawlMonthlyListSource(
       source,
@@ -2218,6 +3135,39 @@ async function crawlSource(source, options) {
       },
       extractTsudomeCalendarEvents
     );
+  }
+  if (source.id === 'www-axes-or-jp') {
+    return crawlMonthlyListSource(
+      source,
+      options,
+      (monthYmd) => {
+        const [y, m] = monthYmd.slice(0, 7).split('-');
+        return `https://www.axes.or.jp/event_calendar/index.php?input[year]=${y}&input[month]=${Number(m)}`;
+      },
+      extractAxesCalendarEvents
+    );
+  }
+  if (source.id === 'homepage-kaderu27-or-jp-event-news-index-html') {
+    return crawlSeededListSource(
+      source,
+      options,
+      [
+        'https://homepage.kaderu27.or.jp/event/index.html',
+        'https://homepage.kaderu27.or.jp/event/exhibition.html',
+        'https://homepage.kaderu27.or.jp/event/rooms.html',
+        'https://homepage.kaderu27.or.jp/event/self/index.html'
+      ],
+      extractKaderuVenueEvents
+    );
+  }
+  if (source.id === 'www-htb-co-jp-event') {
+    return crawlHtbEventSource(source, options);
+  }
+  if (source.id === 'grand1934-com-meeting-banquet') {
+    return crawlGrand1934EventSource(source, options);
+  }
+  if (source.id === 'www-keioplaza-sapporo-co-jp-banq-hall') {
+    return crawlKeioPlazaEventSource(source, options);
   }
   const plan = buildCrawlPlan(source, mode, strategy);
   const listingLimit = Math.max(3, Math.min(10, Math.floor(plan.detailLimit * 0.8)));
@@ -2550,15 +3500,26 @@ async function main() {
 export {
   crawlSource,
   eventFromWessPost,
+  extractAxesCalendarEvents,
+  extractCaretexSiteRuleEvent,
   extractChieriaHallScheduleEvents,
+  extractGrand1934EventDetailEvent,
   extractHbcConcertEvents,
+  extractHtbEventDetailEvents,
   extractJetroJmesseSiteRuleEvents,
+  extractKaderuVenueEvents,
+  extractKeioPlazaEventDetailEvent,
   extractKyobunScheduleEvents,
+  extractLilacfesDetailEvents,
+  extractNoMapsNearlyEvent,
+  extractSapporoCityJazzNewsEvents,
   extractSnowfesSiteRuleEvent,
   extractSapporoShiminhallScheduleEvents,
   extractSoraConventionEvents,
+  extractSummerfesDetailEvents,
   extractTicketPiaLocalSiteRuleEvents,
   extractTsudomeCalendarEvents,
+  extractWhiteIlluminationDetailEvents,
   extractYosakoiSiteRuleEvent,
   isPublishable,
   parseArgs,

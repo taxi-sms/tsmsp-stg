@@ -303,6 +303,254 @@ async function testExtractChieriaHallScheduleEventsFromCalendarView() {
   assert.strictEqual(events[0].venue, "札幌市生涯学習センター ちえりあホール");
 }
 
+async function testExtractAxesCalendarEventsFromMonthlyCalendar() {
+  const mod = await loadModule();
+  const source = { id: "www-axes-or-jp", name: "アクセスサッポロ", url: "https://www.axes.or.jp/", priority: "S" };
+  const html = `
+    <script>
+      this.year = '2026';
+      this.events[0] = {};
+      this.events[0].id = '234';
+      this.events[0].day = '4';
+      this.events[0].title = '北海道キャンピングカーフェスティバル２０２６';
+      this.events[1] = {};
+      this.events[1].id = '234';
+      this.events[1].day = '5';
+      this.events[1].title = '北海道キャンピングカーフェスティバル２０２６';
+    </script>
+  `;
+  const events = mod.extractAxesCalendarEvents({
+    source,
+    url: "https://www.axes.or.jp/event_calendar/index.php?input[year]=2026&input[month]=4",
+    html,
+    nowYmd: "2026-04-01"
+  });
+  assert.strictEqual(events.length, 1);
+  assert.strictEqual(events[0].start_date, "2026-04-04");
+  assert.strictEqual(events[0].end_date, "2026-04-05");
+  assert.strictEqual(events[0].venue, "アクセスサッポロ");
+}
+
+async function testExtractKaderuVenueEventsFromHallPage() {
+  const mod = await loadModule();
+  const source = { id: "homepage-kaderu27-or-jp-event-news-index-html", name: "かでる2・7", url: "https://homepage.kaderu27.or.jp/event/news/index.html", priority: "A" };
+  const html = `
+    <html>
+      <head><title>「かでるホール」のイベント | かでる2・7</title></head>
+      <body>
+        <section id="e2026-04" class="eventList place">
+          <h2>2026年4月</h2>
+          <ul class="cards">
+            <li><a href="self/o03676000000040x.html">
+              <div class="detail">
+                <p class="eventDate">
+                  <time class="start" datetime="2026-04-13">2026年4月13日(月曜日)</time>
+                  〜 <time class="end" datetime="2026-04-16">4月16日(木曜日)</time>
+                </p>
+                <b class="title">かでるホール体験事業「第31回かでる音楽スタジオ」</b>
+                <span class="org">かでる2・7主催</span>
+              </div>
+            </a></li>
+          </ul>
+        </section>
+      </body>
+    </html>
+  `;
+  const events = mod.extractKaderuVenueEvents({
+    source,
+    url: "https://homepage.kaderu27.or.jp/event/index.html",
+    html,
+    nowYmd: "2026-04-01"
+  });
+  assert.strictEqual(events.length, 1);
+  assert.strictEqual(events[0].start_date, "2026-04-13");
+  assert.strictEqual(events[0].end_date, "2026-04-16");
+  assert.strictEqual(events[0].venue, "かでるホール");
+}
+
+async function testExtractCaretexSiteRuleEvent() {
+  const mod = await loadModule();
+  const source = { id: "sapporo-caretex-jp", name: "CareTEX札幌", url: "https://sapporo.caretex.jp/", priority: "A" };
+  const html = `
+    <html><body>
+      介護業界 北海道 最大級の商談型展示会
+      2026年 9 月 16 日（水）・ 17 日（木）
+      （開場時間 9：30～17：00）
+      アクセスサッポロ 大展示場
+    </body></html>
+  `;
+  const ev = mod.extractCaretexSiteRuleEvent({
+    source,
+    url: source.url,
+    html,
+    nowYmd: "2026-04-01"
+  });
+  assert.ok(ev);
+  assert.strictEqual(ev.start_date, "2026-09-16");
+  assert.strictEqual(ev.end_date, "2026-09-17");
+  assert.strictEqual(ev.venue, "アクセスサッポロ");
+}
+
+async function testExtractHtbEventDetailEventsPrefersSapporoSection() {
+  const mod = await loadModule();
+  const source = { id: "www-htb-co-jp-event", name: "HTB", url: "https://www.htb.co.jp/event/", priority: "A" };
+  const body = `
+    <section class="venueMunicipalities sapporo" id="sapporoLink">
+      <h2><span>札幌公演 開催概要</span></h2>
+      <dl><dt>公演日時</dt><dd>2026年4月10日(金) 開演18:30 開場17:45</dd></dl>
+      <dl><dt>会　　場</dt><dd>札幌コンサートホール Kitara 大ホール</dd></dl>
+    </section>
+    <section class="venueMunicipalities otofuke" id="otofukeLink">
+      <h2><span>音更公演 開催概要</span></h2>
+      <dl><dt>公演日時</dt><dd>2026年4月12日(日) 開演17:00 開場16:00</dd></dl>
+      <dl><dt>会　　場</dt><dd>音更町文化センター大ホール</dd></dl>
+    </section>
+  `;
+  const html = `
+    <html>
+      <head>
+        <title>HTB Classic 村治佳織 リサイタル北海道ツアー</title>
+        <meta property="og:title" content="HTB Classic 村治佳織 リサイタル北海道ツアー" />
+      </head>
+      <body>
+        <script id="__NEXT_DATA__" type="application/json">${JSON.stringify({ props: { pageProps: { body } } })}</script>
+      </body>
+    </html>
+  `;
+  const events = mod.extractHtbEventDetailEvents({
+    source,
+    url: "https://www.htb.co.jp/event/muraji2026/",
+    html,
+    nowYmd: "2026-04-01"
+  });
+  assert.strictEqual(events.length, 1);
+  assert.strictEqual(events[0].start_date, "2026-04-10");
+  assert.strictEqual(events[0].venue, "札幌コンサートホール Kitara 大ホール");
+}
+
+async function testExtractSapporoCityJazzNewsEvents() {
+  const mod = await loadModule();
+  const source = { id: "sapporocityjazz-jp", name: "SAPPORO CITY JAZZ", url: "https://sapporocityjazz.jp/", priority: "A" };
+  const html = `
+    <html>
+      <head><title>パークジャズライブ＆コンテスト 開催・募集日程決定！ | SAPPORO CITY JAZZ</title></head>
+      <body>
+        <p>■パークジャズライブ 2026年7月18日（土）、19日（日）</p>
+        <p>会場：大通公園２丁目、札幌市民交流プラザ３階クリエイティブスタジオ、札幌駅前通地下歩行空間北３条広場など札幌市内約10か所を予定</p>
+        <p>■パークジャズライブコンテスト 2026年7月20日（月・祝）</p>
+        <p>会場：札幌市民交流プラザ３階クリエイティブスタジオ</p>
+      </body>
+    </html>
+  `;
+  const events = mod.extractSapporoCityJazzNewsEvents({
+    source,
+    url: "https://sapporocityjazz.jp/2026/02/03/news-799/",
+    html,
+    nowYmd: "2026-04-01"
+  });
+  assert.strictEqual(events.length, 2);
+  assert.strictEqual(events[0].start_date, "2026-07-18");
+  assert.strictEqual(events[0].end_date, "2026-07-19");
+  assert.strictEqual(events[1].start_date, "2026-07-20");
+}
+
+async function testExtractSummerfesDetailEvents() {
+  const mod = await loadModule();
+  const source = { id: "www-sapporo-travel-summerfes", name: "夏まつり", url: "https://www.sapporo.travel/summerfes/", priority: "A" };
+  const detail = {
+    content: `
+      <p>1 福祉協賛さっぽろ大通ビアガーデン<br>会期：2026年7月23日（木）～8月18日（火）</p>
+      <p>2 北海盆踊り<br>会期：2026年8月13日（木）～8月16日（日）</p>
+      <p>3 第62回すすきの祭り<br>会期：2026年8月6日(木)～8月8日(土)</p>
+      <p>4 第73回狸まつり<br>会期：2026年7月23日(木)～8月18日(火)</p>
+    `
+  };
+  const events = mod.extractSummerfesDetailEvents({
+    source,
+    detail,
+    detailUrl: "https://www.sapporo.travel/summerfes/news/detail/621/",
+    nowYmd: "2026-03-08"
+  });
+  assert.strictEqual(events.length, 4);
+  assert.strictEqual(events[0].start_date, "2026-07-23");
+  assert.strictEqual(events[1].start_date, "2026-08-13");
+}
+
+async function testExtractNoMapsNearlyEvent() {
+  const mod = await loadModule();
+  const source = { id: "no-maps-jp-program", name: "NoMaps", url: "https://no-maps.jp/program/", priority: "A" };
+  const html = `
+    <html>
+      <head><title>北海道 × 東京 “共創BAR” | NoMaps</title></head>
+      <body>
+        <h1 class="page_article_title">北海道 × 東京 “共創BAR”</h1>
+        <dl><dt>日時</dt><dd>2026年3月24日（火）<br />19:00～23:00</dd></dl>
+        <dl><dt>会場</dt><dd><a href="https://example.com">BAR / THE FLYING PENGUINS</a></dd></dl>
+      </body>
+    </html>
+  `;
+  const ev = mod.extractNoMapsNearlyEvent({
+    source,
+    url: "https://no-maps.jp/nearly-event/260324/",
+    html,
+    nowYmd: "2026-03-08"
+  });
+  assert.ok(ev);
+  assert.strictEqual(ev.start_date, "2026-03-24");
+  assert.strictEqual(ev.venue, "BAR THE FLYING PENGUINS");
+}
+
+async function testExtractGrand1934EventDetailEvent() {
+  const mod = await loadModule();
+  const source = { id: "grand1934-com-meeting-banquet", name: "札幌グランドホテル", url: "https://grand1934.com/event/", priority: "B" };
+  const html = `
+    <html>
+      <head><title>林 美奈子 個展 | 札幌グランドホテル</title></head>
+      <body>
+        <h2 class="eventDetail-info_ttl">林 美奈子 個展 粒々研究所 g 分室</h2>
+        <section class="eventDetail-summary">
+          <ul>
+            <li><p>開催日</p><p>2026年2月26日(木)－2026年4月14日(火)</p></li>
+            <li><p>会場</p><p>グランビスタ ギャラリー サッポロ</p></li>
+          </ul>
+        </section>
+      </body>
+    </html>
+  `;
+  const ev = mod.extractGrand1934EventDetailEvent({
+    source,
+    url: "https://grand1934.com/event/gallery_202602/",
+    html,
+    nowYmd: "2026-03-08"
+  });
+  assert.ok(ev);
+  assert.strictEqual(ev.start_date, "2026-02-26");
+  assert.strictEqual(ev.end_date, "2026-04-14");
+}
+
+async function testExtractKeioPlazaEventDetailEvent() {
+  const mod = await loadModule();
+  const source = { id: "www-keioplaza-sapporo-co-jp-banq-hall", name: "京王プラザホテル札幌", url: "https://www.keioplaza-sapporo.co.jp/event/", priority: "B" };
+  const html = `
+    <html>
+      <head><title>シマエナガルーム | 京王プラザホテル札幌</title></head>
+      <body>
+        <p class="ja_nameonly">シマエナガルーム</p>
+        <div>販売期間 2025年12月24日(水)～2026年1月4日(日)</div>
+      </body>
+    </html>
+  `;
+  const ev = mod.extractKeioPlazaEventDetailEvent({
+    source,
+    url: "https://www.keioplaza-sapporo.co.jp/event/detail_1598.html",
+    html,
+    nowYmd: "2025-12-01"
+  });
+  assert.ok(ev);
+  assert.strictEqual(ev.start_date, "2025-12-24");
+  assert.strictEqual(ev.end_date, "2026-01-04");
+}
+
 async function testExtractSnowfesSiteRuleEvent() {
   const mod = await loadModule();
   const source = { id: "www-snowfes-com", name: "雪まつり", url: "https://www.snowfes.com/", priority: "S" };
@@ -323,6 +571,21 @@ async function testExtractYosakoiSiteRuleEvent() {
   assert.strictEqual(ev.end_date, "2026-06-14");
 }
 
+async function testSiteRuleUsesCuratedPublishThreshold() {
+  const mod = await loadModule();
+  const ev = {
+    title: "さっぽろ雪まつり",
+    start_date: "2027-02-04",
+    end_date: "2027-02-11",
+    venue: "大通公園・つどーむ・すすきの",
+    venue_address: "札幌市内各会場",
+    detail_url: "https://www.snowfes.com/",
+    extraction_method: "site_rule",
+    quality_score: 0.57
+  };
+  assert.strictEqual(mod.isPublishable(ev), true);
+}
+
 async function runTests() {
   const tests = [
     ["札幌圏会場は通す", testAllowSapporoAreaVenue],
@@ -339,8 +602,18 @@ async function runTests() {
     ["JETRO 一覧はゼロ埋め日付を正しく拾う", testExtractJetroJmesseHandlesZeroPaddedDates],
     ["カナモトホール月別ページを組み立てる", testExtractSapporoShiminhallScheduleEventsFromMonthlyPage],
     ["ちえりあカレンダーHTMLを組み立てる", testExtractChieriaHallScheduleEventsFromCalendarView],
+    ["アクセスサッポロ月別カレンダーを組み立てる", testExtractAxesCalendarEventsFromMonthlyCalendar],
+    ["かでる会場別イベントを組み立てる", testExtractKaderuVenueEventsFromHallPage],
+    ["CareTEX札幌の会期を拾う", testExtractCaretexSiteRuleEvent],
+    ["HTB詳細は札幌セクションを優先する", testExtractHtbEventDetailEventsPrefersSapporoSection],
+    ["CITY JAZZ のニュース記事から開催日を拾う", testExtractSapporoCityJazzNewsEvents],
+    ["夏まつり JSON 詳細から各行事を拾う", testExtractSummerfesDetailEvents],
+    ["NoMaps 近日イベント詳細から日時と会場を拾う", testExtractNoMapsNearlyEvent],
+    ["札幌グランドホテル詳細から会期を拾う", testExtractGrand1934EventDetailEvent],
+    ["京王プラザ詳細から会期を拾う", testExtractKeioPlazaEventDetailEvent],
     ["雪まつりの次回会期を拾う", testExtractSnowfesSiteRuleEvent],
-    ["YOSAKOIの開催日を拾う", testExtractYosakoiSiteRuleEvent]
+    ["YOSAKOIの開催日を拾う", testExtractYosakoiSiteRuleEvent],
+    ["site_rule は curated 閾値で公開する", testSiteRuleUsesCuratedPublishThreshold]
   ];
   let passed = 0;
   for (const [name, fn] of tests) {
