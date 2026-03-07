@@ -920,20 +920,31 @@ body{padding-bottom:78px;}
     var title = String(ev.title || "").trim();
     if(!title) return false;
     if(Number(ev.quality_score || 0) < 0.56) return false;
+    if(!ev.start_time || ev.start_time === "00:00") return false;
     if(/^(イベント|イベント情報|event|events|schedule)(\s*[|｜:].*)?$/i.test(title)) return false;
     if(/^明日\(\)開催$/.test(title)) return false;
     if(/宴会場|会議室|客室|宿泊|ご案内|施設案内|公演・チケット情報|イベント一覧/.test(title)) return false;
     return true;
   }
   function eventTimeLabel(ev){
-    if(!ev) return "未定";
+    if(!ev) return "";
     if(ev.start_time && ev.start_time !== "00:00") return ev.start_time;
-    return "未定";
+    return "";
+  }
+  function isGenericHallName(venue){
+    var v = String(venue || "").trim();
+    if(!v) return false;
+    return /^(小ホール|大ホール|中ホール|メインホール|ホール|スタジオ\d*|会場A|会場B|会場C)$/.test(v);
   }
   function eventVenueLabel(ev){
-    if(ev && ev.venue) return ev.venue;
-    if(ev && ev.source_name) return ev.source_name;
-    return "会場未設定";
+    if(!ev) return "";
+    var venue = String(ev.venue || "").trim();
+    var sourceName = String(ev.source_name || "").trim();
+    if(venue){
+      if(isGenericHallName(venue) && sourceName) return sourceName + " " + venue;
+      return venue;
+    }
+    return "";
   }
   function setEventEmptyState(text){
     if(!dailyEventList) return;
@@ -958,6 +969,12 @@ body{padding-bottom:78px;}
     }
     var todayEvents = dailyEventData.filter(function(ev){
       return isOnToday(ev) && isDisplayableEvent(ev);
+    }).filter(function(ev){
+      return !!eventVenueLabel(ev);
+    }).sort(function(a, b){
+      return (a.start_time || "99:99").localeCompare(b.start_time || "99:99") ||
+             eventVenueLabel(a).localeCompare(eventVenueLabel(b), "ja") ||
+             (a.title || "").localeCompare(b.title || "", "ja");
     });
     dailyEventViewData = todayEvents.slice();
     dailyEventList.innerHTML = "";
