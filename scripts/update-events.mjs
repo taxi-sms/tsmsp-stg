@@ -17,6 +17,24 @@ const DETAIL_URL_SIGNAL_RE = /(event[_-]?detail|\/detail\/|eventid=|eventcd=|eve
 const JSONLD_SCRIPT_RE = /<script\b[^>]*type=["']application\/ld\+json["'][^>]*>([\s\S]*?)<\/script>/gi;
 const MIN_QUALITY_SCORE = 0.56;
 const MIN_QUALITY_SCORE_HEURISTIC = 0.58;
+const SOURCE_VENUE_FALLBACK = {
+  'www-kitara-sapporo-or-jp-event': '札幌コンサートホール Kitara',
+  'www-zepp-co-jp-hall-sapporo-schedule': 'Zepp Sapporo',
+  'spice-sapporo-jp-schedule': 'SPiCE',
+  'www-cube-garden-com-live-php': 'cube garden',
+  'www-pl24-jp-schedule-html': 'PENNY LANE24',
+  'www-sapporo-community-plaza-jp-event-php': '札幌市民交流プラザ',
+  'www-kyobun-org-event-schedule-html': '札幌市教育文化会館',
+  'www-sapporo-shiminhall-org': 'カナモトホール',
+  'sapporofactory-jp-event': 'サッポロファクトリー',
+  'www-sapporo-dome-co-jp-dome': '大和ハウス プレミストドーム',
+  'www-sora-scc-jp': '札幌コンベンションセンター',
+  'www-axes-or-jp': 'アクセスサッポロ',
+  'www-business-expo-jp': 'アクセスサッポロ'
+  ,
+  'sapporocityjazz-jp': '札幌市内会場',
+  'odori-park-jp': '大通公園'
+};
 const SOURCE_CUSTOM_RULE_IDS = new Set([
   'www-sapporo-travel-autumnfest',
   'www-sapporo-travel-lilacfes-about',
@@ -310,9 +328,42 @@ function normalizeUrlForCompare(url) {
 }
 
 function pickVenue(text) {
-  const m = text.match(/(?:会場|場所|venue)\s*[：:]\s*([^\n]{2,80})/i);
+  const m = text.match(/(?:会場名|会場|開催場所|場所|venue)\s*[：:]?\s*([^\n]{2,80})/i);
   if (!m || !m[1]) return '';
   return textPreview(m[1], 80);
+}
+
+function cleanVenue(text) {
+  return String(text || '')
+    .replace(/\s+/g, ' ')
+    .replace(/^[\s:：\-ー〜~・]+/, '')
+    .replace(/\s*(?:入場料|料金|お問い合わせ|問合せ|チケット|主催|出演|詳細|アクセス).*/i, '')
+    .trim();
+}
+
+function hasVenueSuffix(value) {
+  return /(ホール|アリーナ|ドーム|劇場|会館|センター|スタジオ|プラザ|ファクトリー|きたえーる|Kitara|hitaru|SCARTS|Zepp)/i.test(String(value || ''));
+}
+
+function pickVenueLoose(text) {
+  const t = String(text || '').replace(/\s+/g, ' ');
+  if (!t) return '';
+  const labeled = t.match(/(?:会場名|会場|開催場所|場所|venue)\s*[：:]?\s*([^]{2,100}?)(?:\s+(?:入場料|料金|お問い合わせ|問合せ|主催|出演|チケット|開場|開演|終演)|$)/i);
+  if (labeled && labeled[1]) {
+    const v = cleanVenue(labeled[1]);
+    if (v && hasVenueSuffix(v)) return textPreview(v, 80);
+  }
+
+  const tokenRe = /([A-Za-z0-9\u3040-\u30FF\u4E00-\u9FFF・＆&\-－\s]{2,80}(?:ホール|アリーナ|ドーム|劇場|会館|センター|スタジオ|プラザ|ファクトリー|きたえーる|Kitara|hitaru|SCARTS|Zepp\s*[A-Za-z0-9\u3040-\u30FF\u4E00-\u9FFF]+))/gi;
+  let m;
+  while ((m = tokenRe.exec(t)) !== null) {
+    const cand = cleanVenue(m[1]);
+    if (!cand) continue;
+    if (/イベント|スケジュール|チケット|一覧|案内|トップ|公式|発売/.test(cand)) continue;
+    return textPreview(cand, 80);
+  }
+  if (/オンライン/.test(t)) return 'オンライン';
+  return '';
 }
 
 function pickAddress(text) {
@@ -469,6 +520,26 @@ function normalizeTitleKey(text) {
   return normalizeTitle(text)
     .toLowerCase()
     .replace(/[^\p{L}\p{N}]+/gu, '');
+}
+
+function isGenericHallName(text) {
+  return /^(小ホール|大ホール|中ホール|メインホール|ホール|スタジオ\d*|会場A|会場B|会場C)$/.test(String(text || '').trim());
+}
+
+function sourceVenueName(source) {
+  if (!source || !source.id) return '';
+  return String(SOURCE_VENUE_FALLBACK[source.id] || '').trim();
+}
+
+function enrichVenue(ev, source, contextText) {
+  if (!ev) return ev;
+  let venue = cleanVenue(ev.venue || '');
+  const srcVenue = sourceVenueName(source);
+  if (!venue) venue = cleanVenue(pickVenue(contextText));
+  if (!venue) venue = cleanVenue(pickVenueLoose(`${ev.summary || ''}\n${ev.title || ''}\n${contextText || ''}`));
+  if (!venue && srcVenue) venue = srcVenue;
+  if (venue && isGenericHallName(venue) && srcVenue) venue = `${srcVenue} ${venue}`;
+  return { ...ev, venue: textPreview(venue, 80) };
 }
 
 function hasDetailUrlSignal(url) {
@@ -709,7 +780,9 @@ function extractEventsFromPage({ source, url, html, titleHint, nowYmd }) {
   });
   if (heuristicEvent) events.push(heuristicEvent);
 
-  return uniqueBy(events, (ev) => ev.id).map(withQuality);
+  return uniqueBy(events, (ev) => ev.id)
+    .map((ev) => enrichVenue(ev, source, bodyText))
+    .map(withQuality);
 }
 
 async function fetchText(url, timeoutMs = 10000) {

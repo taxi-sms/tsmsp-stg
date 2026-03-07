@@ -962,7 +962,8 @@ body{padding-bottom:78px;}
       if(isGenericHallName(venue) && sourceName) return sourceName + " " + venue;
       return venue;
     }
-    return "会場未取得";
+    if(sourceName) return sourceName;
+    return "詳細ページ参照";
   }
   function setEventEmptyState(text){
     if(!dailyEventList) return;

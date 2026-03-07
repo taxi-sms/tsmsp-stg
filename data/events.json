@@ -1,13 +1,13 @@
 {
   "schema_version": 1,
-  "generated_at": "2026-03-07T02:09:28.863Z",
+  "generated_at": "2026-03-07T02:22:34.106Z",
   "timezone": "Asia/Tokyo",
   "mode": "full",
   "source_total": 54,
   "source_crawled": 54,
   "crawl_error_sources": 1,
-  "event_total": 109,
-  "event_today": 9,
+  "event_total": 128,
+  "event_today": 8,
   "quality_threshold": 0.56,
   "quality_threshold_heuristic": 0.58,
   "events": [
@@ -20,7 +20,7 @@
       "start_time": "",
       "end_time": "",
       "all_day": true,
-      "venue": "",
+      "venue": "サッポロファクトリールーム",
       "venue_address": "",
       "summary": "このたび、才能あふれるアーティストたちによる イラスト版画の数々を展示いたします。多彩な感性が生み出した魅力的な作品の数々を、ぜひ間近でご覧ください。 さらに、今回は オリジナルグッズの販売 も実･･･",
       "flyer_image_url": "https://sapporofactory.jp/theme/sf/assets/img/ogp.jpg",
@@ -32,8 +32,32 @@
       "source_priority": "A",
       "source_priority_score": 3,
       "extraction_method": "heuristic",
-      "updated_at": "2026-03-07T02:09:11.713Z",
-      "quality_score": 0.7
+      "updated_at": "2026-03-07T02:22:14.456Z",
+      "quality_score": 0.77
+    },
+    {
+      "id": "6fbab56cc271070a80e4",
+      "title": "FISスノーボードワールドカップ2026サッポロオープン同時開催イベント",
+      "start_date": "2026-03-06",
+      "end_date": "",
+      "open_time": "",
+      "start_time": "",
+      "end_time": "",
+      "all_day": true,
+      "venue": "さっぽろばんけいスキー場",
+      "venue_address": "札幌市でスノーボードＷ杯が10年ぶりの開催！",
+      "summary": "「HBCスノーフェスト2026」3月7日(土)〜8日(日)さっぽろばんけいスキー場で、スノーボードＷ杯と同時開催。エンタテインメントとウィンタースポーツのコラボで、札幌の冬の新しい楽しさを！",
+      "flyer_image_url": "https://www.hbc.co.jp/event/snowfest2026/image/ogp.jpg",
+      "detail_url": "https://www.hbc.co.jp/event/snowfest2026/",
+      "source_id": "www-hbc-co-jp-event",
+      "source_name": "HBC北海道放送（イベント）",
+      "source_url": "https://www.hbc.co.jp/event/",
+      "source_category": "地域メディア（主催/後援）",
+      "source_priority": "A",
+      "source_priority_score": 3,
+      "extraction_method": "heuristic",
+      "updated_at": "2026-03-07T02:22:19.030Z",
+      "quality_score": 0.61
     },
     {
       "id": "cc2c6438f72c2230a82e",
@@ -44,7 +68,7 @@
       "start_time": "16:00",
       "end_time": "16:00",
       "all_day": false,
-      "venue": "小ホール",
+      "venue": "札幌コンサートホール Kitara 小ホール",
       "venue_address": "札幌市中央区中島公園1番15号",
       "summary": "小ホール 2026年3月7日(土曜日) 13:30開場 14:00開演 16:00終演予定",
       "flyer_image_url": "https://www.kitara-sapporo.or.jp/og-image.jpg",
@@ -56,31 +80,7 @@
       "source_priority": "S",
       "source_priority_score": 4,
       "extraction_method": "site_rule",
-      "updated_at": "2026-03-07T02:09:10.515Z",
-      "quality_score": 1
-    },
-    {
-      "id": "a3cb633ea291ab3db0a9",
-      "title": "SUPER BEAVER 20thAnniversary「都会のラクダTOUR2026～ラクダトゥインクルー～」",
-      "start_date": "2026-03-07",
-      "end_date": "2026-03-07",
-      "open_time": "",
-      "start_time": "17:00",
-      "end_time": "23:59",
-      "all_day": false,
-      "venue": "北海道立総合体育センター(北海きたえーる)",
-      "venue_address": "北海道",
-      "summary": "",
-      "flyer_image_url": "",
-      "detail_url": "https://eplus.jp/sf/detail/0254310001-P0030408P021001",
-      "source_id": "eplus-jp-sf-area-hokkaido-tohoku-hokkaido-sapporo",
-      "source_name": "イープラス",
-      "source_url": "https://eplus.jp/sf/area/hokkaido-tohoku/hokkaido/sapporo",
-      "source_category": "チケット（一次プラットフォーム）",
-      "source_priority": "A",
-      "source_priority_score": 3,
-      "extraction_method": "jsonld",
-      "updated_at": "2026-03-07T02:09:25.987Z",
+      "updated_at": "2026-03-07T02:22:13.286Z",
       "quality_score": 1
     },
     {
@@ -92,7 +92,7 @@
       "start_time": "18:00",
       "end_time": "",
       "all_day": false,
-      "venue": "",
+      "venue": "のご案内",
       "venue_address": "札幌市中央区北2条東3丁目2-5 北海道",
       "summary": "Mount Alive[株式会社マウントアライブ]オフィシャルサイト｜イベント情報詳細 アーティスト名：メリクレット｜日程：2026年3月7日公演｜イベント名：メリクレット対バンツアー2026「夢五夜、雪のほとり」｜会場名：cube garden：札幌市中央区北2条東3丁目2-5｜チケット発売：2025年9月20日｜お問い合わせ TEL：011-623-5555",
       "flyer_image_url": "http://mountalive.com/data/schedule_img/xxl/20251125155447_0.jpg",
@@ -104,8 +104,8 @@
       "source_priority": "S",
       "source_priority_score": 4,
       "extraction_method": "heuristic",
-      "updated_at": "2026-03-07T02:09:09.747Z",
-      "quality_score": 0.83
+      "updated_at": "2026-03-07T02:22:12.496Z",
+      "quality_score": 0.9
     },
     {
       "id": "f8c420697329f2cc3d3a",
@@ -116,7 +116,7 @@
       "start_time": "18:00",
       "end_time": "",
       "all_day": false,
-      "venue": "",
+      "venue": "SPiCE",
       "venue_address": "",
       "summary": "",
       "flyer_image_url": "",
@@ -128,8 +128,8 @@
       "source_priority": "B",
       "source_priority_score": 2,
       "extraction_method": "jsonld",
-      "updated_at": "2026-03-07T02:09:25.506Z",
-      "quality_score": 0.75
+      "updated_at": "2026-03-07T02:22:30.517Z",
+      "quality_score": 0.82
     },
     {
       "id": "373b9fb97770c913df86",
@@ -140,7 +140,7 @@
       "start_time": "18:30",
       "end_time": "",
       "all_day": false,
-      "venue": "",
+      "venue": "内の映像・写真が公開される場合があります。予めご了承ください。",
       "venue_address": "札幌市中央区南9条西4丁目4 北海道",
       "summary": "Mount Alive[株式会社マウントアライブ]オフィシャルサイト｜イベント情報詳細 アーティスト名：THE ORAL CIGARETTES｜日程：2026年3月7日公演｜イベント名：THE ORAL CIGARETTES 「ERASE the BORDER TOUR 2026」｜会場名：Zepp Sapporo：札幌市中央区南9条西4丁目4｜チケット発売：年月日｜お問い合わせ TEL：011-623-5555",
       "flyer_image_url": "http://mountalive.com/data/schedule_img/xxl/20250912161301_0.jpg",
@@ -152,8 +152,8 @@
       "source_priority": "S",
       "source_priority_score": 4,
       "extraction_method": "heuristic",
-      "updated_at": "2026-03-07T02:09:09.940Z",
-      "quality_score": 0.95
+      "updated_at": "2026-03-07T02:22:12.574Z",
+      "quality_score": 1
     },
     {
       "id": "9e1de8cd5e1d8a2fe44b",
@@ -164,7 +164,7 @@
       "start_time": "18:30",
       "end_time": "",
       "all_day": false,
-      "venue": "",
+      "venue": "内の映像・写真が公開される場合があります。予めご了承ください。",
       "venue_address": "",
       "summary": "スケジュール詳細 &#8211; 札幌 | Zeppホールネットワーク SCHEDULE FLOOR GUIDE HALL GOODS FAQ ACCESS JOBS TOP Zepp Sapporo SCHEDULE ERASE the BORDER TOUR 2026 SCHEDULE FLOOR GUIDE HALL GOODS FAQ ACCESS JOBS --> SCHEDULE （Not include private/…",
       "flyer_image_url": "https://www.zepp.co.jp/~pj-zepp/wordpress/wp-content/uploads/2021/08/12200920/ogp_shiro.png",
@@ -176,8 +176,8 @@
       "source_priority": "S",
       "source_priority_score": 4,
       "extraction_method": "heuristic",
-      "updated_at": "2026-03-07T02:09:11.359Z",
-      "quality_score": 0.71
+      "updated_at": "2026-03-07T02:22:14.228Z",
+      "quality_score": 0.78
     },
     {
       "id": "7547d94d87a22f94d041",
@@ -188,7 +188,7 @@
       "start_time": "19:00",
       "end_time": "19:00",
       "all_day": false,
-      "venue": "大ホール",
+      "venue": "札幌コンサートホール Kitara 大ホール",
       "venue_address": "札幌市中央区中島公園1番15号",
       "summary": "大ホール 2026年3月7日(土曜日) 16:20開場 17:00開演 19:00終演予定",
       "flyer_image_url": "https://www.kitara-sapporo.or.jp/og-image.jpg",
@@ -200,7 +200,7 @@
       "source_priority": "S",
       "source_priority_score": 4,
       "extraction_method": "site_rule",
-      "updated_at": "2026-03-07T02:09:10.517Z",
+      "updated_at": "2026-03-07T02:22:13.284Z",
       "quality_score": 1
     },
     {
@@ -212,7 +212,7 @@
       "start_time": "",
       "end_time": "",
       "all_day": true,
-      "venue": "",
+      "venue": "アトリウム",
       "venue_address": "",
       "summary": "大阪・関西万博に来場できなかった方々へ万博の魅力を広げ、来場された方々にも当時の感動を再度体験していただきたいという想いを込め、「未来につなぐ万博展」を開催。全国4都市（東京・福岡・札幌・仙台）を巡･･･",
       "flyer_image_url": "https://sapporofactory.jp/theme/sf/assets/img/ogp.jpg",
@@ -224,8 +224,8 @@
       "source_priority": "A",
       "source_priority_score": 3,
       "extraction_method": "heuristic",
-      "updated_at": "2026-03-07T02:09:11.825Z",
-      "quality_score": 0.7
+      "updated_at": "2026-03-07T02:22:14.587Z",
+      "quality_score": 0.77
     },
     {
       "id": "3edb2358175cbbca6ac1",
@@ -236,7 +236,7 @@
       "start_time": "",
       "end_time": "",
       "all_day": true,
-      "venue": "",
+      "venue": "真駒内セキスイハイムアイスアリーナ (北海道)",
       "venue_address": "",
       "summary": "福山雅治 | チケットぴあはコンサート、ライブなど音楽チケットを販売するショッピングサイトです。 お気に入りのアーティスト・劇団・スポーツチーム等のチケットの先行情報もお届け！",
       "flyer_image_url": "https://image.pia.jp/images/202601/202601270059_ex.jpg",
@@ -248,8 +248,8 @@
       "source_priority": "A",
       "source_priority_score": 3,
       "extraction_method": "heuristic",
-      "updated_at": "2026-03-07T02:09:18.681Z",
-      "quality_score": 0.7
+      "updated_at": "2026-03-07T02:22:22.565Z",
+      "quality_score": 0.77
     },
     {
       "id": "2eb57f90f928bd025ba7",
@@ -260,7 +260,7 @@
       "start_time": "13:00",
       "end_time": "",
       "all_day": false,
-      "venue": "",
+      "venue": "サッポロファクトリーホール",
       "venue_address": "",
       "summary": "「北海道を元気に」を掲げ、2016年にスタートしたものまねキャラバン、コロナ禍を乗り越え全ての市町村にものまねを届ける活動がこの度サッポロファクトリーホールでゴールを迎えます。 ■主催 株･･･",
       "flyer_image_url": "https://sapporofactory.jp/theme/sf/assets/img/ogp.jpg",
@@ -272,8 +272,8 @@
       "source_priority": "A",
       "source_priority_score": 3,
       "extraction_method": "heuristic",
-      "updated_at": "2026-03-07T02:09:11.882Z",
-      "quality_score": 0.88
+      "updated_at": "2026-03-07T02:22:14.589Z",
+      "quality_score": 0.95
     },
     {
       "id": "e97734a59e988837477f",
@@ -284,7 +284,7 @@
       "start_time": "13:30",
       "end_time": "",
       "all_day": false,
-      "venue": "小ホール",
+      "venue": "札幌コンサートホール Kitara 小ホール",
       "venue_address": "札幌市中央区中島公園1番15号",
       "summary": "小ホール 2026年3月8日(日曜日) 13:00開場 13:30開演",
       "flyer_image_url": "https://www.kitara-sapporo.or.jp/og-image.jpg",
@@ -296,7 +296,7 @@
       "source_priority": "S",
       "source_priority_score": 4,
       "extraction_method": "site_rule",
-      "updated_at": "2026-03-07T02:09:10.650Z",
+      "updated_at": "2026-03-07T02:22:13.441Z",
       "quality_score": 1
     },
     {
@@ -320,7 +320,7 @@
       "source_priority": "A",
       "source_priority_score": 3,
       "extraction_method": "jsonld",
-      "updated_at": "2026-03-07T02:09:20.282Z",
+      "updated_at": "2026-03-07T02:22:23.330Z",
       "quality_score": 1
     },
     {
@@ -332,7 +332,7 @@
       "start_time": "15:00",
       "end_time": "15:00",
       "all_day": false,
-      "venue": "大ホール",
+      "venue": "札幌コンサートホール Kitara 大ホール",
       "venue_address": "札幌市中央区中島公園1番15号",
       "summary": "大ホール 2026年3月8日(日曜日) 12:20開場 13:00開演 15:00終演予定",
       "flyer_image_url": "https://www.kitara-sapporo.or.jp/og-image.jpg",
@@ -344,22 +344,22 @@
       "source_priority": "S",
       "source_priority_score": 4,
       "extraction_method": "site_rule",
-      "updated_at": "2026-03-07T02:09:10.517Z",
+      "updated_at": "2026-03-07T02:22:13.291Z",
       "quality_score": 1
     },
     {
-      "id": "47ba71e73bb6599fc51a",
-      "title": "山北早紀",
+      "id": "d0e10e647c94be52d329",
+      "title": "2026/ (日) 先着 山北早紀 札幌近松（北海道） 開演：～（開場：～） 受付中",
       "start_date": "2026-03-08",
-      "end_date": "2026-03-08",
-      "open_time": "",
+      "end_date": "",
+      "open_time": "14:30",
       "start_time": "15:00",
-      "end_time": "23:59",
+      "end_time": "",
       "all_day": false,
-      "venue": "札幌近松",
-      "venue_address": "北海道",
-      "summary": "",
-      "flyer_image_url": "",
+      "venue": "から探す",
+      "venue_address": "",
+      "summary": "2026/3/8(日)に札幌近松(札幌)で行われる山北早紀のチケット情報ページです。会場情報、開演時間や料金を確認し、山北早紀のチケットを簡単にオンライン予約・購入できます。",
+      "flyer_image_url": "https://eplus.jp/s/eplus/img/webclip.png",
       "detail_url": "https://eplus.jp/sf/detail/3178720001-P0030005P021001",
       "source_id": "eplus-jp-sf-area-hokkaido-tohoku-hokkaido-sapporo",
       "source_name": "イープラス",
@@ -367,8 +367,8 @@
       "source_category": "チケット（一次プラットフォーム）",
       "source_priority": "A",
       "source_priority_score": 3,
-      "extraction_method": "jsonld",
-      "updated_at": "2026-03-07T02:09:27.050Z",
+      "extraction_method": "heuristic",
+      "updated_at": "2026-03-07T02:22:25.074Z",
       "quality_score": 0.95
     },
     {
@@ -392,7 +392,7 @@
       "source_priority": "A",
       "source_priority_score": 3,
       "extraction_method": "jsonld",
-      "updated_at": "2026-03-07T02:09:24.784Z",
+      "updated_at": "2026-03-07T02:22:29.023Z",
       "quality_score": 1
     },
     {
@@ -416,7 +416,7 @@
       "source_priority": "A",
       "source_priority_score": 3,
       "extraction_method": "jsonld",
-      "updated_at": "2026-03-07T02:09:28.599Z",
+      "updated_at": "2026-03-07T02:22:26.276Z",
       "quality_score": 1
     },
     {
@@ -428,7 +428,7 @@
       "start_time": "17:00",
       "end_time": "",
       "all_day": false,
-      "venue": "",
+      "venue": "Zeppホールネットワーク SCHEDULE FLOOR GUIDE HALL GOODS FAQ ACCESS JOBS TOP Zepp Sapporo",
       "venue_address": "",
       "summary": "スケジュール詳細 &#8211; 札幌 | Zeppホールネットワーク SCHEDULE FLOOR GUIDE HALL GOODS FAQ ACCESS JOBS TOP Zepp Sapporo SCHEDULE Takuma Otoo Zepp Tour 2026 SCHEDULE FLOOR GUIDE HALL GOODS FAQ ACCESS JOBS --> SCHEDULE （Not include private/…",
       "flyer_image_url": "https://www.zepp.co.jp/~pj-zepp/wordpress/wp-content/uploads/2021/08/12200920/ogp_shiro.png",
@@ -440,8 +440,8 @@
       "source_priority": "S",
       "source_priority_score": 4,
       "extraction_method": "heuristic",
-      "updated_at": "2026-03-07T02:09:11.690Z",
-      "quality_score": 0.71
+      "updated_at": "2026-03-07T02:22:14.636Z",
+      "quality_score": 0.78
     },
     {
       "id": "7deda944b8e93f3b72ab",
@@ -452,7 +452,7 @@
       "start_time": "17:30",
       "end_time": "",
       "all_day": false,
-      "venue": "",
+      "venue": "SPiCE",
       "venue_address": "",
       "summary": "",
       "flyer_image_url": "",
@@ -464,8 +464,8 @@
       "source_priority": "B",
       "source_priority_score": 2,
       "extraction_method": "jsonld",
-      "updated_at": "2026-03-07T02:09:25.502Z",
-      "quality_score": 0.75
+      "updated_at": "2026-03-07T02:22:30.348Z",
+      "quality_score": 0.82
     },
     {
       "id": "71cbb2de368bda06ee80",
@@ -476,7 +476,7 @@
       "start_time": "18:30",
       "end_time": "",
       "all_day": false,
-      "venue": "",
+      "venue": "のご案内",
       "venue_address": "札幌市中央区南4条&#11972;14丁目1-32",
       "summary": "Mount Alive[株式会社マウントアライブ]オフィシャルサイト｜イベント情報詳細 アーティスト名：山北早紀｜日程：2026年3月8日公演｜イベント名：Saki Yamakita 35th Birthday Live 〜たのしもーもーらいぶ！ in北海道〜｜会場名：札幌近松：北海道札幌市中央区南4条&#11972;14丁目1-32 札幌パームビル ｜チケット発売：2026年2月21日｜お問い合わせ TEL：011-623-5555",
       "flyer_image_url": "http://mountalive.com/data/schedule_img/xxl/20260129123155_0.jpg",
@@ -488,8 +488,8 @@
       "source_priority": "S",
       "source_priority_score": 4,
       "extraction_method": "heuristic",
-      "updated_at": "2026-03-07T02:09:10.040Z",
-      "quality_score": 0.83
+      "updated_at": "2026-03-07T02:22:12.719Z",
+      "quality_score": 0.9
     },
     {
       "id": "20738ce1f2b86991d9cb",
@@ -500,7 +500,7 @@
       "start_time": "19:00",
       "end_time": "",
       "all_day": false,
-      "venue": "",
+      "venue": "のご案内",
       "venue_address": "",
       "summary": "Mount Alive[株式会社マウントアライブ]オフィシャルサイト｜イベント情報詳細 アーティスト名：植田真梨恵｜日程：2026年3月8日公演｜イベント名：LIVE OF LAZWARD PIANO -蘇りの呪文-｜会場名：豊平館：｜チケット発売：2026年1月17日｜お問い合わせ TEL：011-623-5555",
       "flyer_image_url": "http://mountalive.com/data/schedule_img/xxl/20251215170255_0.jpg",
@@ -512,8 +512,8 @@
       "source_priority": "S",
       "source_priority_score": 4,
       "extraction_method": "heuristic",
-      "updated_at": "2026-03-07T02:09:09.953Z",
-      "quality_score": 0.79
+      "updated_at": "2026-03-07T02:22:12.690Z",
+      "quality_score": 0.86
     },
     {
       "id": "7576989bc8a485b23574",
@@ -524,7 +524,7 @@
       "start_time": "19:00",
       "end_time": "19:00",
       "all_day": false,
-      "venue": "",
+      "venue": "スプリングコンサート 札幌コンサートホールKitara",
       "venue_address": "札幌市長 秋元克広",
       "summary": "日の「PMF Connects LIVE！」ページです。",
       "flyer_image_url": "https://www.facebook.com/tr?id=656395181166815&ev=PageView&noscript=1",
@@ -536,8 +536,8 @@
       "source_priority": "A",
       "source_priority_score": 3,
       "extraction_method": "heuristic",
-      "updated_at": "2026-03-07T02:09:17.384Z",
-      "quality_score": 0.65
+      "updated_at": "2026-03-07T02:22:21.306Z",
+      "quality_score": 0.72
     },
     {
       "id": "b1147d7291f75e13b403",
@@ -548,7 +548,7 @@
       "start_time": "",
       "end_time": "",
       "all_day": true,
-      "venue": "",
+      "venue": "クリエイティブスタジオ",
       "venue_address": "〒060-0001 札幌市中央区北1条西1丁目",
       "summary": "今注目を集める船旅。日本でも世界でも新造船ブームで2027年までに約70隻がデビュー予定です。多様な特色を持つ船会社のスペシャリスト(スタッフ)が、それぞれの魅……",
       "flyer_image_url": "https://www.sapporo-community-plaza.jp/img/plaza_ogp_ss.png",
@@ -560,8 +560,8 @@
       "source_priority": "S",
       "source_priority_score": 4,
       "extraction_method": "heuristic",
-      "updated_at": "2026-03-07T02:09:10.549Z",
-      "quality_score": 0.77
+      "updated_at": "2026-03-07T02:22:13.342Z",
+      "quality_score": 0.84
     },
     {
       "id": "12d338209c7e62533f2b",
@@ -572,7 +572,7 @@
       "start_time": "18:00",
       "end_time": "",
       "all_day": false,
-      "venue": "",
+      "venue": "SPiCE",
       "venue_address": "",
       "summary": "",
       "flyer_image_url": "",
@@ -584,8 +584,8 @@
       "source_priority": "B",
       "source_priority_score": 2,
       "extraction_method": "jsonld",
-      "updated_at": "2026-03-07T02:09:25.487Z",
-      "quality_score": 0.75
+      "updated_at": "2026-03-07T02:22:30.510Z",
+      "quality_score": 0.82
     },
     {
       "id": "8f3bd1ee52c28e736a98",
@@ -596,7 +596,7 @@
       "start_time": "",
       "end_time": "",
       "all_day": true,
-      "venue": "",
+      "venue": "札幌市産業振興センター",
       "venue_address": "札幌市産業振興センター",
       "summary": "令和8年度中小企業向け補助金・支援制度合同オンライン説明会 [2026年3月10日(火曜日)開催] | セミナー情報 | 札幌市産業振興センター 本文へ メニューへ 設定 検索 検索キーワード 検索 お問合わせ 電話 011-820-3033 電話をかける 各種お問合わせ先 札幌市産業振興センター メニュー 施設の貸出 施設のご案内 貸出備品のご案内 ご利用時間・注意事項 フロアマップ ご利用料金について ご利用の流れ 施設貸出状況 …",
       "flyer_image_url": "https://seminar.sapporosansin.jp/images/ogp.jpg",
@@ -608,8 +608,8 @@
       "source_priority": "A",
       "source_priority_score": 3,
       "extraction_method": "heuristic",
-      "updated_at": "2026-03-07T02:09:14.050Z",
-      "quality_score": 0.74
+      "updated_at": "2026-03-07T02:22:17.737Z",
+      "quality_score": 0.81
     },
     {
       "id": "9c5eb971d9155c465f67",
@@ -620,7 +620,7 @@
       "start_time": "13:00",
       "end_time": "",
       "all_day": false,
-      "venue": "",
+      "venue": "SCARTSスタジオ1 SCARTSスタジオ2",
       "venue_address": "〒060-0001 札幌市中央区北1条西1丁目",
       "summary": "”The Roads Ahead － GEN CLOUD ERP JapanTour 2025-2026” | イベント情報 | 札幌市民交流プラザ --> 本文へスキップします。 劇場 座席表 チケット 購入 メンバーズ サイト フロア 案内 交通 アクセス SNS 札幌市民交流プラザ X Facebook Instagram YouTube 札幌文化芸術劇場 hitaru X Facebook Instagram TikTok 札…",
       "flyer_image_url": "https://www.sapporo-community-plaza.jp/upimg/20251216151750-1.jpg",
@@ -632,8 +632,32 @@
       "source_priority": "S",
       "source_priority_score": 4,
       "extraction_method": "heuristic",
-      "updated_at": "2026-03-07T02:09:10.855Z",
-      "quality_score": 0.95
+      "updated_at": "2026-03-07T02:22:13.601Z",
+      "quality_score": 1
+    },
+    {
+      "id": "86a214b64be2abd4e698",
+      "title": "札幌スヌーピーフェスティバル2026 〜POP&SURPRISE〜",
+      "start_date": "2026-03-11",
+      "end_date": "2026-03-23",
+      "open_time": "",
+      "start_time": "",
+      "end_time": "",
+      "all_day": true,
+      "venue": "大丸札幌店 7階催事場",
+      "venue_address": "札幌市中央区北5条西4丁目7",
+      "summary": "札幌スヌーピーフェスティバル2026 〜POP&SURPRISE〜 ｜ イベント ｜ ＳＴＶ札幌テレビ ＳＴＶ札幌テレビ スマートフォン版 メニュー テレビ ラジオ ニュース 防災・災害 アナウンサー イベント 天気・気象 ライブカメラ ショッピング どさんこ動画＋ 検索 検索 イベント Facebook X LINE イベント情報 開催日 2026年3月11日(水) 〜 2026年3月23日(月) 開催場所 大丸札幌店 7階催事場 …",
+      "flyer_image_url": "https://www.stv.jp/m569cn000000008j-img/m569cn00000001u6.png",
+      "detail_url": "https://www.stv.jp/event/snoopy2026/index.html",
+      "source_id": "www-stv-jp-event-index-html",
+      "source_name": "STV札幌テレビ（イベント）",
+      "source_url": "https://www.stv.jp/event/index.html",
+      "source_category": "地域メディア（主催/後援）",
+      "source_priority": "A",
+      "source_priority_score": 3,
+      "extraction_method": "heuristic",
+      "updated_at": "2026-03-07T02:22:19.531Z",
+      "quality_score": 0.61
     },
     {
       "id": "cced9fcbdb4e2e970816",
@@ -644,7 +668,7 @@
       "start_time": "20:30",
       "end_time": "20:30",
       "all_day": false,
-      "venue": "大ホール",
+      "venue": "札幌コンサートホール Kitara 大ホール",
       "venue_address": "札幌市中央区中島公園1番15号",
       "summary": "大ホール 2026年3月12日(木曜日) 17:45開場 18:30開演 20:30終演予定",
       "flyer_image_url": "https://www.kitara-sapporo.or.jp/og-image.jpg",
@@ -656,7 +680,7 @@
       "source_priority": "S",
       "source_priority_score": 4,
       "extraction_method": "site_rule",
-      "updated_at": "2026-03-07T02:09:10.652Z",
+      "updated_at": "2026-03-07T02:22:13.442Z",
       "quality_score": 1
     },
     {
@@ -668,7 +692,7 @@
       "start_time": "",
       "end_time": "",
       "all_day": true,
-      "venue": "",
+      "venue": "札幌市民交流プラザ内 札幌市図書・情報館1階サロン",
       "venue_address": "札幌市産業振興センター",
       "summary": "起業に向けた上手な相談のしかた（オンラインセミナー） [2026年3月12日(木曜日)開催] | セミナー情報 | 札幌市産業振興センター 本文へ メニューへ 設定 検索 検索キーワード 検索 お問合わせ 電話 011-820-3033 電話をかける 各種お問合わせ先 札幌市産業振興センター メニュー 施設の貸出 施設のご案内 貸出備品のご案内 ご利用時間・注意事項 フロアマップ ご利用料金について ご利用の流れ 施設貸出状況 申込要…",
       "flyer_image_url": "https://seminar.sapporosansin.jp/images/ogp.jpg",
@@ -680,8 +704,8 @@
       "source_priority": "A",
       "source_priority_score": 3,
       "extraction_method": "heuristic",
-      "updated_at": "2026-03-07T02:09:13.995Z",
-      "quality_score": 0.74
+      "updated_at": "2026-03-07T02:22:17.901Z",
+      "quality_score": 0.81
     },
     {
       "id": "17a2a6b701444ac3a092",
@@ -692,7 +716,7 @@
       "start_time": "",
       "end_time": "",
       "all_day": true,
-      "venue": "",
+      "venue": "札幌市民交流プラザ内 札幌市図書・情報館1階サロン",
       "venue_address": "札幌市産業振興センター",
       "summary": "起業に向けた上手な相談のしかた（対面セミナー） [2026年3月12日(木曜日)開催] | セミナー情報 | 札幌市産業振興センター 本文へ メニューへ 設定 検索 検索キーワード 検索 お問合わせ 電話 011-820-3033 電話をかける 各種お問合わせ先 札幌市産業振興センター メニュー 施設の貸出 施設のご案内 貸出備品のご案内 ご利用時間・注意事項 フロアマップ ご利用料金について ご利用の流れ 施設貸出状況 申込要領 申…",
       "flyer_image_url": "https://seminar.sapporosansin.jp/images/ogp.jpg",
@@ -704,8 +728,8 @@
       "source_priority": "A",
       "source_priority_score": 3,
       "extraction_method": "heuristic",
-      "updated_at": "2026-03-07T02:09:13.805Z",
-      "quality_score": 0.74
+      "updated_at": "2026-03-07T02:22:17.294Z",
+      "quality_score": 0.81
     },
     {
       "id": "ca77be22594f3d2a4bbb",
@@ -716,7 +740,7 @@
       "start_time": "13:00",
       "end_time": "",
       "all_day": false,
-      "venue": "",
+      "venue": "札幌文化芸術劇場 hitaru",
       "venue_address": "〒060-0001 札幌市中央区北1条西1丁目",
       "summary": "北星学園大学・北星学園大学短期大学部 2025年度 修了式・卒業式 | イベント情報 | 札幌市民交流プラザ --> 本文へスキップします。 劇場 座席表 チケット 購入 メンバーズ サイト フロア 案内 交通 アクセス SNS 札幌市民交流プラザ X Facebook Instagram YouTube 札幌文化芸術劇場 hitaru X Facebook Instagram TikTok 札幌文化芸術交流センター SCARTS X…",
       "flyer_image_url": "https://www.sapporo-community-plaza.jp/img/plaza_ogp_ss.png",
@@ -728,8 +752,8 @@
       "source_priority": "S",
       "source_priority_score": 4,
       "extraction_method": "heuristic",
-      "updated_at": "2026-03-07T02:09:10.852Z",
-      "quality_score": 0.95
+      "updated_at": "2026-03-07T02:22:13.633Z",
+      "quality_score": 1
     },
     {
       "id": "3ae48915bb270d62a470",
@@ -752,7 +776,7 @@
       "source_priority": "A",
       "source_priority_score": 3,
       "extraction_method": "jsonld",
-      "updated_at": "2026-03-07T02:09:20.366Z",
+      "updated_at": "2026-03-07T02:22:23.500Z",
       "quality_score": 1
     },
     {
@@ -764,7 +788,7 @@
       "start_time": "20:50",
       "end_time": "20:50",
       "all_day": false,
-      "venue": "小ホール",
+      "venue": "札幌コンサートホール Kitara 小ホール",
       "venue_address": "札幌市中央区中島公園1番15号",
       "summary": "小ホール 2026年3月13日(金曜日) 18:30開場 19:00開演 20:50終演予定",
       "flyer_image_url": "https://www.kitara-sapporo.or.jp/og-image.jpg",
@@ -776,7 +800,7 @@
       "source_priority": "S",
       "source_priority_score": 4,
       "extraction_method": "site_rule",
-      "updated_at": "2026-03-07T02:09:10.777Z",
+      "updated_at": "2026-03-07T02:22:13.534Z",
       "quality_score": 1
     },
     {
@@ -788,7 +812,7 @@
       "start_time": "",
       "end_time": "",
       "all_day": true,
-      "venue": "",
+      "venue": "に大和ハウスプレミストドーム",
       "venue_address": "〒062-0045 札幌市豊平区羊ケ丘1番地",
       "summary": "2026年3月13日(金)・14日(土)・15日(日)に大和ハウスプレミストドームで開催される『ARASHILIVETOUR2026「WeareARASHI」』におきまして、復路の臨時バス(シャトルバ…",
       "flyer_image_url": "https://www.sapporo-dome.co.jp/cms/wp-content/uploads/2025/11/7aa71042ca72709233cedc40b5b7123f-694x472.png",
@@ -800,8 +824,8 @@
       "source_priority": "S",
       "source_priority_score": 4,
       "extraction_method": "heuristic",
-      "updated_at": "2026-03-07T02:09:10.369Z",
-      "quality_score": 0.77
+      "updated_at": "2026-03-07T02:22:13.150Z",
+      "quality_score": 0.84
     },
     {
       "id": "50b0728faaee17c788ea",
@@ -812,7 +836,7 @@
       "start_time": "",
       "end_time": "",
       "all_day": true,
-      "venue": "",
+      "venue": "(パワースポットなど)はありますか？",
       "venue_address": "〒062-0045 札幌市豊平区羊ケ丘1番地",
       "summary": "北海道コンサドーレ札幌と大和ハウスプレミストドームの特別インタビュー企画！第5回目の今回は、今シーズンここまで4ゴール4アシストとチームに欠かせない存在である、MF青木亮太選手にメッセージをいただきま…",
       "flyer_image_url": "https://www.sapporo-dome.co.jp/ogp.jpg",
@@ -824,8 +848,8 @@
       "source_priority": "S",
       "source_priority_score": 4,
       "extraction_method": "heuristic",
-      "updated_at": "2026-03-07T02:09:10.375Z",
-      "quality_score": 0.77
+      "updated_at": "2026-03-07T02:22:13.115Z",
+      "quality_score": 0.84
     },
     {
       "id": "51185033863b1f604eb0",
@@ -836,7 +860,7 @@
       "start_time": "",
       "end_time": "",
       "all_day": true,
-      "venue": "",
+      "venue": "サッポロファクトリーホール",
       "venue_address": "",
       "summary": "家族で楽しめるエムデジフェス！ オリジナルAIモンスターを作って、君だけのオリジナルカードやステッカーをプレゼント！ トゥントゥントゥンサフールもやってくる???? 一緒に写真撮影も♬ 週末･･･",
       "flyer_image_url": "https://sapporofactory.jp/theme/sf/assets/img/ogp.jpg",
@@ -848,8 +872,8 @@
       "source_priority": "A",
       "source_priority_score": 3,
       "extraction_method": "heuristic",
-      "updated_at": "2026-03-07T02:09:11.880Z",
-      "quality_score": 0.7
+      "updated_at": "2026-03-07T02:22:14.925Z",
+      "quality_score": 0.77
     },
     {
       "id": "040f592db4b6365b2297",
@@ -860,7 +884,7 @@
       "start_time": "",
       "end_time": "",
       "all_day": true,
-      "venue": "",
+      "venue": "3条館3F特設会場（サッポロファクトリーギャラリー）",
       "venue_address": "",
       "summary": "すみっコたちといっしょに、ゆめいっぱいの『にじいろゆうえんち』であそんじゃおう☆ わくわくしちゃうしかけ遊びやフォトスポット、限定アイテムがもりだくさんだよ♪ だいすきなすみっコたちといっしょに･･･",
       "flyer_image_url": "https://sapporofactory.jp/theme/sf/assets/img/ogp.jpg",
@@ -872,8 +896,104 @@
       "source_priority": "A",
       "source_priority_score": 3,
       "extraction_method": "heuristic",
-      "updated_at": "2026-03-07T02:09:11.884Z",
-      "quality_score": 0.7
+      "updated_at": "2026-03-07T02:22:14.642Z",
+      "quality_score": 0.77
+    },
+    {
+      "id": "d986106f5b8ff7787f4f",
+      "title": "イベント・広告を お考えの方へ",
+      "start_date": "2026-03-13",
+      "end_date": "",
+      "open_time": "",
+      "start_time": "",
+      "end_time": "",
+      "all_day": true,
+      "venue": "大和ハウス プレミストドーム",
+      "venue_address": "〒062-0045 札幌市豊平区羊ケ丘1番地",
+      "summary": "北海道最大のスケールを活かして、イベントやPRをしませんか？大和ハウス プレミストドームの収容人数は最大5万人以上。広々とした空間で多彩な演出が可能です。はじめてご利用される主催者様も、ぜひお気軽にご相談ください。",
+      "flyer_image_url": "https://www.sapporo-dome.co.jp/ogp.jpg?20241028",
+      "detail_url": "https://www.sapporo-dome.co.jp/event-prom/",
+      "source_id": "www-sapporo-dome-co-jp-dome",
+      "source_name": "大和ハウス プレミストドーム",
+      "source_url": "https://www.sapporo-dome.co.jp/dome/",
+      "source_category": "大規模会場（会場公式）",
+      "source_priority": "S",
+      "source_priority_score": 4,
+      "extraction_method": "heuristic",
+      "updated_at": "2026-03-07T02:22:13.188Z",
+      "quality_score": 0.64
+    },
+    {
+      "id": "0e6bd47c76d786d747de",
+      "title": "イベントアップデート",
+      "start_date": "2026-03-13",
+      "end_date": "",
+      "open_time": "",
+      "start_time": "",
+      "end_time": "",
+      "all_day": true,
+      "venue": "をご案内します。",
+      "venue_address": "〒062-0045 札幌市豊平区羊ケ丘1番地",
+      "summary": "大和ハウス プレミストドームで行われる試合やイベント・コンサート開催日程の延期、変更情報一覧です。",
+      "flyer_image_url": "https://www.sapporo-dome.co.jp/ogp.jpg",
+      "detail_url": "https://www.sapporo-dome.co.jp/update/",
+      "source_id": "www-sapporo-dome-co-jp-dome",
+      "source_name": "大和ハウス プレミストドーム",
+      "source_url": "https://www.sapporo-dome.co.jp/dome/",
+      "source_category": "大規模会場（会場公式）",
+      "source_priority": "S",
+      "source_priority_score": 4,
+      "extraction_method": "heuristic",
+      "updated_at": "2026-03-07T02:22:13.553Z",
+      "quality_score": 0.64
+    },
+    {
+      "id": "1aa941d83b64015f5b2c",
+      "title": "季節ごとのイベント(ナイトラン・DOME Snow Zone supported by JAPAN AIRLINES)",
+      "start_date": "2026-03-13",
+      "end_date": "",
+      "open_time": "",
+      "start_time": "",
+      "end_time": "",
+      "all_day": true,
+      "venue": "大和ハウス プレミストドーム",
+      "venue_address": "〒062-0045 札幌市豊平区羊ケ丘1番地",
+      "summary": "大和ハウス プレミストドームでは、四季を生かした各種イベントを期間限定で開催しております。ドームの特徴を最大限に活かした、その時だけのスペシャルな体験をしませんか？ご家族やご友人と、ぜひお気軽にご参加ください。",
+      "flyer_image_url": "https://www.sapporo-dome.co.jp/ogp.jpg",
+      "detail_url": "https://www.sapporo-dome.co.jp/facility/enjoy/event/",
+      "source_id": "www-sapporo-dome-co-jp-dome",
+      "source_name": "大和ハウス プレミストドーム",
+      "source_url": "https://www.sapporo-dome.co.jp/dome/",
+      "source_category": "大規模会場（会場公式）",
+      "source_priority": "S",
+      "source_priority_score": 4,
+      "extraction_method": "heuristic",
+      "updated_at": "2026-03-07T02:22:13.337Z",
+      "quality_score": 0.64
+    },
+    {
+      "id": "01cb13a6e8e641c4d830",
+      "title": "年表・イベント実績",
+      "start_date": "2026-03-13",
+      "end_date": "",
+      "open_time": "",
+      "start_time": "",
+      "end_time": "",
+      "all_day": true,
+      "venue": "に",
+      "venue_address": "〒062-0045 札幌市豊平区羊ケ丘1番地",
+      "summary": "これまでのあゆみを年表にしてご紹介します。また、過去に開催したスポーツの国際大会や、主な試合・イベント・コンサートの開催実績もごちらからご覧いただけます。",
+      "flyer_image_url": "https://www.sapporo-dome.co.jp/ogp.jpg?20241028",
+      "detail_url": "https://www.sapporo-dome.co.jp/dome/chronology/",
+      "source_id": "www-sapporo-dome-co-jp-dome",
+      "source_name": "大和ハウス プレミストドーム",
+      "source_url": "https://www.sapporo-dome.co.jp/dome/",
+      "source_category": "大規模会場（会場公式）",
+      "source_priority": "S",
+      "source_priority_score": 4,
+      "extraction_method": "heuristic",
+      "updated_at": "2026-03-07T02:22:13.282Z",
+      "quality_score": 0.64
     },
     {
       "id": "081a981f5c2d2da20277",
@@ -884,7 +1004,7 @@
       "start_time": "10:30",
       "end_time": "",
       "all_day": false,
-      "venue": "小ホール",
+      "venue": "札幌コンサートホール Kitara 小ホール",
       "venue_address": "札幌市中央区中島公園1番15号",
       "summary": "小ホール 2026年3月14日(土曜日) 10:00開場 10:30開演",
       "flyer_image_url": "https://www.kitara-sapporo.or.jp/og-image.jpg",
@@ -896,7 +1016,7 @@
       "source_priority": "S",
       "source_priority_score": 4,
       "extraction_method": "site_rule",
-      "updated_at": "2026-03-07T02:09:10.607Z",
+      "updated_at": "2026-03-07T02:22:13.369Z",
       "quality_score": 1
     },
     {
@@ -908,7 +1028,7 @@
       "start_time": "11:00",
       "end_time": "",
       "all_day": false,
-      "venue": "大ホール",
+      "venue": "札幌コンサートホール Kitara 大ホール",
       "venue_address": "札幌市中央区中島公園1番15号",
       "summary": "大ホール 2026年3月14日(土曜日) 10:00開場 11:00開演",
       "flyer_image_url": "https://www.kitara-sapporo.or.jp/og-image.jpg",
@@ -920,7 +1040,7 @@
       "source_priority": "S",
       "source_priority_score": 4,
       "extraction_method": "site_rule",
-      "updated_at": "2026-03-07T02:09:10.519Z",
+      "updated_at": "2026-03-07T02:22:13.288Z",
       "quality_score": 1
     },
     {
@@ -932,7 +1052,7 @@
       "start_time": "15:00",
       "end_time": "",
       "all_day": false,
-      "venue": "大ホール",
+      "venue": "札幌コンサートホール Kitara 大ホール",
       "venue_address": "札幌市中央区中島公園1番15号",
       "summary": "大ホール 2026年3月14日(土曜日) 14:00開場 15:00開演",
       "flyer_image_url": "https://www.kitara-sapporo.or.jp/og-image.jpg",
@@ -944,7 +1064,7 @@
       "source_priority": "S",
       "source_priority_score": 4,
       "extraction_method": "site_rule",
-      "updated_at": "2026-03-07T02:09:10.564Z",
+      "updated_at": "2026-03-07T02:22:13.326Z",
       "quality_score": 1
     },
     {
@@ -956,7 +1076,7 @@
       "start_time": "16:30",
       "end_time": "",
       "all_day": false,
-      "venue": "",
+      "venue": "HALL RENTAL ホール",
       "venue_address": "札幌市中央区南5条西４丁目9 1バッカスビル6F",
       "summary": "札幌の新しいイベントホール cube garden",
       "flyer_image_url": "http://www.cube-garden.com/image/base/ogp.png",
@@ -968,8 +1088,32 @@
       "source_priority": "B",
       "source_priority_score": 2,
       "extraction_method": "heuristic",
-      "updated_at": "2026-03-07T02:09:23.202Z",
-      "quality_score": 0.64
+      "updated_at": "2026-03-07T02:22:28.549Z",
+      "quality_score": 0.71
+    },
+    {
+      "id": "b080dd3cbe6f18eeeecc",
+      "title": "#MOUWAY｜COMING SOON",
+      "start_date": "2026-03-14",
+      "end_date": "2026-03-14",
+      "open_time": "",
+      "start_time": "",
+      "end_time": "",
+      "all_day": true,
+      "venue": "SPiCE",
+      "venue_address": "",
+      "summary": "",
+      "flyer_image_url": "",
+      "detail_url": "https://spice-sapporo.jp/event/8776/",
+      "source_id": "spice-sapporo-jp-schedule",
+      "source_name": "SPiCE",
+      "source_url": "https://spice-sapporo.jp/schedule/",
+      "source_category": "ライブハウス（会場公式）",
+      "source_priority": "B",
+      "source_priority_score": 2,
+      "extraction_method": "jsonld",
+      "updated_at": "2026-03-07T02:22:31.398Z",
+      "quality_score": 0.56
     },
     {
       "id": "2cb61cb2179007f1bc94",
@@ -980,7 +1124,7 @@
       "start_time": "10:00",
       "end_time": "",
       "all_day": false,
-      "venue": "小ホール",
+      "venue": "札幌コンサートホール Kitara 小ホール",
       "venue_address": "札幌市中央区中島公園1番15号",
       "summary": "小ホール 2026年3月15日(日曜日) 9:30開場 10:00開演",
       "flyer_image_url": "https://www.kitara-sapporo.or.jp/og-image.jpg",
@@ -992,7 +1136,7 @@
       "source_priority": "S",
       "source_priority_score": 4,
       "extraction_method": "site_rule",
-      "updated_at": "2026-03-07T02:09:10.609Z",
+      "updated_at": "2026-03-07T02:22:13.408Z",
       "quality_score": 1
     },
     {
@@ -1004,7 +1148,7 @@
       "start_time": "17:00",
       "end_time": "17:00",
       "all_day": false,
-      "venue": "大ホール",
+      "venue": "札幌コンサートホール Kitara 大ホール",
       "venue_address": "札幌市中央区中島公園1番15号",
       "summary": "大ホール 2026年3月15日(日曜日) 14:30開場 15:00開演 17:00終演予定",
       "flyer_image_url": "https://www.kitara-sapporo.or.jp/og-image.jpg",
@@ -1016,7 +1160,7 @@
       "source_priority": "S",
       "source_priority_score": 4,
       "extraction_method": "site_rule",
-      "updated_at": "2026-03-07T02:09:10.779Z",
+      "updated_at": "2026-03-07T02:22:13.546Z",
       "quality_score": 1
     },
     {
@@ -1028,7 +1172,7 @@
       "start_time": "18:00",
       "end_time": "",
       "all_day": false,
-      "venue": "",
+      "venue": "のご案内",
       "venue_address": "札幌市西区二十四軒4条5丁目5-21 W'Sビル 北海道",
       "summary": "Mount Alive[株式会社マウントアライブ]オフィシャルサイト｜イベント情報詳細 アーティスト名：DUSTCELL｜日程：2026年3月15日公演｜イベント名：DUSTCELL TOUR 2026 -碧い海-｜会場名：PENNY LANE 24：札幌市西区二十四軒4条5丁目5-21 W",
       "flyer_image_url": "http://mountalive.com/data/schedule_img/xxl/20250923140728_0.jpg",
@@ -1040,8 +1184,8 @@
       "source_priority": "S",
       "source_priority_score": 4,
       "extraction_method": "heuristic",
-      "updated_at": "2026-03-07T02:09:10.511Z",
-      "quality_score": 0.95
+      "updated_at": "2026-03-07T02:22:13.259Z",
+      "quality_score": 1
     },
     {
       "id": "0fbb848f1f987a92a922",
@@ -1052,7 +1196,7 @@
       "start_time": "18:00",
       "end_time": "",
       "all_day": false,
-      "venue": "",
+      "venue": "札幌文化芸術劇場 hitaru",
       "venue_address": "〒060-0001 札幌市中央区北1条西1丁目",
       "summary": "AKIRA FUSE LIVE TOUR 2026 | イベント情報 | 札幌市民交流プラザ --> 本文へスキップします。 劇場 座席表 チケット 購入 メンバーズ サイト フロア 案内 交通 アクセス SNS 札幌市民交流プラザ X Facebook Instagram YouTube 札幌文化芸術劇場 hitaru X Facebook Instagram TikTok 札幌文化芸術交流センター SCARTS X Faceboo…",
       "flyer_image_url": "https://www.sapporo-community-plaza.jp/img/plaza_ogp_ss.png",
@@ -1064,8 +1208,8 @@
       "source_priority": "S",
       "source_priority_score": 4,
       "extraction_method": "heuristic",
-      "updated_at": "2026-03-07T02:09:10.547Z",
-      "quality_score": 0.95
+      "updated_at": "2026-03-07T02:22:13.339Z",
+      "quality_score": 1
     },
     {
       "id": "40652a6c7a26ed8705fb",
@@ -1076,7 +1220,7 @@
       "start_time": "",
       "end_time": "",
       "all_day": true,
-      "venue": "",
+      "venue": "産業振興棟２階 セミナールームＣ",
       "venue_address": "札幌市産業振興センター",
       "summary": "チームリーダー・管理職のためのリーダーシップ強化研修 [2026年3月17日(火曜日)開催] | セミナー情報 | 札幌市産業振興センター 本文へ メニューへ 設定 検索 検索キーワード 検索 お問合わせ 電話 011-820-3033 電話をかける 各種お問合わせ先 札幌市産業振興センター メニュー 施設の貸出 施設のご案内 貸出備品のご案内 ご利用時間・注意事項 フロアマップ ご利用料金について ご利用の流れ 施設貸出状況 申込要…",
       "flyer_image_url": "https://seminar.sapporosansin.jp/images/ogp.jpg",
@@ -1088,8 +1232,8 @@
       "source_priority": "A",
       "source_priority_score": 3,
       "extraction_method": "heuristic",
-      "updated_at": "2026-03-07T02:09:13.806Z",
-      "quality_score": 0.74
+      "updated_at": "2026-03-07T02:22:17.496Z",
+      "quality_score": 0.81
     },
     {
       "id": "204af416376d7cf093d6",
@@ -1100,7 +1244,7 @@
       "start_time": "13:00",
       "end_time": "",
       "all_day": false,
-      "venue": "",
+      "venue": "札幌文化芸術劇場 hitaru",
       "venue_address": "〒060-0001 札幌市中央区北1条西1丁目",
       "summary": "2025年度 北海道科学大学 学位記授与式 | イベント情報 | 札幌市民交流プラザ --> 本文へスキップします。 劇場 座席表 チケット 購入 メンバーズ サイト フロア 案内 交通 アクセス SNS 札幌市民交流プラザ X Facebook Instagram YouTube 札幌文化芸術劇場 hitaru X Facebook Instagram TikTok 札幌文化芸術交流センター SCARTS X Facebook In…",
       "flyer_image_url": "https://www.sapporo-community-plaza.jp/img/plaza_ogp_ss.png",
@@ -1112,32 +1256,8 @@
       "source_priority": "S",
       "source_priority_score": 4,
       "extraction_method": "heuristic",
-      "updated_at": "2026-03-07T02:09:10.854Z",
-      "quality_score": 0.95
-    },
-    {
-      "id": "1192298eb4bdaa9b4238",
-      "title": "SHOW-WA",
-      "start_date": "2026-03-18",
-      "end_date": "2026-03-18",
-      "open_time": "",
-      "start_time": "16:00",
-      "end_time": "23:59",
-      "all_day": false,
-      "venue": "札幌市教育文化会館 大ホール",
-      "venue_address": "北海道",
-      "summary": "",
-      "flyer_image_url": "",
-      "detail_url": "https://eplus.jp/sf/detail/4267930001-P0030008P021001",
-      "source_id": "eplus-jp-sf-area-hokkaido-tohoku-hokkaido-sapporo",
-      "source_name": "イープラス",
-      "source_url": "https://eplus.jp/sf/area/hokkaido-tohoku/hokkaido/sapporo",
-      "source_category": "チケット（一次プラットフォーム）",
-      "source_priority": "A",
-      "source_priority_score": 3,
-      "extraction_method": "jsonld",
-      "updated_at": "2026-03-07T02:09:22.958Z",
-      "quality_score": 0.95
+      "updated_at": "2026-03-07T02:22:13.621Z",
+      "quality_score": 1
     },
     {
       "id": "dcbc896d64b705865579",
@@ -1148,7 +1268,7 @@
       "start_time": "16:00",
       "end_time": "",
       "all_day": false,
-      "venue": "",
+      "venue": "札幌市教育文化会館大ホール",
       "venue_address": "札幌市教育文化会館大ホール",
       "summary": "UHB北海道文化放送オフィシャルサイト。フジテレビ系列局。番組案内、ニュース、天気情報からアナウンサーのブログや試写会情報など。",
       "flyer_image_url": "https://www.uhb.jp/common/images/ogp.png?20230731",
@@ -1160,8 +1280,32 @@
       "source_priority": "A",
       "source_priority_score": 3,
       "extraction_method": "heuristic",
-      "updated_at": "2026-03-07T02:09:16.540Z",
-      "quality_score": 0.92
+      "updated_at": "2026-03-07T02:22:21.128Z",
+      "quality_score": 0.99
+    },
+    {
+      "id": "c36e9a17532793edf2f4",
+      "title": "2026/ (水) 先着 SHOW-WA 札幌市教育文化会館 大ホール（北海道） 開演：～（開場：～） 受付中",
+      "start_date": "2026-03-18",
+      "end_date": "",
+      "open_time": "15:00",
+      "start_time": "16:00",
+      "end_time": "",
+      "all_day": false,
+      "venue": "から探す",
+      "venue_address": "札幌市教育文化会館 大ホール(札幌)で行われるSHOW-WAのチケット情報ページです。会場情報、開演時間や料金を確認し、SHOW-WAのチケットを簡単にオンライン予約・購入できます。",
+      "summary": "2026/3/18(水)に札幌市教育文化会館 大ホール(札幌)で行われるSHOW-WAのチケット情報ページです。会場情報、開演時間や料金を確認し、SHOW-WAのチケットを簡単にオンライン予約・購入できます。",
+      "flyer_image_url": "https://eplus.jp/s/eplus/img/webclip.png",
+      "detail_url": "https://eplus.jp/sf/detail/4267930001-P0030008P021001",
+      "source_id": "eplus-jp-sf-area-hokkaido-tohoku-hokkaido-sapporo",
+      "source_name": "イープラス",
+      "source_url": "https://eplus.jp/sf/area/hokkaido-tohoku/hokkaido/sapporo",
+      "source_category": "チケット（一次プラットフォーム）",
+      "source_priority": "A",
+      "source_priority_score": 3,
+      "extraction_method": "heuristic",
+      "updated_at": "2026-03-07T02:22:24.723Z",
+      "quality_score": 0.99
     },
     {
       "id": "037646be0025cd8a5aeb",
@@ -1172,7 +1316,7 @@
       "start_time": "19:00",
       "end_time": "",
       "all_day": false,
-      "venue": "",
+      "venue": "Zeppホールネットワーク SCHEDULE FLOOR GUIDE HALL GOODS FAQ ACCESS JOBS TOP Zepp Sapporo",
       "venue_address": "",
       "summary": "スケジュール詳細 &#8211; 札幌 | Zeppホールネットワーク SCHEDULE FLOOR GUIDE HALL GOODS FAQ ACCESS JOBS TOP Zepp Sapporo SCHEDULE SPRING TOUR 2026 SCHEDULE FLOOR GUIDE HALL GOODS FAQ ACCESS JOBS --> SCHEDULE （Not include private/corporate …",
       "flyer_image_url": "https://www.zepp.co.jp/~pj-zepp/wordpress/wp-content/uploads/2021/08/12200920/ogp_shiro.png",
@@ -1184,8 +1328,8 @@
       "source_priority": "S",
       "source_priority_score": 4,
       "extraction_method": "heuristic",
-      "updated_at": "2026-03-07T02:09:11.977Z",
-      "quality_score": 0.71
+      "updated_at": "2026-03-07T02:22:14.657Z",
+      "quality_score": 0.78
     },
     {
       "id": "fd7ce7b894a19a354fe4",
@@ -1196,7 +1340,7 @@
       "start_time": "11:00",
       "end_time": "",
       "all_day": false,
-      "venue": "",
+      "venue": "札幌市教育文化会館 大ホール",
       "venue_address": "札幌市教育文化会館",
       "summary": "ぷしゅソングフェス 2025 ～うたって♪おどって!シナぷりちゃんパーティー～ | イベント情報 | 札幌市教育文化会館 本文へスキップします。 イベントスケジュール 教文プレイガイド 教文ホールメイト HOME イベント情報 イベントスケジュール ぷしゅソングフェス 2025 ～うたって♪おどって!シナぷりちゃんパーティー～ ここから本文です。 イベントスケジュール Event Schedule 開催公演 2026 年 3 月 ▼ …",
       "flyer_image_url": "https://www.kyobun.org/img/main_about_photo.jpg",
@@ -1208,8 +1352,8 @@
       "source_priority": "A",
       "source_priority_score": 3,
       "extraction_method": "heuristic",
-      "updated_at": "2026-03-07T02:09:11.488Z",
-      "quality_score": 0.92
+      "updated_at": "2026-03-07T02:22:14.259Z",
+      "quality_score": 0.99
     },
     {
       "id": "1d15b5400066c38be3d0",
@@ -1220,7 +1364,7 @@
       "start_time": "13:00",
       "end_time": "",
       "all_day": false,
-      "venue": "",
+      "venue": "札幌市教育文化会館 大ホール",
       "venue_address": "札幌市教育文化会館",
       "summary": "ヨーロッパ企画第44回公演 インターネ島エクスプローラー | イベント情報 | 札幌市教育文化会館 本文へスキップします。 イベントスケジュール 教文プレイガイド 教文ホールメイト HOME イベント情報 イベントスケジュール ヨーロッパ企画第44回公演 インターネ島エクスプローラー ここから本文です。 イベントスケジュール Event Schedule 開催公演 2026 年 3 月 ▼ 2026年3月 2026年4月 2026年5…",
       "flyer_image_url": "https://www.kyobun.org/img/main_about_photo.jpg",
@@ -1232,8 +1376,8 @@
       "source_priority": "A",
       "source_priority_score": 3,
       "extraction_method": "heuristic",
-      "updated_at": "2026-03-07T02:09:11.822Z",
-      "quality_score": 0.92
+      "updated_at": "2026-03-07T02:22:14.197Z",
+      "quality_score": 0.99
     },
     {
       "id": "ced64ddc705535922c23",
@@ -1244,7 +1388,7 @@
       "start_time": "15:00",
       "end_time": "",
       "all_day": false,
-      "venue": "",
+      "venue": "札幌市教育文化会館 大ホール",
       "venue_address": "札幌市教育文化会館",
       "summary": "札幌北野少年少女合唱団35周年記念コンサート | イベント情報 | 札幌市教育文化会館 本文へスキップします。 イベントスケジュール 教文プレイガイド 教文ホールメイト HOME イベント情報 イベントスケジュール 札幌北野少年少女合唱団35周年記念コンサート ここから本文です。 イベントスケジュール Event Schedule 開催公演 2026 年 3 月 ▼ 2026年3月 2026年4月 2026年5月 2026年6月 20…",
       "flyer_image_url": "https://www.kyobun.org/img/main_about_photo.jpg",
@@ -1256,8 +1400,8 @@
       "source_priority": "A",
       "source_priority_score": 3,
       "extraction_method": "heuristic",
-      "updated_at": "2026-03-07T02:09:11.822Z",
-      "quality_score": 0.92
+      "updated_at": "2026-03-07T02:22:14.454Z",
+      "quality_score": 0.99
     },
     {
       "id": "19cf79187f8dad431319",
@@ -1268,7 +1412,7 @@
       "start_time": "16:00",
       "end_time": "",
       "all_day": false,
-      "venue": "",
+      "venue": "札幌市教育文化会館 大ホール",
       "venue_address": "札幌市教育文化会館",
       "summary": "SHOW-WA 2nd Concert Tour 2026 “道” | イベント情報 | 札幌市教育文化会館 本文へスキップします。 イベントスケジュール 教文プレイガイド 教文ホールメイト HOME イベント情報 イベントスケジュール SHOW-WA 2nd Concert Tour 2026 “道” ここから本文です。 イベントスケジュール Event Schedule 開催公演 2026 年 3 月 ▼ 2026年3月 2026…",
       "flyer_image_url": "https://www.kyobun.org/img/main_about_photo.jpg",
@@ -1280,8 +1424,8 @@
       "source_priority": "A",
       "source_priority_score": 3,
       "extraction_method": "heuristic",
-      "updated_at": "2026-03-07T02:09:11.397Z",
-      "quality_score": 0.92
+      "updated_at": "2026-03-07T02:22:14.180Z",
+      "quality_score": 0.99
     },
     {
       "id": "4aea17de008e4a5d8a73",
@@ -1292,7 +1436,7 @@
       "start_time": "18:00",
       "end_time": "",
       "all_day": false,
-      "venue": "",
+      "venue": "札幌市教育文化会館 大ホール",
       "venue_address": "札幌市教育文化会館",
       "summary": "リトルスピリッツ7th Concert | イベント情報 | 札幌市教育文化会館 本文へスキップします。 イベントスケジュール 教文プレイガイド 教文ホールメイト HOME イベント情報 イベントスケジュール リトルスピリッツ7th Concert ここから本文です。 イベントスケジュール Event Schedule 開催公演 2026 年 3 月 ▼ 2026年3月 2026年4月 2026年5月 2026年6月 2026年7月 …",
       "flyer_image_url": "https://www.kyobun.org/img/main_about_photo.jpg",
@@ -1304,8 +1448,8 @@
       "source_priority": "A",
       "source_priority_score": 3,
       "extraction_method": "heuristic",
-      "updated_at": "2026-03-07T02:09:11.387Z",
-      "quality_score": 0.92
+      "updated_at": "2026-03-07T02:22:14.191Z",
+      "quality_score": 0.99
     },
     {
       "id": "2820792b5e9d3383209f",
@@ -1316,7 +1460,7 @@
       "start_time": "18:00",
       "end_time": "",
       "all_day": false,
-      "venue": "",
+      "venue": "札幌市教育文化会館 大ホール",
       "venue_address": "札幌市教育文化会館",
       "summary": "第66回 子ども舞踊祭 | イベント情報 | 札幌市教育文化会館 本文へスキップします。 イベントスケジュール 教文プレイガイド 教文ホールメイト HOME イベント情報 イベントスケジュール 第66回 子ども舞踊祭 ここから本文です。 イベントスケジュール Event Schedule 開催公演 2026 年 3 月 ▼ 2026年3月 2026年4月 2026年5月 2026年6月 2026年7月 2026年8月 2026年9月 …",
       "flyer_image_url": "https://www.kyobun.org/img/main_about_photo.jpg",
@@ -1328,8 +1472,8 @@
       "source_priority": "A",
       "source_priority_score": 3,
       "extraction_method": "heuristic",
-      "updated_at": "2026-03-07T02:09:11.606Z",
-      "quality_score": 0.92
+      "updated_at": "2026-03-07T02:22:14.368Z",
+      "quality_score": 0.99
     },
     {
       "id": "b886b8ebaad930e4beb3",
@@ -1340,7 +1484,7 @@
       "start_time": "19:00",
       "end_time": "",
       "all_day": false,
-      "venue": "",
+      "venue": "札幌市教育文化会館 大ホール",
       "venue_address": "札幌市教育文化会館",
       "summary": "live tour \"HALL LOTTA LOVE～ホールに溢れる愛を～” | イベント情報 | 札幌市教育文化会館 本文へスキップします。 イベントスケジュール 教文プレイガイド 教文ホールメイト HOME イベント情報 イベントスケジュール live tour \"HALL LOTTA LOVE～ホールに溢れる愛を～” ここから本文です。 イベントスケジュール Event Schedule 開催公演 2026 年 3 月 ▼ 20…",
       "flyer_image_url": "https://www.kyobun.org/img/main_about_photo.jpg",
@@ -1352,8 +1496,8 @@
       "source_priority": "A",
       "source_priority_score": 3,
       "extraction_method": "heuristic",
-      "updated_at": "2026-03-07T02:09:11.587Z",
-      "quality_score": 0.92
+      "updated_at": "2026-03-07T02:22:14.375Z",
+      "quality_score": 0.99
     },
     {
       "id": "400546e2b50b0dabbcec",
@@ -1364,7 +1508,7 @@
       "start_time": "",
       "end_time": "",
       "all_day": false,
-      "venue": "",
+      "venue": "札幌市教育文化会館 小ホール",
       "venue_address": "札幌市民芸術祭 贈呈式 | イベント情報 | 札幌市教育文化会館",
       "summary": "令和７年度 札幌市民芸術祭 贈呈式 | イベント情報 | 札幌市教育文化会館 本文へスキップします。 イベントスケジュール 教文プレイガイド 教文ホールメイト HOME イベント情報 イベントスケジュール 令和７年度 札幌市民芸術祭 贈呈式 ここから本文です。 イベントスケジュール Event Schedule 開催公演 2026 年 3 月 ▼ 2026年3月 2026年4月 2026年5月 2026年6月 2026年7月 2026…",
       "flyer_image_url": "https://www.kyobun.org/img/main_about_photo.jpg",
@@ -1376,8 +1520,8 @@
       "source_priority": "A",
       "source_priority_score": 3,
       "extraction_method": "heuristic",
-      "updated_at": "2026-03-07T02:09:11.823Z",
-      "quality_score": 0.82
+      "updated_at": "2026-03-07T02:22:14.175Z",
+      "quality_score": 0.89
     },
     {
       "id": "25a446e1b15b8196eab0",
@@ -1388,7 +1532,7 @@
       "start_time": "",
       "end_time": "",
       "all_day": true,
-      "venue": "",
+      "venue": "札幌市教育文化会館 研修室 401",
       "venue_address": "札幌市教育文化会館",
       "summary": "【10/29より募集開始！】 市民参加型ワークショップ「能楽大連吟札幌」 | イベント情報 | 札幌市教育文化会館 本文へスキップします。 イベントスケジュール 教文プレイガイド 教文ホールメイト HOME イベント情報 イベントスケジュール 【10/29より募集開始！】 市民参加型ワークショップ「能楽大連吟札幌」 ここから本文です。 イベントスケジュール Event Schedule 開催公演 2026 年 3 月 ▼ 2026年3…",
       "flyer_image_url": "https://www.kyobun.org/img/main_about_photo.jpg",
@@ -1400,8 +1544,56 @@
       "source_priority": "A",
       "source_priority_score": 3,
       "extraction_method": "heuristic",
-      "updated_at": "2026-03-07T02:09:11.691Z",
-      "quality_score": 0.74
+      "updated_at": "2026-03-07T02:22:14.377Z",
+      "quality_score": 0.81
+    },
+    {
+      "id": "a1602f71567b9ec3197f",
+      "title": "教文ホールメイト 割引対象公演",
+      "start_date": "2026-03-20",
+      "end_date": "2026-05-20",
+      "open_time": "",
+      "start_time": "",
+      "end_time": "",
+      "all_day": true,
+      "venue": "教文ホール",
+      "venue_address": "札幌市教育文化会館",
+      "summary": "教文ホールメイト割引対象公演 | イベント情報 | 札幌市教育文化会館 本文へスキップします。 イベントスケジュール 教文プレイガイド 教文ホールメイト HOME イベント情報 イベントスケジュール 教文ホールメイト割引対象公演 ここから本文です。 イベントスケジュール Event Schedule 開催公演 2026 年 3 月 ▼ 2026年3月 2026年4月 2026年5月 2026年6月 2026年7月 2026年8月 20…",
+      "flyer_image_url": "https://www.kyobun.org/img/main_about_photo.jpg",
+      "detail_url": "https://www.kyobun.org/event_schedule.html?k=hall",
+      "source_id": "www-kyobun-org-event-schedule-html",
+      "source_name": "札幌市教育文化会館",
+      "source_url": "https://www.kyobun.org/event_schedule.html",
+      "source_category": "公共ホール（会場公式）",
+      "source_priority": "A",
+      "source_priority_score": 3,
+      "extraction_method": "heuristic",
+      "updated_at": "2026-03-07T02:22:14.381Z",
+      "quality_score": 0.61
+    },
+    {
+      "id": "b1cd5bf7fbaa1888425d",
+      "title": "LM.C『LM.C TOUR 2026』",
+      "start_date": "2026-03-20",
+      "end_date": "2026-03-20",
+      "open_time": "",
+      "start_time": "",
+      "end_time": "",
+      "all_day": true,
+      "venue": "SPiCE",
+      "venue_address": "",
+      "summary": "",
+      "flyer_image_url": "",
+      "detail_url": "https://spice-sapporo.jp/event/8576/",
+      "source_id": "spice-sapporo-jp-schedule",
+      "source_name": "SPiCE",
+      "source_url": "https://spice-sapporo.jp/schedule/",
+      "source_category": "ライブハウス（会場公式）",
+      "source_priority": "B",
+      "source_priority_score": 2,
+      "extraction_method": "jsonld",
+      "updated_at": "2026-03-07T02:22:31.423Z",
+      "quality_score": 0.56
     },
     {
       "id": "d49ff4ac3facdd6ac419",
@@ -1412,7 +1604,7 @@
       "start_time": "18:00",
       "end_time": "",
       "all_day": false,
-      "venue": "",
+      "venue": "札幌文化芸術劇場 hitaru",
       "venue_address": "〒060-0001 札幌市中央区北1条西1丁目",
       "summary": "Meychan Live Tour 2026『Number 0』 | イベント情報 | 札幌市民交流プラザ --> 本文へスキップします。 劇場 座席表 チケット 購入 メンバーズ サイト フロア 案内 交通 アクセス SNS 札幌市民交流プラザ X Facebook Instagram YouTube 札幌文化芸術劇場 hitaru X Facebook Instagram TikTok 札幌文化芸術交流センター SCARTS X …",
       "flyer_image_url": "https://www.sapporo-community-plaza.jp/img/plaza_ogp_ss.png",
@@ -1424,8 +1616,8 @@
       "source_priority": "S",
       "source_priority_score": 4,
       "extraction_method": "heuristic",
-      "updated_at": "2026-03-07T02:09:10.623Z",
-      "quality_score": 0.95
+      "updated_at": "2026-03-07T02:22:13.383Z",
+      "quality_score": 1
     },
     {
       "id": "d32c1454208e1e223b69",
@@ -1436,7 +1628,7 @@
       "start_time": "",
       "end_time": "",
       "all_day": false,
-      "venue": "",
+      "venue": "情報",
       "venue_address": "札幌市中央区南4条西4丁目1－1 COCONO SUSUKINO 5F",
       "summary": "UHB北海道文化放送オフィシャルサイト。フジテレビ系列局。番組案内、ニュース、天気情報からアナウンサーのブログや試写会情報など。",
       "flyer_image_url": "https://www.uhb.jp/common/images/ogp.png?20230731",
@@ -1448,8 +1640,8 @@
       "source_priority": "A",
       "source_priority_score": 3,
       "extraction_method": "heuristic",
-      "updated_at": "2026-03-07T02:09:16.845Z",
-      "quality_score": 0.82
+      "updated_at": "2026-03-07T02:22:21.235Z",
+      "quality_score": 0.89
     },
     {
       "id": "e3b2012ec0b6c8ebb5c8",
@@ -1460,7 +1652,7 @@
       "start_time": "",
       "end_time": "",
       "all_day": true,
-      "venue": "",
+      "venue": "札幌文化芸術交流センター SCARTS SCARTSスタジオ",
       "venue_address": "〒060-0001 札幌市中央区北1条西1丁目",
       "summary": "SCARTSでは、市民とともに学ぶさまざまな場を創出することを目的に、「SCARTSラーニングプログラム」と題してレクチャー、セミナー、ワークショップ、トークイ……",
       "flyer_image_url": "https://www.sapporo-community-plaza.jp/upimg/20260218165224-1.jpg",
@@ -1472,8 +1664,32 @@
       "source_priority": "S",
       "source_priority_score": 4,
       "extraction_method": "heuristic",
-      "updated_at": "2026-03-07T02:09:10.621Z",
-      "quality_score": 0.77
+      "updated_at": "2026-03-07T02:22:13.410Z",
+      "quality_score": 0.84
+    },
+    {
+      "id": "eac724b3746a4fe41577",
+      "title": "LM.C『LM.C TOUR 2026』",
+      "start_date": "2026-03-21",
+      "end_date": "2026-03-21",
+      "open_time": "",
+      "start_time": "",
+      "end_time": "",
+      "all_day": true,
+      "venue": "SPiCE",
+      "venue_address": "",
+      "summary": "",
+      "flyer_image_url": "",
+      "detail_url": "https://spice-sapporo.jp/event/8580/",
+      "source_id": "spice-sapporo-jp-schedule",
+      "source_name": "SPiCE",
+      "source_url": "https://spice-sapporo.jp/schedule/",
+      "source_category": "ライブハウス（会場公式）",
+      "source_priority": "B",
+      "source_priority_score": 2,
+      "extraction_method": "jsonld",
+      "updated_at": "2026-03-07T02:22:31.401Z",
+      "quality_score": 0.56
     },
     {
       "id": "e4f97a9c2e8a5d61342d",
@@ -1484,7 +1700,7 @@
       "start_time": "18:00",
       "end_time": "",
       "all_day": false,
-      "venue": "",
+      "venue": "SPiCE",
       "venue_address": "",
       "summary": "",
       "flyer_image_url": "",
@@ -1496,8 +1712,8 @@
       "source_priority": "B",
       "source_priority_score": 2,
       "extraction_method": "jsonld",
-      "updated_at": "2026-03-07T02:09:26.350Z",
-      "quality_score": 0.75
+      "updated_at": "2026-03-07T02:22:31.253Z",
+      "quality_score": 0.82
     },
     {
       "id": "a0361ed353f424edd9ee",
@@ -1508,7 +1724,7 @@
       "start_time": "",
       "end_time": "",
       "all_day": true,
-      "venue": "",
+      "venue": "札幌文化芸術劇場 hitaru",
       "venue_address": "〒060-0001 札幌市中央区北1条西1丁目",
       "summary": "公演あり | イベント情報 | 札幌市民交流プラザ --> 本文へスキップします。 劇場 座席表 チケット 購入 メンバーズ サイト フロア 案内 交通 アクセス SNS 札幌市民交流プラザ X Facebook Instagram YouTube 札幌文化芸術劇場 hitaru X Facebook Instagram TikTok 札幌文化芸術交流センター SCARTS X Facebook Instagram 札幌市図書・情報館…",
       "flyer_image_url": "https://www.sapporo-community-plaza.jp/img/plaza_ogp_ss.png",
@@ -1520,32 +1736,8 @@
       "source_priority": "S",
       "source_priority_score": 4,
       "extraction_method": "heuristic",
-      "updated_at": "2026-03-07T02:09:10.811Z",
-      "quality_score": 0.65
-    },
-    {
-      "id": "e926859049d5ec85b526",
-      "title": "五嶋みどり with ルツェルン･フェスティバル室内管弦楽団",
-      "start_date": "2026-03-23",
-      "end_date": "2026-03-23",
-      "open_time": "",
-      "start_time": "19:00",
-      "end_time": "23:59",
-      "all_day": false,
-      "venue": "札幌コンサートホールKitara大ホール",
-      "venue_address": "北海道",
-      "summary": "",
-      "flyer_image_url": "",
-      "detail_url": "https://eplus.jp/sf/detail/4407370001-P0030003P021001",
-      "source_id": "eplus-jp-sf-area-hokkaido-tohoku-hokkaido-sapporo",
-      "source_name": "イープラス",
-      "source_url": "https://eplus.jp/sf/area/hokkaido-tohoku/hokkaido/sapporo",
-      "source_category": "チケット（一次プラットフォーム）",
-      "source_priority": "A",
-      "source_priority_score": 3,
-      "extraction_method": "jsonld",
-      "updated_at": "2026-03-07T02:09:21.622Z",
-      "quality_score": 1
+      "updated_at": "2026-03-07T02:22:13.577Z",
+      "quality_score": 0.72
     },
     {
       "id": "e216c4e439cc1fa1663d",
@@ -1556,7 +1748,7 @@
       "start_time": "19:00",
       "end_time": "",
       "all_day": false,
-      "venue": "",
+      "venue": "SCARTSコート",
       "venue_address": "〒060-0001 札幌市中央区北1条西1丁目",
       "summary": "micro teatro concerto vol.6 ～若き音楽家によるコンサート～ | イベント情報 | 札幌市民交流プラザ --> 本文へスキップします。 劇場 座席表 チケット 購入 メンバーズ サイト フロア 案内 交通 アクセス SNS 札幌市民交流プラザ X Facebook Instagram YouTube 札幌文化芸術劇場 hitaru X Facebook Instagram TikTok 札幌文化芸術交流センタ…",
       "flyer_image_url": "https://www.sapporo-community-plaza.jp/img/plaza_ogp_ss.png",
@@ -1568,7 +1760,31 @@
       "source_priority": "S",
       "source_priority_score": 4,
       "extraction_method": "heuristic",
-      "updated_at": "2026-03-07T02:09:10.627Z",
+      "updated_at": "2026-03-07T02:22:13.551Z",
+      "quality_score": 1
+    },
+    {
+      "id": "6901118f1662e6e0667a",
+      "title": "2026/ (月) 先着 五嶋みどり with ルツェルン･フェスティバル室内管弦楽団 札幌コンサートホールKitara大ホール（北海道） 開演：～（開場：～） 受付中",
+      "start_date": "2026-03-23",
+      "end_date": "",
+      "open_time": "18:15",
+      "start_time": "19:00",
+      "end_time": "",
+      "all_day": false,
+      "venue": "から探す",
+      "venue_address": "",
+      "summary": "2026/3/23(月)に札幌コンサートホールKitara大ホール(札幌)で行われる五嶋みどり with ルツェルン･フェスティバル室内管弦楽団のチケット情報ページです。会場情報、開演時間や料金を確認し、五嶋みどり with ルツェルン･フェスティバル室内管弦楽団のチケットを簡単にオンライン予約・購入できます。",
+      "flyer_image_url": "https://eplus.jp/s/eplus/img/webclip.png",
+      "detail_url": "https://eplus.jp/sf/detail/4407370001-P0030003P021001",
+      "source_id": "eplus-jp-sf-area-hokkaido-tohoku-hokkaido-sapporo",
+      "source_name": "イープラス",
+      "source_url": "https://eplus.jp/sf/area/hokkaido-tohoku/hokkaido/sapporo",
+      "source_category": "チケット（一次プラットフォーム）",
+      "source_priority": "A",
+      "source_priority_score": 3,
+      "extraction_method": "heuristic",
+      "updated_at": "2026-03-07T02:22:26.357Z",
       "quality_score": 0.95
     },
     {
@@ -1580,7 +1796,7 @@
       "start_time": "21:00",
       "end_time": "21:00",
       "all_day": false,
-      "venue": "大ホール",
+      "venue": "札幌コンサートホール Kitara 大ホール",
       "venue_address": "札幌市中央区中島公園1番15号",
       "summary": "大ホール 2026年3月23日(月曜日) 18:15開場 19:00開演 21:00終演予定",
       "flyer_image_url": "https://www.kitara-sapporo.or.jp/og-image.jpg",
@@ -1592,7 +1808,7 @@
       "source_priority": "S",
       "source_priority_score": 4,
       "extraction_method": "site_rule",
-      "updated_at": "2026-03-07T02:09:10.565Z",
+      "updated_at": "2026-03-07T02:22:13.400Z",
       "quality_score": 1
     },
     {
@@ -1604,7 +1820,7 @@
       "start_time": "",
       "end_time": "",
       "all_day": true,
-      "venue": "",
+      "venue": "産業振興棟１階 Sapporo Business HUB",
       "venue_address": "札幌市産業振興センター",
       "summary": "令和7年度 創業フォローアップセミナー [2026年3月24日(火曜日)開催] | セミナー情報 | 札幌市産業振興センター 本文へ メニューへ 設定 検索 検索キーワード 検索 お問合わせ 電話 011-820-3033 電話をかける 各種お問合わせ先 札幌市産業振興センター メニュー 施設の貸出 施設のご案内 貸出備品のご案内 ご利用時間・注意事項 フロアマップ ご利用料金について ご利用の流れ 施設貸出状況 申込要領 申込書類・…",
       "flyer_image_url": "https://seminar.sapporosansin.jp/images/ogp.jpg",
@@ -1616,8 +1832,32 @@
       "source_priority": "A",
       "source_priority_score": 3,
       "extraction_method": "heuristic",
-      "updated_at": "2026-03-07T02:09:14.253Z",
-      "quality_score": 0.74
+      "updated_at": "2026-03-07T02:22:17.382Z",
+      "quality_score": 0.81
+    },
+    {
+      "id": "8010fa7cf4e7b380eb27",
+      "title": "ウェビナー/WEBセミナー",
+      "start_date": "2026-03-24",
+      "end_date": "",
+      "open_time": "",
+      "start_time": "",
+      "end_time": "",
+      "all_day": true,
+      "venue": "（国際ビジネスマッチングサイト)",
+      "venue_address": "",
+      "summary": "ジェトロでは、国内外から様々なWEBセミナー/ウェビナーをお届けしています。今後開催されるライブ配信セミナー、録画ですぐご覧いただけるオンデマンド配信のセミナーをご案内しています。ぜひご利用ください。",
+      "flyer_image_url": "https://www.jetro.go.jp/library/new/common/img/j-messe.jpg",
+      "detail_url": "https://www.jetro.go.jp/biz/seminar/",
+      "source_id": "www-jetro-go-jp-j-messe-country-asia-jp-001",
+      "source_name": "J-messe（JETRO）",
+      "source_url": "https://www.jetro.go.jp/j-messe/country/asia/jp/001/",
+      "source_category": "展示会DB（一次に近い）",
+      "source_priority": "S",
+      "source_priority_score": 4,
+      "extraction_method": "heuristic",
+      "updated_at": "2026-03-07T02:22:12.010Z",
+      "quality_score": 0.6
     },
     {
       "id": "b30fa614ce475f5d7cae",
@@ -1628,7 +1868,7 @@
       "start_time": "",
       "end_time": "",
       "all_day": true,
-      "venue": "",
+      "venue": "札幌市図書・情報館2階",
       "venue_address": "〒060-0001 札幌市中央区北1条西1丁目",
       "summary": "効果的なマーケティングに興味はありませんか？札幌市図書・情報館で使用できるデータベース「市場情報評価ナビMieNa」は、人口、世帯、消費支出や購買力などの地域特……",
       "flyer_image_url": "https://www.sapporo-community-plaza.jp/upimg/20260302150223-1.jpg",
@@ -1640,8 +1880,8 @@
       "source_priority": "S",
       "source_priority_score": 4,
       "extraction_method": "heuristic",
-      "updated_at": "2026-03-07T02:09:10.546Z",
-      "quality_score": 0.77
+      "updated_at": "2026-03-07T02:22:13.332Z",
+      "quality_score": 0.84
     },
     {
       "id": "73ca2a4aa0c73fcca185",
@@ -1652,7 +1892,7 @@
       "start_time": "11:00",
       "end_time": "18:00",
       "all_day": false,
-      "venue": "",
+      "venue": "SCARTSコート SCARTSモールA SCARTSモールB",
       "venue_address": "〒060-0001 札幌市中央区北1条西1丁目",
       "summary": "Ohanaになろう vol.14 ～ハワイフェスティバル～ | イベント情報 | 札幌市民交流プラザ --> 本文へスキップします。 劇場 座席表 チケット 購入 メンバーズ サイト フロア 案内 交通 アクセス SNS 札幌市民交流プラザ X Facebook Instagram YouTube 札幌文化芸術劇場 hitaru X Facebook Instagram TikTok 札幌文化芸術交流センター SCARTS X Fac…",
       "flyer_image_url": "https://www.sapporo-community-plaza.jp/img/plaza_ogp_ss.png",
@@ -1664,8 +1904,8 @@
       "source_priority": "S",
       "source_priority_score": 4,
       "extraction_method": "heuristic",
-      "updated_at": "2026-03-07T02:09:10.775Z",
-      "quality_score": 0.92
+      "updated_at": "2026-03-07T02:22:13.545Z",
+      "quality_score": 0.99
     },
     {
       "id": "8a302effc66b4b78a77b",
@@ -1676,7 +1916,7 @@
       "start_time": "15:30",
       "end_time": "15:30",
       "all_day": false,
-      "venue": "小ホール",
+      "venue": "札幌コンサートホール Kitara 小ホール",
       "venue_address": "札幌市中央区中島公園1番15号",
       "summary": "小ホール 2026年3月28日(土曜日) 12:30開場 13:00開演 15:30終演予定",
       "flyer_image_url": "https://www.kitara-sapporo.or.jp/og-image.jpg",
@@ -1688,7 +1928,7 @@
       "source_priority": "S",
       "source_priority_score": 4,
       "extraction_method": "site_rule",
-      "updated_at": "2026-03-07T02:09:10.632Z",
+      "updated_at": "2026-03-07T02:22:13.398Z",
       "quality_score": 1
     },
     {
@@ -1700,7 +1940,7 @@
       "start_time": "18:00",
       "end_time": "",
       "all_day": false,
-      "venue": "",
+      "venue": "のご案内",
       "venue_address": "札幌市中央区南３条西２丁目３ ＷＡＬＬ ＨＡＬＬ 1階 北海道",
       "summary": "Mount Alive[株式会社マウントアライブ]オフィシャルサイト｜イベント情報詳細 アーティスト名：TRiDENT（振替公演）｜日程：2026年3月28日公演｜イベント名：『BLUE DAWN TOUR 25-26』?アフターパーティー?｜会場名：KLUB COUNTER ACTION：札幌市中央区南３条西２丁目３ ＷＡＬＬ ＨＡＬＬ 1階｜チケット発売：2026年1月24日｜お問い合わせ TEL：011-623-5555",
       "flyer_image_url": "http://mountalive.com/data/schedule_img/xxl/20260108125850_0.jpg",
@@ -1712,8 +1952,8 @@
       "source_priority": "S",
       "source_priority_score": 4,
       "extraction_method": "heuristic",
-      "updated_at": "2026-03-07T02:09:09.737Z",
-      "quality_score": 0.95
+      "updated_at": "2026-03-07T02:22:12.378Z",
+      "quality_score": 1
     },
     {
       "id": "5709b3b2243a12e799e6",
@@ -1736,7 +1976,7 @@
       "source_priority": "A",
       "source_priority_score": 3,
       "extraction_method": "heuristic",
-      "updated_at": "2026-03-07T02:09:16.798Z",
+      "updated_at": "2026-03-07T02:22:21.802Z",
       "quality_score": 0.95
     },
     {
@@ -1748,7 +1988,7 @@
       "start_time": "",
       "end_time": "",
       "all_day": true,
-      "venue": "",
+      "venue": "クリエイティブスタジオ",
       "venue_address": "〒060-0001 札幌市中央区北1条西1丁目",
       "summary": "公演あり | イベント情報 | 札幌市民交流プラザ --> 本文へスキップします。 劇場 座席表 チケット 購入 メンバーズ サイト フロア 案内 交通 アクセス SNS 札幌市民交流プラザ X Facebook Instagram YouTube 札幌文化芸術劇場 hitaru X Facebook Instagram TikTok 札幌文化芸術交流センター SCARTS X Facebook Instagram 札幌市図書・情報館…",
       "flyer_image_url": "https://www.sapporo-community-plaza.jp/img/plaza_ogp_ss.png",
@@ -1760,8 +2000,8 @@
       "source_priority": "S",
       "source_priority_score": 4,
       "extraction_method": "heuristic",
-      "updated_at": "2026-03-07T02:09:10.808Z",
-      "quality_score": 0.65
+      "updated_at": "2026-03-07T02:22:13.550Z",
+      "quality_score": 0.72
     },
     {
       "id": "771c88903b8d5aa14597",
@@ -1772,7 +2012,7 @@
       "start_time": "14:00",
       "end_time": "",
       "all_day": false,
-      "venue": "",
+      "venue": "SCARTSスタジオ1",
       "venue_address": "〒060-0001 札幌市中央区北1条西1丁目",
       "summary": "60分でまるわかり！新NISAで活用できる資産形成・資産運用の考え方セミナー | イベント情報 | 札幌市民交流プラザ --> 本文へスキップします。 劇場 座席表 チケット 購入 メンバーズ サイト フロア 案内 交通 アクセス SNS 札幌市民交流プラザ X Facebook Instagram YouTube 札幌文化芸術劇場 hitaru X Facebook Instagram TikTok 札幌文化芸術交流センター SCA…",
       "flyer_image_url": "https://www.sapporo-community-plaza.jp/upimg/20260217154922-1.jpg",
@@ -1784,8 +2024,8 @@
       "source_priority": "S",
       "source_priority_score": 4,
       "extraction_method": "heuristic",
-      "updated_at": "2026-03-07T02:09:10.810Z",
-      "quality_score": 0.95
+      "updated_at": "2026-03-07T02:22:13.591Z",
+      "quality_score": 1
     },
     {
       "id": "437b5e31f8f74c4f5949",
@@ -1796,7 +2036,7 @@
       "start_time": "15:00",
       "end_time": "15:00",
       "all_day": false,
-      "venue": "大ホール",
+      "venue": "札幌コンサートホール Kitara 大ホール",
       "venue_address": "札幌市中央区中島公園1番15号",
       "summary": "大ホール 2026年3月29日(日曜日) 12:15開場 13:00開演 15:00終演予定",
       "flyer_image_url": "https://www.kitara-sapporo.or.jp/og-image.jpg",
@@ -1808,7 +2048,7 @@
       "source_priority": "S",
       "source_priority_score": 4,
       "extraction_method": "site_rule",
-      "updated_at": "2026-03-07T02:09:10.633Z",
+      "updated_at": "2026-03-07T02:22:13.401Z",
       "quality_score": 1
     },
     {
@@ -1820,7 +2060,7 @@
       "start_time": "18:00",
       "end_time": "",
       "all_day": false,
-      "venue": "",
+      "venue": "Zeppホールネットワーク SCHEDULE FLOOR GUIDE HALL GOODS FAQ ACCESS JOBS TOP Zepp Sapporo",
       "venue_address": "",
       "summary": "スケジュール詳細 &#8211; 札幌 | Zeppホールネットワーク SCHEDULE FLOOR GUIDE HALL GOODS FAQ ACCESS JOBS TOP Zepp Sapporo SCHEDULE 2026 FTISLAND LIVE &#039;MAD HAPPY&#039; Zepp Tour IN JAPAN SCHEDULE FLOOR GUIDE HALL GOODS FAQ ACCESS JOBS -…",
       "flyer_image_url": "https://www.zepp.co.jp/~pj-zepp/wordpress/wp-content/uploads/2021/08/12200920/ogp_shiro.png",
@@ -1832,8 +2072,8 @@
       "source_priority": "S",
       "source_priority_score": 4,
       "extraction_method": "heuristic",
-      "updated_at": "2026-03-07T02:09:11.353Z",
-      "quality_score": 0.71
+      "updated_at": "2026-03-07T02:22:14.086Z",
+      "quality_score": 0.78
     },
     {
       "id": "c8640a0992fc80fea08e",
@@ -1844,7 +2084,7 @@
       "start_time": "",
       "end_time": "",
       "all_day": true,
-      "venue": "",
+      "venue": "2027年4月の大ホール",
       "venue_address": "札幌市民ホール）",
       "summary": "2027年4月の大ホール一斉受付を開催いたします。日 程2026年 4月1日（水）会 場 札幌市民ホール2F 第1会議室受付時間 午前9時00分～9時30分開始...",
       "flyer_image_url": "https://www.sapporo-shiminhall.org/common/img/pagetop.png",
@@ -1856,8 +2096,8 @@
       "source_priority": "A",
       "source_priority_score": 3,
       "extraction_method": "heuristic",
-      "updated_at": "2026-03-07T02:09:11.356Z",
-      "quality_score": 0.74
+      "updated_at": "2026-03-07T02:22:14.206Z",
+      "quality_score": 0.81
     },
     {
       "id": "7bc3cbcaafcc2014ae9e",
@@ -1868,7 +2108,7 @@
       "start_time": "14:00",
       "end_time": "",
       "all_day": false,
-      "venue": "",
+      "venue": "札幌市コンサートホールKitara",
       "venue_address": "札幌市コンサートホールKitara",
       "summary": "UHB北海道文化放送オフィシャルサイト。フジテレビ系列局。番組案内、ニュース、天気情報からアナウンサーのブログや試写会情報など。",
       "flyer_image_url": "https://www.uhb.jp/common/images/ogp.png?20230731",
@@ -1880,8 +2120,8 @@
       "source_priority": "A",
       "source_priority_score": 3,
       "extraction_method": "heuristic",
-      "updated_at": "2026-03-07T02:09:16.799Z",
-      "quality_score": 0.92
+      "updated_at": "2026-03-07T02:22:21.924Z",
+      "quality_score": 0.99
     },
     {
       "id": "442caed0cf5c4fbfdc6a",
@@ -1892,7 +2132,7 @@
       "start_time": "17:00",
       "end_time": "",
       "all_day": false,
-      "venue": "",
+      "venue": "限定メンバーの教え短冊ステッカー?",
       "venue_address": "札幌市中央区南３条西２丁目３ ＷＡＬＬ ＨＡＬＬ 1階 北海道",
       "summary": "Mount Alive[株式会社マウントアライブ]オフィシャルサイト｜イベント情報詳細 アーティスト名：バンドじゃないもん！MAXX NAKAYOSHI｜日程：2026年4月5日公演｜イベント名：「導きっ！しあわせの教えツアー&#10084;&#65038;〜みさこってフェニックスなんだって〜」｜会場名：KLUB COUNTER ACTION：札幌市中央区南３条西２丁目３ ＷＡＬＬ ＨＡＬＬ 1階｜チケット発売：2026年3月7日｜お…",
       "flyer_image_url": "http://mountalive.com/data/schedule_img/xxl/20260225180205_0.jpg",
@@ -1904,8 +2144,8 @@
       "source_priority": "S",
       "source_priority_score": 4,
       "extraction_method": "heuristic",
-      "updated_at": "2026-03-07T02:09:10.469Z",
-      "quality_score": 0.95
+      "updated_at": "2026-03-07T02:22:13.131Z",
+      "quality_score": 1
     },
     {
       "id": "958a5bbe803b01f213bf",
@@ -1916,7 +2156,7 @@
       "start_time": "",
       "end_time": "",
       "all_day": true,
-      "venue": "",
+      "venue": "での大型コンベンション開催や、台湾・韓国からのインセンティブ旅行（1,000名超グループ）の回復など、2024年度の主な活動と成果をご紹介します。",
       "venue_address": "",
       "summary": "世界の観光MICE都市の持続可能性を評価する「Global Destination Sustainability Index（GDS-Index）」の2025年ランキングが発表されました。札幌はスコアを前年より4.5ポイント伸ばし、69.5％を記録。ランキング上位は今年も北欧都市が占め、1位はフィンランドのヘルシンキ（93.5％）で「リーダーシップ・アワード」を受賞しました。2位にはスウェーデンの...",
       "flyer_image_url": "https://www.conventionsapporo.jp/files/information/160/thm_img2_1260.png",
@@ -1928,8 +2168,8 @@
       "source_priority": "S",
       "source_priority_score": 4,
       "extraction_method": "heuristic",
-      "updated_at": "2026-03-07T02:09:09.281Z",
-      "quality_score": 0.73
+      "updated_at": "2026-03-07T02:22:12.019Z",
+      "quality_score": 0.8
     },
     {
       "id": "c59beec7e5c6987751a8",
@@ -1940,7 +2180,7 @@
       "start_time": "",
       "end_time": "",
       "all_day": true,
-      "venue": "",
+      "venue": "を変更させていただきました。",
       "venue_address": "札幌市産業振興センター",
       "summary": "社会人としての基本を学ぶための「若手社員研修」 [2026年4月7日(火曜日)開催] | セミナー情報 | 札幌市産業振興センター 本文へ メニューへ 設定 検索 検索キーワード 検索 お問合わせ 電話 011-820-3033 電話をかける 各種お問合わせ先 札幌市産業振興センター メニュー 施設の貸出 施設のご案内 貸出備品のご案内 ご利用時間・注意事項 フロアマップ ご利用料金について ご利用の流れ 施設貸出状況 申込要領 申込…",
       "flyer_image_url": "https://seminar.sapporosansin.jp/images/ogp.jpg",
@@ -1952,8 +2192,8 @@
       "source_priority": "A",
       "source_priority_score": 3,
       "extraction_method": "heuristic",
-      "updated_at": "2026-03-07T02:09:13.925Z",
-      "quality_score": 0.74
+      "updated_at": "2026-03-07T02:22:17.453Z",
+      "quality_score": 0.81
     },
     {
       "id": "37a1487447addab167aa",
@@ -1964,7 +2204,7 @@
       "start_time": "",
       "end_time": "",
       "all_day": true,
-      "venue": "",
+      "venue": "産業振興棟２階 セミナールームＣ",
       "venue_address": "札幌市産業振興センター",
       "summary": "伝え方を変えた人が伸びる。現場で結果を出すための「コミュニケーションデザイン」 [2026年4月14日(火曜日)開催] | セミナー情報 | 札幌市産業振興センター 本文へ メニューへ 設定 検索 検索キーワード 検索 お問合わせ 電話 011-820-3033 電話をかける 各種お問合わせ先 札幌市産業振興センター メニュー 施設の貸出 施設のご案内 貸出備品のご案内 ご利用時間・注意事項 フロアマップ ご利用料金について ご利用の…",
       "flyer_image_url": "https://seminar.sapporosansin.jp/images/ogp.jpg",
@@ -1976,8 +2216,8 @@
       "source_priority": "A",
       "source_priority_score": 3,
       "extraction_method": "heuristic",
-      "updated_at": "2026-03-07T02:09:14.457Z",
-      "quality_score": 0.74
+      "updated_at": "2026-03-07T02:22:17.626Z",
+      "quality_score": 0.81
     },
     {
       "id": "69461be545d9d6c797f3",
@@ -1988,7 +2228,7 @@
       "start_time": "18:00",
       "end_time": "",
       "all_day": false,
-      "venue": "",
+      "venue": "のご案内",
       "venue_address": "札幌市中央区南4条&#11972;14丁目1-32",
       "summary": "Mount Alive[株式会社マウントアライブ]オフィシャルサイト｜イベント情報詳細 アーティスト名：バックドロップシンデレラ｜日程：2026年4月19日公演｜イベント名：「20周年でウンザウンザを踊るツアー」｜会場名：札幌近松：北海道札幌市中央区南4条&#11972;14丁目1-32 札幌パームビル ｜チケット発売：2026年3月7日｜お問い合わせ TEL：011-623-5555",
       "flyer_image_url": "http://mountalive.com/data/schedule_img/xxl/20251212183751_0.jpg",
@@ -2000,8 +2240,8 @@
       "source_priority": "S",
       "source_priority_score": 4,
       "extraction_method": "heuristic",
-      "updated_at": "2026-03-07T02:09:10.279Z",
-      "quality_score": 0.95
+      "updated_at": "2026-03-07T02:22:13.021Z",
+      "quality_score": 1
     },
     {
       "id": "ac9e39a8fed6dd5e8855",
@@ -2012,7 +2252,7 @@
       "start_time": "",
       "end_time": "",
       "all_day": true,
-      "venue": "",
+      "venue": "産業振興棟２階 セミナールームＣ",
       "venue_address": "札幌市産業振興センター",
       "summary": "若手社員のうちに身に着けるべき、正しい生成AI活用法 [2026年4月22日(水曜日)開催] | セミナー情報 | 札幌市産業振興センター 本文へ メニューへ 設定 検索 検索キーワード 検索 お問合わせ 電話 011-820-3033 電話をかける 各種お問合わせ先 札幌市産業振興センター メニュー 施設の貸出 施設のご案内 貸出備品のご案内 ご利用時間・注意事項 フロアマップ ご利用料金について ご利用の流れ 施設貸出状況 申込要…",
       "flyer_image_url": "https://seminar.sapporosansin.jp/images/ogp.jpg",
@@ -2024,8 +2264,8 @@
       "source_priority": "A",
       "source_priority_score": 3,
       "extraction_method": "heuristic",
-      "updated_at": "2026-03-07T02:09:14.038Z",
-      "quality_score": 0.74
+      "updated_at": "2026-03-07T02:22:17.563Z",
+      "quality_score": 0.81
     },
     {
       "id": "db4523bb1fccd8485895",
@@ -2036,7 +2276,7 @@
       "start_time": "",
       "end_time": "",
       "all_day": true,
-      "venue": "",
+      "venue": "ペニーレーン２４ (北海道)",
       "venue_address": "",
       "summary": "ＮＩＧＨＴＭＡＲＥ(ナイトメア) | ペニーレーン２４ | チケットぴあはコンサート、ライブなど音楽チケットを販売するショッピングサイトです。 お気に入りのアーティスト・劇団・スポーツチーム等のチケットの先行情報もお届け！",
       "flyer_image_url": "https://image.pia.jp/images/202602/202602180008_ex.jpg",
@@ -2048,8 +2288,8 @@
       "source_priority": "A",
       "source_priority_score": 3,
       "extraction_method": "heuristic",
-      "updated_at": "2026-03-07T02:09:18.689Z",
-      "quality_score": 0.7
+      "updated_at": "2026-03-07T02:22:23.209Z",
+      "quality_score": 0.77
     },
     {
       "id": "e8106bd6638684d3970c",
@@ -2060,7 +2300,7 @@
       "start_time": "",
       "end_time": "",
       "all_day": true,
-      "venue": "",
+      "venue": "ペニーレーン２４ (北海道)",
       "venue_address": "",
       "summary": "小山田壮平(オヤマダソウヘイ) | ペニーレーン２４ | チケットぴあはコンサート、ライブなど音楽チケットを販売するショッピングサイトです。 お気に入りのアーティスト・劇団・スポーツチーム等のチケットの先行情報もお届け！",
       "flyer_image_url": "https://image.pia.jp/images/202602/202602250068_ex.jpg",
@@ -2072,8 +2312,8 @@
       "source_priority": "A",
       "source_priority_score": 3,
       "extraction_method": "heuristic",
-      "updated_at": "2026-03-07T02:09:18.708Z",
-      "quality_score": 0.7
+      "updated_at": "2026-03-07T02:22:23.078Z",
+      "quality_score": 0.77
     },
     {
       "id": "a5b921c83277e6b16aa4",
@@ -2084,7 +2324,7 @@
       "start_time": "17:30",
       "end_time": "",
       "all_day": false,
-      "venue": "",
+      "venue": "のご案内",
       "venue_address": "",
       "summary": "Mount Alive[株式会社マウントアライブ]オフィシャルサイト｜イベント情報詳細 アーティスト名：THE ALFEE｜日程：2026年4月26日公演｜イベント名：THE ALFEE Spring Celebration 2026 Moonlight Rhapsody｜会場名：北斗市総合文化センター かなで〜る：北斗市中野通2丁目13-1｜チケット発売：2026年3月7日｜お問い合わせ TEL：011-623-5555",
       "flyer_image_url": "http://mountalive.com/data/schedule_img/xxl/20251215164754_0.png",
@@ -2096,8 +2336,8 @@
       "source_priority": "S",
       "source_priority_score": 4,
       "extraction_method": "heuristic",
-      "updated_at": "2026-03-07T02:09:10.262Z",
-      "quality_score": 0.91
+      "updated_at": "2026-03-07T02:22:12.866Z",
+      "quality_score": 0.98
     },
     {
       "id": "78099d7c4ddfa3764587",
@@ -2108,7 +2348,7 @@
       "start_time": "18:30",
       "end_time": "",
       "all_day": false,
-      "venue": "",
+      "venue": "のご案内",
       "venue_address": "札幌市中央区北1条西1丁目 札幌市民交流プラザ 北海道",
       "summary": "Mount Alive[株式会社マウントアライブ]オフィシャルサイト｜イベント情報詳細 アーティスト名：THE ALFEE｜日程：2026年4月28日公演｜イベント名：THE ALFEE Spring Celebration 2026 Moonlight Rhapsody｜会場名：札幌文化芸術劇場hitaru：札幌市中央区北1条西1丁目 札幌市民交流プラザ｜チケット発売：2026年3月7日｜お問い合わせ TEL：011-623-5555",
       "flyer_image_url": "http://mountalive.com/data/schedule_img/xxl/20251215164831_0.png",
@@ -2120,8 +2360,8 @@
       "source_priority": "S",
       "source_priority_score": 4,
       "extraction_method": "heuristic",
-      "updated_at": "2026-03-07T02:09:10.266Z",
-      "quality_score": 0.95
+      "updated_at": "2026-03-07T02:22:12.914Z",
+      "quality_score": 1
     },
     {
       "id": "947e0c44f2876f3d6234",
@@ -2132,7 +2372,7 @@
       "start_time": "",
       "end_time": "",
       "all_day": true,
-      "venue": "",
+      "venue": "札幌近松 (北海道)",
       "venue_address": "",
       "summary": "ZION | 札幌近松 仙台ＭＡＣＡＮＡ 千葉ＬＯＯＫ Ｓｐｏｔｉｆｙ Ｏ－ＥＡＳＴ ボトムライン ＢＩＧＣＡＴ セカンド・クラッチ ＤＩＭＥ Ｔｈｅ Ｖｏｏｄｏｏ Ｌｏｕｎｇｅ | チケットぴあはコンサート、ライブなど音楽チケットを販売するショッピングサイトです。 お気に入りのアーティスト・劇団・スポーツチーム等のチケットの先行情報もお届け！",
       "flyer_image_url": "https://image.pia.jp/images/202603/202603040052_ex.png",
@@ -2144,8 +2384,32 @@
       "source_priority": "A",
       "source_priority_score": 3,
       "extraction_method": "heuristic",
-      "updated_at": "2026-03-07T02:09:18.221Z",
-      "quality_score": 0.7
+      "updated_at": "2026-03-07T02:22:22.848Z",
+      "quality_score": 0.77
+    },
+    {
+      "id": "a5cb1daced135b1e12ea",
+      "title": "さっぽろ雪まつり資料館",
+      "start_date": "2026-05-09",
+      "end_date": "",
+      "open_time": "",
+      "start_time": "",
+      "end_time": "",
+      "all_day": true,
+      "venue": "一覧",
+      "venue_address": "〒062-0045 北海道札幌市豊平区羊ケ丘1番地 [ GoogleMapsで見る ]",
+      "summary": "1950年に始まった「さっぽろ雪まつり」の貴重な資料を後世へと受け継ぐために開かれた、さっぽろ雪まつり資料館。第1回から現在に至るまでの歴史展示や当時のポスター・雪像模型などを通して長年にわたって多くの人々を楽しませてきた札幌を代表するイベントをいつでも堪能することができます。",
+      "flyer_image_url": "https://www.snowfes.com/sapporo-snow-festival-museum/assets/img/ogp.jpg",
+      "detail_url": "https://www.snowfes.com/sapporo-snow-festival-museum/",
+      "source_id": "www-snowfes-com",
+      "source_name": "さっぽろ雪まつり公式サイト",
+      "source_url": "https://www.snowfes.com/",
+      "source_category": "年次大型祭り（一次）",
+      "source_priority": "A",
+      "source_priority_score": 3,
+      "extraction_method": "heuristic",
+      "updated_at": "2026-03-07T02:22:15.715Z",
+      "quality_score": 0.61
     },
     {
       "id": "e6c241e53b490f42f826",
@@ -2156,7 +2420,7 @@
       "start_time": "",
       "end_time": "",
       "all_day": true,
-      "venue": "",
+      "venue": "帯広ＭＥＧＡ ＳＴＯＮＥ (北海道)",
       "venue_address": "",
       "summary": "Ｓｋｏｏｐ Ｏｎ Ｓｏｍｅｂｏｄｙ(スクープオンサムバディー) | 帯広ＭＥＧＡ ＳＴＯＮＥ ペニーレーン２４ 函館金森ホール | チケットぴあはコンサート、ライブなど音楽チケットを販売するショッピングサイトです。 お気に入りのアーティスト・劇団・スポーツチーム等のチケットの先行情報もお届け！",
       "flyer_image_url": "https://image.pia.jp/images/202508/202508080004_ex.jpg",
@@ -2168,8 +2432,8 @@
       "source_priority": "A",
       "source_priority_score": 3,
       "extraction_method": "heuristic",
-      "updated_at": "2026-03-07T02:09:17.975Z",
-      "quality_score": 0.7
+      "updated_at": "2026-03-07T02:22:22.582Z",
+      "quality_score": 0.77
     },
     {
       "id": "d44d770e47a74fbf0742",
@@ -2180,7 +2444,7 @@
       "start_time": "",
       "end_time": "",
       "all_day": true,
-      "venue": "",
+      "venue": "ふきのとうホール (北海道)",
       "venue_address": "",
       "summary": "南佳孝(ミナミヨシタカ) | ふきのとうホール | チケットぴあはコンサート、ライブなど音楽チケットを販売するショッピングサイトです。 お気に入りのアーティスト・劇団・スポーツチーム等のチケットの先行情報もお届け！",
       "flyer_image_url": "https://image.pia.jp/images/202603/202603020006_ex.jpg",
@@ -2192,8 +2456,8 @@
       "source_priority": "A",
       "source_priority_score": 3,
       "extraction_method": "heuristic",
-      "updated_at": "2026-03-07T02:09:18.672Z",
-      "quality_score": 0.7
+      "updated_at": "2026-03-07T02:22:23.080Z",
+      "quality_score": 0.77
     },
     {
       "id": "07118367dff535eff60a",
@@ -2204,7 +2468,7 @@
       "start_time": "",
       "end_time": "",
       "all_day": true,
-      "venue": "",
+      "venue": "ＳＰＩＲＩＴＵＡＬ ＬＯＵＮＧＥ (北海道)",
       "venue_address": "",
       "summary": "アルカラ | ＳＰＩＲＩＴＵＡＬ ＬＯＵＮＧＥ ＳＰＩＲＩＴＵＡＬ ＬＯＵＮＧＥ １Ｆ ＢＡＲスペース | チケットぴあはコンサート、ライブなど音楽チケットを販売するショッピングサイトです。 お気に入りのアーティスト・劇団・スポーツチーム等のチケットの先行情報もお届け！",
       "flyer_image_url": "https://image.pia.jp/images/202602/202602180009_ex.jpg",
@@ -2216,8 +2480,32 @@
       "source_priority": "A",
       "source_priority_score": 3,
       "extraction_method": "heuristic",
-      "updated_at": "2026-03-07T02:09:18.152Z",
-      "quality_score": 0.7
+      "updated_at": "2026-03-07T02:22:22.612Z",
+      "quality_score": 0.77
+    },
+    {
+      "id": "9017b3d3449b538010bd",
+      "title": "介護の展示会 CareTEX仙台",
+      "start_date": "2026-05-27",
+      "end_date": "",
+      "open_time": "",
+      "start_time": "",
+      "end_time": "",
+      "all_day": true,
+      "venue": "の様子が（株）東日本放送で放映されました。&ensp;",
+      "venue_address": "〒108-0073 東京都港区三田1-4-28 三田国際ビル（総合受付：11F）",
+      "summary": "【公式】CareTEX仙台 介護用品展／介護施設産業展／介護施設ソリューション展／介護テクノロジー展／ケアフード展 - 介護用品・高齢者施設向け設備・備品／サービスが一堂に集まる東北エリア最大級の商談展示会",
+      "flyer_image_url": "https://server.caretex.jp/homepage/sendai/images/cts26_ogp.png",
+      "detail_url": "https://sendai.caretex.jp/",
+      "source_id": "sapporo-caretex-jp",
+      "source_name": "CareTEX札幌",
+      "source_url": "https://sapporo.caretex.jp/",
+      "source_category": "商談型展示会（一次）",
+      "source_priority": "A",
+      "source_priority_score": 3,
+      "extraction_method": "heuristic",
+      "updated_at": "2026-03-07T02:22:17.996Z",
+      "quality_score": 0.61
     },
     {
       "id": "8cb3a4045440e40498f5",
@@ -2228,7 +2516,7 @@
       "start_time": "",
       "end_time": "",
       "all_day": true,
-      "venue": "",
+      "venue": "きたこぶしホール (北海道)",
       "venue_address": "",
       "summary": "藤澤ノリマサ(フジサワノリマサ) | きたこぶしホール | チケットぴあはコンサート、ライブなど音楽チケットを販売するショッピングサイトです。 お気に入りのアーティスト・劇団・スポーツチーム等のチケットの先行情報もお届け！",
       "flyer_image_url": "https://image.pia.jp/images/202602/202602250064_ex.jpg",
@@ -2240,8 +2528,56 @@
       "source_priority": "A",
       "source_priority_score": 3,
       "extraction_method": "heuristic",
-      "updated_at": "2026-03-07T02:09:17.618Z",
-      "quality_score": 0.7
+      "updated_at": "2026-03-07T02:22:22.089Z",
+      "quality_score": 0.77
+    },
+    {
+      "id": "d99461fcc3f6968c4a27",
+      "title": "ミラクルひかる×荒牧陽子 ものまねジョイントスーパーライブ",
+      "start_date": "2026-05-31",
+      "end_date": "2026-06-01",
+      "open_time": "",
+      "start_time": "",
+      "end_time": "",
+      "all_day": true,
+      "venue": "旭川：旭川市民文化会館 大ホール／札幌：カナモトホール(札幌市民ホール)",
+      "venue_address": "札幌市民ホール)",
+      "summary": "ミラクルひかる×荒牧陽子 ものまねジョイントスーパーライブ ｜ イベント ｜ ＳＴＶ札幌テレビ ＳＴＶ札幌テレビ スマートフォン版 メニュー テレビ ラジオ ニュース 防災・災害 アナウンサー イベント 天気・気象 ライブカメラ ショッピング どさんこ動画＋ 検索 検索 イベント ミラクルひかる×荒牧陽子 ものまねジョイントスーパーライブ 旭川公演 札幌公演 Facebook X LINE イベント情報 開催日 2026年5月31日(…",
+      "flyer_image_url": "https://www.stv.jp/event/superlive/s7m7eb0000000sgh-img/s7m7eb0000000sgr.jpg",
+      "detail_url": "https://www.stv.jp/event/superlive/index.html",
+      "source_id": "www-stv-jp-event-index-html",
+      "source_name": "STV札幌テレビ（イベント）",
+      "source_url": "https://www.stv.jp/event/index.html",
+      "source_category": "地域メディア（主催/後援）",
+      "source_priority": "A",
+      "source_priority_score": 3,
+      "extraction_method": "heuristic",
+      "updated_at": "2026-03-07T02:22:19.518Z",
+      "quality_score": 0.61
+    },
+    {
+      "id": "e1d8c80e04e366ea7e17",
+      "title": "KOKAMI@network vol.22 「トランス」北海道公演",
+      "start_date": "2026-06-09",
+      "end_date": "2026-06-10",
+      "open_time": "",
+      "start_time": "",
+      "end_time": "",
+      "all_day": true,
+      "venue": "札幌：カナモトホール(札幌市民ホール)／帯広：帯広市民文化ホール 大ホール／北見：北ガス市民ホール(北見市民会館)大ホール",
+      "venue_address": "札幌市民ホール)／帯広：帯広市民文化ホール 大ホール／北見：北ガス市民ホール(北見市民会館)大ホール",
+      "summary": "KOKAMI@network vol.22 「トランス」北海道公演 ｜ イベント ｜ ＳＴＶ札幌テレビ ＳＴＶ札幌テレビ スマートフォン版 メニュー テレビ ラジオ ニュース 防災・災害 アナウンサー イベント 天気・気象 ライブカメラ ショッピング どさんこ動画＋ 検索 検索 イベント KOKAMI@network vol.22 「トランス」北海道公演 札幌 帯広 北見 Facebook X LINE イベント情報 開催日 2026…",
+      "flyer_image_url": "https://www.stv.jp/event/trans/fvsa490000007d1f-img/fvsa490000007d1p.jpg",
+      "detail_url": "https://www.stv.jp/event/trans/index.html",
+      "source_id": "www-stv-jp-event-index-html",
+      "source_name": "STV札幌テレビ（イベント）",
+      "source_url": "https://www.stv.jp/event/index.html",
+      "source_category": "地域メディア（主催/後援）",
+      "source_priority": "A",
+      "source_priority_score": 3,
+      "extraction_method": "heuristic",
+      "updated_at": "2026-03-07T02:22:19.516Z",
+      "quality_score": 0.61
     },
     {
       "id": "dd059dfa4c90335537ed",
@@ -2252,7 +2588,7 @@
       "start_time": "17:00",
       "end_time": "",
       "all_day": false,
-      "venue": "",
+      "venue": "【中標津公演】",
       "venue_address": "",
       "summary": "『南こうせつコンサートツアー2026 ～君と僕のうた～』中標津公演 6月14日(日)、北見公演 6月15日(月)開催。",
       "flyer_image_url": "https://www.hbc.co.jp/event/kosetsu2026/image/ogp.jpg",
@@ -2264,8 +2600,32 @@
       "source_priority": "A",
       "source_priority_score": 3,
       "extraction_method": "heuristic",
-      "updated_at": "2026-03-07T02:09:14.868Z",
-      "quality_score": 0.68
+      "updated_at": "2026-03-07T02:22:19.104Z",
+      "quality_score": 0.75
+    },
+    {
+      "id": "ee8ee3e19d64e9a91539",
+      "title": "北海道神宮例祭（札幌まつり）",
+      "start_date": "2026-06-14",
+      "end_date": "",
+      "open_time": "",
+      "start_time": "",
+      "end_time": "",
+      "all_day": true,
+      "venue": "北海道神宮 、 中島公園",
+      "venue_address": "",
+      "summary": "北海道神宮例祭は、毎年6月14日～16日に開催され「札幌まつり」とも呼ばれて市民に親しまれる100年以上の歴史がある祭り。北海道神宮の神様をのせた神輿や山車が市内を練り歩き、屋台や出店、お化け屋敷などの小屋が建つ。",
+      "flyer_image_url": "https://www.sapporo.travel/cms/wp-content/uploads/2023/08/%E6%9C%AD%E5%B9%8C%E3%81%BE%E3%81%A4%E3%82%8A%E3%83%9A%E3%83%BC%E3%82%B8%E5%86%99%E7%9C%9F%E5%B7%AE%E3%81%97%E6%9B%BF%E3%81%88.jpg",
+      "detail_url": "https://www.sapporo.travel/event/event-list/hokkaido_shrine_festival/",
+      "source_id": "www-sapporo-travel-event",
+      "source_name": "ようこそさっぽろ（イベント）",
+      "source_url": "https://www.sapporo.travel/event/",
+      "source_category": "観光公式ポータル",
+      "source_priority": "S",
+      "source_priority_score": 4,
+      "extraction_method": "heuristic",
+      "updated_at": "2026-03-07T02:22:11.737Z",
+      "quality_score": 0.6
     },
     {
       "id": "a5afd66efe9c09c85c10",
@@ -2276,7 +2636,7 @@
       "start_time": "14:30",
       "end_time": "",
       "all_day": false,
-      "venue": "",
+      "venue": "演奏会カテゴリ等で絞り込む 野外 野外コンサート オケ ホール",
       "venue_address": "札幌市長 秋元克広",
       "summary": "PMFで開催する公演のスケジュールをご案内します。",
       "flyer_image_url": "https://www.facebook.com/tr?id=656395181166815&ev=PageView&noscript=1",
@@ -2288,8 +2648,8 @@
       "source_priority": "A",
       "source_priority_score": 3,
       "extraction_method": "heuristic",
-      "updated_at": "2026-03-07T02:09:16.045Z",
-      "quality_score": 0.8
+      "updated_at": "2026-03-07T02:22:20.000Z",
+      "quality_score": 0.87
     },
     {
       "id": "f34a5aa8d393395ece00",
@@ -2300,7 +2660,7 @@
       "start_time": "13:45",
       "end_time": "15:00",
       "all_day": false,
-      "venue": "",
+      "venue": "ニューヨークのカーネギーホール",
       "venue_address": "札幌市長 秋元克広",
       "summary": "ニューヨークのカーネギーホールの小学生向け音楽教育プログラムをもとに開発し、2013年から実施している教育プログラム。授業で事前にリコーダーや歌を学習してきた小学生が、映像と司会のナビゲートで音楽を楽しみ、PMFオーケストラと共演します。札幌市立小学校の6年生が参加する様子を一般の方もご覧いただけます。",
       "flyer_image_url": "https://www.facebook.com/tr?id=656395181166815&ev=PageView&noscript=1",
@@ -2312,8 +2672,8 @@
       "source_priority": "A",
       "source_priority_score": 3,
       "extraction_method": "heuristic",
-      "updated_at": "2026-03-07T02:09:16.073Z",
-      "quality_score": 0.97
+      "updated_at": "2026-03-07T02:22:19.997Z",
+      "quality_score": 1
     },
     {
       "id": "7690710f154e6aa74c07",
@@ -2324,7 +2684,7 @@
       "start_time": "19:00",
       "end_time": "20:30",
       "all_day": false,
-      "venue": "",
+      "venue": "PMFアンサンブル清田区公演 お気に入りに追加 お気に入りに 追加しました 印刷 リスト表示 ホール",
       "venue_address": "札幌市長 秋元克広",
       "summary": "スケジュールの「PMFアンサンブル清田区公演」ページです。",
       "flyer_image_url": "https://www.pmf.or.jp/archives/004/202507/f62342edaf0153ef3dfed481db0f00bfd06b958d7e26c750bc0adb78b3ba0f91.jpg",
@@ -2336,8 +2696,8 @@
       "source_priority": "A",
       "source_priority_score": 3,
       "extraction_method": "heuristic",
-      "updated_at": "2026-03-07T02:09:16.956Z",
-      "quality_score": 0.73
+      "updated_at": "2026-03-07T02:22:20.979Z",
+      "quality_score": 0.8
     },
     {
       "id": "fe0c882568fc0e383e24",
@@ -2348,7 +2708,7 @@
       "start_time": "15:00",
       "end_time": "16:30",
       "all_day": false,
-      "venue": "",
+      "venue": "PMFアンサンブル奈井江公演 お気に入りに追加 お気に入りに 追加しました 印刷 リスト表示 ホール",
       "venue_address": "札幌市長 秋元克広",
       "summary": "スケジュールの「PMFアンサンブル奈井江公演」ページです。",
       "flyer_image_url": "https://www.pmf.or.jp/archives/004/202412/430a59a43f359473c7b40012e5199ee527d4ffc7e3b43151d9ea9b82bf13a542.jpg",
@@ -2360,8 +2720,8 @@
       "source_priority": "A",
       "source_priority_score": 3,
       "extraction_method": "heuristic",
-      "updated_at": "2026-03-07T02:09:17.092Z",
-      "quality_score": 0.73
+      "updated_at": "2026-03-07T02:22:20.988Z",
+      "quality_score": 0.8
     },
     {
       "id": "f3ee90b2e74d1dbc9263",
@@ -2372,7 +2732,7 @@
       "start_time": "19:00",
       "end_time": "20:30",
       "all_day": false,
-      "venue": "",
+      "venue": "PMFアンサンブル江別公演 お気に入りに追加 お気に入りに 追加しました 印刷 リスト表示 ホール",
       "venue_address": "札幌市長 秋元克広",
       "summary": "スケジュールの「PMFアンサンブル江別公演」ページです。",
       "flyer_image_url": "https://www.facebook.com/tr?id=656395181166815&ev=PageView&noscript=1",
@@ -2384,8 +2744,32 @@
       "source_priority": "A",
       "source_priority_score": 3,
       "extraction_method": "heuristic",
-      "updated_at": "2026-03-07T02:09:17.090Z",
-      "quality_score": 0.73
+      "updated_at": "2026-03-07T02:22:20.958Z",
+      "quality_score": 0.8
+    },
+    {
+      "id": "1e4154702c79caba98a4",
+      "title": "介護の展示会 CareTEX福岡",
+      "start_date": "2026-07-22",
+      "end_date": "",
+      "open_time": "",
+      "start_time": "",
+      "end_time": "",
+      "all_day": true,
+      "venue": "の様子が九州朝日放送（株）で放映されました。&ensp;",
+      "venue_address": "〒108-0073 東京都港区三田1-4-28 三田国際ビル（総合受付：11F）",
+      "summary": "【公式】CareTEX福岡 介護用品展／介護施設産業展／介護施設ソリューション展／介護テクノロジー展／ケアフード展 - 介護用品・高齢者施設向け設備・備品／サービスが一堂に集まる九州最大級の商談展示会",
+      "flyer_image_url": "https://server.caretex.jp/homepage/fukuoka/images/ctf26_ogp.png",
+      "detail_url": "https://fukuoka.caretex.jp/",
+      "source_id": "sapporo-caretex-jp",
+      "source_name": "CareTEX札幌",
+      "source_url": "https://sapporo.caretex.jp/",
+      "source_category": "商談型展示会（一次）",
+      "source_priority": "A",
+      "source_priority_score": 3,
+      "extraction_method": "heuristic",
+      "updated_at": "2026-03-07T02:22:17.858Z",
+      "quality_score": 0.61
     },
     {
       "id": "d17effde9b31b29a9497",
@@ -2396,7 +2780,7 @@
       "start_time": "19:00",
       "end_time": "21:00",
       "all_day": false,
-      "venue": "",
+      "venue": "PMFオーケストラ東京公演 お気に入りに追加 お気に入りに 追加しました 印刷 リスト表示 ホール",
       "venue_address": "札幌市長 秋元克広",
       "summary": "スケジュールの「PMFオーケストラ東京公演」ページです。",
       "flyer_image_url": "https://www.pmf.or.jp/archives/004/202412/a66031d5095108563f010c1b48d75f7a05e8583b0a4fb5616e4bed653ca43e49.jpg",
@@ -2408,8 +2792,32 @@
       "source_priority": "A",
       "source_priority_score": 3,
       "extraction_method": "heuristic",
-      "updated_at": "2026-03-07T02:09:16.946Z",
-      "quality_score": 0.73
+      "updated_at": "2026-03-07T02:22:20.992Z",
+      "quality_score": 0.8
+    },
+    {
+      "id": "2d38b277b7bd40e66702",
+      "title": "介護の展示会 CareTEX東京【夏】",
+      "start_date": "2026-08-19",
+      "end_date": "",
+      "open_time": "",
+      "start_time": "",
+      "end_time": "",
+      "all_day": true,
+      "venue": "出展内容は前回（2025年）の情報です。",
+      "venue_address": "〒108-0073 東京都港区三田1-4-28 三田国際ビル（総合受付：11F）",
+      "summary": "【公式】CareTEX東京’26【夏】 介護用品展／介護施設産業展／介護施設ソリューション展／介護テクノロジー展／ケアフード展 - 高齢者施設・介護事業所で役立つ製品・サービスが一堂に出展/介護業界 日本最大級の商談展示会 ～夏季開催～",
+      "flyer_image_url": "https://server.caretex.jp/homepage/tokyo/images/summer/ctt26_ogp.png",
+      "detail_url": "https://summer.caretex.jp/",
+      "source_id": "sapporo-caretex-jp",
+      "source_name": "CareTEX札幌",
+      "source_url": "https://sapporo.caretex.jp/",
+      "source_category": "商談型展示会（一次）",
+      "source_priority": "A",
+      "source_priority_score": 3,
+      "extraction_method": "heuristic",
+      "updated_at": "2026-03-07T02:22:17.769Z",
+      "quality_score": 0.61
     },
     {
       "id": "6626f8d7d5d56c1fed1f",
@@ -2420,7 +2828,7 @@
       "start_time": "18:30",
       "end_time": "",
       "all_day": false,
-      "venue": "",
+      "venue": "のご案内",
       "venue_address": "",
       "summary": "Mount Alive[株式会社マウントアライブ]オフィシャルサイト｜イベント情報詳細 アーティスト名：GRe4N BOYZ｜日程：2026年8月28日公演｜イベント名：GRe4N BOYZ イマーシブライブシアター2026 「“The ZA” &#12316;溢れる想いが止まらない&#12316;」｜会場名：中標津町総合文化会館（しるべっとホール）：｜チケット発売：2026年3月14日｜お問い合わせ TEL：011-623-5555",
       "flyer_image_url": "http://mountalive.com/data/schedule_img/xxl/20260123154729_0.jpg",
@@ -2432,8 +2840,8 @@
       "source_priority": "S",
       "source_priority_score": 4,
       "extraction_method": "heuristic",
-      "updated_at": "2026-03-07T02:09:10.782Z",
-      "quality_score": 0.91
+      "updated_at": "2026-03-07T02:22:13.548Z",
+      "quality_score": 0.98
     },
     {
       "id": "ffba95c0f4a128c81640",
@@ -2444,7 +2852,7 @@
       "start_time": "",
       "end_time": "",
       "all_day": true,
-      "venue": "",
+      "venue": "音更町文化センター 大ホール (北海道)",
       "venue_address": "",
       "summary": "ＧＲｅ４Ｎ ＢＯＹＺ(グリーンボーイズ) | 音更町文化センター 大ホール Ｚｅｐｐ Ｓａｐｐｏｒｏ 中標津町総合文化会館 しるべっとホール | チケットぴあはコンサート、ライブなど音楽チケットを販売するショッピングサイトです。 お気に入りのアーティスト・劇団・スポーツチーム等のチケットの先行情報もお届け！",
       "flyer_image_url": "https://image.pia.jp/images/202603/202603020005_ex.jpg",
@@ -2456,8 +2864,8 @@
       "source_priority": "A",
       "source_priority_score": 3,
       "extraction_method": "heuristic",
-      "updated_at": "2026-03-07T02:09:17.622Z",
-      "quality_score": 0.7
+      "updated_at": "2026-03-07T02:22:22.034Z",
+      "quality_score": 0.77
     },
     {
       "id": "d308ee30ae6ef46b12fd",
@@ -2468,7 +2876,7 @@
       "start_time": "",
       "end_time": "",
       "all_day": true,
-      "venue": "",
+      "venue": "札幌文化芸術劇場ｈｉｔａｒｕ (北海道)",
       "venue_address": "",
       "summary": "吉川晃司(キッカワコウジ) | 札幌文化芸術劇場ｈｉｔａｒｕ | チケットぴあはコンサート、ライブなど音楽チケットを販売するショッピングサイトです。 お気に入りのアーティスト・劇団・スポーツチーム等のチケットの先行情報もお届け！",
       "flyer_image_url": "https://image.pia.jp/images/202602/202602120052_ex.jpg",
@@ -2480,8 +2888,8 @@
       "source_priority": "A",
       "source_priority_score": 3,
       "extraction_method": "heuristic",
-      "updated_at": "2026-03-07T02:09:17.329Z",
-      "quality_score": 0.7
+      "updated_at": "2026-03-07T02:22:22.054Z",
+      "quality_score": 0.77
     },
     {
       "id": "671842ca6ca5478faa77",
@@ -2492,7 +2900,7 @@
       "start_time": "10:00",
       "end_time": "20:30",
       "all_day": false,
-      "venue": "大通公園（大通西4丁目） IN4(インフォ)スクエア ～オータムフェストの魅力大集合～",
+      "venue": "一覧 会場情報 会場一覧 会場情報",
       "venue_address": "〒060-0001 札幌市中央区北1条西2丁目 北海道経済センター4F",
       "summary": "さっぽろオータムフェスト、IN4(インフォ)スクエアのご紹介。",
       "flyer_image_url": "https://www.sapporo.travel/autumnfest/assets/images/common/og-image.webp",
@@ -2504,8 +2912,56 @@
       "source_priority": "A",
       "source_priority_score": 3,
       "extraction_method": "heuristic",
-      "updated_at": "2026-03-07T02:09:12.534Z",
+      "updated_at": "2026-03-07T02:22:16.422Z",
       "quality_score": 0.76
+    },
+    {
+      "id": "c22ee622a5229285bb23",
+      "title": "【公式】CareTEX札幌",
+      "start_date": "2026-09-16",
+      "end_date": "",
+      "open_time": "",
+      "start_time": "",
+      "end_time": "",
+      "all_day": true,
+      "venue": "出展内容は前回（2025年）の情報です。",
+      "venue_address": "〒108-0073 東京都港区三田1-4-28 三田国際ビル（総合受付：11F）",
+      "summary": "【公式】CareTEX札幌 介護用品展／介護施設産業展／介護施設ソリューション展／介護テクノロジー展／ケアフード展 - 介護用品・高齢者施設向け設備・備品／サービスが一堂に集まる北海道 最大級の商談展示会",
+      "flyer_image_url": "https://server.caretex.jp/homepage/sapporo/images/ctsp26_ogp.png",
+      "detail_url": "https://sapporo.caretex.jp/",
+      "source_id": "sapporo-caretex-jp",
+      "source_name": "CareTEX札幌",
+      "source_url": "https://sapporo.caretex.jp/",
+      "source_category": "商談型展示会（一次）",
+      "source_priority": "A",
+      "source_priority_score": 3,
+      "extraction_method": "heuristic",
+      "updated_at": "2026-03-07T02:22:17.100Z",
+      "quality_score": 0.61
+    },
+    {
+      "id": "6c73e922161f372fc3ef",
+      "title": "介護の展示会 CareTEX大阪",
+      "start_date": "2026-10-14",
+      "end_date": "",
+      "open_time": "",
+      "start_time": "",
+      "end_time": "",
+      "all_day": true,
+      "venue": "出展内容は前回（2025年）の情報です。",
+      "venue_address": "〒108-0073 東京都港区三田1-4-28 三田国際ビル（総合受付：11F）",
+      "summary": "【公式】CareTEX大阪 介護用品展／介護施設産業展／介護施設ソリューション展／ケアフード展 - 介護用品・高齢者施設向け設備・備品／サービスが一堂に集まる西日本最大級の商談展示会",
+      "flyer_image_url": "https://osaka.caretex.jp/assets/images/cto26_ogp.png",
+      "detail_url": "https://osaka.caretex.jp/",
+      "source_id": "sapporo-caretex-jp",
+      "source_name": "CareTEX札幌",
+      "source_url": "https://sapporo.caretex.jp/",
+      "source_category": "商談型展示会（一次）",
+      "source_priority": "A",
+      "source_priority_score": 3,
+      "extraction_method": "heuristic",
+      "updated_at": "2026-03-07T02:22:17.797Z",
+      "quality_score": 0.61
     },
     {
       "id": "bb1585829829668fa9f7",
@@ -2516,7 +2972,7 @@
       "start_time": "",
       "end_time": "",
       "all_day": true,
-      "venue": "アクセスサッポロ 入場無料",
+      "venue": "のみお申し込みを受け付けております。",
       "venue_address": "〒001-0021 札幌市北区北21条西12丁目コラボほっかいどう",
       "summary": "北海道最大級のビジネスイベント 人はつながれる。人は生み出せる。2025北海道ビジネスEXPOのサイトです。",
       "flyer_image_url": "https://www.business-expo.jp/business-expo_wp/wp-content/themes/business-expo/assets/img/og_img.png",
@@ -2528,7 +2984,7 @@
       "source_priority": "S",
       "source_priority_score": 4,
       "extraction_method": "heuristic",
-      "updated_at": "2026-03-07T02:09:09.456Z",
+      "updated_at": "2026-03-07T02:22:12.198Z",
       "quality_score": 0.64
     },
     {
@@ -2540,7 +2996,7 @@
       "start_time": "08:45",
       "end_time": "17:15",
       "all_day": false,
-      "venue": "",
+      "venue": "にはシンボルオブジェが設置されるほか、南北には札幌駅前通・北3条広場 (アカプラ)や札幌駅南口を会場に、東西には南一条通を会場に立木装飾が美しくきらめきます。",
       "venue_address": "〒060-0001 札幌市中央区北1条西2丁目 北海道経済センター4F",
       "summary": "さっぽろホワイトイルミネーションは5つの会場で開催され、札幌の街並を幻想的に彩ります。また、大通西２丁目で開催されるミュンヘン・クリスマス市 in Sapporo では、ワインやクリスマス料理、様々なクリスマスアイテムを扱うブースが出店します。",
       "flyer_image_url": "https://www.sapporo.travel/white-illumination/assets/images/common/og-image.webp",
@@ -2552,8 +3008,8 @@
       "source_priority": "S",
       "source_priority_score": 4,
       "extraction_method": "heuristic",
-      "updated_at": "2026-03-07T02:09:08.944Z",
-      "quality_score": 0.72
+      "updated_at": "2026-03-07T02:22:11.734Z",
+      "quality_score": 0.79
     },
     {
       "id": "c3d59b60df735377a0c9",
@@ -2564,7 +3020,7 @@
       "start_time": "16:45",
       "end_time": "",
       "all_day": false,
-      "venue": "",
+      "venue": "札幌市内会場",
       "venue_address": "〒005-0864 北海道札幌市南区芸術の森2丁目75",
       "summary": "12月16日（火）サッポロ・サウンド・スクエア開催！ | SAPPORO CITY JAZZ toggle navigation HOME NEWS LIVE &#038; EVENT ABOUT ABOUT JP ABOUT EN ENTRY PHOTO &#038; MOVIE SPONSOR NEWS LIVE &#038; EVENT ABOUT ABOUT JP ABOUT EN ENTRY PHOTO &#038; MOV…",
       "flyer_image_url": "https://sapporocityjazz.jp/wp/wp-content/uploads/2025/12/2025_SSS_1216_B0_05-1132x1600.jpg",
@@ -2576,8 +3032,8 @@
       "source_priority": "A",
       "source_priority_score": 3,
       "extraction_method": "heuristic",
-      "updated_at": "2026-03-07T02:09:23.973Z",
-      "quality_score": 0.84
+      "updated_at": "2026-03-07T02:22:27.571Z",
+      "quality_score": 0.91
     },
     {
       "id": "0537ac56b739da1f4edb",
@@ -2588,7 +3044,7 @@
       "start_time": "",
       "end_time": "",
       "all_day": true,
-      "venue": "札幌市役所1階ロビー",
+      "venue": "の都合上、定員は65名（先着順）となりますのでご了承ください。",
       "venue_address": "〒005-0864 北海道札幌市南区芸術の森2丁目75",
       "summary": "市民ロビーコンサート12月19日開催！ | SAPPORO CITY JAZZ toggle navigation HOME NEWS LIVE &#038; EVENT ABOUT ABOUT JP ABOUT EN ENTRY PHOTO &#038; MOVIE SPONSOR NEWS LIVE &#038; EVENT ABOUT ABOUT JP ABOUT EN ENTRY PHOTO &#038; MOVIE SPON…",
       "flyer_image_url": "https://sapporocityjazz.jp/wp/wp-content/uploads/2025/12/yanagimasaya.jpg",
@@ -2600,7 +3056,7 @@
       "source_priority": "A",
       "source_priority_score": 3,
       "extraction_method": "heuristic",
-      "updated_at": "2026-03-07T02:09:23.969Z",
+      "updated_at": "2026-03-07T02:22:27.489Z",
       "quality_score": 0.81
     },
     {
@@ -2612,7 +3068,7 @@
       "start_time": "",
       "end_time": "",
       "all_day": true,
-      "venue": "",
+      "venue": "大通公園",
       "venue_address": "〒005-0017 札幌市南区真駒内公園2-1",
       "summary": "札幌市内にはサケやサクラマスが遡上する河川が多くあります。 主な河川において、産卵床の分布調査を実施しました。 本調査は、札幌市豊平川さけ科学館および札幌ワイルドサーモンプロジェクト、国立研究開発法人水産研究・教育機構 [&hellip;]...",
       "flyer_image_url": "https://salmon-museum.jp/wp-content/uploads/2026/03/eaa44a5282f0996c4695d6fd193299c6.jpg",
@@ -2624,8 +3080,8 @@
       "source_priority": "A",
       "source_priority_score": 3,
       "extraction_method": "heuristic",
-      "updated_at": "2026-03-07T02:09:13.239Z",
-      "quality_score": 0.74
+      "updated_at": "2026-03-07T02:22:16.025Z",
+      "quality_score": 0.81
     }
   ]
 }
