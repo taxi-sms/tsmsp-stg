@@ -1138,10 +1138,10 @@ if(calendarNextBtn){
     setModalValue(eventModalAddressValue, ev.venue_address || ev.venue || "");
     setModalRowVisible(eventModalOpenLabel, eventModalOpenValue, true);
     setModalRowVisible(eventModalStartLabel, eventModalStartValue, true);
-    setModalRowVisible(eventModalEndLabel, eventModalEndValue, !!(ev.end_time && ev.end_time !== "00:00"));
+    setModalRowVisible(eventModalEndLabel, eventModalEndValue, false);
     setModalValue(eventModalOpenValue, (ev.open_time && ev.open_time !== "00:00") ? ev.open_time : "");
     setModalValue(eventModalStartValue, (ev.start_time && ev.start_time !== "00:00") ? ev.start_time : "");
-    setModalValue(eventModalEndValue, (ev.end_time && ev.end_time !== "00:00") ? ev.end_time : "");
+    setModalValue(eventModalEndValue, "");
     if(eventModalFlyerWrap && eventModalFlyer){
       if(ev.flyer_image_url){
         eventModalFlyer.src = ev.flyer_image_url;
