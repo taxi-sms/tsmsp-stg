@@ -697,6 +697,7 @@ body{padding-bottom:78px;}
   var eventModalSourceLink = document.getElementById("eventModalSourceLink");
   var eventModalCloseBtn = document.getElementById("eventModalCloseBtn");
   var dailyEventData = [];
+  var dailyEventViewData = [];
 
   function nowISO(){ return new Date().toISOString(); }
   function localYmd(){
@@ -907,6 +908,7 @@ body{padding-bottom:78px;}
       end_time: String(raw.end_time || "").trim(),
       venue: String(raw.venue || "").trim(),
       venue_address: String(raw.venue_address || "").trim(),
+      quality_score: Number(raw.quality_score || 0),
       summary: String(raw.summary || "").trim(),
       flyer_image_url: String(raw.flyer_image_url || "").trim(),
       detail_url: String(raw.detail_url || "").trim(),
@@ -917,6 +919,7 @@ body{padding-bottom:78px;}
     if(!ev) return false;
     var title = String(ev.title || "").trim();
     if(!title) return false;
+    if(Number(ev.quality_score || 0) < 0.56) return false;
     if(/^(イベント|イベント情報|event|events|schedule)(\s*[|｜:].*)?$/i.test(title)) return false;
     if(/^明日\(\)開催$/.test(title)) return false;
     if(/宴会場|会議室|客室|宿泊|ご案内|施設案内|公演・チケット情報|イベント一覧/.test(title)) return false;
@@ -924,7 +927,7 @@ body{padding-bottom:78px;}
   }
   function eventTimeLabel(ev){
     if(!ev) return "未定";
-    if(ev.start_time) return ev.start_time;
+    if(ev.start_time && ev.start_time !== "00:00") return ev.start_time;
     return "未定";
   }
   function eventVenueLabel(ev){
@@ -934,6 +937,7 @@ body{padding-bottom:78px;}
   }
   function setEventEmptyState(text){
     if(!dailyEventList) return;
+    dailyEventViewData = [];
     dailyEventList.innerHTML = "";
     var empty = document.createElement("div");
     empty.className = "event-empty";
@@ -944,9 +948,18 @@ body{padding-bottom:78px;}
     if(!dailyEventList) return;
     if(dailyEventHeading) dailyEventHeading.textContent = todayEventHeadingText();
     var today = localYmd();
+    function isOnToday(ev){
+      if(!ev || !ev.start_date) return false;
+      var start = String(ev.start_date || "");
+      var end = String(ev.end_date || "");
+      if(!/^\d{4}-\d{2}-\d{2}$/.test(start)) return false;
+      if(end && /^\d{4}-\d{2}-\d{2}$/.test(end)) return start <= today && today <= end;
+      return start === today;
+    }
     var todayEvents = dailyEventData.filter(function(ev){
-      return ev.start_date === today && isDisplayableEvent(ev);
+      return isOnToday(ev) && isDisplayableEvent(ev);
     });
+    dailyEventViewData = todayEvents.slice();
     dailyEventList.innerHTML = "";
     if(!todayEvents.length){
       setEventEmptyState("本日のイベントはありません。");
@@ -1083,7 +1096,7 @@ if(calendarNextBtn){
   }
   function openEventModalByIndex(idx){
     if(!eventModalBg || !eventModalTitle) return;
-    var ev = dailyEventData[idx];
+    var ev = dailyEventViewData[idx];
     if(!ev) return;
     eventModalTitle.textContent = ev.title || "イベント";
     if(eventModalDateLabel) eventModalDateLabel.textContent = "開催日時";
@@ -1091,10 +1104,10 @@ if(calendarNextBtn){
     setModalValue(eventModalAddressValue, ev.venue_address || ev.venue || "");
     setModalRowVisible(eventModalOpenLabel, eventModalOpenValue, true);
     setModalRowVisible(eventModalStartLabel, eventModalStartValue, true);
-    setModalRowVisible(eventModalEndLabel, eventModalEndValue, !!ev.end_time);
-    setModalValue(eventModalOpenValue, ev.open_time || "");
-    setModalValue(eventModalStartValue, ev.start_time || "");
-    setModalValue(eventModalEndValue, ev.end_time || "");
+    setModalRowVisible(eventModalEndLabel, eventModalEndValue, !!(ev.end_time && ev.end_time !== "00:00"));
+    setModalValue(eventModalOpenValue, (ev.open_time && ev.open_time !== "00:00") ? ev.open_time : "");
+    setModalValue(eventModalStartValue, (ev.start_time && ev.start_time !== "00:00") ? ev.start_time : "");
+    setModalValue(eventModalEndValue, (ev.end_time && ev.end_time !== "00:00") ? ev.end_time : "");
     if(eventModalFlyerWrap && eventModalFlyer){
       if(ev.flyer_image_url){
         eventModalFlyer.src = ev.flyer_image_url;

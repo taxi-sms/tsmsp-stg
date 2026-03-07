@@ -9,9 +9,13 @@ const OUTPUT_PATH = path.resolve(process.cwd(), 'data/events.json');
 
 const PRIORITY_SCORE = { S: 4, A: 3, B: 2, C: 1 };
 const EVENT_TEXT_RE = /(event|events|schedule|festival|concert|live|seminar|exhibition|show|meetup|fair|開催|公演|展示|ライブ|フェス|祭|イベント|セミナー)/i;
-const BAD_TITLE_RE = /(宴会場|会議室|客室|宿泊|ご案内|施設案内|貸し会議室|トップページ|無料で使える|他のイベントを見る|今週末のおすすめイベント|公演・チケット情報|イベント一覧|大宴会場案内|^明日\(\)開催$)/i;
+const BAD_TITLE_RE = /(宴会場|会議室|客室|宿泊|ご案内|施設案内|貸し会議室|トップページ|無料で使える|他のイベントを見る|今週末のおすすめイベント|公演・チケット情報|イベント一覧|大宴会場案内|^明日\(\)開催$|一覧表示|リスト表示|公演一覧|イベントスケジュール|主催公演|公演情報|イベント情報|近日開催イベント|歴史と開催結果|期間中の様々なイベント|託児サービス対象公演|ビジネスセミナー|セミナー情報|チケット詳細はこちら|NEW\s*キャンペーン|キャンペーン)/i;
 const WEAK_TITLE_RE = /^(イベント|イベント情報|event|events|schedule)(\s*[|｜:].*)?$/i;
 const BAD_URL_RE = /\/banq\/|\/banquet\/|\/stay\/|\/guestroom\//i;
+const DETAIL_URL_SIGNAL_RE = /(event[_-]?detail|\/detail\/|eventid=|eventcd=|eventbundlecd=|[?&](id|num|no|eid)=|\/seminar\/\d+|\/\d{4}\/\d{1,2}\/\d{1,2}\/)/i;
+const JSONLD_SCRIPT_RE = /<script\b[^>]*type=["']application\/ld\+json["'][^>]*>([\s\S]*?)<\/script>/gi;
+const MIN_QUALITY_SCORE = 0.56;
+const MIN_QUALITY_SCORE_HEURISTIC = 0.66;
 
 function parseArgs(argv) {
   const out = { mode: 'delta' };
@@ -161,6 +165,78 @@ function parseDatesFromText(text, nowYmd) {
   return out;
 }
 
+function parseIsoDateParts(value) {
+  const raw = String(value || '').trim();
+  if (!raw) return { date: '', time: '' };
+  const m = raw.match(/^(\d{4}-\d{2}-\d{2})(?:[T\s](\d{2}):?(\d{2})?)?/);
+  if (!m) return { date: '', time: '' };
+  const date = m[1] || '';
+  const hh = m[2] || '';
+  const mm = m[3] || '00';
+  return { date, time: hh ? `${hh}:${mm}` : '' };
+}
+
+function flattenJsonLd(input) {
+  const out = [];
+  function walk(node) {
+    if (!node) return;
+    if (Array.isArray(node)) {
+      for (const item of node) walk(item);
+      return;
+    }
+    if (typeof node !== 'object') return;
+    if (Array.isArray(node['@graph'])) walk(node['@graph']);
+    out.push(node);
+  }
+  walk(input);
+  return out;
+}
+
+function readJsonLdBlocks(html) {
+  const blocks = [];
+  let m;
+  while ((m = JSONLD_SCRIPT_RE.exec(html)) !== null) {
+    const raw = String(m[1] || '').trim();
+    if (!raw) continue;
+    try {
+      const parsed = JSON.parse(raw);
+      blocks.push(parsed);
+    } catch (_) {
+      // Ignore malformed JSON-LD block
+    }
+  }
+  return blocks;
+}
+
+function nodeTypeIncludes(node, expectedType) {
+  const t = node && node['@type'];
+  if (!t) return false;
+  if (Array.isArray(t)) return t.some((x) => String(x || '').toLowerCase() === expectedType);
+  return String(t || '').toLowerCase() === expectedType;
+}
+
+function toVenueText(location) {
+  if (!location) return '';
+  if (typeof location === 'string') return textPreview(location, 80);
+  const name = textPreview(location.name || '', 80);
+  if (name) return name;
+  return '';
+}
+
+function toAddressText(location) {
+  if (!location) return '';
+  const addr = location.address;
+  if (!addr) return '';
+  if (typeof addr === 'string') return textPreview(addr, 140);
+  const parts = [
+    addr.postalCode || '',
+    addr.addressRegion || '',
+    addr.addressLocality || '',
+    addr.streetAddress || ''
+  ].map((x) => String(x || '').trim()).filter(Boolean);
+  return textPreview(parts.join(' '), 140);
+}
+
 function normalizeHm(hour, minute = '00') {
   return `${String(hour).padStart(2, '0')}:${String(minute).padStart(2, '0')}`;
 }
@@ -269,6 +345,73 @@ function normalizeTitle(text) {
     .trim();
 }
 
+function normalizeTitleKey(text) {
+  return normalizeTitle(text)
+    .toLowerCase()
+    .replace(/[^\p{L}\p{N}]+/gu, '');
+}
+
+function hasDetailUrlSignal(url) {
+  const u = String(url || '').trim();
+  if (!u) return false;
+  return DETAIL_URL_SIGNAL_RE.test(u);
+}
+
+function isLikelyListingEvent(ev) {
+  const title = String(ev?.title || '').trim();
+  const detailUrl = String(ev?.detail_url || '').trim();
+  if (!title || !detailUrl) return true;
+  if (BAD_TITLE_RE.test(title) || WEAK_TITLE_RE.test(title)) return true;
+  if (BAD_URL_RE.test(detailUrl)) return true;
+  const hasSpecificData = !!(ev.open_time || ev.start_time || ev.end_time || ev.venue || ev.venue_address);
+  if (!hasSpecificData && !hasDetailUrlSignal(detailUrl)) return true;
+  return false;
+}
+
+function qualityScore(ev) {
+  let score = 0.0;
+  const title = String(ev?.title || '');
+  if (String(ev?.start_date || '').length === 10) score += 0.18;
+  if (title.length >= 8) score += 0.12;
+  if (!BAD_TITLE_RE.test(title) && !WEAK_TITLE_RE.test(title)) score += 0.12;
+  if (hasDetailUrlSignal(ev?.detail_url || '')) score += 0.2;
+  if (ev?.open_time) score += 0.08;
+  if (ev?.start_time) score += 0.1;
+  if (ev?.end_time) score += 0.05;
+  if (ev?.venue) score += 0.07;
+  if (ev?.venue_address) score += 0.04;
+  if (String(ev?.summary || '').length >= 30) score += 0.04;
+  if (String(ev?.extraction_method || '') === 'jsonld') score += 0.15;
+  const priority = String(ev?.source_priority || 'B').toUpperCase();
+  if (priority === 'S') score += 0.07;
+  if (priority === 'A') score += 0.04;
+  if (isLikelyListingEvent(ev)) score -= 0.35;
+  return Math.max(0, Math.min(1, Number(score.toFixed(3))));
+}
+
+function withQuality(ev) {
+  const normalized = { ...ev };
+  if (String(normalized.start_time || '') === '00:00' && !normalized.open_time && !normalized.end_time) {
+    normalized.start_time = '';
+  }
+  const score = qualityScore(normalized);
+  return { ...normalized, quality_score: score };
+}
+
+function isPublishable(ev) {
+  if (!ev) return false;
+  const title = String(ev.title || '').trim();
+  if (!title || BAD_TITLE_RE.test(title) || WEAK_TITLE_RE.test(title)) return false;
+  if (BAD_URL_RE.test(String(ev.detail_url || ''))) return false;
+  if (isLikelyListingEvent(ev)) return false;
+  const method = String(ev.extraction_method || 'heuristic');
+  if (method !== 'jsonld' && !hasDetailUrlSignal(ev.detail_url || '')) return false;
+  if (method !== 'jsonld' && !(EVENT_TEXT_RE.test(title) || /(ライブ|コンサート|公演|展示|フェス|祭|イベント)/.test(title))) return false;
+  const score = Number(ev.quality_score || 0);
+  if (method === 'jsonld') return score >= MIN_QUALITY_SCORE;
+  return score >= MIN_QUALITY_SCORE_HEURISTIC;
+}
+
 function buildEvent({ source, detailUrl, title, bodyText, html, nowYmd }) {
   if (BAD_URL_RE.test(detailUrl)) return null;
   const dates = parseDatesFromText(bodyText, nowYmd);
@@ -319,8 +462,88 @@ function buildEvent({ source, detailUrl, title, bodyText, html, nowYmd }) {
     source_category: source.category || '',
     source_priority: source.priority || 'B',
     source_priority_score: PRIORITY_SCORE[source.priority] || 0,
+    extraction_method: 'heuristic',
     updated_at: new Date().toISOString()
   };
+}
+
+function eventFromJsonLdNode(node, source, detailUrl) {
+  if (!nodeTypeIncludes(node, 'event')) return null;
+  const title = textPreview(node.name || node.headline || '', 120);
+  if (!title) return null;
+  if (BAD_TITLE_RE.test(title) || WEAK_TITLE_RE.test(title)) return null;
+
+  const start = parseIsoDateParts(node.startDate || node.doorTime || '');
+  if (!start.date) return null;
+  const end = parseIsoDateParts(node.endDate || '');
+  const startTime = (start.time === '00:00' && !end.time) ? '' : start.time;
+
+  const location = node.location && Array.isArray(node.location) ? node.location[0] : node.location;
+  const venue = toVenueText(location);
+  const venueAddress = toAddressText(location);
+  const image = Array.isArray(node.image) ? node.image[0] : node.image || '';
+  const summary = textPreview(node.description || '', 220);
+
+  const eventUrl = absolutizeUrl(detailUrl, node.url || '') || detailUrl;
+  if (!eventUrl || BAD_URL_RE.test(eventUrl)) return null;
+
+  const seed = `${eventUrl}|${start.date}|${startTime || ''}|${title}`;
+  return {
+    id: makeEventId(seed),
+    title,
+    start_date: start.date,
+    end_date: end.date || '',
+    open_time: '',
+    start_time: startTime || '',
+    end_time: end.time || '',
+    all_day: !start.time,
+    venue,
+    venue_address: venueAddress,
+    summary,
+    flyer_image_url: absolutizeUrl(detailUrl, image) || '',
+    detail_url: eventUrl,
+    source_id: source.id,
+    source_name: source.name,
+    source_url: source.url,
+    source_category: source.category || '',
+    source_priority: source.priority || 'B',
+    source_priority_score: PRIORITY_SCORE[source.priority] || 0,
+    extraction_method: 'jsonld',
+    updated_at: new Date().toISOString()
+  };
+}
+
+function extractJsonLdEvents({ html, source, detailUrl }) {
+  const blocks = readJsonLdBlocks(html);
+  if (!blocks.length) return [];
+  const out = [];
+  for (const block of blocks) {
+    const nodes = flattenJsonLd(block);
+    for (const node of nodes) {
+      const ev = eventFromJsonLdNode(node, source, detailUrl);
+      if (ev) out.push(ev);
+    }
+  }
+  return uniqueBy(out, (ev) => ev.id);
+}
+
+function extractEventsFromPage({ source, url, html, titleHint, nowYmd }) {
+  const events = [];
+  const jsonLdEvents = extractJsonLdEvents({ html, source, detailUrl: url });
+  for (const ev of jsonLdEvents) events.push(ev);
+
+  const bodyText = stripTags(html);
+  const heuristicEvent = buildEvent({
+    source,
+    detailUrl: url,
+    title: titleHint || extractTitle(html) || source.name,
+    bodyText,
+    html,
+    nowYmd
+  });
+  if (heuristicEvent) events.push(heuristicEvent);
+
+  return uniqueBy(events, (ev) => ev.id).map(withQuality);
 }
 
 async function fetchText(url, timeoutMs = 10000) {
@@ -386,7 +609,12 @@ async function mapLimit(items, limit, mapper) {
 
 async function crawlSource(source, options) {
   const { mode, nowYmd } = options;
-  const detailLimit = mode === 'full' ? 2 : 1;
+  const priority = String(source.priority || 'B').toUpperCase();
+  let detailLimit = 3;
+  if (priority === 'S') detailLimit = mode === 'full' ? 14 : 10;
+  else if (priority === 'A') detailLimit = mode === 'full' ? 10 : 7;
+  else if (priority === 'B') detailLimit = mode === 'full' ? 6 : 4;
+  else detailLimit = mode === 'full' ? 4 : 3;
 
   let root;
   try {
@@ -396,18 +624,15 @@ async function crawlSource(source, options) {
   }
 
   const rootTitle = extractTitle(root.html) || source.name;
-  const rootText = stripTags(root.html);
   const events = [];
-
-  const rootEvent = buildEvent({
+  const rootEvents = extractEventsFromPage({
     source,
-    detailUrl: root.url,
-    title: rootTitle,
-    bodyText: rootText,
+    url: root.url,
     html: root.html,
+    titleHint: rootTitle,
     nowYmd
   });
-  if (rootEvent) events.push(rootEvent);
+  for (const ev of rootEvents) events.push(ev);
 
   const links = extractLinks(root.html, root.url);
   const detailCandidates = uniqueBy(links, (x) => x.url)
@@ -417,34 +642,37 @@ async function crawlSource(source, options) {
       if (EVENT_TEXT_RE.test(x.text)) score += 3;
       if (EVENT_TEXT_RE.test(x.url)) score += 2;
       if (/\d{1,2}[\/.月]\d{1,2}日?/.test(x.text) || /20\d{2}[\/.\-年]/.test(x.text)) score += 2;
+      if (hasDetailUrlSignal(x.url)) score += 3;
       return { ...x, score };
     })
     .filter((x) => !BAD_TITLE_RE.test(x.text))
     .filter((x) => !BAD_URL_RE.test(x.url))
-    .filter((x) => x.score >= 3)
+    .filter((x) => x.score >= 4)
     .sort((a, b) => b.score - a.score)
     .slice(0, detailLimit);
 
-  const detailResults = await mapLimit(detailCandidates, 2, async (link) => {
+  const perSourceConcurrency = mode === 'full' ? 4 : 3;
+  const detailResults = await mapLimit(detailCandidates, perSourceConcurrency, async (link) => {
     try {
       const page = await fetchText(link.url, 9000);
-      const bodyText = stripTags(page.html);
-      const event = buildEvent({
+      const pageEvents = extractEventsFromPage({
         source,
-        detailUrl: page.url,
-        title: link.text || extractTitle(page.html) || source.name,
-        bodyText,
+        url: page.url,
         html: page.html,
+        titleHint: link.text || extractTitle(page.html) || source.name,
         nowYmd
       });
-      return event;
+      return pageEvents;
     } catch (_) {
-      return null;
+      return [];
     }
   });
 
   for (const row of detailResults) {
-    if (row && !row.error) events.push(row);
+    if (!row || row.error) continue;
+    if (Array.isArray(row)) {
+      for (const ev of row) events.push(ev);
+    }
   }
 
   return {
@@ -463,9 +691,25 @@ function sortEvents(a, b) {
   return (
     String(a.start_date || '').localeCompare(String(b.start_date || '')) ||
     String(a.start_time || '99:99').localeCompare(String(b.start_time || '99:99')) ||
+    (Number(b.quality_score || 0) - Number(a.quality_score || 0)) ||
     (Number(b.source_priority_score || 0) - Number(a.source_priority_score || 0)) ||
     String(a.title || '').localeCompare(String(b.title || ''), 'ja')
   );
+}
+
+function canonicalEventKey(ev) {
+  const t = normalizeTitleKey(ev?.title || '');
+  const d = String(ev?.start_date || '');
+  const v = normalizeTitleKey(ev?.venue || '');
+  return `${d}|${t}|${v}`;
+}
+
+function isOnToday(ev, today) {
+  const start = String(ev?.start_date || '');
+  const end = String(ev?.end_date || '');
+  if (!/^\d{4}-\d{2}-\d{2}$/.test(start)) return false;
+  if (end && /^\d{4}-\d{2}-\d{2}$/.test(end)) return start <= today && today <= end;
+  return start === today;
 }
 
 async function loadJson(filePath, fallback) {
@@ -508,9 +752,11 @@ async function main() {
 
   const nextEvents = [];
   let errorCount = 0;
+  const failedSourceIds = new Set();
   for (const result of results) {
     if (!result || result.error) {
       errorCount += 1;
+      if (result && result.sourceId) failedSourceIds.add(String(result.sourceId));
       continue;
     }
     for (const ev of result.events || []) {
@@ -520,7 +766,7 @@ async function main() {
   }
 
   const mergedById = new Map();
-  for (const ev of nextEvents) mergedById.set(ev.id, ev);
+  for (const ev of nextEvents) mergedById.set(ev.id, withQuality(ev));
 
   if (mode !== 'full') {
     const previous = await loadJson(OUTPUT_PATH, { events: [] });
@@ -529,13 +775,71 @@ async function main() {
     for (const ev of previousEvents) {
       if (!ev || !ev.id || mergedById.has(ev.id)) continue;
       if (!withinWindow(ev, minDate, keepUntil)) continue;
-      mergedById.set(ev.id, ev);
+      mergedById.set(ev.id, withQuality(ev));
+    }
+  }
+  if (mode === 'full' && failedSourceIds.size > 0) {
+    const previous = await loadJson(OUTPUT_PATH, { events: [] });
+    const previousEvents = Array.isArray(previous.events) ? previous.events : [];
+    const keepUntil = addDays(today, 90);
+    for (const ev of previousEvents) {
+      const sid = String(ev?.source_id || '');
+      if (!sid || !failedSourceIds.has(sid)) continue;
+      if (!ev || !ev.id || mergedById.has(ev.id)) continue;
+      if (!withinWindow(ev, minDate, keepUntil)) continue;
+      mergedById.set(ev.id, withQuality(ev));
     }
   }
 
-  const merged = Array.from(mergedById.values()).sort(sortEvents).slice(0, 900);
+  const merged = Array.from(mergedById.values());
+  const bestByCanonical = new Map();
+  for (const ev of merged) {
+    const key = canonicalEventKey(ev);
+    if (!key) continue;
+    const prev = bestByCanonical.get(key);
+    if (!prev) {
+      bestByCanonical.set(key, ev);
+      continue;
+    }
+    const prevScore = Number(prev.quality_score || 0);
+    const nextScore = Number(ev.quality_score || 0);
+    if (nextScore > prevScore) {
+      bestByCanonical.set(key, ev);
+      continue;
+    }
+    if (nextScore === prevScore && Number(ev.source_priority_score || 0) > Number(prev.source_priority_score || 0)) {
+      bestByCanonical.set(key, ev);
+    }
+  }
 
-  const todayCount = merged.filter((ev) => ev.start_date === today).length;
+  const mergedCanonical = Array.from(bestByCanonical.values())
+    .filter((ev) => withinWindow(ev, minDate, maxDate))
+    .filter((ev) => isPublishable(ev))
+    .sort(sortEvents);
+
+  const bestByUrlDate = new Map();
+  for (const ev of mergedCanonical) {
+    const url = normalizeUrlForCompare(ev.detail_url || '');
+    const key = `${String(ev.start_date || '')}|${url}`;
+    const prev = bestByUrlDate.get(key);
+    if (!prev) {
+      bestByUrlDate.set(key, ev);
+      continue;
+    }
+    const prevScore = Number(prev.quality_score || 0);
+    const nextScore = Number(ev.quality_score || 0);
+    if (nextScore > prevScore) {
+      bestByUrlDate.set(key, ev);
+      continue;
+    }
+    if (nextScore === prevScore && Number(ev.source_priority_score || 0) > Number(prev.source_priority_score || 0)) {
+      bestByUrlDate.set(key, ev);
+    }
+  }
+
+  const mergedPublic = Array.from(bestByUrlDate.values()).sort(sortEvents).slice(0, 900);
+
+  const todayCount = mergedPublic.filter((ev) => isOnToday(ev, today)).length;
   const payload = {
     schema_version: 1,
     generated_at: new Date().toISOString(),
@@ -544,14 +848,16 @@ async function main() {
     source_total: enabledSources.length,
     source_crawled: crawlTargets.length,
     crawl_error_sources: errorCount,
-    event_total: merged.length,
+    event_total: mergedPublic.length,
     event_today: todayCount,
-    events: merged
+    quality_threshold: MIN_QUALITY_SCORE,
+    quality_threshold_heuristic: MIN_QUALITY_SCORE_HEURISTIC,
+    events: mergedPublic
   };
 
   await writeJson(OUTPUT_PATH, payload);
 
-  console.log(`[events] mode=${mode} sources=${crawlTargets.length}/${enabledSources.length} errors=${errorCount} events=${merged.length} today=${todayCount}`);
+  console.log(`[events] mode=${mode} sources=${crawlTargets.length}/${enabledSources.length} errors=${errorCount} events=${mergedPublic.length} today=${todayCount}`);
 }
 
 main().catch((error) => {
