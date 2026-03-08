@@ -49,6 +49,12 @@ function buildRunner() {
       const inCash = { focus() { focused.push("cash"); } };
       const inCredit = { focus() { focused.push("credit"); } };
       const reportFieldConfig = { payPrimary: ["現金"] };
+      function getPayAmountVisibility() {
+        if (state.payMethodBase === "チケット他") return { showCash: true, showCredit: true };
+        if (state.payMethodBase === "その他" && state.payMethodOther === "追加8") return { showCash: true, showCredit: false };
+        if (state.payMethodBase === "現金") return { showCash: true, showCredit: false };
+        return { showCash: false, showCredit: true };
+      }
       function getPayMethodValue() {
         if (state.payMethodBase === "その他") return String(state.payMethodOther || "").trim();
         return String(state.payMethodBase || "").trim();
@@ -57,8 +63,8 @@ function buildRunner() {
         scrolled.push(section.id);
       }
       function focusAmountFieldForCurrentPayMethod() {
-        const resolvedPay = getPayMethodValue();
-        (resolvedPay === reportFieldConfig.payPrimary[0] ? inCash : inCredit).focus();
+        const visibility = getPayAmountVisibility();
+        (visibility.showCash ? inCash : inCredit).focus();
       }
       const document = {
         getElementById(id) {
@@ -124,7 +130,7 @@ function testNestedPaySelectionThenAmounts() {
     ticketSub: "Aチケット"
   });
   assert.deepStrictEqual(ticket.scrolled, ["sec_amounts"]);
-  assert.deepStrictEqual(ticket.focused, ["credit"]);
+  assert.deepStrictEqual(ticket.focused, ["cash"]);
 
   const other = runScenario({
     rideTypeBase: "無線",
@@ -133,6 +139,14 @@ function testNestedPaySelectionThenAmounts() {
   });
   assert.deepStrictEqual(other.scrolled, ["sec_amounts"]);
   assert.deepStrictEqual(other.focused, ["credit"]);
+
+  const otherCash = runScenario({
+    rideTypeBase: "無線",
+    payMethodBase: "その他",
+    payMethodOther: "追加8"
+  });
+  assert.deepStrictEqual(otherCash.scrolled, ["sec_amounts"]);
+  assert.deepStrictEqual(otherCash.focused, ["cash"]);
 }
 
 function runTests() {

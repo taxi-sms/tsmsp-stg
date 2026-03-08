@@ -117,6 +117,15 @@
       padding:var(--space-2) 4px;
       border-bottom:var(--line-thin) solid var(--border);
     }
+    .slot-editor{
+      display:grid;
+      grid-template-columns:minmax(0,1fr);
+      gap:10px;
+      align-items:center;
+    }
+    .slot-editor.has-flags{
+      grid-template-columns:minmax(0,1fr) auto;
+    }
     .slot-row:last-child{border-bottom:none;}
     .slot-label{
       font-size:var(--font-md);
@@ -133,6 +142,42 @@
       padding:11px 12px;
       font-size:var(--font-2xl);
       min-height:var(--control-h-md);
+    }
+    .flag-pair{
+      display:flex;
+      flex-wrap:wrap;
+      gap:10px;
+      align-items:center;
+      justify-content:flex-end;
+    }
+    .flag-check{
+      display:inline-flex;
+      align-items:center;
+      gap:6px;
+      font-size:var(--font-md);
+      font-weight:800;
+      color:var(--text-primary);
+      white-space:nowrap;
+    }
+    .flag-check input{
+      width:20px;
+      height:20px;
+      margin:0;
+      accent-color:var(--accent);
+    }
+    .flag-hint{
+      margin-top:4px;
+      font-size:var(--font-sm);
+      color:var(--text-muted);
+      line-height:1.5;
+    }
+    @media (max-width: 640px){
+      .slot-editor.has-flags{
+        grid-template-columns:minmax(0,1fr);
+      }
+      .flag-pair{
+        justify-content:flex-start;
+      }
     }
     .fixed-slot{
       display:grid;
@@ -208,7 +253,7 @@
 <main class="main">
   <section class="section">
     <div class="title">概要</div>
-    <div class="note">report.html の乗車種別、支払方法、チケット内項目で表示する名称を上から順に変更できます。保存時はローカル保存に加えてクラウドへも反映します。</div>
+    <div class="note">日報入力画面の乗車種別、支払方法、チケット内項目で表示する名称を上から順に変更できます。ユーザー自身で使いやすい様にカスタムして頂けます。ぜひご利用ください。</div>
   </section>
 
   <section class="section">
@@ -230,6 +275,7 @@
   <section class="section">
     <div class="title">支払方法</div>
     <div class="note">1〜6を変更できます。7番目は固定で「チケット他」、8番目は固定で「その他」です。</div>
+    <div class="flag-hint">右側のチェックで金額入力の対象を選びます。既定は未収です。</div>
     <div class="slot-list" id="payPrimaryList"></div>
     <div class="fixed-slot">
       <div class="slot-label">7. 固定項目</div>
@@ -244,6 +290,7 @@
   <section class="section">
     <div class="title">支払方法 その他</div>
     <div class="note">「その他」選択時に下から展開される追加1〜8です。</div>
+    <div class="flag-hint">右側のチェックで金額入力の対象を選びます。既定は未収です。</div>
     <div class="slot-list" id="payOtherList"></div>
   </section>
 
@@ -256,7 +303,7 @@
   <section class="section">
     <div class="save-wrap">
       <button class="btn" id="btnSaveAndBack" type="button">変更を保存して設定に戻る</button>
-      <div class="save-note" id="saveStatus">保存すると report.html の表示順と音声入力候補にも反映されます。</div>
+      <div class="save-note" id="saveStatus">必ず最後に保存してください。保存すると日報入力画面の表示順と音声入力候補にも反映されます。</div>
     </div>
   </section>
 </main>
@@ -273,7 +320,7 @@
   const saveBtn = document.getElementById("btnSaveAndBack");
   const saveStatus = document.getElementById("saveStatus");
 
-  function buildRows(hostId, values){
+  function buildRows(hostId, values, flags){
     const host = document.getElementById(hostId);
     if(!host) return;
     host.innerHTML = "";
@@ -291,21 +338,75 @@
       input.value = value;
       input.maxLength = 24;
       input.dataset.index = String(index);
+      input.dataset.role = "label";
+
+      const editor = document.createElement("div");
+      editor.className = "slot-editor" + (Array.isArray(flags) ? " has-flags" : "");
+      editor.appendChild(input);
+
+      if(Array.isArray(flags)){
+        const flag = flags[index] || { cash: false, credit: true };
+        const flagPair = document.createElement("div");
+        flagPair.className = "flag-pair";
+        flagPair.dataset.index = String(index);
+
+        [
+          { key: "cash", label: "現収", checked: !!flag.cash },
+          { key: "credit", label: "未収", checked: !!flag.credit }
+        ].forEach((def) => {
+          const wrap = document.createElement("label");
+          wrap.className = "flag-check";
+
+          const checkbox = document.createElement("input");
+          checkbox.type = "checkbox";
+          checkbox.checked = !!def.checked;
+          checkbox.dataset.flag = def.key;
+          checkbox.dataset.index = String(index);
+          checkbox.addEventListener("change", () => {
+            const cash = flagPair.querySelector('input[data-flag="cash"]');
+            const credit = flagPair.querySelector('input[data-flag="credit"]');
+            if(cash && credit && !cash.checked && !credit.checked){
+              if(def.key === "cash") credit.checked = true;
+              else cash.checked = true;
+            }
+          });
+
+          const text = document.createElement("span");
+          text.textContent = def.label;
+
+          wrap.appendChild(checkbox);
+          wrap.appendChild(text);
+          flagPair.appendChild(wrap);
+        });
+
+        editor.appendChild(flagPair);
+      }
 
       row.appendChild(label);
-      row.appendChild(input);
+      row.appendChild(editor);
       host.appendChild(row);
     });
   }
 
   buildRows("ridePrimaryList", current.ridePrimary);
   buildRows("rideOtherList", current.rideOther);
-  buildRows("payPrimaryList", current.payPrimary);
-  buildRows("payOtherList", current.payOther);
+  buildRows("payPrimaryList", current.payPrimary, current.payPrimaryFlags);
+  buildRows("payOtherList", current.payOther, current.payOtherFlags);
   buildRows("ticketSubList", current.ticketSub);
 
   function collectValues(hostId){
     return Array.from(document.querySelectorAll(`#${hostId} .input`)).map((input) => String(input.value || "").trim());
+  }
+
+  function collectFlags(hostId){
+    return Array.from(document.querySelectorAll(`#${hostId} .flag-pair`)).map((pair) => {
+      const cash = pair.querySelector('input[data-flag="cash"]');
+      const credit = pair.querySelector('input[data-flag="credit"]');
+      return {
+        cash: !!(cash && cash.checked),
+        credit: !!(credit && credit.checked)
+      };
+    });
   }
 
   function buildPayload(){
@@ -313,7 +414,9 @@
       ridePrimary: collectValues("ridePrimaryList"),
       rideOther: collectValues("rideOtherList"),
       payPrimary: collectValues("payPrimaryList"),
+      payPrimaryFlags: collectFlags("payPrimaryList"),
       payOther: collectValues("payOtherList"),
+      payOtherFlags: collectFlags("payOtherList"),
       ticketSub: collectValues("ticketSubList")
     };
   }

@@ -769,8 +769,26 @@
       rideOptions: ["無線", "付待", "流し", "乗場", "連続", "予約", "GO", "その他"],
       rideOther: ["追加1", "追加2", "追加3", "追加4", "追加5", "追加6", "追加7", "追加8"],
       payPrimary: ["現金", "QR", "クレカ", "電子M", "GO Pay", "乗込GO Pay"],
+      payPrimaryFlags: [
+        { cash: true, credit: false },
+        { cash: false, credit: true },
+        { cash: false, credit: true },
+        { cash: false, credit: true },
+        { cash: false, credit: true },
+        { cash: false, credit: true }
+      ],
       payOptions: ["現金", "QR", "クレカ", "電子M", "GO Pay", "乗込GO Pay", "チケット他", "その他"],
       payOther: ["追加1", "追加2", "追加3", "追加4", "追加5", "追加6", "追加7", "追加8"],
+      payOtherFlags: [
+        { cash: false, credit: true },
+        { cash: false, credit: true },
+        { cash: false, credit: true },
+        { cash: false, credit: true },
+        { cash: false, credit: true },
+        { cash: false, credit: true },
+        { cash: false, credit: true },
+        { cash: false, credit: true }
+      ],
       ticketSub: ["Aチケット", "自社チケット", "臨時チケット", "JCBチケット", "福祉チケット", "社内扱い", "その他", "GOチケット"]
     };
   const state = {
@@ -882,8 +900,45 @@
   }
 
   function focusAmountFieldForCurrentPayMethod() {
+    const visibility = getPayAmountVisibility();
+    (visibility.showCash ? inCash : inCredit).focus();
+  }
+
+  function normalizeAmountVisibility(flag, fallback) {
+    const base = flag && typeof flag === "object" ? flag : {};
+    let showCash = typeof base.cash === "boolean" ? base.cash : !!(fallback && fallback.showCash);
+    let showCredit = typeof base.credit === "boolean" ? base.credit : !!(fallback && fallback.showCredit);
+    if (!showCash && !showCredit) {
+      showCash = !!(fallback && fallback.showCash);
+      showCredit = !!(fallback && fallback.showCredit);
+      if (!showCash && !showCredit) showCredit = true;
+    }
+    return { showCash, showCredit };
+  }
+
+  function getLegacyPayAmountVisibility() {
     const resolvedPay = getPayMethodValue();
-    (resolvedPay === reportFieldConfig.payPrimary[0] ? inCash : inCredit).focus();
+    if (resolvedPay === reportFieldConfig.payPrimary[0]) return { showCash: true, showCredit: false };
+    if (state.payMethodBase === "チケット他") return { showCash: true, showCredit: true };
+    return { showCash: false, showCredit: true };
+  }
+
+  function getPayAmountVisibility() {
+    if (state.payMethodBase === "チケット他") {
+      return { showCash: true, showCredit: true };
+    }
+    if (state.payMethodBase === "その他") {
+      const otherIndex = reportFieldConfig.payOther.indexOf(String(state.payMethodOther || "").trim());
+      if (otherIndex >= 0) {
+        return normalizeAmountVisibility(reportFieldConfig.payOtherFlags && reportFieldConfig.payOtherFlags[otherIndex], { showCash: false, showCredit: true });
+      }
+      return { showCash: false, showCredit: true };
+    }
+    const primaryIndex = reportFieldConfig.payPrimary.indexOf(String(state.payMethodBase || "").trim());
+    if (primaryIndex >= 0) {
+      return normalizeAmountVisibility(reportFieldConfig.payPrimaryFlags && reportFieldConfig.payPrimaryFlags[primaryIndex], getLegacyPayAmountVisibility());
+    }
+    return getLegacyPayAmountVisibility();
   }
 
   function todayLocalYmd() {
@@ -928,20 +983,10 @@
     secPayMethodOther.classList.toggle("is-hidden", state.payMethodBase !== "その他");
     secTicket.classList.toggle("is-hidden", state.payMethodBase !== "チケット他");
 
-    const payBase = String(state.payMethodBase || "").trim();
-    if (payBase === reportFieldConfig.payPrimary[0]) {
-      rowCash.classList.remove("is-hidden");
-      rowCredit.classList.add("is-hidden");
-      focused = inCash;
-    } else if (payBase === "チケット他") {
-      rowCash.classList.remove("is-hidden");
-      rowCredit.classList.remove("is-hidden");
-      focused = inCredit;
-    } else {
-      rowCash.classList.add("is-hidden");
-      rowCredit.classList.remove("is-hidden");
-      focused = inCredit;
-    }
+    const visibility = getPayAmountVisibility();
+    rowCash.classList.toggle("is-hidden", !visibility.showCash);
+    rowCredit.classList.toggle("is-hidden", !visibility.showCredit);
+    focused = visibility.showCash ? inCash : inCredit;
   }
 
   function scrollToNextRequiredSection() {
@@ -2065,7 +2110,9 @@ ${remaining}秒後に${countdownLabel}`;
   }
 
   async function runVoiceAmountStage() {
-    if (state.payMethodBase === reportFieldConfig.payPrimary[0]) {
+    const visibility = getPayAmountVisibility();
+
+    if (visibility.showCash && !visibility.showCredit) {
       inCredit.value = "";
       const cashRes = await captureVoiceAmount("4/8", "数字をお話しください。", inCash, {
         title: "金額入力",
@@ -2078,7 +2125,7 @@ ${remaining}秒後に${countdownLabel}`;
       return { ok: true };
     }
 
-    if (state.payMethodBase === "チケット他") {
+    if (visibility.showCash && visibility.showCredit) {
       const cashRes = await captureVoiceAmount("4/8", "現収をお話しください。ない場合は『なし』。", inCash, {
         title: "現収入力",
         allowNone: true,
@@ -2113,9 +2160,7 @@ ${remaining}秒後に${countdownLabel}`;
   }
 
   function getVoiceAmountVisibility() {
-    if (state.payMethodBase === reportFieldConfig.payPrimary[0]) return { showCash: true, showCredit: false };
-    if (state.payMethodBase === "チケット他") return { showCash: true, showCredit: true };
-    return { showCash: false, showCredit: true };
+    return getPayAmountVisibility();
   }
 
   function showVoiceAmountReviewModal() {
@@ -2300,8 +2345,9 @@ ${remaining}秒後に${countdownLabel}`;
         const reviewAns = await showVoiceAmountReviewModal();
         if (reviewAns.cancelled) throw new Error("cancelled");
         if (reviewAns.retry) {
-          if (state.payMethodBase === reportFieldConfig.payPrimary[0]) inCash.value = "";
-          else if (state.payMethodBase === "チケット他") {
+          const visibility = getPayAmountVisibility();
+          if (visibility.showCash && !visibility.showCredit) inCash.value = "";
+          else if (visibility.showCash && visibility.showCredit) {
             inCash.value = "";
             inCredit.value = "";
           } else {
