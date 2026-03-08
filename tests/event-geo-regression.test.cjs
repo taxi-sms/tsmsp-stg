@@ -911,6 +911,32 @@ async function testExtractKitaraSiteRuleEventParsesOpenStartEnd() {
   assert.strictEqual(ev.venue, "大ホール");
 }
 
+async function testExtractKitaraSiteRuleEventSkipsInternalUse() {
+  const mod = await loadModule();
+  const source = { id: "www-kitara-sapporo-or-jp-event", name: "Kitara", url: "https://www.kitara-sapporo.or.jp/event/", priority: "A" };
+  const html = `
+    <html>
+      <head><title>関係者のみの公演がございます | Kitara</title></head>
+      <body>
+        <dl class="eventInfo">
+          <dt id="d_time">会場／日時</dt>
+          <dd>
+            <b class="place">大ホール</b>
+            <p>2026年4月4日(土曜日)</p>
+          </dd>
+        </dl>
+      </body>
+    </html>
+  `;
+  const ev = mod.extractKitaraSiteRuleEvent({
+    source,
+    url: "https://www.kitara-sapporo.or.jp/event/event_detail.php?num=7086",
+    html,
+    nowYmd: "2026-03-09"
+  });
+  assert.strictEqual(ev, null);
+}
+
 async function testExtractPl24ScheduleEventsUsesDistinctOpenAndStart() {
   const mod = await loadModule();
   const source = { id: "www-pl24-jp-schedule-html", name: "PENNY LANE24", url: "https://www.pl24.jp/schedule.html", priority: "A" };
@@ -1199,6 +1225,36 @@ async function testSourceSpecificNoiseFilterDropsKnownNonEventPages() {
       source_id: "www-sapporo-dome-co-jp-dome",
       title: "詳細はこちら(外部サイトにジャンプします)",
       detail_url: "https://t.pia.jp/pia/event/event.do?eventBundleCd=b2665989"
+    },
+    {
+      source_id: "spice-sapporo-jp-schedule",
+      title: "CLOSED｜店舗休業日",
+      detail_url: "https://spice-sapporo.jp/event/8767/"
+    },
+    {
+      source_id: "spice-sapporo-jp-schedule",
+      title: "COMING SOON",
+      detail_url: "https://spice-sapporo.jp/event/8780/"
+    },
+    {
+      source_id: "www-sapporo-community-plaza-jp-event-php",
+      title: "公演あり",
+      detail_url: "https://www.sapporo-community-plaza.jp/event.php?num=4891"
+    },
+    {
+      source_id: "www-sapporo-shiminhall-org",
+      title: "公演がございます",
+      detail_url: "https://www.sapporo-shiminhall.org/event/?ymd=2026/03/01#event2024-31"
+    },
+    {
+      source_id: "www-sapporo-community-plaza-jp-event-php",
+      title: "関係者のみの利用あり",
+      detail_url: "https://www.sapporo-community-plaza.jp/event.php?num=4991"
+    },
+    {
+      source_id: "www-kitara-sapporo-or-jp-event",
+      title: "関係者のみの公演がございます",
+      detail_url: "https://www.kitara-sapporo.or.jp/event/event_detail.php?num=7086"
     }
   ];
 
@@ -1278,6 +1334,7 @@ async function runTests() {
     ["CareTEX札幌の会期を拾う", testExtractCaretexSiteRuleEvent],
     ["HTB詳細は札幌セクションを優先する", testExtractHtbEventDetailEventsPrefersSapporoSection],
     ["Kitara詳細は open/start/end を拾う", testExtractKitaraSiteRuleEventParsesOpenStartEnd],
+    ["Kitara詳細は内部利用を除外する", testExtractKitaraSiteRuleEventSkipsInternalUse],
     ["PL24一覧は open/start を分離する", testExtractPl24ScheduleEventsUsesDistinctOpenAndStart],
     ["CITY JAZZ のニュース記事から開催日を拾う", testExtractSapporoCityJazzNewsEvents],
     ["夏まつり JSON 詳細から各行事を拾う", testExtractSummerfesDetailEvents],

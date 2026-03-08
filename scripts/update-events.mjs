@@ -685,6 +685,22 @@ function isSourceSpecificNoiseEvent(ev) {
     );
   }
 
+  if (sourceId === 'spice-sapporo-jp-schedule') {
+    return /(?:^|\b)(?:CLOSED|COMING SOON|HALL MAINTENANCE|PRIVATE USE|PRIVERT USE|店舗休業日)(?:\b|$)/i.test(title);
+  }
+
+  if (sourceId === 'www-sapporo-community-plaza-jp-event-php') {
+    return /^(?:公演あり|利用あり|関係者のみの利用あり)$/u.test(title);
+  }
+
+  if (sourceId === 'www-sapporo-shiminhall-org') {
+    return /^(?:公演がございます|関係者のみの使用がございます)$/u.test(title);
+  }
+
+  if (sourceId === 'www-kitara-sapporo-or-jp-event') {
+    return /^(?:関係者のみの公演がございます)$/u.test(title);
+  }
+
   return false;
 }
 
@@ -903,6 +919,7 @@ function extractKitaraSiteRuleEvent({ source, url, html, nowYmd }) {
   if (source.id !== 'www-kitara-sapporo-or-jp-event') return null;
   const titleRaw = extractTitle(html);
   const title = String(titleRaw || '').split('|')[0].trim();
+  if (/関係者のみ|休館日|保守点検|利用あり/i.test(title)) return null;
   if (!title || BAD_TITLE_RE.test(title) || WEAK_TITLE_RE.test(title)) return null;
 
   const dateBlock = pickSectionById(html, 'd_time');
