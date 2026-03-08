@@ -672,6 +672,57 @@ async function testExtractZeppSapporoSiteRuleEventAvoidsDuplicateArtistPrefix() 
   assert.strictEqual(ev.title, "UVERworld ZERO LAG TOUR");
 }
 
+async function testExtractZeppSapporoSiteRuleEventDropsBracketAliasOnDuplicatePrefix() {
+  const mod = await loadModule();
+  const source = { id: "www-zepp-co-jp-hall-sapporo-schedule", name: "Zepp Sapporo", url: "https://www.zepp.co.jp/hall/sapporo/schedule/", priority: "A" };
+  const html = `
+    <html>
+      <body>
+        <span class="sch-single-headelin-date__year">2026</span>
+        <span class="sch-single-headelin-date__month">03.22</span>
+        <h3 class="sch-single-headeline02">M.S.S Project【エム エス エス プロジェクト】</h3>
+        <h2 class="sch-single-headelin-ttl">M.S.S Project Tour 2026</h2>
+        <div class="sch-single-table-time__open">17:15</div>
+        <div class="sch-single-table-time__start">18:00</div>
+      </body>
+    </html>
+  `;
+  const ev = mod.extractZeppSapporoSiteRuleEvent({
+    source,
+    url: "https://www.zepp.co.jp/hall/sapporo/schedule/single/?rid=150709",
+    html,
+    nowYmd: "2026-03-01"
+  });
+  assert.ok(ev);
+  assert.strictEqual(ev.title, "M.S.S Project Tour 2026");
+}
+
+async function testBuildWessEventTrimsDuplicateArtistPrefix() {
+  const mod = await loadModule();
+  const source = {
+    id: "wess-jp-concert-schedule",
+    name: "WESS",
+    url: "https://wess.jp/concert-schedule/",
+    category: "コンサートプロモーター",
+    priority: "S"
+  };
+  const post = {
+    title: "ASIAN KUNG-FU GENERATION",
+    link: "https://wess.jp/ajikan/",
+    meta: {
+      kouenbi: "20260313",
+      artist: "ASIAN KUNG-FU GENERATION",
+      concerttitle: "ASIAN KUNG-FU GENERATIONFrom the Northern Land '26 \"Friendship\"",
+      kaijo: "PENNY LANE24",
+      kaijojikan: "18:00",
+      kaienjikan: "19:00"
+    }
+  };
+  const ev = mod.eventFromWessPost(post, source);
+  assert.ok(ev);
+  assert.strictEqual(ev.title, "ASIAN KUNG-FU GENERATION From the Northern Land '26 \"Friendship\"");
+}
+
 async function testExtractArtparkDetailEventUsesLabeledFields() {
   const mod = await loadModule();
   const source = { id: "artpark-or-jp-tenrankai-events", name: "札幌芸術の森", url: "https://artpark.or.jp/tenrankai-events/", priority: "A" };
@@ -1013,6 +1064,8 @@ async function runTests() {
     ["Mount Alive 詳細は meta と時間行から組み立てる", testExtractMountAliveSiteRuleEventUsesMetaFields],
     ["numeric entity はタイトルへデコードされる", testDecodeHtmlEntitiesSupportsNumericReferenceViaTitleBuilders],
     ["Zepp は artist/title の重複連結を避ける", testExtractZeppSapporoSiteRuleEventAvoidsDuplicateArtistPrefix],
+    ["Zepp は括弧付き別名の重複を落とす", testExtractZeppSapporoSiteRuleEventDropsBracketAliasOnDuplicatePrefix],
+    ["WESS は artist/title の重複接頭辞を詰める", testBuildWessEventTrimsDuplicateArtistPrefix],
     ["芸術の森詳細はラベル付き項目から組み立てる", testExtractArtparkDetailEventUsesLabeledFields],
     ["サッポロファクトリー月別ページを組み立てる", testExtractSapporoFactoryMonthlyEventsUsesMonthlyCards],
     ["mole RSS から日付と時間を拾う", testExtractMoleFeedEventsFromCategoryFeed],

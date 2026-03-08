@@ -276,14 +276,30 @@ function mergeDisplayTitleParts(primary, secondary, max = 120) {
   const b = textPreview(secondary || '', max);
   if (!a) return b;
   if (!b) return a;
-  const normalize = (value) => String(value || '').toLowerCase().replace(/[^\p{L}\p{N}]+/gu, '');
+  const normalize = (value) => decodeHtmlEntities(String(value || ''))
+    .replace(/【[^】]*】/g, ' ')
+    .replace(/\[[^\]]*\]/g, ' ')
+    .replace(/（[^）]*）/g, ' ')
+    .replace(/\([^)]*\)/g, ' ')
+    .toLowerCase()
+    .replace(/[^\p{L}\p{N}]+/gu, '');
   const keyA = normalize(a);
   const keyB = normalize(b);
   if (!keyA) return b;
   if (!keyB) return a;
   if (keyA === keyB) return a;
-  if (keyA.startsWith(keyB)) return a;
-  if (keyB.startsWith(keyA)) return b;
+  if (keyA.startsWith(keyB)) {
+    if (a.startsWith(b) && a.length > b.length && /\S/.test(a.charAt(b.length))) {
+      return textPreview(`${b} ${a.slice(b.length)}`, max);
+    }
+    return a;
+  }
+  if (keyB.startsWith(keyA)) {
+    if (b.startsWith(a) && b.length > a.length && /\S/.test(b.charAt(a.length))) {
+      return textPreview(`${a} ${b.slice(a.length)}`, max);
+    }
+    return b;
+  }
   return textPreview(`${a} ${b}`, max);
 }
 
@@ -1350,7 +1366,7 @@ function extractPl24ScheduleEvents({ source, url, html, nowYmd }) {
     const body = stripTags(block);
     const time = parseEventTimes(body);
     const detailUrl = absolutizeUrl(url, (block.match(/<a\b[^>]*href="([^"]+)"[^>]*>/i) || [])[1] || '') || url;
-    const eventTitle = textPreview([artist, title].filter(Boolean).join(' ').trim() || title || artist, 120);
+    const eventTitle = mergeDisplayTitleParts(artist, title, 120) || title || artist;
     if (!eventTitle || BAD_TITLE_RE.test(eventTitle) || WEAK_TITLE_RE.test(eventTitle)) continue;
     const ev = buildSiteRuleEvent({
       source,
@@ -1386,7 +1402,7 @@ function extractCubeGardenScheduleEvents({ source, url, html, nowYmd }) {
     const ev = buildSiteRuleEvent({
       source,
       detailUrl: ticketHref,
-      title: textPreview([artist, title].filter(Boolean).join(' ').trim() || title, 120),
+      title: mergeDisplayTitleParts(artist, title, 120) || title,
       startDate: dates[0].ymd,
       venue: 'cube garden',
       time: parseEventTimes(timeText || body),
@@ -2793,7 +2809,7 @@ function eventFromWessPost(post, source) {
 
   const artist = textPreview(meta.artist || '', 80);
   const concertTitle = textPreview(meta.concerttitle || '', 120);
-  const title = textPreview([artist, concertTitle].filter(Boolean).join(' ').trim() || String(post.title || ''), 120);
+  const title = mergeDisplayTitleParts(artist, concertTitle, 120) || textPreview(String(post.title || ''), 120);
   if (!title || BAD_TITLE_RE.test(title) || WEAK_TITLE_RE.test(title)) return null;
 
   const summary = textPreview(
