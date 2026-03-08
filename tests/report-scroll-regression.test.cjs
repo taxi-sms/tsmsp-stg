@@ -5,9 +5,11 @@ const assert = require("assert");
 const REPORT_HTML = path.resolve(__dirname, "..", "report.html");
 
 function extractFunctionSource(name, html) {
-  const startToken = `function ${name}() {`;
-  const start = html.indexOf(startToken);
-  if (start === -1) throw new Error(`${name} を report.html から抽出できませんでした。`);
+  const startMatch = html.match(new RegExp(`function\\s+${name}\\s*\\([^)]*\\)\\s*\\{`));
+  if (!startMatch || typeof startMatch.index !== "number") {
+    throw new Error(`${name} を report.html から抽出できませんでした。`);
+  }
+  const start = startMatch.index;
 
   let depth = 0;
   let end = -1;
@@ -28,10 +30,11 @@ function extractFunctionSource(name, html) {
 
 function buildRunner() {
   const html = fs.readFileSync(REPORT_HTML, "utf8");
+  const helperSource = extractFunctionSource("scrollToAmountsSection", html);
   const fnSource = extractFunctionSource("scrollToNextRequiredSection", html);
 
   const factory = new Function(`
-    return function runScenario(stateInput) {
+    return function runScenario(stateInput, triggerGroup) {
       const scrolled = [];
       const focused = [];
       const timers = [];
@@ -42,7 +45,9 @@ function buildRunner() {
         payMethodOther: "",
         ticketSub: ""
       }, stateInput || {});
+      const secRideType = { id: "sec_rideType" };
       const secRideTypeOther = { id: "sec_rideTypeOther" };
+      const secPayMethod = { id: "sec_payMethod" };
       const secPayMethodOther = { id: "sec_payMethodOther" };
       const secTicket = { id: "sec_ticketSub" };
       const secAmounts = { id: "sec_amounts" };
@@ -66,17 +71,13 @@ function buildRunner() {
         const visibility = getPayAmountVisibility();
         (visibility.showCash ? inCash : inCredit).focus();
       }
-      const document = {
-        getElementById(id) {
-          return { id };
-        }
-      };
       function setTimeout(fn) {
         timers.push(fn);
         return timers.length;
       }
+      ${helperSource}
       ${fnSource}
-      scrollToNextRequiredSection();
+      scrollToNextRequiredSection(triggerGroup);
       while (timers.length) {
         const fn = timers.shift();
         fn();
@@ -93,7 +94,7 @@ function testRideTypeOtherCompletesToPayMethod() {
   const result = runScenario({
     rideTypeBase: "その他",
     rideTypeOther: "追加3"
-  });
+  }, "rideTypeOther");
   assert.deepStrictEqual(result.scrolled, ["sec_payMethod"]);
 }
 
@@ -102,7 +103,7 @@ function testDirectPayMethodGoesToAmounts() {
   const result = runScenario({
     rideTypeBase: "無線",
     payMethodBase: "QR"
-  });
+  }, "payMethod");
   assert.deepStrictEqual(result.scrolled, ["sec_amounts"]);
   assert.deepStrictEqual(result.focused, ["credit"]);
 }
@@ -112,13 +113,13 @@ function testTicketAndOtherStopAtNestedSection() {
   const ticket = runScenario({
     rideTypeBase: "無線",
     payMethodBase: "チケット他"
-  });
+  }, "payMethod");
   assert.deepStrictEqual(ticket.scrolled, ["sec_ticketSub"]);
 
   const other = runScenario({
     rideTypeBase: "無線",
     payMethodBase: "その他"
-  });
+  }, "payMethod");
   assert.deepStrictEqual(other.scrolled, ["sec_payMethodOther"]);
 }
 
@@ -128,7 +129,7 @@ function testNestedPaySelectionThenAmounts() {
     rideTypeBase: "無線",
     payMethodBase: "チケット他",
     ticketSub: "Aチケット"
-  });
+  }, "ticketSub");
   assert.deepStrictEqual(ticket.scrolled, ["sec_amounts"]);
   assert.deepStrictEqual(ticket.focused, ["cash"]);
 
@@ -136,7 +137,7 @@ function testNestedPaySelectionThenAmounts() {
     rideTypeBase: "無線",
     payMethodBase: "その他",
     payMethodOther: "追加2"
-  });
+  }, "payMethodOther");
   assert.deepStrictEqual(other.scrolled, ["sec_amounts"]);
   assert.deepStrictEqual(other.focused, ["credit"]);
 
@@ -144,7 +145,7 @@ function testNestedPaySelectionThenAmounts() {
     rideTypeBase: "無線",
     payMethodBase: "その他",
     payMethodOther: "追加8"
-  });
+  }, "payMethodOther");
   assert.deepStrictEqual(otherCash.scrolled, ["sec_amounts"]);
   assert.deepStrictEqual(otherCash.focused, ["cash"]);
 }

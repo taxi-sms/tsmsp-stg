@@ -799,9 +799,11 @@
     ticketSub: "",
     disabilityDiscount: false
   };
+  const secRideType = document.getElementById("sec_rideType");
   const rideTypeButtons = document.getElementById("rideTypeButtons");
   const secRideTypeOther = document.getElementById("sec_rideTypeOther");
   const rideTypeOtherButtons = document.getElementById("rideTypeOtherButtons");
+  const secPayMethod = document.getElementById("sec_payMethod");
   const payMethodButtons = document.getElementById("payMethodButtons");
   const secPayMethodOther = document.getElementById("sec_payMethodOther");
   const payMethodOtherButtons = document.getElementById("payMethodOtherButtons");
@@ -883,19 +885,20 @@
     return (header ? header.getBoundingClientRect().height : 0) + 12;
   }
 
-  function scrollSectionIntoView(section) {
+  function scrollSectionIntoView(section, options) {
     if (!section || section.classList.contains("is-hidden")) return;
+    const force = !!(options && options.force);
     const rect = section.getBoundingClientRect();
     const topSafe = getHeaderOffset();
     const bottomSafe = window.innerHeight - 12;
-    if (rect.top >= topSafe && rect.bottom <= bottomSafe) return;
+    if (!force && rect.top >= topSafe && rect.bottom <= bottomSafe) return;
     const top = Math.max(0, window.scrollY + rect.top - topSafe);
     window.scrollTo({ top, behavior: "smooth" });
   }
 
-  function queueScrollToSection(section) {
+  function queueScrollToSection(section, options) {
     requestAnimationFrame(() => {
-      setTimeout(() => scrollSectionIntoView(section), 40);
+      setTimeout(() => scrollSectionIntoView(section, options), 40);
     });
   }
 
@@ -989,31 +992,43 @@
     focused = visibility.showCash ? inCash : inCredit;
   }
 
-  function scrollToNextRequiredSection() {
+  function scrollToAmountsSection(force) {
+    setTimeout(() => {
+      queueScrollToSection(secAmounts, { force: !!force });
+      focusAmountFieldForCurrentPayMethod();
+    }, 50);
+  }
+
+  function scrollToNextRequiredSection(triggerGroup) {
+    if (triggerGroup === "rideTypeOther") {
+      queueScrollToSection(secPayMethod, { force: true });
+      return;
+    }
+    if (triggerGroup === "payMethodOther" || triggerGroup === "ticketSub") {
+      scrollToAmountsSection(true);
+      return;
+    }
     if (!state.rideTypeBase) {
-      queueScrollToSection(document.getElementById("sec_rideType"));
+      queueScrollToSection(secRideType);
       return;
     }
     if (state.rideTypeBase === "その他" && !state.rideTypeOther) {
-      queueScrollToSection(secRideTypeOther);
+      queueScrollToSection(secRideTypeOther, { force: triggerGroup === "rideType" });
       return;
     }
     if (!state.payMethodBase) {
-      queueScrollToSection(document.getElementById("sec_payMethod"));
+      queueScrollToSection(secPayMethod, { force: triggerGroup === "rideType" || triggerGroup === "rideTypeOther" });
       return;
     }
     if (state.payMethodBase === "その他" && !state.payMethodOther) {
-      queueScrollToSection(secPayMethodOther);
+      queueScrollToSection(secPayMethodOther, { force: triggerGroup === "payMethod" });
       return;
     }
     if (state.payMethodBase === "チケット他" && !state.ticketSub) {
-      queueScrollToSection(secTicket);
+      queueScrollToSection(secTicket, { force: triggerGroup === "payMethod" });
       return;
     }
-    setTimeout(() => {
-      queueScrollToSection(secAmounts);
-      focusAmountFieldForCurrentPayMethod();
-    }, 50);
+    scrollToAmountsSection(triggerGroup === "payMethod" || triggerGroup === "payMethodOther" || triggerGroup === "ticketSub");
   }
 
   function clearForm() {
@@ -2429,7 +2444,7 @@ ${remaining}秒後に${countdownLabel}`;
       if (g === "ticketSub") state.ticketSub = selected ? v : "";
 
       if (g === "rideType" || g === "payMethod") applyPayRules();
-      if (selected) scrollToNextRequiredSection();
+      if (selected) scrollToNextRequiredSection(g);
       return;
     }
 
