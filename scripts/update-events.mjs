@@ -675,6 +675,19 @@ function isSourceSpecificNoiseEvent(ev) {
     );
   }
 
+  if (sourceId === 'www-city-sapporo-jp-keizai-kanko-event-event-html') {
+    const startYear = Number(String(ev?.start_date || '').slice(0, 4));
+    const titleYear = Number((title.match(/\b(20\d{2})\b/u) || [])[1] || '');
+    const urlYear = Number((detailUrl.match(/\/(20\d{2})\//u) || [])[1] || '');
+    return !!(
+      startYear &&
+      titleYear &&
+      urlYear &&
+      titleYear < startYear &&
+      urlYear <= titleYear
+    );
+  }
+
   if (sourceId === 'www-sapporo-dome-co-jp-dome') {
     return (
       detailUrl === 'https://www.sapporo-dome.co.jp/event-prom' ||
@@ -860,6 +873,13 @@ function normalizeSourceEventTitle({ source, title, summary = '', bodyText = '' 
   const sourceId = String(source?.id || '');
   let value = String(title || '').trim();
   if (!value) return '';
+
+  if (sourceId === 'www-city-sapporo-jp-keizai-seminar-index-html') {
+    value = value
+      .replace(/^(?:(?:開催|対面|オンライン|創業希望者向け|補助金・支援制度|リーダーシップ|ビジネスマナー|コミュニケーション|ＩＴ・セキュリティ関連)\s+)+/u, '')
+      .replace(/\s{2,}/g, ' ')
+      .trim();
+  }
 
   if (sourceId === 'www-stv-jp-event-index-html') {
     const summaryHead = String(summary || bodyText || '').split(/[｜|]/)[0].trim();
@@ -2622,6 +2642,12 @@ function withQuality(ev) {
   if (String(normalized.start_time || '') === '00:00' && !normalized.open_time && !normalized.end_time) {
     normalized.start_time = '';
   }
+  const normalizedTitle = normalizeSourceEventTitle({
+    source: { id: normalized.source_id || '' },
+    title: normalized.title || '',
+    summary: normalized.summary || ''
+  });
+  if (normalizedTitle) normalized.title = textPreview(normalizedTitle, 120);
   const score = qualityScore(normalized);
   return { ...normalized, quality_score: score };
 }

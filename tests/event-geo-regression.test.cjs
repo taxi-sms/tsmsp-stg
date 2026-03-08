@@ -1255,6 +1255,12 @@ async function testSourceSpecificNoiseFilterDropsKnownNonEventPages() {
       source_id: "www-kitara-sapporo-or-jp-event",
       title: "関係者のみの公演がございます",
       detail_url: "https://www.kitara-sapporo.or.jp/event/event_detail.php?num=7086"
+    },
+    {
+      source_id: "www-city-sapporo-jp-keizai-kanko-event-event-html",
+      title: "SAPPORO CITY JAZZ 2024パークジャズライブ",
+      detail_url: "https://sapporocityjazz.jp/2024/02/02/news-570/",
+      start_date: "2026-04-10"
     }
   ];
 
@@ -1288,6 +1294,21 @@ async function testSourceSpecificNoiseFilterKeepsRealEventPages() {
   assert.strictEqual(mod.isPublishable(ev), true);
 }
 
+async function testSourceSpecificNoiseFilterKeepsCurrentYearArticle() {
+  const mod = await loadModule();
+  const ev = {
+    source_id: "www-city-sapporo-jp-keizai-kanko-event-event-html",
+    title: "花フェスタ2024札幌",
+    start_date: "2024-06-21",
+    venue: "大通公園",
+    venue_address: "札幌市中央区大通西4丁目",
+    detail_url: "https://www.hanafes-sapporo.jp/",
+    quality_score: 0.9,
+    extraction_method: "heuristic"
+  };
+  assert.strictEqual(mod.isSourceSpecificNoiseEvent(ev), false);
+}
+
 async function testNormalizeSourceEventTitleCleansStvSummaryLeak() {
   const mod = await loadModule();
   const title = mod.normalizeSourceEventTitle({
@@ -1296,6 +1317,15 @@ async function testNormalizeSourceEventTitleCleansStvSummaryLeak() {
     summary: "目から鱗のお金のセミナー ｜ ＳＴＶラジオ スマートフォン版 メニュー"
   });
   assert.strictEqual(title, "目から鱗のお金のセミナー");
+}
+
+async function testNormalizeSourceEventTitleCleansSeminarPrefixes() {
+  const mod = await loadModule();
+  const title = mod.normalizeSourceEventTitle({
+    source: { id: "www-city-sapporo-jp-keizai-seminar-index-html" },
+    title: "開催 ＩＴ・セキュリティ関連 対面 若手社員のうちに身に着けるべき、正しい生成AI活用法"
+  });
+  assert.strictEqual(title, "若手社員のうちに身に着けるべき、正しい生成AI活用法");
 }
 
 async function runTests() {
@@ -1348,7 +1378,9 @@ async function runTests() {
     ["cross-source dedupe はプログラム違いを残す", testMergeCrossSourceNearDuplicatesKeepsProgramVariantsSeparate],
     ["source別ノイズは公開対象から落とす", testSourceSpecificNoiseFilterDropsKnownNonEventPages],
     ["source別ノイズ判定は実イベントを残す", testSourceSpecificNoiseFilterKeepsRealEventPages],
-    ["STV の title 混入は正規化する", testNormalizeSourceEventTitleCleansStvSummaryLeak]
+    ["source別 stale 判定は現行記事を残す", testSourceSpecificNoiseFilterKeepsCurrentYearArticle],
+    ["STV の title 混入は正規化する", testNormalizeSourceEventTitleCleansStvSummaryLeak],
+    ["seminar の接頭辞は正規化する", testNormalizeSourceEventTitleCleansSeminarPrefixes]
   ];
   let passed = 0;
   for (const [name, fn] of tests) {
