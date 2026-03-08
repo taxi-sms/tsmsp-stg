@@ -1,5 +1,6 @@
 (function () {
   const KEY = "tsms_report_field_settings";
+  const FIXED_PAY_OPTIONS = Object.freeze(["チケット他", "その他"]);
 
   const DEFAULTS = Object.freeze({
     ridePrimary: ["無線", "付待", "流し", "乗場", "連続", "予約", "GO"],
@@ -56,7 +57,7 @@
       rideOptions: normalized.ridePrimary.concat(["その他"]),
       rideOther: normalized.rideOther.slice(),
       payPrimary: normalized.payPrimary.slice(),
-      payOptions: normalized.payPrimary.concat(["その他"]),
+      payOptions: normalized.payPrimary.concat(FIXED_PAY_OPTIONS),
       payOther: normalized.payOther.slice(),
       ticketSub: normalized.ticketSub.slice()
     };

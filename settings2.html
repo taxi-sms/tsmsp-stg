@@ -229,10 +229,14 @@
 
   <section class="section">
     <div class="title">支払方法</div>
-    <div class="note">1〜6を変更できます。7番目は固定で「その他」です。</div>
+    <div class="note">1〜6を変更できます。7番目は固定で「チケット他」、8番目は固定で「その他」です。</div>
     <div class="slot-list" id="payPrimaryList"></div>
     <div class="fixed-slot">
       <div class="slot-label">7. 固定項目</div>
+      <div class="fixed-slot-value">チケット他</div>
+    </div>
+    <div class="fixed-slot">
+      <div class="slot-label">8. 固定項目</div>
       <div class="fixed-slot-value">その他</div>
     </div>
   </section>
@@ -357,7 +361,7 @@
 </script>
 
 <script>
-  (function(){if('serviceWorker' in navigator && location.protocol.indexOf('http')===0){window.addEventListener('load', function(){navigator.serviceWorker.register('./sw.js?v=20260228-1').catch(function(){});});}})();
+  (function(){if('serviceWorker' in navigator && location.protocol.indexOf('http')===0){window.addEventListener('load', function(){navigator.serviceWorker.register('./sw.js?v=20260228-2').catch(function(){});});}})();
 </script>
 
 <nav class="tsms-bottom-nav" aria-label="ボトムメニュー">

@@ -769,7 +769,7 @@
       rideOptions: ["無線", "付待", "流し", "乗場", "連続", "予約", "GO", "その他"],
       rideOther: ["追加1", "追加2", "追加3", "追加4", "追加5", "追加6", "追加7", "追加8"],
       payPrimary: ["現金", "QR", "クレカ", "電子M", "GO Pay", "乗込GO Pay"],
-      payOptions: ["現金", "QR", "クレカ", "電子M", "GO Pay", "乗込GO Pay", "その他"],
+      payOptions: ["現金", "QR", "クレカ", "電子M", "GO Pay", "乗込GO Pay", "チケット他", "その他"],
       payOther: ["追加1", "追加2", "追加3", "追加4", "追加5", "追加6", "追加7", "追加8"],
       ticketSub: ["Aチケット", "自社チケット", "臨時チケット", "JCBチケット", "福祉チケット", "社内扱い", "その他", "GOチケット"]
     };
@@ -1747,6 +1747,7 @@ ${remaining}秒後に${countdownLabel}`;
       if (value === "電子M") return ["電子m", "電子マネー", "でんしまねー"];
       if (value === "GO Pay") return ["gopay", "go pay", "ゴーペイ"];
       if (value === "乗込GO Pay") return ["乗込gopay", "乗り込みgopay", "乗込go pay", "乗り込みgo pay", "乗込go", "乗り込みgo"];
+      if (value === "チケット他") return ["チケット他", "チケット", "ticket", "チケットそのた"];
       if (value === "その他") return ["そのた"];
       return [];
     });
