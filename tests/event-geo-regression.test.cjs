@@ -596,6 +596,33 @@ async function testExtractKaderuDetailEventUsesDetailVenue() {
   assert.strictEqual(ev.venue_address, "札幌市中央区北2条7丁目");
 }
 
+async function testExtractMountAliveSiteRuleEventUsesMetaFields() {
+  const mod = await loadModule();
+  const source = { id: "www-mountalive-com-schedule", name: "Mount Alive", url: "https://www.mountalive.com/schedule/", priority: "A" };
+  const html = `
+    <html>
+      <head>
+        <meta name="description" content="日程：2026年4月11日｜イベント名：KK60 ?コイズミ記念館? KYOKO KOIZUMI TOUR 2026｜アーティスト名：小泉今日子｜会場名：札幌文化芸術劇場hitaru：札幌市中央区北1条西1丁目" />
+        <title>KK60 | MOUNT ALIVE</title>
+      </head>
+      <body>
+        <p id="op_st_time">OPEN 17:00 / START 18:00</p>
+      </body>
+    </html>
+  `;
+  const ev = mod.extractMountAliveSiteRuleEvent({
+    source,
+    url: "https://www.mountalive.com/schedule/more.php?no=3875",
+    html,
+    nowYmd: "2026-03-01"
+  });
+  assert.ok(ev);
+  assert.strictEqual(ev.start_date, "2026-04-11");
+  assert.strictEqual(ev.venue, "札幌文化芸術劇場hitaru");
+  assert.strictEqual(ev.open_time, "17:00");
+  assert.strictEqual(ev.start_time, "18:00");
+}
+
 async function testExtractArtparkDetailEventUsesLabeledFields() {
   const mod = await loadModule();
   const source = { id: "artpark-or-jp-tenrankai-events", name: "札幌芸術の森", url: "https://artpark.or.jp/tenrankai-events/", priority: "A" };
@@ -934,6 +961,7 @@ async function runTests() {
     ["PMF詳細はラベル付き項目から組み立てる", testExtractPmfScheduleDetailEventUsesLabeledSections],
     ["市民交流プラザは内部利用を除外する", testExtractSapporoCommunityPlazaSiteRuleEventSkipsInternalUse],
     ["かでる詳細は詳細ページの会場を優先する", testExtractKaderuDetailEventUsesDetailVenue],
+    ["Mount Alive 詳細は meta と時間行から組み立てる", testExtractMountAliveSiteRuleEventUsesMetaFields],
     ["芸術の森詳細はラベル付き項目から組み立てる", testExtractArtparkDetailEventUsesLabeledFields],
     ["サッポロファクトリー月別ページを組み立てる", testExtractSapporoFactoryMonthlyEventsUsesMonthlyCards],
     ["mole RSS から日付と時間を拾う", testExtractMoleFeedEventsFromCategoryFeed],

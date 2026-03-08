@@ -2177,6 +2177,51 @@ function extractMountAliveSiteRuleEvent({ source, url, html, nowYmd }) {
   });
 }
 
+async function crawlMountAliveSource(source, options) {
+  const { nowYmd, maxDate } = options;
+  let root;
+  try {
+    root = await fetchText(source.url, 12000);
+  } catch (error) {
+    return { sourceId: source.id, events: [], error: String(error?.message || error) };
+  }
+
+  const detailLinks = uniqueBy(
+    extractLinks(root.html, root.url)
+      .filter((link) => /^https:\/\/www\.mountalive\.com\/schedule\/more\.php\?no=\d+/i.test(link.url)),
+    (link) => link.url
+  );
+
+  const detailPages = await mapLimit(detailLinks, 4, async (link) => {
+    try {
+      return await fetchText(link.url, 12000);
+    } catch (_) {
+      return null;
+    }
+  });
+
+  const events = [];
+  for (const page of detailPages) {
+    if (!page || page.error) continue;
+    const ev = extractMountAliveSiteRuleEvent({
+      source,
+      url: page.url,
+      html: page.html,
+      nowYmd
+    });
+    if (!ev) continue;
+    if (!withinWindow(ev, nowYmd, maxDate)) continue;
+    if (!isSapporoAreaEvent(ev, source)) continue;
+    events.push(withQuality(ev));
+  }
+
+  return {
+    sourceId: source.id,
+    events: uniqueBy(events, (ev) => ev.id),
+    error: ''
+  };
+}
+
 function extractZeppSapporoSiteRuleEvent({ source, url, html, nowYmd }) {
   if (source.id !== 'www-zepp-co-jp-hall-sapporo-schedule') return null;
   if (!/\/schedule\/single\//i.test(url)) return null;
@@ -3662,6 +3707,9 @@ async function crawlSource(source, options) {
   if (source.id === 'wess-jp-concert-schedule') {
     return crawlWessSource(source, options);
   }
+  if (source.id === 'www-mountalive-com-schedule') {
+    return crawlMountAliveSource(source, options);
+  }
   if (source.id === 'spice-sapporo-jp-schedule') {
     return crawlSpiceScheduleSource(source, options);
   }
@@ -4133,6 +4181,7 @@ export {
   extractKeioPlazaEventDetailEvent,
   extractKyobunScheduleEvents,
   extractLilacfesDetailEvents,
+  extractMountAliveSiteRuleEvent,
   extractNoMapsNearlyEvent,
   extractMoleFeedEvents,
   extractPmfScheduleDetailEvent,
