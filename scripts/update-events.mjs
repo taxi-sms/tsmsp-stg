@@ -4046,11 +4046,163 @@ function mergeEventCompleteness(primary, secondary) {
   return out;
 }
 
+function mergePreferredEvent(primary, secondary) {
+  const primaryScore = Number(primary?.quality_score || 0);
+  const secondaryScore = Number(secondary?.quality_score || 0);
+  if (secondaryScore > primaryScore) return mergeEventCompleteness(secondary, primary);
+  if (secondaryScore === primaryScore && Number(secondary?.source_priority_score || 0) > Number(primary?.source_priority_score || 0)) {
+    return mergeEventCompleteness(secondary, primary);
+  }
+  return mergeEventCompleteness(primary, secondary);
+}
+
+function canonicalVenueKey(value) {
+  return normalizeTitleKey(cleanVenue(value || ''));
+}
+
 function canonicalEventKey(ev) {
-  const t = normalizeTitleKey(ev?.title || '');
+  const t = normalizeCrossSourceTitleKey(ev?.title || '');
   const d = String(ev?.start_date || '');
-  const v = normalizeTitleKey(ev?.venue || '');
+  const v = canonicalVenueKey(ev?.venue || '');
   return `${d}|${t}|${v}`;
+}
+
+function collapseRepeatedPrefixKey(value) {
+  const text = String(value || '');
+  if (text.length < 8) return text;
+  const maxPrefixLength = Math.floor(text.length / 2);
+  for (let size = maxPrefixLength; size >= 3; size -= 1) {
+    const prefix = text.slice(0, size);
+    if (text.startsWith(prefix + prefix)) {
+      return prefix + text.slice(size * 2);
+    }
+  }
+  return text;
+}
+
+function normalizeCrossSourceTitleKey(text) {
+  return collapseRepeatedPrefixKey(normalizeTitleKey(text));
+}
+
+function eventTimeKey(ev) {
+  const start = String(ev?.start_time || '').trim();
+  if (start && start !== '00:00') return start;
+  const open = String(ev?.open_time || '').trim();
+  if (open && open !== '00:00') return open;
+  return '';
+}
+
+function eventTimesCompatibleForDedupe(primary, secondary) {
+  const a = eventTimeKey(primary);
+  const b = eventTimeKey(secondary);
+  return !a || !b || a === b;
+}
+
+function extractSessionMarker(text) {
+  const raw = normalizeTitle(text)
+    .toLowerCase()
+    .replace(/[“”"'`’]/g, '')
+    .replace(/\s+/g, ' ')
+    .trim();
+  if (!raw) return '';
+
+  const patterns = [
+    /\b(?:program|prog(?:ram)?|part)\s*([a-z0-9]+)\b/i,
+    /プログラム\s*([a-z0-9Ａ-Ｚ０-９一二三四五六七八九十甲乙丙丁]+)/i,
+    /第?\s*([0-9０-９一二三四五六七八九十]+)\s*部/i,
+    /(昼公演|夜公演|昼の部|夜の部|matinee|evening)/i
+  ];
+
+  for (const re of patterns) {
+    const match = raw.match(re);
+    if (!match) continue;
+    return normalizeTitleKey(match[1] || match[0] || '');
+  }
+  return '';
+}
+
+function titleBigramSet(text) {
+  const key = String(text || '');
+  if (!key) return new Set();
+  if (key.length < 2) return new Set([key]);
+  const out = new Set();
+  for (let index = 0; index < key.length - 1; index += 1) out.add(key.slice(index, index + 2));
+  return out;
+}
+
+function titleOverlapScore(primaryKey, secondaryKey) {
+  const a = titleBigramSet(primaryKey);
+  const b = titleBigramSet(secondaryKey);
+  if (!a.size || !b.size) return 0;
+  let overlap = 0;
+  for (const token of a) {
+    if (b.has(token)) overlap += 1;
+  }
+  return overlap / Math.min(a.size, b.size);
+}
+
+function isLikelyCrossSourceDuplicate(primary, secondary) {
+  if (!primary || !secondary) return false;
+  if (String(primary?.source_id || '') === String(secondary?.source_id || '')) return false;
+  if (String(primary?.start_date || '') !== String(secondary?.start_date || '')) return false;
+
+  const venueKey = canonicalVenueKey(primary?.venue || '');
+  if (!venueKey || venueKey !== canonicalVenueKey(secondary?.venue || '')) return false;
+  if (!eventTimesCompatibleForDedupe(primary, secondary)) return false;
+
+  const sessionA = extractSessionMarker(primary?.title || '');
+  const sessionB = extractSessionMarker(secondary?.title || '');
+  if (sessionA || sessionB) {
+    if (!sessionA || !sessionB || sessionA !== sessionB) return false;
+  }
+
+  const titleA = normalizeCrossSourceTitleKey(primary?.title || '');
+  const titleB = normalizeCrossSourceTitleKey(secondary?.title || '');
+  if (!titleA || !titleB) return false;
+  if (titleA === titleB) return true;
+
+  const shorter = titleA.length <= titleB.length ? titleA : titleB;
+  const longer = titleA.length <= titleB.length ? titleB : titleA;
+  if (shorter.length >= 10 && longer.includes(shorter) && (shorter.length / longer.length) >= 0.68) return true;
+
+  return titleOverlapScore(titleA, titleB) >= 0.82;
+}
+
+function mergeCrossSourceNearDuplicates(events) {
+  const groups = new Map();
+  for (const ev of events || []) {
+    const date = String(ev?.start_date || '');
+    const venueKey = canonicalVenueKey(ev?.venue || '');
+    if (!date || !venueKey) {
+      const fallbackKey = `__single__${groups.size}`;
+      groups.set(fallbackKey, [ev]);
+      continue;
+    }
+    const key = `${date}|${venueKey}`;
+    if (!groups.has(key)) groups.set(key, []);
+    groups.get(key).push(ev);
+  }
+
+  const merged = [];
+  for (const group of groups.values()) {
+    const representatives = [];
+    const ordered = [...group].sort((a, b) => (
+      Number(b?.quality_score || 0) - Number(a?.quality_score || 0) ||
+      Number(b?.source_priority_score || 0) - Number(a?.source_priority_score || 0) ||
+      String(a?.title || '').localeCompare(String(b?.title || ''), 'ja')
+    ));
+
+    for (const ev of ordered) {
+      const matchIndex = representatives.findIndex((candidate) => isLikelyCrossSourceDuplicate(candidate, ev));
+      if (matchIndex === -1) {
+        representatives.push(ev);
+        continue;
+      }
+      representatives[matchIndex] = mergePreferredEvent(representatives[matchIndex], ev);
+    }
+    for (const ev of representatives) merged.push(ev);
+  }
+  return merged;
 }
 
 function isOnToday(ev, today) {
@@ -4158,20 +4310,10 @@ async function main() {
       bestByCanonical.set(key, ev);
       continue;
     }
-    const prevScore = Number(prev.quality_score || 0);
-    const nextScore = Number(ev.quality_score || 0);
-    if (nextScore > prevScore) {
-      bestByCanonical.set(key, mergeEventCompleteness(ev, prev));
-      continue;
-    }
-    if (nextScore === prevScore && Number(ev.source_priority_score || 0) > Number(prev.source_priority_score || 0)) {
-      bestByCanonical.set(key, mergeEventCompleteness(ev, prev));
-      continue;
-    }
-    bestByCanonical.set(key, mergeEventCompleteness(prev, ev));
+    bestByCanonical.set(key, mergePreferredEvent(prev, ev));
   }
 
-  const mergedCanonical = Array.from(bestByCanonical.values())
+  const mergedCanonical = mergeCrossSourceNearDuplicates(Array.from(bestByCanonical.values()))
     .filter((ev) => withinWindow(ev, minDate, maxDate))
     .filter((ev) => isPublishable(ev))
     .filter((ev) => {
@@ -4189,17 +4331,7 @@ async function main() {
       bestByUrlDate.set(key, ev);
       continue;
     }
-    const prevScore = Number(prev.quality_score || 0);
-    const nextScore = Number(ev.quality_score || 0);
-    if (nextScore > prevScore) {
-      bestByUrlDate.set(key, mergeEventCompleteness(ev, prev));
-      continue;
-    }
-    if (nextScore === prevScore && Number(ev.source_priority_score || 0) > Number(prev.source_priority_score || 0)) {
-      bestByUrlDate.set(key, mergeEventCompleteness(ev, prev));
-      continue;
-    }
-    bestByUrlDate.set(key, mergeEventCompleteness(prev, ev));
+    bestByUrlDate.set(key, mergePreferredEvent(prev, ev));
   }
 
   const mergedPublic = Array.from(bestByUrlDate.values()).sort(sortEvents).slice(0, 900);
@@ -4261,7 +4393,9 @@ export {
   extractTsudomeCalendarEvents,
   extractWhiteIlluminationDetailEvents,
   extractYosakoiSiteRuleEvent,
+  isLikelyCrossSourceDuplicate,
   isPublishable,
+  mergeCrossSourceNearDuplicates,
   parseArgs,
   resolveSourceStrategy
 };

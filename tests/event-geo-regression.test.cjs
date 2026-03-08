@@ -1037,6 +1037,72 @@ async function testSiteRuleUsesCuratedPublishThreshold() {
   assert.strictEqual(mod.isPublishable(ev), true);
 }
 
+async function testMergeCrossSourceNearDuplicatesMergesSimilarTitles() {
+  const mod = await loadModule();
+  const events = [
+    {
+      id: "community-plaza-akira",
+      source_id: "www-sapporo-community-plaza-jp-event-php",
+      source_priority_score: 3,
+      quality_score: 0.88,
+      title: "AKIRA FUSE LIVE TOUR 2026",
+      start_date: "2026-03-17",
+      venue: "札幌文化芸術劇場 hitaru",
+      start_time: "18:00",
+      detail_url: "https://www.sapporo-community-plaza.jp/event.php?num=4800",
+      flyer_image_url: ""
+    },
+    {
+      id: "hbc-akira",
+      source_id: "www-hbc-co-jp-event",
+      source_priority_score: 3,
+      quality_score: 0.81,
+      title: "布施明 AKIRA FUSE LIVE TOUR 2025-2026",
+      start_date: "2026-03-17",
+      venue: "札幌文化芸術劇場hitaru",
+      start_time: "18:00",
+      detail_url: "https://adash.jp/fuse2026-0317.html",
+      flyer_image_url: "https://example.com/fuse.jpg"
+    }
+  ];
+
+  const merged = mod.mergeCrossSourceNearDuplicates(events);
+  assert.strictEqual(merged.length, 1);
+  assert.strictEqual(merged[0].title, "AKIRA FUSE LIVE TOUR 2026");
+  assert.strictEqual(merged[0].flyer_image_url, "https://example.com/fuse.jpg");
+}
+
+async function testMergeCrossSourceNearDuplicatesKeepsProgramVariantsSeparate() {
+  const mod = await loadModule();
+  const events = [
+    {
+      id: "kitara-a",
+      source_id: "www-kitara-sapporo-or-jp-event",
+      source_priority_score: 3,
+      quality_score: 0.9,
+      title: "UNDERTALE 10th Anniversary Concert 2026 札幌公演 プログラムA",
+      start_date: "2026-03-14",
+      venue: "札幌コンサートホール Kitara 大ホール",
+      start_time: "",
+      detail_url: "https://www.kitara-sapporo.or.jp/event/event_detail.php?num=6935"
+    },
+    {
+      id: "kitara-b",
+      source_id: "www-hbc-co-jp-event",
+      source_priority_score: 3,
+      quality_score: 0.82,
+      title: "UNDERTALE 10th Anniversary Concert 2026 札幌公演 プログラムB",
+      start_date: "2026-03-14",
+      venue: "札幌コンサートホール Kitara(大ホール)",
+      start_time: "",
+      detail_url: "https://example.com/undertale-program-b"
+    }
+  ];
+
+  const merged = mod.mergeCrossSourceNearDuplicates(events);
+  assert.strictEqual(merged.length, 2);
+}
+
 async function runTests() {
   const tests = [
     ["札幌圏会場は通す", testAllowSapporoAreaVenue],
@@ -1079,7 +1145,9 @@ async function runTests() {
     ["京王プラザ詳細から会期を拾う", testExtractKeioPlazaEventDetailEvent],
     ["雪まつりの次回会期を拾う", testExtractSnowfesSiteRuleEvent],
     ["YOSAKOIの開催日を拾う", testExtractYosakoiSiteRuleEvent],
-    ["site_rule は curated 閾値で公開する", testSiteRuleUsesCuratedPublishThreshold]
+    ["site_rule は curated 閾値で公開する", testSiteRuleUsesCuratedPublishThreshold],
+    ["cross-source dedupe は近似タイトルを統合する", testMergeCrossSourceNearDuplicatesMergesSimilarTitles],
+    ["cross-source dedupe はプログラム違いを残す", testMergeCrossSourceNearDuplicatesKeepsProgramVariantsSeparate]
   ];
   let passed = 0;
   for (const [name, fn] of tests) {
