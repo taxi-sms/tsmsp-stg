@@ -618,7 +618,7 @@ async function testExtractMountAliveSiteRuleEventUsesMetaFields() {
   });
   assert.ok(ev);
   assert.strictEqual(ev.start_date, "2026-04-11");
-  assert.strictEqual(ev.venue, "札幌文化芸術劇場hitaru");
+  assert.strictEqual(ev.venue, "札幌文化芸術劇場 hitaru");
   assert.strictEqual(ev.open_time, "17:00");
   assert.strictEqual(ev.start_time, "18:00");
 }
@@ -721,6 +721,7 @@ async function testBuildWessEventTrimsDuplicateArtistPrefix() {
   const ev = mod.eventFromWessPost(post, source);
   assert.ok(ev);
   assert.strictEqual(ev.title, "ASIAN KUNG-FU GENERATION From the Northern Land '26 \"Friendship\"");
+  assert.strictEqual(ev.venue, "PENNY LANE24");
 }
 
 async function testExtractArtparkDetailEventUsesLabeledFields() {

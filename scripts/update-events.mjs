@@ -601,12 +601,25 @@ function pickVenue(text) {
 }
 
 function cleanVenue(text) {
-  return String(text || '')
+  const cleaned = String(text || '')
     .replace(/&nbsp;/gi, ' ')
     .replace(/\s+/g, ' ')
     .replace(/^[\s:：\-ー〜~・]+/, '')
     .replace(/\s*(?:入場料|料金|お問い合わせ|問合せ|チケット|主催|出演|詳細).*/i, '')
     .trim();
+  return normalizeVenueAlias(cleaned);
+}
+
+function normalizeVenueAlias(value) {
+  let v = decodeHtmlEntities(String(value || '')).replace(/\s+/g, ' ').trim();
+  if (!v) return '';
+  v = v.replace(/^札幌文化芸術劇場\s*hitaru/i, '札幌文化芸術劇場 hitaru');
+  v = v.replace(/^札幌コンサートホール\s*Kitara/i, '札幌コンサートホール Kitara');
+  if (/^(?:PENNY LANE\s*24|ペニーレーン24)$/i.test(v)) return 'PENNY LANE24';
+  if (/^Zepp\s*札幌$/i.test(v)) return 'Zepp Sapporo';
+  if (/^sound\s*lab\s*mole$/i.test(v)) return 'Sound Lab mole';
+  if (/^(?:札幌市民ホール|カナモトホール(?:（札幌市民ホール）)?)$/i.test(v)) return 'カナモトホール';
+  return v;
 }
 
 function isInvalidVenueCandidate(value) {
@@ -752,7 +765,7 @@ function buildSiteRuleEvent({
     start_time: time.start || '',
     end_time: time.end || '',
     all_day: !!time.allDay,
-    venue: textPreview(venue || '', 80),
+    venue: textPreview(cleanVenue(venue || ''), 80),
     venue_address: textPreview(venueAddress || '', 140),
     summary: textPreview(summary || '', 220),
     flyer_image_url: flyerImageUrl || '',
@@ -2816,7 +2829,7 @@ function eventFromWessPost(post, source) {
     stripTags(meta.freeareaahonbun || meta.koenjoho || meta.tentohanbaicomment || meta.ryokincomment || ''),
     220
   );
-  const venue = textPreview(meta.kaijo || '', 80);
+  const venue = textPreview(cleanVenue(meta.kaijo || ''), 80);
   const openTime = String(meta.kaijojikan || '').trim().replace('：', ':');
   const startTime = String(meta.kaienjikan || '').trim().replace('：', ':');
   const detailUrl = absolutizeUrl(source.url, post.link || '') || '';
