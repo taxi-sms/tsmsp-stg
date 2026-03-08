@@ -105,11 +105,12 @@ function sanitizeByKey(key, raw) {
       return sanitizeManualMode(raw);
     case "tsms_sales_reset_token":
     case "tsms_report_current_day":
+    case "tsms_report_field_settings":
     case "ops_sync_rev_v1":
     case "tsms_cloud_last_success_at":
     case "tsms_cloud_last_failure_at":
     case "tsms_last_sync_user_id":
-      return sanitizeAsString(raw);
+      return key === "tsms_report_field_settings" ? sanitizeJsonObject(raw) : sanitizeAsString(raw);
     default:
       return raw;
   }
@@ -127,6 +128,7 @@ function getMigrationKeys() {
     "tsms_sales_manual_mode",
     "tsms_sales_reset_token",
     "tsms_report_current_day",
+    "tsms_report_field_settings",
     "tsms_confirm_force_empty",
     "tsms_holidays_jp_v1",
     "tsms_theme",
@@ -186,4 +188,3 @@ export function migrateLocalStorageSchema(storage = localStorage) {
     version: STORAGE_SCHEMA_VERSION
   };
 }
-

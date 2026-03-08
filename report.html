@@ -133,6 +133,7 @@
   <meta name="apple-mobile-web-app-status-bar-style" content="default">
   <meta name="apple-mobile-web-app-title" content="TSMS">
   <script>(function(){try{var t=localStorage.getItem("tsms_theme")==="dark"?"dark":"light";document.documentElement.setAttribute("data-theme",t);var m=document.querySelector('meta[name="theme-color"]');if(m)m.setAttribute("content",t==="dark"?"#0F1417":"#F3F6F8");}catch(e){}})();</script>
+  <script src="./report-field-settings.js"></script>
 
 <style id="report-modal-style">
   .confirm-modal-bg{
@@ -627,24 +628,30 @@
 <main class="main">
   <section class="wf-panel" id="sec_rideType">
     <div class="wf-label">乗車種別</div>
-    <div class="wf-row">
-      <button class="btn" type="button" data-group="rideType" data-value="無線">無線</button><button class="btn" type="button" data-group="rideType" data-value="付待">付待</button><button class="btn" type="button" data-group="rideType" data-value="流し">流し</button><button class="btn" type="button" data-group="rideType" data-value="乗場">乗場</button><button class="btn" type="button" data-group="rideType" data-value="連続">連続</button><button class="btn" type="button" data-group="rideType" data-value="会社">会社</button><button class="btn" type="button" data-group="rideType" data-value="予約">予約</button><button class="btn" type="button" data-group="rideType" data-value="GO">GO</button>
-    </div>
+    <div class="wf-row" id="rideTypeButtons"></div>
+  </section>
+
+  <section class="wf-panel is-hidden" id="sec_rideTypeOther">
+    <div class="wf-label">乗車種別 その他（追加選択）</div>
+    <div class="wf-subnote">※「その他」選択時のみ表示</div>
+    <div class="wf-row" id="rideTypeOtherButtons"></div>
   </section>
 
   <section class="wf-panel" id="sec_payMethod">
     <div class="wf-label">支払方法</div>
-    <div class="wf-row">
-      <button class="btn" type="button" data-group="payMethod" data-value="現金">現金</button><button class="btn" type="button" data-group="payMethod" data-value="QR">QR</button><button class="btn" type="button" data-group="payMethod" data-value="クレカ">クレカ</button><button class="btn" type="button" data-group="payMethod" data-value="電子M">電子M</button><button class="btn" type="button" data-group="payMethod" data-value="チケット他">チケット他</button><button class="btn" type="button" data-group="payMethod" data-value="GO pay">GO pay</button><button class="btn" type="button" data-group="payMethod" data-value="乗込GO Pay">乗込GO Pay</button>
-    </div>
+    <div class="wf-row" id="payMethodButtons"></div>
+  </section>
+
+  <section class="wf-panel is-hidden" id="sec_payMethodOther">
+    <div class="wf-label">支払方法 その他（追加選択）</div>
+    <div class="wf-subnote">※「その他」選択時のみ表示</div>
+    <div class="wf-row" id="payMethodOtherButtons"></div>
   </section>
 
   <section class="wf-panel is-hidden" id="sec_ticketSub">
     <div class="wf-label">チケット他（追加選択）</div>
     <div class="wf-subnote">※「チケット他」選択時のみ表示</div>
-    <div class="wf-row">
-      <button class="btn" type="button" data-group="ticketSub" data-value="Aチケット">Aチケット</button><button class="btn" type="button" data-group="ticketSub" data-value="自社チケット">自社チケット</button><button class="btn" type="button" data-group="ticketSub" data-value="臨時チケット">臨時チケット</button><button class="btn" type="button" data-group="ticketSub" data-value="JCBチケット">JCBチケット</button><button class="btn" type="button" data-group="ticketSub" data-value="福祉チケット">福祉チケット</button><button class="btn" type="button" data-group="ticketSub" data-value="社内扱い">社内扱い</button><button class="btn" type="button" data-group="ticketSub" data-value="その他">その他</button><button class="btn" type="button" data-group="ticketSub" data-value="GOチケット">GOチケット</button>
-    </div>
+    <div class="wf-row" id="ticketSubButtons"></div>
   </section>
 
   <section class="wf-panel" id="sec_amounts">
@@ -754,8 +761,34 @@
   const REPORT_KEY = "tsms_reports";
   const CURRENT_DAY_KEY = "tsms_report_current_day";
   const CONFIRM_FORCE_EMPTY_KEY = "tsms_confirm_force_empty";
-  const state = { rideType: "", payMethod: "", ticketSub: "", disabilityDiscount: false };
+  const reportFieldSettingsApi = window.tsmsReportFieldSettings || null;
+  const reportFieldConfig = reportFieldSettingsApi
+    ? reportFieldSettingsApi.runtime()
+    : {
+      ridePrimary: ["無線", "付待", "流し", "乗場", "連続", "予約", "GO"],
+      rideOptions: ["無線", "付待", "流し", "乗場", "連続", "予約", "GO", "その他"],
+      rideOther: ["追加1", "追加2", "追加3", "追加4", "追加5", "追加6", "追加7", "追加8"],
+      payPrimary: ["現金", "QR", "クレカ", "電子M", "GO Pay", "乗込GO Pay"],
+      payOptions: ["現金", "QR", "クレカ", "電子M", "GO Pay", "乗込GO Pay", "その他"],
+      payOther: ["追加1", "追加2", "追加3", "追加4", "追加5", "追加6", "追加7", "追加8"],
+      ticketSub: ["Aチケット", "自社チケット", "臨時チケット", "JCBチケット", "福祉チケット", "社内扱い", "その他", "GOチケット"]
+    };
+  const state = {
+    rideTypeBase: "",
+    rideTypeOther: "",
+    payMethodBase: "",
+    payMethodOther: "",
+    ticketSub: "",
+    disabilityDiscount: false
+  };
+  const rideTypeButtons = document.getElementById("rideTypeButtons");
+  const secRideTypeOther = document.getElementById("sec_rideTypeOther");
+  const rideTypeOtherButtons = document.getElementById("rideTypeOtherButtons");
+  const payMethodButtons = document.getElementById("payMethodButtons");
+  const secPayMethodOther = document.getElementById("sec_payMethodOther");
+  const payMethodOtherButtons = document.getElementById("payMethodOtherButtons");
   const secTicket = document.getElementById("sec_ticketSub");
+  const ticketSubButtons = document.getElementById("ticketSubButtons");
   const secAmounts = document.getElementById("sec_amounts");
   const rowCash = document.getElementById("row_cash");
   const rowCredit = document.getElementById("row_credit");
@@ -797,6 +830,57 @@
   let voiceSkipNextSubmitConfirm = false;
   let voiceSubmitSuccessAutoRedirectSeconds = 0;
 
+  function renderButtonGroup(container, group, values) {
+    if (!container) return;
+    container.innerHTML = "";
+    values.forEach((value, index) => {
+      const btn = document.createElement("button");
+      btn.className = "btn";
+      btn.type = "button";
+      btn.dataset.group = group;
+      btn.dataset.value = value;
+      btn.dataset.index = String(index);
+      btn.textContent = value;
+      container.appendChild(btn);
+    });
+  }
+
+  renderButtonGroup(rideTypeButtons, "rideType", reportFieldConfig.rideOptions);
+  renderButtonGroup(rideTypeOtherButtons, "rideTypeOther", reportFieldConfig.rideOther);
+  renderButtonGroup(payMethodButtons, "payMethod", reportFieldConfig.payOptions);
+  renderButtonGroup(payMethodOtherButtons, "payMethodOther", reportFieldConfig.payOther);
+  renderButtonGroup(ticketSubButtons, "ticketSub", reportFieldConfig.ticketSub);
+
+  function getRideTypeValue() {
+    return state.rideTypeBase === "その他" ? String(state.rideTypeOther || "").trim() : String(state.rideTypeBase || "").trim();
+  }
+
+  function getPayMethodValue() {
+    if (state.payMethodBase === "その他") return String(state.payMethodOther || "").trim();
+    return String(state.payMethodBase || "").trim();
+  }
+
+  function getHeaderOffset() {
+    const header = document.querySelector(".tsms-header");
+    return (header ? header.getBoundingClientRect().height : 0) + 12;
+  }
+
+  function scrollSectionIntoView(section) {
+    if (!section || section.classList.contains("is-hidden")) return;
+    const rect = section.getBoundingClientRect();
+    const topSafe = getHeaderOffset();
+    const bottomSafe = window.innerHeight - 12;
+    if (rect.top >= topSafe && rect.bottom <= bottomSafe) return;
+    const top = Math.max(0, window.scrollY + rect.top - topSafe);
+    window.scrollTo({ top, behavior: "smooth" });
+  }
+
+  function queueScrollToSection(section) {
+    requestAnimationFrame(() => {
+      setTimeout(() => scrollSectionIntoView(section), 40);
+    });
+  }
+
   function todayLocalYmd() {
     const d = new Date();
     const y = d.getFullYear();
@@ -835,14 +919,16 @@
   }
 
   function applyPayRules() {
-    if (state.payMethod === "チケット他") secTicket.classList.remove("is-hidden");
-    else secTicket.classList.add("is-hidden");
+    secRideTypeOther.classList.toggle("is-hidden", state.rideTypeBase !== "その他");
+    secPayMethodOther.classList.toggle("is-hidden", state.payMethodBase !== "その他");
+    secTicket.classList.toggle("is-hidden", state.payMethodBase !== "チケット他");
 
-    if (state.payMethod === "現金") {
+    const payBase = String(state.payMethodBase || "").trim();
+    if (payBase === reportFieldConfig.payPrimary[0]) {
       rowCash.classList.remove("is-hidden");
       rowCredit.classList.add("is-hidden");
       focused = inCash;
-    } else if (state.payMethod === "チケット他") {
+    } else if (payBase === "チケット他") {
       rowCash.classList.remove("is-hidden");
       rowCredit.classList.remove("is-hidden");
       focused = inCredit;
@@ -854,20 +940,31 @@
   }
 
   function scrollToAmountsIfReady() {
-    if (!state.rideType || !state.payMethod) return;
-    if (state.payMethod === "チケット他" && !state.ticketSub) {
-      secTicket.scrollIntoView({ behavior: "smooth", block: "start" });
+    if (state.rideTypeBase === "その他" && !state.rideTypeOther) {
+      queueScrollToSection(secRideTypeOther);
+      return;
+    }
+    if (!state.rideTypeBase || !state.payMethodBase) return;
+    if (state.payMethodBase === "その他" && !state.payMethodOther) {
+      queueScrollToSection(secPayMethodOther);
+      return;
+    }
+    if (state.payMethodBase === "チケット他" && !state.ticketSub) {
+      queueScrollToSection(secTicket);
       return;
     }
     setTimeout(() => {
-      secAmounts.scrollIntoView({ behavior: "smooth", block: "start" });
-      (state.payMethod === "現金" ? inCash : inCredit).focus();
+      queueScrollToSection(secAmounts);
+      const resolvedPay = getPayMethodValue();
+      (resolvedPay === reportFieldConfig.payPrimary[0] ? inCash : inCredit).focus();
     }, 50);
   }
 
   function clearForm() {
-    state.rideType = "";
-    state.payMethod = "";
+    state.rideTypeBase = "";
+    state.rideTypeOther = "";
+    state.payMethodBase = "";
+    state.payMethodOther = "";
     state.ticketSub = "";
     state.disabilityDiscount = false;
     document.querySelectorAll('button[data-group]').forEach((b) => b.classList.remove("is-selected"));
@@ -877,6 +974,8 @@
     inNote.value = "";
     rowCash.classList.remove("is-hidden");
     rowCredit.classList.remove("is-hidden");
+    secRideTypeOther.classList.add("is-hidden");
+    secPayMethodOther.classList.add("is-hidden");
     secTicket.classList.add("is-hidden");
     focused = inCash;
     inCash.focus();
@@ -892,9 +991,9 @@
   function showSubmitConfirmModal(opts) {
     const options = (opts && typeof opts === "object") ? opts : {};
     if (!submitConfirmModalBg) return Promise.resolve(true);
-    confirmRideType.textContent = state.rideType || "-";
-    confirmPayMethod.textContent = state.payMethod || "-";
-    confirmTicketSub.textContent = state.payMethod === "チケット他" ? (state.ticketSub || "-") : "-";
+    confirmRideType.textContent = getRideTypeValue() || "-";
+    confirmPayMethod.textContent = getPayMethodValue() || "-";
+    confirmTicketSub.textContent = state.payMethodBase === "チケット他" ? (state.ticketSub || "-") : "-";
     confirmCash.textContent = formatAmountText(inCash.value);
     confirmCredit.textContent = formatAmountText(inCredit.value);
     confirmDiscount.textContent = state.disabilityDiscount ? "あり" : "なし";
@@ -1398,16 +1497,29 @@ ${remaining}秒後に${countdownLabel}`;
     clearSelected(group);
     hit.classList.add("is-selected");
 
-    if (group === "rideType") state.rideType = value;
+    if (group === "rideType") {
+      state.rideTypeBase = value;
+      if (value !== "その他") {
+        state.rideTypeOther = "";
+        clearSelected("rideTypeOther");
+      }
+    }
     if (group === "payMethod") {
-      state.payMethod = value;
+      state.payMethodBase = value;
+      if (value !== "その他") {
+        state.payMethodOther = "";
+        clearSelected("payMethodOther");
+      }
       if (value !== "チケット他") {
         state.ticketSub = "";
         clearSelected("ticketSub");
       }
       applyPayRules();
     }
+    if (group === "rideTypeOther") state.rideTypeOther = value;
+    if (group === "payMethodOther") state.payMethodOther = value;
     if (group === "ticketSub") state.ticketSub = value;
+    if (group === "rideType") applyPayRules();
     return true;
   }
 
@@ -1601,37 +1713,61 @@ ${remaining}秒後に${countdownLabel}`;
     host.appendChild(grid);
   }
 
-  const VOICE_RIDE_TYPE_DEFS = [
-    { value: "無線", label: "無線", aliases: ["無線"] },
-    { value: "付待", label: "付待", aliases: ["付待", "付け待ち", "つけまち", "付待ち"] },
-    { value: "流し", label: "流し", aliases: ["流し"] },
-    { value: "乗場", label: "乗場", aliases: ["乗場", "のりば", "乗り場"] },
-    { value: "GO", label: "GO", aliases: ["go", "GO", "ゴー"] },
-    { value: "会社", label: "会社", aliases: ["会社"] },
-    { value: "予約", label: "予約", aliases: ["予約"] },
-    { value: "連続", label: "連続", aliases: ["連続"] }
-  ];
+  function buildIndexedVoiceDefs(values, aliasFactory) {
+    return values.map((value, index) => {
+      const aliases = [String(index + 1), `${index + 1}番`, value];
+      const extra = typeof aliasFactory === "function" ? aliasFactory(value, index) : [];
+      return {
+        value,
+        label: value,
+        aliases: aliases.concat(Array.isArray(extra) ? extra : [])
+      };
+    });
+  }
 
-  const VOICE_PAY_METHOD_DEFS = [
-    { value: "現金", label: "現金", aliases: ["現金", "げんきん"] },
-    { value: "QR", label: "QR", aliases: ["qr", "qrコード", "キューアール", "ペイペイ", "paypay"] },
-    { value: "クレカ", label: "クレカ", aliases: ["クレカ", "クレジット", "カード"] },
-    { value: "電子M", label: "電子M", aliases: ["電子m", "電子マネー", "でんしまねー"] },
-    { value: "チケット他", label: "チケット他", aliases: ["チケット他", "チケット", "ticket", "チケットそのた"] },
-    { value: "GO pay", label: "GO pay", aliases: ["gopay", "go pay", "ゴーペイ"] },
-    { value: "乗込GO Pay", label: "乗込GO Pay", aliases: ["乗込gopay", "乗り込みgopay", "乗込go pay", "乗り込みgo pay", "乗込go", "乗り込みgo"] }
-  ];
+  function getRideTypeVoiceDefs() {
+    return buildIndexedVoiceDefs(reportFieldConfig.rideOptions, (value) => {
+      if (value === "GO") return ["go", "ゴー"];
+      if (value === "乗場") return ["のりば", "乗り場"];
+      if (value === "付待") return ["付け待ち", "つけまち", "付待ち"];
+      if (value === "その他") return ["そのた"];
+      return [];
+    });
+  }
 
-  const VOICE_TICKET_SUB_DEFS = [
-    { value: "Aチケット", label: "Aチケット", aliases: ["aチケット", "エーチケット"] },
-    { value: "自社チケット", label: "自社チケット", aliases: ["自社チケット", "じしゃチケット"] },
-    { value: "臨時チケット", label: "臨時チケット", aliases: ["臨時チケット", "りんじチケット"] },
-    { value: "JCBチケット", label: "JCBチケット", aliases: ["jcbチケット", "jcb", "ジェーシービー"] },
-    { value: "福祉チケット", label: "福祉チケット", aliases: ["福祉チケット", "ふくしチケット"] },
-    { value: "社内扱い", label: "社内扱い", aliases: ["社内扱い", "しゃないあつかい"] },
-    { value: "その他", label: "その他", aliases: ["その他", "そのた"] },
-    { value: "GOチケット", label: "GOチケット", aliases: ["goチケット", "g oチケット", "ゴーチケット"] }
-  ];
+  function getRideTypeOtherVoiceDefs() {
+    return buildIndexedVoiceDefs(reportFieldConfig.rideOther);
+  }
+
+  function getPayMethodVoiceDefs() {
+    return buildIndexedVoiceDefs(reportFieldConfig.payOptions, (value, index) => {
+      if (index === 0) return ["げんきん"];
+      if (value === "QR") return ["qr", "qrコード", "キューアール", "ペイペイ", "paypay"];
+      if (value === "クレカ") return ["クレジット", "カード"];
+      if (value === "電子M") return ["電子m", "電子マネー", "でんしまねー"];
+      if (value === "GO Pay") return ["gopay", "go pay", "ゴーペイ"];
+      if (value === "乗込GO Pay") return ["乗込gopay", "乗り込みgopay", "乗込go pay", "乗り込みgo pay", "乗込go", "乗り込みgo"];
+      if (value === "その他") return ["そのた"];
+      return [];
+    });
+  }
+
+  function getPayMethodOtherVoiceDefs() {
+    return buildIndexedVoiceDefs(reportFieldConfig.payOther);
+  }
+
+  function getTicketSubVoiceDefs() {
+    return buildIndexedVoiceDefs(reportFieldConfig.ticketSub, (value) => {
+      if (value === "Aチケット") return ["aチケット", "エーチケット"];
+      if (value === "自社チケット") return ["じしゃチケット"];
+      if (value === "臨時チケット") return ["りんじチケット"];
+      if (value === "JCBチケット") return ["jcbチケット", "jcb", "ジェーシービー"];
+      if (value === "福祉チケット") return ["ふくしチケット"];
+      if (value === "社内扱い") return ["しゃないあつかい"];
+      if (value === "GOチケット") return ["goチケット", "g oチケット", "ゴーチケット"];
+      return [];
+    });
+  }
 
   const VOICE_YES_NO_DEFS = [
     { value: "yes", label: "はい", aliases: ["はい", "ok", "オーケー", "おっけー", "いいよ"] },
@@ -1917,7 +2053,7 @@ ${remaining}秒後に${countdownLabel}`;
   }
 
   async function runVoiceAmountStage() {
-    if (state.payMethod === "現金") {
+    if (state.payMethodBase === reportFieldConfig.payPrimary[0]) {
       inCredit.value = "";
       const cashRes = await captureVoiceAmount("4/8", "数字をお話しください。", inCash, {
         title: "金額入力",
@@ -1930,7 +2066,7 @@ ${remaining}秒後に${countdownLabel}`;
       return { ok: true };
     }
 
-    if (state.payMethod === "チケット他") {
+    if (state.payMethodBase === "チケット他") {
       const cashRes = await captureVoiceAmount("4/8", "現収をお話しください。ない場合は『なし』。", inCash, {
         title: "現収入力",
         allowNone: true,
@@ -1965,8 +2101,8 @@ ${remaining}秒後に${countdownLabel}`;
   }
 
   function getVoiceAmountVisibility() {
-    if (state.payMethod === "現金") return { showCash: true, showCredit: false };
-    if (state.payMethod === "チケット他") return { showCash: true, showCredit: true };
+    if (state.payMethodBase === reportFieldConfig.payPrimary[0]) return { showCash: true, showCredit: false };
+    if (state.payMethodBase === "チケット他") return { showCash: true, showCredit: true };
     return { showCash: false, showCredit: true };
   }
 
@@ -2101,20 +2237,36 @@ ${remaining}秒後に${countdownLabel}`;
     voiceFlowAbortRequested = false;
 
     try {
-      const rideRes = await captureVoiceChoice("1/8", "番号か項目をお話しください。", VOICE_RIDE_TYPE_DEFS, (value) => setGroupSelectionDirect("rideType", value), {
+      const rideRes = await captureVoiceChoice("1/8", "番号か項目をお話しください。", getRideTypeVoiceDefs(), (value) => setGroupSelectionDirect("rideType", value), {
         title: "乗車種別を選択してください"
       });
       if (rideRes.permissionDenied) throw new Error("permission-denied");
       if (!rideRes.ok) throw new Error(rideRes.cancelled ? "cancelled" : "rideType");
 
-      const payRes = await captureVoiceChoice("2/8", "番号か項目をお話しください。", VOICE_PAY_METHOD_DEFS, (value) => setGroupSelectionDirect("payMethod", value), {
+      if (state.rideTypeBase === "その他") {
+        const rideOtherRes = await captureVoiceChoice("2/8", "1番から8番で選択してください。", getRideTypeOtherVoiceDefs(), (value) => setGroupSelectionDirect("rideTypeOther", value), {
+          title: "乗車種別 その他を選択してください"
+        });
+        if (rideOtherRes.permissionDenied) throw new Error("permission-denied");
+        if (!rideOtherRes.ok) throw new Error(rideOtherRes.cancelled ? "cancelled" : "rideTypeOther");
+      }
+
+      const payRes = await captureVoiceChoice("3/8", "番号か項目をお話しください。", getPayMethodVoiceDefs(), (value) => setGroupSelectionDirect("payMethod", value), {
         title: "支払方法を選択してください"
       });
       if (payRes.permissionDenied) throw new Error("permission-denied");
       if (!payRes.ok) throw new Error(payRes.cancelled ? "cancelled" : "payMethod");
 
-      if (state.payMethod === "チケット他") {
-        const ticketRes = await captureVoiceChoice("3/8", "番号か項目をお話しください。", VOICE_TICKET_SUB_DEFS, (value) => setGroupSelectionDirect("ticketSub", value), {
+      if (state.payMethodBase === "その他") {
+        const payOtherRes = await captureVoiceChoice("4/8", "1番から8番で選択してください。", getPayMethodOtherVoiceDefs(), (value) => setGroupSelectionDirect("payMethodOther", value), {
+          title: "支払方法 その他を選択してください"
+        });
+        if (payOtherRes.permissionDenied) throw new Error("permission-denied");
+        if (!payOtherRes.ok) throw new Error(payOtherRes.cancelled ? "cancelled" : "payMethodOther");
+      }
+
+      if (state.payMethodBase === "チケット他") {
+        const ticketRes = await captureVoiceChoice("4/8", "1番から8番で選択してください。", getTicketSubVoiceDefs(), (value) => setGroupSelectionDirect("ticketSub", value), {
           title: "チケット種別を選択してください"
         });
         if (ticketRes.permissionDenied) throw new Error("permission-denied");
@@ -2136,8 +2288,8 @@ ${remaining}秒後に${countdownLabel}`;
         const reviewAns = await showVoiceAmountReviewModal();
         if (reviewAns.cancelled) throw new Error("cancelled");
         if (reviewAns.retry) {
-          if (state.payMethod === "現金") inCash.value = "";
-          else if (state.payMethod === "チケット他") {
+          if (state.payMethodBase === reportFieldConfig.payPrimary[0]) inCash.value = "";
+          else if (state.payMethodBase === "チケット他") {
             inCash.value = "";
             inCredit.value = "";
           } else {
@@ -2195,17 +2347,30 @@ ${remaining}秒後に${countdownLabel}`;
       const v = btn.dataset.value || btn.textContent.trim();
       const selected = selectBtn(g, btn);
 
-      if (g === "rideType") state.rideType = selected ? v : "";
+      if (g === "rideType") {
+        state.rideTypeBase = selected ? v : "";
+        if (!selected || v !== "その他") {
+          state.rideTypeOther = "";
+          clearSelected("rideTypeOther");
+        }
+      }
       if (g === "payMethod") {
-        state.payMethod = selected ? v : "";
-        if (!selected) {
+        state.payMethodBase = selected ? v : "";
+        if (!selected || v !== "その他") {
+          state.payMethodOther = "";
+          clearSelected("payMethodOther");
+        }
+        if (!selected || v !== "チケット他") {
           state.ticketSub = "";
           clearSelected("ticketSub");
         }
         applyPayRules();
       }
+      if (g === "rideTypeOther") state.rideTypeOther = selected ? v : "";
+      if (g === "payMethodOther") state.payMethodOther = selected ? v : "";
       if (g === "ticketSub") state.ticketSub = selected ? v : "";
 
+      if (g === "rideType" || g === "payMethod") applyPayRules();
       if (selected) scrollToAmountsIfReady();
       return;
     }
@@ -2232,7 +2397,9 @@ ${remaining}秒後に${countdownLabel}`;
   });
 
   btnSubmit.addEventListener("click", async () => {
-    if (!state.rideType || !state.payMethod) {
+    const rideType = getRideTypeValue();
+    const payMethod = getPayMethodValue();
+    if (!rideType || !payMethod) {
       alert("乗車種別と支払方法を選んでください");
       return;
     }
@@ -2259,8 +2426,12 @@ ${remaining}秒後に${countdownLabel}`;
       id: (crypto && crypto.randomUUID) ? crypto.randomUUID() : `${Date.now()}-${Math.random().toString(16).slice(2)}`,
       time: `${hh}:${mm}`,
       ts: now.toISOString(),
-      rideType: state.rideType,
-      payMethod: state.payMethod,
+      rideType,
+      rideTypeBase: state.rideTypeBase || "",
+      rideTypeOther: state.rideTypeOther || "",
+      payMethod,
+      payMethodBase: state.payMethodBase || "",
+      payMethodOther: state.payMethodOther || "",
       ticketSub: state.ticketSub || "",
       disabilityDiscount: !!state.disabilityDiscount,
       cash: cash ? Number(cash.replace(/[^0-9]/g, "")) : 0,
@@ -2320,14 +2491,28 @@ ${remaining}秒後に${countdownLabel}`;
       return;
     }
 
-    state.rideType = entry.rideType || "";
-    state.payMethod = entry.payMethod || "";
+    const savedRideBase = String(entry.rideTypeBase || "").trim();
+    const savedRideOther = String(entry.rideTypeOther || "").trim();
+    const savedRide = String(entry.rideType || "").trim();
+    const savedPayBase = String(entry.payMethodBase || "").trim();
+    const savedPayOther = String(entry.payMethodOther || "").trim();
+    const savedPay = String(entry.payMethod || "").trim();
+
+    state.rideTypeBase = savedRideBase || (reportFieldConfig.rideOptions.includes(savedRide) ? savedRide : (reportFieldConfig.rideOther.includes(savedRide) ? "その他" : ""));
+    state.rideTypeOther = savedRideOther || (state.rideTypeBase === "その他" ? savedRide : "");
+    state.payMethodBase = savedPayBase || (reportFieldConfig.payOptions.includes(savedPay) ? savedPay : (reportFieldConfig.payOther.includes(savedPay) ? "その他" : ""));
+    state.payMethodOther = savedPayOther || (state.payMethodBase === "その他" ? savedPay : "");
     state.ticketSub = entry.ticketSub || "";
     state.disabilityDiscount = !!entry.disabilityDiscount;
     btnDiscount.classList.toggle("is-selected", state.disabilityDiscount);
 
-    ["rideType", "payMethod", "ticketSub"].forEach((group) => {
-      const target = state[group];
+    [
+      ["rideType", state.rideTypeBase],
+      ["rideTypeOther", state.rideTypeOther],
+      ["payMethod", state.payMethodBase],
+      ["payMethodOther", state.payMethodOther],
+      ["ticketSub", state.ticketSub]
+    ].forEach(([group, target]) => {
       if (!target) return;
       document.querySelectorAll(`button[data-group="${group}"]`).forEach((b) => {
         const v = b.dataset.value || b.textContent.trim();

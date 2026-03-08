@@ -18,6 +18,7 @@ const SYNC_KEYS = [
   "tsms_sales_manual_mode",
   "tsms_sales_reset_token",
   "tsms_report_current_day",
+  "tsms_report_field_settings",
   "tsms_holidays_jp_v1",
   "tsms_theme",
   STORAGE_SCHEMA_VERSION_KEY

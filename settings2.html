@@ -1,0 +1,403 @@
+<!doctype html>
+<html lang="ja">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport"
+      content="width=device-width,
+               initial-scale=1,
+               maximum-scale=1,
+               user-scalable=no"/>
+  <title>日報入力項目設定</title>
+  <link rel="icon" href="favicon.ico" sizes="any">
+  <link rel="icon" href="favicon.svg" type="image/svg+xml">
+  <link rel="manifest" href="manifest.json">
+  <meta name="theme-color" content="#ffffff">
+  <link rel="apple-touch-icon" href="apple-touch-icon.png">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="default">
+  <meta name="apple-mobile-web-app-title" content="TSMS">
+  <script>(function(){try{var t=localStorage.getItem("tsms_theme")==="dark"?"dark":"light";document.documentElement.setAttribute("data-theme",t);var m=document.querySelector('meta[name="theme-color"]');if(m)m.setAttribute("content",t==="dark"?"#0F1417":"#F3F6F8");}catch(e){}})();</script>
+  <script type="module" src="auth-guard.js?v=20260223-5"></script>
+  <script src="./custom-confirm.js"></script>
+  <script src="./report-field-settings.js"></script>
+  <link rel="stylesheet" href="./tsms-design.css?v=20260227-3">
+  <style>
+    :root{ --bg:#fff; --text:#111; --muted:#666; --border:#999; }
+    html,body{margin:0;padding:0;background:var(--bg);color:var(--text);font-family:"Noto Sans JP", sans-serif;font-size:18px;}
+    .tsms-header{
+      position:sticky; top:0; z-index:100;
+      height:60px; background:#fff;
+      border-bottom:2px solid #000;
+      display:flex; align-items:center;
+      padding:0 14px 0 56px;
+      font-weight:900; font-size:20px;
+    }
+    .header-to-report{
+      margin-left:auto;
+      border:2px solid #000;
+      padding:6px 10px;
+      font-size:14px;
+      font-weight:900;
+      color:#000;
+      text-decoration:none;
+      line-height:1.2;
+      background:#fff;
+    }
+    .tsms-hamburger{
+      position:absolute; left:14px; top:50%;
+      transform:translateY(-50%);
+      width:32px; height:24px;
+      display:flex; flex-direction:column; justify-content:space-between;
+      cursor:pointer; user-select:none;
+    }
+    .tsms-hamburger span{ height:3px; background:#000; display:block; }
+    .tsms-menu{
+      position:fixed; top:0; left:0; height:100%; width:280px;
+      background:#fff; border-right:2px solid #000;
+      transform:translateX(-100%);
+      transition:transform .25s ease;
+      z-index:1000; padding-top:60px;
+    }
+    .tsms-menu.open{ transform:translateX(0); }
+    .tsms-menu a{
+      display:block; padding:16px;
+      border-bottom:1px solid #ddd;
+      text-decoration:none; color:#000;
+      font-size:18px; font-weight:900;
+    }
+    .tsms-menu small{ display:block; margin-top:2px; font-size:12px; font-weight:700; color:#666; }
+    .tsms-menu-bg{
+      position:fixed; inset:0;
+      background:rgba(0,0,0,.25);
+      opacity:0; pointer-events:none;
+      transition:opacity .2s ease;
+      z-index:900;
+    }
+    .tsms-menu-bg.show{ opacity:1; pointer-events:auto; }
+  </style>
+  <style id="settings2-unified-layout-tweaks">
+    .main{
+      padding:var(--space-3) 14px calc(120px + env(safe-area-inset-bottom));
+      max-width:880px;
+      margin:0 auto;
+    }
+    .section{
+      margin:var(--space-2) 0;
+      padding:var(--space-2) var(--space-3) var(--space-2);
+      border:0 !important;
+      background:transparent !important;
+    }
+    .title{
+      display:flex;
+      align-items:center;
+      gap:var(--space-2);
+      margin:0 0 var(--space-3) 0;
+      font-size:var(--font-2xl);
+      font-weight:900;
+      color:var(--text-primary);
+    }
+    .title::after{
+      content:"";
+      flex:1 1 auto;
+      border-top:var(--line-regular) solid var(--border);
+    }
+    .note{
+      margin:6px 0 var(--space-2) 0;
+      font-size:var(--font-sm);
+      color:var(--text-muted);
+      line-height:1.5;
+    }
+    .slot-list{
+      display:grid;
+      gap:var(--space-2);
+    }
+    .slot-row{
+      display:grid;
+      gap:6px;
+      padding:var(--space-2) 4px;
+      border-bottom:var(--line-thin) solid var(--border);
+    }
+    .slot-row:last-child{border-bottom:none;}
+    .slot-label{
+      font-size:var(--font-md);
+      color:var(--text-muted);
+      font-weight:800;
+    }
+    .input{
+      width:100%;
+      box-sizing:border-box;
+      border:var(--line-strong) solid var(--border);
+      border-radius:var(--radius-sm);
+      background:var(--surface-2);
+      color:var(--text-primary);
+      padding:11px 12px;
+      font-size:var(--font-2xl);
+      min-height:var(--control-h-md);
+    }
+    .fixed-slot{
+      display:grid;
+      gap:4px;
+      padding:var(--space-2) 4px 0;
+    }
+    .fixed-slot-value{
+      border:var(--line-strong) dashed var(--border);
+      border-radius:var(--radius-sm);
+      background:var(--surface-2);
+      color:var(--text-primary);
+      padding:11px 12px;
+      font-size:var(--font-2xl);
+      font-weight:900;
+    }
+    .save-wrap{
+      margin-top:var(--space-3);
+      display:grid;
+      gap:var(--space-2);
+    }
+    .btn{
+      appearance:none;
+      -webkit-appearance:none;
+      border:var(--line-strong) solid var(--border);
+      border-radius:var(--radius-sm);
+      background:var(--surface-2);
+      color:var(--text-primary);
+      padding:10px 12px;
+      font-size:var(--font-2xl);
+      min-height:var(--control-h-md);
+      font-weight:900;
+    }
+    .save-note{
+      font-size:var(--font-sm);
+      color:var(--text-muted);
+      text-align:center;
+      white-space:pre-line;
+    }
+    .tsms-header{
+      border-bottom:var(--line-strong) solid var(--border);
+      background:var(--surface-1);
+      color:var(--text-primary);
+      font-size:var(--font-4xl);
+    }
+    .header-to-report{
+      border:var(--line-strong) solid var(--border);
+      border-radius:var(--radius-sm);
+      background:var(--surface-2);
+      color:var(--text-primary);
+      font-size:var(--font-lg);
+      padding:6px 10px;
+    }
+  </style>
+</head>
+<body class="page-block-unified">
+<nav class="tsms-menu" id="tsmsMenu" aria-label="サイドメニュー">
+  <a href="index.html">TOP<small>メニュー一覧</small></a>
+  <a href="report.html">日報入力<small>乗車データを入力</small></a>
+  <a href="confirm.html">入力確認<small>当日・過去のデータを確認</small></a>
+  <a href="detail.html">詳細確認<small>概算手取、集計結果など</small></a>
+  <a href="ops.html">出庫 / 帰庫 / 休憩<small>休憩タイマーなど</small></a>
+  <a href="sales.html">月間管理<small>当月、過去の売上確認</small></a>
+  <a href="settings.html">設定<small>歩率、締め期間、シフトなど</small></a>
+</nav>
+<div class="tsms-menu-bg" id="tsmsMenuBg" aria-hidden="true"></div>
+
+<header class="tsms-header">
+  <div class="tsms-hamburger" id="tsmsHamburger" role="button" tabindex="0" aria-label="メニュー"><span></span><span></span><span></span></div>
+  日報入力項目設定
+  <a class="header-to-report" href="settings.html">設定へ戻る</a>
+</header>
+
+<main class="main">
+  <section class="section">
+    <div class="title">概要</div>
+    <div class="note">report.html の乗車種別、支払方法、チケット内項目で表示する名称を上から順に変更できます。保存時はローカル保存に加えてクラウドへも反映します。</div>
+  </section>
+
+  <section class="section">
+    <div class="title">乗車種別</div>
+    <div class="note">1〜7を変更できます。8番目は固定で「その他」です。</div>
+    <div class="slot-list" id="ridePrimaryList"></div>
+    <div class="fixed-slot">
+      <div class="slot-label">8. 固定項目</div>
+      <div class="fixed-slot-value">その他</div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="title">乗車種別 その他</div>
+    <div class="note">「その他」選択時に下から展開される追加1〜8です。</div>
+    <div class="slot-list" id="rideOtherList"></div>
+  </section>
+
+  <section class="section">
+    <div class="title">支払方法</div>
+    <div class="note">1〜6を変更できます。7番目は固定で「その他」です。</div>
+    <div class="slot-list" id="payPrimaryList"></div>
+    <div class="fixed-slot">
+      <div class="slot-label">7. 固定項目</div>
+      <div class="fixed-slot-value">その他</div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="title">支払方法 その他</div>
+    <div class="note">「その他」選択時に下から展開される追加1〜8です。</div>
+    <div class="slot-list" id="payOtherList"></div>
+  </section>
+
+  <section class="section">
+    <div class="title">チケット内項目</div>
+    <div class="note">既存のチケット内項目も上から順に変更できます。</div>
+    <div class="slot-list" id="ticketSubList"></div>
+  </section>
+
+  <section class="section">
+    <div class="save-wrap">
+      <button class="btn" id="btnSaveAndBack" type="button">変更を保存して設定に戻る</button>
+      <div class="save-note" id="saveStatus">保存すると report.html の表示順と音声入力候補にも反映されます。</div>
+    </div>
+  </section>
+</main>
+
+<script>
+(function(){
+  const api = window.tsmsReportFieldSettings;
+  if(!api){
+    alert("入力項目設定の読み込みに失敗しました。");
+    return;
+  }
+
+  const current = api.load();
+  const saveBtn = document.getElementById("btnSaveAndBack");
+  const saveStatus = document.getElementById("saveStatus");
+
+  function buildRows(hostId, values){
+    const host = document.getElementById(hostId);
+    if(!host) return;
+    host.innerHTML = "";
+    values.forEach((value, index) => {
+      const row = document.createElement("div");
+      row.className = "slot-row";
+
+      const label = document.createElement("div");
+      label.className = "slot-label";
+      label.textContent = `${index + 1}. 項目名`;
+
+      const input = document.createElement("input");
+      input.className = "input";
+      input.type = "text";
+      input.value = value;
+      input.maxLength = 24;
+      input.dataset.index = String(index);
+
+      row.appendChild(label);
+      row.appendChild(input);
+      host.appendChild(row);
+    });
+  }
+
+  buildRows("ridePrimaryList", current.ridePrimary);
+  buildRows("rideOtherList", current.rideOther);
+  buildRows("payPrimaryList", current.payPrimary);
+  buildRows("payOtherList", current.payOther);
+  buildRows("ticketSubList", current.ticketSub);
+
+  function collectValues(hostId){
+    return Array.from(document.querySelectorAll(`#${hostId} .input`)).map((input) => String(input.value || "").trim());
+  }
+
+  function buildPayload(){
+    return {
+      ridePrimary: collectValues("ridePrimaryList"),
+      rideOther: collectValues("rideOtherList"),
+      payPrimary: collectValues("payPrimaryList"),
+      payOther: collectValues("payOtherList"),
+      ticketSub: collectValues("ticketSubList")
+    };
+  }
+
+  async function saveAndExit(){
+    if(!saveBtn) return;
+    saveBtn.disabled = true;
+    saveBtn.textContent = "保存中...";
+    if(saveStatus) saveStatus.textContent = "ローカル保存とクラウド反映を実行しています。";
+    try{
+      api.save(buildPayload());
+      if(!(window.tsmsCloud && typeof window.tsmsCloud.backupNow === "function")){
+        throw new Error("cloud_unavailable");
+      }
+      await window.tsmsCloud.backupNow();
+      location.href = "settings.html";
+    }catch(err){
+      const reason = (err && err.message) ? err.message : "unknown_error";
+      if(saveStatus) saveStatus.textContent = `ローカル保存は完了しましたが、クラウド反映に失敗しました。(${reason})`;
+      alert("保存はローカルへ反映しましたが、クラウド反映に失敗しました。ネットワークやログイン状態を確認して再度お試しください。");
+      saveBtn.disabled = false;
+      saveBtn.textContent = "変更を保存して設定に戻る";
+    }
+  }
+
+  if(saveBtn){
+    saveBtn.addEventListener("click", saveAndExit);
+  }
+})();
+</script>
+
+<script>
+(function(){
+  const menu = document.getElementById("tsmsMenu");
+  const bg = document.getElementById("tsmsMenuBg");
+  const burger = document.getElementById("tsmsHamburger");
+  if(!menu || !bg || !burger) return;
+  function openMenu(){ menu.classList.add("open"); bg.classList.add("show"); }
+  function closeMenu(){ menu.classList.remove("open"); bg.classList.remove("show"); }
+  burger.addEventListener("click", openMenu);
+  burger.addEventListener("keydown", (e)=>{ if(e.key==="Enter"||e.key===" ") openMenu(); });
+  bg.addEventListener("click", closeMenu);
+  menu.querySelectorAll("a").forEach((a)=>a.addEventListener("click", closeMenu));
+})();
+</script>
+
+<script>
+  (function(){if('serviceWorker' in navigator && location.protocol.indexOf('http')===0){window.addEventListener('load', function(){navigator.serviceWorker.register('./sw.js?v=20260228-1').catch(function(){});});}})();
+</script>
+
+<nav class="tsms-bottom-nav" aria-label="ボトムメニュー">
+  <a href="report.html" data-tab="report"><span class="ico">📝</span><span>日報入力</span></a>
+  <a href="confirm.html" data-tab="confirm"><span class="ico">✅</span><span>入力確認</span></a>
+  <a href="detail.html" data-tab="detail"><span class="ico">📊</span><span>詳細確認</span></a>
+  <a href="ops.html" data-tab="ops"><span class="ico">🚕</span><span>出庫/帰庫</span></a>
+  <button type="button" id="tsmsMoreBtn"><span class="ico">⋯</span><span>その他</span></button>
+</nav>
+<div class="tsms-more-bg" id="tsmsMoreBg"></div>
+<div class="tsms-more-sheet" id="tsmsMoreSheet" aria-label="その他メニュー">
+  <a href="index.html">TOP</a>
+  <a href="sales.html">月間管理</a>
+  <a href="settings.html">設定</a>
+</div>
+<script>
+(function(){
+  var iconMap={
+    report:'<svg viewBox="0 0 24 24"><rect x="4" y="3" width="16" height="18" rx="2"/><path d="M8 8h8M8 12h8M8 16h5"/></svg>',
+    confirm:'<svg viewBox="0 0 24 24"><rect x="4" y="4" width="16" height="16" rx="2"/><path d="m8 12 3 3 5-6"/></svg>',
+    detail:'<svg viewBox="0 0 24 24"><path d="M4 19h16"/><rect x="6" y="10" width="3" height="6"/><rect x="11" y="7" width="3" height="9"/><rect x="16" y="5" width="3" height="11"/></svg>',
+    ops:'<svg viewBox="0 0 24 24"><rect x="3" y="8" width="18" height="8" rx="2"/><circle cx="7" cy="17" r="2"/><circle cx="17" cy="17" r="2"/><path d="M6 8l2-3h8l2 3"/></svg>',
+    more:'<svg viewBox="0 0 24 24"><circle cx="6" cy="7" r="1.5"/><circle cx="6" cy="12" r="1.5"/><circle cx="6" cy="17" r="1.5"/><path d="M10 7h10M10 12h10M10 17h10"/></svg>'
+  };
+  document.querySelectorAll('.tsms-bottom-nav [data-tab]').forEach(function(a){
+    var k=a.getAttribute('data-tab');
+    var ico=a.querySelector('.ico');
+    if(ico && iconMap[k]) ico.innerHTML=iconMap[k];
+  });
+  var moreIco=document.querySelector('#tsmsMoreBtn .ico');
+  if(moreIco) moreIco.innerHTML=iconMap.more;
+  var btn=document.getElementById('tsmsMoreBtn');
+  var bg=document.getElementById('tsmsMoreBg');
+  var sheet=document.getElementById('tsmsMoreSheet');
+  function closeMore(){sheet.classList.remove('show');bg.classList.remove('show');}
+  if(btn&&bg&&sheet){
+    btn.addEventListener('click',function(){sheet.classList.add('show');bg.classList.add('show');});
+    bg.addEventListener('click',closeMore);
+  }
+})();
+</script>
+</body>
+</html>
