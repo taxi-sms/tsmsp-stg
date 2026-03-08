@@ -89,12 +89,15 @@ function createFixedDateClass(fixedIso) {
 
 function extractRenderedValue(html, label) {
   const re = new RegExp(
-    `<div class="k">${escapeRegExp(label)}<\\/div><div class="v(?: value-highlight)?">([^<]+)<\\/div>`,
+    `<div class="k">${escapeRegExp(label)}<\\/div><div class="v(?: value-highlight)?">([\\s\\S]*?)<\\/div>`,
     "u"
   );
   const m = html.match(re);
   if (!m) throw new Error(`ラベル "${label}" の描画値を取得できませんでした。`);
-  return m[1];
+  return String(m[1] || "")
+    .replace(/<[^>]+>/g, "")
+    .replace(/\s+/g, "")
+    .trim();
 }
 
 function runDetailScript({ fixedNowIso, storageSeed }) {

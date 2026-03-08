@@ -242,7 +242,11 @@
 
   <section class="section">
     <div class="title">契約</div>
-    <div class="note" id="subscriptionNote">現在の契約状態を確認し、未契約の場合は課金ページへ進めます。</div>
+    <div class="note" id="subscriptionNote">月額980円（税込）の自動更新プランです。解約や支払い方法変更は下の管理ページから行えます。</div>
+    <div class="field">
+      <div class="label">プラン内容</div>
+      <div class="input">月額980円（税込） / 1アカウント / 自動更新 / 解約は契約管理ページからいつでも可能</div>
+    </div>
     <div class="field">
       <div class="label">現在の契約状態</div>
       <div class="input" id="subscriptionStatus">確認中...</div>
@@ -637,7 +641,7 @@ import { fetchCurrentSubscriptionState, isSubscriptionActive } from "./subscript
   function setGateNoticeIfNeeded() {
     if (!noteEl) return;
     if (params.get("subscription") === "required") {
-      noteEl.textContent = "契約が無効のため一部機能は制限中です。下のボタンから再開してください。";
+      noteEl.textContent = "契約が無効、または契約確認に失敗しました。月額980円（税込）の契約を再開するか、契約管理ページから状態をご確認ください。";
     }
   }
 
@@ -1046,6 +1050,8 @@ import { fetchCurrentSubscriptionState, isSubscriptionActive } from "./subscript
         alert("現在のパスワードが一致しません。");
       } else if (msg.includes("missing_session")) {
         alert("セッションが確認できません。再ログイン後に再試行してください。");
+      } else if (msg.includes("cancel_subscription_failed")) {
+        alert("Stripeの契約停止に失敗したため、退会処理を中断しました。時間をおいて再試行してください。");
       } else {
         alert("退会処理に失敗しました。時間をおいて再試行してください。");
       }

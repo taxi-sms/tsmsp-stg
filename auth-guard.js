@@ -21,7 +21,10 @@ const OPS_ARCHIVE_KEY = "ops_archive_v1";
 const FORCE_HYDRATION_ONCE_KEY = "tsms_force_hydration_once";
 const SUBSCRIPTION_GATE_ENFORCE_KEY = "tsms_subscription_gate_enforce";
 const SUBSCRIPTION_GATE_ALLOWLIST_KEY = "tsms_subscription_gate_allowlist";
+const SUBSCRIPTION_GATE_STATE_CACHE_KEY = "tsms_subscription_state_cache_v1";
 const SUBSCRIPTION_GATE_EXEMPT_PAGES = new Set(["index.html", "settings.html"]);
+const SUBSCRIPTION_GATE_ACTIVE_GRACE_MS = 24 * 60 * 60 * 1000;
+const STG_PATH_PREFIX = "/tsmsp-stg/";
 
 function currentPage() {
   const p = location.pathname.split("/").pop();
@@ -88,8 +91,51 @@ function parseSubscriptionGateAllowlist() {
   }
 }
 
+function inferDefaultSubscriptionGateEnabled() {
+  const host = String(location && location.hostname ? location.hostname : "").toLowerCase();
+  const path = String(location && location.pathname ? location.pathname : "");
+  const isStgPath = path === "/tsmsp-stg" || path.indexOf(STG_PATH_PREFIX) === 0;
+  return host === "taxi-sms.github.io" && !isStgPath;
+}
+
+function readSubscriptionStateCache() {
+  try {
+    const raw = localStorage.getItem(SUBSCRIPTION_GATE_STATE_CACHE_KEY);
+    if (!raw) return null;
+    const parsed = JSON.parse(raw);
+    return (parsed && typeof parsed === "object") ? parsed : null;
+  } catch (_) {
+    return null;
+  }
+}
+
+function writeSubscriptionStateCache(userId, state) {
+  try {
+    localStorage.setItem(SUBSCRIPTION_GATE_STATE_CACHE_KEY, JSON.stringify({
+      userId: String(userId || ""),
+      checkedAt: new Date().toISOString(),
+      state: state && typeof state === "object" ? state : null
+    }));
+  } catch (_) {}
+}
+
+function consumeCachedActiveSubscription(userId) {
+  const cached = readSubscriptionStateCache();
+  if (!cached || String(cached.userId || "") !== String(userId || "")) return null;
+  const checkedAtMs = new Date(String(cached.checkedAt || "")).getTime();
+  if (!checkedAtMs || Number.isNaN(checkedAtMs)) return null;
+  if ((Date.now() - checkedAtMs) > SUBSCRIPTION_GATE_ACTIVE_GRACE_MS) return null;
+  const state = cached.state;
+  if (!isSubscriptionActive(state)) return null;
+  return { checkedAt: checkedAtMs, state };
+}
+
 function shouldEnforceSubscriptionGate(userId) {
-  if ((localStorage.getItem(SUBSCRIPTION_GATE_ENFORCE_KEY) || "0") !== "1") return false;
+  const rawMode = String(localStorage.getItem(SUBSCRIPTION_GATE_ENFORCE_KEY) || "").trim();
+  let enabled = inferDefaultSubscriptionGateEnabled();
+  if (rawMode === "1") enabled = true;
+  if (rawMode === "-1") enabled = false;
+  if (!enabled) return false;
   const allowlist = parseSubscriptionGateAllowlist();
   if (!allowlist.length) return true;
   return allowlist.includes(String(userId || ""));
@@ -114,6 +160,7 @@ async function runSubscriptionGate(userId) {
   try {
     const state = await fetchCurrentSubscriptionState();
     const active = isSubscriptionActive(state);
+    writeSubscriptionStateCache(userId, state);
     window.tsmsSubscription = { checked: true, enforced: true, active, state };
     if (active) return true;
 
@@ -123,9 +170,24 @@ async function runSubscriptionGate(userId) {
     location.replace(new URL("settings.html?subscription=required", location.href).toString());
     return false;
   } catch (_) {
-    // Fail-open to avoid accidental global lockout on transient issues.
-    window.tsmsSubscription = { checked: true, enforced: true, active: true, reason: "check_failed_open" };
-    return true;
+    const cached = consumeCachedActiveSubscription(userId);
+    if (cached) {
+      window.tsmsSubscription = {
+        checked: true,
+        enforced: true,
+        active: true,
+        reason: "cached_active_grace",
+        state: cached.state
+      };
+      return true;
+    }
+
+    window.tsmsSubscription = { checked: true, enforced: true, active: false, reason: "check_failed_closed" };
+    try {
+      alert("契約状態の確認に失敗しました。設定画面から再確認してください。");
+    } catch (_) {}
+    location.replace(new URL("settings.html?subscription=required", location.href).toString());
+    return false;
   }
 }
 

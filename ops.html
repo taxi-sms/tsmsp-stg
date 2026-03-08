@@ -445,6 +445,11 @@ function renderCloudSyncStatus(){
   opsSyncMeta.classList.remove("error");
   opsSyncMeta.textContent = "最終クラウド同期: --";
 }
+window.addEventListener("tsms-cloud-sync-status", renderCloudSyncStatus);
+window.addEventListener("storage", (e) => {
+  if(!e || (e.key !== CLOUD_LAST_SUCCESS_AT_KEY && e.key !== CLOUD_LAST_FAILURE_AT_KEY)) return;
+  renderCloudSyncStatus();
+});
 
 function showResultModal(message, isSuccess){
   if(!resultModalBg || !resultModalIcon || !resultModalMessage || !resultModalCloseBtn){

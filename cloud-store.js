@@ -5,6 +5,8 @@ const CLOUD_KEY = "localStorage_dump_v1";
 const CLOUD_HISTORY_PREFIX = `${CLOUD_KEY}:history:`;
 const CLOUD_HISTORY_KEEP_COUNT = 30;
 const LAST_SYNC_USER_KEY = "tsms_last_sync_user_id";
+const CLOUD_LAST_SUCCESS_AT_KEY = "tsms_cloud_last_success_at";
+const CLOUD_LAST_FAILURE_AT_KEY = "tsms_cloud_last_failure_at";
 const SYNC_KEYS = [
   "tsms_reports",
   "tsms_reports_archive",
@@ -29,6 +31,31 @@ let pendingAfterFlight = false;
 let dirtySinceLastBackup = false;
 let syncPaused = false;
 let inFlightPromise = null;
+
+function publishSyncStatus(status, detail = {}) {
+  try {
+    window.dispatchEvent(new CustomEvent("tsms-cloud-sync-status", {
+      detail: { status, ...detail }
+    }));
+  } catch (_) {}
+}
+
+function markSyncSuccess(at = new Date().toISOString()) {
+  try {
+    localStorage.setItem(CLOUD_LAST_SUCCESS_AT_KEY, String(at));
+  } catch (_) {}
+  publishSyncStatus("success", { at: String(at) });
+}
+
+function markSyncFailure(err, at = new Date().toISOString()) {
+  try {
+    localStorage.setItem(CLOUD_LAST_FAILURE_AT_KEY, String(at));
+  } catch (_) {}
+  publishSyncStatus("failure", {
+    at: String(at),
+    message: err instanceof Error ? err.message : String(err || "")
+  });
+}
 
 function currentPageName() {
   try {
@@ -133,56 +160,70 @@ export function restoreLocalStorage(obj, prefix = "", options = {}) {
 }
 
 export async function cloudBackup(prefix = "") {
-  const payload = dumpLocalStorage(prefix);
-  const summary = summarizePayload(payload);
-  const userId = await getCurrentUserId();
-  const historyKey = buildHistoryKey();
-
-  const { data, error } = await supabase
-    .from("app_state")
-    .upsert(
-      { key: CLOUD_KEY, value: payload, updated_at: new Date().toISOString() },
-      { onConflict: "user_id,key" }
-    )
-    .select("updated_at")
-    .maybeSingle();
-
-  if (error) throw error;
-
-  // Keep historical snapshots for rollback; best effort and non-blocking for the main backup.
   try {
-    await supabase
-      .from("app_state")
-      .insert({ key: historyKey, value: payload, updated_at: new Date().toISOString() });
-    await pruneCloudHistory();
-  } catch (_) {}
+    const payload = dumpLocalStorage(prefix);
+    const summary = summarizePayload(payload);
+    const userId = await getCurrentUserId();
+    const historyKey = buildHistoryKey();
 
-  return {
-    userId,
-    ...summary,
-    updatedAt: data?.updated_at || "",
-    historyKey,
-    historyKeepCount: CLOUD_HISTORY_KEEP_COUNT
-  };
+    const { data, error } = await supabase
+      .from("app_state")
+      .upsert(
+        { key: CLOUD_KEY, value: payload, updated_at: new Date().toISOString() },
+        { onConflict: "user_id,key" }
+      )
+      .select("updated_at")
+      .maybeSingle();
+
+    if (error) throw error;
+
+    // Keep historical snapshots for rollback; best effort and non-blocking for the main backup.
+    try {
+      await supabase
+        .from("app_state")
+        .insert({ key: historyKey, value: payload, updated_at: new Date().toISOString() });
+      await pruneCloudHistory();
+    } catch (_) {}
+
+    const updatedAt = data?.updated_at || new Date().toISOString();
+    markSyncSuccess(updatedAt);
+
+    return {
+      userId,
+      ...summary,
+      updatedAt,
+      historyKey,
+      historyKeepCount: CLOUD_HISTORY_KEEP_COUNT
+    };
+  } catch (error) {
+    markSyncFailure(error);
+    throw error;
+  }
 }
 
 export async function cloudRestore(prefix = "") {
-  const userId = await getCurrentUserId();
-  const { data, error } = await supabase
-    .from("app_state")
-    .select("value,updated_at")
-    .eq("key", CLOUD_KEY)
-    .maybeSingle();
+  try {
+    const userId = await getCurrentUserId();
+    const { data, error } = await supabase
+      .from("app_state")
+      .select("value,updated_at")
+      .eq("key", CLOUD_KEY)
+      .maybeSingle();
 
-  if (error) throw error;
-  if (!data?.value) throw new Error("クラウドにバックアップがありません。先にバックアップしてね。");
+    if (error) throw error;
+    if (!data?.value) throw new Error("クラウドにバックアップがありません。先にバックアップしてね。");
 
-  restoreLocalStorage(data.value, prefix);
-  return {
-    userId,
-    ...summarizePayload(data.value),
-    updatedAt: data?.updated_at || ""
-  };
+    restoreLocalStorage(data.value, prefix);
+    markSyncSuccess(data?.updated_at || new Date().toISOString());
+    return {
+      userId,
+      ...summarizePayload(data.value),
+      updatedAt: data?.updated_at || ""
+    };
+  } catch (error) {
+    markSyncFailure(error);
+    throw error;
+  }
 }
 
 export function clearSyncedLocalState(prefix = "") {
@@ -239,8 +280,9 @@ async function runBackup() {
     try {
       await cloudBackup();
       dirtySinceLastBackup = false;
-    } catch (_) {
-      // Non-blocking autosave: silently ignore transient errors.
+    } catch (error) {
+      // Non-blocking autosave: keep the app usable, but surface the failure to the UI.
+      console.error("cloud_backup_failed", error);
     } finally {
       inFlight = false;
       inFlightPromise = null;

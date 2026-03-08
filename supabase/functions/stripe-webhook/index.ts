@@ -88,6 +88,18 @@ async function inferUserId(subscription: Stripe.Subscription, fallbackUserId = "
   }
 }
 
+async function userExists(userId: string) {
+  const id = toUuidMaybe(userId);
+  if (!id) return false;
+  const { data, error } = await supabase.auth.admin.getUserById(id);
+  if (error) {
+    const message = String(error.message || "").toLowerCase();
+    if (message.includes("not found") || message.includes("user not found")) return false;
+    throw error;
+  }
+  return !!data?.user?.id;
+}
+
 function planCodeFromSubscription(subscription: Stripe.Subscription) {
   const fromMeta = String(subscription.metadata?.tsms_plan_code || "").trim();
   if (fromMeta) return fromMeta;
@@ -237,6 +249,9 @@ async function applySubscription(event: Stripe.Event) {
   const userId = await inferUserId(subscription, fallbackUserId);
   if (!userId) {
     return { applied: false, reason: "user_id_not_found", subscriptionId };
+  }
+  if (!(await userExists(userId))) {
+    return { applied: false, reason: "user_not_found", userId, subscriptionId };
   }
 
   const customerId = typeof subscription.customer === "string"
