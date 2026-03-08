@@ -652,6 +652,42 @@ function normalizeUrlForCompare(url) {
   return String(url || '').trim().replace(/\/+$/, '');
 }
 
+function isSourceSpecificNoiseEvent(ev) {
+  const sourceId = String(ev?.source_id || '').trim();
+  const title = String(ev?.title || '').trim();
+  const detailUrl = normalizeUrlForCompare(ev?.detail_url || '');
+
+  if (!sourceId || !title || !detailUrl) return false;
+
+  if (sourceId === 'odori-park-jp') {
+    return (
+      detailUrl === 'https://odori-park.jp/informartion_center' ||
+      /インフォメーションセンター.*オフィシャルショップ/.test(title) ||
+      /ページへはこちらから$/.test(title)
+    );
+  }
+
+  if (sourceId === 'www-city-sapporo-jp-keizai-seminar-index-html') {
+    return (
+      detailUrl === 'https://seminar.sapporosansin.jp' ||
+      /\/news\/\?n=\d+$/i.test(detailUrl) ||
+      /開催延期/.test(title)
+    );
+  }
+
+  if (sourceId === 'www-sapporo-dome-co-jp-dome') {
+    return (
+      detailUrl === 'https://www.sapporo-dome.co.jp/event-prom' ||
+      detailUrl === 'https://www.sapporo-dome.co.jp/facility/enjoy/event' ||
+      detailUrl === 'https://www.sapporo-dome.co.jp/dome/chronology' ||
+      (/^詳細はこちら/.test(title) && !/^https:\/\/www\.sapporo-dome\.co\.jp\//.test(detailUrl)) ||
+      title === '対象者限定のイベント'
+    );
+  }
+
+  return false;
+}
+
 function pickVenue(text) {
   const m = text.match(/(?:会場名|会場|開催場所|場所|venue)\s*[：:]?\s*([^\n]{2,80})/i);
   if (!m || !m[1]) return '';
@@ -804,6 +840,25 @@ function readNextDataBodyHtml(html) {
   }
 }
 
+function normalizeSourceEventTitle({ source, title, summary = '', bodyText = '' }) {
+  const sourceId = String(source?.id || '');
+  let value = String(title || '').trim();
+  if (!value) return '';
+
+  if (sourceId === 'www-stv-jp-event-index-html') {
+    const summaryHead = String(summary || bodyText || '').split(/[｜|]/)[0].trim();
+    if (/ご参加お待ちしております！|開催日|開催場所/.test(value) && summaryHead && summaryHead.length >= 4) {
+      value = summaryHead;
+    }
+    value = value
+      .replace(/^ご参加お待ちしております！\s*/u, '')
+      .replace(/\s+(?:開催日|日時|開催場所|会場|場所)\b[\s\S]*$/u, '')
+      .trim();
+  }
+
+  return value;
+}
+
 function buildSiteRuleEvent({
   source,
   detailUrl,
@@ -817,10 +872,11 @@ function buildSiteRuleEvent({
   flyerImageUrl = ''
 }) {
   if (!source || !detailUrl || !title || !startDate) return null;
-  const seed = `${detailUrl}|${startDate}|${time.open || ''}|${time.start || ''}|${time.end || ''}|${title}`;
+  const eventTitle = normalizeSourceEventTitle({ source, title, summary }) || title;
+  const seed = `${detailUrl}|${startDate}|${time.open || ''}|${time.start || ''}|${time.end || ''}|${eventTitle}`;
   return {
     id: makeEventId(seed),
-    title: textPreview(title, 120),
+    title: textPreview(eventTitle, 120),
     start_date: startDate,
     end_date: endDate,
     open_time: time.open || '',
@@ -2514,6 +2570,7 @@ function isLikelyListingEvent(ev) {
   const title = String(ev?.title || '').trim();
   const detailUrl = String(ev?.detail_url || '').trim();
   if (!title || !detailUrl) return true;
+  if (isSourceSpecificNoiseEvent(ev)) return true;
   if (BAD_TITLE_RE.test(title) || WEAK_TITLE_RE.test(title)) return true;
   if (BAD_URL_RE.test(detailUrl)) return true;
   const hasSpecificData = !!(ev.open_time || ev.start_time || ev.end_time || ev.venue || ev.venue_address);
@@ -2599,7 +2656,8 @@ function buildEvent({ source, detailUrl, title, bodyText, html, nowYmd }) {
   }
   const summary = textPreview(pickMeta(html, 'description') || pickMeta(html, 'og:description') || bodyText, 220);
 
-  const eventTitle = normalizeTitle(title) || title || source.name;
+  const sourceTitle = normalizeSourceEventTitle({ source, title, summary, bodyText }) || title || source.name;
+  const eventTitle = normalizeTitle(sourceTitle) || sourceTitle || source.name;
   if (!eventTitle || eventTitle.length < 4) return null;
   if (BAD_TITLE_RE.test(eventTitle)) return null;
   if (WEAK_TITLE_RE.test(eventTitle)) return null;
@@ -2636,7 +2694,11 @@ function buildEvent({ source, detailUrl, title, bodyText, html, nowYmd }) {
 
 function eventFromJsonLdNode(node, source, detailUrl) {
   if (!nodeTypeIncludes(node, 'event')) return null;
-  const title = textPreview(node.name || node.headline || '', 120);
+  const title = textPreview(normalizeSourceEventTitle({
+    source,
+    title: node.name || node.headline || '',
+    summary: node.description || ''
+  }), 120);
   if (!title) return null;
   if (BAD_TITLE_RE.test(title) || WEAK_TITLE_RE.test(title)) return null;
 
@@ -4457,8 +4519,10 @@ export {
   extractTsudomeCalendarEvents,
   extractWhiteIlluminationDetailEvents,
   extractYosakoiSiteRuleEvent,
+  normalizeSourceEventTitle,
   isLikelyCrossSourceDuplicate,
   isPublishable,
+  isSourceSpecificNoiseEvent,
   mergeCrossSourceNearDuplicates,
   parseArgs,
   resolveSourceStrategy

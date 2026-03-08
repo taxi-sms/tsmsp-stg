@@ -1162,6 +1162,86 @@ async function testMergeCrossSourceNearDuplicatesKeepsProgramVariantsSeparate() 
   assert.strictEqual(merged.length, 2);
 }
 
+async function testSourceSpecificNoiseFilterDropsKnownNonEventPages() {
+  const mod = await loadModule();
+  const cases = [
+    {
+      source_id: "odori-park-jp",
+      title: "大通公園インフォメーションセンター＆オフィシャルショップ",
+      detail_url: "https://odori-park.jp/informartion_center/"
+    },
+    {
+      source_id: "www-city-sapporo-jp-keizai-seminar-index-html",
+      title: "札幌市産業振興センターのホームページ",
+      detail_url: "https://seminar.sapporosansin.jp/"
+    },
+    {
+      source_id: "www-city-sapporo-jp-keizai-seminar-index-html",
+      title: "【開催延期のお知らせとお詫び】チームリーダー・管理職のためのエンゲージメント向上研修",
+      detail_url: "https://seminar.sapporosansin.jp/news/?n=197"
+    },
+    {
+      source_id: "www-sapporo-dome-co-jp-dome",
+      title: "対象者限定のイベント",
+      detail_url: "https://www.sapporo-dome.co.jp/schedule/detail/?date=20260410"
+    },
+    {
+      source_id: "www-sapporo-dome-co-jp-dome",
+      title: "イベント・広告を お考えの方へ",
+      detail_url: "https://www.sapporo-dome.co.jp/event-prom/"
+    },
+    {
+      source_id: "odori-park-jp",
+      title: "「バラ投稿写真2025-1」 のページへはこちらから",
+      detail_url: "https://odori-park.jp/%E3%83%90%E3%83%A9%E6%8A%95%E7%A8%BF%E5%86%99%E7%9C%9F2025-1/"
+    },
+    {
+      source_id: "www-sapporo-dome-co-jp-dome",
+      title: "詳細はこちら(外部サイトにジャンプします)",
+      detail_url: "https://t.pia.jp/pia/event/event.do?eventBundleCd=b2665989"
+    }
+  ];
+
+  for (const ev of cases) {
+    assert.strictEqual(mod.isSourceSpecificNoiseEvent(ev), true);
+    assert.strictEqual(mod.isPublishable({
+      ...ev,
+      start_date: "2026-04-10",
+      venue: "札幌市内",
+      venue_address: "札幌市中央区",
+      quality_score: 0.9,
+      extraction_method: "heuristic"
+    }), false);
+  }
+}
+
+async function testSourceSpecificNoiseFilterKeepsRealEventPages() {
+  const mod = await loadModule();
+  const ev = {
+    source_id: "www-sapporo-dome-co-jp-dome",
+    title: "SEKAI NO OWARI FANCLUB TOUR 2026「INSTANT RADIO」",
+    start_date: "2026-03-13",
+    venue: "大和ハウス プレミストドーム",
+    venue_address: "〒062-0045 札幌市豊平区羊ケ丘1番地",
+    detail_url: "https://www.sapporo-dome.co.jp/schedule/detail/?date=20260313",
+    quality_score: 0.9,
+    extraction_method: "heuristic",
+    start_time: "18:30"
+  };
+  assert.strictEqual(mod.isSourceSpecificNoiseEvent(ev), false);
+  assert.strictEqual(mod.isPublishable(ev), true);
+}
+
+async function testNormalizeSourceEventTitleCleansStvSummaryLeak() {
+  const mod = await loadModule();
+  const title = mod.normalizeSourceEventTitle({
+    source: { id: "www-stv-jp-event-index-html" },
+    title: "ご参加お待ちしております！ 目から鱗のお金のセミナー 開催日 (土) 開催場所 TKPガーデンシティPREMIUM札幌大通 ホール6D",
+    summary: "目から鱗のお金のセミナー ｜ ＳＴＶラジオ スマートフォン版 メニュー"
+  });
+  assert.strictEqual(title, "目から鱗のお金のセミナー");
+}
+
 async function runTests() {
   const tests = [
     ["札幌圏会場は通す", testAllowSapporoAreaVenue],
@@ -1208,7 +1288,10 @@ async function runTests() {
     ["YOSAKOIの開催日を拾う", testExtractYosakoiSiteRuleEvent],
     ["site_rule は curated 閾値で公開する", testSiteRuleUsesCuratedPublishThreshold],
     ["cross-source dedupe は近似タイトルを統合する", testMergeCrossSourceNearDuplicatesMergesSimilarTitles],
-    ["cross-source dedupe はプログラム違いを残す", testMergeCrossSourceNearDuplicatesKeepsProgramVariantsSeparate]
+    ["cross-source dedupe はプログラム違いを残す", testMergeCrossSourceNearDuplicatesKeepsProgramVariantsSeparate],
+    ["source別ノイズは公開対象から落とす", testSourceSpecificNoiseFilterDropsKnownNonEventPages],
+    ["source別ノイズ判定は実イベントを残す", testSourceSpecificNoiseFilterKeepsRealEventPages],
+    ["STV の title 混入は正規化する", testNormalizeSourceEventTitleCleansStvSummaryLeak]
   ];
   let passed = 0;
   for (const [name, fn] of tests) {
