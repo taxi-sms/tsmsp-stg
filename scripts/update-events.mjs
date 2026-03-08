@@ -229,7 +229,25 @@ function decodeHtmlEntities(input) {
     .replace(/&quot;/g, '"')
     .replace(/&#39;/g, "'")
     .replace(/&lt;/g, '<')
-    .replace(/&gt;/g, '>');
+    .replace(/&gt;/g, '>')
+    .replace(/&#(\d+);/g, (_, code) => {
+      const value = Number(code);
+      if (!Number.isFinite(value) || value <= 0) return _;
+      try {
+        return String.fromCodePoint(value);
+      } catch (_) {
+        return _;
+      }
+    })
+    .replace(/&#x([0-9a-f]+);/gi, (_, code) => {
+      const value = Number.parseInt(code, 16);
+      if (!Number.isFinite(value) || value <= 0) return _;
+      try {
+        return String.fromCodePoint(value);
+      } catch (_) {
+        return _;
+      }
+    });
 }
 
 function stripTags(input) {
@@ -248,9 +266,25 @@ function stripTags(input) {
 }
 
 function textPreview(input, max = 180) {
-  const t = String(input || '').replace(/\s+/g, ' ').trim();
+  const t = decodeHtmlEntities(String(input || '')).replace(/\s+/g, ' ').trim();
   if (!t) return '';
   return t.length > max ? `${t.slice(0, max - 1)}…` : t;
+}
+
+function mergeDisplayTitleParts(primary, secondary, max = 120) {
+  const a = textPreview(primary || '', max);
+  const b = textPreview(secondary || '', max);
+  if (!a) return b;
+  if (!b) return a;
+  const normalize = (value) => String(value || '').toLowerCase().replace(/[^\p{L}\p{N}]+/gu, '');
+  const keyA = normalize(a);
+  const keyB = normalize(b);
+  if (!keyA) return b;
+  if (!keyB) return a;
+  if (keyA === keyB) return a;
+  if (keyA.startsWith(keyB)) return a;
+  if (keyB.startsWith(keyA)) return b;
+  return textPreview(`${a} ${b}`, max);
 }
 
 function normalizeGeoText(input) {
@@ -2238,7 +2272,7 @@ function extractZeppSapporoSiteRuleEvent({ source, url, html, nowYmd }) {
 
   const eventTitle = textPreview(stripTags((html.match(/<h2\b[^>]*class=["'][^"']*sch-single-headelin-ttl[^"']*["'][^>]*>([\s\S]*?)<\/h2>/i) || [])[1] || ''), 120);
   const artist = textPreview(stripTags((html.match(/<h3\b[^>]*class=["'][^"']*sch-single-headeline02[^"']*["'][^>]*>([\s\S]*?)<\/h3>/i) || [])[1] || ''), 80);
-  const title = textPreview(`${artist} ${eventTitle}`.replace(/\s+/g, ' ').trim(), 120);
+  const title = mergeDisplayTitleParts(artist, eventTitle, 120);
   if (!title || BAD_TITLE_RE.test(title) || WEAK_TITLE_RE.test(title)) return null;
 
   const open = (html.match(/sch-single-table-time__open[^>]*>\s*([0-2]?\d[:：][0-5]\d)\s*</i) || [])[1] || '';
@@ -4193,6 +4227,7 @@ export {
   extractSoraConventionEvents,
   extractSummerfesDetailEvents,
   extractKaderuDetailEvent,
+  extractZeppSapporoSiteRuleEvent,
   extractTicketPiaLocalSiteRuleEvents,
   extractTsudomeCalendarEvents,
   extractWhiteIlluminationDetailEvents,

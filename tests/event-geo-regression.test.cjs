@@ -623,6 +623,55 @@ async function testExtractMountAliveSiteRuleEventUsesMetaFields() {
   assert.strictEqual(ev.start_time, "18:00");
 }
 
+async function testDecodeHtmlEntitiesSupportsNumericReferenceViaTitleBuilders() {
+  const mod = await loadModule();
+  const source = { id: "www-mountalive-com-schedule", name: "Mount Alive", url: "https://www.mountalive.com/schedule/", priority: "A" };
+  const html = `
+    <html>
+      <head>
+        <meta name="description" content="日程：2026年4月12日｜イベント名：全員優勝パレードツアー&#10084;&#65038;｜アーティスト名：全員優勝VICTORY25｜会場名：札幌文化芸術劇場hitaru：札幌市中央区北1条西1丁目" />
+        <title>VICTORY25 | MOUNT ALIVE</title>
+      </head>
+      <body>
+        <p id="op_st_time">OPEN 17:00 / START 18:00</p>
+      </body>
+    </html>
+  `;
+  const ev = mod.extractMountAliveSiteRuleEvent({
+    source,
+    url: "https://www.mountalive.com/schedule/more.php?no=3789",
+    html,
+    nowYmd: "2026-03-01"
+  });
+  assert.ok(ev);
+  assert.ok(ev.title.includes("❤"));
+}
+
+async function testExtractZeppSapporoSiteRuleEventAvoidsDuplicateArtistPrefix() {
+  const mod = await loadModule();
+  const source = { id: "www-zepp-co-jp-hall-sapporo-schedule", name: "Zepp Sapporo", url: "https://www.zepp.co.jp/hall/sapporo/schedule/", priority: "A" };
+  const html = `
+    <html>
+      <body>
+        <span class="sch-single-headelin-date__year">2026</span>
+        <span class="sch-single-headelin-date__month">03.26</span>
+        <h3 class="sch-single-headeline02">UVERworld</h3>
+        <h2 class="sch-single-headelin-ttl">UVERworld ZERO LAG TOUR</h2>
+        <div class="sch-single-table-time__open">17:30</div>
+        <div class="sch-single-table-time__start">18:30</div>
+      </body>
+    </html>
+  `;
+  const ev = mod.extractZeppSapporoSiteRuleEvent({
+    source,
+    url: "https://www.zepp.co.jp/hall/sapporo/schedule/single/?rid=153803",
+    html,
+    nowYmd: "2026-03-01"
+  });
+  assert.ok(ev);
+  assert.strictEqual(ev.title, "UVERworld ZERO LAG TOUR");
+}
+
 async function testExtractArtparkDetailEventUsesLabeledFields() {
   const mod = await loadModule();
   const source = { id: "artpark-or-jp-tenrankai-events", name: "札幌芸術の森", url: "https://artpark.or.jp/tenrankai-events/", priority: "A" };
@@ -962,6 +1011,8 @@ async function runTests() {
     ["市民交流プラザは内部利用を除外する", testExtractSapporoCommunityPlazaSiteRuleEventSkipsInternalUse],
     ["かでる詳細は詳細ページの会場を優先する", testExtractKaderuDetailEventUsesDetailVenue],
     ["Mount Alive 詳細は meta と時間行から組み立てる", testExtractMountAliveSiteRuleEventUsesMetaFields],
+    ["numeric entity はタイトルへデコードされる", testDecodeHtmlEntitiesSupportsNumericReferenceViaTitleBuilders],
+    ["Zepp は artist/title の重複連結を避ける", testExtractZeppSapporoSiteRuleEventAvoidsDuplicateArtistPrefix],
     ["芸術の森詳細はラベル付き項目から組み立てる", testExtractArtparkDetailEventUsesLabeledFields],
     ["サッポロファクトリー月別ページを組み立てる", testExtractSapporoFactoryMonthlyEventsUsesMonthlyCards],
     ["mole RSS から日付と時間を拾う", testExtractMoleFeedEventsFromCategoryFeed],
