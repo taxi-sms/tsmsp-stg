@@ -433,6 +433,169 @@ async function testExtractKaderuVenueEventsFromHallPage() {
   assert.strictEqual(events[0].venue, "かでるホール");
 }
 
+async function testExtractSpiceScheduleListingEventsSkipsStatusRows() {
+  const mod = await loadModule();
+  const source = { id: "spice-sapporo-jp-schedule", name: "SPiCE", url: "https://spice-sapporo.jp/schedule/", priority: "B" };
+  const html = `
+    <html>
+      <body>
+        <a href="https://spice-sapporo.jp/event/8767/">
+          <div class="cmn__eventlist__item">
+            <time class="cmn__eventlist__item__date">
+              <span class="year">2026</span>
+              <span class="month">03</span>
+              <span class="day">09</span>
+              <p class="eventcat cat-closed">CLOSED</p>
+            </time>
+            <div class="cmn__eventlist__item__ttl">
+              <p class="artist en cat-closed">CLOSED｜店舗休業日</p>
+            </div>
+          </div>
+        </a>
+        <a href="https://spice-sapporo.jp/event/8752/">
+          <div class="cmn__eventlist__item">
+            <time class="cmn__eventlist__item__date">
+              <span class="year">2026</span>
+              <span class="month">03</span>
+              <span class="day">10</span>
+              <p class="eventcat cat-live">LIVE EVENT</p>
+            </time>
+            <div class="cmn__eventlist__item__ttl">
+              <p class="artist en cat-live">SHANK TOUR 2026</p>
+            </div>
+          </div>
+        </a>
+      </body>
+    </html>
+  `;
+  const events = mod.extractSpiceScheduleListingEvents({
+    source,
+    url: source.url,
+    html
+  });
+  assert.strictEqual(events.length, 1);
+  assert.strictEqual(events[0].title, "SHANK TOUR 2026");
+  assert.strictEqual(events[0].start_date, "2026-03-10");
+}
+
+async function testExtractSpiceScheduleDetailEventUsesOpenStart() {
+  const mod = await loadModule();
+  const source = { id: "spice-sapporo-jp-schedule", name: "SPiCE", url: "https://spice-sapporo.jp/schedule/", priority: "B" };
+  const html = `
+    <html>
+      <head>
+        <title>SHANK TOUR 2026 | SPiCE</title>
+        <meta property="og:description" content="2026年3月10日開催" />
+      </head>
+      <body>
+        <p class="scSingleMain__start"><span>OPEN<time>17:30</time></span><span>START<time>18:00</time></span></p>
+      </body>
+    </html>
+  `;
+  const ev = mod.extractSpiceScheduleDetailEvent({
+    source,
+    url: "https://spice-sapporo.jp/event/8752/",
+    html,
+    nowYmd: "2026-03-01",
+    fallbackEvent: { start_date: "2026-03-10" }
+  });
+  assert.ok(ev);
+  assert.strictEqual(ev.start_date, "2026-03-10");
+  assert.strictEqual(ev.open_time, "17:30");
+  assert.strictEqual(ev.start_time, "18:00");
+}
+
+async function testExtractPmfScheduleDetailEventUsesLabeledSections() {
+  const mod = await loadModule();
+  const source = { id: "www-pmf-or-jp-jp-schedule", name: "PMF", url: "https://www.pmf.or.jp/jp/schedule/", priority: "A" };
+  const html = `
+    <html>
+      <body>
+        <h1 class="scheduleTitle"><span class="category orchestra">ホール（オーケストラ）</span><br>PMF2026 オープニング・ナイト</h1>
+        <div class="scheduleDetailCont">
+          <h3>開催日</h3>
+          <p>2026年7月7日（火）</p>
+        </div>
+        <div class="scheduleDetailCont">
+          <h3>時間</h3>
+          <dl class="scheduleDetailTimeList"><dt class="header">開場</dt><dd class="body">17:30</dd></dl>
+          <dl class="scheduleDetailTimeList start"><dt class="header">開演</dt><dd class="body">18:30</dd></dl>
+          <dl class="scheduleDetailTimeList"><dt class="header">終演（予定）</dt><dd class="body">19:30</dd></dl>
+        </div>
+        <div class="scheduleDetailCont">
+          <h3>会場</h3>
+          <p class="link"><a href="/jp/access/kitara.html">札幌コンサートホール<I>Kitara</I>（大ホール）<span>&gt; 詳細をみる</span></a></p>
+        </div>
+      </body>
+    </html>
+  `;
+  const ev = mod.extractPmfScheduleDetailEvent({
+    source,
+    url: "https://www.pmf.or.jp/jp/schedule/orchestra/2026-opening.html",
+    html,
+    nowYmd: "2026-03-01"
+  });
+  assert.ok(ev);
+  assert.strictEqual(ev.start_date, "2026-07-07");
+  assert.strictEqual(ev.venue, "札幌コンサートホール Kitara（大ホール）");
+  assert.strictEqual(ev.open_time, "17:30");
+  assert.strictEqual(ev.start_time, "18:30");
+}
+
+async function testExtractSapporoCommunityPlazaSiteRuleEventSkipsInternalUse() {
+  const mod = await loadModule();
+  const source = { id: "www-sapporo-community-plaza-jp-event-php", name: "札幌市民交流プラザ", url: "https://www.sapporo-community-plaza.jp/event.php", priority: "S" };
+  const html = `
+    <html>
+      <head><title>関係者のみの利用あり | イベント情報 | 札幌市民交流プラザ</title></head>
+      <body>
+        <dl><dt>日時</dt><dd>2026年3月9日（月）</dd><dt>会場</dt><dd>劇場</dd></dl>
+      </body>
+    </html>
+  `;
+  const ev = mod.extractSapporoCommunityPlazaSiteRuleEvent({
+    source,
+    url: "https://www.sapporo-community-plaza.jp/event.php?num=4991",
+    html,
+    nowYmd: "2026-03-01"
+  });
+  assert.strictEqual(ev, null);
+}
+
+async function testExtractKaderuDetailEventUsesDetailVenue() {
+  const mod = await loadModule();
+  const source = { id: "homepage-kaderu27-or-jp-event-news-index-html", name: "かでる2・7", url: "https://homepage.kaderu27.or.jp/event/news/index.html", priority: "A" };
+  const html = `
+    <html>
+      <head><meta property="og:title" content="かでるホール体験事業「第31回かでる音楽スタジオ」のご案内" /></head>
+      <body>
+        <dl class="eventInfo">
+          <dt>開催日時</dt>
+          <dd><p class="eventDate"><time class="start" datetime="2026-04-13">2026年4月13日</time> から <time class="end" datetime="2026-04-16">2026年4月16日</time></p></dd>
+          <dt>開催場所</dt>
+          <dd><p class="place"><a href="../index.html">会場：かでるホール</a></p></dd>
+        </dl>
+        <section id="sOffice">
+          <ul class="infoData">
+            <li class="address"><span class="label">住所:</span>札幌市中央区北2条7丁目</li>
+          </ul>
+        </section>
+      </body>
+    </html>
+  `;
+  const ev = mod.extractKaderuDetailEvent({
+    source,
+    url: "https://homepage.kaderu27.or.jp/event/self/o03676000000040x.html",
+    html,
+    nowYmd: "2026-03-01"
+  });
+  assert.ok(ev);
+  assert.strictEqual(ev.start_date, "2026-04-13");
+  assert.strictEqual(ev.end_date, "2026-04-16");
+  assert.strictEqual(ev.venue, "かでるホール");
+  assert.strictEqual(ev.venue_address, "札幌市中央区北2条7丁目");
+}
+
 async function testExtractArtparkDetailEventUsesLabeledFields() {
   const mod = await loadModule();
   const source = { id: "artpark-or-jp-tenrankai-events", name: "札幌芸術の森", url: "https://artpark.or.jp/tenrankai-events/", priority: "A" };
@@ -766,6 +929,11 @@ async function runTests() {
     ["アクセスサッポロ月別カレンダーを組み立てる", testExtractAxesCalendarEventsFromMonthlyCalendar],
     ["ファイターズ日程はホームゲームだけ拾う", testExtractFightersHomeGameEvents],
     ["かでる会場別イベントを組み立てる", testExtractKaderuVenueEventsFromHallPage],
+    ["SPiCE一覧は休業日を除外する", testExtractSpiceScheduleListingEventsSkipsStatusRows],
+    ["SPiCE詳細は OPEN/START を拾う", testExtractSpiceScheduleDetailEventUsesOpenStart],
+    ["PMF詳細はラベル付き項目から組み立てる", testExtractPmfScheduleDetailEventUsesLabeledSections],
+    ["市民交流プラザは内部利用を除外する", testExtractSapporoCommunityPlazaSiteRuleEventSkipsInternalUse],
+    ["かでる詳細は詳細ページの会場を優先する", testExtractKaderuDetailEventUsesDetailVenue],
     ["芸術の森詳細はラベル付き項目から組み立てる", testExtractArtparkDetailEventUsesLabeledFields],
     ["サッポロファクトリー月別ページを組み立てる", testExtractSapporoFactoryMonthlyEventsUsesMonthlyCards],
     ["mole RSS から日付と時間を拾う", testExtractMoleFeedEventsFromCategoryFeed],

@@ -1164,6 +1164,7 @@ function extractSapporoCommunityPlazaSiteRuleEvent({ source, url, html, nowYmd }
   if (!/\/event\.php\?num=\d+/i.test(url)) return null;
   const title = String(extractTitle(html) || '').split('|')[0].trim();
   if (!title || BAD_TITLE_RE.test(title) || WEAK_TITLE_RE.test(title)) return null;
+  if (/関係者のみ|休館日|保守点検|利用あり/i.test(title)) return null;
 
   const dateBlock = pickLabeledValue(html, '日時');
   const venue = textPreview(pickLabeledValue(html, '会場'), 80);
@@ -1181,6 +1182,123 @@ function extractSapporoCommunityPlazaSiteRuleEvent({ source, url, html, nowYmd }
     summary: pickMeta(html, 'description') || dateBlock || stripTags(html),
     flyerImageUrl: pickImage(html, url)
   });
+}
+
+function extractSpiceScheduleListingEvents({ source, url, html }) {
+  if (source.id !== 'spice-sapporo-jp-schedule') return [];
+  if (!/\/schedule\/?$/i.test(url)) return [];
+  const statusRe = /(?:CLOSED|COMING SOON|HALL MAINTENANCE|PRIVATE USE|PRIVERT USE|店舗休業日)/i;
+  const itemRe = /<a\b[^>]*href="([^"]+\/event\/\d+\/?)"[^>]*>[\s\S]*?<span class="year">(\d{4})<\/span>[\s\S]*?<span class="month">(\d{1,2})<\/span>[\s\S]*?<span class="day">(\d{1,2})<\/span>[\s\S]*?<p class="eventcat[^"]*"[^>]*>([\s\S]*?)<\/p>[\s\S]*?<p class="artist[^"]*"[^>]*>([\s\S]*?)<\/p>/gi;
+  const events = [];
+  for (const match of html.matchAll(itemRe)) {
+    const detailUrl = absolutizeUrl(url, match[1] || '') || '';
+    const startDate = `${String(match[2] || '').padStart(4, '0')}-${String(match[3] || '').padStart(2, '0')}-${String(match[4] || '').padStart(2, '0')}`;
+    const category = textPreview(stripTags(match[5] || '').replace(/\s+/g, ' ').trim(), 80);
+    const title = textPreview(stripTags(match[6] || '').replace(/\s+/g, ' ').trim(), 120);
+    if (!detailUrl || !startDate || !title || BAD_TITLE_RE.test(title) || WEAK_TITLE_RE.test(title)) continue;
+    if (statusRe.test(`${category}\n${title}`)) continue;
+    const ev = buildSiteRuleEvent({
+      source,
+      detailUrl,
+      title,
+      startDate,
+      venue: 'SPiCE',
+      time: { open: '', start: '', end: '', allDay: true },
+      summary: category
+    });
+    if (ev) events.push(ev);
+  }
+  return uniqueBy(events, (ev) => ev.detail_url);
+}
+
+function extractSpiceScheduleDetailEvent({ source, url, html, nowYmd, fallbackEvent = null }) {
+  if (source.id !== 'spice-sapporo-jp-schedule') return null;
+  if (!/\/event\/\d+\/?$/i.test(url)) return null;
+  const statusRe = /(?:CLOSED|COMING SOON|HALL MAINTENANCE|PRIVATE USE|PRIVERT USE|店舗休業日)/i;
+  const title = textPreview(
+    String(extractTitle(html) || pickMeta(html, 'og:title') || '')
+      .split('|')[0]
+      .trim(),
+    120
+  );
+  if (!title || BAD_TITLE_RE.test(title) || WEAK_TITLE_RE.test(title) || statusRe.test(title)) return null;
+
+  let startDate = String(fallbackEvent?.start_date || '').trim();
+  if (!startDate) {
+    const dates = parseDatesFromText(pickMeta(html, 'description') || stripTags(html), nowYmd);
+    startDate = dates[0]?.ymd || '';
+  }
+  if (!startDate) return null;
+
+  const timeText = stripTags((html.match(/<p\b[^>]*class=["'][^"']*scSingleMain__start[^"']*["'][^>]*>([\s\S]*?)<\/p>/i) || [])[1] || '');
+  const time = parseEventTimes(timeText || stripTags(html));
+  return buildSiteRuleEvent({
+    source,
+    detailUrl: url,
+    title,
+    startDate,
+    venue: 'SPiCE',
+    venueAddress: '札幌市中央区南8条西4丁目422 オリエンタルホテルB1F',
+    time,
+    summary: pickMeta(html, 'description') || timeText || stripTags(html),
+    flyerImageUrl: pickImage(html, url)
+  });
+}
+
+function extractPmfScheduleDetailEvent({ source, url, html, nowYmd }) {
+  if (source.id !== 'www-pmf-or-jp-jp-schedule') return null;
+  if (!/\/jp\/schedule\/.+\.html$/i.test(url) || /\/20\d{2}\/?$/i.test(url)) return null;
+
+  const titleHtml = (html.match(/<h1\b[^>]*class=["'][^"']*scheduleTitle[^"']*["'][^>]*>([\s\S]*?)<\/h1>/i) || [])[1] || '';
+  const title = textPreview(stripTags(titleHtml.replace(/<span\b[^>]*>[\s\S]*?<\/span>/gi, ' ')), 120);
+  if (!title || BAD_TITLE_RE.test(title) || WEAK_TITLE_RE.test(title)) return null;
+
+  const dateSection = (html.match(/<div\b[^>]*class=["'][^"']*scheduleDetailCont[^"']*["'][^>]*>[\s\S]*?<h3>\s*開催日\s*<\/h3>([\s\S]*?)<\/div>/i) || [])[1] || '';
+  const dateBlock = stripTags(dateSection).replace(/\s+/g, ' ').trim();
+  const dates = parseDatesFromText(dateBlock, nowYmd);
+  if (!dates.length) return null;
+
+  let open = '';
+  let start = '';
+  let end = '';
+  for (const match of html.matchAll(/<dt\b[^>]*class=["'][^"']*header[^"']*["'][^>]*>([\s\S]*?)<\/dt>\s*<dd\b[^>]*class=["'][^"']*body[^"']*["'][^>]*>([\s\S]*?)<\/dd>/gi)) {
+    const label = stripTags(match[1] || '').replace(/\s+/g, ' ').trim();
+    const value = stripTags(match[2] || '').replace(/\s+/g, ' ').trim().replace('：', ':');
+    if (!value) continue;
+    if (/開場/i.test(label)) open = value;
+    else if (/開演/i.test(label)) start = value;
+    else if (/終演|終了/i.test(label)) end = value;
+  }
+  const venue = textPreview(
+    stripTags(((html.match(/<h3>\s*会場\s*<\/h3>\s*<p\b[^>]*class=["'][^"']*link[^"']*["'][^>]*>([\s\S]*?)<\/p>/i) || [])[1] || ''))
+      .replace(/>\s*詳細をみる/i, '')
+      .replace(/\s+/g, ' ')
+      .replace(/\s+([（(])/g, '$1')
+      .trim(),
+    80
+  );
+  const flyerImageUrl = absolutizeUrl(
+    url,
+    (html.match(/<div\b[^>]*class=["'][^"']*schedulePhoto[^"']*["'][^>]*>[\s\S]*?<img\b[^>]*src=["']([^"']+)["']/i) || [])[1] || ''
+  ) || '';
+  const ev = buildSiteRuleEvent({
+    source,
+    detailUrl: url,
+    title,
+    startDate: dates[0].ymd,
+    venue,
+    time: { open, start, end, allDay: !(open || start || end) },
+    summary: [
+      dates[0].ymd,
+      open ? `開場 ${open}` : '',
+      start ? `開演 ${start}` : '',
+      end ? `終演 ${end}` : '',
+      venue
+    ].filter(Boolean).join(' / '),
+    flyerImageUrl
+  });
+  if (!ev || !isSapporoAreaEvent(ev, source)) return null;
+  return ev;
 }
 
 function extractPl24ScheduleEvents({ source, url, html, nowYmd }) {
@@ -1601,6 +1719,48 @@ function extractKaderuVenueEvents({ source, url, html }) {
     if (ev) events.push(ev);
   }
   return uniqueBy(events, (ev) => ev.id);
+}
+
+function extractKaderuDetailEvent({ source, url, html, nowYmd }) {
+  if (source.id !== 'homepage-kaderu27-or-jp-event-news-index-html') return null;
+  if (!/\/event\/(?:self\/)?[A-Za-z0-9_-]+\.html$/i.test(url)) return null;
+  if (/\/event\/(?:index|exhibition|rooms|self\/index)\.html$/i.test(url)) return null;
+
+  const title = textPreview(
+    String(pickMeta(html, 'og:title') || extractTitle(html) || '')
+      .split('|')[0]
+      .replace(/のご案内.*$/u, '')
+      .trim(),
+    120
+  );
+  if (!title || BAD_TITLE_RE.test(title) || WEAK_TITLE_RE.test(title)) return null;
+
+  const startDate = String((html.match(/<time\b[^>]*class=["'][^"']*start[^"']*["'][^>]*datetime=["'](\d{4}-\d{2}-\d{2})["']/i) || [])[1] || '').trim();
+  const endDate = String((html.match(/<time\b[^>]*class=["'][^"']*end[^"']*["'][^>]*datetime=["'](\d{4}-\d{2}-\d{2})["']/i) || [])[1] || '').trim();
+  if (!startDate) {
+    const dates = parseDatesFromText(stripTags(html), nowYmd);
+    if (!dates.length) return null;
+  }
+  const venue = textPreview(
+    stripTags((html.match(/<p\b[^>]*class=["'][^"']*place[^"']*["'][^>]*>([\s\S]*?)<\/p>/i) || [])[1] || '')
+      .replace(/^会場[：:]\s*/u, '')
+      .trim(),
+    80
+  );
+  const venueAddress = textPreview(stripTags((html.match(/<li\b[^>]*class=["'][^"']*address[^"']*["'][^>]*>[\s\S]*?<span\b[^>]*class=["'][^"']*label[^"']*["'][^>]*>住所:<\/span>\s*([\s\S]*?)<\/li>/i) || [])[1] || ''), 140);
+
+  return buildSiteRuleEvent({
+    source,
+    detailUrl: url,
+    title,
+    startDate: startDate || parseDatesFromText(stripTags(html), nowYmd)[0]?.ymd || '',
+    endDate,
+    venue,
+    venueAddress,
+    time: parseEventTimes(stripTags(html)),
+    summary: pickMeta(html, 'description') || stripTags((html.match(/<div\b[^>]*class=["'][^"']*articleBody[^"']*["'][^>]*>([\s\S]*?)<\/div>/i) || [])[1] || ''),
+    flyerImageUrl: pickImage(html, url)
+  });
 }
 
 function extractArtparkListingEvents({ source, url, html, nowYmd }) {
@@ -2372,6 +2532,12 @@ function extractJsonLdEvents({ html, source, detailUrl }) {
 function extractEventsFromPage({ source, url, html, titleHint, nowYmd }) {
   const events = [];
   const bodyText = stripTags(html);
+  const spiceListingEvents = extractSpiceScheduleListingEvents({ source, url, html });
+  for (const ev of spiceListingEvents) events.push(withQuality(ev));
+  const spiceDetailEvent = extractSpiceScheduleDetailEvent({ source, url, html, nowYmd });
+  if (spiceDetailEvent) events.push(withQuality(spiceDetailEvent));
+  const pmfEvent = extractPmfScheduleDetailEvent({ source, url, html, nowYmd });
+  if (pmfEvent) events.push(withQuality(pmfEvent));
   const moleFeedEvents = extractMoleFeedEvents({ source, url, html, nowYmd });
   for (const ev of moleFeedEvents) events.push(withQuality(ev));
   const kitaraEvent = extractKitaraSiteRuleEvent({ source, url, html, nowYmd });
@@ -2410,6 +2576,8 @@ function extractEventsFromPage({ source, url, html, titleHint, nowYmd }) {
   for (const ev of axesEvents) events.push(withQuality(ev));
   const kaderuEvents = extractKaderuVenueEvents({ source, url, html, nowYmd });
   for (const ev of kaderuEvents) events.push(withQuality(ev));
+  const kaderuDetailEvent = extractKaderuDetailEvent({ source, url, html, nowYmd });
+  if (kaderuDetailEvent) events.push(withQuality(kaderuDetailEvent));
   const doshinEvent = extractDoshinPlayguideSiteRuleEvent({ source, url, html, nowYmd });
   if (doshinEvent) events.push(withQuality(doshinEvent));
   const caretexEvent = extractCaretexSiteRuleEvent({ source, url, html, nowYmd });
@@ -3200,6 +3368,156 @@ async function crawlMonthlyListSource(source, options, buildMonthUrl, pageParser
   return crawlSeededListSource(source, options, seedUrls, pageParser);
 }
 
+async function crawlSpiceScheduleSource(source, options) {
+  const { nowYmd, maxDate } = options;
+  let root;
+  try {
+    root = await fetchText(source.url, 12000);
+  } catch (error) {
+    return { sourceId: source.id, events: [], error: String(error?.message || error) };
+  }
+
+  const listingEvents = extractSpiceScheduleListingEvents({
+    source,
+    url: root.url,
+    html: root.html
+  }).filter((ev) => withinWindow(ev, nowYmd, maxDate));
+
+  const detailPages = await mapLimit(listingEvents, 4, async (ev) => {
+    try {
+      const page = await fetchText(ev.detail_url, 10000);
+      return { page, fallbackEvent: ev };
+    } catch (_) {
+      return { page: null, fallbackEvent: ev };
+    }
+  });
+
+  const events = [];
+  for (const row of detailPages) {
+    const page = row?.page;
+    const fallbackEvent = row?.fallbackEvent || null;
+    if (!page || page.error) {
+      if (fallbackEvent) events.push(withQuality(fallbackEvent));
+      continue;
+    }
+    const ev = extractSpiceScheduleDetailEvent({
+      source,
+      url: page.url,
+      html: page.html,
+      nowYmd,
+      fallbackEvent
+    }) || fallbackEvent;
+    if (ev && withinWindow(ev, nowYmd, maxDate)) events.push(withQuality(ev));
+  }
+
+  return {
+    sourceId: source.id,
+    events: uniqueBy(events, (ev) => ev.detail_url),
+    error: ''
+  };
+}
+
+async function crawlPmfScheduleSource(source, options) {
+  const { nowYmd, maxDate } = options;
+  let root;
+  try {
+    root = await fetchText(source.url, 12000);
+  } catch (error) {
+    return { sourceId: source.id, events: [], error: String(error?.message || error) };
+  }
+
+  const detailLinks = uniqueBy(
+    extractLinks(root.html, root.url)
+      .filter((link) => /^https:\/\/www\.pmf\.or\.jp\/jp\/schedule\//i.test(link.url))
+      .filter((link) => /\/20\d{2}[^/?#]*\.html$/i.test(link.url))
+      .filter((link) => !/\/field\/service\//i.test(link.url)),
+    (link) => link.url
+  );
+
+  const detailPages = await mapLimit(detailLinks, 4, async (link) => {
+    try {
+      return await fetchText(link.url, 12000);
+    } catch (_) {
+      return null;
+    }
+  });
+
+  const events = [];
+  for (const page of detailPages) {
+    if (!page || page.error) continue;
+    const ev = extractPmfScheduleDetailEvent({
+      source,
+      url: page.url,
+      html: page.html,
+      nowYmd
+    });
+    if (ev && withinWindow(ev, nowYmd, maxDate)) events.push(withQuality(ev));
+  }
+
+  return {
+    sourceId: source.id,
+    events: uniqueBy(events, (ev) => ev.id),
+    error: ''
+  };
+}
+
+async function crawlKaderuSource(source, options) {
+  const { nowYmd, maxDate } = options;
+  const seedUrls = [
+    'https://homepage.kaderu27.or.jp/event/index.html',
+    'https://homepage.kaderu27.or.jp/event/exhibition.html',
+    'https://homepage.kaderu27.or.jp/event/rooms.html',
+    'https://homepage.kaderu27.or.jp/event/self/index.html'
+  ];
+  const pages = await mapLimit(seedUrls, 4, async (url) => {
+    try {
+      return await fetchText(url, 12000);
+    } catch (_) {
+      return null;
+    }
+  });
+
+  const listingEvents = [];
+  for (const page of pages) {
+    if (!page || page.error) continue;
+    for (const ev of extractKaderuVenueEvents({ source, url: page.url, html: page.html, nowYmd })) {
+      if (withinWindow(ev, nowYmd, maxDate)) listingEvents.push(ev);
+    }
+  }
+
+  const detailPages = await mapLimit(listingEvents, 4, async (ev) => {
+    try {
+      const page = await fetchText(ev.detail_url, 12000);
+      return { page, fallbackEvent: ev };
+    } catch (_) {
+      return { page: null, fallbackEvent: ev };
+    }
+  });
+
+  const events = [];
+  for (const row of detailPages) {
+    const page = row?.page;
+    const fallbackEvent = row?.fallbackEvent || null;
+    if (!page || page.error) {
+      if (fallbackEvent) events.push(withQuality(fallbackEvent));
+      continue;
+    }
+    const ev = extractKaderuDetailEvent({
+      source,
+      url: page.url,
+      html: page.html,
+      nowYmd
+    }) || fallbackEvent;
+    if (ev && withinWindow(ev, nowYmd, maxDate)) events.push(withQuality(ev));
+  }
+
+  return {
+    sourceId: source.id,
+    events: uniqueBy(events, (ev) => ev.detail_url),
+    error: ''
+  };
+}
+
 async function crawlMusicScheduleFamilySource(source, options) {
   if (source.id === 'www-pl24-jp-schedule-html') {
     return crawlSeededListSource(
@@ -3344,6 +3662,12 @@ async function crawlSource(source, options) {
   if (source.id === 'wess-jp-concert-schedule') {
     return crawlWessSource(source, options);
   }
+  if (source.id === 'spice-sapporo-jp-schedule') {
+    return crawlSpiceScheduleSource(source, options);
+  }
+  if (source.id === 'www-pmf-or-jp-jp-schedule') {
+    return crawlPmfScheduleSource(source, options);
+  }
   const musicFamilyResult = await crawlMusicScheduleFamilySource(source, options);
   if (musicFamilyResult) return musicFamilyResult;
   const publicHallFamilyResult = await crawlPublicHallFamilySource(source, options);
@@ -3451,17 +3775,7 @@ async function crawlSource(source, options) {
     );
   }
   if (source.id === 'homepage-kaderu27-or-jp-event-news-index-html') {
-    return crawlSeededListSource(
-      source,
-      options,
-      [
-        'https://homepage.kaderu27.or.jp/event/index.html',
-        'https://homepage.kaderu27.or.jp/event/exhibition.html',
-        'https://homepage.kaderu27.or.jp/event/rooms.html',
-        'https://homepage.kaderu27.or.jp/event/self/index.html'
-      ],
-      extractKaderuVenueEvents
-    );
+    return crawlKaderuSource(source, options);
   }
   if (source.id === 'www-htb-co-jp-event') {
     return crawlHtbEventSource(source, options);
@@ -3804,6 +4118,8 @@ export {
   crawlSource,
   extractArtparkDetailEvent,
   extractArtparkListingEvents,
+  extractSpiceScheduleListingEvents,
+  extractSpiceScheduleDetailEvent,
   eventFromWessPost,
   extractAxesCalendarEvents,
   extractCaretexSiteRuleEvent,
@@ -3819,12 +4135,15 @@ export {
   extractLilacfesDetailEvents,
   extractNoMapsNearlyEvent,
   extractMoleFeedEvents,
+  extractPmfScheduleDetailEvent,
   extractSapporoCityJazzNewsEvents,
   extractSapporoFactoryMonthlyEvents,
+  extractSapporoCommunityPlazaSiteRuleEvent,
   extractSnowfesSiteRuleEvent,
   extractSapporoShiminhallScheduleEvents,
   extractSoraConventionEvents,
   extractSummerfesDetailEvents,
+  extractKaderuDetailEvent,
   extractTicketPiaLocalSiteRuleEvents,
   extractTsudomeCalendarEvents,
   extractWhiteIlluminationDetailEvents,
