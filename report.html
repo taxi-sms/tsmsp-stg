@@ -881,6 +881,11 @@
     });
   }
 
+  function focusAmountFieldForCurrentPayMethod() {
+    const resolvedPay = getPayMethodValue();
+    (resolvedPay === reportFieldConfig.payPrimary[0] ? inCash : inCredit).focus();
+  }
+
   function todayLocalYmd() {
     const d = new Date();
     const y = d.getFullYear();
@@ -939,12 +944,19 @@
     }
   }
 
-  function scrollToAmountsIfReady() {
+  function scrollToNextRequiredSection() {
+    if (!state.rideTypeBase) {
+      queueScrollToSection(document.getElementById("sec_rideType"));
+      return;
+    }
     if (state.rideTypeBase === "その他" && !state.rideTypeOther) {
       queueScrollToSection(secRideTypeOther);
       return;
     }
-    if (!state.rideTypeBase || !state.payMethodBase) return;
+    if (!state.payMethodBase) {
+      queueScrollToSection(document.getElementById("sec_payMethod"));
+      return;
+    }
     if (state.payMethodBase === "その他" && !state.payMethodOther) {
       queueScrollToSection(secPayMethodOther);
       return;
@@ -955,8 +967,7 @@
     }
     setTimeout(() => {
       queueScrollToSection(secAmounts);
-      const resolvedPay = getPayMethodValue();
-      (resolvedPay === reportFieldConfig.payPrimary[0] ? inCash : inCredit).focus();
+      focusAmountFieldForCurrentPayMethod();
     }, 50);
   }
 
@@ -2372,7 +2383,7 @@ ${remaining}秒後に${countdownLabel}`;
       if (g === "ticketSub") state.ticketSub = selected ? v : "";
 
       if (g === "rideType" || g === "payMethod") applyPayRules();
-      if (selected) scrollToAmountsIfReady();
+      if (selected) scrollToNextRequiredSection();
       return;
     }
 
@@ -2526,7 +2537,7 @@ ${remaining}秒後に${countdownLabel}`;
     inCredit.value = entry.credit ? String(entry.credit) : "";
     inNote.value = entry.note || "";
     focused = inCash;
-    setTimeout(scrollToAmountsIfReady, 50);
+    setTimeout(scrollToNextRequiredSection, 50);
   })();
 
   (function promptVoiceInputOnOpen() {
