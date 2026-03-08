@@ -532,31 +532,93 @@ function normalizeHm(hour, minute = '00') {
   return `${String(hour).padStart(2, '0')}:${String(minute).padStart(2, '0')}`;
 }
 
+function normalizeTimeToken(value) {
+  const raw = String(value || '').trim();
+  if (!raw) return '';
+  const colon = raw.match(/^([01]?\d|2[0-3])[:：]([0-5]\d)$/);
+  if (colon) return normalizeHm(colon[1], colon[2]);
+  const jpMinute = raw.match(/^([01]?\d|2[0-3])時\s*([0-5]\d)\s*分?$/);
+  if (jpMinute) return normalizeHm(jpMinute[1], jpMinute[2]);
+  const jpHour = raw.match(/^([01]?\d|2[0-3])時$/);
+  if (jpHour) return normalizeHm(jpHour[1], '00');
+  return '';
+}
+
 function parseTimeTagged(text, labels, preferBefore = true) {
   const normalized = String(text || '')
     .replace(/[【】\[\]（）()]/g, ' ')
     .replace(/\s+/g, ' ');
   const label = labels.join('|');
-  const sep = '(?:\\s|[:：/／\\-ー〜~]|予定|開始|開演|開場)*';
-  const beforeMinute = normalized.match(new RegExp(`([01]?\\d|2[0-3])[:：]([0-5]\\d)\\s*(?:${label})`, 'i'));
-  const beforeHour = normalized.match(new RegExp(`([01]?\\d|2[0-3])時\\s*(?:${label})`, 'i'));
-  const afterMinute = normalized.match(new RegExp(`(?:${label})${sep}([01]?\\d|2[0-3])[:：]([0-5]\\d)`, 'i'));
-  const afterHour = normalized.match(new RegExp(`(?:${label})${sep}([01]?\\d|2[0-3])時`, 'i'));
+  const gap = '(?:\\s|[:：/／\\-ー〜~]|予定|は|=)*';
+  const patterns = [
+    { re: new RegExp(`(([01]?\\d|2[0-3])[:：]([0-5]\\d))(${gap})((?:${label}))`, 'gi'), orientation: 'before', hour: 2, minute: 3, gap: 4, label: 5 },
+    { re: new RegExp(`(([01]?\\d|2[0-3])時\\s*([0-5]\\d)\\s*分?)(${gap})((?:${label}))`, 'gi'), orientation: 'before', hour: 2, minute: 3, gap: 4, label: 5 },
+    { re: new RegExp(`(([01]?\\d|2[0-3])時)(${gap})((?:${label}))`, 'gi'), orientation: 'before', hour: 2, minute: 0, gap: 3, label: 4 },
+    { re: new RegExp(`((?:${label}))(${gap})(([01]?\\d|2[0-3])[:：]([0-5]\\d))`, 'gi'), orientation: 'after', hour: 4, minute: 5, gap: 2, label: 1 },
+    { re: new RegExp(`((?:${label}))(${gap})(([01]?\\d|2[0-3])時\\s*([0-5]\\d)\\s*分?)`, 'gi'), orientation: 'after', hour: 4, minute: 5, gap: 2, label: 1 },
+    { re: new RegExp(`((?:${label}))(${gap})(([01]?\\d|2[0-3])時)`, 'gi'), orientation: 'after', hour: 4, minute: 0, gap: 2, label: 1 }
+  ];
 
-  const order = preferBefore
-    ? [beforeMinute, beforeHour, afterMinute, afterHour]
-    : [afterMinute, afterHour, beforeMinute, beforeHour];
+  const collect = () => {
+    const out = [];
+    for (const spec of patterns) {
+      const re = spec.re;
+      let match;
+      while ((match = re.exec(normalized)) !== null) {
+        const hour = match[spec.hour] || '';
+        const minute = spec.minute ? (match[spec.minute] || '') : '';
+        const gapText = match[spec.gap] || '';
+        const labelText = match[spec.label] || '';
+        out.push({
+          index: match.index,
+          distance: Math.max(0, String(gapText || '').length),
+          orientation: spec.orientation,
+          time: normalizeHm(hour, minute || '00'),
+          label: labelText
+        });
+      }
+    }
+    return out.sort((a, b) => (
+      a.distance - b.distance ||
+      (a.orientation !== b.orientation
+        ? (preferBefore
+          ? (a.orientation === 'before' ? -1 : 1)
+          : (a.orientation === 'after' ? -1 : 1))
+        : 0) ||
+      a.index - b.index
+    ));
+  };
 
-  for (const m of order) {
-    if (!m) continue;
-    if (m[2] != null) return normalizeHm(m[1], m[2]);
-    return normalizeHm(m[1], '00');
+  for (const row of collect()) {
+    if (!row || !row.time) continue;
+    return row.time;
   }
   return '';
 }
 
 function parseEventTimes(text) {
-  const open = parseTimeTagged(text, ['開場', 'door\\s*open', 'open'], true);
+  const normalized = String(text || '')
+    .replace(/[【】\[\]（）()]/g, ' ')
+    .replace(/\s+/g, ' ');
+  const repeatedLabelPairMatch = normalized.match(/(?:開場|door\s*open|open)\s*[\/／]\s*((?:[01]?\d|2[0-3])(?:[:：][0-5]\d|時\s*[0-5]\d\s*分?|時))\s*(?:開演|開始|start(?:\s*time)?|start)\s*[\/／]\s*((?:[01]?\d|2[0-3])(?:[:：][0-5]\d|時\s*[0-5]\d\s*分?|時))/i);
+  if (repeatedLabelPairMatch) {
+    const open = normalizeTimeToken(repeatedLabelPairMatch[1]);
+    const start = normalizeTimeToken(repeatedLabelPairMatch[2]);
+    if (open || start) {
+      return { open, start, end: '', allDay: false };
+    }
+  }
+
+  const pairMatch = normalized.match(/(?:開場|door\s*open|open)\s*[\/／]\s*(?:開演|開始|start(?:\s*time)?|start)\s*((?:[01]?\d|2[0-3])(?:[:：][0-5]\d|時\s*[0-5]\d\s*分?|時))\s*[\/／]\s*((?:[01]?\d|2[0-3])(?:[:：][0-5]\d|時\s*[0-5]\d\s*分?|時))/i);
+  if (pairMatch) {
+    const open = normalizeTimeToken(pairMatch[1]);
+    const start = normalizeTimeToken(pairMatch[2]);
+    if (open || start) {
+      return { open, start, end: '', allDay: false };
+    }
+  }
+
+  const open = parseTimeTagged(text, ['開場', 'door\\s*open', 'open'], false);
   const start = parseTimeTagged(text, ['開演', '開始', 'start\\s*time', 'start'], false);
   const end = parseTimeTagged(text, ['終演', '終了', 'end\\s*time', 'end'], false);
 
@@ -4361,6 +4423,8 @@ export {
   crawlSource,
   extractArtparkDetailEvent,
   extractArtparkListingEvents,
+  extractKitaraSiteRuleEvent,
+  extractPl24ScheduleEvents,
   extractSpiceScheduleListingEvents,
   extractSpiceScheduleDetailEvent,
   eventFromWessPost,

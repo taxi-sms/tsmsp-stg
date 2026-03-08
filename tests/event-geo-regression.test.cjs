@@ -606,7 +606,7 @@ async function testExtractMountAliveSiteRuleEventUsesMetaFields() {
         <title>KK60 | MOUNT ALIVE</title>
       </head>
       <body>
-        <p id="op_st_time">OPEN 17:00 / START 18:00</p>
+        <p id="op_st_time">OPEN / 17:00 START / 18:00</p>
       </body>
     </html>
   `;
@@ -877,6 +877,65 @@ async function testExtractHtbEventDetailEventsPrefersSapporoSection() {
   assert.strictEqual(events.length, 1);
   assert.strictEqual(events[0].start_date, "2026-04-10");
   assert.strictEqual(events[0].venue, "札幌コンサートホール Kitara 大ホール");
+  assert.strictEqual(events[0].open_time, "17:45");
+  assert.strictEqual(events[0].start_time, "18:30");
+}
+
+async function testExtractKitaraSiteRuleEventParsesOpenStartEnd() {
+  const mod = await loadModule();
+  const source = { id: "www-kitara-sapporo-or-jp-event", name: "Kitara", url: "https://www.kitara-sapporo.or.jp/event/", priority: "A" };
+  const html = `
+    <html>
+      <head><title>村治佳織リサイタル 北海道ツアー | Kitara</title></head>
+      <body>
+        <dl class="eventInfo">
+          <dt id="d_time">会場／日時</dt>
+          <dd>
+            <b class="place">大ホール</b>
+            <p>2026年4月10日(金曜日)<br>17:45開場 18:30開演 20:30終演予定</p>
+          </dd>
+        </dl>
+      </body>
+    </html>
+  `;
+  const ev = mod.extractKitaraSiteRuleEvent({
+    source,
+    url: "https://www.kitara-sapporo.or.jp/event/event_detail.php?num=6973",
+    html,
+    nowYmd: "2026-03-09"
+  });
+  assert.ok(ev);
+  assert.strictEqual(ev.open_time, "17:45");
+  assert.strictEqual(ev.start_time, "18:30");
+  assert.strictEqual(ev.end_time, "20:30");
+  assert.strictEqual(ev.venue, "大ホール");
+}
+
+async function testExtractPl24ScheduleEventsUsesDistinctOpenAndStart() {
+  const mod = await loadModule();
+  const source = { id: "www-pl24-jp-schedule-html", name: "PENNY LANE24", url: "https://www.pl24.jp/schedule.html", priority: "A" };
+  const html = `
+    <html>
+      <body>
+        <div id="waku_sp">
+          <p id="font_day">2026年3月14日【土】</p>
+          <p id="font_title">1st EP 五臓 -GOZO-Release Tour 2026『上弦』</p>
+          <p id="font_name">NEMOPHILA</p>
+          <p><span id="font_op_st">開場 / 開演</span>17:00 / 17:30</p>
+          <a href="http://www.mountalive.com/">link</a>
+        </div>
+      </body>
+    </html>
+  `;
+  const events = mod.extractPl24ScheduleEvents({
+    source,
+    url: "https://www.pl24.jp/schedule.html",
+    html,
+    nowYmd: "2026-03-01"
+  });
+  assert.strictEqual(events.length, 1);
+  assert.strictEqual(events[0].open_time, "17:00");
+  assert.strictEqual(events[0].start_time, "17:30");
 }
 
 async function testExtractSapporoCityJazzNewsEvents() {
@@ -1138,6 +1197,8 @@ async function runTests() {
     ["mole RSS から日付と時間を拾う", testExtractMoleFeedEventsFromCategoryFeed],
     ["CareTEX札幌の会期を拾う", testExtractCaretexSiteRuleEvent],
     ["HTB詳細は札幌セクションを優先する", testExtractHtbEventDetailEventsPrefersSapporoSection],
+    ["Kitara詳細は open/start/end を拾う", testExtractKitaraSiteRuleEventParsesOpenStartEnd],
+    ["PL24一覧は open/start を分離する", testExtractPl24ScheduleEventsUsesDistinctOpenAndStart],
     ["CITY JAZZ のニュース記事から開催日を拾う", testExtractSapporoCityJazzNewsEvents],
     ["夏まつり JSON 詳細から各行事を拾う", testExtractSummerfesDetailEvents],
     ["NoMaps 近日イベント詳細から日時と会場を拾う", testExtractNoMapsNearlyEvent],
