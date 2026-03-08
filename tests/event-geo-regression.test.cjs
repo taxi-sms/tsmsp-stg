@@ -433,6 +433,101 @@ async function testExtractKaderuVenueEventsFromHallPage() {
   assert.strictEqual(events[0].venue, "かでるホール");
 }
 
+async function testExtractArtparkDetailEventUsesLabeledFields() {
+  const mod = await loadModule();
+  const source = { id: "artpark-or-jp-tenrankai-events", name: "札幌芸術の森", url: "https://artpark.or.jp/tenrankai-events/", priority: "A" };
+  const html = `
+    <html>
+      <head><title>ライラックチャリティ MUSIC LAMP Vol.15 | 札幌芸術の森</title></head>
+      <body>
+        <dl class="box-2 clearfix">
+          <dt>会期</dt>
+          <dd>2026年2月21日（土）</dd>
+          <dt>時間</dt>
+          <dd>開場15:15 / 開演16:00 （18:20頃終演予定）</dd>
+          <dt>会場</dt>
+          <dd><p><span>札幌市教育文化会館 大ホール</span><span>（札幌市中央区北1条西13丁目）</span></p></dd>
+        </dl>
+      </body>
+    </html>
+  `;
+  const ev = mod.extractArtparkDetailEvent({
+    source,
+    url: "https://artpark.or.jp/tenrankai-event/music-lamp-vol-15/",
+    html,
+    nowYmd: "2026-02-01"
+  });
+  assert.ok(ev);
+  assert.strictEqual(ev.start_date, "2026-02-21");
+  assert.strictEqual(ev.venue, "札幌市教育文化会館 大ホール");
+  assert.strictEqual(ev.open_time, "15:15");
+  assert.strictEqual(ev.start_time, "16:00");
+}
+
+async function testExtractSapporoFactoryMonthlyEventsUsesMonthlyCards() {
+  const mod = await loadModule();
+  const source = { id: "sapporofactory-jp-event", name: "サッポロファクトリー", url: "https://sapporofactory.jp/event/", priority: "A" };
+  const html = `
+    <html>
+      <body>
+        <ul class="article">
+          <li class="js-fadeup"><a href="/event/detail/522">
+            <div class="picture"><img src="/theme/sf/files/event/ID00000522-20260307_161214-img.jpg" alt=""></div>
+            <div class="text">
+              <p class="date">2026年3月27日（金）～30日（月）</p>
+              <p class="title">Disney公認アーティスト マセイ展</p>
+            </div>
+          </a></li>
+        </ul>
+        <table>
+          <tr class="lane-cinema">
+            <td class="td-ttl"><p class="td-text"><a href="/event/detail/522">Disney公認アーティスト マセイ展</a></p></td>
+            <td class="td-place"><p>サッポロファクトリーホール</p></td>
+          </tr>
+        </table>
+      </body>
+    </html>
+  `;
+  const events = mod.extractSapporoFactoryMonthlyEvents({
+    source,
+    url: "https://sapporofactory.jp/event/?ym=2026-03",
+    html,
+    nowYmd: "2026-03-01"
+  });
+  assert.strictEqual(events.length, 1);
+  assert.strictEqual(events[0].start_date, "2026-03-27");
+  assert.strictEqual(events[0].end_date, "2026-03-30");
+  assert.strictEqual(events[0].venue, "サッポロファクトリーホール");
+}
+
+async function testExtractMoleFeedEventsFromCategoryFeed() {
+  const mod = await loadModule();
+  const source = { id: "mole-sapporo-jp-schedule", name: "Sound Lab mole", url: "https://mole-sapporo.jp/schedule/", priority: "B" };
+  const html = `
+    <rss>
+      <channel>
+        <item>
+          <title>KOHAKU Presents. release tour</title>
+          <link>https://mole-sapporo.jp/kohaku-release-tour/</link>
+          <description><![CDATA[2026/12/20（日） OPEN 18:30/START 19:00 前売￥3,800 出演：KOHAKU]]></description>
+          <content:encoded><![CDATA[<p>2026/12/20（日）</p><p>OPEN 18:30/START 19:00</p>]]></content:encoded>
+        </item>
+      </channel>
+    </rss>
+  `;
+  const events = mod.extractMoleFeedEvents({
+    source,
+    url: "https://mole-sapporo.jp/category/event/live/feed/",
+    html,
+    nowYmd: "2026-03-01"
+  });
+  assert.strictEqual(events.length, 1);
+  assert.strictEqual(events[0].start_date, "2026-12-20");
+  assert.strictEqual(events[0].venue, "Sound Lab mole");
+  assert.strictEqual(events[0].open_time, "18:30");
+  assert.strictEqual(events[0].start_time, "19:00");
+}
+
 async function testExtractCaretexSiteRuleEvent() {
   const mod = await loadModule();
   const source = { id: "sapporo-caretex-jp", name: "CareTEX札幌", url: "https://sapporo.caretex.jp/", priority: "A" };
@@ -671,6 +766,9 @@ async function runTests() {
     ["アクセスサッポロ月別カレンダーを組み立てる", testExtractAxesCalendarEventsFromMonthlyCalendar],
     ["ファイターズ日程はホームゲームだけ拾う", testExtractFightersHomeGameEvents],
     ["かでる会場別イベントを組み立てる", testExtractKaderuVenueEventsFromHallPage],
+    ["芸術の森詳細はラベル付き項目から組み立てる", testExtractArtparkDetailEventUsesLabeledFields],
+    ["サッポロファクトリー月別ページを組み立てる", testExtractSapporoFactoryMonthlyEventsUsesMonthlyCards],
+    ["mole RSS から日付と時間を拾う", testExtractMoleFeedEventsFromCategoryFeed],
     ["CareTEX札幌の会期を拾う", testExtractCaretexSiteRuleEvent],
     ["HTB詳細は札幌セクションを優先する", testExtractHtbEventDetailEventsPrefersSapporoSection],
     ["CITY JAZZ のニュース記事から開催日を拾う", testExtractSapporoCityJazzNewsEvents],
