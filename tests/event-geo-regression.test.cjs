@@ -114,6 +114,16 @@ async function testAllowKnownSapporoVenueWithoutCityName() {
   assert.strictEqual(mod.isSapporoAreaEvent(ev), true);
 }
 
+async function testAllowEsconFieldVenue() {
+  const mod = await loadModule();
+  const ev = {
+    title: "北海道日本ハムファイターズ ホームゲーム",
+    venue: "エスコンフィールドHOKKAIDO",
+    venue_address: "北海道北広島市Fビレッジ1番地"
+  };
+  assert.strictEqual(mod.isSapporoAreaEvent(ev), true);
+}
+
 async function testBuildWessEventFromApiPost() {
   const mod = await loadModule();
   const source = {
@@ -329,6 +339,61 @@ async function testExtractAxesCalendarEventsFromMonthlyCalendar() {
   assert.strictEqual(events[0].start_date, "2026-04-04");
   assert.strictEqual(events[0].end_date, "2026-04-05");
   assert.strictEqual(events[0].venue, "アクセスサッポロ");
+}
+
+async function testExtractFightersHomeGameEvents() {
+  const mod = await loadModule();
+  const source = { id: "www-fighters-co-jp-game-calendar", name: "ファイターズ", url: "https://www.fighters.co.jp/game/calendar/", priority: "S" };
+  const html = `
+    <div class="c-calendar-month">
+      <div class="c-calendar-month-day ">
+        <div class="c-calendar-month-day-text">4/1</div>
+        <div class="c-calendar-month-day-container">
+          <div class="c-calendar-month-day-label c-calendar-month-day-label--home">
+            <div class="c-calendar-month-day-label-venue">ホーム</div>
+          </div>
+          <div class="c-calendar-month-main-contents">
+            <div class="c-calendar-month-vs">
+              <div class="c-calendar-month-game-division">公式戦</div>
+              <a class="c-calendar-month-vs-status c-calendar-month-vs-status--before" href="/gamelive/result/2026040101/">試合開始
+                <div class="c-calendar-month-vs-status-time">18:30</div>
+              </a>
+              <div class="c-calendar-month-text">エスコンフィールド</div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="c-calendar-month-day ">
+        <div class="c-calendar-month-day-text">4/2</div>
+        <div class="c-calendar-month-day-container">
+          <div class="c-calendar-month-day-label c-calendar-month-day-label--visitor">
+            <div class="c-calendar-month-day-label-venue">ビジター</div>
+          </div>
+          <div class="c-calendar-month-main-contents">
+            <div class="c-calendar-month-vs">
+              <a class="c-calendar-month-vs-status c-calendar-month-vs-status--before" href="/gamelive/result/2026040201/">試合開始
+                <div class="c-calendar-month-vs-status-time">18:00</div>
+              </a>
+              <div class="c-calendar-month-text">楽天モバイル 最強パーク</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  `;
+
+  const events = mod.extractFightersHomeGameEvents({
+    source,
+    url: "https://www.fighters.co.jp/game/calendar/202604/",
+    html
+  });
+
+  assert.strictEqual(events.length, 1);
+  assert.strictEqual(events[0].start_date, "2026-04-01");
+  assert.strictEqual(events[0].start_time, "18:30");
+  assert.strictEqual(events[0].venue, "エスコンフィールド");
+  assert.strictEqual(events[0].detail_url, "https://www.fighters.co.jp/gamelive/result/2026040101/");
+  assert.strictEqual(events[0].title, "北海道日本ハムファイターズ ホームゲーム（公式戦）");
 }
 
 async function testExtractKaderuVenueEventsFromHallPage() {
@@ -595,6 +660,7 @@ async function runTests() {
     ["タイトルだけ札幌は通さない", testRejectTitleOnlyLocalWithoutVenueProof],
     ["ぴあ bundle は札幌カードの日付を使う", testExtractTicketPiaLocalCardDate],
     ["札幌既知会場は地名なしでも通す", testAllowKnownSapporoVenueWithoutCityName],
+    ["エスコンフィールドは札幌圏判定で通す", testAllowEsconFieldVenue],
     ["WESS API から札幌公演を組み立てる", testBuildWessEventFromApiPost],
     ["CLI 引数で未来日と対象ソースを指定できる", testParseArgsSupportsTodayAndSource],
     ["HBC 一覧は札幌圏会場だけ拾う", testExtractHbcConcertEventsFiltersToSapporoArea],
@@ -603,6 +669,7 @@ async function runTests() {
     ["カナモトホール月別ページを組み立てる", testExtractSapporoShiminhallScheduleEventsFromMonthlyPage],
     ["ちえりあカレンダーHTMLを組み立てる", testExtractChieriaHallScheduleEventsFromCalendarView],
     ["アクセスサッポロ月別カレンダーを組み立てる", testExtractAxesCalendarEventsFromMonthlyCalendar],
+    ["ファイターズ日程はホームゲームだけ拾う", testExtractFightersHomeGameEvents],
     ["かでる会場別イベントを組み立てる", testExtractKaderuVenueEventsFromHallPage],
     ["CareTEX札幌の会期を拾う", testExtractCaretexSiteRuleEvent],
     ["HTB詳細は札幌セクションを優先する", testExtractHtbEventDetailEventsPrefersSapporoSection],

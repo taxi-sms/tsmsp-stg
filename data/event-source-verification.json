@@ -1,9 +1,9 @@
 {
-  "generated_at": "2026-03-07T19:34:21.788Z",
+  "generated_at": "2026-03-08T16:45:08.097Z",
   "test_dates": [
-    "2026-03-08"
+    "2026-03-09"
   ],
-  "source_total": 46,
+  "source_total": 47,
   "sources": [
     {
       "id": "wess-jp-concert-schedule",
@@ -11,18 +11,18 @@
       "url": "https://wess.jp/concert-schedule/",
       "strategy": "detail",
       "status": "ok",
-      "best_event_count": 246,
+      "best_event_count": 243,
       "snapshots": [
         {
-          "date": "2026-03-08",
+          "date": "2026-03-09",
           "error": "",
-          "event_count": 246,
+          "event_count": 243,
           "sample_titles": [
-            "SUPER BEAVER SUPER BEAVER 20th Anniversary 「都会のラクダ TOUR 2026 〜 ラクダトゥインクルー 〜」",
-            "グソクムズ グソクムズ ワンマンツアー “SCRATCH TOUR 2026”",
-            "デラックス×デラックス デラックス×デラックス10th ANNIVERSARY「天晴れ!!和気藹々ツアー」",
-            "wapiti / The Hurryʼs / ADORE SPiCE pre BECOME THE KULTURE",
-            "UA 『NEWME 026』"
+            "UA 『NEWME 026』",
+            "ASIAN KUNG-FU GENERATION ASIAN KUNG-FU GENERATIONFrom the Northern Land ’26 \"Friendship\"",
+            "THE BOHEMIANS BEST OF THE BOHEMIANS TOUR 2026",
+            "宮本浩次 宮本浩次 tour2026 新しい旅",
+            "SKRYU SKRYU 絶 (Zepp) Tour 2026 -ぜつset-"
           ]
         }
       ]
@@ -36,7 +36,7 @@
       "best_event_count": 13,
       "snapshots": [
         {
-          "date": "2026-03-08",
+          "date": "2026-03-09",
           "error": "",
           "event_count": 13,
           "sample_titles": [
@@ -58,7 +58,7 @@
       "best_event_count": 2,
       "snapshots": [
         {
-          "date": "2026-03-08",
+          "date": "2026-03-09",
           "error": "",
           "event_count": 2,
           "sample_titles": [
@@ -77,7 +77,7 @@
       "best_event_count": 1,
       "snapshots": [
         {
-          "date": "2026-03-08",
+          "date": "2026-03-09",
           "error": "",
           "event_count": 1,
           "sample_titles": [
@@ -95,7 +95,7 @@
       "best_event_count": 5,
       "snapshots": [
         {
-          "date": "2026-03-08",
+          "date": "2026-03-09",
           "error": "",
           "event_count": 5,
           "sample_titles": [
@@ -117,7 +117,7 @@
       "best_event_count": 6,
       "snapshots": [
         {
-          "date": "2026-03-08",
+          "date": "2026-03-09",
           "error": "",
           "event_count": 6,
           "sample_titles": [
@@ -139,7 +139,7 @@
       "best_event_count": 1,
       "snapshots": [
         {
-          "date": "2026-03-08",
+          "date": "2026-03-09",
           "error": "",
           "event_count": 1,
           "sample_titles": [
@@ -157,7 +157,7 @@
       "best_event_count": 13,
       "snapshots": [
         {
-          "date": "2026-03-08",
+          "date": "2026-03-09",
           "error": "",
           "event_count": 13,
           "sample_titles": [
@@ -171,20 +171,40 @@
       ]
     },
     {
+      "id": "www-fighters-co-jp-game-calendar",
+      "name": "北海道日本ハムファイターズ 試合日程・結果カレンダー",
+      "url": "https://www.fighters.co.jp/game/calendar/",
+      "strategy": "feed_then_detail",
+      "status": "ok",
+      "best_event_count": 77,
+      "snapshots": [
+        {
+          "date": "2026-03-09",
+          "error": "",
+          "event_count": 77,
+          "sample_titles": [
+            "北海道日本ハムファイターズ ホームゲーム（オープン戦）",
+            "北海道日本ハムファイターズ ホームゲーム（オープン戦）",
+            "北海道日本ハムファイターズ ホームゲーム（オープン戦）",
+            "北海道日本ハムファイターズ ホームゲーム（オープン戦）",
+            "北海道日本ハムファイターズ ホームゲーム（オープン戦）"
+          ]
+        }
+      ]
+    },
+    {
       "id": "www-sapporo-sport-jp-tsudome-calendar",
       "name": "つどーむ（札幌市スポーツ協会）",
       "url": "https://www.sapporo-sport.jp/tsudome/calendar/",
       "strategy": "feed_then_detail",
-      "status": "ok",
-      "best_event_count": 1,
+      "status": "no_future_events",
+      "best_event_count": 0,
       "snapshots": [
         {
-          "date": "2026-03-08",
+          "date": "2026-03-09",
           "error": "",
-          "event_count": 1,
-          "sample_titles": [
-            "スーパー中古車市"
-          ]
+          "event_count": 0,
+          "sample_titles": []
         }
       ]
     },
@@ -194,18 +214,18 @@
       "url": "https://www.sora-scc.jp/",
       "strategy": "detail",
       "status": "ok",
-      "best_event_count": 12,
+      "best_event_count": 11,
       "snapshots": [
         {
-          "date": "2026-03-08",
+          "date": "2026-03-09",
           "error": "",
-          "event_count": 12,
+          "event_count": 11,
           "sample_titles": [
-            "CCS研究発表会",
             "ナース専科 就職 合同就職説明会2027",
             "こども仕事体験フェスタ in 札幌",
             "サッポロQMS令和８年技術研修会",
-            "#kodama「ビビ！っとデパートメント」"
+            "#kodama「ビビ！っとデパートメント」",
+            "令和７年度 札管協 製品展示会"
           ]
         }
       ]
@@ -216,18 +236,18 @@
       "url": "https://www.axes.or.jp/",
       "strategy": "detail_light",
       "status": "ok",
-      "best_event_count": 8,
+      "best_event_count": 7,
       "snapshots": [
         {
-          "date": "2026-03-08",
+          "date": "2026-03-09",
           "error": "",
-          "event_count": 8,
+          "event_count": 7,
           "sample_titles": [
-            "北海道モーターサイクルショウ２０２６",
             "２０２６年 アイビック総合展示会",
             "アイビック食品展示会",
             "中古車ザ・バーゲン",
-            "オールスズキフェア２０２６"
+            "オールスズキフェア２０２６",
+            "第34回 FUJII GARDEN&EXTERIOR EXHIBITION"
           ]
         }
       ]
@@ -238,18 +258,18 @@
       "url": "https://www.sapporo-community-plaza.jp/event.php",
       "strategy": "detail",
       "status": "ok",
-      "best_event_count": 58,
+      "best_event_count": 57,
       "snapshots": [
         {
-          "date": "2026-03-08",
+          "date": "2026-03-09",
           "error": "",
-          "event_count": 58,
+          "event_count": 57,
           "sample_titles": [
             "図書館のデータベース使ってみませんか？～ネット検索では見つからない情報を手に入れよう！～",
-            "札幌市立高校プレゼンテーション大会2025",
             "関係者のみの利用あり",
             "ワールド航空サービス クルーズフェスタ",
-            "しとらすの会・着物 ハンドメイド市"
+            "しとらすの会・着物 ハンドメイド市",
+            "リアン(絆)マルシェ"
           ]
         }
       ]
@@ -260,18 +280,18 @@
       "url": "https://www.kitara-sapporo.or.jp/event/",
       "strategy": "detail",
       "status": "ok",
-      "best_event_count": 83,
+      "best_event_count": 81,
       "snapshots": [
         {
-          "date": "2026-03-08",
+          "date": "2026-03-09",
           "error": "",
-          "event_count": 83,
+          "event_count": 81,
           "sample_titles": [
-            "札幌交響楽団 第675回定期演奏会（13時公演）",
-            "陸上自衛隊 北部方面音楽隊 第28回 室内楽演奏会",
             "第3回 北ガスグループクラシックコンサート",
             "田島 高宏・田島 ゆみ 春待ちコンサート 骨髄バンクチャリティー",
-            "UNDERTALE 10th Anniversary Concert 2026 札幌公演 プログラムA"
+            "UNDERTALE 10th Anniversary Concert 2026 札幌公演 プログラムA",
+            "UNDERTALE 10th Anniversary Concert 2026 札幌公演 プログラムB",
+            "2025年度 毎日音楽コンクール 「受賞記念コンサート」（1日目）"
           ]
         }
       ]
@@ -285,7 +305,7 @@
       "best_event_count": 0,
       "snapshots": [
         {
-          "date": "2026-03-08",
+          "date": "2026-03-09",
           "error": "",
           "event_count": 0,
           "sample_titles": []
@@ -298,18 +318,18 @@
       "url": "https://www.sapporo-shiminhall.org/",
       "strategy": "detail",
       "status": "ok",
-      "best_event_count": 57,
+      "best_event_count": 56,
       "snapshots": [
         {
-          "date": "2026-03-08",
+          "date": "2026-03-09",
           "error": "",
-          "event_count": 57,
+          "event_count": 56,
           "sample_titles": [
-            "市川團十郎特別公演 ≪完売≫",
             "令和7年度 学校法人三幸学園 札幌スポーツ＆メディカル専門学校 卒業式",
             "令和7年度 学校法人三幸学園 札幌ビューティーアート専門学校 卒業式",
             "令和7年度 学校法人吉田学園 専門学校グループ卒業式",
-            "令和７年度 学校法人三幸学園札幌医療秘書福祉専門学校 卒業式"
+            "令和７年度 学校法人三幸学園札幌医療秘書福祉専門学校 卒業式",
+            "2025年度 札幌大谷大学・札幌大谷大学短期大学部 学位記・修了証書授与式"
           ]
         }
       ]
@@ -320,18 +340,18 @@
       "url": "https://www.kyobun.org/event_schedule.html",
       "strategy": "detail",
       "status": "ok",
-      "best_event_count": 53,
+      "best_event_count": 51,
       "snapshots": [
         {
-          "date": "2026-03-08",
+          "date": "2026-03-09",
           "error": "",
-          "event_count": 53,
+          "event_count": 51,
           "sample_titles": [
-            "札幌北野少年少女合唱団35周年記念コンサート",
-            "北海道教育大学札幌校混声合唱団 第53回 定期演奏会",
             "第54回北海道科学大学SunnyFieldsJazzOrchestra定期演奏会",
             "令和7年度 北海道情報専門学校 卒業式",
-            "第一学院高等学校札幌キャンパス 卒業証書授与式"
+            "第一学院高等学校札幌キャンパス 卒業証書授与式",
+            "第246回道新寄席 春風亭昇太 独演会",
+            "札幌科学技術専門学校 卒業式"
           ]
         }
       ]
@@ -345,7 +365,7 @@
       "best_event_count": 3,
       "snapshots": [
         {
-          "date": "2026-03-08",
+          "date": "2026-03-09",
           "error": "",
           "event_count": 3,
           "sample_titles": [
@@ -365,7 +385,7 @@
       "best_event_count": 1,
       "snapshots": [
         {
-          "date": "2026-03-08",
+          "date": "2026-03-09",
           "error": "",
           "event_count": 1,
           "sample_titles": [
@@ -383,7 +403,7 @@
       "best_event_count": 1,
       "snapshots": [
         {
-          "date": "2026-03-08",
+          "date": "2026-03-09",
           "error": "",
           "event_count": 1,
           "sample_titles": [
@@ -401,13 +421,13 @@
       "best_event_count": 3,
       "snapshots": [
         {
-          "date": "2026-03-08",
+          "date": "2026-03-09",
           "error": "",
           "event_count": 3,
           "sample_titles": [
             "Disney公認アーティスト マセイ展",
             "AIモンスター エムデジフェス 「トゥントゥントゥンサフールがやってくる！」",
-            "【ものまね芸人るみるみワンマンライブ】北海道179市町村ものまねキャラバン全道制覇記念～10年の集大成～"
+            "THEE MICHELLE GUN ELEPHANT フィルムライブ"
           ]
         }
       ]
@@ -421,7 +441,7 @@
       "best_event_count": 0,
       "snapshots": [
         {
-          "date": "2026-03-08",
+          "date": "2026-03-09",
           "error": "",
           "event_count": 0,
           "sample_titles": []
@@ -437,7 +457,7 @@
       "best_event_count": 5,
       "snapshots": [
         {
-          "date": "2026-03-08",
+          "date": "2026-03-09",
           "error": "",
           "event_count": 5,
           "sample_titles": [
@@ -459,7 +479,7 @@
       "best_event_count": 11,
       "snapshots": [
         {
-          "date": "2026-03-08",
+          "date": "2026-03-09",
           "error": "",
           "event_count": 11,
           "sample_titles": [
@@ -481,7 +501,7 @@
       "best_event_count": 1,
       "snapshots": [
         {
-          "date": "2026-03-08",
+          "date": "2026-03-09",
           "error": "",
           "event_count": 1,
           "sample_titles": [
@@ -499,7 +519,7 @@
       "best_event_count": 4,
       "snapshots": [
         {
-          "date": "2026-03-08",
+          "date": "2026-03-09",
           "error": "",
           "event_count": 4,
           "sample_titles": [
@@ -520,7 +540,7 @@
       "best_event_count": 1,
       "snapshots": [
         {
-          "date": "2026-03-08",
+          "date": "2026-03-09",
           "error": "",
           "event_count": 1,
           "sample_titles": [
@@ -538,7 +558,7 @@
       "best_event_count": 1,
       "snapshots": [
         {
-          "date": "2026-03-08",
+          "date": "2026-03-09",
           "error": "",
           "event_count": 1,
           "sample_titles": [
@@ -556,7 +576,7 @@
       "best_event_count": 2,
       "snapshots": [
         {
-          "date": "2026-03-08",
+          "date": "2026-03-09",
           "error": "",
           "event_count": 2,
           "sample_titles": [
@@ -575,7 +595,7 @@
       "best_event_count": 2,
       "snapshots": [
         {
-          "date": "2026-03-08",
+          "date": "2026-03-09",
           "error": "",
           "event_count": 2,
           "sample_titles": [
@@ -594,7 +614,7 @@
       "best_event_count": 2,
       "snapshots": [
         {
-          "date": "2026-03-08",
+          "date": "2026-03-09",
           "error": "",
           "event_count": 2,
           "sample_titles": [
@@ -613,7 +633,7 @@
       "best_event_count": 1,
       "snapshots": [
         {
-          "date": "2026-03-08",
+          "date": "2026-03-09",
           "error": "",
           "event_count": 1,
           "sample_titles": [
@@ -631,7 +651,7 @@
       "best_event_count": 1,
       "snapshots": [
         {
-          "date": "2026-03-08",
+          "date": "2026-03-09",
           "error": "",
           "event_count": 1,
           "sample_titles": [
@@ -649,7 +669,7 @@
       "best_event_count": 9,
       "snapshots": [
         {
-          "date": "2026-03-08",
+          "date": "2026-03-09",
           "error": "",
           "event_count": 9,
           "sample_titles": [
@@ -671,7 +691,7 @@
       "best_event_count": 10,
       "snapshots": [
         {
-          "date": "2026-03-08",
+          "date": "2026-03-09",
           "error": "",
           "event_count": 10,
           "sample_titles": [
@@ -693,7 +713,7 @@
       "best_event_count": 2,
       "snapshots": [
         {
-          "date": "2026-03-08",
+          "date": "2026-03-09",
           "error": "",
           "event_count": 2,
           "sample_titles": [
@@ -712,7 +732,7 @@
       "best_event_count": 1,
       "snapshots": [
         {
-          "date": "2026-03-08",
+          "date": "2026-03-09",
           "error": "",
           "event_count": 1,
           "sample_titles": [
@@ -730,7 +750,7 @@
       "best_event_count": 0,
       "snapshots": [
         {
-          "date": "2026-03-08",
+          "date": "2026-03-09",
           "error": "",
           "event_count": 0,
           "sample_titles": []
@@ -743,18 +763,18 @@
       "url": "https://www.pl24.jp/schedule.html",
       "strategy": "detail",
       "status": "ok",
-      "best_event_count": 43,
+      "best_event_count": 42,
       "snapshots": [
         {
-          "date": "2026-03-08",
+          "date": "2026-03-09",
           "error": "",
-          "event_count": 43,
+          "event_count": 42,
           "sample_titles": [
-            "デラックス×デラックス デラックス×デラックス10th ANNIVERSARY「天晴れ!!和気藹々ツアー」",
             "ASIAN KUNG-FU GENERATION From the Northern Land ’26 \"Friendship\"",
             "NEMOPHILA NEMOPHILA 1st EP 五臓 -GOZO-Release Tour 2026 『上弦』",
             "DUSTCELL DUSTCELL TOUR 2026 -碧い海-",
-            "JAM company 本間将人(Sax)、坂東慧(Dr)、荻野\"PEPU\"哲史(Ba)、田中\"TAK\"拓也(Gt)、佐藤雄大(Key) JAM company LIVE「しゃべらない夜」"
+            "JAM company 本間将人(Sax)、坂東慧(Dr)、荻野\"PEPU\"哲史(Ba)、田中\"TAK\"拓也(Gt)、佐藤雄大(Key) JAM company LIVE「しゃべらない夜」",
+            "緑⻩色社会 緑⻩色社会 Fan Club Live \"livestone vol.4\""
           ]
         }
       ]
@@ -765,18 +785,18 @@
       "url": "https://www.cube-garden.com/live.php",
       "strategy": "detail",
       "status": "ok",
-      "best_event_count": 37,
+      "best_event_count": 36,
       "snapshots": [
         {
-          "date": "2026-03-08",
+          "date": "2026-03-09",
           "error": "",
-          "event_count": 37,
+          "event_count": 36,
           "sample_titles": [
-            "タデクイ タデクイ -3nd ONEMAN LIVE-",
             "FAKE TYPE. FAKE TYPE. Live tour \"COPY CATS\"",
             "a flood of circle guest bandあり a flood of circle 20周年記念ツアー \"日本武道館への道\"",
             "甘い暴力 甘い暴力 2026春のプレゼンツツアー「虎伏戦吼」",
-            "甘い暴力 甘い暴力 2026春のプレゼンツツアー「虎伏戦吼」"
+            "甘い暴力 甘い暴力 2026春のプレゼンツツアー「虎伏戦吼」",
+            "FIVE NEW OLD FIVE NEW OLD ONEMAN TOUR 2026「Feel」"
           ]
         }
       ]
@@ -790,7 +810,7 @@
       "best_event_count": 0,
       "snapshots": [
         {
-          "date": "2026-03-08",
+          "date": "2026-03-09",
           "error": "",
           "event_count": 0,
           "sample_titles": []
@@ -803,18 +823,18 @@
       "url": "https://spice-sapporo.jp/schedule/",
       "strategy": "feed_then_detail",
       "status": "ok",
-      "best_event_count": 23,
+      "best_event_count": 22,
       "snapshots": [
         {
-          "date": "2026-03-08",
+          "date": "2026-03-09",
           "error": "",
-          "event_count": 23,
+          "event_count": 22,
           "sample_titles": [
-            "SPiCE pre BECOME THE KULTURE",
             "CLOSED｜店舗休業日",
             "IYP pre.『 animals and plants Vol.26』",
             "小樽商科大学軽音楽部ECHOES",
-            "小樽商科大学軽音楽部ECHOES"
+            "小樽商科大学軽音楽部ECHOES",
+            "COMING SOON"
           ]
         }
       ]
@@ -828,7 +848,7 @@
       "best_event_count": 20,
       "snapshots": [
         {
-          "date": "2026-03-08",
+          "date": "2026-03-09",
           "error": "",
           "event_count": 20,
           "sample_titles": [
@@ -850,7 +870,7 @@
       "best_event_count": 5,
       "snapshots": [
         {
-          "date": "2026-03-08",
+          "date": "2026-03-09",
           "error": "",
           "event_count": 5,
           "sample_titles": [
@@ -872,7 +892,7 @@
       "best_event_count": 2,
       "snapshots": [
         {
-          "date": "2026-03-08",
+          "date": "2026-03-09",
           "error": "",
           "event_count": 2,
           "sample_titles": [
@@ -891,7 +911,7 @@
       "best_event_count": 4,
       "snapshots": [
         {
-          "date": "2026-03-08",
+          "date": "2026-03-09",
           "error": "",
           "event_count": 4,
           "sample_titles": [
@@ -912,7 +932,7 @@
       "best_event_count": 4,
       "snapshots": [
         {
-          "date": "2026-03-08",
+          "date": "2026-03-09",
           "error": "",
           "event_count": 4,
           "sample_titles": [
@@ -926,7 +946,7 @@
     }
   ],
   "ok_sources": 42,
-  "no_future_event_sources": 4,
-  "zero_event_sources": 4,
+  "no_future_event_sources": 5,
+  "zero_event_sources": 5,
   "error_sources": 0
 }

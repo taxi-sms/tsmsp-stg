@@ -23,6 +23,7 @@ const MIN_QUALITY_SCORE_HEURISTIC = 0.58;
 const SOURCE_VENUE_FALLBACK = {
   'www-kitara-sapporo-or-jp-event': '札幌コンサートホール Kitara',
   'www-zepp-co-jp-hall-sapporo-schedule': 'Zepp Sapporo',
+  'www-fighters-co-jp-game-calendar': 'エスコンフィールドHOKKAIDO',
   'spice-sapporo-jp-schedule': 'SPiCE',
   'www-cube-garden-com-live-php': 'cube garden',
   'www-pl24-jp-schedule-html': 'PENNY LANE24',
@@ -69,6 +70,11 @@ const SAPPORO_AREA_TERMS = [
   '手稲区',
   '北広島',
   '北広島市',
+  'エスコンフィールド',
+  'エスコンフィールドHOKKAIDO',
+  'ES CON FIELD',
+  'F VILLAGE',
+  'HOKKAIDO BALLPARK F VILLAGE',
   '江別',
   '江別市',
   '石狩',
@@ -1451,6 +1457,59 @@ function extractAxesCalendarEvents({ source, url, html }) {
       venueAddress: '札幌市白石区流通センター4丁目3-55',
       time: { open: '', start: '', end: '', allDay: true },
       summary: row.title
+    });
+    if (ev) events.push(ev);
+  }
+
+  return uniqueBy(events, (ev) => ev.id);
+}
+
+function extractFightersHomeGameEvents({ source, url, html }) {
+  if (source.id !== 'www-fighters-co-jp-game-calendar') return [];
+  if (!/\/game\/calendar\/(?:20\d{4}\/)?$/i.test(url)) return [];
+  const dayMarkers = [...html.matchAll(/<div\b[^>]*class=["'][^"']*c-calendar-month-day-text[^"']*["'][^>]*>(\d{1,2})\/(\d{1,2})<\/div>/gi)];
+  const events = [];
+
+  for (let index = 0; index < dayMarkers.length; index += 1) {
+    const match = dayMarkers[index];
+    const month = Number(match[1] || 0);
+    const day = Number(match[2] || 0);
+    const blockStart = match.index || 0;
+    const blockEnd = index + 1 < dayMarkers.length ? (dayMarkers[index + 1].index || html.length) : html.length;
+    const block = html.slice(blockStart, blockEnd);
+    if (!month || !day) continue;
+    if (!/c-calendar-month-day-label--home/i.test(block)) continue;
+
+    const year = Number((url.match(/\/game\/calendar\/(20\d{2})\d{2}\//i) || [])[1] || '');
+    if (!year) continue;
+
+    const detailHref = (block.match(/<a\b[^>]*class=["'][^"']*c-calendar-month-vs-status[^"']*["'][^>]*href=["']([^"']+)["']/i) || [])[1] || '';
+    const detailUrl = absolutizeUrl(url, detailHref) || `${url}#${year}${String(month).padStart(2, '0')}${String(day).padStart(2, '0')}`;
+    const venue = textPreview(stripTags((block.match(/<div\b[^>]*class=["'][^"']*c-calendar-month-text[^"']*["'][^>]*>([\s\S]*?)<\/div>/i) || [])[1] || ''), 80);
+    const division = textPreview(stripTags((block.match(/<div\b[^>]*class=["'][^"']*c-calendar-month-game-division[^"']*["'][^>]*>([\s\S]*?)<\/div>/i) || [])[1] || ''), 40);
+    const timeText = stripTags((block.match(/<div\b[^>]*class=["'][^"']*c-calendar-month-vs-status-time[^"']*["'][^>]*>([\s\S]*?)<\/div>/i) || [])[1] || '').replace(/\s+/g, ' ').trim();
+    const hm = timeText.match(/([01]?\d|2[0-3])[:：]([0-5]\d)/);
+    const startTime = hm ? normalizeHm(hm[1], hm[2]) : '';
+    const startDate = `${String(year).padStart(4, '0')}-${String(month).padStart(2, '0')}-${String(day).padStart(2, '0')}`;
+    const title = division
+      ? `北海道日本ハムファイターズ ホームゲーム（${division}）`
+      : '北海道日本ハムファイターズ ホームゲーム';
+    const summary = [
+      'ホームゲーム',
+      division,
+      venue,
+      startTime ? `開始 ${startTime}` : ''
+    ].filter(Boolean).join(' / ');
+
+    const ev = buildSiteRuleEvent({
+      source,
+      detailUrl,
+      title,
+      startDate,
+      venue: venue || 'エスコンフィールドHOKKAIDO',
+      venueAddress: '北海道北広島市Fビレッジ1番地',
+      time: startTime ? { open: '', start: startTime, end: '', allDay: false } : { open: '', start: '', end: '', allDay: true },
+      summary
     });
     if (ev) events.push(ev);
   }
@@ -3136,6 +3195,14 @@ async function crawlSource(source, options) {
       extractTsudomeCalendarEvents
     );
   }
+  if (source.id === 'www-fighters-co-jp-game-calendar') {
+    return crawlMonthlyListSource(
+      source,
+      options,
+      (monthYmd) => `https://www.fighters.co.jp/game/calendar/${monthYmd.slice(0, 7).replace('-', '')}/`,
+      extractFightersHomeGameEvents
+    );
+  }
   if (source.id === 'www-axes-or-jp') {
     return crawlMonthlyListSource(
       source,
@@ -3503,6 +3570,7 @@ export {
   extractAxesCalendarEvents,
   extractCaretexSiteRuleEvent,
   extractChieriaHallScheduleEvents,
+  extractFightersHomeGameEvents,
   extractGrand1934EventDetailEvent,
   extractHbcConcertEvents,
   extractHtbEventDetailEvents,
