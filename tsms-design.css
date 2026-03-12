@@ -40,14 +40,14 @@
   --accent-hover: #1A6FD4;
   --accent-light: #D8EEFF;
   --link:         #187FBF;
-  --selected-fill: #1F9A33;
-  --selected-fill-hover: #198729;
-  --selected-border: #176820;
+  --selected-fill: linear-gradient(180deg, #28B857 0%, #168A3D 100%);
+  --selected-fill-hover: linear-gradient(180deg, #31C562 0%, #1B9546 100%);
+  --selected-border: #0E6F2E;
   --selected-text: #FFFFFF;
-  --selected-ring: rgba(31, 154, 51, 0.26);
-  --field-focus-border: #187FBF;
-  --field-focus-bg: #F5FAFF;
-  --field-focus-ring: rgba(24, 127, 191, 0.22);
+  --selected-ring: rgba(40, 184, 87, 0.34);
+  --field-focus-border: #2A8CF0;
+  --field-focus-bg: linear-gradient(180deg, #FFFFFF 0%, #EDF7FF 100%);
+  --field-focus-ring: rgba(42, 140, 240, 0.24);
 
   --success:      #1EA44A;
   --success-bg:   #E8F8EE;
@@ -151,14 +151,14 @@
   --accent-hover: #4DA3FF;
   --accent-light: #152A42;
   --link:         #58C2FF;
-  --selected-fill: #28B447;
-  --selected-fill-hover: #31C252;
-  --selected-border: #7BE292;
+  --selected-fill: linear-gradient(180deg, #39D46C 0%, #1A9A45 100%);
+  --selected-fill-hover: linear-gradient(180deg, #46E07A 0%, #21A94E 100%);
+  --selected-border: #B7F5C8;
   --selected-text: #F7FFF9;
-  --selected-ring: rgba(49, 194, 82, 0.30);
-  --field-focus-border: #7CC8FF;
-  --field-focus-bg: #13253A;
-  --field-focus-ring: rgba(88, 194, 255, 0.28);
+  --selected-ring: rgba(70, 224, 122, 0.38);
+  --field-focus-border: #86D8FF;
+  --field-focus-bg: linear-gradient(180deg, rgba(23, 48, 82, 0.98), rgba(12, 28, 51, 0.98) 100%);
+  --field-focus-ring: rgba(134, 216, 255, 0.34);
 
   --success:      #28C35A;
   --success-bg:   #0D2518;
@@ -1623,14 +1623,21 @@ button[data-group] {
 button[data-group]:hover {
   background: var(--surface-3) !important;
 }
+.btn.is-selected,
+.actionBtn.is-selected,
 button[data-group].is-selected {
   background: var(--selected-fill) !important;
   border-color: var(--selected-border) !important;
   color: var(--selected-text) !important;
   font-weight: 900;
-  box-shadow: 0 0 0 3px var(--selected-ring) !important;
-  text-shadow: 0 1px 0 rgba(0, 0, 0, 0.16);
+  box-shadow:
+    0 0 0 3px var(--selected-ring) !important,
+    0 10px 18px rgba(10, 84, 34, 0.20) !important,
+    inset 0 1px 0 rgba(255, 255, 255, 0.22) !important;
+  text-shadow: 0 1px 0 rgba(0, 0, 0, 0.18);
 }
+.btn.is-selected:hover,
+.actionBtn.is-selected:hover,
 button[data-group].is-selected:hover {
   background: var(--selected-fill-hover) !important;
   border-color: var(--selected-border) !important;
@@ -2242,8 +2249,8 @@ select,
   box-shadow: 0 10px 26px rgba(0,0,0,.28), inset 0 1px 0 rgba(255,255,255,.08) !important;
 }
 
-:root[data-theme="dark"] .page-block-unified .btn,
-:root[data-theme="dark"] .page-block-unified .actionBtn,
+:root[data-theme="dark"] .page-block-unified .btn:not(.next):not(.danger):not(.is-selected),
+:root[data-theme="dark"] .page-block-unified .actionBtn:not(.danger):not(.is-selected),
 :root[data-theme="dark"] .page-block-unified .input,
 :root[data-theme="dark"] .page-block-unified select.input,
 :root[data-theme="dark"] .page-block-unified .date-switcher select,
@@ -2253,6 +2260,36 @@ select,
   background: linear-gradient(180deg, rgba(16,33,62,.9), rgba(9,20,39,.9)) !important;
   color: #eaf3ff !important;
   border-color: #4e709f !important;
+}
+
+:root[data-theme="dark"] .page-block-unified .btn.is-selected,
+:root[data-theme="dark"] .page-block-unified .actionBtn.is-selected,
+:root[data-theme="dark"] .page-block-unified button[data-group].is-selected {
+  background: var(--selected-fill) !important;
+  color: var(--selected-text) !important;
+  border-color: var(--selected-border) !important;
+  box-shadow:
+    0 0 0 3px var(--selected-ring) !important,
+    0 12px 24px rgba(0, 0, 0, 0.34) !important,
+    inset 0 1px 0 rgba(255, 255, 255, 0.22) !important;
+}
+
+:root[data-theme="dark"] .page-block-unified .btn.is-selected:hover,
+:root[data-theme="dark"] .page-block-unified .actionBtn.is-selected:hover,
+:root[data-theme="dark"] .page-block-unified button[data-group].is-selected:hover {
+  background: var(--selected-fill-hover) !important;
+}
+
+:root[data-theme="dark"] .page-block-unified .input:focus,
+:root[data-theme="dark"] .page-block-unified select.input:focus,
+:root[data-theme="dark"] .page-block-unified .date-switcher select:focus,
+:root[data-theme="dark"] .page-block-unified .target-input:focus,
+:root[data-theme="dark"] .page-block-unified .manual-input:focus {
+  border-color: var(--field-focus-border) !important;
+  background: var(--field-focus-bg) !important;
+  box-shadow:
+    0 0 0 4px var(--field-focus-ring) !important,
+    inset 0 0 0 1px var(--field-focus-border) !important;
 }
 
 :root[data-theme="dark"] .page-block-unified .title::after,
