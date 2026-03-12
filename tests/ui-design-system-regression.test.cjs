@@ -11,8 +11,10 @@ function read(name) {
 
 function testSharedShellRulesExist() {
   assert.match(css, /\.page-block-unified \.main \{/);
-  assert.match(css, /\.page-block-unified\.page-main-wide \.main \{ max-width: 880px; \}/);
-  assert.match(css, /\.page-block-unified\.page-main-xl \.main \{ max-width: 980px; \}/);
+  assert.match(css, /\.page-block-unified\.page-main-wide \.main \{ max-width: 1080px !important; \}/);
+  assert.match(css, /\.page-block-unified\.page-main-xl \.main \{ max-width: 1220px !important; \}/);
+  assert.match(css, /\.page-block-unified \.main \.card,[\s\S]*border: 0 !important;/);
+  assert.match(css, /\.page-block-unified \.main \.section-boxed,[\s\S]*border: var\(--line-strong\) solid var\(--border\) !important;/);
   assert.match(css, /\.main\[style\*="justify-content:center"\],\s*\.auth-main \{/);
 }
 
@@ -34,6 +36,7 @@ function testPagesNoLongerCarryUnifiedShellBlocks() {
 function testPageWidthModifiersExist() {
   assert.match(read("sales.html"), /<body class="page-block-unified page-main-xl">/);
   assert.match(read("settings.html"), /<body class="page-block-unified page-main-wide">/);
+  assert.match(read("index.html"), /<section class="card section-boxed" aria-label="勤務カレンダー">/);
 }
 
 function testDesignSystemDocExists() {

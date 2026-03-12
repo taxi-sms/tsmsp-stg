@@ -30,6 +30,7 @@
 
 - ページ固有 UI のみローカル style を許可する。
 - 例: 音声入力モーダル、settings2 の editor modal、sales の table 入力幅、ops の reset ボタン文言レイアウト。
+- セクションを箱に戻す場合は `section-boxed` のような opt-in クラスで明示する。
 - 例外スタイルでは色、余白、角丸、影、文字サイズを再設計しない。必要なら先に `tsms-design.css` を更新する。
 
 ## Forbidden Patterns
