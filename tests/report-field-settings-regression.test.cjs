@@ -89,6 +89,26 @@ function testSaveKeepsFixedPayOptions() {
   );
 }
 
+function testLabelLengthIsClamped() {
+  const api = loadSettingsApi();
+  assert.strictEqual(api.LABEL_MAX_LENGTH, 8);
+
+  api.save({
+    ridePrimary: ["123456789", "付待", "流し", "乗場", "連続", "予約", "GO"],
+    payPrimary: ["ABCDEFGH9", "QR", "クレカ", "電子M", "GO Pay", "乗込GO Pay"]
+  });
+
+  const runtime = api.runtime();
+  assert.deepStrictEqual(
+    Array.from(runtime.ridePrimary),
+    ["12345678", "付待", "流し", "乗場", "連続", "予約", "GO"]
+  );
+  assert.deepStrictEqual(
+    Array.from(runtime.payPrimary),
+    ["ABCDEFGH", "QR", "クレカ", "電子M", "GO Pay", "乗込GO Pay"]
+  );
+}
+
 function testHtmlReflectsFixedTicketOption() {
   const reportHtml = fs.readFileSync(REPORT_HTML, "utf8");
   const settings2Html = fs.readFileSync(SETTINGS2_HTML, "utf8");
@@ -106,12 +126,16 @@ function testHtmlReflectsFixedTicketOption() {
   assert.match(settings2Html, /id="fieldEditorModalBg"/);
   assert.match(settings2Html, /id="fieldEditorCashFlag"/);
   assert.match(settings2Html, /id="fieldEditorCreditFlag"/);
+  assert.match(settings2Html, /id="fieldEditorNameInput" type="text" maxlength="8"/);
   assert.match(settings2Html, /voice-input-modal-card|editor-modal-card/);
   assert.match(settings2Html, /<body class="page-block-unified">/);
   assert.match(settings2Html, /#fieldEditorHelp\{\s*color:#f7fbff;/);
   assert.match(settings2Html, /\.settings-top-note\{\s*[^}]*color:#f7fbff;/);
   assert.match(settings2Html, /:root\[data-theme="light"\] \.settings-top-note\{\s*color:#111111;/);
   assert.match(settings2Html, /変更して保存すると、日報入力画面に反映されます。/);
+  assert.match(settings2Html, /最大\$\{api\.LABEL_MAX_LENGTH \|\| 8\}文字です。|最大8文字です。/);
+  assert.match(reportHtml, /label\.className = "btn-label";/);
+  assert.match(settings2Html, /label\.className = "btn-label";/);
   assert.doesNotMatch(settings2Html, /settings2-report-layout-tweaks/);
   assert.doesNotMatch(settings2Html, /field-edit-btn/);
   assert.doesNotMatch(settings2Html, /fieldEditorReadonlySection/);
@@ -121,6 +145,7 @@ function runTests() {
   const tests = [
     ["支払方法固定順", testRuntimeKeepsTicketBeforeOther],
     ["保存後もチケット他固定", testSaveKeepsFixedPayOptions],
+    ["ラベル長さ制限", testLabelLengthIsClamped],
     ["HTML反映", testHtmlReflectsFixedTicketOption]
   ];
 

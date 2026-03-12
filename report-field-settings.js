@@ -1,5 +1,8 @@
 (function () {
   const KEY = "tsms_report_field_settings";
+  const LABEL_MAX_LENGTH = 8;
+  const LABEL_LONG_THRESHOLD = 6;
+  const LABEL_XLONG_THRESHOLD = 8;
   const FIXED_PAY_OPTIONS = Object.freeze(["チケット他", "その他"]);
   const DEFAULT_PAY_OTHER_FLAGS = Object.freeze([
     { cash: false, credit: true },
@@ -33,9 +36,32 @@
     return JSON.parse(JSON.stringify(DEFAULTS));
   }
 
+  function clipLabel(value) {
+    return Array.from(String(value == null ? "" : value).trim()).slice(0, LABEL_MAX_LENGTH).join("");
+  }
+
+  function countDenseChars(value) {
+    return Array.from(String(value == null ? "" : value).replace(/\s+/g, "").trim()).length;
+  }
+
   function normalizeLabel(value, fallback) {
-    const text = String(value == null ? "" : value).trim();
-    return text || String(fallback || "").trim();
+    const text = clipLabel(value);
+    return text || clipLabel(fallback || "");
+  }
+
+  function getLabelSizeClass(value) {
+    const denseLength = countDenseChars(value);
+    if (denseLength >= LABEL_XLONG_THRESHOLD) return "is-label-xlong";
+    if (denseLength >= LABEL_LONG_THRESHOLD) return "is-label-long";
+    return "";
+  }
+
+  function getLabelDisplayMeta(value, fallback) {
+    const text = normalizeLabel(value, fallback);
+    return {
+      text,
+      sizeClass: getLabelSizeClass(text)
+    };
   }
 
   function normalizeList(input, fallbackList) {
@@ -105,10 +131,13 @@
 
   window.tsmsReportFieldSettings = {
     KEY,
+    LABEL_MAX_LENGTH,
     defaults: cloneDefaults(),
     load,
     save,
     normalize,
-    runtime
+    runtime,
+    normalizeLabel,
+    getLabelDisplayMeta
   };
 })();

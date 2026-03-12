@@ -725,7 +725,14 @@
       btn.dataset.group = group;
       btn.dataset.value = value;
       btn.dataset.index = String(index);
-      btn.textContent = value;
+      const labelMeta = reportFieldSettingsApi && typeof reportFieldSettingsApi.getLabelDisplayMeta === "function"
+        ? reportFieldSettingsApi.getLabelDisplayMeta(value, value)
+        : { text: String(value || ""), sizeClass: "" };
+      if (labelMeta.sizeClass) btn.classList.add(labelMeta.sizeClass);
+      const label = document.createElement("span");
+      label.className = "btn-label";
+      label.textContent = labelMeta.text;
+      btn.appendChild(label);
       container.appendChild(btn);
     });
   }

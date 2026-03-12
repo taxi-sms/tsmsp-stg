@@ -113,6 +113,7 @@
 --control-h-md: 50px;
 --control-h-lg: 58px;
 --control-h-xl: 110px;
+--choice-btn-h: clamp(88px, 23vw, 108px);
 --touch-min: 44px;
 --radius-pill: 999px;
 
@@ -1595,6 +1596,41 @@ main .wf-panel {
   height: 1px;
   background: var(--border);
   border: none !important;
+}
+
+.wf-row {
+  align-items: stretch;
+  grid-auto-rows: 1fr;
+}
+
+.wf-row > .btn {
+  width: 100%;
+  height: var(--choice-btn-h);
+  min-height: var(--choice-btn-h);
+  padding: 8px 6px;
+  align-self: stretch;
+}
+
+.wf-row > .btn .btn-label {
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 2;
+  line-clamp: 2;
+  overflow: hidden;
+  text-align: center;
+  text-wrap: balance;
+  word-break: normal;
+  overflow-wrap: anywhere;
+  line-height: 1.2;
+}
+
+.wf-row > .btn.is-label-long .btn-label {
+  font-size: calc(var(--font-2xl) - 1px);
+}
+
+.wf-row > .btn.is-label-xlong .btn-label {
+  font-size: calc(var(--font-2xl) - 2px);
+  line-height: 1.15;
 }
 
 /* 乗車種別・支払方法などのボタングループ */

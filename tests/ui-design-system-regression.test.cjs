@@ -19,6 +19,9 @@ function testSharedShellRulesExist() {
   assert.match(css, /:root\[data-theme="dark"\] \.page-block-unified button\[data-group\]\.is-selected \{[\s\S]*background: var\(--selected-fill\) !important;[\s\S]*border-color: var\(--selected-border\) !important;/);
   assert.match(css, /\.input:focus,[\s\S]*background: var\(--field-focus-bg\) !important;[\s\S]*box-shadow: 0 0 0 4px var\(--field-focus-ring\), inset 0 0 0 1px var\(--field-focus-border\);/);
   assert.match(css, /:root\[data-theme="dark"\] \.page-block-unified \.input:focus,[\s\S]*background: var\(--field-focus-bg\) !important;[\s\S]*0 0 0 4px var\(--field-focus-ring\) !important/);
+  assert.match(css, /--choice-btn-h: clamp\(88px, 23vw, 108px\);/);
+  assert.match(css, /\.wf-row > \.btn \{[\s\S]*height: var\(--choice-btn-h\);[\s\S]*min-height: var\(--choice-btn-h\);/);
+  assert.match(css, /\.wf-row > \.btn \.btn-label \{[\s\S]*-webkit-line-clamp: 2;[\s\S]*overflow-wrap: anywhere;/);
   assert.match(css, /\.main\[style\*="justify-content:center"\],\s*\.auth-main \{/);
 }
 

@@ -428,7 +428,7 @@
     <div class="editor-modal-body">
       <div class="editor-modal-group">
         <div class="editor-modal-label" id="fieldEditorTargetLabel">ボタン名</div>
-        <input class="input" id="fieldEditorNameInput" type="text" maxlength="24" placeholder="ボタン名">
+        <input class="input" id="fieldEditorNameInput" type="text" maxlength="8" placeholder="ボタン名">
         <p class="editor-modal-help" id="fieldEditorHelp">変更して保存すると、日報入力画面に反映されます。</p>
       </div>
       <div class="editor-modal-group is-hidden" id="fieldEditorFlagSection">
@@ -496,6 +496,10 @@
   let runtimeConfig = api.runtime(draft);
   let activeEdit = null;
 
+  if(modalNameInput && api && api.LABEL_MAX_LENGTH){
+    modalNameInput.maxLength = Number(api.LABEL_MAX_LENGTH) || 8;
+  }
+
   function cloneFlags(flag){
     return {
       cash: !!(flag && flag.cash),
@@ -527,7 +531,14 @@
       if(selected[group] === index) btn.classList.add("is-selected");
       btn.dataset.editGroup = group;
       btn.dataset.editIndex = String(index);
-      btn.textContent = value;
+      const labelMeta = api && typeof api.getLabelDisplayMeta === "function"
+        ? api.getLabelDisplayMeta(value, value)
+        : { text: String(value || ""), sizeClass: "" };
+      if(labelMeta.sizeClass) btn.classList.add(labelMeta.sizeClass);
+      const label = document.createElement("span");
+      label.className = "btn-label";
+      label.textContent = labelMeta.text;
+      btn.appendChild(label);
       container.appendChild(btn);
     });
   }
@@ -559,7 +570,7 @@
     modalTargetLabel.textContent = `${spec.title} ボタン名`;
     modalNameInput.value = spec.label || "";
     modalNameInput.disabled = false;
-    modalHelp.textContent = "変更して保存すると、日報入力画面に反映されます。";
+    modalHelp.textContent = `変更して保存すると、日報入力画面に反映されます。ボタン名は最大${api.LABEL_MAX_LENGTH || 8}文字です。`;
 
     const showFlags = !!spec.flagsKey;
     modalFlagSection.classList.toggle("is-hidden", !showFlags);
