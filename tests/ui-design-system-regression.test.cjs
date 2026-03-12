@@ -15,6 +15,8 @@ function testSharedShellRulesExist() {
   assert.match(css, /\.page-block-unified\.page-main-xl \.main \{ max-width: 1220px !important; \}/);
   assert.match(css, /\.page-block-unified \.main \.card,[\s\S]*border: 0 !important;/);
   assert.match(css, /\.page-block-unified \.main \.section-boxed,[\s\S]*border: var\(--line-strong\) solid var\(--border\) !important;/);
+  assert.match(css, /button\[data-group\]\.is-selected \{[\s\S]*background: var\(--selected-fill\) !important;[\s\S]*color: var\(--selected-text\) !important;[\s\S]*box-shadow: 0 0 0 3px var\(--selected-ring\) !important;/);
+  assert.match(css, /\.input:focus,[\s\S]*background: var\(--field-focus-bg\) !important;[\s\S]*box-shadow: 0 0 0 4px var\(--field-focus-ring\), inset 0 0 0 1px var\(--field-focus-border\);/);
   assert.match(css, /\.main\[style\*="justify-content:center"\],\s*\.auth-main \{/);
 }
 
