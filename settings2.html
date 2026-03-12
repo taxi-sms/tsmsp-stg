@@ -92,29 +92,6 @@
       background:#1F9A33 !important;
       color:#fff !important;
     }
-    .field-edit-btn{
-      position:relative;
-      font-weight:800;
-    }
-    .field-edit-btn.is-fixed{
-      border-style:dashed;
-      color:var(--muted);
-    }
-    .field-edit-btn::after{
-      content:"編集";
-      position:absolute;
-      right:4px;
-      bottom:4px;
-      font-size:10px;
-      font-weight:900;
-      line-height:1;
-      color:#666;
-      opacity:.8;
-    }
-    .field-edit-btn.is-fixed::after{
-      content:"固定";
-    }
-    .btn.is-selected::after{color:#fff;}
     .settings-save-stack{
       display:grid;
       gap:8px;
@@ -394,7 +371,7 @@
 
 <main class="main">
   <div class="settings-mode-banner">設定画面</div>
-  <p class="settings-top-note">report.html と同じ並びでボタンを表示しています。編集したいボタンをタップするとモーダルが開きます。固定項目は確認のみで、最後に下の保存ボタンを押すとクラウドまで反映します。</p>
+  <p class="settings-top-note">report.html と同じ並びと出し分けでボタンを表示しています。編集したい項目をタップするとモーダルが開き、チケット他とその他は選択すると下に追加項目が表示されます。最後に下の保存ボタンを押すとクラウドまで反映します。</p>
 
   <section class="wf-panel" id="sec_rideType">
     <div class="wf-label">乗車種別</div>
@@ -453,11 +430,6 @@
         </div>
         <p class="editor-modal-help">この設定は report.html の金額入力欄表示に反映されます。将来は別の計算フラグもこのモーダルへ追加できる形で管理します。</p>
       </div>
-      <div class="editor-modal-group is-hidden" id="fieldEditorReadonlySection">
-        <div class="editor-modal-label">固定項目</div>
-        <label class="editor-check is-disabled"><input type="checkbox" checked disabled><span id="fieldEditorReadonlyLabel">このボタンは固定項目です</span></label>
-        <p class="editor-modal-help">このボタンは report.html の分岐条件に使っているため、名称やフラグは変更できません。</p>
-      </div>
     </div>
     <div class="editor-modal-actions">
       <button class="btn" type="button" id="fieldEditorCancelBtn">閉じる</button>
@@ -493,8 +465,6 @@
   const modalFlagSection = document.getElementById("fieldEditorFlagSection");
   const modalCashFlag = document.getElementById("fieldEditorCashFlag");
   const modalCreditFlag = document.getElementById("fieldEditorCreditFlag");
-  const modalReadonlySection = document.getElementById("fieldEditorReadonlySection");
-  const modalReadonlyLabel = document.getElementById("fieldEditorReadonlyLabel");
   const modalCancelBtn = document.getElementById("fieldEditorCancelBtn");
   const modalSaveBtn = document.getElementById("fieldEditorSaveBtn");
 
@@ -524,41 +494,10 @@
     };
   }
 
-  function buildFixedSpec(group, index, label){
-    if(group === "rideType" && index === 7){
-      return {
-        fixed: true,
-        title: "乗車種別",
-        label,
-        readonlyLabel: "「その他」は固定項目です"
-      };
-    }
-    if(group === "payMethod" && index === 6){
-      return {
-        fixed: true,
-        title: "支払方法",
-        label,
-        readonlyLabel: "「チケット他」は固定項目です"
-      };
-    }
-    if(group === "payMethod" && index === 7){
-      return {
-        fixed: true,
-        title: "支払方法",
-        label,
-        readonlyLabel: "「その他」は固定項目です"
-      };
-    }
-    return null;
-  }
-
   function getEditableSpec(group, index){
     const meta = SECTION_META[group];
     if(!meta) return null;
-    const fixed = buildFixedSpec(group, index, runtimeConfig[meta.valuesKey][index]);
-    if(fixed) return fixed;
     return {
-      fixed: false,
       title: meta.title,
       label: String(draft[meta.sourceKey][index] || ""),
       sourceKey: meta.sourceKey,
@@ -575,14 +514,17 @@
     values.forEach((value, index) => {
       const btn = document.createElement("button");
       btn.type = "button";
-      btn.className = "btn field-edit-btn";
+      btn.className = "btn";
       if(selected[group] === index) btn.classList.add("is-selected");
-      if(index >= meta.editableCount) btn.classList.add("is-fixed");
       btn.dataset.editGroup = group;
       btn.dataset.editIndex = String(index);
       btn.textContent = value;
       container.appendChild(btn);
     });
+  }
+
+  function isBranchToggle(group, index){
+    return (group === "rideType" && index === 7) || (group === "payMethod" && (index === 6 || index === 7));
   }
 
   function renderPreview(){
@@ -607,12 +549,10 @@
     modalTitle.textContent = `${spec.title} の設定`;
     modalTargetLabel.textContent = `${spec.title} ボタン名`;
     modalNameInput.value = spec.label || "";
-    modalNameInput.disabled = !!spec.fixed;
-    modalHelp.textContent = spec.fixed
-      ? "このボタンは固定項目です。report.html の分岐条件に使うため変更できません。"
-      : "名称を変更して保存すると、この画面と report.html に反映されます。";
+    modalNameInput.disabled = false;
+    modalHelp.textContent = "名称を変更して保存すると、この画面と report.html に反映されます。";
 
-    const showFlags = !spec.fixed && !!spec.flagsKey;
+    const showFlags = !!spec.flagsKey;
     modalFlagSection.classList.toggle("is-hidden", !showFlags);
     if(showFlags){
       const currentFlags = cloneFlags((draft[spec.flagsKey] || [])[spec.index] || { cash:false, credit:true });
@@ -623,14 +563,10 @@
       modalCreditFlag.checked = true;
     }
 
-    modalReadonlySection.classList.toggle("is-hidden", !spec.fixed);
-    modalReadonlyLabel.textContent = spec.readonlyLabel || "このボタンは固定項目です";
-    modalSaveBtn.hidden = !!spec.fixed;
-
     modalBg.classList.add("show");
     modalBg.setAttribute("aria-hidden", "false");
-    if(spec.fixed) modalCancelBtn.focus();
-    else modalNameInput.focus();
+    modalSaveBtn.hidden = false;
+    modalNameInput.focus();
   }
 
   function closeModal(){
@@ -647,7 +583,7 @@
   }
 
   function saveModalChanges(){
-    if(!activeEdit || activeEdit.fixed) return;
+    if(!activeEdit) return;
     const nextName = String(modalNameInput.value || "").trim();
     if(!nextName){
       alert("ボタン名を入力してください。");
@@ -703,7 +639,7 @@
           if(index !== 7) selected.payMethodOther = null;
         }
         renderPreview();
-        openModal(getEditableSpec(group, index));
+        if(!isBranchToggle(group, index)) openModal(getEditableSpec(group, index));
       }
       return;
     }
@@ -740,7 +676,7 @@
 </script>
 
 <script>
-  (function(){if('serviceWorker' in navigator && location.protocol.indexOf('http')===0){window.addEventListener('load', function(){navigator.serviceWorker.register('./sw.js?v=20260228-4').catch(function(){});});}})();
+  (function(){if('serviceWorker' in navigator && location.protocol.indexOf('http')===0){window.addEventListener('load', function(){navigator.serviceWorker.register('./sw.js?v=20260228-5').catch(function(){});});}})();
 </script>
 
 <nav class="tsms-bottom-nav" aria-label="ボトムメニュー">

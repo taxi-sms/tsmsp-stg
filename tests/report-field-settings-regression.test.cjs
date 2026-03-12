@@ -107,6 +107,8 @@ function testHtmlReflectsFixedTicketOption() {
   assert.match(settings2Html, /id="fieldEditorCashFlag"/);
   assert.match(settings2Html, /id="fieldEditorCreditFlag"/);
   assert.match(settings2Html, /voice-input-modal-card|editor-modal-card/);
+  assert.doesNotMatch(settings2Html, /field-edit-btn/);
+  assert.doesNotMatch(settings2Html, /fieldEditorReadonlySection/);
 }
 
 function runTests() {
