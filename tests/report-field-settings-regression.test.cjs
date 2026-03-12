@@ -110,6 +110,7 @@ function testHtmlReflectsFixedTicketOption() {
   assert.match(settings2Html, /settings2-report-layout-tweaks/);
   assert.match(settings2Html, /background:var\(--surface-2\);/);
   assert.match(settings2Html, /border-radius:10px;/);
+  assert.match(settings2Html, /#fieldEditorHelp\{\s*color:#f7fbff;/);
   assert.doesNotMatch(settings2Html, /field-edit-btn/);
   assert.doesNotMatch(settings2Html, /fieldEditorReadonlySection/);
 }
