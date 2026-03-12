@@ -111,6 +111,8 @@ function testHtmlReflectsFixedTicketOption() {
   assert.match(settings2Html, /background:var\(--surface-2\);/);
   assert.match(settings2Html, /border-radius:10px;/);
   assert.match(settings2Html, /#fieldEditorHelp\{\s*color:#f7fbff;/);
+  assert.match(settings2Html, /\.settings-top-note\{\s*[^}]*color:#f7fbff;/);
+  assert.match(settings2Html, /:root\[data-theme="light"\] \.settings-top-note\{\s*color:#111111;/);
   assert.match(settings2Html, /変更して保存すると、日報入力画面に反映されます。/);
   assert.doesNotMatch(settings2Html, /field-edit-btn/);
   assert.doesNotMatch(settings2Html, /fieldEditorReadonlySection/);

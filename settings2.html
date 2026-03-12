@@ -46,7 +46,7 @@
     .settings-top-note{
       margin:0 0 12px;
       font-size:13px;
-      color:var(--muted);
+      color:#f7fbff;
       line-height:1.6;
     }
     .wf-panel{
@@ -317,6 +317,9 @@
         radial-gradient(120% 100% at 50% 0%, rgba(76,134,230,.16), rgba(245,249,255,0) 60%),
         linear-gradient(180deg, #f5f9ff 0%, #ebf3ff 100%);
       box-shadow:0 8px 24px rgba(16,39,79,.16), 0 0 0 1px rgba(135,172,224,.32) inset;
+    }
+    :root[data-theme="light"] .settings-top-note{
+      color:#111111;
     }
     :root[data-theme="light"] .editor-modal-head{border-bottom-color:rgba(120,156,208,.55);}
     :root[data-theme="light"] .editor-modal-title{color:#17345a;}
@@ -819,7 +822,7 @@
 </script>
 
 <script>
-  (function(){if('serviceWorker' in navigator && location.protocol.indexOf('http')===0){window.addEventListener('load', function(){navigator.serviceWorker.register('./sw.js?v=20260228-8').catch(function(){});});}})();
+  (function(){if('serviceWorker' in navigator && location.protocol.indexOf('http')===0){window.addEventListener('load', function(){navigator.serviceWorker.register('./sw.js?v=20260228-9').catch(function(){});});}})();
 </script>
 
 <nav class="tsms-bottom-nav" aria-label="ボトムメニュー">
