@@ -220,44 +220,76 @@
     }
     .editor-modal-bg.show{display:flex;}
     .editor-modal-card{
-      width:min(560px,100%);
-      background:#fff;
-      border:2px solid var(--border);
-      padding:14px;
+      width:min(520px,100%);
+      border-radius:16px;
+      border:1px solid #3d5f94;
+      background:
+        radial-gradient(120% 100% at 50% 0%, rgba(86,148,255,.18), rgba(10,21,44,0) 55%),
+        linear-gradient(180deg, #0f1f42 0%, #0a1733 100%);
+      box-shadow:0 10px 28px rgba(0,0,0,.45), 0 0 0 1px rgba(126,167,235,.22) inset;
+      padding:12px;
+    }
+    .editor-modal-head{
+      display:grid;
+      grid-template-columns:1fr auto;
+      align-items:end;
+      gap:8px;
+      margin:0 0 8px;
+      padding:2px 4px 10px;
+      border-bottom:1px solid rgba(135,168,220,.45);
     }
     .editor-modal-title{
-      margin:0 0 12px;
-      font-size:20px;
+      margin:0;
+      color:#eaf3ff;
+      font-size:clamp(22px,6.2vw,30px);
+      line-height:1.1;
+    }
+    .editor-modal-step{
+      margin:0;
+      color:#c8ddff;
+      font-size:24px;
+      line-height:1;
       font-weight:900;
+      letter-spacing:.01em;
+    }
+    .editor-modal-body{
+      border:1px solid rgba(125,164,230,.34);
+      border-radius:10px;
+      background:linear-gradient(180deg, rgba(16,31,62,.86) 0%, rgba(13,26,52,.86) 100%);
+      padding:10px;
+      margin:0 0 12px;
+      text-align:left;
     }
     .editor-modal-group{
       margin:0 0 12px;
       display:grid;
       gap:8px;
     }
+    .editor-modal-group:last-child{margin-bottom:0;}
     .editor-modal-label{
       font-size:13px;
-      color:var(--muted);
+      color:#bdd6fa;
       font-weight:800;
     }
     .input{
       width:100%;
       box-sizing:border-box;
-      border:2px solid var(--border);
-      border-radius:0;
+      border:1px solid rgba(125,164,230,.42);
+      border-radius:8px;
       padding:14px 10px;
       font-size:20px;
       min-height:56px;
-      background:#fff;
+      background:rgba(11,23,44,.9);
+      color:#e8f2ff;
     }
     .input:disabled{
-      background:#f4f4f4;
-      color:#777;
+      background:rgba(17,31,57,.75);
+      color:#9fbbe4;
     }
     .editor-modal-help{
       margin:0;
       font-size:12px;
-      color:var(--muted);
+      color:#bdd6fa;
       line-height:1.5;
     }
     .editor-check-grid{
@@ -270,25 +302,63 @@
       align-items:center;
       gap:8px;
       min-height:52px;
-      border:2px solid var(--border);
+      border:1px solid rgba(125,164,230,.42);
+      border-radius:8px;
       padding:0 12px;
       font-size:16px;
       font-weight:800;
-      background:#fff;
+      background:rgba(11,23,44,.9);
+      color:#e8f2ff;
     }
     .editor-check input{
       width:20px;
       height:20px;
       margin:0;
+      accent-color:#62abff;
     }
     .editor-check.is-disabled{
-      background:#f4f4f4;
-      color:#777;
+      background:rgba(17,31,57,.75);
+      color:#9fbbe4;
     }
     .editor-modal-actions{
       display:grid;
       grid-template-columns:1fr 1fr;
       gap:8px;
+    }
+    .editor-modal-actions .btn{
+      min-height:52px;
+      border-radius:10px;
+      font-size:17px;
+      font-weight:900;
+    }
+    :root[data-theme="light"] .editor-modal-card{
+      border-color:#9db9dd;
+      background:
+        radial-gradient(120% 100% at 50% 0%, rgba(76,134,230,.16), rgba(245,249,255,0) 60%),
+        linear-gradient(180deg, #f5f9ff 0%, #ebf3ff 100%);
+      box-shadow:0 8px 24px rgba(16,39,79,.16), 0 0 0 1px rgba(135,172,224,.32) inset;
+    }
+    :root[data-theme="light"] .editor-modal-head{border-bottom-color:rgba(120,156,208,.55);}
+    :root[data-theme="light"] .editor-modal-title{color:#17345a;}
+    :root[data-theme="light"] .editor-modal-step{color:#2c4f7f;}
+    :root[data-theme="light"] .editor-modal-body{
+      border-color:rgba(129,166,217,.5);
+      background:linear-gradient(180deg, #f9fcff 0%, #eef5ff 100%);
+    }
+    :root[data-theme="light"] .editor-modal-label,
+    :root[data-theme="light"] .editor-modal-help{
+      color:#44638c;
+    }
+    :root[data-theme="light"] .input,
+    :root[data-theme="light"] .editor-check{
+      background:#ffffff;
+      border-color:rgba(129,166,217,.55);
+      color:#17345a;
+    }
+    :root[data-theme="light"] .input:disabled,
+    :root[data-theme="light"] .editor-check.is-disabled{
+      background:#edf3fb;
+      color:#587aa7;
     }
 
     @media (max-width: 420px){
@@ -331,9 +401,9 @@
     <div class="wf-row" id="rideTypeButtons"></div>
   </section>
 
-  <section class="wf-panel" id="sec_rideTypeOther">
+  <section class="wf-panel is-hidden" id="sec_rideTypeOther">
     <div class="wf-label">乗車種別 その他（追加選択）</div>
-    <div class="wf-subnote">※設定画面では編集しやすいよう常時表示しています。</div>
+    <div class="wf-subnote">※「その他」選択時のみ表示</div>
     <div class="wf-row" id="rideTypeOtherButtons"></div>
   </section>
 
@@ -342,15 +412,15 @@
     <div class="wf-row" id="payMethodButtons"></div>
   </section>
 
-  <section class="wf-panel" id="sec_payMethodOther">
+  <section class="wf-panel is-hidden" id="sec_payMethodOther">
     <div class="wf-label">支払方法 その他（追加選択）</div>
-    <div class="wf-subnote">※設定画面では編集しやすいよう常時表示しています。</div>
+    <div class="wf-subnote">※「その他」選択時のみ表示</div>
     <div class="wf-row" id="payMethodOtherButtons"></div>
   </section>
 
-  <section class="wf-panel" id="sec_ticketSub">
+  <section class="wf-panel is-hidden" id="sec_ticketSub">
     <div class="wf-label">チケット他（追加選択）</div>
-    <div class="wf-subnote">※設定画面では編集しやすいよう常時表示しています。</div>
+    <div class="wf-subnote">※「チケット他」選択時のみ表示</div>
     <div class="wf-row" id="ticketSubButtons"></div>
   </section>
 
@@ -365,29 +435,30 @@
 
 <div class="editor-modal-bg" id="fieldEditorModalBg" aria-hidden="true">
   <div class="editor-modal-card" role="dialog" aria-modal="true" aria-labelledby="fieldEditorModalTitle">
-    <p class="editor-modal-title" id="fieldEditorModalTitle">ボタン設定</p>
-
-    <div class="editor-modal-group">
-      <div class="editor-modal-label" id="fieldEditorTargetLabel">ボタン名</div>
-      <input class="input" id="fieldEditorNameInput" type="text" maxlength="24" placeholder="ボタン名">
-      <p class="editor-modal-help" id="fieldEditorHelp">名称を変更して保存すると、この画面と report.html に反映されます。</p>
+    <div class="editor-modal-head">
+      <p class="editor-modal-title" id="fieldEditorModalTitle">ボタン設定</p>
+      <p class="editor-modal-step">編集</p>
     </div>
-
-    <div class="editor-modal-group is-hidden" id="fieldEditorFlagSection">
-      <div class="editor-modal-label">金額入力フラグ</div>
-      <div class="editor-check-grid">
-        <label class="editor-check"><input type="checkbox" id="fieldEditorCashFlag"><span>現収</span></label>
-        <label class="editor-check"><input type="checkbox" id="fieldEditorCreditFlag"><span>未収</span></label>
+    <div class="editor-modal-body">
+      <div class="editor-modal-group">
+        <div class="editor-modal-label" id="fieldEditorTargetLabel">ボタン名</div>
+        <input class="input" id="fieldEditorNameInput" type="text" maxlength="24" placeholder="ボタン名">
+        <p class="editor-modal-help" id="fieldEditorHelp">名称を変更して保存すると、この画面と report.html に反映されます。</p>
       </div>
-      <p class="editor-modal-help">この設定は report.html の金額入力欄表示に反映されます。将来は別の計算フラグもこのモーダルへ追加できる形で管理します。</p>
+      <div class="editor-modal-group is-hidden" id="fieldEditorFlagSection">
+        <div class="editor-modal-label">金額入力フラグ</div>
+        <div class="editor-check-grid">
+          <label class="editor-check"><input type="checkbox" id="fieldEditorCashFlag"><span>現収</span></label>
+          <label class="editor-check"><input type="checkbox" id="fieldEditorCreditFlag"><span>未収</span></label>
+        </div>
+        <p class="editor-modal-help">この設定は report.html の金額入力欄表示に反映されます。将来は別の計算フラグもこのモーダルへ追加できる形で管理します。</p>
+      </div>
+      <div class="editor-modal-group is-hidden" id="fieldEditorReadonlySection">
+        <div class="editor-modal-label">固定項目</div>
+        <label class="editor-check is-disabled"><input type="checkbox" checked disabled><span id="fieldEditorReadonlyLabel">このボタンは固定項目です</span></label>
+        <p class="editor-modal-help">このボタンは report.html の分岐条件に使っているため、名称やフラグは変更できません。</p>
+      </div>
     </div>
-
-    <div class="editor-modal-group is-hidden" id="fieldEditorReadonlySection">
-      <div class="editor-modal-label">固定項目</div>
-      <label class="editor-check is-disabled"><input type="checkbox" checked disabled><span id="fieldEditorReadonlyLabel">このボタンは固定項目です</span></label>
-      <p class="editor-modal-help">このボタンは report.html の分岐条件に使っているため、名称やフラグは変更できません。</p>
-    </div>
-
     <div class="editor-modal-actions">
       <button class="btn" type="button" id="fieldEditorCancelBtn">閉じる</button>
       <button class="btn next" type="button" id="fieldEditorSaveBtn">保存</button>
@@ -404,9 +475,12 @@
   }
 
   const rideTypeButtons = document.getElementById("rideTypeButtons");
+  const secRideTypeOther = document.getElementById("sec_rideTypeOther");
   const rideTypeOtherButtons = document.getElementById("rideTypeOtherButtons");
   const payMethodButtons = document.getElementById("payMethodButtons");
+  const secPayMethodOther = document.getElementById("sec_payMethodOther");
   const payMethodOtherButtons = document.getElementById("payMethodOtherButtons");
+  const secTicketSub = document.getElementById("sec_ticketSub");
   const ticketSubButtons = document.getElementById("ticketSubButtons");
   const saveBtn = document.getElementById("btnSaveAndBack");
   const saveStatus = document.getElementById("saveStatus");
@@ -434,9 +508,9 @@
 
   const draft = api.load();
   const selected = {
-    rideType: 7,
+    rideType: null,
     rideTypeOther: null,
-    payMethod: 7,
+    payMethod: null,
     payMethodOther: null,
     ticketSub: null
   };
@@ -518,6 +592,9 @@
     renderButtonRow(payMethodButtons, "payMethod");
     renderButtonRow(payMethodOtherButtons, "payMethodOther");
     renderButtonRow(ticketSubButtons, "ticketSub");
+    secRideTypeOther.classList.toggle("is-hidden", selected.rideType !== 7);
+    secPayMethodOther.classList.toggle("is-hidden", selected.payMethod !== 7);
+    secTicketSub.classList.toggle("is-hidden", selected.payMethod !== 6);
   }
 
   function markUnsaved(){
@@ -663,7 +740,7 @@
 </script>
 
 <script>
-  (function(){if('serviceWorker' in navigator && location.protocol.indexOf('http')===0){window.addEventListener('load', function(){navigator.serviceWorker.register('./sw.js?v=20260228-3').catch(function(){});});}})();
+  (function(){if('serviceWorker' in navigator && location.protocol.indexOf('http')===0){window.addEventListener('load', function(){navigator.serviceWorker.register('./sw.js?v=20260228-4').catch(function(){});});}})();
 </script>
 
 <nav class="tsms-bottom-nav" aria-label="ボトムメニュー">

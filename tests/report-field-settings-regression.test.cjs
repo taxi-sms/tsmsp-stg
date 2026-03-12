@@ -100,9 +100,13 @@ function testHtmlReflectsFixedTicketOption() {
   assert.match(settings2Html, /設定画面/);
   assert.match(settings2Html, /id="rideTypeButtons"/);
   assert.match(settings2Html, /id="payMethodButtons"/);
+  assert.match(settings2Html, /id="sec_rideTypeOther"/);
+  assert.match(settings2Html, /id="sec_payMethodOther"/);
+  assert.match(settings2Html, /id="sec_ticketSub"/);
   assert.match(settings2Html, /id="fieldEditorModalBg"/);
   assert.match(settings2Html, /id="fieldEditorCashFlag"/);
   assert.match(settings2Html, /id="fieldEditorCreditFlag"/);
+  assert.match(settings2Html, /voice-input-modal-card|editor-modal-card/);
 }
 
 function runTests() {
