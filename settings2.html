@@ -514,7 +514,7 @@
 
 <main class="main">
   <div class="settings-mode-banner">設定画面</div>
-  <p class="settings-top-note">report.html と同じ並びと出し分けでボタンを表示しています。編集したい項目をタップするとモーダルが開き、チケット他とその他は選択すると下に追加項目が表示されます。最後に下の保存ボタンを押すとクラウドまで反映します。</p>
+  <p class="settings-top-note">日報入力画面と同じ並びでボタンを表示しています。編集したい項目をタップすると編集画面が開きます。チケット他とその他は選択すると下に追加項目が表示されるので、好きなボタンを編集してください。最後に下の保存ボタンを押すと日報入力画面に反映されます。</p>
 
   <section class="wf-panel" id="sec_rideType">
     <div class="wf-label">乗車種別</div>
@@ -563,7 +563,7 @@
       <div class="editor-modal-group">
         <div class="editor-modal-label" id="fieldEditorTargetLabel">ボタン名</div>
         <input class="input" id="fieldEditorNameInput" type="text" maxlength="24" placeholder="ボタン名">
-        <p class="editor-modal-help" id="fieldEditorHelp">名称を変更して保存すると、この画面と report.html に反映されます。</p>
+        <p class="editor-modal-help" id="fieldEditorHelp">変更して保存すると、日報入力画面に反映されます。</p>
       </div>
       <div class="editor-modal-group is-hidden" id="fieldEditorFlagSection">
         <div class="editor-modal-label">金額入力フラグ</div>
@@ -571,7 +571,7 @@
           <label class="editor-check"><input type="checkbox" id="fieldEditorCashFlag"><span>現収</span></label>
           <label class="editor-check"><input type="checkbox" id="fieldEditorCreditFlag"><span>未収</span></label>
         </div>
-        <p class="editor-modal-help">この設定は report.html の金額入力欄表示に反映されます。将来は別の計算フラグもこのモーダルへ追加できる形で管理します。</p>
+        <p class="editor-modal-help">この設定は現金収入、未集金収入の計算を分けるために設定します。</p>
       </div>
     </div>
     <div class="editor-modal-actions">
@@ -693,7 +693,7 @@
     modalTargetLabel.textContent = `${spec.title} ボタン名`;
     modalNameInput.value = spec.label || "";
     modalNameInput.disabled = false;
-    modalHelp.textContent = "名称を変更して保存すると、この画面と report.html に反映されます。";
+    modalHelp.textContent = "変更して保存すると、日報入力画面に反映されます。";
 
     const showFlags = !!spec.flagsKey;
     modalFlagSection.classList.toggle("is-hidden", !showFlags);
@@ -819,7 +819,7 @@
 </script>
 
 <script>
-  (function(){if('serviceWorker' in navigator && location.protocol.indexOf('http')===0){window.addEventListener('load', function(){navigator.serviceWorker.register('./sw.js?v=20260228-7').catch(function(){});});}})();
+  (function(){if('serviceWorker' in navigator && location.protocol.indexOf('http')===0){window.addEventListener('load', function(){navigator.serviceWorker.register('./sw.js?v=20260228-8').catch(function(){});});}})();
 </script>
 
 <nav class="tsms-bottom-nav" aria-label="ボトムメニュー">
