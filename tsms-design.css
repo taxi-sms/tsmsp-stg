@@ -1334,7 +1334,7 @@ td.muted,
    ============================================================ */
 /* ログイン・新規登録はヘッダー下に中央配置 */
 .main[style*="justify-content:center"],
-.main {
+.auth-main {
   padding: 14px;
   max-width: 520px;
   margin: 0 auto;
@@ -2031,39 +2031,216 @@ select,
 }
 
 /* ============================================================
-   Unified Flat Blocks (opt-in)
-   見出し + 区切り線を基本に、セクションの箱を非表示
+   Unified App Shell (opt-in)
+   主要業務画面の箱・ボタン・入力・ヘッダーを共通化
    ============================================================ */
+.page-block-unified .main {
+  max-width: 760px;
+  margin: 0 auto;
+  padding: var(--space-3) 14px;
+  display: grid;
+  gap: var(--space-2);
+}
+
+.page-block-unified.page-main-wide .main { max-width: 880px; }
+.page-block-unified.page-main-xl .main { max-width: 980px; }
+
+.page-block-unified .main > #cards {
+  margin: 0;
+  display: grid;
+  gap: var(--space-2);
+}
+
 .page-block-unified .main .card,
 .page-block-unified .main .section,
 .page-block-unified .main .panel,
 .page-block-unified main .wf-panel,
 .page-block-unified .date-switcher {
-  border: 0 !important;
-  border-radius: 0 !important;
-  background: transparent !important;
+  margin: 0 !important;
+  padding: 10px !important;
+  border: var(--line-strong) solid var(--border) !important;
+  border-radius: var(--radius-lg) !important;
+  background: var(--surface-1) !important;
   box-shadow: none !important;
-  margin: 10px 0 !important;
-  padding: 4px 0 2px !important;
 }
 
+.page-block-unified .title,
+.page-block-unified .group-title,
+.page-block-unified .wf-label,
+.page-block-unified .panel .label {
+  margin: 0 0 var(--space-3) 0 !important;
+  gap: var(--space-2) !important;
+  font-size: var(--font-2xl) !important;
+  font-weight: 900 !important;
+  line-height: 1.35 !important;
+  color: var(--text-primary) !important;
+  letter-spacing: 0.01em !important;
+  text-transform: none !important;
+}
+
+.page-block-unified .title::after,
 .page-block-unified .group-title::after,
 .page-block-unified .wf-label::after,
+.page-block-unified .panel .label::after,
 .page-block-unified .entry-head::after {
   border-top: var(--line-regular) solid var(--border) !important;
+  opacity: 0.95 !important;
+  background: none !important;
 }
 
-.page-block-unified .section .title {
-  display: flex !important;
-  align-items: center !important;
-  gap: var(--space-2) !important;
+.page-block-unified .wf-subnote,
+.page-block-unified .note,
+.page-block-unified .save-note {
+  margin: 0 0 var(--space-2) 0;
+  line-height: 1.5;
 }
-.page-block-unified .section .title::after {
-  content: "" !important;
-  display: block !important;
-  flex: 1 1 auto !important;
-  height: 0 !important;
-  border-top: var(--line-regular) solid var(--border) !important;
-  background: none !important;
-  opacity: 0.95 !important;
+
+.page-block-unified .btn,
+.page-block-unified .actionBtn {
+  border: var(--line-strong) solid var(--border) !important;
+  border-radius: var(--radius-md) !important;
+  background: var(--surface-2) !important;
+  color: var(--text-primary) !important;
+  min-height: var(--control-h-md);
+  padding: 10px 12px;
+  font-size: var(--font-2xl) !important;
+  font-weight: 900;
+}
+
+.page-block-unified .btn.next {
+  border-color: #8ad0ff !important;
+  color: #fff !important;
+  background: linear-gradient(180deg, #78c5ff, #3f9bff) !important;
+  box-shadow: 0 4px 14px rgba(45, 140, 255, 0.35);
+}
+
+.page-block-unified .input,
+.page-block-unified select.input,
+.page-block-unified .date-switcher select,
+.page-block-unified .target-input,
+.page-block-unified .manual-input,
+.page-block-unified .key {
+  border: var(--line-strong) solid var(--border) !important;
+  border-radius: var(--radius-md) !important;
+  background: var(--surface-2) !important;
+  color: var(--text-primary) !important;
+}
+
+.page-block-unified .key {
+  min-height: var(--control-h-md);
+  font-size: var(--font-4xl) !important;
+}
+
+.page-block-unified .key.small {
+  font-size: var(--font-lg) !important;
+}
+
+.page-block-unified .tsms-header,
+.page-block-unified .header {
+  border-bottom: var(--line-strong) solid var(--border) !important;
+  background: var(--surface-1) !important;
+  color: var(--text-primary) !important;
+  font-size: var(--font-4xl);
+}
+
+.page-block-unified .header-to-report,
+.page-block-unified .header-manual-edit {
+  border: var(--line-strong) solid var(--border) !important;
+  border-radius: var(--radius-sm);
+  background: var(--surface-2) !important;
+  color: var(--text-primary) !important;
+  font-size: var(--font-lg) !important;
+  min-height: var(--touch-min);
+  padding: 6px 10px !important;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  text-decoration: none;
+}
+
+.page-block-unified .header-actions {
+  gap: var(--space-2);
+}
+
+.page-block-unified .tsms-menu,
+.page-block-unified .menu {
+  border-right: var(--line-strong) solid var(--border) !important;
+  background: var(--surface-1) !important;
+}
+
+.page-block-unified .tsms-menu a,
+.page-block-unified .menu a {
+  border-bottom: 1px solid var(--border) !important;
+  color: var(--text-primary) !important;
+  background: var(--surface-2) !important;
+}
+
+.page-block-unified .tsms-menu small,
+.page-block-unified .menu small {
+  color: var(--text-muted) !important;
+}
+
+:root[data-theme="dark"] .page-block-unified .tsms-header,
+:root[data-theme="dark"] .page-block-unified .header {
+  background: linear-gradient(180deg, rgba(22,42,76,.95), rgba(10,22,47,.95)) !important;
+  box-shadow: 0 10px 24px rgba(0,0,0,.3);
+}
+
+:root[data-theme="dark"] .page-block-unified .tsms-hamburger span,
+:root[data-theme="dark"] .page-block-unified .hamburger span {
+  background: #e3efff !important;
+}
+
+:root[data-theme="dark"] .page-block-unified .main .card,
+:root[data-theme="dark"] .page-block-unified .main .section,
+:root[data-theme="dark"] .page-block-unified .main .panel,
+:root[data-theme="dark"] .page-block-unified main .wf-panel,
+:root[data-theme="dark"] .page-block-unified .date-switcher {
+  background: linear-gradient(180deg, rgba(19,38,70,.95), rgba(8,20,42,.95)) !important;
+  box-shadow: 0 10px 26px rgba(0,0,0,.28), inset 0 1px 0 rgba(255,255,255,.08) !important;
+}
+
+:root[data-theme="dark"] .page-block-unified .btn,
+:root[data-theme="dark"] .page-block-unified .actionBtn,
+:root[data-theme="dark"] .page-block-unified .input,
+:root[data-theme="dark"] .page-block-unified select.input,
+:root[data-theme="dark"] .page-block-unified .date-switcher select,
+:root[data-theme="dark"] .page-block-unified .target-input,
+:root[data-theme="dark"] .page-block-unified .manual-input,
+:root[data-theme="dark"] .page-block-unified .key {
+  background: linear-gradient(180deg, rgba(16,33,62,.9), rgba(9,20,39,.9)) !important;
+  color: #eaf3ff !important;
+  border-color: #4e709f !important;
+}
+
+:root[data-theme="dark"] .page-block-unified .title::after,
+:root[data-theme="dark"] .page-block-unified .group-title::after,
+:root[data-theme="dark"] .page-block-unified .wf-label::after,
+:root[data-theme="dark"] .page-block-unified .panel .label::after,
+:root[data-theme="dark"] .page-block-unified .entry-head::after {
+  border-top-color: #4e709f !important;
+}
+
+:root[data-theme="dark"] .page-block-unified .tsms-menu,
+:root[data-theme="dark"] .page-block-unified .menu {
+  background: linear-gradient(180deg, rgba(19,38,70,.96), rgba(8,20,42,.96)) !important;
+}
+
+:root[data-theme="dark"] .page-block-unified .tsms-menu a,
+:root[data-theme="dark"] .page-block-unified .menu a {
+  background: linear-gradient(180deg, rgba(16,33,62,.9), rgba(9,20,39,.9)) !important;
+  border-bottom-color: rgba(107,142,197,.45) !important;
+  color: #ecf3ff !important;
+}
+
+:root[data-theme="dark"] .page-block-unified .tsms-menu small,
+:root[data-theme="dark"] .page-block-unified .menu small {
+  color: #a9c0e1 !important;
+}
+
+:root[data-theme="dark"] .page-block-unified .header-to-report,
+:root[data-theme="dark"] .page-block-unified .header-manual-edit {
+  background: linear-gradient(180deg, rgba(16,33,62,.9), rgba(9,20,39,.9)) !important;
+  color: #ecf3ff !important;
+  border-color: #4e709f !important;
 }

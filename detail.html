@@ -22,52 +22,13 @@
   <script type="module" src="auth-guard.js?v=20260223-5"></script>
   <script src="./custom-confirm.js"></script>
   <link rel="stylesheet" href="./tsms-design.css?v=20260227-3">
-  <style id="detail-unified-layout-tweaks">
-    .main{
-      max-width:760px;
-      margin:0 auto;
-      padding:var(--space-3) 14px;
-      display:grid;
-      gap:8px;
-    }
-    main .wf-panel{
-      margin:0;
-      padding:10px;
-      border:2px solid var(--border);
-      border-radius:14px;
-      background:var(--surface-1);
-    }
+  <style id="detail-page-tweaks">
     .date-switcher label{
       display:none !important;
-    }
-    .date-switcher select{
-      border:2px solid var(--border);
-      border-radius:10px;
-      background:var(--surface-2);
-      color:var(--text-primary);
-      padding:11px 36px 11px 12px;
-      font-size:var(--font-2xl);
-      min-height:var(--control-h-md);
     }
     .main .section{
       display:grid;
       gap:var(--space-2);
-    }
-    .wf-label{
-      display:flex;
-      align-items:center;
-      gap:var(--space-2);
-      margin:0 0 var(--space-2) 0;
-      font-size:var(--font-2xl);
-      color:var(--text-primary);
-      font-weight:900;
-      line-height:1.35;
-    }
-    .wf-label::after{
-      content:"";
-      flex:1 1 auto;
-      border-top:var(--line-regular) solid var(--border);
-      opacity:.95;
     }
     .main .box{
       border:0 !important;
@@ -79,34 +40,10 @@
       gap:0;
     }
     .line{
-      display:flex;
-      gap:var(--space-2);
-      padding:7px 0;
       align-items:flex-start;
-      border-bottom:var(--line-thin) solid var(--border-light);
-    }
-    .line:last-child{
-      border-bottom:none;
-    }
-    .k{
-      width:130px;
-      font-size:var(--font-md);
-      color:var(--text-muted);
-      font-weight:800;
-      line-height:1.35;
     }
     .v{
-      margin-left:auto;
-      font-size:var(--font-2xl);
-      color:var(--text-primary);
-      font-weight:800;
-      text-align:right;
       white-space:nowrap;
-      line-height:1.35;
-    }
-    .v.value-highlight{
-      color:var(--value-highlight) !important;
-      font-weight:900;
     }
     .v .value-number{
       font-size:inherit;
@@ -117,68 +54,6 @@
     }
     .v .value-unit{
       font-size:inherit;
-    }
-    .tsms-header{
-      border-bottom:2px solid var(--border);
-      background:var(--surface-1);
-      color:var(--text-primary);
-      font-size:var(--font-4xl);
-    }
-    .header-to-report{
-      border:var(--line-strong) solid var(--border);
-      border-radius:var(--radius-sm);
-      background:var(--surface-2);
-      color:var(--text-primary);
-      font-size:var(--font-lg);
-      min-height:var(--touch-min);
-      padding:6px 10px;
-      display:inline-flex;
-      align-items:center;
-      justify-content:center;
-    }
-    .tsms-menu{
-      border-right:2px solid var(--border);
-      background:var(--surface-1);
-    }
-    .tsms-menu a{
-      border-bottom:1px solid var(--border);
-      color:var(--text-primary);
-      background:var(--surface-2);
-    }
-    .tsms-menu small{color:var(--text-muted);}
-    :root[data-theme="dark"] .tsms-header{
-      background:linear-gradient(180deg, rgba(22,42,76,.95), rgba(10,22,47,.95));
-      box-shadow:0 10px 24px rgba(0,0,0,.3);
-    }
-    :root[data-theme="dark"] .tsms-hamburger span{background:#e3efff;}
-    :root[data-theme="dark"] main .wf-panel{
-      background:linear-gradient(180deg, rgba(19,38,70,.95), rgba(8,20,42,.95));
-      box-shadow:0 10px 26px rgba(0,0,0,.28), inset 0 1px 0 rgba(255,255,255,.08);
-    }
-    :root[data-theme="dark"] .date-switcher select{
-      background:linear-gradient(180deg, rgba(16,33,62,.9), rgba(9,20,39,.9));
-      color:#eaf3ff;
-      border-color:#4e709f;
-    }
-    :root[data-theme="dark"] .wf-label::after{
-      border-top-color:#4e709f;
-    }
-    :root[data-theme="dark"] .line{
-      border-bottom-color:rgba(107,142,197,.35);
-    }
-    :root[data-theme="dark"] .tsms-menu{
-      background:linear-gradient(180deg, rgba(19,38,70,.96), rgba(8,20,42,.96));
-    }
-    :root[data-theme="dark"] .tsms-menu a{
-      background:linear-gradient(180deg, rgba(16,33,62,.9), rgba(9,20,39,.9));
-      border-bottom-color:rgba(107,142,197,.45);
-      color:#ecf3ff;
-    }
-    :root[data-theme="dark"] .tsms-menu small{color:#a9c0e1;}
-    :root[data-theme="dark"] .header-to-report{
-      background:linear-gradient(180deg, rgba(16,33,62,.9), rgba(9,20,39,.9));
-      color:#ecf3ff;
-      border-color:#4e709f;
     }
   </style>
 </head>
