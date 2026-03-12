@@ -97,9 +97,12 @@ function testHtmlReflectsFixedTicketOption() {
     reportHtml,
     /payOptions:\s*\["現金", "QR", "クレカ", "電子M", "GO Pay", "乗込GO Pay", "チケット他", "その他"\]/
   );
-  assert.match(settings2Html, /7番目は固定で「チケット他」、8番目は固定で「その他」/);
-  assert.match(settings2Html, /現収/);
-  assert.match(settings2Html, /未収/);
+  assert.match(settings2Html, /設定画面/);
+  assert.match(settings2Html, /id="rideTypeButtons"/);
+  assert.match(settings2Html, /id="payMethodButtons"/);
+  assert.match(settings2Html, /id="fieldEditorModalBg"/);
+  assert.match(settings2Html, /id="fieldEditorCashFlag"/);
+  assert.match(settings2Html, /id="fieldEditorCreditFlag"/);
 }
 
 function runTests() {

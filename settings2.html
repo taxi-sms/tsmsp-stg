@@ -18,19 +18,129 @@
   <meta name="apple-mobile-web-app-title" content="TSMS">
   <script>(function(){try{var t=localStorage.getItem("tsms_theme")==="dark"?"dark":"light";document.documentElement.setAttribute("data-theme",t);var m=document.querySelector('meta[name="theme-color"]');if(m)m.setAttribute("content",t==="dark"?"#0F1417":"#F3F6F8");}catch(e){}})();</script>
   <script type="module" src="auth-guard.js?v=20260223-5"></script>
-  <script src="./custom-confirm.js"></script>
   <script src="./report-field-settings.js"></script>
   <link rel="stylesheet" href="./tsms-design.css?v=20260227-3">
   <style>
     :root{ --bg:#fff; --text:#111; --muted:#666; --border:#999; }
-    html,body{margin:0;padding:0;background:var(--bg);color:var(--text);font-family:"Noto Sans JP", sans-serif;font-size:18px;}
+    html,body{
+      margin:0;
+      padding:0;
+      background:var(--bg);
+      color:var(--text);
+      font-family:"Noto Sans JP", sans-serif;
+      font-size:18px;
+    }
+    .main{padding:8px 12px calc(120px + env(safe-area-inset-bottom));}
+    .note{font-size:13px;color:var(--muted);line-height:1.5;margin:8px 0;}
+    .settings-mode-banner{
+      margin:10px 0 12px;
+      padding:10px 12px;
+      border:2px solid #9d1111;
+      background:#d93025;
+      color:#fff;
+      font-size:22px;
+      font-weight:900;
+      text-align:center;
+      letter-spacing:.04em;
+    }
+    .settings-top-note{
+      margin:0 0 12px;
+      font-size:13px;
+      color:var(--muted);
+      line-height:1.6;
+    }
+    .wf-panel{
+      border:0;
+      background:transparent !important;
+      margin:8px 0;
+      padding:6px 0 2px;
+    }
+    .wf-label{
+      display:flex;
+      align-items:center;
+      gap:10px;
+      font-weight:800;
+      font-size:16px;
+      margin:0 0 8px 0;
+      text-align:left;
+    }
+    .wf-label::after{
+      content:"";
+      flex:1 1 auto;
+      border-top:2px solid var(--border);
+      opacity:.95;
+    }
+    .wf-subnote{
+      font-size:12px;
+      color:var(--muted);
+      margin:-2px 0 8px 0;
+      line-height:1.5;
+    }
+    .wf-row{display:grid;grid-template-columns:repeat(4, 1fr);gap:8px;}
+    .btn{
+      appearance:none;
+      -webkit-appearance:none;
+      border:2px solid var(--border);
+      background:#fff;
+      border-radius:0;
+      padding:14px 8px;
+      font-size:16px;
+      min-height:56px;
+    }
+    .btn.is-selected{
+      border:2px solid #1A7A28;
+      background:#1F9A33 !important;
+      color:#fff !important;
+    }
+    .field-edit-btn{
+      position:relative;
+      font-weight:800;
+    }
+    .field-edit-btn.is-fixed{
+      border-style:dashed;
+      color:var(--muted);
+    }
+    .field-edit-btn::after{
+      content:"編集";
+      position:absolute;
+      right:4px;
+      bottom:4px;
+      font-size:10px;
+      font-weight:900;
+      line-height:1;
+      color:#666;
+      opacity:.8;
+    }
+    .field-edit-btn.is-fixed::after{
+      content:"固定";
+    }
+    .btn.is-selected::after{color:#fff;}
+    .settings-save-stack{
+      display:grid;
+      gap:8px;
+      margin-top:4px;
+    }
+    .save-note{
+      font-size:13px;
+      color:var(--muted);
+      line-height:1.5;
+      white-space:pre-line;
+      text-align:center;
+    }
+    .is-hidden{display:none !important;}
+
     .tsms-header{
-      position:sticky; top:0; z-index:100;
-      height:60px; background:#fff;
+      position:sticky;
+      top:0;
+      z-index:100;
+      height:60px;
+      background:#fff;
       border-bottom:2px solid #000;
-      display:flex; align-items:center;
+      display:flex;
+      align-items:center;
       padding:0 14px 0 56px;
-      font-weight:900; font-size:20px;
+      font-weight:900;
+      font-size:20px;
     }
     .header-to-report{
       margin-left:auto;
@@ -44,191 +154,153 @@
       background:#fff;
     }
     .tsms-hamburger{
-      position:absolute; left:14px; top:50%;
+      position:absolute;
+      left:14px;
+      top:50%;
       transform:translateY(-50%);
-      width:32px; height:24px;
-      display:flex; flex-direction:column; justify-content:space-between;
-      cursor:pointer; user-select:none;
+      width:32px;
+      height:24px;
+      display:flex;
+      flex-direction:column;
+      justify-content:space-between;
+      cursor:pointer;
+      user-select:none;
     }
-    .tsms-hamburger span{ height:3px; background:#000; display:block; }
+    .tsms-hamburger span{height:3px;background:#000;display:block;}
     .tsms-menu{
-      position:fixed; top:0; left:0; height:100%; width:280px;
-      background:#fff; border-right:2px solid #000;
+      position:fixed;
+      top:0;
+      left:0;
+      height:100%;
+      width:280px;
+      background:#fff;
+      border-right:2px solid #000;
       transform:translateX(-100%);
       transition:transform .25s ease;
-      z-index:1000; padding-top:60px;
+      z-index:1000;
+      padding-top:60px;
     }
-    .tsms-menu.open{ transform:translateX(0); }
+    .tsms-menu.open{transform:translateX(0);}
     .tsms-menu a{
-      display:block; padding:16px;
+      display:block;
+      padding:16px;
       border-bottom:1px solid #ddd;
-      text-decoration:none; color:#000;
-      font-size:18px; font-weight:900;
+      text-decoration:none;
+      color:#000;
+      font-size:18px;
+      font-weight:900;
     }
-    .tsms-menu small{ display:block; margin-top:2px; font-size:12px; font-weight:700; color:#666; }
+    .tsms-menu small{
+      display:block;
+      margin-top:2px;
+      font-size:12px;
+      font-weight:700;
+      color:#666;
+    }
     .tsms-menu-bg{
-      position:fixed; inset:0;
+      position:fixed;
+      inset:0;
       background:rgba(0,0,0,.25);
-      opacity:0; pointer-events:none;
+      opacity:0;
+      pointer-events:none;
       transition:opacity .2s ease;
       z-index:900;
     }
-    .tsms-menu-bg.show{ opacity:1; pointer-events:auto; }
-  </style>
-  <style id="settings2-unified-layout-tweaks">
-    .main{
-      padding:var(--space-3) 14px calc(120px + env(safe-area-inset-bottom));
-      max-width:880px;
-      margin:0 auto;
-    }
-    .section{
-      margin:var(--space-2) 0;
-      padding:var(--space-2) var(--space-3) var(--space-2);
-      border:0 !important;
-      background:transparent !important;
-    }
-    .title{
-      display:flex;
+    .tsms-menu-bg.show{opacity:1;pointer-events:auto;}
+
+    .editor-modal-bg{
+      position:fixed;
+      inset:0;
+      z-index:1450;
+      background:rgba(0,0,0,.45);
+      display:none;
       align-items:center;
-      gap:var(--space-2);
-      margin:0 0 var(--space-3) 0;
-      font-size:var(--font-2xl);
+      justify-content:center;
+      padding:16px;
+    }
+    .editor-modal-bg.show{display:flex;}
+    .editor-modal-card{
+      width:min(560px,100%);
+      background:#fff;
+      border:2px solid var(--border);
+      padding:14px;
+    }
+    .editor-modal-title{
+      margin:0 0 12px;
+      font-size:20px;
       font-weight:900;
-      color:var(--text-primary);
     }
-    .title::after{
-      content:"";
-      flex:1 1 auto;
-      border-top:var(--line-regular) solid var(--border);
-    }
-    .note{
-      margin:6px 0 var(--space-2) 0;
-      font-size:var(--font-sm);
-      color:var(--text-muted);
-      line-height:1.5;
-    }
-    .slot-list{
+    .editor-modal-group{
+      margin:0 0 12px;
       display:grid;
-      gap:var(--space-2);
+      gap:8px;
     }
-    .slot-row{
-      display:grid;
-      gap:6px;
-      padding:var(--space-2) 4px;
-      border-bottom:var(--line-thin) solid var(--border);
-    }
-    .slot-editor{
-      display:grid;
-      grid-template-columns:minmax(0,1fr);
-      gap:10px;
-      align-items:center;
-    }
-    .slot-editor.has-flags{
-      grid-template-columns:minmax(0,1fr) auto;
-    }
-    .slot-row:last-child{border-bottom:none;}
-    .slot-label{
-      font-size:var(--font-md);
-      color:var(--text-muted);
+    .editor-modal-label{
+      font-size:13px;
+      color:var(--muted);
       font-weight:800;
     }
     .input{
       width:100%;
       box-sizing:border-box;
-      border:var(--line-strong) solid var(--border);
-      border-radius:var(--radius-sm);
-      background:var(--surface-2);
-      color:var(--text-primary);
-      padding:11px 12px;
-      font-size:var(--font-2xl);
-      min-height:var(--control-h-md);
+      border:2px solid var(--border);
+      border-radius:0;
+      padding:14px 10px;
+      font-size:20px;
+      min-height:56px;
+      background:#fff;
     }
-    .flag-pair{
+    .input:disabled{
+      background:#f4f4f4;
+      color:#777;
+    }
+    .editor-modal-help{
+      margin:0;
+      font-size:12px;
+      color:var(--muted);
+      line-height:1.5;
+    }
+    .editor-check-grid{
+      display:grid;
+      grid-template-columns:repeat(2,minmax(0,1fr));
+      gap:8px;
+    }
+    .editor-check{
       display:flex;
-      flex-wrap:wrap;
-      gap:10px;
       align-items:center;
-      justify-content:flex-end;
-    }
-    .flag-check{
-      display:inline-flex;
-      align-items:center;
-      gap:6px;
-      font-size:var(--font-md);
+      gap:8px;
+      min-height:52px;
+      border:2px solid var(--border);
+      padding:0 12px;
+      font-size:16px;
       font-weight:800;
-      color:var(--text-primary);
-      white-space:nowrap;
+      background:#fff;
     }
-    .flag-check input{
+    .editor-check input{
       width:20px;
       height:20px;
       margin:0;
-      accent-color:var(--accent);
     }
-    .flag-hint{
-      margin-top:4px;
-      font-size:var(--font-sm);
-      color:var(--text-muted);
-      line-height:1.5;
+    .editor-check.is-disabled{
+      background:#f4f4f4;
+      color:#777;
     }
-    @media (max-width: 640px){
-      .slot-editor.has-flags{
-        grid-template-columns:minmax(0,1fr);
-      }
-      .flag-pair{
-        justify-content:flex-start;
-      }
-    }
-    .fixed-slot{
+    .editor-modal-actions{
       display:grid;
-      gap:4px;
-      padding:var(--space-2) 4px 0;
+      grid-template-columns:1fr 1fr;
+      gap:8px;
     }
-    .fixed-slot-value{
-      border:var(--line-strong) dashed var(--border);
-      border-radius:var(--radius-sm);
-      background:var(--surface-2);
-      color:var(--text-primary);
-      padding:11px 12px;
-      font-size:var(--font-2xl);
-      font-weight:900;
+
+    @media (max-width: 420px){
+      .wf-row{grid-template-columns:repeat(4, 1fr);}
+      .btn{font-size:15px;min-height:52px;padding:12px 6px;}
     }
-    .save-wrap{
-      margin-top:var(--space-3);
-      display:grid;
-      gap:var(--space-2);
-    }
-    .btn{
-      appearance:none;
-      -webkit-appearance:none;
-      border:var(--line-strong) solid var(--border);
-      border-radius:var(--radius-sm);
-      background:var(--surface-2);
-      color:var(--text-primary);
-      padding:10px 12px;
-      font-size:var(--font-2xl);
-      min-height:var(--control-h-md);
-      font-weight:900;
-    }
-    .save-note{
-      font-size:var(--font-sm);
-      color:var(--text-muted);
-      text-align:center;
-      white-space:pre-line;
-    }
-    .tsms-header{
-      border-bottom:var(--line-strong) solid var(--border);
-      background:var(--surface-1);
-      color:var(--text-primary);
-      font-size:var(--font-4xl);
-    }
-    .header-to-report{
-      border:var(--line-strong) solid var(--border);
-      border-radius:var(--radius-sm);
-      background:var(--surface-2);
-      color:var(--text-primary);
-      font-size:var(--font-lg);
-      padding:6px 10px;
+    @media (min-width: 768px){
+      html{font-size:20px;}
+      .main{max-width:880px;margin:0 auto;}
+      .btn{font-size:18px;min-height:64px;}
+      .input{font-size:22px;min-height:64px;}
+      .editor-check{min-height:58px;font-size:18px;}
     }
   </style>
 </head>
@@ -251,62 +323,77 @@
 </header>
 
 <main class="main">
-  <section class="section">
-    <div class="title">概要</div>
-    <div class="note">日報入力画面の乗車種別、支払方法、チケット内項目で表示する名称を上から順に変更できます。ユーザー自身で使いやすい様にカスタムして頂けます。ぜひご利用ください。</div>
+  <div class="settings-mode-banner">設定画面</div>
+  <p class="settings-top-note">report.html と同じ並びでボタンを表示しています。編集したいボタンをタップするとモーダルが開きます。固定項目は確認のみで、最後に下の保存ボタンを押すとクラウドまで反映します。</p>
+
+  <section class="wf-panel" id="sec_rideType">
+    <div class="wf-label">乗車種別</div>
+    <div class="wf-row" id="rideTypeButtons"></div>
   </section>
 
-  <section class="section">
-    <div class="title">乗車種別</div>
-    <div class="note">1〜7を変更できます。8番目は固定で「その他」です。</div>
-    <div class="slot-list" id="ridePrimaryList"></div>
-    <div class="fixed-slot">
-      <div class="slot-label">8. 固定項目</div>
-      <div class="fixed-slot-value">その他</div>
-    </div>
+  <section class="wf-panel" id="sec_rideTypeOther">
+    <div class="wf-label">乗車種別 その他（追加選択）</div>
+    <div class="wf-subnote">※設定画面では編集しやすいよう常時表示しています。</div>
+    <div class="wf-row" id="rideTypeOtherButtons"></div>
   </section>
 
-  <section class="section">
-    <div class="title">乗車種別 その他</div>
-    <div class="note">「その他」選択時に下から展開される追加1〜8です。</div>
-    <div class="slot-list" id="rideOtherList"></div>
+  <section class="wf-panel" id="sec_payMethod">
+    <div class="wf-label">支払方法</div>
+    <div class="wf-row" id="payMethodButtons"></div>
   </section>
 
-  <section class="section">
-    <div class="title">支払方法</div>
-    <div class="note">1〜6を変更できます。7番目は固定で「チケット他」、8番目は固定で「その他」です。</div>
-    <div class="flag-hint">右側のチェックで金額入力の対象を選びます。既定は未収です。</div>
-    <div class="slot-list" id="payPrimaryList"></div>
-    <div class="fixed-slot">
-      <div class="slot-label">7. 固定項目</div>
-      <div class="fixed-slot-value">チケット他</div>
-    </div>
-    <div class="fixed-slot">
-      <div class="slot-label">8. 固定項目</div>
-      <div class="fixed-slot-value">その他</div>
-    </div>
+  <section class="wf-panel" id="sec_payMethodOther">
+    <div class="wf-label">支払方法 その他（追加選択）</div>
+    <div class="wf-subnote">※設定画面では編集しやすいよう常時表示しています。</div>
+    <div class="wf-row" id="payMethodOtherButtons"></div>
   </section>
 
-  <section class="section">
-    <div class="title">支払方法 その他</div>
-    <div class="note">「その他」選択時に下から展開される追加1〜8です。</div>
-    <div class="flag-hint">右側のチェックで金額入力の対象を選びます。既定は未収です。</div>
-    <div class="slot-list" id="payOtherList"></div>
+  <section class="wf-panel" id="sec_ticketSub">
+    <div class="wf-label">チケット他（追加選択）</div>
+    <div class="wf-subnote">※設定画面では編集しやすいよう常時表示しています。</div>
+    <div class="wf-row" id="ticketSubButtons"></div>
   </section>
 
-  <section class="section">
-    <div class="title">チケット内項目</div>
-    <div class="note">既存のチケット内項目も上から順に変更できます。</div>
-    <div class="slot-list" id="ticketSubList"></div>
-  </section>
-
-  <section class="section">
-    <div class="save-wrap">
-      <button class="btn" id="btnSaveAndBack" type="button">変更を保存して設定に戻る</button>
-      <div class="save-note" id="saveStatus">必ず最後に保存してください。保存すると日報入力画面の表示順と音声入力候補にも反映されます。</div>
+  <section class="wf-panel" id="sec_save">
+    <div class="wf-label">保存</div>
+    <div class="settings-save-stack">
+      <button class="btn next" id="btnSaveAndBack" type="button">変更を保存して設定に戻る</button>
+      <div class="save-note" id="saveStatus">ボタン配置の見た目を確認しながら編集できます。画面上の変更は保存するまで確定しません。</div>
     </div>
   </section>
 </main>
+
+<div class="editor-modal-bg" id="fieldEditorModalBg" aria-hidden="true">
+  <div class="editor-modal-card" role="dialog" aria-modal="true" aria-labelledby="fieldEditorModalTitle">
+    <p class="editor-modal-title" id="fieldEditorModalTitle">ボタン設定</p>
+
+    <div class="editor-modal-group">
+      <div class="editor-modal-label" id="fieldEditorTargetLabel">ボタン名</div>
+      <input class="input" id="fieldEditorNameInput" type="text" maxlength="24" placeholder="ボタン名">
+      <p class="editor-modal-help" id="fieldEditorHelp">名称を変更して保存すると、この画面と report.html に反映されます。</p>
+    </div>
+
+    <div class="editor-modal-group is-hidden" id="fieldEditorFlagSection">
+      <div class="editor-modal-label">金額入力フラグ</div>
+      <div class="editor-check-grid">
+        <label class="editor-check"><input type="checkbox" id="fieldEditorCashFlag"><span>現収</span></label>
+        <label class="editor-check"><input type="checkbox" id="fieldEditorCreditFlag"><span>未収</span></label>
+      </div>
+      <p class="editor-modal-help">この設定は report.html の金額入力欄表示に反映されます。将来は別の計算フラグもこのモーダルへ追加できる形で管理します。</p>
+    </div>
+
+    <div class="editor-modal-group is-hidden" id="fieldEditorReadonlySection">
+      <div class="editor-modal-label">固定項目</div>
+      <label class="editor-check is-disabled"><input type="checkbox" checked disabled><span id="fieldEditorReadonlyLabel">このボタンは固定項目です</span></label>
+      <p class="editor-modal-help">このボタンは report.html の分岐条件に使っているため、名称やフラグは変更できません。</p>
+    </div>
+
+    <div class="editor-modal-actions">
+      <button class="btn" type="button" id="fieldEditorCancelBtn">閉じる</button>
+      <button class="btn next" type="button" id="fieldEditorSaveBtn">保存</button>
+    </div>
+  </div>
+</div>
 
 <script>
 (function(){
@@ -316,109 +403,193 @@
     return;
   }
 
-  const current = api.load();
+  const rideTypeButtons = document.getElementById("rideTypeButtons");
+  const rideTypeOtherButtons = document.getElementById("rideTypeOtherButtons");
+  const payMethodButtons = document.getElementById("payMethodButtons");
+  const payMethodOtherButtons = document.getElementById("payMethodOtherButtons");
+  const ticketSubButtons = document.getElementById("ticketSubButtons");
   const saveBtn = document.getElementById("btnSaveAndBack");
   const saveStatus = document.getElementById("saveStatus");
 
-  function buildRows(hostId, values, flags){
-    const host = document.getElementById(hostId);
-    if(!host) return;
-    host.innerHTML = "";
-    values.forEach((value, index) => {
-      const row = document.createElement("div");
-      row.className = "slot-row";
+  const modalBg = document.getElementById("fieldEditorModalBg");
+  const modalTitle = document.getElementById("fieldEditorModalTitle");
+  const modalTargetLabel = document.getElementById("fieldEditorTargetLabel");
+  const modalNameInput = document.getElementById("fieldEditorNameInput");
+  const modalHelp = document.getElementById("fieldEditorHelp");
+  const modalFlagSection = document.getElementById("fieldEditorFlagSection");
+  const modalCashFlag = document.getElementById("fieldEditorCashFlag");
+  const modalCreditFlag = document.getElementById("fieldEditorCreditFlag");
+  const modalReadonlySection = document.getElementById("fieldEditorReadonlySection");
+  const modalReadonlyLabel = document.getElementById("fieldEditorReadonlyLabel");
+  const modalCancelBtn = document.getElementById("fieldEditorCancelBtn");
+  const modalSaveBtn = document.getElementById("fieldEditorSaveBtn");
 
-      const label = document.createElement("div");
-      label.className = "slot-label";
-      label.textContent = `${index + 1}. 項目名`;
+  const SECTION_META = {
+    rideType: { title: "乗車種別", sourceKey: "ridePrimary", valuesKey: "rideOptions", editableCount: 7 },
+    rideTypeOther: { title: "乗車種別 その他", sourceKey: "rideOther", valuesKey: "rideOther", editableCount: 8 },
+    payMethod: { title: "支払方法", sourceKey: "payPrimary", valuesKey: "payOptions", editableCount: 6, flagsKey: "payPrimaryFlags" },
+    payMethodOther: { title: "支払方法 その他", sourceKey: "payOther", valuesKey: "payOther", editableCount: 8, flagsKey: "payOtherFlags" },
+    ticketSub: { title: "チケット他", sourceKey: "ticketSub", valuesKey: "ticketSub", editableCount: 8 }
+  };
 
-      const input = document.createElement("input");
-      input.className = "input";
-      input.type = "text";
-      input.value = value;
-      input.maxLength = 24;
-      input.dataset.index = String(index);
-      input.dataset.role = "label";
+  const draft = api.load();
+  const selected = {
+    rideType: 7,
+    rideTypeOther: null,
+    payMethod: 7,
+    payMethodOther: null,
+    ticketSub: null
+  };
+  let runtimeConfig = api.runtime(draft);
+  let activeEdit = null;
 
-      const editor = document.createElement("div");
-      editor.className = "slot-editor" + (Array.isArray(flags) ? " has-flags" : "");
-      editor.appendChild(input);
-
-      if(Array.isArray(flags)){
-        const flag = flags[index] || { cash: false, credit: true };
-        const flagPair = document.createElement("div");
-        flagPair.className = "flag-pair";
-        flagPair.dataset.index = String(index);
-
-        [
-          { key: "cash", label: "現収", checked: !!flag.cash },
-          { key: "credit", label: "未収", checked: !!flag.credit }
-        ].forEach((def) => {
-          const wrap = document.createElement("label");
-          wrap.className = "flag-check";
-
-          const checkbox = document.createElement("input");
-          checkbox.type = "checkbox";
-          checkbox.checked = !!def.checked;
-          checkbox.dataset.flag = def.key;
-          checkbox.dataset.index = String(index);
-          checkbox.addEventListener("change", () => {
-            const cash = flagPair.querySelector('input[data-flag="cash"]');
-            const credit = flagPair.querySelector('input[data-flag="credit"]');
-            if(cash && credit && !cash.checked && !credit.checked){
-              if(def.key === "cash") credit.checked = true;
-              else cash.checked = true;
-            }
-          });
-
-          const text = document.createElement("span");
-          text.textContent = def.label;
-
-          wrap.appendChild(checkbox);
-          wrap.appendChild(text);
-          flagPair.appendChild(wrap);
-        });
-
-        editor.appendChild(flagPair);
-      }
-
-      row.appendChild(label);
-      row.appendChild(editor);
-      host.appendChild(row);
-    });
-  }
-
-  buildRows("ridePrimaryList", current.ridePrimary);
-  buildRows("rideOtherList", current.rideOther);
-  buildRows("payPrimaryList", current.payPrimary, current.payPrimaryFlags);
-  buildRows("payOtherList", current.payOther, current.payOtherFlags);
-  buildRows("ticketSubList", current.ticketSub);
-
-  function collectValues(hostId){
-    return Array.from(document.querySelectorAll(`#${hostId} .input`)).map((input) => String(input.value || "").trim());
-  }
-
-  function collectFlags(hostId){
-    return Array.from(document.querySelectorAll(`#${hostId} .flag-pair`)).map((pair) => {
-      const cash = pair.querySelector('input[data-flag="cash"]');
-      const credit = pair.querySelector('input[data-flag="credit"]');
-      return {
-        cash: !!(cash && cash.checked),
-        credit: !!(credit && credit.checked)
-      };
-    });
-  }
-
-  function buildPayload(){
+  function cloneFlags(flag){
     return {
-      ridePrimary: collectValues("ridePrimaryList"),
-      rideOther: collectValues("rideOtherList"),
-      payPrimary: collectValues("payPrimaryList"),
-      payPrimaryFlags: collectFlags("payPrimaryList"),
-      payOther: collectValues("payOtherList"),
-      payOtherFlags: collectFlags("payOtherList"),
-      ticketSub: collectValues("ticketSubList")
+      cash: !!(flag && flag.cash),
+      credit: !!(flag && flag.credit)
     };
+  }
+
+  function buildFixedSpec(group, index, label){
+    if(group === "rideType" && index === 7){
+      return {
+        fixed: true,
+        title: "乗車種別",
+        label,
+        readonlyLabel: "「その他」は固定項目です"
+      };
+    }
+    if(group === "payMethod" && index === 6){
+      return {
+        fixed: true,
+        title: "支払方法",
+        label,
+        readonlyLabel: "「チケット他」は固定項目です"
+      };
+    }
+    if(group === "payMethod" && index === 7){
+      return {
+        fixed: true,
+        title: "支払方法",
+        label,
+        readonlyLabel: "「その他」は固定項目です"
+      };
+    }
+    return null;
+  }
+
+  function getEditableSpec(group, index){
+    const meta = SECTION_META[group];
+    if(!meta) return null;
+    const fixed = buildFixedSpec(group, index, runtimeConfig[meta.valuesKey][index]);
+    if(fixed) return fixed;
+    return {
+      fixed: false,
+      title: meta.title,
+      label: String(draft[meta.sourceKey][index] || ""),
+      sourceKey: meta.sourceKey,
+      flagsKey: meta.flagsKey || "",
+      index
+    };
+  }
+
+  function renderButtonRow(container, group){
+    if(!container) return;
+    const meta = SECTION_META[group];
+    const values = runtimeConfig[meta.valuesKey];
+    container.innerHTML = "";
+    values.forEach((value, index) => {
+      const btn = document.createElement("button");
+      btn.type = "button";
+      btn.className = "btn field-edit-btn";
+      if(selected[group] === index) btn.classList.add("is-selected");
+      if(index >= meta.editableCount) btn.classList.add("is-fixed");
+      btn.dataset.editGroup = group;
+      btn.dataset.editIndex = String(index);
+      btn.textContent = value;
+      container.appendChild(btn);
+    });
+  }
+
+  function renderPreview(){
+    runtimeConfig = api.runtime(draft);
+    renderButtonRow(rideTypeButtons, "rideType");
+    renderButtonRow(rideTypeOtherButtons, "rideTypeOther");
+    renderButtonRow(payMethodButtons, "payMethod");
+    renderButtonRow(payMethodOtherButtons, "payMethodOther");
+    renderButtonRow(ticketSubButtons, "ticketSub");
+  }
+
+  function markUnsaved(){
+    if(saveStatus) saveStatus.textContent = "画面上の変更は未保存です。内容を確認してから保存してください。";
+  }
+
+  function openModal(spec){
+    if(!spec || !modalBg) return;
+    activeEdit = spec;
+    modalTitle.textContent = `${spec.title} の設定`;
+    modalTargetLabel.textContent = `${spec.title} ボタン名`;
+    modalNameInput.value = spec.label || "";
+    modalNameInput.disabled = !!spec.fixed;
+    modalHelp.textContent = spec.fixed
+      ? "このボタンは固定項目です。report.html の分岐条件に使うため変更できません。"
+      : "名称を変更して保存すると、この画面と report.html に反映されます。";
+
+    const showFlags = !spec.fixed && !!spec.flagsKey;
+    modalFlagSection.classList.toggle("is-hidden", !showFlags);
+    if(showFlags){
+      const currentFlags = cloneFlags((draft[spec.flagsKey] || [])[spec.index] || { cash:false, credit:true });
+      modalCashFlag.checked = !!currentFlags.cash;
+      modalCreditFlag.checked = !!currentFlags.credit;
+    }else{
+      modalCashFlag.checked = false;
+      modalCreditFlag.checked = true;
+    }
+
+    modalReadonlySection.classList.toggle("is-hidden", !spec.fixed);
+    modalReadonlyLabel.textContent = spec.readonlyLabel || "このボタンは固定項目です";
+    modalSaveBtn.hidden = !!spec.fixed;
+
+    modalBg.classList.add("show");
+    modalBg.setAttribute("aria-hidden", "false");
+    if(spec.fixed) modalCancelBtn.focus();
+    else modalNameInput.focus();
+  }
+
+  function closeModal(){
+    activeEdit = null;
+    if(!modalBg) return;
+    modalBg.classList.remove("show");
+    modalBg.setAttribute("aria-hidden", "true");
+  }
+
+  function ensureAtLeastOneFlag(changedKey){
+    if(modalCashFlag.checked || modalCreditFlag.checked) return;
+    if(changedKey === "cash") modalCreditFlag.checked = true;
+    else modalCashFlag.checked = true;
+  }
+
+  function saveModalChanges(){
+    if(!activeEdit || activeEdit.fixed) return;
+    const nextName = String(modalNameInput.value || "").trim();
+    if(!nextName){
+      alert("ボタン名を入力してください。");
+      modalNameInput.focus();
+      return;
+    }
+
+    draft[activeEdit.sourceKey][activeEdit.index] = nextName;
+    if(activeEdit.flagsKey){
+      if(!Array.isArray(draft[activeEdit.flagsKey])) draft[activeEdit.flagsKey] = [];
+      draft[activeEdit.flagsKey][activeEdit.index] = {
+        cash: !!modalCashFlag.checked,
+        credit: !!modalCreditFlag.checked
+      };
+    }
+
+    renderPreview();
+    markUnsaved();
+    closeModal();
   }
 
   async function saveAndExit(){
@@ -427,14 +598,14 @@
     saveBtn.textContent = "保存中...";
     if(saveStatus) saveStatus.textContent = "ローカル保存とクラウド反映を実行しています。";
     try{
-      api.save(buildPayload());
+      api.save(draft);
       if(!(window.tsmsCloud && typeof window.tsmsCloud.backupNow === "function")){
         throw new Error("cloud_unavailable");
       }
       await window.tsmsCloud.backupNow();
       location.href = "settings.html";
     }catch(err){
-      const reason = (err && err.message) ? err.message : "unknown_error";
+      const reason = err && err.message ? err.message : "unknown_error";
       if(saveStatus) saveStatus.textContent = `ローカル保存は完了しましたが、クラウド反映に失敗しました。(${reason})`;
       alert("保存はローカルへ反映しましたが、クラウド反映に失敗しました。ネットワークやログイン状態を確認して再度お試しください。");
       saveBtn.disabled = false;
@@ -442,9 +613,37 @@
     }
   }
 
-  if(saveBtn){
-    saveBtn.addEventListener("click", saveAndExit);
-  }
+  document.addEventListener("click", (e) => {
+    const editBtn = e.target.closest("button[data-edit-group]");
+    if(editBtn){
+      const group = String(editBtn.dataset.editGroup || "");
+      const index = Number(editBtn.dataset.editIndex || -1);
+      if(group && Number.isInteger(index) && index >= 0){
+        selected[group] = index;
+        if(group === "rideType" && index !== 7) selected.rideTypeOther = null;
+        if(group === "payMethod"){
+          if(index !== 6) selected.ticketSub = null;
+          if(index !== 7) selected.payMethodOther = null;
+        }
+        renderPreview();
+        openModal(getEditableSpec(group, index));
+      }
+      return;
+    }
+
+    if(e.target === modalBg) closeModal();
+  });
+
+  modalCashFlag.addEventListener("change", () => ensureAtLeastOneFlag("cash"));
+  modalCreditFlag.addEventListener("change", () => ensureAtLeastOneFlag("credit"));
+  modalCancelBtn.addEventListener("click", closeModal);
+  modalSaveBtn.addEventListener("click", saveModalChanges);
+  if(saveBtn) saveBtn.addEventListener("click", saveAndExit);
+  document.addEventListener("keydown", (e) => {
+    if(e.key === "Escape" && modalBg.classList.contains("show")) closeModal();
+  });
+
+  renderPreview();
 })();
 </script>
 
@@ -464,7 +663,7 @@
 </script>
 
 <script>
-  (function(){if('serviceWorker' in navigator && location.protocol.indexOf('http')===0){window.addEventListener('load', function(){navigator.serviceWorker.register('./sw.js?v=20260228-2').catch(function(){});});}})();
+  (function(){if('serviceWorker' in navigator && location.protocol.indexOf('http')===0){window.addEventListener('load', function(){navigator.serviceWorker.register('./sw.js?v=20260228-3').catch(function(){});});}})();
 </script>
 
 <nav class="tsms-bottom-nav" aria-label="ボトムメニュー">
