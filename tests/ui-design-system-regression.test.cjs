@@ -61,6 +61,16 @@ function testPageWidthModifiersExist() {
   assert.match(read("confirm.html"), /\.actions\.entry-actions \.actionBtn\{[\s\S]*min-height:32px;[\s\S]*padding:6px 10px;[\s\S]*font-size:var\(--font-md\);/);
 }
 
+function testHeaderActionGrammarIsUnified() {
+  for (const file of ["confirm.html", "detail.html", "ops.html", "sales.html", "settings.html"]) {
+    assert.match(read(file), /class="header-to-report" href="report\.html">日報入力へ</);
+    assert.doesNotMatch(read(file), />入力画面へ</);
+  }
+
+  assert.match(read("report.html"), /class="header-to-report" href="report\.html">再読み込み</);
+  assert.match(read("settings2.html"), /class="header-to-report" href="settings\.html">設定へ</);
+}
+
 function testDesignSystemDocExists() {
   const doc = read("DESIGN-SYSTEM.md");
   assert.match(doc, /Source Of Truth/);
@@ -72,6 +82,7 @@ function runTests() {
     ["共通シェル定義", testSharedShellRulesExist],
     ["主要画面の重複シェル削減", testPagesNoLongerCarryUnifiedShellBlocks],
     ["画面幅修飾", testPageWidthModifiersExist],
+    ["ヘッダー右上アクション文法", testHeaderActionGrammarIsUnified],
     ["デザインルール文書", testDesignSystemDocExists]
   ];
 
