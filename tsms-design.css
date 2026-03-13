@@ -2193,6 +2193,52 @@ select,
   font-weight: 900;
 }
 
+.page-block-unified .btn.action-main,
+.page-block-unified .actionBtn.action-main {
+  min-height: 118px !important;
+  font-size: var(--font-4xl) !important;
+}
+
+.page-block-unified .btn.reset-final {
+  min-height: 128px !important;
+}
+
+@media (min-width: 376px) and (max-width: 767px) {
+  .page-block-unified .btn.action-main,
+  .page-block-unified .actionBtn.action-main {
+    min-height: 124px !important;
+    font-size: 19px !important;
+  }
+
+  .page-block-unified .btn.reset-final {
+    min-height: 136px !important;
+  }
+}
+
+@media (min-width: 768px) {
+  .page-block-unified .btn.action-main,
+  .page-block-unified .actionBtn.action-main {
+    min-height: 132px !important;
+    font-size: 20px !important;
+  }
+
+  .page-block-unified .btn.reset-final {
+    min-height: 144px !important;
+  }
+}
+
+@media (min-width: 1024px) {
+  .page-block-unified .btn.action-main,
+  .page-block-unified .actionBtn.action-main {
+    min-height: 136px !important;
+    font-size: 20px !important;
+  }
+
+  .page-block-unified .btn.reset-final {
+    min-height: 148px !important;
+  }
+}
+
 .page-block-unified .btn.next {
   border-color: #8ad0ff !important;
   color: #fff !important;
