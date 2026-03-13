@@ -53,6 +53,7 @@ function testPageWidthModifiersExist() {
   assert.match(read("sales.html"), /<body class="page-block-unified page-main-xl">/);
   assert.match(read("settings.html"), /<body class="page-block-unified page-main-wide">/);
   assert.match(read("index.html"), /<section class="card section-boxed" aria-label="勤務カレンダー">/);
+  assert.match(read("confirm.html"), /\.actions\.entry-actions \.actionBtn\{[\s\S]*min-height:32px;[\s\S]*padding:6px 10px;[\s\S]*font-size:var\(--font-md\);/);
 }
 
 function testDesignSystemDocExists() {
