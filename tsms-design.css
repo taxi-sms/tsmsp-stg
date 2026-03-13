@@ -1184,8 +1184,11 @@ select.input {
 .table-wrap {
   border: var(--line-regular) solid var(--border) !important;
   border-radius: var(--radius-md);
+  position: relative;
   overflow-x: auto;
-  overflow-y: hidden;
+  overflow-y: auto;
+  max-height: calc(100dvh - var(--header-h) - var(--bottom-nav-h) - 120px - env(safe-area-inset-bottom));
+  overscroll-behavior: contain;
   -webkit-overflow-scrolling: touch;
   background: var(--surface-1) !important;
 }
@@ -1227,7 +1230,7 @@ th, td {
   font-size: 10.5px;
   letter-spacing: 0.02em;
   position: sticky;
-  top: var(--header-h);
+  top: 0;
   z-index: 3;
   box-shadow: 0 1px 0 var(--border-light), 0 6px 12px rgba(15, 23, 32, 0.08);
 }
