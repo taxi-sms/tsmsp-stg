@@ -47,6 +47,11 @@ function testPagesNoLongerCarryUnifiedShellBlocks() {
     const html = read(file);
     assert.doesNotMatch(html, /unified-layout-tweaks/);
   }
+
+  assert.doesNotMatch(read("settings.html"), /<style>/);
+  assert.doesNotMatch(read("sales.html"), /<style>\s*:root/);
+  assert.doesNotMatch(read("confirm.html"), /confirm-page-tweaks/);
+  assert.doesNotMatch(read("detail.html"), /date-switcher label/);
 }
 
 function testPageWidthModifiersExist() {
