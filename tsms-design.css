@@ -113,7 +113,8 @@
 --control-h-md: 50px;
 --control-h-lg: 58px;
 --control-h-xl: 110px;
---choice-btn-h: clamp(88px, 23vw, 108px);
+--choice-btn-ratio: 1.22 / 1;
+--choice-btn-min-h: 72px;
 --touch-min: 44px;
 --radius-pill: 999px;
 
@@ -1605,8 +1606,9 @@ main .wf-panel {
 
 .wf-row > .btn {
   width: 100%;
-  height: var(--choice-btn-h);
-  min-height: var(--choice-btn-h);
+  aspect-ratio: var(--choice-btn-ratio);
+  height: auto;
+  min-height: var(--choice-btn-min-h);
   padding: 8px 6px;
   align-self: stretch;
 }
