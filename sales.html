@@ -76,6 +76,8 @@
         <th style="width:72px;">結果</th>
         <th style="width:72px;">対目標</th>
         <th style="width:60px;">出庫</th>
+        <th style="width:60px;">帰庫</th>
+        <th style="width:72px;">拘束</th>
         <th style="width:72px;">実働</th>
         <th style="width:56px;">休憩</th>
         <th style="width:56px;">時給</th>
@@ -89,6 +91,8 @@
         <td id="sumResult">0</td>
         <td id="sumDiff">0</td>
         <td>-</td>
+        <td>-</td>
+        <td id="sumBound">0:00</td>
         <td id="sumWork">0:00</td>
         <td id="sumBreak">0:00</td>
         <td id="sumHour">0</td>
@@ -147,6 +151,14 @@
     const h=Number(m[1]), mm=Number(m[2]);
     if(!Number.isFinite(h) || !Number.isFinite(mm) || mm<0 || mm>59) return NaN;
     return h*60 + mm;
+  }
+  function calcSpanMin(fromHm, toHm){
+    const fromMin = parseHmToMin(fromHm);
+    const toMin = parseHmToMin(toHm);
+    if(!Number.isFinite(fromMin) || !Number.isFinite(toMin)) return NaN;
+    let diff = toMin - fromMin;
+    if(diff < 0) diff += 24 * 60;
+    return diff;
   }
   function dowJa(d){return ['日','月','火','水','木','金','土'][d.getDay()];}
   function minDiff(a,b){
@@ -256,6 +268,8 @@
     const workMin=(depart&&ret)?Math.max(0,minDiff(depart,ret)-breakMin):0;
     return {
       depart: depart?`${pad2(depart.getHours())}:${pad2(depart.getMinutes())}`:'--',
+      return: ret?`${pad2(ret.getHours())}:${pad2(ret.getMinutes())}`:'--',
+      boundMin: (depart&&ret)?Math.max(0,minDiff(depart,ret)):0,
       breakMin,
       workMin
     };
@@ -344,7 +358,7 @@
     const reportedDaySet = new Set(reports.map((r)=>toDayId(r)).filter(Boolean));
 
     tbody.innerHTML='';
-    let sumTarget=0,sumResult=0,sumDiff=0,sumWork=0,sumBreak=0;
+    let sumTarget=0,sumResult=0,sumDiff=0,sumBound=0,sumWork=0,sumBreak=0;
 
     days.forEach((d,idx)=>{
       const dayId=ymd(d);
@@ -365,25 +379,39 @@
       const breakMin=opsData?opsData.breakMin:0;
       const manualRow=manual[dayId]||{};
       const manualResult=Number(String(manualRow.result||'').replace(/[^0-9]/g,''));
+      const manualBoundMin=parseHmToMin(manualRow.bound);
       const manualWorkMin=parseHmToMin(manualRow.work);
       const manualBreakMin=parseHmToMin(manualRow.break);
       const hasManualResult = manualRow.result!=null && String(manualRow.result).trim()!=='';
       const hasReportedResult = reportedDaySet.has(dayId);
       const hasResultInput = hasManualResult || hasReportedResult;
       const hasManualDepart = manualRow.depart!=null && String(manualRow.depart).trim()!=='';
+      const hasManualReturn = manualRow.return!=null && String(manualRow.return).trim()!=='';
+      const hasManualBound = manualRow.bound!=null && String(manualRow.bound).trim()!=='';
       const hasManualWork = manualRow.work!=null && String(manualRow.work).trim()!=='';
       const hasManualBreak = manualRow.break!=null && String(manualRow.break).trim()!=='';
       const showResult=(hasManualResult && Number.isFinite(manualResult))?manualResult:result;
       const showWorkMin=(hasManualWork && Number.isFinite(manualWorkMin))?manualWorkMin:workMin;
       const showBreakMin=(hasManualBreak && Number.isFinite(manualBreakMin))?manualBreakMin:breakMin;
       const showDepart=hasManualDepart?manualRow.depart:(opsData?opsData.depart:'--');
+      const showReturn=hasManualReturn?manualRow.return:(opsData?opsData.return:'--');
+      const derivedBoundMin=calcSpanMin(showDepart, showReturn);
+      const showBoundMin=(hasManualBound && Number.isFinite(manualBoundMin))
+        ? manualBoundMin
+        : (Number.isFinite(derivedBoundMin) ? derivedBoundMin : (opsData?opsData.boundMin:0));
+      const hasBoundValue = hasManualBound || Number.isFinite(derivedBoundMin) || !!opsData;
       const shouldCalcDiff = active && hasTargetInput && hasResultInput;
       const diff=shouldCalcDiff?(showResult-target):null;
       const hour=showWorkMin>0?Math.round(showResult/(showWorkMin/60)):0;
       const showHourText=(hasManualResult || hasManualWork || opsData)?fmtNum(hour):'--';
 
       if(active){
-        sumTarget+=target; sumResult+=showResult; if(shouldCalcDiff) sumDiff+=diff; sumWork+=showWorkMin; sumBreak+=showBreakMin;
+        sumTarget+=target;
+        sumResult+=showResult;
+        if(shouldCalcDiff) sumDiff+=diff;
+        sumBound+=showBoundMin;
+        sumWork+=showWorkMin;
+        sumBreak+=showBreakMin;
       }
 
       const tr=document.createElement('tr');
@@ -399,6 +427,8 @@
         <td class="${(active||manualEditMode)?'':'muted'}">${manualEditMode?`<input class="manual-input" data-manual="result" data-day="${dayId}" value="${(manualRow.result!=null && String(manualRow.result).trim()!=='')?String(manualRow.result).replace(/[^0-9]/g,''):String(result)}" inputmode="numeric">`:(active?fmtNum(showResult):'-')}</td>
         <td class="${active?'':'muted'}">${active?(shouldCalcDiff?(diff>=0?`+${fmtNum(diff)}`:`-${fmtNum(Math.abs(diff))}`):'-'):'-'}</td>
         <td class="${(active||manualEditMode)?'':'muted'}">${manualEditMode?`<input class="manual-input time" data-manual="depart" data-day="${dayId}" value="${(manualRow.depart!=null && String(manualRow.depart).trim()!=='')?manualRow.depart:(showDepart==='--'?'':showDepart)}" placeholder="--:--">`:(active?showDepart:'-')}</td>
+        <td class="${(active||manualEditMode)?'':'muted'}">${manualEditMode?`<input class="manual-input time" data-manual="return" data-day="${dayId}" value="${(manualRow.return!=null && String(manualRow.return).trim()!=='')?manualRow.return:(showReturn==='--'?'':showReturn)}" placeholder="--:--">`:(active?showReturn:'-')}</td>
+        <td class="${(active||manualEditMode)?'':'muted'}">${manualEditMode?`<input class="manual-input time" data-manual="bound" data-day="${dayId}" value="${(manualRow.bound!=null && String(manualRow.bound).trim()!=='')?manualRow.bound:(hasBoundValue?hm(showBoundMin):'')}" placeholder="0:00">`:(active?(hasBoundValue?hm(showBoundMin):'--'):'-')}</td>
         <td class="${(active||manualEditMode)?'':'muted'}">${manualEditMode?`<input class="manual-input time" data-manual="work" data-day="${dayId}" value="${(manualRow.work!=null && String(manualRow.work).trim()!=='')?manualRow.work:(opsData?hm(workMin):'')}" placeholder="0:00">`:(active?(hasManualWork?hm(showWorkMin):(opsData?hm(showWorkMin):'--')):'-')}</td>
         <td class="${(active||manualEditMode)?'':'muted'}">${manualEditMode?`<input class="manual-input time" data-manual="break" data-day="${dayId}" value="${(manualRow.break!=null && String(manualRow.break).trim()!=='')?manualRow.break:(opsData?hm(breakMin):'')}" placeholder="0:00">`:(active?(hasManualBreak?hm(showBreakMin):(opsData?hm(showBreakMin):'--')):'-')}</td>
         <td class="${active?'':'muted'}">${active?showHourText:'-'}</td>
@@ -411,6 +441,7 @@
     document.getElementById('sumTarget').textContent=fmtNum(sumTarget);
     document.getElementById('sumResult').textContent=fmtNum(sumResult);
     document.getElementById('sumDiff').textContent=(sumDiff>=0?`+${fmtNum(sumDiff)}`:`-${fmtNum(Math.abs(sumDiff))}`);
+    document.getElementById('sumBound').textContent=hm(sumBound);
     document.getElementById('sumWork').textContent=hm(sumWork);
     document.getElementById('sumBreak').textContent=hm(sumBreak);
     document.getElementById('sumHour').textContent=sumWork>0?fmtNum(Math.round(sumResult/(sumWork/60))):'0';

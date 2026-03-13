@@ -200,9 +200,11 @@ async function runSalesScript({ fixedNowIso, storageSeed }) {
     sumTarget: document.getElementById("sumTarget").textContent,
     sumResult: document.getElementById("sumResult").textContent,
     sumDiff: document.getElementById("sumDiff").textContent,
+    sumBound: document.getElementById("sumBound").textContent,
     sumWork: document.getElementById("sumWork").textContent,
     sumBreak: document.getElementById("sumBreak").textContent,
-    sumHour: document.getElementById("sumHour").textContent
+    sumHour: document.getElementById("sumHour").textContent,
+    rowHtml: document.getElementById("tbody").children.map((row) => row.innerHTML)
   };
 }
 
@@ -251,6 +253,7 @@ async function testMonthlySummaryWithTargets() {
   assert.strictEqual(rendered.sumTarget, "3,000");
   assert.strictEqual(rendered.sumResult, "2,646");
   assert.strictEqual(rendered.sumDiff, "-354");
+  assert.strictEqual(rendered.sumBound, "14:00");
   assert.strictEqual(rendered.sumWork, "12:30");
   assert.strictEqual(rendered.sumBreak, "1:30");
   assert.strictEqual(rendered.sumHour, "212");
@@ -287,7 +290,7 @@ async function testManualOverridesAffectSummary() {
         [day2]: { shift: "work", target: "2000" }
       }),
       tsms_sales_manual_v1: JSON.stringify({
-        [day2]: { result: "5000", work: "5:00", break: "0:45" }
+        [day2]: { result: "5000", return: "16:15", bound: "5:45", work: "5:00", break: "0:45" }
       }),
       tsms_settings: JSON.stringify({
         taxRate: 10,
@@ -303,9 +306,38 @@ async function testManualOverridesAffectSummary() {
   assert.strictEqual(rendered.sumTarget, "3,000");
   assert.strictEqual(rendered.sumResult, "6,282");
   assert.strictEqual(rendered.sumDiff, "+3,282");
+  assert.strictEqual(rendered.sumBound, "14:45");
   assert.strictEqual(rendered.sumWork, "13:00");
   assert.strictEqual(rendered.sumBreak, "1:45");
   assert.strictEqual(rendered.sumHour, "483");
+}
+
+async function testManualModeIncludesReturnAndBoundInputs() {
+  const rendered = await runSalesScript({
+    fixedNowIso: "2026-03-02T12:00:00+09:00",
+    storageSeed: {
+      tsms_reports: JSON.stringify([]),
+      tsms_reports_archive: JSON.stringify([]),
+      tsms_sales_plan: JSON.stringify({
+        "2026-03-01": { shift: "work", target: "1000" }
+      }),
+      tsms_sales_manual_v1: JSON.stringify({}),
+      tsms_sales_manual_mode: "1",
+      tsms_settings: JSON.stringify({
+        taxRate: 10,
+        feeRate: 4,
+        goFeeYen: 100,
+        walkRate: 50,
+        closeStartDay: 16,
+        closeEndDay: 15
+      })
+    }
+  });
+
+  const firstRow = rendered.rowHtml[0] || "";
+  assert.match(firstRow, /data-manual="depart"/);
+  assert.match(firstRow, /data-manual="return"/);
+  assert.match(firstRow, /data-manual="bound"/);
 }
 
 function testFormulaGuards() {
@@ -318,6 +350,14 @@ function testFormulaGuards() {
     "const SETTINGS_KEY='tsms_settings';",
     "const PLAN_KEY='tsms_sales_plan';",
     "const MANUAL_KEY='tsms_sales_manual_v1';",
+    '<th style="width:60px;">帰庫</th>',
+    '<th style="width:72px;">拘束</th>',
+    '<td id="sumBound">0:00</td>',
+    'data-manual="return"',
+    'data-manual="bound"',
+    "const manualBoundMin=parseHmToMin(manualRow.bound);",
+    "const showReturn=hasManualReturn?manualRow.return:(opsData?opsData.return:'--');",
+    "const derivedBoundMin=calcSpanMin(showDepart, showReturn);",
     "const salesInTax = gross - fee - goFee;",
     "const salesExTax = salesInTax / (1 + taxRate);",
     "return Math.round(salesExTax * (Number(settings.walkRate)||0) / 100);"
@@ -331,6 +371,7 @@ async function runTests() {
   const tests = [
     ["月次集計（目標あり）", testMonthlySummaryWithTargets],
     ["手動入力の上書き反映", testManualOverridesAffectSummary],
+    ["手動編集列の追加", testManualModeIncludesReturnAndBoundInputs],
     ["計算式・保存キーガード", testFormulaGuards]
   ];
 
