@@ -745,8 +745,8 @@ select.input {
 
 /* アクションメイン: 出庫/帰庫など大きいボタン */
 .btn.action-main {
-  min-height: var(--control-h-xl);
-  font-size: var(--font-3xl);
+  min-height: 118px;
+  font-size: var(--font-4xl);
   font-weight: 900;
 }
 
@@ -778,7 +778,7 @@ select.input {
 
 /* Reset Final ボタン */
 .btn.reset-final {
-  min-height: var(--control-h-xl);
+  min-height: 128px;
   line-height: 1.4;
 }
 .btn.reset-final .warn {
@@ -1767,8 +1767,8 @@ button[data-group]:active {
   .main .content .v { font-size: 18px; }
 
   .btn { font-size: 14px; min-height: 46px; padding: 10px 10px; }
-  .btn.action-main { min-height: 96px; font-size: 16px; }
-  .btn.reset-final { min-height: 96px; }
+  .btn.action-main { min-height: 118px; font-size: 18px; }
+  .btn.reset-final { min-height: 128px; }
 
   .actions { gap: 8px; }
 
@@ -1794,6 +1794,8 @@ button[data-group]:active {
   .k { width: 140px; }
   .v { font-size: 16px; }
   .main .content .v { font-size: 20px; }
+  .btn.action-main { min-height: 124px; font-size: 19px; }
+  .btn.reset-final { min-height: 136px; }
 }
 
 /* ============================================================
@@ -1820,6 +1822,8 @@ button[data-group]:active {
   /* Actions グリッド */
   .actions { grid-template-columns: 1fr 1fr 1fr 1fr; }
   .btn.wide { grid-column: auto; }
+  .btn.action-main { min-height: 132px; font-size: 20px; }
+  .btn.reset-final { min-height: 144px; }
 
   /* ボトムナビ: タブレットで少し広く */
   .tsms-bottom-nav a,
@@ -1850,7 +1854,8 @@ button[data-group]:active {
   .v { font-size: 19px; }
 
   .btn { font-size: 16px; }
-  .btn.action-main { min-height: 120px; font-size: 19px; }
+  .btn.action-main { min-height: 136px; font-size: 20px; }
+  .btn.reset-final { min-height: 148px; }
 
   /* Sales page: テーブルをフル幅に */
   .table-wrap { width: 100%; }

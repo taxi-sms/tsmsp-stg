@@ -23,6 +23,10 @@ function testSharedShellRulesExist() {
   assert.match(css, /--choice-btn-min-h: 72px;/);
   assert.match(css, /\.wf-row > \.btn \{[\s\S]*aspect-ratio: var\(--choice-btn-ratio\);[\s\S]*min-height: var\(--choice-btn-min-h\);/);
   assert.match(css, /\.wf-row > \.btn \.btn-label \{[\s\S]*-webkit-line-clamp: 2;[\s\S]*overflow-wrap: anywhere;/);
+  assert.match(css, /\.btn\.action-main \{[\s\S]*min-height: 118px;[\s\S]*font-size: var\(--font-4xl\);/);
+  assert.match(css, /\.btn\.reset-final \{[\s\S]*min-height: 128px;/);
+  assert.match(css, /@media \(min-width: 376px\) and \(max-width: 767px\) \{[\s\S]*\.btn\.action-main \{ min-height: 124px; font-size: 19px; \}[\s\S]*\.btn\.reset-final \{ min-height: 136px; \}/);
+  assert.match(css, /@media \(min-width: 768px\) \{[\s\S]*\.btn\.action-main \{ min-height: 132px; font-size: 20px; \}[\s\S]*\.btn\.reset-final \{ min-height: 144px; \}/);
   assert.match(css, /\.main\[style\*="justify-content:center"\],\s*\.auth-main \{/);
 }
 
