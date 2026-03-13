@@ -21,6 +21,8 @@ function testSharedShellRulesExist() {
   assert.match(css, /:root\[data-theme="dark"\] \.page-block-unified \.input:focus,[\s\S]*background: var\(--field-focus-bg\) !important;[\s\S]*0 0 0 4px var\(--field-focus-ring\) !important/);
   assert.match(css, /--choice-btn-ratio: 1\.22 \/ 1;/);
   assert.match(css, /--choice-btn-min-h: 72px;/);
+  assert.match(css, /\.table-wrap thead th \{[\s\S]*position: sticky;[\s\S]*top: var\(--header-h\);[\s\S]*z-index: 3;/);
+  assert.match(css, /:root\[data-theme="dark"\] \.table-wrap thead th \{[\s\S]*box-shadow:/);
   assert.match(css, /\.wf-row > \.btn \{[\s\S]*aspect-ratio: var\(--choice-btn-ratio\);[\s\S]*min-height: var\(--choice-btn-min-h\);/);
   assert.match(css, /\.wf-row > \.btn \.btn-label \{[\s\S]*-webkit-line-clamp: 2;[\s\S]*overflow-wrap: anywhere;/);
   assert.match(css, /\.btn\.action-main \{[\s\S]*min-height: 118px;[\s\S]*font-size: var\(--font-4xl\);/);

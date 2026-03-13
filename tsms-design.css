@@ -1220,15 +1220,24 @@ th, td {
   overflow: hidden;
   text-overflow: ellipsis;
 }
-th {
+.table-wrap thead th {
   background: var(--surface-2) !important;
   color: var(--text-muted) !important;
   font-weight: 900;
   font-size: 10.5px;
   letter-spacing: 0.02em;
   position: sticky;
-  top: 0;
-  z-index: 2;
+  top: var(--header-h);
+  z-index: 3;
+  box-shadow: 0 1px 0 var(--border-light), 0 6px 12px rgba(15, 23, 32, 0.08);
+}
+
+th {
+  background: var(--surface-2) !important;
+  color: var(--text-muted) !important;
+  font-weight: 900;
+  font-size: 10.5px;
+  letter-spacing: 0.02em;
 }
 
 /* 曜日カラー */
@@ -1984,6 +1993,12 @@ button[data-group]:active {
    ============================================================ */
 :root[data-theme="dark"] .table-wrap {
   background: var(--surface-1) !important;
+}
+
+:root[data-theme="dark"] .table-wrap thead th {
+  background: var(--surface-2) !important;
+  color: var(--text-muted) !important;
+  box-shadow: 0 1px 0 rgba(42, 53, 61, 0.95), 0 8px 16px rgba(0, 0, 0, 0.28);
 }
 
 :root[data-theme="dark"] th {
