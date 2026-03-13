@@ -64,7 +64,7 @@
 (function(){
   const KEY = "tsms_reports";
   const ARCHIVE_KEY = "tsms_reports_archive";
-  const CURRENT_DAY_KEY = "tsms_report_current_day";
+  const VIEW_DAY_KEY = "tsms_confirm_selected_day";
   const CONFIRM_FORCE_EMPTY_KEY = "tsms_confirm_force_empty";
   let allData = [];
   let selectedDayId = "";
@@ -158,7 +158,7 @@ function todayLocalYmd(){
 
     const days = availableDays();
     const today = todayLocalYmd();
-    const currentDay = localStorage.getItem(CURRENT_DAY_KEY) || "";
+    const currentDay = localStorage.getItem(VIEW_DAY_KEY) || "";
     const forceEmpty = localStorage.getItem(CONFIRM_FORCE_EMPTY_KEY) === "1";
 
     sel.innerHTML = "";
@@ -288,10 +288,10 @@ if(sel){
     selectedDayId = sel.value || "";
 
     if(selectedDayId){
-      localStorage.setItem(CURRENT_DAY_KEY, selectedDayId);
+      localStorage.setItem(VIEW_DAY_KEY, selectedDayId);
       localStorage.removeItem(CONFIRM_FORCE_EMPTY_KEY);
     }else{
-      localStorage.removeItem(CURRENT_DAY_KEY);
+      localStorage.removeItem(VIEW_DAY_KEY);
     }
 
     render();

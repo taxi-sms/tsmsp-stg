@@ -624,6 +624,7 @@
 <script>
 (() => {
   const REPORT_KEY = "tsms_reports";
+  const OPS_KEY = "ops";
   const CURRENT_DAY_KEY = "tsms_report_current_day";
   const CONFIRM_FORCE_EMPTY_KEY = "tsms_confirm_force_empty";
   const reportFieldSettingsApi = window.tsmsReportFieldSettings || null;
@@ -714,6 +715,7 @@
   let voiceModalEscHandler = null;
   let voiceSkipNextSubmitConfirm = false;
   let voiceSubmitSuccessAutoRedirectSeconds = 0;
+  let suppressVoicePromptOnOpen = false;
 
   function renderButtonGroup(container, group, values) {
     if (!container) return;
@@ -833,12 +835,62 @@
     }
   }
 
+  function loadJson(key, fallback) {
+    try {
+      const parsed = JSON.parse(localStorage.getItem(key) || "null");
+      return parsed == null ? fallback : parsed;
+    } catch (_) {
+      return fallback;
+    }
+  }
+
   function getCurrentDayId() {
     return localStorage.getItem(CURRENT_DAY_KEY) || "";
   }
 
+  function getEntryDayId(entry) {
+    if (entry && entry.dayId) return String(entry.dayId);
+    if (!entry || !entry.ts) return "";
+    const d = new Date(entry.ts);
+    if (Number.isNaN(d.getTime())) return "";
+    const y = d.getFullYear();
+    const m = String(d.getMonth() + 1).padStart(2, "0");
+    const day = String(d.getDate()).padStart(2, "0");
+    return `${y}-${m}-${day}`;
+  }
+
+  function hasOpsData(ops) {
+    if (!ops || typeof ops !== "object") return false;
+    return !!(
+      ops.departAt ||
+      ops.returnAt ||
+      ops.breakActive ||
+      (Array.isArray(ops.breakSessions) && ops.breakSessions.length)
+    );
+  }
+
+  function resolveEditableDayId() {
+    const today = todayLocalYmd();
+    const ops = loadJson(OPS_KEY, null);
+    if (hasOpsData(ops)) {
+      const opsDayId = String((ops && ops.dayId) || "").trim();
+      if (/^\d{4}-\d{2}-\d{2}$/.test(opsDayId)) return opsDayId;
+    }
+    return today;
+  }
+
+  function syncEditableDayState() {
+    const editableDayId = resolveEditableDayId();
+    if (editableDayId) {
+      localStorage.setItem(CURRENT_DAY_KEY, editableDayId);
+    } else {
+      localStorage.removeItem(CURRENT_DAY_KEY);
+    }
+    return editableDayId;
+  }
+
   function resolveSaveDayId() {
-    return getCurrentDayId() || todayLocalYmd();
+    return syncEditableDayState() || todayLocalYmd();
   }
 
   function clearSelected(group) {
@@ -2421,7 +2473,9 @@ ${remaining}秒後に${countdownLabel}`;
     }
   });
 
-  (function loadForEdit() {
+  syncEditableDayState();
+
+  (async function loadForEdit() {
     const params = new URLSearchParams(location.search);
     const editId = params.get("edit");
     if (!editId) {
@@ -2433,6 +2487,15 @@ ${remaining}秒後に${countdownLabel}`;
     const entry = list.find((x) => x.id === editId);
     if (!entry) {
       applyPayRules();
+      return;
+    }
+
+    const entryDayId = getEntryDayId(entry);
+    const editableDayId = resolveEditableDayId();
+    if (entryDayId && editableDayId && entryDayId !== editableDayId) {
+      suppressVoicePromptOnOpen = true;
+      await showResultModal("過去日のデータは日報入力画面では編集できません。");
+      location.href = "confirm.html";
       return;
     }
 
@@ -2475,6 +2538,7 @@ ${remaining}秒後に${countdownLabel}`;
 
   (function promptVoiceInputOnOpen() {
     setTimeout(async () => {
+      if (suppressVoicePromptOnOpen) return;
       if (document.visibilityState === "hidden") return;
       if (submitConfirmModalBg && submitConfirmModalBg.classList.contains("show")) return;
       const start = await showVoiceStartModal();

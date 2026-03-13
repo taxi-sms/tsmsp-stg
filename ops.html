@@ -188,7 +188,8 @@ function markOpsSyncRevision(iso){
 function save(data){
   try{
     const stamp = markOpsSyncRevision(nowISO());
-    const dayId = localStorage.getItem(CURRENT_DAY_KEY) || localYmd();
+    const savedDayId = String((data && data.dayId) || "").trim();
+    const dayId = savedDayId || localStorage.getItem(CURRENT_DAY_KEY) || localYmd();
     data.dayId = dayId;
     data.updatedAt = stamp;
     localStorage.setItem(KEY, JSON.stringify(data));
@@ -452,7 +453,7 @@ btnReturn.onclick = async ()=>{
   d.breakStartAt = null;
   d.returnAt = end;
   d.shiftClosed = false;
-  d.dayId = localStorage.getItem(CURRENT_DAY_KEY) || localYmd();
+  d.dayId = String(d.dayId || "").trim() || localStorage.getItem(CURRENT_DAY_KEY) || localYmd();
   save(d);
   render();
 };
@@ -502,7 +503,7 @@ btnReset.onclick = async ()=>{
     }
     try{
       const opsData = load();
-      const currentDayId = localStorage.getItem(CURRENT_DAY_KEY) || (opsData.dayId || localYmd());
+      const currentDayId = String((opsData && opsData.dayId) || "").trim() || localStorage.getItem(CURRENT_DAY_KEY) || localYmd();
       const syncStamp = nowISO();
       const activeRows = JSON.parse(localStorage.getItem(REPORT_KEY) || "[]");
       const archiveRows = JSON.parse(localStorage.getItem(REPORT_ARCHIVE_KEY) || "[]");
