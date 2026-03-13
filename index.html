@@ -631,7 +631,7 @@ body{padding-bottom:78px;}
 <header class="header">
   <div class="header-title">TSMS</div>
   <div class="header-meta">
-    <span id="syncStatusInline">同期状態: --</span>
+    <span id="syncStatusInline" class="state-inline" data-state-tone="neutral" aria-live="polite">同期状態: --</span>
     <span>/</span>
     <span id="cacheVersionInline">cache: --</span>
   </div>
@@ -829,13 +829,16 @@ body{padding-bottom:78px;}
     var okMs = okAt ? new Date(okAt).getTime() : 0;
     var ngMs = ngAt ? new Date(ngAt).getTime() : 0;
     if(okMs && okMs >= ngMs){
+      syncInline.dataset.stateTone = "success";
       syncInline.textContent = "同期待済み";
       return;
     }
     if(ngMs){
+      syncInline.dataset.stateTone = "error";
       syncInline.textContent = "同期エラー";
       return;
     }
+    syncInline.dataset.stateTone = "neutral";
     syncInline.textContent = "同期状態: --";
   }
 

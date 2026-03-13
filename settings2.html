@@ -414,7 +414,7 @@
     <div class="wf-label">保存</div>
     <div class="settings-save-stack">
       <button class="btn next" id="btnSaveAndBack" type="button">変更を保存して設定に戻る</button>
-      <div class="save-note" id="saveStatus">ボタン配置の見た目を確認しながら編集できます。画面上の変更は保存するまで確定しません。</div>
+      <div class="save-note state-note" id="saveStatus" data-state-tone="neutral" aria-live="polite">ボタン配置の見た目を確認しながら編集できます。画面上の変更は保存するまで確定しません。</div>
     </div>
   </section>
 </main>
@@ -560,7 +560,10 @@
   }
 
   function markUnsaved(){
-    if(saveStatus) saveStatus.textContent = "画面上の変更は未保存です。内容を確認してから保存してください。";
+    if(saveStatus){
+      saveStatus.dataset.stateTone = "warning";
+      saveStatus.textContent = "画面上の変更は未保存です。内容を確認してから保存してください。";
+    }
   }
 
   function openModal(spec){
@@ -629,7 +632,10 @@
     if(!saveBtn) return;
     saveBtn.disabled = true;
     saveBtn.textContent = "保存中...";
-    if(saveStatus) saveStatus.textContent = "ローカル保存とクラウド反映を実行しています。";
+    if(saveStatus){
+      saveStatus.dataset.stateTone = "info";
+      saveStatus.textContent = "ローカル保存とクラウド反映を実行しています。";
+    }
     try{
       api.save(draft);
       if(!(window.tsmsCloud && typeof window.tsmsCloud.backupNow === "function")){
@@ -639,7 +645,10 @@
       location.href = "settings.html";
     }catch(err){
       const reason = err && err.message ? err.message : "unknown_error";
-      if(saveStatus) saveStatus.textContent = `ローカル保存は完了しましたが、クラウド反映に失敗しました。(${reason})`;
+      if(saveStatus){
+        saveStatus.dataset.stateTone = "error";
+        saveStatus.textContent = `ローカル保存は完了しましたが、クラウド反映に失敗しました。(${reason})`;
+      }
       alert("保存はローカルへ反映しましたが、クラウド反映に失敗しました。ネットワークやログイン状態を確認して再度お試しください。");
       saveBtn.disabled = false;
       saveBtn.textContent = "変更を保存して設定に戻る";

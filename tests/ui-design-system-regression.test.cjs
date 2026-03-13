@@ -34,6 +34,17 @@ function testSharedShellRulesExist() {
   assert.match(css, /\.main\[style\*="justify-content:center"\],\s*\.auth-main \{/);
 }
 
+function testSharedStateDisplayRulesExist() {
+  assert.match(css, /\.state-inline,[\s\S]*\.state-note,[\s\S]*\.state-field,[\s\S]*\.state-meta \{/);
+  assert.match(css, /\[data-state-tone="info"\] \{[\s\S]*--state-color: var\(--accent\);[\s\S]*--state-bg-color: var\(--accent-light\);/);
+  assert.match(css, /\[data-state-tone="success"\] \{[\s\S]*--state-color: var\(--success\);[\s\S]*--state-bg-color: var\(--success-bg\);/);
+  assert.match(css, /\[data-state-tone="warning"\] \{[\s\S]*--state-color: var\(--warning\);[\s\S]*--state-bg-color: var\(--warning-bg\);/);
+  assert.match(css, /\[data-state-tone="error"\] \{[\s\S]*--state-color: var\(--danger\);[\s\S]*--state-bg-color: var\(--danger-bg\);/);
+  assert.match(css, /\.state-inline::before,[\s\S]*\.state-meta::before \{/);
+  assert.match(css, /\.state-note \{[\s\S]*border-left: 4px solid var\(--state-border-color\) !important;[\s\S]*background: var\(--state-bg-color\) !important;/);
+  assert.match(css, /\.state-field,[\s\S]*\.page-block-unified \.input\.state-field \{[\s\S]*box-shadow: inset 4px 0 0 0 var\(--state-border-color\);/);
+}
+
 function testPagesNoLongerCarryUnifiedShellBlocks() {
   for (const file of [
     "report.html",
@@ -71,6 +82,22 @@ function testHeaderActionGrammarIsUnified() {
   assert.match(read("settings2.html"), /class="header-to-report" href="settings\.html">設定へ</);
 }
 
+function testPagesUseSharedStateDisplayGrammar() {
+  assert.match(read("index.html"), /id="syncStatusInline" class="state-inline" data-state-tone="neutral" aria-live="polite"/);
+  assert.match(read("index.html"), /syncInline\.dataset\.stateTone = "success";/);
+  assert.match(read("index.html"), /syncInline\.dataset\.stateTone = "error";/);
+  assert.match(read("ops.html"), /id="opsSyncMeta" data-state-tone="neutral" aria-live="polite">最終クラウド同期: --<\/div>/);
+  assert.match(read("ops.html"), /opsSyncMeta\.dataset\.stateTone = "success";/);
+  assert.match(read("ops.html"), /opsSyncMeta\.dataset\.stateTone = "error";/);
+  assert.match(read("settings.html"), /id="subscriptionNote" data-state-tone="neutral" aria-live="polite">/);
+  assert.match(read("settings.html"), /id="subscriptionStatus" data-state-tone="info" aria-live="polite">確認中\.\.\.<\/div>/);
+  assert.match(read("settings.html"), /function setStateTone\(el, tone\)/);
+  assert.match(read("settings2.html"), /id="saveStatus" data-state-tone="neutral" aria-live="polite">/);
+  assert.match(read("settings2.html"), /saveStatus\.dataset\.stateTone = "warning";/);
+  assert.match(read("settings2.html"), /saveStatus\.dataset\.stateTone = "info";/);
+  assert.match(read("settings2.html"), /saveStatus\.dataset\.stateTone = "error";/);
+}
+
 function testDesignSystemDocExists() {
   const doc = read("DESIGN-SYSTEM.md");
   assert.match(doc, /Source Of Truth/);
@@ -80,9 +107,11 @@ function testDesignSystemDocExists() {
 function runTests() {
   const tests = [
     ["共通シェル定義", testSharedShellRulesExist],
+    ["共通状態表示定義", testSharedStateDisplayRulesExist],
     ["主要画面の重複シェル削減", testPagesNoLongerCarryUnifiedShellBlocks],
     ["画面幅修飾", testPageWidthModifiersExist],
     ["ヘッダー右上アクション文法", testHeaderActionGrammarIsUnified],
+    ["主要画面の状態表示文法", testPagesUseSharedStateDisplayGrammar],
     ["デザインルール文書", testDesignSystemDocExists]
   ];
 

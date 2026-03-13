@@ -107,7 +107,7 @@
     <div class="bottom-mini-actions">
       <button class="btn btn-mini" type="button" id="btn_departCancel">出庫取消</button>
     </div>
-    <div class="sync-meta" id="opsSyncMeta">最終クラウド同期: --</div>
+    <div class="sync-meta state-meta" id="opsSyncMeta" data-state-tone="neutral" aria-live="polite">最終クラウド同期: --</div>
   </section>
 </main>
 
@@ -273,16 +273,16 @@ function renderCloudSyncStatus(){
   const ngMs = ngAt ? new Date(ngAt).getTime() : 0;
 
   if(okMs && okMs >= ngMs){
-    opsSyncMeta.classList.remove("error");
+    opsSyncMeta.dataset.stateTone = "success";
     opsSyncMeta.textContent = `最終クラウド同期: ${fmtSyncDateTime(okAt)}`;
     return;
   }
   if(ngMs){
-    opsSyncMeta.classList.add("error");
+    opsSyncMeta.dataset.stateTone = "error";
     opsSyncMeta.textContent = "最終クラウド同期: 失敗（再試行してください）";
     return;
   }
-  opsSyncMeta.classList.remove("error");
+  opsSyncMeta.dataset.stateTone = "neutral";
   opsSyncMeta.textContent = "最終クラウド同期: --";
 }
 window.addEventListener("tsms-cloud-sync-status", renderCloudSyncStatus);

@@ -2412,3 +2412,137 @@ select,
   color: #ecf3ff !important;
   border-color: #4e709f !important;
 }
+
+/* ============================================================
+   28. Shared State Display
+   ============================================================ */
+.state-inline,
+.state-note,
+.state-field,
+.state-meta {
+  --state-color: var(--text-muted);
+  --state-border-color: var(--border);
+  --state-bg-color: transparent;
+  --state-dot-halo: rgba(91, 109, 124, 0.14);
+  transition:
+    color var(--ease-default),
+    border-color var(--ease-default),
+    background var(--ease-default),
+    box-shadow var(--ease-default);
+}
+
+[data-state-tone="neutral"] {
+  --state-color: var(--text-muted);
+  --state-border-color: var(--border);
+  --state-bg-color: transparent;
+  --state-dot-halo: rgba(91, 109, 124, 0.14);
+}
+
+[data-state-tone="info"] {
+  --state-color: var(--accent);
+  --state-border-color: var(--accent);
+  --state-bg-color: var(--accent-light);
+  --state-dot-halo: var(--brand-dim);
+}
+
+[data-state-tone="success"] {
+  --state-color: var(--success);
+  --state-border-color: var(--success);
+  --state-bg-color: var(--success-bg);
+  --state-dot-halo: rgba(30, 164, 74, 0.18);
+}
+
+[data-state-tone="warning"] {
+  --state-color: var(--warning);
+  --state-border-color: var(--warning);
+  --state-bg-color: var(--warning-bg);
+  --state-dot-halo: rgba(224, 144, 0, 0.18);
+}
+
+[data-state-tone="error"] {
+  --state-color: var(--danger);
+  --state-border-color: var(--danger);
+  --state-bg-color: var(--danger-bg);
+  --state-dot-halo: rgba(217, 48, 37, 0.18);
+}
+
+:root[data-theme="dark"] [data-state-tone="neutral"] {
+  --state-bg-color: rgba(27, 36, 42, 0.42);
+  --state-dot-halo: rgba(138, 148, 154, 0.16);
+}
+
+:root[data-theme="dark"] [data-state-tone="info"] {
+  --state-bg-color: rgba(16, 39, 68, 0.82);
+  --state-dot-halo: rgba(88, 194, 255, 0.22);
+}
+
+:root[data-theme="dark"] [data-state-tone="success"] {
+  --state-dot-halo: rgba(40, 195, 90, 0.22);
+}
+
+:root[data-theme="dark"] [data-state-tone="warning"] {
+  --state-dot-halo: rgba(255, 191, 64, 0.22);
+}
+
+:root[data-theme="dark"] [data-state-tone="error"] {
+  --state-dot-halo: rgba(243, 91, 83, 0.22);
+}
+
+.state-inline {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-weight: 800;
+  color: var(--state-color) !important;
+  vertical-align: middle;
+}
+
+.state-inline::before,
+.state-meta::before {
+  content: "";
+  width: 8px;
+  height: 8px;
+  border-radius: 999px;
+  background: var(--state-border-color);
+  box-shadow: 0 0 0 3px var(--state-dot-halo);
+  flex: 0 0 auto;
+}
+
+.state-note {
+  display: block;
+  padding: 10px 12px !important;
+  border-left: 4px solid var(--state-border-color) !important;
+  border-radius: 0 var(--radius-sm) var(--radius-sm) 0;
+  background: var(--state-bg-color) !important;
+  color: var(--state-color) !important;
+  line-height: 1.6;
+  text-align: left !important;
+  white-space: pre-line;
+}
+
+.state-field,
+.page-block-unified .input.state-field {
+  display: flex;
+  align-items: center;
+  min-height: var(--control-h-md);
+  padding: 10px 12px !important;
+  border: var(--line-regular) solid var(--state-border-color) !important;
+  background: var(--state-bg-color) !important;
+  color: var(--state-color) !important;
+  box-shadow: inset 4px 0 0 0 var(--state-border-color);
+  font-weight: 800;
+}
+
+.state-field[data-state-tone="neutral"],
+.page-block-unified .input.state-field[data-state-tone="neutral"] {
+  color: var(--text-secondary) !important;
+}
+
+.state-meta {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 8px;
+  color: var(--state-color) !important;
+  font-weight: 800;
+}

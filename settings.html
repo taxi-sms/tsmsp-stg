@@ -108,14 +108,14 @@
 
   <section class="section">
     <div class="title">契約</div>
-    <div class="note" id="subscriptionNote">月額980円（税込）の自動更新プランです。解約や支払い方法変更は下の管理ページから行えます。</div>
+    <div class="note state-note" id="subscriptionNote" data-state-tone="neutral" aria-live="polite">月額980円（税込）の自動更新プランです。解約や支払い方法変更は下の管理ページから行えます。</div>
     <div class="field">
       <div class="label">プラン内容</div>
       <div class="input">月額980円（税込） / 1アカウント / 自動更新 / 解約は契約管理ページからいつでも可能</div>
     </div>
     <div class="field">
       <div class="label">現在の契約状態</div>
-      <div class="input" id="subscriptionStatus">確認中...</div>
+      <div class="input state-field" id="subscriptionStatus" data-state-tone="info" aria-live="polite">確認中...</div>
     </div>
     <div class="actions">
       <button class="btn" id="btnStartSubscription" type="button">月額プランを開始</button>
@@ -478,6 +478,7 @@ import { fetchCurrentSubscriptionState, isSubscriptionActive } from "./subscript
   const deletePasswordInput = document.getElementById("accountDeletePassword");
   const params = new URLSearchParams(location.search);
   let checkoutPending = false;
+  const defaultSubscriptionNote = noteEl ? noteEl.textContent : "";
   const SUBSCRIPTION_SYNC_WAIT_COUNT = 6;
   const SUBSCRIPTION_SYNC_WAIT_DELAY_MS = 2000;
   const SUBSCRIPTION_STATE_RETRY_COUNT = 2;
@@ -501,15 +502,43 @@ import { fetchCurrentSubscriptionState, isSubscriptionActive } from "./subscript
     return "未契約";
   }
 
-  function setStatusText(text) {
+  function toneFromSubscriptionStatus(status) {
+    const v = String(status || "");
+    if (v === "active" || v === "trialing") return "success";
+    if (v === "past_due" || v === "unpaid" || v === "incomplete") return "error";
+    if (v === "canceled") return "warning";
+    return "neutral";
+  }
+
+  function setStateTone(el, tone) {
+    if (!el) return;
+    el.dataset.stateTone = String(tone || "neutral");
+  }
+
+  function setSubscriptionNote(text, tone) {
+    if (!noteEl) return;
+    noteEl.textContent = text;
+    setStateTone(noteEl, tone || "neutral");
+  }
+
+  function resetSubscriptionNote() {
+    if (!noteEl) return;
+    setSubscriptionNote(defaultSubscriptionNote, "neutral");
+  }
+
+  function setStatusText(text, tone) {
     if (statusEl) statusEl.textContent = text;
+    setStateTone(statusEl, tone || "neutral");
   }
 
   function setGateNoticeIfNeeded() {
-    if (!noteEl) return;
+    if (!noteEl) return false;
     if (params.get("subscription") === "required") {
-      noteEl.textContent = "契約が無効、または契約確認に失敗しました。月額980円（税込）の契約を再開するか、契約管理ページから状態をご確認ください。";
+      setSubscriptionNote("契約が無効、または契約確認に失敗しました。月額980円（税込）の契約を再開するか、契約管理ページから状態をご確認ください。", "error");
+      return true;
     }
+    resetSubscriptionNote();
+    return false;
   }
 
   function showCheckoutFlowMessage() {
@@ -734,7 +763,9 @@ import { fetchCurrentSubscriptionState, isSubscriptionActive } from "./subscript
 
   async function refreshSubscriptionState(options = {}) {
     const waitForSync = !!options.waitForSync;
-    setStatusText("確認中...");
+    const hasGateNotice = params.get("subscription") === "required";
+    setStatusText("確認中...", "info");
+    if (!hasGateNotice) resetSubscriptionNote();
     try {
       let state = null;
       let synced = false;
@@ -754,10 +785,11 @@ import { fetchCurrentSubscriptionState, isSubscriptionActive } from "./subscript
       }
 
       const statusLabel = formatStatus(state && state.status);
+      const statusTone = toneFromSubscriptionStatus(state && state.status);
       const periodEnd = state && state.current_period_end
         ? new Date(state.current_period_end).toLocaleString("ja-JP")
         : "";
-      setStatusText(periodEnd ? `${statusLabel}（次回更新: ${periodEnd}）` : statusLabel);
+      setStatusText(periodEnd ? `${statusLabel}（次回更新: ${periodEnd}）` : statusLabel, statusTone);
       const active = isSubscriptionActive(state);
 
       if (startBtn) {
@@ -769,11 +801,16 @@ import { fetchCurrentSubscriptionState, isSubscriptionActive } from "./subscript
         manageBtn.disabled = false;
       }
       if (waitForSync && !active && noteEl && !synced) {
-        noteEl.textContent = "決済反映に時間がかかる場合があります。30秒ほど待って更新し、未反映なら管理画面から状態をご確認ください。";
+        setSubscriptionNote("決済反映に時間がかかる場合があります。30秒ほど待って更新し、未反映なら管理画面から状態をご確認ください。", "warning");
+      } else if (!hasGateNotice) {
+        resetSubscriptionNote();
       }
       return active;
     } catch (_) {
-      setStatusText("契約状態の取得に失敗");
+      setStatusText("契約状態の取得に失敗", "error");
+      if (!hasGateNotice) {
+        setSubscriptionNote("契約状態の確認に失敗しました。通信状態を確認して再読み込みしてください。", "error");
+      }
       if (startBtn) startBtn.disabled = false;
       if (manageBtn) manageBtn.disabled = false;
       return false;
@@ -950,7 +987,7 @@ import { fetchCurrentSubscriptionState, isSubscriptionActive } from "./subscript
   }
 
   initializeSubscriptionSection().catch(() => {
-    setStatusText("契約状態の取得に失敗");
+    setStatusText("契約状態の取得に失敗", "error");
   });
   if (startBtn) startBtn.addEventListener("click", startCheckout);
   if (manageBtn) manageBtn.addEventListener("click", openBillingPortal);
