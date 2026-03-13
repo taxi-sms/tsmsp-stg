@@ -98,6 +98,51 @@ function testPagesUseSharedStateDisplayGrammar() {
   assert.match(read("settings2.html"), /saveStatus\.dataset\.stateTone = "error";/);
 }
 
+function testSettingsHubPagesExist() {
+  const home = read("settings-home.html");
+  const report = read("settings-report.html");
+  const calc = read("settings-calc.html");
+  const period = read("settings-period.html");
+  const backup = read("settings-backup.html");
+  const account = read("settings-account.html");
+  const guard = read("auth-guard.js");
+
+  assert.match(home, /設定トップ/);
+  assert.match(home, /settings-report\.html/);
+  assert.match(home, /settings-calc\.html/);
+  assert.match(home, /settings-period\.html/);
+  assert.match(home, /settings-backup\.html/);
+  assert.match(home, /settings-account\.html/);
+  assert.match(home, /旧 settings\.html/);
+  assert.match(report, /data-save-redirect="settings-home\.html"/);
+  assert.match(report, /変更を保存して設定トップへ戻る/);
+  assert.match(calc, /id="themeMode"/);
+  assert.match(calc, /id="btnSaveCalcHome"/);
+  assert.match(period, /id="closeStartDay"/);
+  assert.match(period, /id="btnResetPeriod"/);
+  assert.match(backup, /id="btnExportBackup"/);
+  assert.match(backup, /id="btnCloudRestore"/);
+  assert.match(account, /id="subscriptionStatus"/);
+  assert.match(account, /id="btnDeleteAccount"/);
+  assert.match(guard, /settings-account\.html\?subscription=required/);
+}
+
+function testSettingsNavigationPointsToHub() {
+  for (const file of [
+    "report.html",
+    "confirm.html",
+    "detail.html",
+    "ops.html",
+    "sales.html",
+    "settings.html",
+    "settings2.html",
+    "index.html"
+  ]) {
+    const html = read(file);
+    assert.match(html, /settings-home\.html/);
+  }
+}
+
 function testDesignSystemDocExists() {
   const doc = read("DESIGN-SYSTEM.md");
   assert.match(doc, /Source Of Truth/);
@@ -112,6 +157,8 @@ function runTests() {
     ["画面幅修飾", testPageWidthModifiersExist],
     ["ヘッダー右上アクション文法", testHeaderActionGrammarIsUnified],
     ["主要画面の状態表示文法", testPagesUseSharedStateDisplayGrammar],
+    ["設定ハブページ追加", testSettingsHubPagesExist],
+    ["設定導線のハブ化", testSettingsNavigationPointsToHub],
     ["デザインルール文書", testDesignSystemDocExists]
   ];
 

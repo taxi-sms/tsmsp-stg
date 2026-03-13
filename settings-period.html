@@ -1,0 +1,111 @@
+<!doctype html>
+<html lang="ja">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>締め期間・シフト</title>
+  <link rel="icon" href="favicon.ico" sizes="any">
+  <link rel="icon" href="favicon.svg" type="image/svg+xml">
+  <link rel="manifest" href="manifest.json">
+  <meta name="theme-color" content="#ffffff">
+  <link rel="apple-touch-icon" href="apple-touch-icon.png">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="default">
+  <meta name="apple-mobile-web-app-title" content="TSMS">
+  <script>(function(){try{var t=localStorage.getItem("tsms_theme")==="dark"?"dark":"light";document.documentElement.setAttribute("data-theme",t);var m=document.querySelector('meta[name="theme-color"]');if(m)m.setAttribute("content",t==="dark"?"#0F1417":"#F3F6F8");}catch(e){}})();</script>
+  <script type="module" src="auth-guard.js?v=20260223-5"></script>
+  <script src="./custom-confirm.js"></script>
+  <script src="./settings-core.js"></script>
+  <link rel="stylesheet" href="./tsms-design.css?v=20260227-3">
+</head>
+<body class="page-block-unified page-main-wide">
+<nav class="tsms-menu" id="tsmsMenu" aria-label="サイドメニュー">
+  <a href="index.html">TOP<small>メニュー一覧</small></a>
+  <a href="report.html">日報入力<small>乗車データを入力</small></a>
+  <a href="confirm.html">入力確認<small>当日・過去のデータを確認</small></a>
+  <a href="detail.html">詳細確認<small>概算手取、集計結果など</small></a>
+  <a href="ops.html">出庫 / 帰庫 / 休憩<small>休憩タイマーなど</small></a>
+  <a href="sales.html">月間管理<small>当月、過去の売上確認</small></a>
+  <a href="settings-home.html">設定<small>各設定ページのハブ</small></a>
+</nav>
+<div class="tsms-menu-bg" id="tsmsMenuBg" aria-hidden="true"></div>
+
+<header class="tsms-header">
+  <div class="tsms-hamburger" id="tsmsHamburger" role="button" tabindex="0" aria-label="メニュー"><span></span><span></span><span></span></div>
+  締め期間・シフト
+  <a class="header-to-report" href="settings-home.html">設定トップへ</a>
+</header>
+
+<main class="main">
+  <section class="section">
+    <div class="title">締め期間・シフト</div>
+    <div class="note">月間管理の期間表示と、メモとして使うシフト情報をここで設定します。</div>
+
+    <div class="field"><div class="label">締め開始日（1〜31）</div><input class="input" id="closeStartDay" inputmode="numeric"></div>
+    <div class="field"><div class="label">締め終了日（1〜31）</div><input class="input" id="closeEndDay" inputmode="numeric"></div>
+    <div class="field"><div class="label">シフトメモ</div><input class="input" id="shiftNote"></div>
+
+    <div class="actions">
+      <button class="btn" id="btnSavePeriodHome" type="button">保存して設定トップへ</button>
+      <button class="btn" id="btnSavePeriodSales" type="button">保存して月間管理へ</button>
+      <button class="btn" id="btnResetPeriod" type="button" style="grid-column:1 / -1;">初期値に戻す</button>
+    </div>
+  </section>
+</main>
+
+<script>
+(function(){
+  const core = window.tsmsSettingsCore;
+  if(!core) return;
+  const els = {
+    closeStartDay: document.getElementById("closeStartDay"),
+    closeEndDay: document.getElementById("closeEndDay"),
+    shiftNote: document.getElementById("shiftNote")
+  };
+
+  core.fillPeriodFields(els, core.loadSettings());
+  core.applyTheme(localStorage.getItem("tsms_theme") || "light");
+
+  document.getElementById("btnSavePeriodHome").addEventListener("click", () => {
+    try{
+      core.persistPeriodSettings(els);
+      location.href = "settings-home.html";
+    }catch(_){
+      alert("保存に失敗しました。入力内容をご確認ください。");
+    }
+  });
+
+  document.getElementById("btnSavePeriodSales").addEventListener("click", () => {
+    try{
+      core.persistPeriodSettings(els);
+      location.href = "sales.html";
+    }catch(_){
+      alert("保存に失敗しました。入力内容をご確認ください。");
+    }
+  });
+
+  document.getElementById("btnResetPeriod").addEventListener("click", async () => {
+    if(!(await window.tsmsConfirm("初期値に戻しますか？"))) return;
+    core.resetPeriodSettings(els);
+  });
+})();
+</script>
+<script>(function(){if('serviceWorker' in navigator && location.protocol.indexOf('http')===0){window.addEventListener('load', function(){navigator.serviceWorker.register('./sw.js?v=20260228-1').catch(function(){});});}})();</script>
+
+<nav class="tsms-bottom-nav" aria-label="ボトムメニュー">
+  <a href="report.html" data-tab="report"><span class="ico">📝</span><span>日報入力</span></a>
+  <a href="confirm.html" data-tab="confirm"><span class="ico">✅</span><span>入力確認</span></a>
+  <a href="detail.html" data-tab="detail"><span class="ico">📊</span><span>詳細確認</span></a>
+  <a href="ops.html" data-tab="ops"><span class="ico">🚕</span><span>出庫/帰庫</span></a>
+  <button type="button" id="tsmsMoreBtn"><span class="ico">⋯</span><span>その他</span></button>
+</nav>
+<div class="tsms-more-bg" id="tsmsMoreBg"></div>
+<div class="tsms-more-sheet" id="tsmsMoreSheet" aria-label="その他メニュー">
+  <a href="index.html">TOP</a>
+  <a href="sales.html">月間管理</a>
+  <a href="settings-home.html">設定</a>
+</div>
+<script src="./settings-shell.js"></script>
+<script src="./cache-version.js"></script>
+</body>
+</html>

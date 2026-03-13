@@ -1,0 +1,131 @@
+<!doctype html>
+<html lang="ja">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport"
+      content="width=device-width,
+               initial-scale=1,
+               maximum-scale=1,
+               user-scalable=no"/>
+  <title>日報入力項目設定</title>
+  <link rel="icon" href="favicon.ico" sizes="any">
+  <link rel="icon" href="favicon.svg" type="image/svg+xml">
+  <link rel="manifest" href="manifest.json">
+  <meta name="theme-color" content="#ffffff">
+  <link rel="apple-touch-icon" href="apple-touch-icon.png">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="default">
+  <meta name="apple-mobile-web-app-title" content="TSMS">
+  <script>(function(){try{var t=localStorage.getItem("tsms_theme")==="dark"?"dark":"light";document.documentElement.setAttribute("data-theme",t);var m=document.querySelector('meta[name="theme-color"]');if(m)m.setAttribute("content",t==="dark"?"#0F1417":"#F3F6F8");}catch(e){}})();</script>
+  <script type="module" src="auth-guard.js?v=20260223-5"></script>
+  <script src="./report-field-settings.js"></script>
+  <link rel="stylesheet" href="./tsms-design.css?v=20260227-3">
+  <link rel="stylesheet" href="./settings-report-editor.css">
+</head>
+<body class="page-block-unified settings-report-page" data-save-redirect="settings-home.html">
+<nav class="tsms-menu" id="tsmsMenu" aria-label="サイドメニュー">
+  <a href="index.html">TOP<small>メニュー一覧</small></a>
+  <a href="report.html">日報入力<small>乗車データを入力</small></a>
+  <a href="confirm.html">入力確認<small>当日・過去のデータを確認</small></a>
+  <a href="detail.html">詳細確認<small>概算手取、集計結果など</small></a>
+  <a href="ops.html">出庫 / 帰庫 / 休憩<small>休憩タイマーなど</small></a>
+  <a href="sales.html">月間管理<small>当月、過去の売上確認</small></a>
+  <a href="settings-home.html">設定<small>各設定ページのハブ</small></a>
+</nav>
+<div class="tsms-menu-bg" id="tsmsMenuBg" aria-hidden="true"></div>
+
+<header class="tsms-header">
+  <div class="tsms-hamburger" id="tsmsHamburger" role="button" tabindex="0" aria-label="メニュー"><span></span><span></span><span></span></div>
+  日報入力項目設定
+  <a class="header-to-report" href="settings-home.html">設定トップへ</a>
+</header>
+
+<main class="main">
+  <div class="settings-mode-banner">設定画面</div>
+  <p class="settings-top-note">日報入力画面と同じ並びでボタンを表示しています。編集したい項目をタップすると編集画面が開きます。チケット他とその他は選択すると下に追加項目が表示されるので、好きなボタンを編集してください。最後に下の保存ボタンを押すと日報入力画面に反映されます。</p>
+
+  <section class="wf-panel" id="sec_rideType">
+    <div class="wf-label">乗車種別</div>
+    <div class="wf-row" id="rideTypeButtons"></div>
+  </section>
+
+  <section class="wf-panel is-hidden" id="sec_rideTypeOther">
+    <div class="wf-label">乗車種別 その他</div>
+    <div class="wf-subnote">※「その他」選択時のみ表示</div>
+    <div class="wf-row" id="rideTypeOtherButtons"></div>
+  </section>
+
+  <section class="wf-panel" id="sec_payMethod">
+    <div class="wf-label">支払方法</div>
+    <div class="wf-row" id="payMethodButtons"></div>
+  </section>
+
+  <section class="wf-panel is-hidden" id="sec_payMethodOther">
+    <div class="wf-label">支払方法 その他</div>
+    <div class="wf-subnote">※「その他」選択時のみ表示</div>
+    <div class="wf-row" id="payMethodOtherButtons"></div>
+  </section>
+
+  <section class="wf-panel is-hidden" id="sec_ticketSub">
+    <div class="wf-label">チケット他</div>
+    <div class="wf-subnote">※「チケット他」選択時のみ表示</div>
+    <div class="wf-row" id="ticketSubButtons"></div>
+  </section>
+
+  <section class="wf-panel" id="sec_save">
+    <div class="wf-label">保存</div>
+    <div class="settings-save-stack">
+      <button class="btn next" id="btnSaveAndBack" type="button">変更を保存して設定トップへ戻る</button>
+      <div class="save-note state-note" id="saveStatus" data-state-tone="neutral" aria-live="polite">ボタン配置の見た目を確認しながら編集できます。画面上の変更は保存するまで確定しません。</div>
+    </div>
+  </section>
+</main>
+
+<div class="editor-modal-bg" id="fieldEditorModalBg" aria-hidden="true">
+  <div class="editor-modal-card" role="dialog" aria-modal="true" aria-labelledby="fieldEditorModalTitle">
+    <div class="editor-modal-head">
+      <p class="editor-modal-title" id="fieldEditorModalTitle">ボタン設定</p>
+      <p class="editor-modal-step">編集</p>
+    </div>
+    <div class="editor-modal-body">
+      <div class="editor-modal-group">
+        <div class="editor-modal-label" id="fieldEditorTargetLabel">ボタン名</div>
+        <input class="input" id="fieldEditorNameInput" type="text" maxlength="8" placeholder="ボタン名">
+        <p class="editor-modal-help" id="fieldEditorHelp">変更して保存すると、日報入力画面に反映されます。</p>
+      </div>
+      <div class="editor-modal-group is-hidden" id="fieldEditorFlagSection">
+        <div class="editor-modal-label">金額入力フラグ</div>
+        <div class="editor-check-grid">
+          <label class="editor-check"><input type="checkbox" id="fieldEditorCashFlag"><span>現収</span></label>
+          <label class="editor-check"><input type="checkbox" id="fieldEditorCreditFlag"><span>未収</span></label>
+        </div>
+        <p class="editor-modal-help">この設定は現金収入、未集金収入の計算を分けるために設定します。</p>
+      </div>
+    </div>
+    <div class="editor-modal-actions">
+      <button class="btn" type="button" id="fieldEditorCancelBtn">閉じる</button>
+      <button class="btn next" type="button" id="fieldEditorSaveBtn">保存</button>
+    </div>
+  </div>
+</div>
+
+<script src="./settings-report-editor.js"></script>
+<script>(function(){if('serviceWorker' in navigator && location.protocol.indexOf('http')===0){window.addEventListener('load', function(){navigator.serviceWorker.register('./sw.js?v=20260228-1').catch(function(){});});}})();</script>
+
+<nav class="tsms-bottom-nav" aria-label="ボトムメニュー">
+  <a href="report.html" data-tab="report"><span class="ico">📝</span><span>日報入力</span></a>
+  <a href="confirm.html" data-tab="confirm"><span class="ico">✅</span><span>入力確認</span></a>
+  <a href="detail.html" data-tab="detail"><span class="ico">📊</span><span>詳細確認</span></a>
+  <a href="ops.html" data-tab="ops"><span class="ico">🚕</span><span>出庫/帰庫</span></a>
+  <button type="button" id="tsmsMoreBtn"><span class="ico">⋯</span><span>その他</span></button>
+</nav>
+<div class="tsms-more-bg" id="tsmsMoreBg"></div>
+<div class="tsms-more-sheet" id="tsmsMoreSheet" aria-label="その他メニュー">
+  <a href="index.html">TOP</a>
+  <a href="sales.html">月間管理</a>
+  <a href="settings-home.html">設定</a>
+</div>
+<script src="./settings-shell.js"></script>
+<script src="./cache-version.js"></script>
+</body>
+</html>

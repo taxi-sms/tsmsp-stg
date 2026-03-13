@@ -167,7 +167,7 @@ async function runSubscriptionGate(userId) {
     try {
       alert("契約状態の確認が必要です。設定画面から契約状態をご確認ください。");
     } catch (_) {}
-    location.replace(new URL("settings.html?subscription=required", location.href).toString());
+    location.replace(new URL("settings-account.html?subscription=required", location.href).toString());
     return false;
   } catch (_) {
     const cached = consumeCachedActiveSubscription(userId);
@@ -186,7 +186,7 @@ async function runSubscriptionGate(userId) {
     try {
       alert("契約状態の確認に失敗しました。設定画面から再確認してください。");
     } catch (_) {}
-    location.replace(new URL("settings.html?subscription=required", location.href).toString());
+    location.replace(new URL("settings-account.html?subscription=required", location.href).toString());
     return false;
   }
 }

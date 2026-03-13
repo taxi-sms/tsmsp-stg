@@ -1,0 +1,179 @@
+<!doctype html>
+<html lang="ja">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>バックアップ / 復元</title>
+  <link rel="icon" href="favicon.ico" sizes="any">
+  <link rel="icon" href="favicon.svg" type="image/svg+xml">
+  <link rel="manifest" href="manifest.json">
+  <meta name="theme-color" content="#ffffff">
+  <link rel="apple-touch-icon" href="apple-touch-icon.png">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="default">
+  <meta name="apple-mobile-web-app-title" content="TSMS">
+  <script>(function(){try{var t=localStorage.getItem("tsms_theme")==="dark"?"dark":"light";document.documentElement.setAttribute("data-theme",t);var m=document.querySelector('meta[name="theme-color"]');if(m)m.setAttribute("content",t==="dark"?"#0F1417":"#F3F6F8");}catch(e){}})();</script>
+  <script type="module" src="auth-guard.js?v=20260223-5"></script>
+  <script src="./custom-confirm.js"></script>
+  <script src="./settings-core.js"></script>
+  <link rel="stylesheet" href="./tsms-design.css?v=20260227-3">
+</head>
+<body class="page-block-unified page-main-wide">
+<nav class="tsms-menu" id="tsmsMenu" aria-label="サイドメニュー">
+  <a href="index.html">TOP<small>メニュー一覧</small></a>
+  <a href="report.html">日報入力<small>乗車データを入力</small></a>
+  <a href="confirm.html">入力確認<small>当日・過去のデータを確認</small></a>
+  <a href="detail.html">詳細確認<small>概算手取、集計結果など</small></a>
+  <a href="ops.html">出庫 / 帰庫 / 休憩<small>休憩タイマーなど</small></a>
+  <a href="sales.html">月間管理<small>当月、過去の売上確認</small></a>
+  <a href="settings-home.html">設定<small>各設定ページのハブ</small></a>
+</nav>
+<div class="tsms-menu-bg" id="tsmsMenuBg" aria-hidden="true"></div>
+
+<header class="tsms-header">
+  <div class="tsms-hamburger" id="tsmsHamburger" role="button" tabindex="0" aria-label="メニュー"><span></span><span></span><span></span></div>
+  バックアップ / 復元
+  <a class="header-to-report" href="settings-home.html">設定トップへ</a>
+</header>
+
+<main class="main">
+  <section class="section">
+    <div class="title">端末バックアップ / 復元</div>
+    <div class="note">端末変更やブラウザデータ削除に備え、JSONファイルでデータを保存・復元できます。</div>
+    <div class="actions">
+      <button class="btn" id="btnExportBackup" type="button">バックアップを保存</button>
+      <button class="btn" id="btnImportBackup" type="button">バックアップから復元</button>
+    </div>
+    <input type="file" id="backupFileInput" accept="application/json,.json" style="display:none">
+  </section>
+
+  <section class="section">
+    <div class="title">クラウドバックアップ / 復元</div>
+    <div class="note">ログイン中のアカウントにlocalStorage内容を保存します。復元後は画面を再読み込みします。</div>
+    <div class="actions">
+      <button class="btn" id="btnCloudBackup" type="button">クラウドへバックアップ</button>
+      <button class="btn" id="btnCloudRestore" type="button">クラウドから復元</button>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="title">利用規約・法務</div>
+    <div class="note">登録・利用前に最新の内容をご確認ください。</div>
+    <div class="actions">
+      <a class="btn" href="terms.html" style="display:flex;align-items:center;justify-content:center;text-decoration:none;">利用規約</a>
+      <a class="btn" href="privacy.html" style="display:flex;align-items:center;justify-content:center;text-decoration:none;">プライバシーポリシー</a>
+      <a class="btn" href="commerce.html" style="display:flex;align-items:center;justify-content:center;text-decoration:none;grid-column:1 / -1;">特定商取引法に基づく表記</a>
+    </div>
+  </section>
+</main>
+
+<script>
+(function(){
+  const core = window.tsmsSettingsCore;
+  if(!core) return;
+  core.applyTheme(localStorage.getItem("tsms_theme") || "light");
+
+  const btnExport = document.getElementById("btnExportBackup");
+  const btnImport = document.getElementById("btnImportBackup");
+  const fileInput = document.getElementById("backupFileInput");
+
+  if(btnExport) btnExport.addEventListener("click", () => core.exportBackup());
+  if(btnImport && fileInput) btnImport.addEventListener("click", () => fileInput.click());
+  if(fileInput){
+    fileInput.addEventListener("change", async () => {
+      const file = fileInput.files && fileInput.files[0];
+      if(!file) return;
+      try{
+        const text = await file.text();
+        const payload = JSON.parse(text);
+        if(!(await window.tsmsConfirm("バックアップを復元します。現在の保存データを上書きします。よろしいですか？"))) return;
+        core.restoreBackupObject(payload);
+        alert("バックアップを復元しました");
+      }catch(err){
+        alert((err && err.message) ? err.message : "復元に失敗しました");
+      }finally{
+        fileInput.value = "";
+      }
+    });
+  }
+})();
+</script>
+
+<script type="module">
+import { cloudBackup, cloudRestore } from "./cloud-store.js";
+
+(function(){
+  const btnCloudBackup = document.getElementById("btnCloudBackup");
+  const btnCloudRestore = document.getElementById("btnCloudRestore");
+
+  if(btnCloudBackup){
+    btnCloudBackup.addEventListener("click", async () => {
+      btnCloudBackup.disabled = true;
+      try{
+        const res = await cloudBackup();
+        const lines = [
+          "クラウドへバックアップしました",
+          `ユーザー: ${res.userId || "(取得不可)"}`,
+          `保存キー数: ${res.keyCount}`,
+          `当日データ: ${res.reportCount}件`,
+          `履歴データ: ${res.archiveCount}件`,
+          `現在日付キー: ${res.currentDayId || "(なし)"}`,
+          `クラウド更新時刻: ${res.updatedAt || "(取得不可)"}`,
+          `履歴スナップショット: ${res.historyKey || "(保存失敗)"}`,
+          `履歴保持上限: ${res.historyKeepCount || "-"}世代`
+        ];
+        alert(lines.join("\n"));
+      }catch(err){
+        alert((err && err.message) ? err.message : "クラウドバックアップに失敗しました");
+      }finally{
+        btnCloudBackup.disabled = false;
+      }
+    });
+  }
+
+  if(btnCloudRestore){
+    btnCloudRestore.addEventListener("click", async () => {
+      if(!(await window.tsmsConfirm("クラウドから復元します。現在の保存データを上書きします。よろしいですか？"))) return;
+      btnCloudRestore.disabled = true;
+      try{
+        const res = await cloudRestore();
+        const lines = [
+          "クラウドから復元しました。画面を再読み込みします",
+          `ユーザー: ${res.userId || "(取得不可)"}`,
+          `復元キー数: ${res.keyCount}`,
+          `当日データ: ${res.reportCount}件`,
+          `履歴データ: ${res.archiveCount}件`,
+          `現在日付キー: ${res.currentDayId || "(なし)"}`,
+          `クラウド更新時刻: ${res.updatedAt || "(取得不可)"}`
+        ];
+        alert(lines.join("\n"));
+        location.reload();
+      }catch(err){
+        alert((err && err.message) ? err.message : "クラウド復元に失敗しました");
+      }finally{
+        btnCloudRestore.disabled = false;
+      }
+    });
+  }
+})();
+</script>
+
+<script>(function(){if('serviceWorker' in navigator && location.protocol.indexOf('http')===0){window.addEventListener('load', function(){navigator.serviceWorker.register('./sw.js?v=20260228-1').catch(function(){});});}})();</script>
+
+<nav class="tsms-bottom-nav" aria-label="ボトムメニュー">
+  <a href="report.html" data-tab="report"><span class="ico">📝</span><span>日報入力</span></a>
+  <a href="confirm.html" data-tab="confirm"><span class="ico">✅</span><span>入力確認</span></a>
+  <a href="detail.html" data-tab="detail"><span class="ico">📊</span><span>詳細確認</span></a>
+  <a href="ops.html" data-tab="ops"><span class="ico">🚕</span><span>出庫/帰庫</span></a>
+  <button type="button" id="tsmsMoreBtn"><span class="ico">⋯</span><span>その他</span></button>
+</nav>
+<div class="tsms-more-bg" id="tsmsMoreBg"></div>
+<div class="tsms-more-sheet" id="tsmsMoreSheet" aria-label="その他メニュー">
+  <a href="index.html">TOP</a>
+  <a href="sales.html">月間管理</a>
+  <a href="settings-home.html">設定</a>
+</div>
+<script src="./settings-shell.js"></script>
+<script src="./cache-version.js"></script>
+</body>
+</html>
