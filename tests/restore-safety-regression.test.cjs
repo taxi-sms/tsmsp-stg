@@ -237,6 +237,81 @@ async function testCloudBackupSplitsSafeAndWorkingSnapshots() {
   assert.strictEqual(working.tsms_confirm_force_empty, "1");
 }
 
+async function testCloudBackupBlocksOlderSafeSnapshot() {
+  const { cloudBackup, localStorage } = loadCloudStoreModule({
+    localStorage_dump_v1: {
+      tsms_reports_archive: JSON.stringify([{ id: "a1" }, { id: "a2" }]),
+      ops_archive_v1: JSON.stringify({ "2026-03-13": { dayId: "2026-03-13" } }),
+      tsms_settings: "{\"taxRate\":8}"
+    },
+    localStorage_working_v1: {}
+  });
+
+  localStorage.setItem("tsms_reports_archive", JSON.stringify([{ id: "a1" }]));
+  localStorage.setItem("ops_archive_v1", JSON.stringify({}));
+  localStorage.setItem("tsms_settings", "{\"taxRate\":10}");
+
+  await assert.rejects(
+    () => cloudBackup(),
+    /締め済み履歴/
+  );
+}
+
+async function testCloudBackupBlocksEmptyWorkingOverwrite() {
+  const { cloudBackup, localStorage } = loadCloudStoreModule({
+    localStorage_dump_v1: {
+      tsms_reports_archive: JSON.stringify([]),
+      ops_archive_v1: JSON.stringify({}),
+      tsms_settings: "{\"taxRate\":8}"
+    },
+    localStorage_working_v1: {
+      tsms_reports: JSON.stringify([{ id: "r1" }]),
+      ops: JSON.stringify({ dayId: "2026-03-15", departAt: "2026-03-15T00:00:00Z" }),
+      tsms_report_current_day: "2026-03-15",
+      tsms_working_last_mutation_at: "2026-03-15T00:00:00.000Z"
+    }
+  });
+
+  localStorage.setItem("tsms_reports_archive", JSON.stringify([]));
+  localStorage.setItem("ops_archive_v1", JSON.stringify({}));
+  localStorage.setItem("tsms_settings", "{\"taxRate\":10}");
+
+  await assert.rejects(
+    () => cloudBackup(),
+    /作業中データ/
+  );
+}
+
+async function testCloudBackupAllowsNewerEmptyWorkingAfterClear() {
+  const { cloudBackup, localStorage, supabase } = loadCloudStoreModule({
+    localStorage_dump_v1: {
+      tsms_reports_archive: JSON.stringify([{ id: "a1" }]),
+      ops_archive_v1: JSON.stringify({}),
+      tsms_settings: "{\"taxRate\":8}"
+    },
+    localStorage_working_v1: {
+      tsms_reports: JSON.stringify([{ id: "r1" }]),
+      ops: JSON.stringify({ dayId: "2026-03-15", departAt: "2026-03-15T00:00:00Z" }),
+      tsms_report_current_day: "2026-03-15",
+      tsms_confirm_force_empty: "0",
+      tsms_working_last_mutation_at: "2026-03-15T00:00:00.000Z"
+    }
+  });
+
+  localStorage.setItem("tsms_reports_archive", JSON.stringify([{ id: "a1" }, { id: "a2" }]));
+  localStorage.setItem("ops_archive_v1", JSON.stringify({ "2026-03-15": { dayId: "2026-03-15" } }));
+  localStorage.setItem("tsms_settings", "{\"taxRate\":10}");
+  localStorage.setItem("tsms_confirm_force_empty", "1");
+  localStorage.setItem("tsms_working_last_mutation_at", "2026-03-15T00:10:00.000Z");
+
+  const res = await cloudBackup();
+  const working = supabase._store.get("localStorage_working_v1").value;
+
+  assert.strictEqual(res.workingReportCount, 0);
+  assert.strictEqual(working.tsms_reports, undefined);
+  assert.strictEqual(working.tsms_confirm_force_empty, "1");
+}
+
 async function testCloudRestorePreservesWorkingState() {
   const { cloudRestore, localStorage } = loadCloudStoreModule({
     localStorage_dump_v1: {
@@ -364,6 +439,9 @@ function testRestoreCopyWarnsAndExposesTakeover() {
 async function runTests() {
   const tests = [
     ["クラウド保存の current 分離", testCloudBackupSplitsSafeAndWorkingSnapshots],
+    ["クラウド保存の safe 上書きガード", testCloudBackupBlocksOlderSafeSnapshot],
+    ["クラウド保存の empty working 上書きガード", testCloudBackupBlocksEmptyWorkingOverwrite],
+    ["締め直後の空 working 保存許可", testCloudBackupAllowsNewerEmptyWorkingAfterClear],
     ["クラウド復元の作業中データ保護", testCloudRestorePreservesWorkingState],
     ["専用引き継ぎで current 復元", testCloudRestoreWorkingStateLoadsDedicatedSnapshot],
     ["自動 hydration の作業中データ保護", testHydrateCloudStateSkipsWorkingStateByDefault],

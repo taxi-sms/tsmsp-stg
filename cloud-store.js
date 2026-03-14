@@ -7,12 +7,14 @@ const CLOUD_HISTORY_KEEP_COUNT = 30;
 const LAST_SYNC_USER_KEY = "tsms_last_sync_user_id";
 const CLOUD_LAST_SUCCESS_AT_KEY = "tsms_cloud_last_success_at";
 const CLOUD_LAST_FAILURE_AT_KEY = "tsms_cloud_last_failure_at";
+const WORKING_MUTATION_AT_KEY = "tsms_working_last_mutation_at";
 const WORKING_STATE_KEYS = [
   "tsms_reports",
   "ops",
   "tsms_report_current_day",
   "tsms_confirm_force_empty",
-  "ops_sync_rev_v1"
+  "ops_sync_rev_v1",
+  WORKING_MUTATION_AT_KEY
 ];
 const SAFE_RESTORE_PRESERVE_KEYS = WORKING_STATE_KEYS.slice();
 const SYNC_KEYS = [
@@ -29,6 +31,7 @@ const SYNC_KEYS = [
   "tsms_report_field_settings",
   "tsms_holidays_jp_v1",
   "tsms_theme",
+  WORKING_MUTATION_AT_KEY,
   STORAGE_SCHEMA_VERSION_KEY
 ];
 const SAFE_SNAPSHOT_KEYS = SYNC_KEYS.filter((key) => !WORKING_STATE_KEYS.includes(key));
@@ -94,14 +97,92 @@ function summarizePayload(payload) {
   const reports = safeJsonParse(payload?.tsms_reports || "[]", []);
   const archive = safeJsonParse(payload?.tsms_reports_archive || "[]", []);
   const ops = safeJsonParse(payload?.ops || "null", null);
+  const opsArchive = safeJsonParse(payload?.ops_archive_v1 || "{}", {});
   return {
     keyCount: keys.length,
     keys,
     reportCount: Array.isArray(reports) ? reports.length : 0,
     archiveCount: Array.isArray(archive) ? archive.length : 0,
+    opsArchiveCount: opsArchive && typeof opsArchive === "object" && !Array.isArray(opsArchive) ? Object.keys(opsArchive).length : 0,
     currentDayId: String(payload?.tsms_report_current_day || ""),
-    opsDayId: String((ops && ops.dayId) || "")
+    opsDayId: String((ops && ops.dayId) || ""),
+    workingMutationAt: String(payload?.[WORKING_MUTATION_AT_KEY] || "")
   };
+}
+
+function parseOpsValue(payload) {
+  return safeJsonParse(payload?.ops || "null", null);
+}
+
+function hasMeaningfulOpsState(ops) {
+  if (!ops || typeof ops !== "object") return false;
+  return !!(
+    ops.departAt ||
+    ops.returnAt ||
+    ops.breakActive ||
+    (Array.isArray(ops.breakSessions) && ops.breakSessions.length)
+  );
+}
+
+function hasMeaningfulWorkingState(payload) {
+  const summary = summarizePayload(payload);
+  const ops = parseOpsValue(payload);
+  return !!(
+    summary.reportCount > 0 ||
+    summary.currentDayId ||
+    hasMeaningfulOpsState(ops)
+  );
+}
+
+function toEpochMs(value) {
+  if (!value) return 0;
+  const ms = Date.parse(String(value));
+  return Number.isFinite(ms) ? ms : 0;
+}
+
+function isOlderOrEmptierWorkingSnapshot(localPayload, remotePayload) {
+  const localSummary = summarizePayload(localPayload || {});
+  const remoteSummary = summarizePayload(remotePayload || {});
+  const localOps = parseOpsValue(localPayload || {});
+  const remoteOps = parseOpsValue(remotePayload || {});
+
+  if (!hasMeaningfulWorkingState(remotePayload || {})) return false;
+
+  const localMutationMs = toEpochMs(localSummary.workingMutationAt);
+  const remoteMutationMs = toEpochMs(remoteSummary.workingMutationAt);
+  if (localMutationMs && (!remoteMutationMs || localMutationMs > remoteMutationMs)) {
+    return false;
+  }
+
+  const localEmpty = !hasMeaningfulWorkingState(localPayload || {});
+  if (localEmpty) return true;
+
+  const sameDay = !!localSummary.currentDayId && localSummary.currentDayId === remoteSummary.currentDayId;
+  if (sameDay && localSummary.reportCount < remoteSummary.reportCount) {
+    return true;
+  }
+
+  if (!sameDay && remoteSummary.currentDayId && !localSummary.currentDayId) {
+    return true;
+  }
+
+  if (hasMeaningfulOpsState(remoteOps) && !hasMeaningfulOpsState(localOps)) {
+    return true;
+  }
+
+  if (localMutationMs === 0 && remoteMutationMs > 0 && localSummary.reportCount <= remoteSummary.reportCount) {
+    return true;
+  }
+
+  return false;
+}
+
+function isOlderOrEmptierSafeSnapshot(localPayload, remotePayload) {
+  const localSummary = summarizePayload(localPayload || {});
+  const remoteSummary = summarizePayload(remotePayload || {});
+  if (remoteSummary.archiveCount > localSummary.archiveCount) return true;
+  if (remoteSummary.opsArchiveCount > localSummary.opsArchiveCount) return true;
+  return false;
 }
 
 async function getCurrentUserId() {
@@ -235,6 +316,21 @@ async function fetchCloudSnapshot(baseKey) {
   };
 }
 
+async function assertCloudOverwriteAllowed({ safePayload, workingPayload }) {
+  const [remoteSafeSnapshot, remoteWorkingSnapshot] = await Promise.all([
+    fetchCloudSnapshot(CLOUD_KEY),
+    fetchCloudSnapshot(CLOUD_WORKING_KEY)
+  ]);
+
+  if (remoteSafeSnapshot.value && isOlderOrEmptierSafeSnapshot(safePayload, remoteSafeSnapshot.value)) {
+    throw new Error("クラウド上により多い締め済み履歴があります。空または古い状態では上書きできません。先にクラウドから復元してください。");
+  }
+
+  if (remoteWorkingSnapshot.value && isOlderOrEmptierWorkingSnapshot(workingPayload, remoteWorkingSnapshot.value)) {
+    throw new Error("クラウド上により新しい作業中データがあります。空または古い状態では上書きできません。先に「作業中データを引き継ぐ」を実行してください。");
+  }
+}
+
 export async function cloudBackup(prefix = "") {
   try {
     const payload = prefix ? dumpLocalStorage(prefix) : dumpSelectedKeys(SAFE_SNAPSHOT_KEYS);
@@ -242,6 +338,9 @@ export async function cloudBackup(prefix = "") {
     const summary = summarizePayload(payload);
     const workingSummary = summarizePayload(workingPayload);
     const userId = await getCurrentUserId();
+    if (!prefix) {
+      await assertCloudOverwriteAllowed({ safePayload: payload, workingPayload });
+    }
     const snapshot = await upsertCloudSnapshot(CLOUD_KEY, payload);
     const workingSnapshot = prefix ? { updatedAt: "", historyKey: "" } : await upsertCloudSnapshot(CLOUD_WORKING_KEY, workingPayload);
     const updatedAt = snapshot.updatedAt || workingSnapshot.updatedAt || new Date().toISOString();
@@ -431,9 +530,16 @@ export function ensureCloudSyncRuntime({ debounce = 5000 } = {}) {
   const originalSetItem = Storage.prototype.setItem;
   const originalRemoveItem = Storage.prototype.removeItem;
   const originalClear = Storage.prototype.clear;
+  const touchWorkingMutation = () => {
+    originalSetItem.call(localStorage, WORKING_MUTATION_AT_KEY, new Date().toISOString());
+  };
+  const shouldTrackWorkingMutation = (key) => WORKING_STATE_KEYS.includes(String(key || "")) && String(key || "") !== WORKING_MUTATION_AT_KEY;
 
   Storage.prototype.setItem = function patchedSetItem(key, value) {
     const result = originalSetItem.call(this, key, value);
+    if (this === localStorage && shouldTrackWorkingMutation(key)) {
+      touchWorkingMutation();
+    }
     if (!syncPaused && this === localStorage && shouldIncludeKey(String(key || ""))) {
       dirtySinceLastBackup = true;
       requestCloudBackup({ immediate: false });
@@ -443,6 +549,9 @@ export function ensureCloudSyncRuntime({ debounce = 5000 } = {}) {
 
   Storage.prototype.removeItem = function patchedRemoveItem(key) {
     const result = originalRemoveItem.call(this, key);
+    if (this === localStorage && shouldTrackWorkingMutation(key)) {
+      touchWorkingMutation();
+    }
     if (!syncPaused && this === localStorage && shouldIncludeKey(String(key || ""))) {
       dirtySinceLastBackup = true;
       requestCloudBackup({ immediate: false });
@@ -452,7 +561,11 @@ export function ensureCloudSyncRuntime({ debounce = 5000 } = {}) {
 
   Storage.prototype.clear = function patchedClear() {
     const hadAny = SYNC_KEYS.some((k) => this.getItem(k) !== null);
+    const hadWorking = WORKING_STATE_KEYS.some((k) => this.getItem(k) !== null && k !== WORKING_MUTATION_AT_KEY);
     const result = originalClear.call(this);
+    if (this === localStorage && hadWorking) {
+      touchWorkingMutation();
+    }
     if (!syncPaused && this === localStorage && hadAny) {
       dirtySinceLastBackup = true;
       requestCloudBackup({ immediate: false });
