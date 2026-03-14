@@ -9,6 +9,12 @@
     closeEndDay: 15,
     shiftNote: ""
   };
+  const SAFE_RESTORE_SKIP_KEYS = [
+    "tsms_reports",
+    "ops",
+    "tsms_report_current_day",
+    "tsms_confirm_force_empty"
+  ];
 
   const BACKUP_KEYS = [
     "tsms_reports",
@@ -172,6 +178,7 @@
     if(!payload.data || typeof payload.data !== "object") throw new Error("バックアップデータが見つかりません");
 
     BACKUP_KEYS.forEach((key) => {
+      if(SAFE_RESTORE_SKIP_KEYS.includes(key)) return;
       if(Object.prototype.hasOwnProperty.call(payload.data, key)){
         localStorage.setItem(key, String(payload.data[key]));
       }
@@ -185,6 +192,7 @@
   window.tsmsSettingsCore = {
     defaults,
     BACKUP_KEYS,
+    SAFE_RESTORE_SKIP_KEYS,
     applyTheme,
     loadSettings,
     saveSettings,

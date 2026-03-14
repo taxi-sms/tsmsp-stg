@@ -88,7 +88,7 @@
 
   <section class="section">
     <div class="title">バックアップ / 復元</div>
-    <div class="note">端末変更やブラウザデータ削除に備え、JSONファイルでデータを保存・復元できます。</div>
+    <div class="note">端末変更やブラウザデータ削除に備え、JSONファイルでデータを保存・復元できます。復元では作業中の日報・出庫状態は上書きしません。</div>
     <div class="actions">
       <button class="btn" id="btnExportBackup" type="button">バックアップを保存</button>
       <button class="btn" id="btnImportBackup" type="button">バックアップから復元</button>
@@ -99,7 +99,7 @@
 
   <section class="section">
     <div class="title">クラウドバックアップ / 復元</div>
-    <div class="note">ログイン中のアカウントにlocalStorage内容を保存します。復元後は画面を再読み込みします。</div>
+    <div class="note">ログイン中のアカウントにデータを保存します。復元では締め済み履歴と設定を戻し、作業中の日報・出庫状態は復元しません。</div>
     <div class="actions">
       <button class="btn" id="btnCloudBackup" type="button">クラウドへバックアップ</button>
       <button class="btn" id="btnCloudRestore" type="button">クラウドから復元</button>
@@ -311,9 +311,9 @@
       try{
         const text = await file.text();
         const payload = JSON.parse(text);
-        if(!(await window.tsmsConfirm("バックアップを復元します。現在の保存データを上書きします。よろしいですか？"))) return;
+        if(!(await window.tsmsConfirm("バックアップを復元します。締め済み履歴と設定を上書きします。作業中の日報・出庫状態は復元しません。よろしいですか？"))) return;
         restoreBackupObject(payload);
-        alert("バックアップを復元しました");
+        alert("バックアップを復元しました。作業中の日報・出庫状態は復元していません。");
       }catch(err){
         alert((err && err.message) ? err.message : "復元に失敗しました");
       }finally{
@@ -440,17 +440,19 @@ import { cloudBackup, cloudRestore } from "./cloud-store.js";
 
   if(btnCloudRestore){
     btnCloudRestore.addEventListener("click", async ()=>{
-      if(!(await window.tsmsConfirm("クラウドから復元します。現在の保存データを上書きします。よろしいですか？"))) return;
+      if(!(await window.tsmsConfirm("クラウドから復元します。締め済み履歴と設定を上書きします。作業中の日報・出庫状態は復元しません。よろしいですか？"))) return;
       btnCloudRestore.disabled = true;
       try{
         const res = await cloudRestore();
         const lines = [
           "クラウドから復元しました。画面を再読み込みします",
+          "締め済み履歴と設定を復元しました",
+          "作業中の日報・出庫状態: 復元対象外",
           `ユーザー: ${res.userId || "(取得不可)"}`,
           `復元キー数: ${res.keyCount}`,
-          `当日データ: ${res.reportCount}件`,
+          `クラウド内の当日データ: ${res.reportCount}件（未復元）`,
           `履歴データ: ${res.archiveCount}件`,
-          `現在日付キー: ${res.currentDayId || "(なし)"}`,
+          `クラウド内の日付キー: ${res.currentDayId || "(なし)"}（未復元）`,
           `クラウド更新時刻: ${res.updatedAt || "(取得不可)"}`
         ];
         alert(lines.join("\n"));

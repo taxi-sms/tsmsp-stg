@@ -7,6 +7,11 @@ const CLOUD_HISTORY_KEEP_COUNT = 30;
 const LAST_SYNC_USER_KEY = "tsms_last_sync_user_id";
 const CLOUD_LAST_SUCCESS_AT_KEY = "tsms_cloud_last_success_at";
 const CLOUD_LAST_FAILURE_AT_KEY = "tsms_cloud_last_failure_at";
+const SAFE_RESTORE_PRESERVE_KEYS = [
+  "tsms_reports",
+  "ops",
+  "tsms_report_current_day"
+];
 const SYNC_KEYS = [
   "tsms_reports",
   "tsms_reports_archive",
@@ -160,6 +165,14 @@ export function restoreLocalStorage(obj, prefix = "", options = {}) {
   }
 }
 
+function buildRestorePreserveKeys(prefix = "", preserveKeys = [], includeWorkingState = false) {
+  const merged = new Set(Array.isArray(preserveKeys) ? preserveKeys : []);
+  if (!prefix && !includeWorkingState) {
+    SAFE_RESTORE_PRESERVE_KEYS.forEach((key) => merged.add(key));
+  }
+  return Array.from(merged);
+}
+
 export async function cloudBackup(prefix = "") {
   try {
     const payload = dumpLocalStorage(prefix);
@@ -202,8 +215,10 @@ export async function cloudBackup(prefix = "") {
   }
 }
 
-export async function cloudRestore(prefix = "") {
+export async function cloudRestore(prefix = "", options = {}) {
   try {
+    const includeWorkingState = !!options.includeWorkingState;
+    const preserveKeys = buildRestorePreserveKeys(prefix, options.preserveKeys, includeWorkingState);
     const userId = await getCurrentUserId();
     const { data, error } = await supabase
       .from("app_state")
@@ -214,12 +229,14 @@ export async function cloudRestore(prefix = "") {
     if (error) throw error;
     if (!data?.value) throw new Error("クラウドにバックアップがありません。先にバックアップしてね。");
 
-    restoreLocalStorage(data.value, prefix);
+    restoreLocalStorage(data.value, prefix, { preserveKeys });
     markSyncSuccess(data?.updated_at || new Date().toISOString());
     return {
       userId,
       ...summarizePayload(data.value),
-      updatedAt: data?.updated_at || ""
+      updatedAt: data?.updated_at || "",
+      preservedKeys: preserveKeys,
+      restoredWorkingState: includeWorkingState
     };
   } catch (error) {
     markSyncFailure(error);
@@ -239,7 +256,7 @@ function hasLocalSyncedKeys(prefix = "") {
   return false;
 }
 
-export async function hydrateCloudState({ force = false, prefix = "", preserveKeys = [] } = {}) {
+export async function hydrateCloudState({ force = false, prefix = "", preserveKeys = [], includeWorkingState = false } = {}) {
   if (!force && hasLocalSyncedKeys(prefix)) {
     return { restored: false, reason: "local_data_exists" };
   }
@@ -254,8 +271,14 @@ export async function hydrateCloudState({ force = false, prefix = "", preserveKe
     return { restored: false, reason: "cloud_data_missing" };
   }
 
-  restoreLocalStorage(data.value, prefix, { preserveKeys });
-  return { restored: true, reason: "restored" };
+  const mergedPreserveKeys = buildRestorePreserveKeys(prefix, preserveKeys, includeWorkingState);
+  restoreLocalStorage(data.value, prefix, { preserveKeys: mergedPreserveKeys });
+  return {
+    restored: true,
+    reason: "restored",
+    preservedKeys: mergedPreserveKeys,
+    restoredWorkingState: !!includeWorkingState
+  };
 }
 
 export function getLastSyncedUserId() {
