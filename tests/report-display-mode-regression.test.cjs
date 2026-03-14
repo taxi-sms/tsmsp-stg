@@ -41,9 +41,8 @@ function testDetailUsesExplicitSelectionAndTestNotice() {
   assert.doesNotMatch(html, /days\[0\]/);
   assert.doesNotMatch(html, /resolveTestDayId/);
   assert.match(html, /renderEmptyState\("選択してください"\);/);
-  assert.match(html, /const hasTestOnlyRows = rows\.length > 0 && rows\.every\(\(r\)=> r && r\.__source === "test"\);/);
-  assert.match(html, /function setDetailModeNoteVisible\(visible\)\{/);
-  assert.match(html, /note\.innerHTML = visible[\s\S]*テストデータを表示中です。クラウドには保存されません。/);
+  assert.doesNotMatch(html, /detailModeNote/);
+  assert.doesNotMatch(html, /テストデータを表示中です。クラウドには保存されません。/);
 }
 
 function testTestRowsAreClearedOnDepartAndLogout() {
