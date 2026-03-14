@@ -61,7 +61,7 @@
   <section class="date-switcher wf-panel">
     <select id="detailDateSelect" aria-label="表示日付"></select>
   </section>
-  <div id="detailModeNote" class="state-note" data-state-tone="error" hidden style="display:none;">テストデータを表示中です。クラウドには保存されません。</div>
+  <div id="detailModeNote"></div>
 
   <section class="section wf-panel">
     <div class="wf-label">時間関連</div>
@@ -250,10 +250,9 @@
   function setDetailModeNoteVisible(visible){
     const note = document.getElementById("detailModeNote");
     if(!note) return;
-    note.hidden = !visible;
-    if(note.style){
-      note.style.display = visible ? "block" : "none";
-    }
+    note.innerHTML = visible
+      ? '<div class="state-note" data-state-tone="error">テストデータを表示中です。クラウドには保存されません。</div>'
+      : "";
   }
 
   function render(){

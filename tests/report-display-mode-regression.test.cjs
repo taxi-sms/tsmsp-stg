@@ -43,7 +43,7 @@ function testDetailUsesExplicitSelectionAndTestNotice() {
   assert.match(html, /renderEmptyState\("選択してください"\);/);
   assert.match(html, /const hasTestOnlyRows = rows\.length > 0 && rows\.every\(\(r\)=> r && r\.__source === "test"\);/);
   assert.match(html, /function setDetailModeNoteVisible\(visible\)\{/);
-  assert.match(html, /テストデータを表示中です。クラウドには保存されません。/);
+  assert.match(html, /note\.innerHTML = visible[\s\S]*テストデータを表示中です。クラウドには保存されません。/);
 }
 
 function testTestRowsAreClearedOnDepartAndLogout() {
