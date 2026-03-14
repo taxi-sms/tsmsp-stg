@@ -71,6 +71,7 @@
   const CONFIRM_FORCE_EMPTY_KEY = "tsms_confirm_force_empty";
   let allData = [];
   let selectedDayId = "";
+  let hasUserPickedDay = false;
 
   function yen(v){
     const n = Number(v || 0);
@@ -217,8 +218,11 @@
     let next = "";
     if(workingDayId){
       next = workingDayId;
-    }else if(selectedDayId && days.includes(selectedDayId)){
+      hasUserPickedDay = false;
+    }else if(hasUserPickedDay && selectedDayId && days.includes(selectedDayId)){
       next = selectedDayId;
+    }else{
+      localStorage.removeItem(VIEW_DAY_KEY);
     }
 
     selectedDayId = next;
@@ -351,6 +355,7 @@
 if(sel){
   sel.addEventListener("change", ()=>{
     selectedDayId = sel.value || "";
+    hasUserPickedDay = !!selectedDayId;
 
     if(selectedDayId){
       localStorage.setItem(VIEW_DAY_KEY, selectedDayId);

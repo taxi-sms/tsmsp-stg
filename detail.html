@@ -91,6 +91,7 @@
   const CONFIRM_FORCE_EMPTY_KEY = "tsms_confirm_force_empty";
   const SETTINGS_KEY = "tsms_settings";
   let selectedDayId = "";
+  let hasUserPickedDay = false;
 
   function loadJson(key, fallback){
     try{
@@ -229,8 +230,11 @@
     let next = "";
     if(workingDayId){
       next = workingDayId;
-    }else if(selectedDayId && days.includes(selectedDayId)){
+      hasUserPickedDay = false;
+    }else if(hasUserPickedDay && selectedDayId && days.includes(selectedDayId)){
       next = selectedDayId;
+    }else{
+      localStorage.removeItem(DAY_KEY);
     }
     selectedDayId = next;
     sel.value = next;
@@ -324,6 +328,7 @@
   if(sel){
     sel.addEventListener("change", ()=>{
       selectedDayId = sel.value || "";
+      hasUserPickedDay = !!selectedDayId;
       if(selectedDayId){
         localStorage.setItem(DAY_KEY, selectedDayId);
         localStorage.removeItem(CONFIRM_FORCE_EMPTY_KEY);

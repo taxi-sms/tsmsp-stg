@@ -21,7 +21,8 @@ function testConfirmUsesExplicitSelectionAndTestRows() {
   const html = read("confirm.html");
   assert.match(html, /const TEST_REPORT_KEY = "tsms_test_reports_v1";/);
   assert.match(html, /emptyOpt\.textContent = "選択してください";/);
-  assert.doesNotMatch(html, /localStorage\.getItem\(VIEW_DAY_KEY\)/);
+  assert.match(html, /let hasUserPickedDay = false;/);
+  assert.match(html, /else if\(hasUserPickedDay && selectedDayId && days\.includes\(selectedDayId\)\)/);
   assert.doesNotMatch(html, /days\.includes\(today\)/);
   assert.doesNotMatch(html, /days\[0\]/);
   assert.doesNotMatch(html, /resolveTestDayId/);
@@ -34,7 +35,8 @@ function testDetailUsesExplicitSelectionAndTestNotice() {
   const html = read("detail.html");
   assert.match(html, /const TEST_REPORT_KEY = "tsms_test_reports_v1";/);
   assert.match(html, /emptyOpt\.textContent = "選択してください";/);
-  assert.doesNotMatch(html, /localStorage\.getItem\(DAY_KEY\)/);
+  assert.match(html, /let hasUserPickedDay = false;/);
+  assert.match(html, /else if\(hasUserPickedDay && selectedDayId && days\.includes\(selectedDayId\)\)/);
   assert.doesNotMatch(html, /days\.includes\(today\)/);
   assert.doesNotMatch(html, /days\[0\]/);
   assert.doesNotMatch(html, /resolveTestDayId/);
