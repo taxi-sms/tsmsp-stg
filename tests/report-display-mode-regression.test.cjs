@@ -21,8 +21,10 @@ function testConfirmUsesExplicitSelectionAndTestRows() {
   const html = read("confirm.html");
   assert.match(html, /const TEST_REPORT_KEY = "tsms_test_reports_v1";/);
   assert.match(html, /emptyOpt\.textContent = "選択してください";/);
+  assert.doesNotMatch(html, /localStorage\.getItem\(VIEW_DAY_KEY\)/);
   assert.doesNotMatch(html, /days\.includes\(today\)/);
   assert.doesNotMatch(html, /days\[0\]/);
+  assert.doesNotMatch(html, /resolveTestDayId/);
   assert.match(html, /if\(!selectedDayId\)\{[\s\S]*選択してください/);
   assert.match(html, /state-inline" data-state-tone="error">テストデータ/);
   assert.match(html, /location\.href = `report\.html\?editTest=\$\{encodeURIComponent\(id\)\}`;/);
@@ -32,9 +34,12 @@ function testDetailUsesExplicitSelectionAndTestNotice() {
   const html = read("detail.html");
   assert.match(html, /const TEST_REPORT_KEY = "tsms_test_reports_v1";/);
   assert.match(html, /emptyOpt\.textContent = "選択してください";/);
+  assert.doesNotMatch(html, /localStorage\.getItem\(DAY_KEY\)/);
   assert.doesNotMatch(html, /days\.includes\(today\)/);
   assert.doesNotMatch(html, /days\[0\]/);
+  assert.doesNotMatch(html, /resolveTestDayId/);
   assert.match(html, /renderEmptyState\("選択してください"\);/);
+  assert.match(html, /const hasTestOnlyRows = rows\.length > 0 && rows\.every\(\(r\)=> r && r\.__source === "test"\);/);
   assert.match(html, /テストデータを表示中です。クラウドには保存されません。/);
 }
 

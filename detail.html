@@ -208,24 +208,11 @@
     return "";
   }
 
-  function resolveTestDayId(days){
-    const reports = loadReportsAll();
-    for(const row of reports){
-      if(!row || row.__source !== "test") continue;
-      const dayId = rowDayId(row);
-      if(dayId && days.includes(dayId)) return dayId;
-    }
-    return "";
-  }
-
   function syncDateSelect(){
     const sel = document.getElementById("detailDateSelect");
     if(!sel) return;
     const days = availableDays();
-    const currentDay = localStorage.getItem(DAY_KEY) || "";
-    const forceEmpty = localStorage.getItem(CONFIRM_FORCE_EMPTY_KEY) === "1";
     const workingDayId = resolveWorkingDayId(days);
-    const testDayId = resolveTestDayId(days);
 
     sel.innerHTML = "";
     const emptyOpt = document.createElement("option");
@@ -242,18 +229,11 @@
     let next = "";
     if(workingDayId){
       next = workingDayId;
-    }else if(testDayId){
-      next = testDayId;
-    }else if(!forceEmpty && currentDay && days.includes(currentDay)){
-      next = currentDay;
     }else if(selectedDayId && days.includes(selectedDayId)){
       next = selectedDayId;
     }
     selectedDayId = next;
     sel.value = next;
-    if(!next && forceEmpty){
-      localStorage.removeItem(DAY_KEY);
-    }
   }
 
   function renderEmptyState(message){
@@ -289,7 +269,7 @@
     const workMin = Math.max(0, elapsedMin - breakMin);
 
     const rows = dayId ? reports.filter((r) => rowDayId(r) === dayId) : [];
-    const hasTestRows = rows.some((r)=> r && r.__source === "test");
+    const hasTestOnlyRows = rows.length > 0 && rows.every((r)=> r && r.__source === "test");
     const tripCount = rows.length;
     const cashSum = rows.reduce((s,r)=> s + num(r.cash), 0);
     const creditSum = rows.reduce((s,r)=> s + num(r.credit), 0);
@@ -310,7 +290,7 @@
     const takeHome = salesExTax * (num(settings.walkRate)/100);
     const hourly = workMin > 0 ? (takeHome / (workMin/60)) : 0;
 
-    document.getElementById("detailModeNote").hidden = !hasTestRows;
+    document.getElementById("detailModeNote").hidden = !hasTestOnlyRows;
 
     document.getElementById("timeBox").innerHTML = [
       line("現在時刻", fmtDateTime(now)),

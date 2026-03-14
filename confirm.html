@@ -193,24 +193,12 @@
     return "";
   }
 
-  function resolveTestDayId(days){
-    for(const row of allData){
-      if(!row || row.__source !== "test") continue;
-      const dayId = rowDayId(row);
-      if(dayId && days.includes(dayId)) return dayId;
-    }
-    return "";
-  }
-
   function syncDateSelect(){
     const sel = document.getElementById("confirmDateSelect");
     if(!sel) return;
 
     const days = availableDays();
-    const currentDay = localStorage.getItem(VIEW_DAY_KEY) || "";
-    const forceEmpty = localStorage.getItem(CONFIRM_FORCE_EMPTY_KEY) === "1";
     const workingDayId = resolveWorkingDayId(days);
-    const testDayId = resolveTestDayId(days);
 
     sel.innerHTML = "";
 
@@ -229,10 +217,6 @@
     let next = "";
     if(workingDayId){
       next = workingDayId;
-    }else if(testDayId){
-      next = testDayId;
-    }else if(!forceEmpty && currentDay && days.includes(currentDay)){
-      next = currentDay;
     }else if(selectedDayId && days.includes(selectedDayId)){
       next = selectedDayId;
     }
@@ -240,9 +224,6 @@
     selectedDayId = next;
     sel.value = next;
     sel.disabled = false;
-    if(!next && forceEmpty){
-      localStorage.removeItem(VIEW_DAY_KEY);
-    }
   }
 
   function filteredDataWithIndex(){
