@@ -19,6 +19,7 @@ const SESSION_RETRY_DELAY_MS = 350;
 const OPS_KEY = "ops";
 const OPS_ARCHIVE_KEY = "ops_archive_v1";
 const FORCE_HYDRATION_ONCE_KEY = "tsms_force_hydration_once";
+const TEST_REPORT_KEY = "tsms_test_reports_v1";
 const SUBSCRIPTION_GATE_ENFORCE_KEY = "tsms_subscription_gate_enforce";
 const SUBSCRIPTION_GATE_ALLOWLIST_KEY = "tsms_subscription_gate_allowlist";
 const SUBSCRIPTION_GATE_STATE_CACHE_KEY = "tsms_subscription_state_cache_v1";
@@ -32,6 +33,9 @@ function currentPage() {
 }
 
 function redirectToLogin() {
+  try {
+    sessionStorage.removeItem(TEST_REPORT_KEY);
+  } catch (_) {}
   const loginUrl = new URL("login.html", location.href);
   const next = location.pathname + location.search + location.hash;
   loginUrl.searchParams.set("next", next || "/index.html");

@@ -63,7 +63,10 @@
 <script>
 (function(){
   const KEY = "tsms_reports";
+  const TEST_REPORT_KEY = "tsms_test_reports_v1";
   const ARCHIVE_KEY = "tsms_reports_archive";
+  const OPS_KEY = "ops";
+  const CURRENT_DAY_KEY = "tsms_report_current_day";
   const VIEW_DAY_KEY = "tsms_confirm_selected_day";
   const CONFIRM_FORCE_EMPTY_KEY = "tsms_confirm_force_empty";
   let allData = [];
@@ -86,16 +89,43 @@
     localStorage.setItem(KEY, JSON.stringify(active));
   }
 
+  function saveTest(list){
+    const normalized = Array.isArray(list) ? list : [];
+    try{
+      if(normalized.length){
+        sessionStorage.setItem(TEST_REPORT_KEY, JSON.stringify(normalized));
+      }else{
+        sessionStorage.removeItem(TEST_REPORT_KEY);
+      }
+    }catch(_){}
+  }
+
+  function loadJson(storage, key, fallback){
+    try{
+      const parsed = JSON.parse(storage.getItem(key) || "null");
+      return parsed == null ? fallback : parsed;
+    }catch(_){
+      return fallback;
+    }
+  }
+
   function load(){
     let active=[];
     let archived=[];
+    let testRows=[];
     try { active = JSON.parse(localStorage.getItem(KEY) || "[]"); }
     catch (_) { active = []; }
     try { archived = JSON.parse(localStorage.getItem(ARCHIVE_KEY) || "[]"); }
     catch (_) { archived = []; }
+    try { testRows = JSON.parse(sessionStorage.getItem(TEST_REPORT_KEY) || "[]"); }
+    catch (_) { testRows = []; }
     if(!Array.isArray(active)) active = [];
     if(!Array.isArray(archived)) archived = [];
-    allData = active.map((r)=>Object.assign({__source:"active"}, r)).concat(archived.map((r)=>Object.assign({__source:"archive"}, r)));
+    if(!Array.isArray(testRows)) testRows = [];
+    allData = active
+      .map((r)=>Object.assign({__source:"active"}, r))
+      .concat(archived.map((r)=>Object.assign({__source:"archive"}, r)))
+      .concat(testRows.map((r)=>Object.assign({__source:"test"}, r)));
   }
 
   function fallbackDayIdFromTs(ts){
@@ -141,31 +171,52 @@
       const dayId = rowDayId(r);
       if(dayId) set.add(dayId);
     });
+    const ops = loadJson(localStorage, OPS_KEY, {});
+    if(ops && typeof ops === "object" && (ops.departAt || ops.returnAt || ops.breakActive || (Array.isArray(ops.breakSessions) && ops.breakSessions.length))){
+      const opsDayId = String(ops.dayId || "").trim();
+      if(opsDayId) set.add(opsDayId);
+    }
     return Array.from(set).sort((a,b)=> b.localeCompare(a));
   }
 
-function todayLocalYmd(){
-  const d = new Date();
-  const y = d.getFullYear();
-  const m = String(d.getMonth()+1).padStart(2, "0");
-  const day = String(d.getDate()).padStart(2, "0");
-  return `${y}-${m}-${day}`;
-}
+  function resolveWorkingDayId(days){
+    const ops = loadJson(localStorage, OPS_KEY, {});
+    if(ops && typeof ops === "object" && (ops.departAt || ops.returnAt || ops.breakActive || (Array.isArray(ops.breakSessions) && ops.breakSessions.length))){
+      const opsDayId = String(ops.dayId || "").trim();
+      if(opsDayId && days.includes(opsDayId)) return opsDayId;
+    }
+
+    const currentDayId = String(localStorage.getItem(CURRENT_DAY_KEY) || "").trim();
+    const hasActiveRows = !!currentDayId && allData.some((r)=> r && r.__source === "active" && rowDayId(r) === currentDayId);
+    if(hasActiveRows && days.includes(currentDayId)) return currentDayId;
+
+    return "";
+  }
+
+  function resolveTestDayId(days){
+    for(const row of allData){
+      if(!row || row.__source !== "test") continue;
+      const dayId = rowDayId(row);
+      if(dayId && days.includes(dayId)) return dayId;
+    }
+    return "";
+  }
 
   function syncDateSelect(){
     const sel = document.getElementById("confirmDateSelect");
     if(!sel) return;
 
     const days = availableDays();
-    const today = todayLocalYmd();
     const currentDay = localStorage.getItem(VIEW_DAY_KEY) || "";
     const forceEmpty = localStorage.getItem(CONFIRM_FORCE_EMPTY_KEY) === "1";
+    const workingDayId = resolveWorkingDayId(days);
+    const testDayId = resolveTestDayId(days);
 
     sel.innerHTML = "";
 
     const emptyOpt = document.createElement("option");
     emptyOpt.value = "";
-    emptyOpt.textContent = "日付を選択";
+    emptyOpt.textContent = "選択してください";
     sel.appendChild(emptyOpt);
 
     days.forEach((dayId)=>{
@@ -176,19 +227,22 @@ function todayLocalYmd(){
     });
 
     let next = "";
-    if(!forceEmpty && currentDay && days.includes(currentDay)){
+    if(workingDayId){
+      next = workingDayId;
+    }else if(testDayId){
+      next = testDayId;
+    }else if(!forceEmpty && currentDay && days.includes(currentDay)){
       next = currentDay;
     }else if(selectedDayId && days.includes(selectedDayId)){
       next = selectedDayId;
-    }else if(!forceEmpty && days.includes(today)){
-      next = today;
-    }else if(!forceEmpty && days.length > 0){
-      next = days[0];
     }
 
     selectedDayId = next;
     sel.value = next;
     sel.disabled = false;
+    if(!next && forceEmpty){
+      localStorage.removeItem(VIEW_DAY_KEY);
+    }
   }
 
   function filteredDataWithIndex(){
@@ -205,6 +259,11 @@ function todayLocalYmd(){
     const root = document.getElementById("cards");
     if(!root) return;
 
+    if(!selectedDayId){
+      root.innerHTML = '<div class="card wf-panel"><div class="empty">選択してください</div></div>';
+      return;
+    }
+
     const rows = filteredDataWithIndex();
     if(rows.length === 0){
       root.innerHTML = '<div class="card wf-panel"><div class="empty">この日付のデータがありません</div></div>';
@@ -216,6 +275,7 @@ function todayLocalYmd(){
       const card = document.createElement("div");
       card.className = "card wf-panel";
       const lines = [];
+      if(r.__source === "test") lines.push('<div class="tag-row"><span class="state-inline" data-state-tone="error">テストデータ</span></div>');
       lines.push(`<div class="kv"><span class="label">乗車種別</span><span class="value">${esc(r.rideType||"")}</span></div>`);
       lines.push(`<div class="kv payment-row"><span class="label">支払い方法</span><span class="value">${esc(r.payMethod||"")}</span></div>`);
       if(r.ticketSub) lines.push(`<div class="kv"><span class="label">チケット区分</span><span class="value">${esc(r.ticketSub)}</span></div>`);
@@ -252,8 +312,23 @@ function todayLocalYmd(){
         return;
       }
       if(!(await window.tsmsConfirm("削除してよろしいですか？"))) return;
+      if(row && row.__source === "test"){
+        const remain = allData
+          .filter((_, listIdx)=> listIdx !== idx)
+          .filter((r)=> r && r.__source === "test")
+          .map((r)=>{
+            const c = Object.assign({}, r);
+            delete c.__source;
+            return c;
+          });
+        saveTest(remain);
+        load();
+        syncDateSelect();
+        render();
+        return;
+      }
       allData.splice(idx, 1);
-      const activeOnly = allData.filter((r)=> !r || r.__source !== "archive").map((r)=>{
+      const activeOnly = allData.filter((r)=> r && r.__source === "active").map((r)=>{
         const c = Object.assign({}, r);
         delete c.__source;
         return c;
@@ -271,6 +346,15 @@ function todayLocalYmd(){
       const row = allData[idx];
       if(row && row.__source === "archive"){
         alert("履歴データは編集できません");
+        return;
+      }
+      if(row && row.__source === "test"){
+        const id = row && row.id;
+        if(!id){
+          alert("編集対象のIDがありません");
+          return;
+        }
+        location.href = `report.html?editTest=${encodeURIComponent(id)}`;
         return;
       }
       const id = row && row.id;

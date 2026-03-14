@@ -61,6 +61,7 @@
   <section class="date-switcher wf-panel">
     <select id="detailDateSelect" aria-label="表示日付"></select>
   </section>
+  <div id="detailModeNote" class="state-note" data-state-tone="error" hidden>テストデータを表示中です。クラウドには保存されません。</div>
 
   <section class="section wf-panel">
     <div class="wf-label">時間関連</div>
@@ -81,9 +82,11 @@
 <script>
 (function(){
   const REPORT_KEY = "tsms_reports";
+  const TEST_REPORT_KEY = "tsms_test_reports_v1";
   const REPORT_ARCHIVE_KEY = "tsms_reports_archive";
   const OPS_KEY = "ops";
   const OPS_ARCHIVE_KEY = "ops_archive_v1";
+  const CURRENT_DAY_KEY = "tsms_report_current_day";
   const DAY_KEY = "tsms_detail_selected_day";
   const CONFIRM_FORCE_EMPTY_KEY = "tsms_confirm_force_empty";
   const SETTINGS_KEY = "tsms_settings";
@@ -134,9 +137,19 @@
   function loadReportsAll(){
     const active = loadJson(REPORT_KEY, []);
     const archived = loadJson(REPORT_ARCHIVE_KEY, []);
+    let testRows = [];
+    try{
+      testRows = JSON.parse(sessionStorage.getItem(TEST_REPORT_KEY) || "[]");
+    }catch(_){
+      testRows = [];
+    }
     const a = Array.isArray(active) ? active : [];
     const b = Array.isArray(archived) ? archived : [];
-    return a.concat(b);
+    const c = Array.isArray(testRows) ? testRows : [];
+    return a
+      .map((r)=> Object.assign({ __source: "active" }, r))
+      .concat(b.map((r)=> Object.assign({ __source: "archive" }, r)))
+      .concat(c.map((r)=> Object.assign({ __source: "test" }, r)));
   }
 
   function loadOpsByDayId(dayId){
@@ -180,18 +193,44 @@
     return Array.from(days).sort((a,b)=> b.localeCompare(a));
   }
 
+  function resolveWorkingDayId(days){
+    const opsCurrent = loadJson(OPS_KEY, {});
+    if(hasOpsData(opsCurrent)){
+      const dayId = String(opsCurrent.dayId || "").trim();
+      if(dayId && days.includes(dayId)) return dayId;
+    }
+
+    const currentDayId = String(localStorage.getItem(CURRENT_DAY_KEY) || "").trim();
+    const activeRows = loadJson(REPORT_KEY, []);
+    const hasActiveRows = Array.isArray(activeRows) && activeRows.some((r)=> rowDayId(r) === currentDayId);
+    if(hasActiveRows && days.includes(currentDayId)) return currentDayId;
+
+    return "";
+  }
+
+  function resolveTestDayId(days){
+    const reports = loadReportsAll();
+    for(const row of reports){
+      if(!row || row.__source !== "test") continue;
+      const dayId = rowDayId(row);
+      if(dayId && days.includes(dayId)) return dayId;
+    }
+    return "";
+  }
+
   function syncDateSelect(){
     const sel = document.getElementById("detailDateSelect");
     if(!sel) return;
     const days = availableDays();
     const currentDay = localStorage.getItem(DAY_KEY) || "";
     const forceEmpty = localStorage.getItem(CONFIRM_FORCE_EMPTY_KEY) === "1";
-    const today = localYmd();
+    const workingDayId = resolveWorkingDayId(days);
+    const testDayId = resolveTestDayId(days);
 
     sel.innerHTML = "";
     const emptyOpt = document.createElement("option");
     emptyOpt.value = "";
-    emptyOpt.textContent = "日付を選択";
+    emptyOpt.textContent = "選択してください";
     sel.appendChild(emptyOpt);
     days.forEach((dayId)=>{
       const opt = document.createElement("option");
@@ -201,22 +240,36 @@
     });
 
     let next = "";
-    if(!forceEmpty && currentDay && days.includes(currentDay)){
+    if(workingDayId){
+      next = workingDayId;
+    }else if(testDayId){
+      next = testDayId;
+    }else if(!forceEmpty && currentDay && days.includes(currentDay)){
       next = currentDay;
     }else if(selectedDayId && days.includes(selectedDayId)){
       next = selectedDayId;
-    }else if(!forceEmpty && days.includes(today)){
-      next = today;
-    }else if(!forceEmpty && days.length){
-      next = days[0];
     }
     selectedDayId = next;
     sel.value = next;
+    if(!next && forceEmpty){
+      localStorage.removeItem(DAY_KEY);
+    }
+  }
+
+  function renderEmptyState(message){
+    document.getElementById("detailModeNote").hidden = true;
+    document.getElementById("timeBox").innerHTML = `<div class="empty">${message}</div>`;
+    document.getElementById("salesBox").innerHTML = `<div class="empty">${message}</div>`;
+    document.getElementById("goBox").innerHTML = `<div class="empty">${message}</div>`;
   }
 
   function render(){
     const now = new Date();
     const dayId = selectedDayId;
+    if(!dayId){
+      renderEmptyState("選択してください");
+      return;
+    }
     const ops = loadOpsByDayId(dayId);
     const reports = loadReportsAll();
     const settings = Object.assign({ taxRate:10, feeRate:4, goFeeYen:100, walkRate:50 }, loadJson(SETTINGS_KEY, {}));
@@ -236,6 +289,7 @@
     const workMin = Math.max(0, elapsedMin - breakMin);
 
     const rows = dayId ? reports.filter((r) => rowDayId(r) === dayId) : [];
+    const hasTestRows = rows.some((r)=> r && r.__source === "test");
     const tripCount = rows.length;
     const cashSum = rows.reduce((s,r)=> s + num(r.cash), 0);
     const creditSum = rows.reduce((s,r)=> s + num(r.credit), 0);
@@ -255,6 +309,8 @@
     const salesExTax = salesInTax / (1 + num(settings.taxRate)/100);
     const takeHome = salesExTax * (num(settings.walkRate)/100);
     const hourly = workMin > 0 ? (takeHome / (workMin/60)) : 0;
+
+    document.getElementById("detailModeNote").hidden = !hasTestRows;
 
     document.getElementById("timeBox").innerHTML = [
       line("現在時刻", fmtDateTime(now)),

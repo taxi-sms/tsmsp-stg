@@ -624,6 +624,7 @@
 <script>
 (() => {
   const REPORT_KEY = "tsms_reports";
+  const TEST_REPORT_KEY = "tsms_test_reports_v1";
   const OPS_KEY = "ops";
   const CURRENT_DAY_KEY = "tsms_report_current_day";
   const CONFIRM_FORCE_EMPTY_KEY = "tsms_confirm_force_empty";
@@ -835,6 +836,26 @@
     }
   }
 
+  function loadTestReports() {
+    try {
+      const list = JSON.parse(sessionStorage.getItem(TEST_REPORT_KEY) || "[]");
+      return Array.isArray(list) ? list : [];
+    } catch (_) {
+      return [];
+    }
+  }
+
+  function saveTestReports(list) {
+    const normalized = Array.isArray(list) ? list : [];
+    try {
+      if (normalized.length) {
+        sessionStorage.setItem(TEST_REPORT_KEY, JSON.stringify(normalized));
+      } else {
+        sessionStorage.removeItem(TEST_REPORT_KEY);
+      }
+    } catch (_) {}
+  }
+
   function loadJson(key, fallback) {
     try {
       const parsed = JSON.parse(localStorage.getItem(key) || "null");
@@ -891,6 +912,10 @@
 
   function resolveSaveDayId() {
     return syncEditableDayState() || todayLocalYmd();
+  }
+
+  function hasLiveWorkState() {
+    return hasOpsData(loadJson(OPS_KEY, null));
   }
 
   function clearSelected(group) {
@@ -2439,13 +2464,20 @@ ${remaining}秒後に${countdownLabel}`;
 
     const params = new URLSearchParams(location.search);
     const editId = params.get("edit");
+    const editTestId = params.get("editTest");
+    const saveAsTest = !!editTestId || (!editId && !hasLiveWorkState());
 
-    let list = loadReports();
+    if (saveAsTest && !editTestId) {
+      if (!(await window.tsmsConfirm("まだ出庫していません。テストデータとして保存しますか？"))) return;
+    }
 
-    if (editId) {
-      const idx = list.findIndex((x) => x.id === editId);
+    let list = saveAsTest ? loadTestReports() : loadReports();
+    const targetEditId = saveAsTest ? editTestId : editId;
+
+    if (targetEditId) {
+      const idx = list.findIndex((x) => x.id === targetEditId);
       if (idx >= 0) {
-        entry.id = editId;
+        entry.id = targetEditId;
         list[idx] = entry;
       } else {
         list.unshift(entry);
@@ -2455,18 +2487,22 @@ ${remaining}秒後に${countdownLabel}`;
     }
 
     try {
-      localStorage.setItem(REPORT_KEY, JSON.stringify(list));
-      localStorage.setItem(CURRENT_DAY_KEY, entry.dayId);
-      localStorage.removeItem(CONFIRM_FORCE_EMPTY_KEY);
-      if(window.tsmsCloud && typeof window.tsmsCloud.backupNow === "function"){
-        try{
-          await Promise.race([
-            window.tsmsCloud.backupNow(),
-            new Promise((resolve)=>setTimeout(resolve, 1200))
-          ]);
-        }catch(_){ }
+      if (saveAsTest) {
+        saveTestReports(list);
+      } else {
+        localStorage.setItem(REPORT_KEY, JSON.stringify(list));
+        localStorage.setItem(CURRENT_DAY_KEY, entry.dayId);
+        localStorage.removeItem(CONFIRM_FORCE_EMPTY_KEY);
+        if(window.tsmsCloud && typeof window.tsmsCloud.backupNow === "function"){
+          try{
+            await Promise.race([
+              window.tsmsCloud.backupNow(),
+              new Promise((resolve)=>setTimeout(resolve, 1200))
+            ]);
+          }catch(_){ }
+        }
       }
-      await showResultModal("登録が完了しました", successAutoRedirectSeconds > 0 ? { autoCloseSeconds: successAutoRedirectSeconds, countdownLabel: "入力確認画面へ移動します" } : undefined);
+      await showResultModal(saveAsTest ? "テストデータを保存しました" : "登録が完了しました", successAutoRedirectSeconds > 0 ? { autoCloseSeconds: successAutoRedirectSeconds, countdownLabel: "入力確認画面へ移動します" } : undefined);
       location.href = "confirm.html";
     } catch (e) {
       await showResultModal("登録が失敗しました。");
@@ -2478,25 +2514,30 @@ ${remaining}秒後に${countdownLabel}`;
   (async function loadForEdit() {
     const params = new URLSearchParams(location.search);
     const editId = params.get("edit");
-    if (!editId) {
+    const editTestId = params.get("editTest");
+    if (!editId && !editTestId) {
       applyPayRules();
       return;
     }
 
-    let list = loadReports();
-    const entry = list.find((x) => x.id === editId);
+    const isTestEdit = !!editTestId;
+    const list = isTestEdit ? loadTestReports() : loadReports();
+    const targetEditId = editTestId || editId;
+    const entry = list.find((x) => x.id === targetEditId);
     if (!entry) {
       applyPayRules();
       return;
     }
 
-    const entryDayId = getEntryDayId(entry);
-    const editableDayId = resolveEditableDayId();
-    if (entryDayId && editableDayId && entryDayId !== editableDayId) {
-      suppressVoicePromptOnOpen = true;
-      await showResultModal("過去日のデータは日報入力画面では編集できません。");
-      location.href = "confirm.html";
-      return;
+    if (!isTestEdit) {
+      const entryDayId = getEntryDayId(entry);
+      const editableDayId = resolveEditableDayId();
+      if (entryDayId && editableDayId && entryDayId !== editableDayId) {
+        suppressVoicePromptOnOpen = true;
+        await showResultModal("過去日のデータは日報入力画面では編集できません。");
+        location.href = "confirm.html";
+        return;
+      }
     }
 
     const savedRideBase = String(entry.rideTypeBase || "").trim();

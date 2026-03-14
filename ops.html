@@ -139,6 +139,7 @@ const REPORT_KEY = "tsms_reports";
 const REPORT_ARCHIVE_KEY = "tsms_reports_archive";
 const CURRENT_DAY_KEY = "tsms_report_current_day";
 const CONFIRM_FORCE_EMPTY_KEY = "tsms_confirm_force_empty";
+const TEST_REPORT_KEY = "tsms_test_reports_v1";
 
 function nowISO(){ return new Date().toISOString(); }
 function localYmd(){
@@ -407,6 +408,7 @@ function render(){
 }
 
 btnDepart.onclick = ()=>{
+  try{ sessionStorage.removeItem(TEST_REPORT_KEY); }catch(_){}
   const d = load();
   d.departAt = nowISO();
   d.returnAt = null;
