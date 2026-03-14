@@ -61,7 +61,7 @@
   <section class="date-switcher wf-panel">
     <select id="detailDateSelect" aria-label="表示日付"></select>
   </section>
-  <div id="detailModeNote" class="state-note" data-state-tone="error" hidden>テストデータを表示中です。クラウドには保存されません。</div>
+  <div id="detailModeNote" class="state-note" data-state-tone="error" hidden style="display:none;">テストデータを表示中です。クラウドには保存されません。</div>
 
   <section class="section wf-panel">
     <div class="wf-label">時間関連</div>
@@ -241,10 +241,19 @@
   }
 
   function renderEmptyState(message){
-    document.getElementById("detailModeNote").hidden = true;
+    setDetailModeNoteVisible(false);
     document.getElementById("timeBox").innerHTML = `<div class="empty">${message}</div>`;
     document.getElementById("salesBox").innerHTML = `<div class="empty">${message}</div>`;
     document.getElementById("goBox").innerHTML = `<div class="empty">${message}</div>`;
+  }
+
+  function setDetailModeNoteVisible(visible){
+    const note = document.getElementById("detailModeNote");
+    if(!note) return;
+    note.hidden = !visible;
+    if(note.style){
+      note.style.display = visible ? "block" : "none";
+    }
   }
 
   function render(){
@@ -294,7 +303,7 @@
     const takeHome = salesExTax * (num(settings.walkRate)/100);
     const hourly = workMin > 0 ? (takeHome / (workMin/60)) : 0;
 
-    document.getElementById("detailModeNote").hidden = !hasTestOnlyRows;
+    setDetailModeNoteVisible(hasTestOnlyRows);
 
     document.getElementById("timeBox").innerHTML = [
       line("現在時刻", fmtDateTime(now)),
