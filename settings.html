@@ -99,10 +99,11 @@
 
   <section class="section">
     <div class="title">クラウドバックアップ / 復元</div>
-    <div class="note">ログイン中のアカウントにデータを保存します。復元では締め済み履歴と設定を戻し、作業中の日報・出庫状態は復元しません。</div>
+    <div class="note">ログイン中のアカウントにデータを保存します。通常の復元では締め済み履歴と設定を戻し、作業中の日報・出庫状態は復元しません。勤務中データを別端末へ引き継ぐときだけ、専用ボタンを使用してください。</div>
     <div class="actions">
       <button class="btn" id="btnCloudBackup" type="button">クラウドへバックアップ</button>
       <button class="btn" id="btnCloudRestore" type="button">クラウドから復元</button>
+      <button class="btn" id="btnCloudTakeover" type="button">作業中データを引き継ぐ</button>
     </div>
   </section>
 
@@ -407,11 +408,12 @@
 
 
 <script type="module">
-import { cloudBackup, cloudRestore } from "./cloud-store.js";
+import { cloudBackup, cloudRestore, cloudRestoreWorkingState } from "./cloud-store.js";
 
 (function(){
   const btnCloudBackup = document.getElementById("btnCloudBackup");
   const btnCloudRestore = document.getElementById("btnCloudRestore");
+  const btnCloudTakeover = document.getElementById("btnCloudTakeover");
 
   if(btnCloudBackup){
     btnCloudBackup.addEventListener("click", async ()=>{
@@ -450,9 +452,9 @@ import { cloudBackup, cloudRestore } from "./cloud-store.js";
           "作業中の日報・出庫状態: 復元対象外",
           `ユーザー: ${res.userId || "(取得不可)"}`,
           `復元キー数: ${res.keyCount}`,
-          `クラウド内の当日データ: ${res.reportCount}件（未復元）`,
+          `クラウド内の当日データ: ${res.workingReportCount}件（未復元）`,
           `履歴データ: ${res.archiveCount}件`,
-          `クラウド内の日付キー: ${res.currentDayId || "(なし)"}（未復元）`,
+          `クラウド内の日付キー: ${res.workingCurrentDayId || "(なし)"}（未復元）`,
           `クラウド更新時刻: ${res.updatedAt || "(取得不可)"}`
         ];
         alert(lines.join("\n"));
@@ -461,6 +463,29 @@ import { cloudBackup, cloudRestore } from "./cloud-store.js";
         alert((err && err.message) ? err.message : "クラウド復元に失敗しました");
       }finally{
         btnCloudRestore.disabled = false;
+      }
+    });
+  }
+
+  if(btnCloudTakeover){
+    btnCloudTakeover.addEventListener("click", async ()=>{
+      if(!(await window.tsmsConfirm("作業中のデータを別端末に引き継ぐ場合等に使用する機能です。その必要がない場合は使用しないでください。データを読み込みますか？"))) return;
+      btnCloudTakeover.disabled = true;
+      try{
+        const res = await cloudRestoreWorkingState();
+        const lines = [
+          "作業中データを読み込みました。画面を再読み込みします",
+          `作業中データ件数: ${res.reportCount}件`,
+          `作業日: ${res.currentDayId || "(なし)"}`,
+          `出庫日: ${res.opsDayId || "(なし)"}`,
+          `クラウド更新時刻: ${res.workingUpdatedAt || res.updatedAt || "(取得不可)"}`
+        ];
+        alert(lines.join("\n"));
+        location.reload();
+      }catch(err){
+        alert((err && err.message) ? err.message : "作業中データの読み込みに失敗しました");
+      }finally{
+        btnCloudTakeover.disabled = false;
       }
     });
   }

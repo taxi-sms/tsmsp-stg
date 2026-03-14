@@ -39,41 +39,153 @@ class StorageMock {
   }
 }
 
-function loadCloudStoreModule(payload) {
+function createSupabaseMock(initialRows = {}) {
+  const store = new Map();
+  Object.entries(initialRows).forEach(([key, value]) => {
+    store.set(key, {
+      key,
+      value,
+      updated_at: "2026-03-15T00:00:00Z"
+    });
+  });
+
+  function filterRows(filters) {
+    let rows = Array.from(store.values());
+    filters.forEach((filter) => {
+      if (filter.type === "eq") {
+        rows = rows.filter((row) => String(row[filter.field] || "") === String(filter.value));
+      } else if (filter.type === "like") {
+        const prefix = String(filter.value || "").replace(/%+$/g, "");
+        rows = rows.filter((row) => String(row[filter.field] || "").startsWith(prefix));
+      }
+    });
+    return rows;
+  }
+
+  function createSelectBuilder() {
+    const filters = [];
+    let orderBy = null;
+
+    const builder = {
+      select() {
+        return builder;
+      },
+      eq(field, value) {
+        filters.push({ type: "eq", field, value });
+        return builder;
+      },
+      like(field, value) {
+        filters.push({ type: "like", field, value });
+        return builder;
+      },
+      order(field, options = {}) {
+        orderBy = { field, ascending: options.ascending !== false };
+        return builder;
+      },
+      async maybeSingle() {
+        const rows = filterRows(filters);
+        if (!rows.length) return { data: null, error: null };
+        const data = rows[0];
+        return { data: { value: data.value, updated_at: data.updated_at }, error: null };
+      },
+      then(resolve, reject) {
+        let rows = filterRows(filters);
+        if (orderBy) {
+          rows.sort((a, b) => {
+            const left = String(a[orderBy.field] || "");
+            const right = String(b[orderBy.field] || "");
+            return orderBy.ascending ? left.localeCompare(right) : right.localeCompare(left);
+          });
+        }
+        const data = rows.map((row) => ({ key: row.key, updated_at: row.updated_at }));
+        return Promise.resolve({ data, error: null }).then(resolve, reject);
+      }
+    };
+
+    return builder;
+  }
+
+  return {
+    auth: {
+      getUser: async () => ({ data: { user: { id: "user-1" } } })
+    },
+    from(name) {
+      assert.strictEqual(name, "app_state");
+      return {
+        select() {
+          return createSelectBuilder();
+        },
+        upsert(row) {
+          store.set(row.key, {
+            key: row.key,
+            value: row.value,
+            updated_at: row.updated_at || "2026-03-15T00:00:00Z"
+          });
+          return {
+            select() {
+              return {
+                maybeSingle: async () => ({
+                  data: { updated_at: row.updated_at || "2026-03-15T00:00:00Z" },
+                  error: null
+                })
+              };
+            }
+          };
+        },
+        insert(row) {
+          const rows = Array.isArray(row) ? row : [row];
+          rows.forEach((item) => {
+            store.set(item.key, {
+              key: item.key,
+              value: item.value,
+              updated_at: item.updated_at || "2026-03-15T00:00:00Z"
+            });
+          });
+          return Promise.resolve({ data: null, error: null });
+        },
+        delete() {
+          return {
+            in(field, values) {
+              assert.strictEqual(field, "key");
+              (values || []).forEach((value) => store.delete(value));
+              return Promise.resolve({ data: null, error: null });
+            }
+          };
+        }
+      };
+    },
+    _store: store
+  };
+}
+
+function loadCloudStoreModule(initialRows = {}) {
   const source = read("cloud-store.js")
     .replace(/^import .*;\n/gm, "")
     .replace(/export async function /g, "async function ")
     .replace(/export function /g, "function ");
-  const wrapped = `${source}\nmodule.exports = { cloudRestore, hydrateCloudState, restoreLocalStorage };`;
+  const wrapped = `${source}\nmodule.exports = { cloudBackup, cloudRestore, cloudRestoreWorkingState, hydrateCloudState, restoreLocalStorage };`;
 
   const localStorage = new StorageMock();
+  const supabase = createSupabaseMock(initialRows);
   const context = {
     module: { exports: {} },
     exports: {},
     STORAGE_SCHEMA_VERSION_KEY: "tsms_storage_schema_version",
-    supabase: {
-      auth: {
-        getUser: async () => ({ data: { user: { id: "user-1" } } })
-      },
-      from() {
-        return {
-          select() { return this; },
-          eq() { return this; },
-          maybeSingle: async () => ({ data: { value: payload, updated_at: "2026-03-15T00:00:00Z" }, error: null })
-        };
-      }
-    },
+    supabase,
     localStorage,
     window: { dispatchEvent() {} },
     CustomEvent: function CustomEvent(name, init) {
       return { name, detail: init && init.detail };
     },
     console,
-    Storage: function Storage() {}
+    Storage: function Storage() {},
+    location: { pathname: "/settings-backup.html" },
+    setTimeout,
+    clearTimeout
   };
 
   vm.runInNewContext(wrapped, context, { filename: "cloud-store.js" });
-  return { ...context.module.exports, localStorage };
+  return { ...context.module.exports, localStorage, supabase };
 }
 
 function loadSettingsCore() {
@@ -97,18 +209,48 @@ function loadSettingsCore() {
   return { core: context.window.tsmsSettingsCore, localStorage };
 }
 
+async function testCloudBackupSplitsSafeAndWorkingSnapshots() {
+  const { cloudBackup, localStorage, supabase } = loadCloudStoreModule();
+  localStorage.setItem("tsms_reports", JSON.stringify([{ id: "r1" }]));
+  localStorage.setItem("ops", JSON.stringify({ dayId: "2026-03-15", departAt: "2026-03-15T00:00:00Z" }));
+  localStorage.setItem("tsms_report_current_day", "2026-03-15");
+  localStorage.setItem("tsms_confirm_force_empty", "1");
+  localStorage.setItem("tsms_reports_archive", JSON.stringify([{ id: "a1" }]));
+  localStorage.setItem("tsms_settings", "{\"taxRate\":8}");
+  localStorage.setItem("tsms_theme", "dark");
+  localStorage.setItem("tsms_storage_schema_version", "1");
+
+  const res = await cloudBackup();
+  const safe = supabase._store.get("localStorage_dump_v1").value;
+  const working = supabase._store.get("localStorage_working_v1").value;
+
+  assert.strictEqual(res.reportCount, 1);
+  assert.strictEqual(res.archiveCount, 1);
+  assert.strictEqual(res.currentDayId, "2026-03-15");
+  assert.strictEqual(safe.tsms_reports, undefined);
+  assert.strictEqual(safe.ops, undefined);
+  assert.strictEqual(safe.tsms_report_current_day, undefined);
+  assert.strictEqual(safe.tsms_reports_archive, JSON.stringify([{ id: "a1" }]));
+  assert.strictEqual(safe.tsms_settings, "{\"taxRate\":8}");
+  assert.strictEqual(working.tsms_reports, JSON.stringify([{ id: "r1" }]));
+  assert.strictEqual(working.tsms_report_current_day, "2026-03-15");
+  assert.strictEqual(working.tsms_confirm_force_empty, "1");
+}
+
 async function testCloudRestorePreservesWorkingState() {
-  const payload = {
-    tsms_reports: "CLOUD_REPORTS",
-    tsms_reports_archive: "CLOUD_ARCHIVE",
-    ops: "CLOUD_OPS",
-    ops_archive_v1: "CLOUD_OPS_ARCHIVE",
-    tsms_settings: "{\"taxRate\":8}",
-    tsms_report_current_day: "2026-03-13",
-    tsms_theme: "dark",
-    tsms_storage_schema_version: "1"
-  };
-  const { cloudRestore, localStorage } = loadCloudStoreModule(payload);
+  const { cloudRestore, localStorage } = loadCloudStoreModule({
+    localStorage_dump_v1: {
+      tsms_reports_archive: "CLOUD_ARCHIVE",
+      ops_archive_v1: "CLOUD_OPS_ARCHIVE",
+      tsms_settings: "{\"taxRate\":8}",
+      tsms_theme: "dark"
+    },
+    localStorage_working_v1: {
+      tsms_reports: JSON.stringify([{ id: "r1" }]),
+      ops: JSON.stringify({ dayId: "2026-03-13", departAt: "2026-03-13T00:00:00Z" }),
+      tsms_report_current_day: "2026-03-13"
+    }
+  });
 
   localStorage.setItem("tsms_reports", "LOCAL_REPORTS");
   localStorage.setItem("ops", "LOCAL_OPS");
@@ -117,6 +259,8 @@ async function testCloudRestorePreservesWorkingState() {
 
   const res = await cloudRestore();
   assert.strictEqual(res.restoredWorkingState, false);
+  assert.strictEqual(res.workingReportCount, 1);
+  assert.strictEqual(res.workingCurrentDayId, "2026-03-13");
   assert.strictEqual(localStorage.getItem("tsms_reports"), "LOCAL_REPORTS");
   assert.strictEqual(localStorage.getItem("ops"), "LOCAL_OPS");
   assert.strictEqual(localStorage.getItem("tsms_report_current_day"), "2026-03-15");
@@ -125,46 +269,50 @@ async function testCloudRestorePreservesWorkingState() {
   assert.strictEqual(localStorage.getItem("tsms_settings"), "{\"taxRate\":8}");
 }
 
+async function testCloudRestoreWorkingStateLoadsDedicatedSnapshot() {
+  const { cloudRestoreWorkingState, localStorage } = loadCloudStoreModule({
+    localStorage_dump_v1: {
+      tsms_reports_archive: "CLOUD_ARCHIVE",
+      tsms_settings: "{\"taxRate\":8}"
+    },
+    localStorage_working_v1: {
+      tsms_reports: JSON.stringify([{ id: "r1" }]),
+      ops: JSON.stringify({ dayId: "2026-03-13", departAt: "2026-03-13T00:00:00Z" }),
+      tsms_report_current_day: "2026-03-13"
+    }
+  });
+
+  await cloudRestoreWorkingState();
+  assert.strictEqual(localStorage.getItem("tsms_reports"), JSON.stringify([{ id: "r1" }]));
+  assert.strictEqual(localStorage.getItem("ops"), JSON.stringify({ dayId: "2026-03-13", departAt: "2026-03-13T00:00:00Z" }));
+  assert.strictEqual(localStorage.getItem("tsms_report_current_day"), "2026-03-13");
+  assert.strictEqual(localStorage.getItem("tsms_reports_archive"), "CLOUD_ARCHIVE");
+}
+
 async function testHydrateCloudStateSkipsWorkingStateByDefault() {
-  const payload = {
-    tsms_reports: "CLOUD_REPORTS",
-    tsms_reports_archive: "CLOUD_ARCHIVE",
-    ops: "CLOUD_OPS",
-    ops_archive_v1: "CLOUD_OPS_ARCHIVE",
-    tsms_settings: "{\"taxRate\":8}",
-    tsms_report_current_day: "2026-03-13",
-    tsms_theme: "dark",
-    tsms_storage_schema_version: "1"
-  };
-  const { hydrateCloudState, localStorage } = loadCloudStoreModule(payload);
+  const { hydrateCloudState, localStorage } = loadCloudStoreModule({
+    localStorage_dump_v1: {
+      tsms_reports_archive: "CLOUD_ARCHIVE",
+      ops_archive_v1: "CLOUD_OPS_ARCHIVE",
+      tsms_settings: "{\"taxRate\":8}",
+      tsms_theme: "dark"
+    },
+    localStorage_working_v1: {
+      tsms_reports: JSON.stringify([{ id: "r1" }]),
+      ops: JSON.stringify({ dayId: "2026-03-13", departAt: "2026-03-13T00:00:00Z" }),
+      tsms_report_current_day: "2026-03-13"
+    }
+  });
 
   const res = await hydrateCloudState({ force: true });
   assert.strictEqual(res.restored, true);
   assert.strictEqual(res.restoredWorkingState, false);
+  assert.strictEqual(res.workingCurrentDayId, "");
   assert.strictEqual(localStorage.getItem("tsms_reports"), null);
   assert.strictEqual(localStorage.getItem("ops"), null);
   assert.strictEqual(localStorage.getItem("tsms_report_current_day"), null);
   assert.strictEqual(localStorage.getItem("tsms_reports_archive"), "CLOUD_ARCHIVE");
   assert.strictEqual(localStorage.getItem("ops_archive_v1"), "CLOUD_OPS_ARCHIVE");
-}
-
-async function testCloudRestoreCanStillIncludeWorkingStateExplicitly() {
-  const payload = {
-    tsms_reports: "CLOUD_REPORTS",
-    tsms_reports_archive: "CLOUD_ARCHIVE",
-    ops: "CLOUD_OPS",
-    ops_archive_v1: "CLOUD_OPS_ARCHIVE",
-    tsms_settings: "{\"taxRate\":8}",
-    tsms_report_current_day: "2026-03-13",
-    tsms_theme: "dark",
-    tsms_storage_schema_version: "1"
-  };
-  const { cloudRestore, localStorage } = loadCloudStoreModule(payload);
-
-  await cloudRestore("", { includeWorkingState: true });
-  assert.strictEqual(localStorage.getItem("tsms_reports"), "CLOUD_REPORTS");
-  assert.strictEqual(localStorage.getItem("ops"), "CLOUD_OPS");
-  assert.strictEqual(localStorage.getItem("tsms_report_current_day"), "2026-03-13");
 }
 
 function testLocalBackupRestorePreservesWorkingState() {
@@ -173,6 +321,7 @@ function testLocalBackupRestorePreservesWorkingState() {
   localStorage.setItem("ops", "LOCAL_OPS");
   localStorage.setItem("tsms_report_current_day", "2026-03-15");
   localStorage.setItem("tsms_confirm_force_empty", "1");
+  localStorage.setItem("ops_sync_rev_v1", "LOCAL_SYNC_REV");
 
   core.restoreBackupObject({
     schema: "tsms-backup-v1",
@@ -182,6 +331,7 @@ function testLocalBackupRestorePreservesWorkingState() {
       ops: "CLOUD_OPS",
       tsms_report_current_day: "2026-03-13",
       tsms_confirm_force_empty: "0",
+      ops_sync_rev_v1: "CLOUD_SYNC_REV",
       tsms_settings: "{\"taxRate\":8}",
       tsms_theme: "dark"
     }
@@ -191,28 +341,34 @@ function testLocalBackupRestorePreservesWorkingState() {
   assert.strictEqual(localStorage.getItem("ops"), "LOCAL_OPS");
   assert.strictEqual(localStorage.getItem("tsms_report_current_day"), "2026-03-15");
   assert.strictEqual(localStorage.getItem("tsms_confirm_force_empty"), "1");
+  assert.strictEqual(localStorage.getItem("ops_sync_rev_v1"), "LOCAL_SYNC_REV");
   assert.strictEqual(localStorage.getItem("tsms_reports_archive"), "CLOUD_ARCHIVE");
   assert.strictEqual(localStorage.getItem("tsms_settings"), "{\"taxRate\":8}");
   assert.strictEqual(localStorage.getItem("tsms_theme"), "dark");
 }
 
-function testRestoreCopyWarnsWorkingStateIsSkipped() {
+function testRestoreCopyWarnsAndExposesTakeover() {
   const settings = read("settings.html");
   const backup = read("settings-backup.html");
 
-  assert.match(settings, /作業中の日報・出庫状態は復元しません/);
-  assert.match(settings, /クラウド内の当日データ: \$\{res\.reportCount\}件（未復元）/);
-  assert.match(backup, /作業中の日報・出庫状態は復元しません/);
-  assert.match(backup, /クラウド内の当日データ: \$\{res\.reportCount\}件（未復元）/);
+  assert.match(settings, /id="btnCloudTakeover"/);
+  assert.match(settings, /作業中のデータを別端末に引き継ぐ場合等に使用する機能です。その必要がない場合は使用しないでください。データを読み込みますか？/);
+  assert.match(settings, /クラウド内の当日データ: \$\{res\.workingReportCount\}件（未復元）/);
+  assert.match(settings, /作業中データを読み込みました。画面を再読み込みします/);
+  assert.match(backup, /id="btnCloudTakeover"/);
+  assert.match(backup, /作業中のデータを別端末に引き継ぐ場合等に使用する機能です。その必要がない場合は使用しないでください。データを読み込みますか？/);
+  assert.match(backup, /クラウド内の当日データ: \$\{res\.workingReportCount\}件（未復元）/);
+  assert.match(backup, /作業中データを読み込みました。画面を再読み込みします/);
 }
 
 async function runTests() {
   const tests = [
+    ["クラウド保存の current 分離", testCloudBackupSplitsSafeAndWorkingSnapshots],
     ["クラウド復元の作業中データ保護", testCloudRestorePreservesWorkingState],
+    ["専用引き継ぎで current 復元", testCloudRestoreWorkingStateLoadsDedicatedSnapshot],
     ["自動 hydration の作業中データ保護", testHydrateCloudStateSkipsWorkingStateByDefault],
-    ["明示指定時の current 復元許可", testCloudRestoreCanStillIncludeWorkingStateExplicitly],
     ["端末バックアップ復元の作業中データ保護", testLocalBackupRestorePreservesWorkingState],
-    ["復元UI文言の警告", testRestoreCopyWarnsWorkingStateIsSkipped]
+    ["復元UI文言と引き継ぎボタン", testRestoreCopyWarnsAndExposesTakeover]
   ];
 
   let passed = 0;

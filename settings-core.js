@@ -13,7 +13,8 @@
     "tsms_reports",
     "ops",
     "tsms_report_current_day",
-    "tsms_confirm_force_empty"
+    "tsms_confirm_force_empty",
+    "ops_sync_rev_v1"
   ];
 
   const BACKUP_KEYS = [

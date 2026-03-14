@@ -2,16 +2,19 @@ import { supabase } from "./supabase-client.js";
 import { STORAGE_SCHEMA_VERSION_KEY } from "./storage-schema.js";
 
 const CLOUD_KEY = "localStorage_dump_v1";
-const CLOUD_HISTORY_PREFIX = `${CLOUD_KEY}:history:`;
+const CLOUD_WORKING_KEY = "localStorage_working_v1";
 const CLOUD_HISTORY_KEEP_COUNT = 30;
 const LAST_SYNC_USER_KEY = "tsms_last_sync_user_id";
 const CLOUD_LAST_SUCCESS_AT_KEY = "tsms_cloud_last_success_at";
 const CLOUD_LAST_FAILURE_AT_KEY = "tsms_cloud_last_failure_at";
-const SAFE_RESTORE_PRESERVE_KEYS = [
+const WORKING_STATE_KEYS = [
   "tsms_reports",
   "ops",
-  "tsms_report_current_day"
+  "tsms_report_current_day",
+  "tsms_confirm_force_empty",
+  "ops_sync_rev_v1"
 ];
+const SAFE_RESTORE_PRESERVE_KEYS = WORKING_STATE_KEYS.slice();
 const SYNC_KEYS = [
   "tsms_reports",
   "tsms_reports_archive",
@@ -28,6 +31,7 @@ const SYNC_KEYS = [
   "tsms_theme",
   STORAGE_SCHEMA_VERSION_KEY
 ];
+const SAFE_SNAPSHOT_KEYS = SYNC_KEYS.filter((key) => !WORKING_STATE_KEYS.includes(key));
 
 let autoSyncInstalled = false;
 let debounceMs = 5000;
@@ -89,12 +93,14 @@ function summarizePayload(payload) {
   const keys = Object.keys(payload || {});
   const reports = safeJsonParse(payload?.tsms_reports || "[]", []);
   const archive = safeJsonParse(payload?.tsms_reports_archive || "[]", []);
+  const ops = safeJsonParse(payload?.ops || "null", null);
   return {
     keyCount: keys.length,
     keys,
     reportCount: Array.isArray(reports) ? reports.length : 0,
     archiveCount: Array.isArray(archive) ? archive.length : 0,
-    currentDayId: String(payload?.tsms_report_current_day || "")
+    currentDayId: String(payload?.tsms_report_current_day || ""),
+    opsDayId: String((ops && ops.dayId) || "")
   };
 }
 
@@ -107,17 +113,17 @@ async function getCurrentUserId() {
   }
 }
 
-function buildHistoryKey() {
+function buildHistoryKey(baseKey = CLOUD_KEY) {
   const iso = new Date().toISOString().replace(/[^\dTZ]/g, "");
   const rand = Math.random().toString(36).slice(2, 8);
-  return `${CLOUD_HISTORY_PREFIX}${iso}_${rand}`;
+  return `${baseKey}:history:${iso}_${rand}`;
 }
 
-async function pruneCloudHistory() {
+async function pruneCloudHistory(baseKey = CLOUD_KEY) {
   const { data, error } = await supabase
     .from("app_state")
     .select("key,updated_at")
-    .like("key", `${CLOUD_HISTORY_PREFIX}%`)
+    .like("key", `${baseKey}:history:%`)
     .order("updated_at", { ascending: false });
 
   if (error || !Array.isArray(data)) return;
@@ -143,19 +149,31 @@ export function dumpLocalStorage(prefix = "") {
   return obj;
 }
 
+function dumpSelectedKeys(keys) {
+  const obj = {};
+  (Array.isArray(keys) ? keys : []).forEach((key) => {
+    const value = localStorage.getItem(key);
+    if (value !== null) obj[key] = value;
+  });
+  return obj;
+}
+
 export function restoreLocalStorage(obj, prefix = "", options = {}) {
   const preserveKeys = new Set(Array.isArray(options.preserveKeys) ? options.preserveKeys : []);
-  if (prefix) {
-    const remove = [];
-    for (let i = 0; i < localStorage.length; i++) {
-      const k = localStorage.key(i);
-      if (k && k.startsWith(prefix) && !preserveKeys.has(k)) remove.push(k);
+  const shouldClearExisting = options.clearExisting !== false;
+  if (shouldClearExisting) {
+    if (prefix) {
+      const remove = [];
+      for (let i = 0; i < localStorage.length; i++) {
+        const k = localStorage.key(i);
+        if (k && k.startsWith(prefix) && !preserveKeys.has(k)) remove.push(k);
+      }
+      remove.forEach((k) => localStorage.removeItem(k));
+    } else {
+      SYNC_KEYS.forEach((k) => {
+        if (!preserveKeys.has(k)) localStorage.removeItem(k);
+      });
     }
-    remove.forEach((k) => localStorage.removeItem(k));
-  } else {
-    SYNC_KEYS.forEach((k) => {
-      if (!preserveKeys.has(k)) localStorage.removeItem(k);
-    });
   }
 
   for (const [k, v] of Object.entries(obj || {})) {
@@ -173,41 +191,77 @@ function buildRestorePreserveKeys(prefix = "", preserveKeys = [], includeWorking
   return Array.from(merged);
 }
 
+async function upsertCloudSnapshot(baseKey, payload) {
+  const timestamp = new Date().toISOString();
+  const { data, error } = await supabase
+    .from("app_state")
+    .upsert(
+      { key: baseKey, value: payload, updated_at: timestamp },
+      { onConflict: "user_id,key" }
+    )
+    .select("updated_at")
+    .maybeSingle();
+
+  if (error) throw error;
+
+  let historyKey = "";
+  try {
+    historyKey = buildHistoryKey(baseKey);
+    await supabase
+      .from("app_state")
+      .insert({ key: historyKey, value: payload, updated_at: timestamp });
+    await pruneCloudHistory(baseKey);
+  } catch (_) {
+    historyKey = "";
+  }
+
+  return {
+    updatedAt: data?.updated_at || timestamp,
+    historyKey
+  };
+}
+
+async function fetchCloudSnapshot(baseKey) {
+  const { data, error } = await supabase
+    .from("app_state")
+    .select("value,updated_at")
+    .eq("key", baseKey)
+    .maybeSingle();
+
+  if (error) throw error;
+  return {
+    value: data?.value && typeof data.value === "object" ? data.value : null,
+    updatedAt: data?.updated_at || ""
+  };
+}
+
 export async function cloudBackup(prefix = "") {
   try {
-    const payload = dumpLocalStorage(prefix);
+    const payload = prefix ? dumpLocalStorage(prefix) : dumpSelectedKeys(SAFE_SNAPSHOT_KEYS);
+    const workingPayload = prefix ? {} : dumpSelectedKeys(WORKING_STATE_KEYS);
     const summary = summarizePayload(payload);
+    const workingSummary = summarizePayload(workingPayload);
     const userId = await getCurrentUserId();
-    const historyKey = buildHistoryKey();
-
-    const { data, error } = await supabase
-      .from("app_state")
-      .upsert(
-        { key: CLOUD_KEY, value: payload, updated_at: new Date().toISOString() },
-        { onConflict: "user_id,key" }
-      )
-      .select("updated_at")
-      .maybeSingle();
-
-    if (error) throw error;
-
-    // Keep historical snapshots for rollback; best effort and non-blocking for the main backup.
-    try {
-      await supabase
-        .from("app_state")
-        .insert({ key: historyKey, value: payload, updated_at: new Date().toISOString() });
-      await pruneCloudHistory();
-    } catch (_) {}
-
-    const updatedAt = data?.updated_at || new Date().toISOString();
+    const snapshot = await upsertCloudSnapshot(CLOUD_KEY, payload);
+    const workingSnapshot = prefix ? { updatedAt: "", historyKey: "" } : await upsertCloudSnapshot(CLOUD_WORKING_KEY, workingPayload);
+    const updatedAt = snapshot.updatedAt || workingSnapshot.updatedAt || new Date().toISOString();
     markSyncSuccess(updatedAt);
 
     return {
       userId,
       ...summary,
+      reportCount: workingSummary.reportCount,
+      currentDayId: workingSummary.currentDayId,
+      opsDayId: workingSummary.opsDayId,
       updatedAt,
-      historyKey,
-      historyKeepCount: CLOUD_HISTORY_KEEP_COUNT
+      historyKey: snapshot.historyKey,
+      historyKeepCount: CLOUD_HISTORY_KEEP_COUNT,
+      workingKeyCount: workingSummary.keyCount,
+      workingReportCount: workingSummary.reportCount,
+      workingCurrentDayId: workingSummary.currentDayId,
+      workingOpsDayId: workingSummary.opsDayId,
+      workingUpdatedAt: workingSnapshot.updatedAt || "",
+      workingHistoryKey: workingSnapshot.historyKey || ""
     };
   } catch (error) {
     markSyncFailure(error);
@@ -220,28 +274,42 @@ export async function cloudRestore(prefix = "", options = {}) {
     const includeWorkingState = !!options.includeWorkingState;
     const preserveKeys = buildRestorePreserveKeys(prefix, options.preserveKeys, includeWorkingState);
     const userId = await getCurrentUserId();
-    const { data, error } = await supabase
-      .from("app_state")
-      .select("value,updated_at")
-      .eq("key", CLOUD_KEY)
-      .maybeSingle();
+    const safeSnapshot = await fetchCloudSnapshot(CLOUD_KEY);
+    if (!safeSnapshot.value) throw new Error("クラウドにバックアップがありません。先にバックアップしてね。");
+    const workingSnapshot = (!prefix) ? await fetchCloudSnapshot(CLOUD_WORKING_KEY) : { value: null, updatedAt: "" };
+    const safeSummary = summarizePayload(safeSnapshot.value);
+    const workingSummary = summarizePayload(workingSnapshot.value || {});
 
-    if (error) throw error;
-    if (!data?.value) throw new Error("クラウドにバックアップがありません。先にバックアップしてね。");
-
-    restoreLocalStorage(data.value, prefix, { preserveKeys });
-    markSyncSuccess(data?.updated_at || new Date().toISOString());
+    restoreLocalStorage(safeSnapshot.value, prefix, { preserveKeys });
+    if (includeWorkingState && !prefix && workingSnapshot.value) {
+      restoreLocalStorage(workingSnapshot.value, prefix, {
+        preserveKeys: Array.isArray(options.preserveKeys) ? options.preserveKeys : [],
+        clearExisting: false
+      });
+    }
+    markSyncSuccess(safeSnapshot.updatedAt || workingSnapshot.updatedAt || new Date().toISOString());
     return {
       userId,
-      ...summarizePayload(data.value),
-      updatedAt: data?.updated_at || "",
+      ...safeSummary,
+      reportCount: includeWorkingState ? workingSummary.reportCount : safeSummary.reportCount,
+      currentDayId: includeWorkingState ? workingSummary.currentDayId : safeSummary.currentDayId,
+      opsDayId: includeWorkingState ? workingSummary.opsDayId : safeSummary.opsDayId,
+      updatedAt: safeSnapshot.updatedAt || "",
+      workingUpdatedAt: workingSnapshot.updatedAt || "",
+      workingReportCount: workingSummary.reportCount,
+      workingCurrentDayId: workingSummary.currentDayId,
+      workingOpsDayId: workingSummary.opsDayId,
       preservedKeys: preserveKeys,
-      restoredWorkingState: includeWorkingState
+      restoredWorkingState: includeWorkingState && !!workingSnapshot.value
     };
   } catch (error) {
     markSyncFailure(error);
     throw error;
   }
+}
+
+export async function cloudRestoreWorkingState(prefix = "", options = {}) {
+  return cloudRestore(prefix, { ...options, includeWorkingState: true });
 }
 
 export function clearSyncedLocalState(prefix = "") {
@@ -260,24 +328,29 @@ export async function hydrateCloudState({ force = false, prefix = "", preserveKe
   if (!force && hasLocalSyncedKeys(prefix)) {
     return { restored: false, reason: "local_data_exists" };
   }
-  const { data, error } = await supabase
-    .from("app_state")
-    .select("value")
-    .eq("key", CLOUD_KEY)
-    .maybeSingle();
-
-  if (error) throw error;
-  if (!data?.value || typeof data.value !== "object") {
+  const safeSnapshot = await fetchCloudSnapshot(CLOUD_KEY);
+  if (!safeSnapshot.value) {
     return { restored: false, reason: "cloud_data_missing" };
   }
+  const workingSnapshot = (!prefix && includeWorkingState) ? await fetchCloudSnapshot(CLOUD_WORKING_KEY) : { value: null };
 
   const mergedPreserveKeys = buildRestorePreserveKeys(prefix, preserveKeys, includeWorkingState);
-  restoreLocalStorage(data.value, prefix, { preserveKeys: mergedPreserveKeys });
+  restoreLocalStorage(safeSnapshot.value, prefix, { preserveKeys: mergedPreserveKeys });
+  if (!prefix && includeWorkingState && workingSnapshot.value) {
+    restoreLocalStorage(workingSnapshot.value, prefix, {
+      preserveKeys: Array.isArray(preserveKeys) ? preserveKeys : [],
+      clearExisting: false
+    });
+  }
+  const workingSummary = summarizePayload(workingSnapshot.value || {});
   return {
     restored: true,
     reason: "restored",
     preservedKeys: mergedPreserveKeys,
-    restoredWorkingState: !!includeWorkingState
+    restoredWorkingState: !!includeWorkingState && !!workingSnapshot.value,
+    workingReportCount: workingSummary.reportCount,
+    workingCurrentDayId: workingSummary.currentDayId,
+    workingOpsDayId: workingSummary.opsDayId
   };
 }
 
