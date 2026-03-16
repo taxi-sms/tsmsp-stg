@@ -124,9 +124,10 @@ function testSettingsHubPagesExist() {
   assert.match(home, /settings-backup\.html/);
   assert.match(home, /settings-account\.html/);
   assert.match(home, /旧 settings\.html/);
+  assert.match(home, /id="themeMode"/);
   assert.match(report, /data-save-redirect="settings-home\.html"/);
   assert.match(report, /変更を保存して設定トップへ戻る/);
-  assert.match(calc, /id="themeMode"/);
+  assert.doesNotMatch(calc, /id="themeMode"/);
   assert.match(calc, /id="btnSaveCalcHome"/);
   assert.match(period, /id="closeStartDay"/);
   assert.match(period, /id="btnResetPeriod"/);

@@ -39,15 +39,7 @@
 <main class="main">
   <section class="section">
     <div class="title">歩率・計算設定</div>
-    <div class="note">詳細確認ページや月間管理の計算で使う設定です。テーマ設定もここで変更できます。</div>
-
-    <div class="field">
-      <div class="label">表示モード</div>
-      <select class="input" id="themeMode">
-        <option value="light">ライトモード（Soft Light）</option>
-        <option value="dark">ダークモード（Soft Dark）</option>
-      </select>
-    </div>
+    <div class="note">詳細確認ページや月間管理の計算で使う設定です。</div>
 
     <div class="field"><div class="label">消費税率（%）</div><input class="input" id="taxRate" inputmode="decimal"></div>
     <div class="field"><div class="label">決済手数料率（%）</div><input class="input" id="feeRate" inputmode="decimal"></div>
@@ -67,7 +59,6 @@
   if(!core) return;
   const showAlert = (message) => window.tsmsAlert ? window.tsmsAlert(message) : (alert(String(message || "")), Promise.resolve());
   const els = {
-    themeMode: document.getElementById("themeMode"),
     taxRate: document.getElementById("taxRate"),
     feeRate: document.getElementById("feeRate"),
     goFeeYen: document.getElementById("goFeeYen"),
@@ -76,13 +67,6 @@
 
   core.fillCalcFields(els, core.loadSettings());
   core.applyTheme(localStorage.getItem("tsms_theme") || "light");
-
-  if(els.themeMode){
-    els.themeMode.addEventListener("change", () => {
-      core.applyTheme(els.themeMode.value);
-      core.persistCalcSettings(els);
-    });
-  }
 
   document.getElementById("btnSaveCalcHome").addEventListener("click", async () => {
     try{

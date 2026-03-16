@@ -15,6 +15,7 @@
   <script>(function(){try{var t=localStorage.getItem("tsms_theme")==="dark"?"dark":"light";document.documentElement.setAttribute("data-theme",t);var m=document.querySelector('meta[name="theme-color"]');if(m)m.setAttribute("content",t==="dark"?"#0F1417":"#F3F6F8");}catch(e){}})();</script>
   <script type="module" src="auth-guard.js?v=20260223-5"></script>
   <script src="./custom-confirm.js"></script>
+  <script src="./settings-core.js"></script>
   <link rel="stylesheet" href="./tsms-design.css?v=20260227-3">
 </head>
 <body class="page-block-unified page-main-wide">
@@ -36,6 +37,18 @@
 </header>
 
 <main class="main">
+  <section class="section">
+    <div class="title">表示モード</div>
+    <div class="note">アプリ全体の表示を切り替えます。変更するとすぐ反映されます。</div>
+    <div class="field">
+      <div class="label">テーマ</div>
+      <select class="input" id="themeMode">
+        <option value="light">ライトモード（Soft Light）</option>
+        <option value="dark">ダークモード（Soft Dark）</option>
+      </select>
+    </div>
+  </section>
+
   <section class="section">
     <div class="title">設定カテゴリ</div>
     <div class="note">設定内容ごとにページを分けています。変更したい項目に入ってください。</div>
@@ -67,6 +80,19 @@
     </div>
   </section>
 </main>
+
+<script>
+(function(){
+  const core = window.tsmsSettingsCore;
+  const themeMode = document.getElementById("themeMode");
+  if(!core || !themeMode) return;
+  core.fillCalcFields({ themeMode }, core.loadSettings());
+  core.applyTheme(localStorage.getItem("tsms_theme") || "light");
+  themeMode.addEventListener("change", () => {
+    core.applyTheme(themeMode.value);
+  });
+})();
+</script>
 
 <script>(function(){if('serviceWorker' in navigator && location.protocol.indexOf('http')===0){window.addEventListener('load', function(){navigator.serviceWorker.register('./sw.js?v=20260228-1').catch(function(){});});}})();</script>
 
