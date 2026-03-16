@@ -125,6 +125,9 @@ function testSettingsHubPagesExist() {
   assert.match(home, /settings-account\.html/);
   assert.match(home, /旧 settings\.html/);
   assert.match(home, /id="themeMode"/);
+  assert.match(home, /terms\.html/);
+  assert.match(home, /privacy\.html/);
+  assert.match(home, /commerce\.html/);
   assert.match(report, /data-save-redirect="settings-home\.html"/);
   assert.match(report, /変更を保存して設定トップへ戻る/);
   assert.doesNotMatch(calc, /id="themeMode"/);
@@ -133,8 +136,14 @@ function testSettingsHubPagesExist() {
   assert.match(period, /id="btnResetPeriod"/);
   assert.match(backup, /id="btnExportBackup"/);
   assert.match(backup, /id="btnCloudRestore"/);
+  assert.doesNotMatch(backup, /terms\.html/);
+  assert.doesNotMatch(backup, /privacy\.html/);
+  assert.doesNotMatch(backup, /commerce\.html/);
   assert.match(account, /id="subscriptionStatus"/);
   assert.match(account, /id="btnDeleteAccount"/);
+  assert.doesNotMatch(account, /terms\.html/);
+  assert.doesNotMatch(account, /privacy\.html/);
+  assert.doesNotMatch(account, /commerce\.html/);
   assert.match(guard, /settings-account\.html\?subscription=required/);
 }
 
