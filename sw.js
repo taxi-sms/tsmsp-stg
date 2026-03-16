@@ -1,4 +1,4 @@
-const CACHE_NAME = 'tsms-cache-v246';
+const CACHE_NAME = 'tsms-cache-v247';
 const ASSETS = [
   './',
   './index.html',
@@ -27,7 +27,9 @@ const ASSETS = [
   './sw.js',
   './icon.png',
   './icon-192.png',
+  './icon-192-maskable.png',
   './icon-512.png',
+  './icon-512-maskable.png',
   './apple-touch-icon.png',
   './favicon.ico',
   './favicon.svg',
