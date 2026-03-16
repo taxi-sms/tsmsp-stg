@@ -63,10 +63,9 @@
       font-size:var(--font-lg);
     }
     .brand{
-      display:flex;
-      justify-content:center;
-      align-items:flex-end;
-      gap:var(--space-2);
+      display:grid;
+      justify-items:center;
+      gap:6px;
       padding:18px 0 0;
     }
     .brand-main{
@@ -74,6 +73,13 @@
       font-size:50px;
       letter-spacing:.04em;
       line-height:1;
+    }
+    .brand-sub{
+      font-size:var(--font-lg);
+      line-height:1.2;
+      font-weight:800;
+      letter-spacing:.18em;
+      color:var(--text-muted);
     }
     #cacheVersionInline.brand-cache{
       display:block;
@@ -91,7 +97,8 @@
   <header class="header">ログイン</header>
   <main class="main auth-main">
     <div class="brand" aria-label="アプリタイトル">
-      <div class="brand-main">TSMs</div>
+      <div class="brand-main">タクろぐ</div>
+      <div class="brand-sub">TAXI LOG</div>
     </div>
     <div id="cacheVersionInline" class="brand-cache" aria-label="cache-version"></div>
 

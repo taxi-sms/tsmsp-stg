@@ -4,15 +4,21 @@
     return m ? m[1] : '';
   }
 
+  function formatCacheName(name){
+    if(!name) return '';
+    return name.replace(/^tsms-cache-/, 'cache-');
+  }
+
   function renderCacheName(name){
-    if(!name) return;
+    var displayName = formatCacheName(name);
+    if(!displayName) return;
     var inline = document.getElementById('cacheVersionInline');
     if(inline){
-      inline.textContent = name;
+      inline.textContent = displayName;
       return;
     }
     var el = document.createElement('div');
-    el.textContent = name;
+    el.textContent = displayName;
     el.setAttribute('aria-label', 'cache-version');
     var hasBottomNav = !!document.querySelector('.tsms-bottom-nav');
     var bottomGap = hasBottomNav ? '66px' : '8px';
