@@ -63,6 +63,10 @@ function testPagesNoLongerCarryUnifiedShellBlocks() {
   }
 
   assert.doesNotMatch(read("settings.html"), /<style>/);
+  assert.doesNotMatch(read("report.html"), /<style/);
+  assert.doesNotMatch(read("confirm.html"), /<style/);
+  assert.doesNotMatch(read("detail.html"), /<style/);
+  assert.doesNotMatch(read("settings2.html"), /<style/);
   assert.doesNotMatch(read("sales.html"), /<style>\s*:root/);
   assert.doesNotMatch(read("confirm.html"), /confirm-page-tweaks/);
   assert.doesNotMatch(read("detail.html"), /date-switcher label/);
@@ -72,7 +76,8 @@ function testPageWidthModifiersExist() {
   assert.match(read("sales.html"), /<body class="page-block-unified page-main-xl">/);
   assert.match(read("settings.html"), /<body class="page-block-unified page-main-wide">/);
   assert.match(read("index.html"), /<section class="card section-boxed" aria-label="勤務カレンダー">/);
-  assert.match(read("confirm.html"), /\.actions\.entry-actions \.actionBtn\{[\s\S]*min-height:32px;[\s\S]*padding:6px 10px;[\s\S]*font-size:var\(--font-md\);/);
+  assert.match(read("confirm.html"), /<body class="page-block-unified confirm-page">/);
+  assert.match(css, /:where\(\.confirm-page\) \.actions\.entry-actions \.actionBtn \{[\s\S]*min-height: 32px;[\s\S]*padding: 6px 10px;[\s\S]*font-size: var\(--font-md\);/);
 }
 
 function testHeaderActionGrammarIsUnified() {
