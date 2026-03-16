@@ -22,6 +22,8 @@ function testConfirmUsesExplicitSelectionAndTestRows() {
   assert.match(html, /const TEST_REPORT_KEY = "tsms_test_reports_v1";/);
   assert.match(html, /emptyOpt\.textContent = "選択してください";/);
   assert.match(html, /let hasUserPickedDay = false;/);
+  assert.match(html, /const hasTestRows = !!currentDayId && allData\.some\(\(r\)=> r && r\.__source === "test" && rowDayId\(r\) === currentDayId\);/);
+  assert.match(html, /if\(hasTestRows && days\.includes\(currentDayId\)\) return currentDayId;/);
   assert.match(html, /else if\(hasUserPickedDay && selectedDayId && days\.includes\(selectedDayId\)\)/);
   assert.doesNotMatch(html, /days\.includes\(today\)/);
   assert.doesNotMatch(html, /days\[0\]/);
@@ -36,6 +38,8 @@ function testDetailUsesExplicitSelectionAndTestNotice() {
   assert.match(html, /const TEST_REPORT_KEY = "tsms_test_reports_v1";/);
   assert.match(html, /emptyOpt\.textContent = "選択してください";/);
   assert.match(html, /let hasUserPickedDay = false;/);
+  assert.match(html, /const hasTestRows = !!currentDayId && reports\.some\(\(r\)=> r && r\.__source === "test" && rowDayId\(r\) === currentDayId\);/);
+  assert.match(html, /if\(hasTestRows && days\.includes\(currentDayId\)\) return currentDayId;/);
   assert.match(html, /else if\(hasUserPickedDay && selectedDayId && days\.includes\(selectedDayId\)\)/);
   assert.doesNotMatch(html, /days\.includes\(today\)/);
   assert.doesNotMatch(html, /days\[0\]/);

@@ -196,6 +196,8 @@
     const currentDayId = String(localStorage.getItem(CURRENT_DAY_KEY) || "").trim();
     const hasActiveRows = !!currentDayId && allData.some((r)=> r && r.__source === "active" && rowDayId(r) === currentDayId);
     if(hasActiveRows && days.includes(currentDayId)) return currentDayId;
+    const hasTestRows = !!currentDayId && allData.some((r)=> r && r.__source === "test" && rowDayId(r) === currentDayId);
+    if(hasTestRows && days.includes(currentDayId)) return currentDayId;
 
     return "";
   }

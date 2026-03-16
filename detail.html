@@ -205,6 +205,9 @@
     const activeRows = loadJson(REPORT_KEY, []);
     const hasActiveRows = Array.isArray(activeRows) && activeRows.some((r)=> rowDayId(r) === currentDayId);
     if(hasActiveRows && days.includes(currentDayId)) return currentDayId;
+    const reports = loadReportsAll();
+    const hasTestRows = !!currentDayId && reports.some((r)=> r && r.__source === "test" && rowDayId(r) === currentDayId);
+    if(hasTestRows && days.includes(currentDayId)) return currentDayId;
 
     return "";
   }
