@@ -55,11 +55,16 @@
 
   <section class="section">
     <div class="title">アカウント</div>
-    <div class="note">パスワード変更は専用画面で行います。退会時は現在のパスワード確認が必要です。</div>
     <div class="actions">
-      <a class="btn" href="reset-password.html?mode=change" style="display:flex;align-items:center;justify-content:center;text-decoration:none;">パスワード変更画面へ</a>
-      <input class="input" id="accountDeletePassword" type="password" autocomplete="current-password" placeholder="退会確認: 現在のパスワード" style="grid-column:1 / -1;">
-      <button class="btn" id="btnDeleteAccount" type="button" style="grid-column:1 / -1;">アカウントを削除（退会）</button>
+      <a class="btn" href="reset-password.html?mode=change" style="display:flex;align-items:center;justify-content:center;text-decoration:none;grid-column:1 / -1;">アカウントパスワード変更</a>
+    </div>
+    <div class="field">
+      <div class="label">アカウント削除</div>
+      <div class="note state-note" data-state-tone="warning">アカウントを削除（退会）出来ます。退会する場合はパスワードを入力してアカウントを削除（退会）ボタンを押してください。アカウント削除後は復旧出来ませんのでご注意ください。</div>
+      <input class="input" id="accountDeletePassword" type="password" autocomplete="current-password" placeholder="現在のパスワード">
+    </div>
+    <div class="actions">
+      <button class="btn danger" id="btnDeleteAccount" type="button" style="grid-column:1 / -1;">アカウントを削除（退会）</button>
     </div>
   </section>
 

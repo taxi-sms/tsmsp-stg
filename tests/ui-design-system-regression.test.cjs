@@ -143,6 +143,10 @@ function testSettingsHubPagesExist() {
   assert.doesNotMatch(backup, /commerce\.html/);
   assert.match(account, /id="subscriptionStatus"/);
   assert.match(account, /id="btnDeleteAccount"/);
+  assert.match(account, /アカウントパスワード変更/);
+  assert.match(account, /<div class="label">アカウント削除<\/div>/);
+  assert.match(account, /data-state-tone="warning">アカウントを削除（退会）出来ます。/);
+  assert.match(account, /class="btn danger" id="btnDeleteAccount"/);
   assert.doesNotMatch(account, /terms\.html/);
   assert.doesNotMatch(account, /privacy\.html/);
   assert.doesNotMatch(account, /commerce\.html/);
