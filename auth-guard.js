@@ -83,6 +83,20 @@ function sleep(ms) {
   return new Promise((resolve) => setTimeout(resolve, ms));
 }
 
+async function showAlert(message) {
+  const text = String(message || "");
+  if (!text) return;
+  if (window.tsmsAlert) {
+    try {
+      await window.tsmsAlert(text);
+      return;
+    } catch (_) {}
+  }
+  try {
+    alert(text);
+  } catch (_) {}
+}
+
 function parseSubscriptionGateAllowlist() {
   try {
     const raw = localStorage.getItem(SUBSCRIPTION_GATE_ALLOWLIST_KEY);
@@ -168,9 +182,7 @@ async function runSubscriptionGate(userId) {
     window.tsmsSubscription = { checked: true, enforced: true, active, state };
     if (active) return true;
 
-    try {
-      alert("契約状態の確認が必要です。設定画面から契約状態をご確認ください。");
-    } catch (_) {}
+    await showAlert("契約状態の確認が必要です。設定画面から契約状態をご確認ください。");
     location.replace(new URL("settings-account.html?subscription=required", location.href).toString());
     return false;
   } catch (_) {
@@ -187,9 +199,7 @@ async function runSubscriptionGate(userId) {
     }
 
     window.tsmsSubscription = { checked: true, enforced: true, active: false, reason: "check_failed_closed" };
-    try {
-      alert("契約状態の確認に失敗しました。設定画面から再確認してください。");
-    } catch (_) {}
+    await showAlert("契約状態の確認に失敗しました。設定画面から再確認してください。");
     location.replace(new URL("settings-account.html?subscription=required", location.href).toString());
     return false;
   }
@@ -229,7 +239,7 @@ function installIdleLogout() {
         }
       } catch (e) {
         const msg = lockErrorMessage(e) || "自動ログアウト前のクラウド保存に失敗しました。ログイン状態を維持します。";
-        try { alert(msg); } catch (_) {}
+        await showAlert(msg);
       } finally {
         firing = false;
         schedule();
@@ -305,7 +315,7 @@ async function guard() {
     } catch (e) {
       setLastSyncedUserId(userId);
       const msg = lockErrorMessage(e) || "クラウド同期に失敗したため、自動復元を中止しました。設定画面から再試行してください。";
-      try { alert(msg); } catch (_) {}
+      await showAlert(msg);
       sessionStorage.removeItem(reloadMarker);
       window.tsmsCloud = {
         backupNow: () => requestCloudBackup({ immediate: true }),

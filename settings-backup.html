@@ -72,6 +72,7 @@
 (function(){
   const core = window.tsmsSettingsCore;
   if(!core) return;
+  const showAlert = (message) => window.tsmsAlert ? window.tsmsAlert(message) : (alert(String(message || "")), Promise.resolve());
   core.applyTheme(localStorage.getItem("tsms_theme") || "light");
 
   const btnExport = document.getElementById("btnExportBackup");
@@ -89,9 +90,9 @@
         const payload = JSON.parse(text);
         if(!(await window.tsmsConfirm("バックアップを復元します。締め済み履歴と設定を上書きします。作業中の日報・出庫状態は復元しません。よろしいですか？"))) return;
         core.restoreBackupObject(payload);
-        alert("バックアップを復元しました。作業中の日報・出庫状態は復元していません。");
+        await showAlert("バックアップを復元しました。作業中の日報・出庫状態は復元していません。");
       }catch(err){
-        alert((err && err.message) ? err.message : "復元に失敗しました");
+        await showAlert((err && err.message) ? err.message : "復元に失敗しました");
       }finally{
         fileInput.value = "";
       }
@@ -107,6 +108,7 @@ import { cloudBackup, cloudRestore, cloudRestoreWorkingState } from "./cloud-sto
   const btnCloudBackup = document.getElementById("btnCloudBackup");
   const btnCloudRestore = document.getElementById("btnCloudRestore");
   const btnCloudTakeover = document.getElementById("btnCloudTakeover");
+  const showAlert = (message) => window.tsmsAlert ? window.tsmsAlert(message) : (alert(String(message || "")), Promise.resolve());
 
   if(btnCloudBackup){
     btnCloudBackup.addEventListener("click", async () => {
@@ -124,9 +126,9 @@ import { cloudBackup, cloudRestore, cloudRestoreWorkingState } from "./cloud-sto
           `履歴スナップショット: ${res.historyKey || "(保存失敗)"}`,
           `履歴保持上限: ${res.historyKeepCount || "-"}世代`
         ];
-        alert(lines.join("\n"));
+        await showAlert(lines.join("\n"));
       }catch(err){
-        alert((err && err.message) ? err.message : "クラウドバックアップに失敗しました");
+        await showAlert((err && err.message) ? err.message : "クラウドバックアップに失敗しました");
       }finally{
         btnCloudBackup.disabled = false;
       }
@@ -150,10 +152,10 @@ import { cloudBackup, cloudRestore, cloudRestoreWorkingState } from "./cloud-sto
           `クラウド内の日付キー: ${res.workingCurrentDayId || "(なし)"}（未復元）`,
           `クラウド更新時刻: ${res.updatedAt || "(取得不可)"}`
         ];
-        alert(lines.join("\n"));
+        await showAlert(lines.join("\n"));
         location.reload();
       }catch(err){
-        alert((err && err.message) ? err.message : "クラウド復元に失敗しました");
+        await showAlert((err && err.message) ? err.message : "クラウド復元に失敗しました");
       }finally{
         btnCloudRestore.disabled = false;
       }
@@ -173,10 +175,10 @@ import { cloudBackup, cloudRestore, cloudRestoreWorkingState } from "./cloud-sto
           `出庫日: ${res.opsDayId || "(なし)"}`,
           `クラウド更新時刻: ${res.workingUpdatedAt || res.updatedAt || "(取得不可)"}`
         ];
-        alert(lines.join("\n"));
+        await showAlert(lines.join("\n"));
         location.reload();
       }catch(err){
-        alert((err && err.message) ? err.message : "作業中データの読み込みに失敗しました");
+        await showAlert((err && err.message) ? err.message : "作業中データの読み込みに失敗しました");
       }finally{
         btnCloudTakeover.disabled = false;
       }

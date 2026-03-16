@@ -1075,6 +1075,7 @@
   function showResultModal(message, opts) {
     const options = (opts && typeof opts === "object") ? opts : {};
     if (!resultModalBg || !resultModalIcon || !resultModalMessage || !resultModalCloseBtn) {
+      if (window.tsmsAlert) return window.tsmsAlert(String(message || ""));
       alert(String(message || ""));
       return Promise.resolve();
     }
@@ -2422,14 +2423,14 @@ ${remaining}秒後に${countdownLabel}`;
     const rideType = getRideTypeValue();
     const payMethod = getPayMethodValue();
     if (!rideType || !payMethod) {
-      alert("乗車種別と支払方法を選んでください");
+      await window.tsmsAlert("乗車種別と支払方法を選んでください");
       return;
     }
 
     const cash = (inCash.value || "").trim();
     const credit = (inCredit.value || "").trim();
     if (!cash && !credit) {
-      alert("現収か未収のどちらかに金額を入力してください");
+      await window.tsmsAlert("現収か未収のどちらかに金額を入力してください");
       return;
     }
 

@@ -73,6 +73,12 @@
   let selectedDayId = "";
   let hasUserPickedDay = false;
 
+  function showAlert(message){
+    if (window.tsmsAlert) return window.tsmsAlert(message);
+    alert(String(message || ""));
+    return Promise.resolve();
+  }
+
   function yen(v){
     const n = Number(v || 0);
     return n.toLocaleString("ja-JP") + "円";
@@ -293,7 +299,7 @@
     if(action === "delete"){
       const row = allData[idx];
       if(row && row.__source === "archive"){
-        alert("履歴データはここでは削除できません");
+        await showAlert("履歴データはここでは削除できません");
         return;
       }
       if(!(await window.tsmsConfirm("削除してよろしいですか？"))) return;
@@ -330,13 +336,13 @@
     if(action === "edit"){
       const row = allData[idx];
       if(row && row.__source === "archive"){
-        alert("履歴データは編集できません");
+        await showAlert("履歴データは編集できません");
         return;
       }
       if(row && row.__source === "test"){
         const id = row && row.id;
         if(!id){
-          alert("編集対象のIDがありません");
+          await showAlert("編集対象のIDがありません");
           return;
         }
         location.href = `report.html?editTest=${encodeURIComponent(id)}`;
@@ -344,7 +350,7 @@
       }
       const id = row && row.id;
       if(!id){
-        alert("編集対象のIDがありません");
+        await showAlert("編集対象のIDがありません");
         return;
       }
       location.href = `report.html?edit=${encodeURIComponent(id)}`;

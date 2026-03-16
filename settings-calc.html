@@ -65,6 +65,7 @@
 (function(){
   const core = window.tsmsSettingsCore;
   if(!core) return;
+  const showAlert = (message) => window.tsmsAlert ? window.tsmsAlert(message) : (alert(String(message || "")), Promise.resolve());
   const els = {
     themeMode: document.getElementById("themeMode"),
     taxRate: document.getElementById("taxRate"),
@@ -83,21 +84,21 @@
     });
   }
 
-  document.getElementById("btnSaveCalcHome").addEventListener("click", () => {
+  document.getElementById("btnSaveCalcHome").addEventListener("click", async () => {
     try{
       core.persistCalcSettings(els);
       location.href = "settings-home.html";
     }catch(_){
-      alert("保存に失敗しました。入力内容をご確認ください。");
+      await showAlert("保存に失敗しました。入力内容をご確認ください。");
     }
   });
 
-  document.getElementById("btnSaveCalcDetail").addEventListener("click", () => {
+  document.getElementById("btnSaveCalcDetail").addEventListener("click", async () => {
     try{
       core.persistCalcSettings(els);
       location.href = "detail.html";
     }catch(_){
-      alert("保存に失敗しました。入力内容をご確認ください。");
+      await showAlert("保存に失敗しました。入力内容をご確認ください。");
     }
   });
 })();

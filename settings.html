@@ -267,6 +267,7 @@
   const current = load();
   fill(current);
   applyTheme(localStorage.getItem("tsms_theme") || "light");
+  const showAlert = (message) => window.tsmsAlert ? window.tsmsAlert(message) : (alert(String(message || "")), Promise.resolve());
   if(els.themeMode){
     els.themeMode.addEventListener("change", ()=>{
       applyTheme(els.themeMode.value);
@@ -276,20 +277,20 @@
   const btnSaveCalc = document.getElementById("btnSaveCalc");
   const btnSaveShift = document.getElementById("btnSaveShift");
   const btnReset = document.getElementById("btnReset");
-  if(btnSaveCalc) btnSaveCalc.addEventListener("click", ()=>{
+  if(btnSaveCalc) btnSaveCalc.addEventListener("click", async ()=>{
     try{
       persistCurrentSettings();
       location.href = "detail.html";
     }catch(e){
-      alert("保存に失敗しました。入力内容をご確認ください。");
+      await showAlert("保存に失敗しました。入力内容をご確認ください。");
     }
   });
-  if(btnSaveShift) btnSaveShift.addEventListener("click", ()=>{
+  if(btnSaveShift) btnSaveShift.addEventListener("click", async ()=>{
     try{
       persistCurrentSettings();
       location.href = "sales.html";
     }catch(e){
-      alert("保存に失敗しました。入力内容をご確認ください。");
+      await showAlert("保存に失敗しました。入力内容をご確認ください。");
     }
   });
   if(btnReset) btnReset.addEventListener("click", async ()=>{
@@ -314,9 +315,9 @@
         const payload = JSON.parse(text);
         if(!(await window.tsmsConfirm("バックアップを復元します。締め済み履歴と設定を上書きします。作業中の日報・出庫状態は復元しません。よろしいですか？"))) return;
         restoreBackupObject(payload);
-        alert("バックアップを復元しました。作業中の日報・出庫状態は復元していません。");
+        await showAlert("バックアップを復元しました。作業中の日報・出庫状態は復元していません。");
       }catch(err){
-        alert((err && err.message) ? err.message : "復元に失敗しました");
+        await showAlert((err && err.message) ? err.message : "復元に失敗しました");
       }finally{
         fileInput.value = "";
       }
@@ -414,6 +415,7 @@ import { cloudBackup, cloudRestore, cloudRestoreWorkingState } from "./cloud-sto
   const btnCloudBackup = document.getElementById("btnCloudBackup");
   const btnCloudRestore = document.getElementById("btnCloudRestore");
   const btnCloudTakeover = document.getElementById("btnCloudTakeover");
+  const showAlert = (message) => window.tsmsAlert ? window.tsmsAlert(message) : (alert(String(message || "")), Promise.resolve());
 
   if(btnCloudBackup){
     btnCloudBackup.addEventListener("click", async ()=>{
@@ -431,9 +433,9 @@ import { cloudBackup, cloudRestore, cloudRestoreWorkingState } from "./cloud-sto
           `履歴スナップショット: ${res.historyKey || "(保存失敗)"}`,
           `履歴保持上限: ${res.historyKeepCount || "-"}世代`
         ];
-        alert(lines.join("\n"));
+        await showAlert(lines.join("\n"));
       }catch(err){
-        alert((err && err.message) ? err.message : "クラウドバックアップに失敗しました");
+        await showAlert((err && err.message) ? err.message : "クラウドバックアップに失敗しました");
       }finally{
         btnCloudBackup.disabled = false;
       }
@@ -457,10 +459,10 @@ import { cloudBackup, cloudRestore, cloudRestoreWorkingState } from "./cloud-sto
           `クラウド内の日付キー: ${res.workingCurrentDayId || "(なし)"}（未復元）`,
           `クラウド更新時刻: ${res.updatedAt || "(取得不可)"}`
         ];
-        alert(lines.join("\n"));
+        await showAlert(lines.join("\n"));
         location.reload();
       }catch(err){
-        alert((err && err.message) ? err.message : "クラウド復元に失敗しました");
+        await showAlert((err && err.message) ? err.message : "クラウド復元に失敗しました");
       }finally{
         btnCloudRestore.disabled = false;
       }
@@ -480,10 +482,10 @@ import { cloudBackup, cloudRestore, cloudRestoreWorkingState } from "./cloud-sto
           `出庫日: ${res.opsDayId || "(なし)"}`,
           `クラウド更新時刻: ${res.workingUpdatedAt || res.updatedAt || "(取得不可)"}`
         ];
-        alert(lines.join("\n"));
+        await showAlert(lines.join("\n"));
         location.reload();
       }catch(err){
-        alert((err && err.message) ? err.message : "作業中データの読み込みに失敗しました");
+        await showAlert((err && err.message) ? err.message : "作業中データの読み込みに失敗しました");
       }finally{
         btnCloudTakeover.disabled = false;
       }
@@ -510,6 +512,8 @@ import { fetchCurrentSubscriptionState, isSubscriptionActive } from "./subscript
   const SUBSCRIPTION_SYNC_WAIT_DELAY_MS = 2000;
   const SUBSCRIPTION_STATE_RETRY_COUNT = 2;
   const SUBSCRIPTION_STATE_RETRY_DELAY_MS = 400;
+  const showAlert = (message) => window.tsmsAlert ? window.tsmsAlert(message) : (alert(String(message || "")), Promise.resolve());
+  const showConfirm = (message) => window.tsmsConfirm ? window.tsmsConfirm(message) : Promise.resolve(window.confirm(message));
 
   function removeSubscriptionQuery() {
     if (!params.has("subscription")) return;
@@ -568,15 +572,15 @@ import { fetchCurrentSubscriptionState, isSubscriptionActive } from "./subscript
     return false;
   }
 
-  function showCheckoutFlowMessage() {
+  async function showCheckoutFlowMessage() {
     const mode = params.get("subscription");
     if (mode === "success") {
-      alert("決済が完了しました。契約状態を更新します。");
+      await showAlert("決済が完了しました。契約状態を更新します。");
       removeSubscriptionQuery();
       return mode;
     }
     if (mode === "cancel") {
-      alert("決済はキャンセルされました。");
+      await showAlert("決済はキャンセルされました。");
       removeSubscriptionQuery();
       return mode;
     }
@@ -888,7 +892,7 @@ import { fetchCurrentSubscriptionState, isSubscriptionActive } from "./subscript
       const msg = String(err && err.message ? err.message : "");
       const alreadySubscribed = Number(err?.status || 0) === 409 || msg.includes("subscription_already_exists");
       if (alreadySubscribed) {
-        alert("既に有効な契約があるため、新しい決済は開始できません。契約/支払い情報の管理からご確認ください。");
+        await showAlert("既に有効な契約があるため、新しい決済は開始できません。契約/支払い情報の管理からご確認ください。");
         await refreshSubscriptionState();
         return;
       }
@@ -899,7 +903,7 @@ import { fetchCurrentSubscriptionState, isSubscriptionActive } from "./subscript
         : "";
       const reason = await summarizeCheckoutError(err);
       console.error("checkout_start_failed", { err, reason });
-      alert(`決済ページの起動に失敗しました。時間をおいて再試行してください。${hint}${reason ? `\n原因: ${reason}` : ""}`);
+      await showAlert(`決済ページの起動に失敗しました。時間をおいて再試行してください。${hint}${reason ? `\n原因: ${reason}` : ""}`);
     } finally {
       if (!redirected) {
         checkoutPending = false;
@@ -927,9 +931,9 @@ import { fetchCurrentSubscriptionState, isSubscriptionActive } from "./subscript
       const msg = String(err && err.message ? err.message : "");
       const noCustomer = Number(err?.status || 0) === 400 || msg.includes("billing_customer_not_found");
       if (noCustomer) {
-        alert("契約情報が見つかりません。未契約の場合は先に月額プランを開始してください。");
+        await showAlert("契約情報が見つかりません。未契約の場合は先に月額プランを開始してください。");
       } else {
-        alert("契約管理ページの起動に失敗しました。時間をおいて再試行してください。");
+        await showAlert("契約管理ページの起動に失敗しました。時間をおいて再試行してください。");
       }
     } finally {
       if (!redirected) {
@@ -943,13 +947,11 @@ import { fetchCurrentSubscriptionState, isSubscriptionActive } from "./subscript
     if (!deleteBtn || !deletePasswordInput) return;
     const password = String(deletePasswordInput.value || "");
     if (!password) {
-      alert("退会には現在のパスワード入力が必要です。");
+      await showAlert("退会には現在のパスワード入力が必要です。");
       return;
     }
 
-    const firstConfirm = window.tsmsConfirm
-      ? await window.tsmsConfirm("アカウントを削除します。保存済みデータと契約情報は復元できません。続行しますか？")
-      : window.confirm("アカウントを削除します。保存済みデータと契約情報は復元できません。続行しますか？");
+    const firstConfirm = await showConfirm("アカウントを削除します。保存済みデータと契約情報は復元できません。続行しますか？");
     if (!firstConfirm) return;
 
     deleteBtn.disabled = true;
@@ -963,9 +965,7 @@ import { fetchCurrentSubscriptionState, isSubscriptionActive } from "./subscript
       const { error: signInError } = await supabase.auth.signInWithPassword({ email, password });
       if (signInError) throw new Error("password_mismatch");
 
-      const secondConfirm = window.tsmsConfirm
-        ? await window.tsmsConfirm("最終確認: 本当に退会しますか？")
-        : window.confirm("最終確認: 本当に退会しますか？");
+      const secondConfirm = await showConfirm("最終確認: 本当に退会しますか？");
       if (!secondConfirm) return;
 
       const accessToken = await resolveAccessToken();
@@ -973,18 +973,18 @@ import { fetchCurrentSubscriptionState, isSubscriptionActive } from "./subscript
 
       try { localStorage.clear(); } catch (_) {}
       try { sessionStorage.clear(); } catch (_) {}
-      alert("アカウントを削除しました。");
+      await showAlert("アカウントを削除しました。");
       location.replace("login.html?deleted=1");
     } catch (err) {
       const msg = String(err && err.message ? err.message : "");
       if (msg.includes("password_mismatch")) {
-        alert("現在のパスワードが一致しません。");
+        await showAlert("現在のパスワードが一致しません。");
       } else if (msg.includes("missing_session")) {
-        alert("セッションが確認できません。再ログイン後に再試行してください。");
+        await showAlert("セッションが確認できません。再ログイン後に再試行してください。");
       } else if (msg.includes("cancel_subscription_failed")) {
-        alert("Stripeの契約停止に失敗したため、退会処理を中断しました。時間をおいて再試行してください。");
+        await showAlert("Stripeの契約停止に失敗したため、退会処理を中断しました。時間をおいて再試行してください。");
       } else {
-        alert("退会処理に失敗しました。時間をおいて再試行してください。");
+        await showAlert("退会処理に失敗しました。時間をおいて再試行してください。");
       }
     } finally {
       deleteBtn.disabled = false;
@@ -1002,11 +1002,11 @@ import { fetchCurrentSubscriptionState, isSubscriptionActive } from "./subscript
 
   async function initializeSubscriptionSection() {
     setGateNoticeIfNeeded();
-    const checkoutFlow = showCheckoutFlowMessage();
+    const checkoutFlow = await showCheckoutFlowMessage();
     if (checkoutFlow === "success") {
       const active = await refreshSubscriptionState({ waitForSync: true });
       if (!active) {
-        alert("決済完了後の契約反映が遅延しています。30秒ほど待って再読み込みしてください。");
+        await showAlert("決済完了後の契約反映が遅延しています。30秒ほど待って再読み込みしてください。");
       }
       return;
     }

@@ -57,6 +57,7 @@
 (function(){
   const core = window.tsmsSettingsCore;
   if(!core) return;
+  const showAlert = (message) => window.tsmsAlert ? window.tsmsAlert(message) : (alert(String(message || "")), Promise.resolve());
   const els = {
     closeStartDay: document.getElementById("closeStartDay"),
     closeEndDay: document.getElementById("closeEndDay"),
@@ -66,21 +67,21 @@
   core.fillPeriodFields(els, core.loadSettings());
   core.applyTheme(localStorage.getItem("tsms_theme") || "light");
 
-  document.getElementById("btnSavePeriodHome").addEventListener("click", () => {
+  document.getElementById("btnSavePeriodHome").addEventListener("click", async () => {
     try{
       core.persistPeriodSettings(els);
       location.href = "settings-home.html";
     }catch(_){
-      alert("保存に失敗しました。入力内容をご確認ください。");
+      await showAlert("保存に失敗しました。入力内容をご確認ください。");
     }
   });
 
-  document.getElementById("btnSavePeriodSales").addEventListener("click", () => {
+  document.getElementById("btnSavePeriodSales").addEventListener("click", async () => {
     try{
       core.persistPeriodSettings(els);
       location.href = "sales.html";
     }catch(_){
-      alert("保存に失敗しました。入力内容をご確認ください。");
+      await showAlert("保存に失敗しました。入力内容をご確認ください。");
     }
   });
 

@@ -295,6 +295,7 @@ window.addEventListener("storage", (e) => {
 
 function showResultModal(message, isSuccess){
   if(!resultModalBg || !resultModalIcon || !resultModalMessage || !resultModalCloseBtn){
+    if(window.tsmsAlert) return window.tsmsAlert(String(message || ""));
     alert(String(message || ""));
     return Promise.resolve();
   }
@@ -554,7 +555,7 @@ btnReset.onclick = async ()=>{
       await window.tsmsCloud.logout();
       return;
     }catch(e){
-      alert("ログアウトに失敗しました。いったんそのままご利用ください。");
+      await window.tsmsAlert("ログアウトに失敗しました。いったんそのままご利用ください。");
     }
   }
 

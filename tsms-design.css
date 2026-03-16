@@ -1170,12 +1170,25 @@ select.input {
   color: var(--text-primary) !important;
   line-height: 1.5;
   word-break: break-word;
+  white-space: pre-line;
 }
 
 .tsms-confirm-actions {
   display: grid;
   grid-template-columns: 1fr 1fr;
   gap: 8px;
+}
+
+.tsms-confirm-card[data-mode="alert"] {
+  width: min(420px, 100%);
+}
+
+.tsms-confirm-card[data-mode="alert"] .tsms-confirm-title {
+  text-align: center;
+}
+
+.tsms-confirm-card[data-mode="alert"] .tsms-confirm-actions {
+  grid-template-columns: 1fr;
 }
 
 /* ============================================================

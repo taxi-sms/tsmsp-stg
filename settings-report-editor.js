@@ -1,7 +1,8 @@
-(function(){
+(async function(){
+  const showAlert = (message) => window.tsmsAlert ? window.tsmsAlert(message) : (alert(String(message || "")), Promise.resolve());
   const api = window.tsmsReportFieldSettings;
   if(!api){
-    alert("入力項目設定の読み込みに失敗しました。");
+    await showAlert("入力項目設定の読み込みに失敗しました。");
     return;
   }
 
@@ -158,11 +159,11 @@
     else modalCashFlag.checked = true;
   }
 
-  function saveModalChanges(){
+  async function saveModalChanges(){
     if(!activeEdit) return;
     const nextName = String(modalNameInput.value || "").trim();
     if(!nextName){
-      alert("ボタン名を入力してください。");
+      await showAlert("ボタン名を入力してください。");
       modalNameInput.focus();
       return;
     }
@@ -202,7 +203,7 @@
         saveStatus.dataset.stateTone = "error";
         saveStatus.textContent = `ローカル保存は完了しましたが、クラウド反映に失敗しました。(${reason})`;
       }
-      alert("保存はローカルへ反映しましたが、クラウド反映に失敗しました。ネットワークやログイン状態を確認して再度お試しください。");
+      await showAlert("保存はローカルへ反映しましたが、クラウド反映に失敗しました。ネットワークやログイン状態を確認して再度お試しください。");
       saveBtn.disabled = false;
       saveBtn.textContent = "変更を保存して設定に戻る";
     }

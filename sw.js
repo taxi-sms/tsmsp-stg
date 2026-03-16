@@ -1,4 +1,4 @@
-const CACHE_NAME = 'tsms-cache-v235';
+const CACHE_NAME = 'tsms-cache-v236';
 const ASSETS = [
   './',
   './index.html',
@@ -8,6 +8,7 @@ const ASSETS = [
   './ops.html',
   './sales.html',
   './settings.html',
+  './settings2.html',
   './settings-home.html',
   './settings-report.html',
   './settings-calc.html',
@@ -32,6 +33,8 @@ const ASSETS = [
   './favicon.svg',
   './cache-version.js',
   './tsms-design.css',
+  './custom-confirm.js',
+  './auth-guard.js',
   './settings-core.js',
   './settings-shell.js',
   './settings-report-editor.js',
