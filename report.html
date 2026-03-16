@@ -2490,6 +2490,8 @@ ${remaining}秒後に${countdownLabel}`;
     try {
       if (saveAsTest) {
         saveTestReports(list);
+        localStorage.setItem(CURRENT_DAY_KEY, entry.dayId);
+        localStorage.removeItem(CONFIRM_FORCE_EMPTY_KEY);
       } else {
         localStorage.setItem(REPORT_KEY, JSON.stringify(list));
         localStorage.setItem(CURRENT_DAY_KEY, entry.dayId);

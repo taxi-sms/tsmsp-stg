@@ -14,6 +14,7 @@ function testReportStoresUndepartedEntriesInSession() {
   assert.match(html, /window\.tsmsConfirm\("まだ出庫していません。テストデータとして保存しますか？"\)/);
   assert.match(html, /const saveAsTest = !!editTestId \|\| \(!editId && !hasLiveWorkState\(\)\);/);
   assert.match(html, /sessionStorage\.setItem\(TEST_REPORT_KEY, JSON\.stringify\(normalized\)\)/);
+  assert.match(html, /if \(saveAsTest\) \{[\s\S]*localStorage\.setItem\(CURRENT_DAY_KEY, entry\.dayId\);[\s\S]*localStorage\.removeItem\(CONFIRM_FORCE_EMPTY_KEY\);/);
   assert.match(html, /showResultModal\(saveAsTest \? "テストデータを保存しました" : "登録が完了しました"/);
 }
 
