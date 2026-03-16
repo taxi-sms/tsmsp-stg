@@ -92,6 +92,8 @@ function testPagesUseSharedStateDisplayGrammar() {
   assert.match(read("ops.html"), /id="opsSyncMeta" data-state-tone="neutral" aria-live="polite">最終クラウド同期: --<\/div>/);
   assert.match(read("ops.html"), /opsSyncMeta\.dataset\.stateTone = "success";/);
   assert.match(read("ops.html"), /opsSyncMeta\.dataset\.stateTone = "error";/);
+  assert.match(read("detail.html"), /id="detailModeNote"/);
+  assert.match(read("detail.html"), /state-note" data-state-tone="error">テストデータを表示中です。クラウドには保存されません。/);
   assert.match(read("settings.html"), /id="subscriptionNote" data-state-tone="neutral" aria-live="polite">/);
   assert.match(read("settings.html"), /id="subscriptionStatus" data-state-tone="info" aria-live="polite">確認中\.\.\.<\/div>/);
   assert.match(read("settings.html"), /function setStateTone\(el, tone\)/);
