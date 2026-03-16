@@ -78,6 +78,8 @@ function testPageWidthModifiersExist() {
   assert.match(read("index.html"), /<section class="card section-boxed" aria-label="勤務カレンダー">/);
   assert.match(read("confirm.html"), /<body class="page-block-unified confirm-page">/);
   assert.match(css, /:where\(\.confirm-page\) \.actions\.entry-actions \.actionBtn \{[\s\S]*min-height: 32px;[\s\S]*padding: 6px 10px;[\s\S]*font-size: var\(--font-md\);/);
+  assert.match(css, /:where\(\.report-entry-page\),[\s\S]*--legacy-page-border: #999;/);
+  assert.match(css, /body:where\(\.report-entry-page\),[\s\S]*background: var\(--bg\);[\s\S]*color: var\(--text-primary\);/);
 }
 
 function testHeaderActionGrammarIsUnified() {

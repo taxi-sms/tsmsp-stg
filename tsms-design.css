@@ -190,10 +190,9 @@
    ============================================================ */
 :where(.report-entry-page),
 :where(.settings-report-legacy-page) {
-  --bg: #fff;
-  --text: #111;
-  --muted: #666;
-  --border: #999;
+  --legacy-page-text: #111;
+  --legacy-page-muted: #666;
+  --legacy-page-border: #999;
 }
 
 body:where(.report-entry-page),
@@ -201,14 +200,14 @@ body:where(.settings-report-legacy-page) {
   margin: 0;
   padding: 0;
   background: var(--bg);
-  color: var(--text);
+  color: var(--text-primary);
   font-family: "Noto Sans JP", sans-serif;
   font-size: 18px;
 }
 
 :where(.report-entry-page) .note {
   font-size: 13px;
-  color: var(--muted);
+  color: var(--legacy-page-muted);
   line-height: 1.35;
   margin: 8px 0;
 }
@@ -233,13 +232,13 @@ body:where(.settings-report-legacy-page) {
 :where(.report-entry-page) .wf-label::after {
   content: "";
   flex: 1 1 auto;
-  border-top: 2px solid var(--border);
+  border-top: 2px solid var(--legacy-page-border);
   opacity: .95;
 }
 
 :where(.report-entry-page) .wf-subnote {
   font-size: 12px;
-  color: var(--muted);
+  color: var(--legacy-page-muted);
   margin: -2px 0 8px 0;
 }
 
@@ -252,7 +251,7 @@ body:where(.settings-report-legacy-page) {
 :where(.report-entry-page) .btn {
   appearance: none;
   -webkit-appearance: none;
-  border: 2px solid var(--border);
+  border: 2px solid var(--legacy-page-border);
   background: #fff;
   border-radius: 0;
   padding: 14px 8px;
@@ -287,13 +286,13 @@ body:where(.settings-report-legacy-page) {
 
 :where(.report-entry-page) .wf-field-label {
   font-size: 13px;
-  color: var(--muted);
+  color: var(--legacy-page-muted);
 }
 
 :where(.report-entry-page) .input {
   width: 100%;
   box-sizing: border-box;
-  border: 2px solid var(--border);
+  border: 2px solid var(--legacy-page-border);
   border-radius: 0;
   padding: 14px 10px;
   font-size: 20px;
@@ -332,7 +331,7 @@ body:where(.settings-report-legacy-page) {
 }
 
 :where(.report-entry-page) .key {
-  border: 2px solid var(--border);
+  border: 2px solid var(--legacy-page-border);
   border-radius: 0;
   background: #fff;
   min-height: 60px;
@@ -767,7 +766,7 @@ body:where(.settings-report-legacy-page) {
 
 :where(.settings-report-legacy-page) .save-note {
   font-size: 13px;
-  color: var(--muted);
+  color: var(--legacy-page-muted);
   line-height: 1.5;
   white-space: pre-line;
   text-align: center;
