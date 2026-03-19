@@ -45,6 +45,10 @@ function testConfirmUsesExplicitSelectionAndTestRows() {
   assert.match(html, /line\("売上合計（税込）", yenMarkup\(summary\.salesInTax, true\), true, true\)/);
   assert.match(html, /line\("概算収入", yenMarkup\(summary\.takeHome, true\), true, true\)/);
   assert.match(html, /line\("時給換算", yenMarkup\(summary\.hourly, true\), false, true\)/);
+  assert.match(html, /id="confirmSummaryModalCountdown"/);
+  assert.match(html, /let reportSummaryCountdownTimer = 0;/);
+  assert.match(html, /reportSummaryModalCountdown\.textContent = `\$\{remainingSeconds\}秒後に閉じます`;/);
+  assert.match(html, /reportSummaryCountdownTimer = setInterval\(\(\) => \{/);
   assert.match(html, /setTimeout\(\(\) => closeReportSummaryModal\(\), 5000\)/);
   assert.match(html, /consumeReportSummaryModal\(\);/);
 }

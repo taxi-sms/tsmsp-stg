@@ -3450,6 +3450,13 @@ select,
   color: var(--text-muted);
 }
 
+:where(.confirm-page) .confirm-summary-modal-countdown {
+  margin: 0;
+  font-size: var(--font-md);
+  font-weight: 800;
+  color: var(--value-highlight);
+}
+
 :where(.confirm-page) .confirm-summary-modal-list {
   display: grid;
   gap: 0;

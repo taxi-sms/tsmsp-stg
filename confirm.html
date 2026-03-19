@@ -55,6 +55,7 @@
     <div class="confirm-summary-modal-head">
       <p class="confirm-summary-modal-title" id="confirmSummaryModalTitle">今回の入力結果</p>
       <p class="confirm-summary-modal-subtitle" id="confirmSummaryModalSubtitle">-</p>
+      <p class="confirm-summary-modal-countdown" id="confirmSummaryModalCountdown">5秒後に閉じます</p>
     </div>
     <div class="confirm-summary-modal-list" id="confirmSummaryModalList"></div>
   </div>
@@ -76,11 +77,13 @@
   let selectedDayId = "";
   let hasUserPickedDay = false;
   let reportSummaryAutoCloseTimer = 0;
+  let reportSummaryCountdownTimer = 0;
   let reportSummaryModalBgHandler = null;
   let reportSummaryModalEscHandler = null;
   const reportSummaryModalBg = document.getElementById("confirmSummaryModalBg");
   const reportSummaryModalCard = document.getElementById("confirmSummaryModalCard");
   const reportSummaryModalSubtitle = document.getElementById("confirmSummaryModalSubtitle");
+  const reportSummaryModalCountdown = document.getElementById("confirmSummaryModalCountdown");
   const reportSummaryModalList = document.getElementById("confirmSummaryModalList");
 
   function showAlert(message){
@@ -284,6 +287,10 @@
       clearTimeout(reportSummaryAutoCloseTimer);
       reportSummaryAutoCloseTimer = 0;
     }
+    if(reportSummaryCountdownTimer){
+      clearInterval(reportSummaryCountdownTimer);
+      reportSummaryCountdownTimer = 0;
+    }
     if(reportSummaryModalBg && reportSummaryModalBgHandler){
       reportSummaryModalBg.removeEventListener("click", reportSummaryModalBgHandler);
       reportSummaryModalBgHandler = null;
@@ -298,7 +305,7 @@
   }
 
   function showReportSummaryModal(dayId){
-    if(!reportSummaryModalBg || !reportSummaryModalCard || !reportSummaryModalSubtitle || !reportSummaryModalList) return;
+    if(!reportSummaryModalBg || !reportSummaryModalCard || !reportSummaryModalSubtitle || !reportSummaryModalCountdown || !reportSummaryModalList) return;
     const summary = buildReportSummary(dayId);
     if(!summary) return;
 
@@ -324,6 +331,20 @@
     reportSummaryModalBg.addEventListener("click", reportSummaryModalBgHandler);
     document.addEventListener("keydown", reportSummaryModalEscHandler);
     reportSummaryModalCard.focus();
+    let remainingSeconds = 5;
+    const renderCountdown = () => {
+      reportSummaryModalCountdown.textContent = `${remainingSeconds}秒後に閉じます`;
+    };
+    renderCountdown();
+    reportSummaryCountdownTimer = setInterval(() => {
+      remainingSeconds -= 1;
+      if(remainingSeconds <= 0){
+        clearInterval(reportSummaryCountdownTimer);
+        reportSummaryCountdownTimer = 0;
+        return;
+      }
+      renderCountdown();
+    }, 1000);
     reportSummaryAutoCloseTimer = setTimeout(() => closeReportSummaryModal(), 5000);
   }
 
