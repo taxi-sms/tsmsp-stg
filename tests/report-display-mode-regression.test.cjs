@@ -11,16 +11,19 @@ function read(name) {
 function testReportStoresUndepartedEntriesInSession() {
   const html = read("report.html");
   assert.match(html, /const TEST_REPORT_KEY = "tsms_test_reports_v1";/);
+  assert.match(html, /const CONFIRM_SUMMARY_MODAL_KEY = "tsms_confirm_summary_modal_v1";/);
   assert.match(html, /window\.tsmsConfirm\("まだ出庫していません。テストデータとして保存しますか？"\)/);
   assert.match(html, /const saveAsTest = !!editTestId \|\| \(!editId && !hasLiveWorkState\(\)\);/);
   assert.match(html, /sessionStorage\.setItem\(TEST_REPORT_KEY, JSON\.stringify\(normalized\)\)/);
   assert.match(html, /if \(saveAsTest\) \{[\s\S]*localStorage\.setItem\(CURRENT_DAY_KEY, entry\.dayId\);[\s\S]*localStorage\.removeItem\(CONFIRM_FORCE_EMPTY_KEY\);/);
+  assert.match(html, /sessionStorage\.setItem\(CONFIRM_SUMMARY_MODAL_KEY, JSON\.stringify\(\{[\s\S]*dayId: entry\.dayId,[\s\S]*ts: Date\.now\(\)/);
   assert.match(html, /showResultModal\(saveAsTest \? "テストデータを保存しました" : "登録が完了しました"/);
 }
 
 function testConfirmUsesExplicitSelectionAndTestRows() {
   const html = read("confirm.html");
   assert.match(html, /const TEST_REPORT_KEY = "tsms_test_reports_v1";/);
+  assert.match(html, /const CONFIRM_SUMMARY_MODAL_KEY = "tsms_confirm_summary_modal_v1";/);
   assert.match(html, /emptyOpt\.textContent = "選択してください";/);
   assert.match(html, /let hasUserPickedDay = false;/);
   assert.match(html, /const hasTestRows = !!currentDayId && allData\.some\(\(r\)=> r && r\.__source === "test" && rowDayId\(r\) === currentDayId\);/);
@@ -32,6 +35,18 @@ function testConfirmUsesExplicitSelectionAndTestRows() {
   assert.match(html, /if\(!selectedDayId\)\{[\s\S]*選択してください/);
   assert.match(html, /state-inline" data-state-tone="error">テストデータ/);
   assert.match(html, /location\.href = `report\.html\?editTest=\$\{encodeURIComponent\(id\)\}`;/);
+  assert.match(html, /id="confirmSummaryModalBg"/);
+  assert.match(html, /function buildReportSummary\(dayId\)/);
+  assert.match(html, /const salesInTax = grossBase - fee - goFeeTotal;/);
+  assert.match(html, /const salesExTax = salesInTax \/ \(1 \+ num\(settings\.taxRate\) \/ 100\);/);
+  assert.match(html, /const takeHome = salesExTax \* \(num\(settings\.walkRate\) \/ 100\);/);
+  assert.match(html, /const hourly = workMin > 0 \? \(takeHome \/ \(workMin \/ 60\)\) : 0;/);
+  assert.match(html, /line\("実働時間", fmtMinutes\(summary\.workMin\), true\)/);
+  assert.match(html, /line\("売上合計（税込）", yenMarkup\(summary\.salesInTax, true\), true, true\)/);
+  assert.match(html, /line\("概算収入", yenMarkup\(summary\.takeHome, true\), true, true\)/);
+  assert.match(html, /line\("時給換算", yenMarkup\(summary\.hourly, true\), false, true\)/);
+  assert.match(html, /setTimeout\(\(\) => closeReportSummaryModal\(\), 5000\)/);
+  assert.match(html, /consumeReportSummaryModal\(\);/);
 }
 
 function testDetailUsesExplicitSelectionAndTestNotice() {

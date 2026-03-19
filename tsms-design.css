@@ -3424,6 +3424,50 @@ select,
   line-height: 1.15;
 }
 
+:where(.confirm-page) .confirm-summary-modal-card {
+  width: min(460px, 100%);
+  padding: 20px 18px;
+  text-align: left;
+}
+
+:where(.confirm-page) .confirm-summary-modal-head {
+  display: grid;
+  gap: 4px;
+  margin-bottom: var(--space-2);
+}
+
+:where(.confirm-page) .confirm-summary-modal-title {
+  margin: 0;
+  font-size: var(--font-3xl);
+  font-weight: 900;
+  color: var(--text-primary);
+}
+
+:where(.confirm-page) .confirm-summary-modal-subtitle {
+  margin: 0;
+  font-size: var(--font-md);
+  font-weight: 700;
+  color: var(--text-muted);
+}
+
+:where(.confirm-page) .confirm-summary-modal-list {
+  display: grid;
+  gap: 0;
+}
+
+:where(.confirm-page) .confirm-summary-modal-list .line {
+  align-items: flex-start;
+}
+
+:where(.confirm-page) .confirm-summary-modal-list .v {
+  white-space: nowrap;
+}
+
+:where(.confirm-page) .confirm-summary-modal-list .v .value-number.emphasis {
+  font-size: calc(var(--font-2xl) + 8px);
+  line-height: 1;
+}
+
 :where(.detail-page) .main .section {
   display: grid;
   gap: var(--space-2);

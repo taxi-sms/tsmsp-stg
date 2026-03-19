@@ -181,6 +181,7 @@
   const OPS_KEY = "ops";
   const CURRENT_DAY_KEY = "tsms_report_current_day";
   const CONFIRM_FORCE_EMPTY_KEY = "tsms_confirm_force_empty";
+  const CONFIRM_SUMMARY_MODAL_KEY = "tsms_confirm_summary_modal_v1";
   const reportFieldSettingsApi = window.tsmsReportFieldSettings || null;
   const reportFieldConfig = reportFieldSettingsApi
     ? reportFieldSettingsApi.runtime()
@@ -2058,6 +2059,12 @@ ${remaining}秒後に${countdownLabel}`;
           }catch(_){ }
         }
       }
+      try{
+        sessionStorage.setItem(CONFIRM_SUMMARY_MODAL_KEY, JSON.stringify({
+          dayId: entry.dayId,
+          ts: Date.now()
+        }));
+      }catch(_){}
       await showResultModal(saveAsTest ? "テストデータを保存しました" : "登録が完了しました", successAutoRedirectSeconds > 0 ? { autoCloseSeconds: successAutoRedirectSeconds, countdownLabel: "入力確認画面へ移動します" } : undefined);
       location.href = "confirm.html";
     } catch (e) {
