@@ -1,184 +1,16 @@
 {
   "schema_version": 1,
-  "generated_at": "2026-05-23T20:12:33.000Z",
+  "generated_at": "2026-05-24T19:38:00.679Z",
   "timezone": "Asia/Tokyo",
-  "mode": "full",
+  "mode": "delta",
   "source_total": 47,
   "source_crawled": 47,
   "crawl_error_sources": 0,
-  "event_total": 644,
-  "event_today": 11,
+  "event_total": 655,
+  "event_today": 4,
   "quality_threshold": 0.56,
   "quality_threshold_heuristic": 0.58,
   "events": [
-    {
-      "id": "27d6feeb34519e824058",
-      "title": "第七回さっぽろ落語まつり",
-      "start_date": "2026-05-22",
-      "end_date": "",
-      "open_time": "",
-      "start_time": "13:00",
-      "end_time": "",
-      "all_day": false,
-      "venue": "札幌文化芸術劇場 hitaru 共済ホール(北4条西1丁目)",
-      "venue_address": "",
-      "summary": "2026年5月22日（金）～ 24日（日） 5月22日(金) ①13:00開演／②17:30開演 5月23日(土) ①11:00開演／②15:30開演 5月24日(日) ①11:00開演／②15:30開演 ※各会場共通。開場は開演の30分前",
-      "flyer_image_url": "https://www.sapporo-community-plaza.jp/upimg/20260109143909-1.jpg",
-      "detail_url": "https://www.sapporo-community-plaza.jp/event.php?num=4913",
-      "source_id": "www-sapporo-community-plaza-jp-event-php",
-      "source_name": "札幌市民交流プラザ",
-      "source_url": "https://www.sapporo-community-plaza.jp/event.php",
-      "source_category": "文化複合施設（会場公式）",
-      "source_priority": "S",
-      "source_priority_score": 4,
-      "extraction_method": "site_rule",
-      "updated_at": "2026-05-23T20:11:19.163Z",
-      "quality_score": 0.9
-    },
-    {
-      "id": "6da71870bb58d8d9d93a",
-      "title": "山内惠介 北海道ツアー2026",
-      "start_date": "2026-05-22",
-      "end_date": "",
-      "open_time": "12:30",
-      "start_time": "13:00",
-      "end_time": "",
-      "all_day": false,
-      "venue": "カナモトホール",
-      "venue_address": "札幌市中央区北1条西1丁目",
-      "summary": "5月22日(金) / 12:30開場/13:00開演 / カナモトホール / 販売中",
-      "flyer_image_url": "https://www.sapporo-shiminhall.org/files/seminar/2053/2026.05.21-23_%E5%B1%B1%E5%86%85%E6%83%A0%E4%BB%8B%EF%BC%88%E3%82%A8%E3%83%BC%E3%83%80%E3%83%83%E3%82%B7%E3%83%A5%EF%BC%89.pdf",
-      "detail_url": "https://adash.jp/yamauchi2026-0513.html",
-      "source_id": "www-hbc-co-jp-event",
-      "source_name": "HBC北海道放送（イベント）",
-      "source_url": "https://www.hbc.co.jp/event/",
-      "source_category": "地域メディア（主催/後援）",
-      "source_priority": "A",
-      "source_priority_score": 3,
-      "extraction_method": "site_rule",
-      "updated_at": "2026-05-23T20:11:48.943Z",
-      "quality_score": 0.75
-    },
-    {
-      "id": "a1fe9177f3a3c9fcbf7b",
-      "title": "シルビア札幌 アーリーサマーセール",
-      "start_date": "2026-05-22",
-      "end_date": "",
-      "open_time": "",
-      "start_time": "15:00",
-      "end_time": "19:00",
-      "all_day": false,
-      "venue": "SCARTSモールB",
-      "venue_address": "",
-      "summary": "2026年5月22日（金）～ 24日（日） 22日(金)15:00-19:00 23日(土)10:00-19:00 24日(日)10:00-16:00",
-      "flyer_image_url": "https://www.sapporo-community-plaza.jp/img/plaza_ogp_ss.png",
-      "detail_url": "https://www.sapporo-community-plaza.jp/event.php?num=4957",
-      "source_id": "www-sapporo-community-plaza-jp-event-php",
-      "source_name": "札幌市民交流プラザ",
-      "source_url": "https://www.sapporo-community-plaza.jp/event.php",
-      "source_category": "文化複合施設（会場公式）",
-      "source_priority": "S",
-      "source_priority_score": 4,
-      "extraction_method": "site_rule",
-      "updated_at": "2026-05-23T20:11:19.164Z",
-      "quality_score": 0.95
-    },
-    {
-      "id": "6c69130100178fba88f3",
-      "title": "LANA LIVE TOUR 2026 “DIAMONDS IN THE SKY”",
-      "start_date": "2026-05-22",
-      "end_date": "",
-      "open_time": "18:00",
-      "start_time": "19:00",
-      "end_time": "",
-      "all_day": false,
-      "venue": "Zepp Sapporo",
-      "venue_address": "",
-      "summary": "スケジュール詳細 – 札幌 | Zeppホールネットワーク SCHEDULE FLOOR GUIDE HALL GOODS FAQ ACCESS JOBS TOP Zepp Sapporo SCHEDULE LANA LIVE TOUR 2026 “DIAMONDS IN THE SKY” SCHEDULE FLOOR GUIDE HALL GOODS FAQ ACCESS JOBS --> SCHEDULE （Not include…",
-      "flyer_image_url": "https://www.zepp.co.jp/~pj-zepp/wordpress/wp-content/uploads/2021/08/12200920/ogp_shiro.png",
-      "detail_url": "https://www.zepp.co.jp/hall/sapporo/schedule/single/?rid=154065",
-      "source_id": "www-zepp-co-jp-hall-sapporo-schedule",
-      "source_name": "Zepp Sapporo",
-      "source_url": "https://www.zepp.co.jp/hall/sapporo/schedule/",
-      "source_category": "大型ライブ会場（会場公式）",
-      "source_priority": "S",
-      "source_priority_score": 4,
-      "extraction_method": "site_rule",
-      "updated_at": "2026-05-23T20:11:37.317Z",
-      "quality_score": 0.78
-    },
-    {
-      "id": "b1263ef4415b777d6b62",
-      "title": "Interior Shop Joint Selection Fair",
-      "start_date": "2026-05-22",
-      "end_date": "2026-05-31",
-      "open_time": "",
-      "start_time": "",
-      "end_time": "",
-      "all_day": true,
-      "venue": "2条館2F 特設会場",
-      "venue_address": "札幌市中央区北2条東4丁目",
-      "summary": "2026/5/22(金)～5/31(日) / 2条館2F 特設会場",
-      "flyer_image_url": "https://sapporofactory.jp/theme/sf/files/event/ID00000572-20260520_115337-img.png",
-      "detail_url": "https://sapporofactory.jp/event/detail/572",
-      "source_id": "sapporofactory-jp-event",
-      "source_name": "サッポロファクトリー（イベント）",
-      "source_url": "https://sapporofactory.jp/event/",
-      "source_category": "商業施設（一次）",
-      "source_priority": "A",
-      "source_priority_score": 3,
-      "extraction_method": "site_rule",
-      "updated_at": "2026-05-23T20:11:36.399Z",
-      "quality_score": 0.81
-    },
-    {
-      "id": "7b220748deb87e4d260a",
-      "title": "「おさんぽガイド」を開催しました",
-      "start_date": "2026-05-22",
-      "end_date": "",
-      "open_time": "",
-      "start_time": "",
-      "end_time": "",
-      "all_day": true,
-      "venue": "豊平公園 中島公園 西岡公園 西岡中央公園 農試公園 発寒西陵公園 平岡公園 平岡樹芸センター",
-      "venue_address": "札幌市豊平区西岡４８７番地",
-      "summary": "おさんぽガイド エゾハルゼミの蝉時雨の中、キビタキやオオルリ、アオジもさえずっています。 そんな西岡公園では「おさんぽガイド」が開催されましたよ。 出発してすぐにハリオアマツバメの１００羽近い群れに遭遇しました。 上空を...",
-      "flyer_image_url": "https://www.sapporo-park.or.jp/nishioka/wp-content/uploads/2026/05/P5220016-300x271.jpg",
-      "detail_url": "https://www.sapporo-park.or.jp/nishioka/?p=35366",
-      "source_id": "odori-park-jp",
-      "source_name": "大通公園",
-      "source_url": "https://odori-park.jp/",
-      "source_category": "地域公式（公園運営）",
-      "source_priority": "A",
-      "source_priority_score": 3,
-      "extraction_method": "heuristic",
-      "updated_at": "2026-05-23T20:11:41.294Z",
-      "quality_score": 0.61
-    },
-    {
-      "id": "57d057c9d225ef4c7cf0",
-      "title": "開催テニス初心者講習会のお知らせ",
-      "start_date": "2026-05-22",
-      "end_date": "",
-      "open_time": "",
-      "start_time": "",
-      "end_time": "",
-      "all_day": true,
-      "venue": "豊平公園 中島公園 西岡公園 西岡中央公園 農試公園 発寒西陵公園 平岡公園 平岡樹芸センター",
-      "venue_address": "札幌市内の公園情報",
-      "summary": "6月26日開催テニス初心者講習会のお知らせ | 手稲稲積公園 English 简体中文 繁體中文 한국어 手稲稲積公園 手稲区のスポーツ公園 検索 メインメニュー コンテンツへスキップ TOP 公園案内 公園全体図 園内の花と木 園内の花と木（写真） 運動施設 野球場・テニスコート パークゴルフ ていねプール 売店 公園利用届 交通案内 お問合せ English 简体中文 繁體中文 한국어 検索: 手稲稲積公園 > お知らせ > イベ…",
-      "flyer_image_url": "https://www.sapporo-park.or.jp/inazumi/wp-content/uploads/2010/07/cropped-cropped-inazumimain.jpg",
-      "detail_url": "https://www.sapporo-park.or.jp/inazumi/?p=9712",
-      "source_id": "odori-park-jp",
-      "source_name": "大通公園",
-      "source_url": "https://odori-park.jp/",
-      "source_category": "地域公式（公園運営）",
-      "source_priority": "A",
-      "source_priority_score": 3,
-      "extraction_method": "heuristic",
-      "updated_at": "2026-05-23T20:11:40.653Z",
-      "quality_score": 0.61
-    },
     {
       "id": "7952b49944dcdee568c2",
       "title": "2026 土 2026 日 その他 (土)・24日(日)開催！ ブラックニッカ 絶品B級グルメフェス 2026 in 北海道 ～クセのないクリアな味わい～",
@@ -204,6 +36,30 @@
       "quality_score": 0.96
     },
     {
+      "id": "30b1bf50f786d2b7f1b3",
+      "title": "明治安田J2・J3百年構想リーグ EAST-Bグループ 第18節北海道コンサドーレ札幌vsジュビロ磐田",
+      "start_date": "2026-05-23",
+      "end_date": "",
+      "open_time": "",
+      "start_time": "11:30",
+      "end_time": "",
+      "all_day": false,
+      "venue": "大和ハウス プレミストドーム",
+      "venue_address": "〒062-0045 札幌市豊平区羊ケ丘1番地",
+      "summary": "大和ハウス プレミストドーム 2026/05/23(土) のイベント情報、館内施設の営業予定をご紹介します。",
+      "flyer_image_url": "https://www.sapporo-dome.co.jp/ogp.jpg",
+      "detail_url": "https://www.sapporo-dome.co.jp/schedule/detail/?date=20260523",
+      "source_id": "www-sapporo-dome-co-jp-dome",
+      "source_name": "大和ハウス プレミストドーム",
+      "source_url": "https://www.sapporo-dome.co.jp/dome/",
+      "source_category": "大規模会場（会場公式）",
+      "source_priority": "S",
+      "source_priority_score": 4,
+      "extraction_method": "heuristic",
+      "updated_at": "2026-05-24T19:36:42.187Z",
+      "quality_score": 0.94
+    },
+    {
       "id": "c68456dfafdc35c49f43",
       "title": "山内惠介 北海道ツアー2026",
       "start_date": "2026-05-23",
@@ -224,7 +80,7 @@
       "source_priority": "A",
       "source_priority_score": 3,
       "extraction_method": "site_rule",
-      "updated_at": "2026-05-23T20:11:48.943Z",
+      "updated_at": "2026-05-24T19:37:17.176Z",
       "quality_score": 0.75
     },
     {
@@ -248,7 +104,7 @@
       "source_priority": "B",
       "source_priority_score": 2,
       "extraction_method": "site_rule",
-      "updated_at": "2026-05-23T20:11:58.774Z",
+      "updated_at": "2026-05-24T19:37:26.554Z",
       "quality_score": 0.91
     },
     {
@@ -272,8 +128,32 @@
       "source_priority": "S",
       "source_priority_score": 4,
       "extraction_method": "site_rule",
-      "updated_at": "2026-05-23T20:11:37.322Z",
+      "updated_at": "2026-05-24T19:37:05.026Z",
       "quality_score": 0.78
+    },
+    {
+      "id": "1c31bf156006d25277d4",
+      "title": "KIRITO Tour 2026「THE SHIFT COMPLETE」",
+      "start_date": "2026-05-23",
+      "end_date": "",
+      "open_time": "",
+      "start_time": "17:00",
+      "end_time": "",
+      "all_day": false,
+      "venue": "PENNY LANE24",
+      "venue_address": "",
+      "summary": "5月23日【土】 KIRITO Tour 2026「THE SHIFT COMPLETE」 KIRITO 開場 / 開演 17:00 / 17: 30 チケット発売 一般前売り ¥9,300 L-code/P-code ー / イープラス ー /スタンディング/ドリンク代別途¥600/ ◆詳しくは、ウエス HPをご確認ください。 お問い合わせ ウエス 011-614-9999 URL https://wess.jp/",
+      "flyer_image_url": "https://www.pl24.jp/img/schedule/26/0523.jpg",
+      "detail_url": "https://wess.jp/",
+      "source_id": "www-pl24-jp-schedule-html",
+      "source_name": "PENNY LANE24",
+      "source_url": "https://www.pl24.jp/schedule.html",
+      "source_category": "ライブハウス（会場公式）",
+      "source_priority": "B",
+      "source_priority_score": 2,
+      "extraction_method": "site_rule",
+      "updated_at": "2026-05-24T19:37:24.442Z",
+      "quality_score": 0.63
     },
     {
       "id": "ed766c517f1010502efb",
@@ -368,7 +248,7 @@
       "source_priority": "A",
       "source_priority_score": 3,
       "extraction_method": "heuristic",
-      "updated_at": "2026-05-23T20:11:40.150Z",
+      "updated_at": "2026-05-24T19:37:08.591Z",
       "quality_score": 0.61
     },
     {
@@ -392,7 +272,7 @@
       "source_priority": "A",
       "source_priority_score": 3,
       "extraction_method": "site_rule",
-      "updated_at": "2026-05-23T20:11:43.407Z",
+      "updated_at": "2026-05-24T19:37:08.493Z",
       "quality_score": 0.61
     },
     {
@@ -512,7 +392,7 @@
       "source_priority": "S",
       "source_priority_score": 4,
       "extraction_method": "site_rule",
-      "updated_at": "2026-05-23T20:11:37.328Z",
+      "updated_at": "2026-05-24T19:37:05.031Z",
       "quality_score": 0.78
     },
     {
@@ -584,7 +464,7 @@
       "source_priority": "A",
       "source_priority_score": 3,
       "extraction_method": "site_rule",
-      "updated_at": "2026-05-23T20:11:23.734Z",
+      "updated_at": "2026-05-24T19:37:04.834Z",
       "quality_score": 0.61
     },
     {
@@ -608,7 +488,7 @@
       "source_priority": "S",
       "source_priority_score": 4,
       "extraction_method": "site_rule",
-      "updated_at": "2026-05-23T20:11:12.177Z",
+      "updated_at": "2026-05-24T19:36:38.266Z",
       "quality_score": 0.6
     },
     {
@@ -632,7 +512,7 @@
       "source_priority": "S",
       "source_priority_score": 4,
       "extraction_method": "site_rule",
-      "updated_at": "2026-05-23T20:11:19.169Z",
+      "updated_at": "2026-05-24T19:36:49.270Z",
       "quality_score": 0.98
     },
     {
@@ -656,7 +536,7 @@
       "source_priority": "S",
       "source_priority_score": 4,
       "extraction_method": "site_rule",
-      "updated_at": "2026-05-23T20:11:03.272Z",
+      "updated_at": "2026-05-24T19:36:30.367Z",
       "quality_score": 0.78
     },
     {
@@ -680,7 +560,7 @@
       "source_priority": "S",
       "source_priority_score": 4,
       "extraction_method": "site_rule",
-      "updated_at": "2026-05-23T20:11:03.273Z",
+      "updated_at": "2026-05-24T19:36:30.367Z",
       "quality_score": 0.74
     },
     {
@@ -704,7 +584,7 @@
       "source_priority": "S",
       "source_priority_score": 4,
       "extraction_method": "site_rule",
-      "updated_at": "2026-05-23T20:11:19.168Z",
+      "updated_at": "2026-05-24T19:36:49.269Z",
       "quality_score": 0.8
     },
     {
@@ -728,8 +608,32 @@
       "source_priority": "S",
       "source_priority_score": 4,
       "extraction_method": "site_rule",
-      "updated_at": "2026-05-23T20:11:19.173Z",
+      "updated_at": "2026-05-24T19:36:49.273Z",
       "quality_score": 0.98
+    },
+    {
+      "id": "c968e8313635d01d2259",
+      "title": "RISING★STAR FINALIST LIVE supported by アルキタ",
+      "start_date": "2026-05-27",
+      "end_date": "",
+      "open_time": "17:30",
+      "start_time": "18:00",
+      "end_time": "",
+      "all_day": false,
+      "venue": "PENNY LANE24",
+      "venue_address": "",
+      "summary": "5月27日【水】 RISING★STAR FINALIST LIVE supported by アルキタ 開場 / 開演 17:30 / 18:00 チケット発売 一般前売り 入場無料 L-code/P-code － / イープラス － /ドリンク代別途¥600/事前の来場登録必須/ ◆来場登録がない場合は、ご入場をお断りする場合がございます。 https://rsr.wess.co.jp/2026/artists/risingsta…",
+      "flyer_image_url": "https://www.pl24.jp/img/schedule/26/0527.jpg",
+      "detail_url": "https://rsr.wess.co.jp/2026/artists/risingstar/",
+      "source_id": "www-pl24-jp-schedule-html",
+      "source_name": "PENNY LANE24",
+      "source_url": "https://www.pl24.jp/schedule.html",
+      "source_category": "ライブハウス（会場公式）",
+      "source_priority": "B",
+      "source_priority_score": 2,
+      "extraction_method": "site_rule",
+      "updated_at": "2026-05-24T19:37:24.442Z",
+      "quality_score": 0.71
     },
     {
       "id": "624b0a1cfead1c3368bf",
@@ -752,7 +656,7 @@
       "source_priority": "S",
       "source_priority_score": 4,
       "extraction_method": "site_rule",
-      "updated_at": "2026-05-23T20:11:42.111Z",
+      "updated_at": "2026-05-24T19:36:57.095Z",
       "quality_score": 1
     },
     {
@@ -776,8 +680,32 @@
       "source_priority": "S",
       "source_priority_score": 4,
       "extraction_method": "site_rule",
-      "updated_at": "2026-05-23T20:11:03.273Z",
+      "updated_at": "2026-05-24T19:36:30.367Z",
       "quality_score": 0.78
+    },
+    {
+      "id": "7b7ac01a875e6b470d1a",
+      "title": "北海道土木・建築未来技術展 2026",
+      "start_date": "2026-05-27",
+      "end_date": "",
+      "open_time": "",
+      "start_time": "",
+      "end_time": "09:30",
+      "all_day": false,
+      "venue": "大和ハウス プレミストドーム",
+      "venue_address": "〒062-0045 札幌市豊平区羊ケ丘1番地",
+      "summary": "大和ハウス プレミストドーム 2026/05/27(水) のイベント情報、館内施設の営業予定をご紹介します。",
+      "flyer_image_url": "https://www.sapporo-dome.co.jp/ogp.jpg",
+      "detail_url": "https://www.sapporo-dome.co.jp/schedule/detail/?date=20260527",
+      "source_id": "www-sapporo-dome-co-jp-dome",
+      "source_name": "大和ハウス プレミストドーム",
+      "source_url": "https://www.sapporo-dome.co.jp/dome/",
+      "source_category": "大規模会場（会場公式）",
+      "source_priority": "S",
+      "source_priority_score": 4,
+      "extraction_method": "heuristic",
+      "updated_at": "2026-05-24T19:36:42.727Z",
+      "quality_score": 0.89
     },
     {
       "id": "6416a6013a4b670e8757",
@@ -800,7 +728,7 @@
       "source_priority": "S",
       "source_priority_score": 4,
       "extraction_method": "site_rule",
-      "updated_at": "2026-05-23T20:11:13.211Z",
+      "updated_at": "2026-05-24T19:36:40.540Z",
       "quality_score": 0.8
     },
     {
@@ -824,7 +752,7 @@
       "source_priority": "S",
       "source_priority_score": 4,
       "extraction_method": "site_rule",
-      "updated_at": "2026-05-23T20:11:03.273Z",
+      "updated_at": "2026-05-24T19:36:30.368Z",
       "quality_score": 0.74
     },
     {
@@ -848,7 +776,7 @@
       "source_priority": "S",
       "source_priority_score": 4,
       "extraction_method": "site_rule",
-      "updated_at": "2026-05-23T20:11:03.273Z",
+      "updated_at": "2026-05-24T19:36:30.368Z",
       "quality_score": 0.74
     },
     {
@@ -872,7 +800,7 @@
       "source_priority": "S",
       "source_priority_score": 4,
       "extraction_method": "site_rule",
-      "updated_at": "2026-05-23T20:11:19.174Z",
+      "updated_at": "2026-05-24T19:36:49.274Z",
       "quality_score": 0.76
     },
     {
@@ -896,7 +824,7 @@
       "source_priority": "A",
       "source_priority_score": 3,
       "extraction_method": "site_rule",
-      "updated_at": "2026-05-23T20:11:32.242Z",
+      "updated_at": "2026-05-24T19:36:58.199Z",
       "quality_score": 0.57
     },
     {
@@ -920,7 +848,7 @@
       "source_priority": "S",
       "source_priority_score": 4,
       "extraction_method": "site_rule",
-      "updated_at": "2026-05-23T20:11:09.326Z",
+      "updated_at": "2026-05-24T19:36:37.589Z",
       "quality_score": 0.74
     },
     {
@@ -944,7 +872,7 @@
       "source_priority": "S",
       "source_priority_score": 4,
       "extraction_method": "site_rule",
-      "updated_at": "2026-05-23T20:11:07.716Z",
+      "updated_at": "2026-05-24T19:36:35.987Z",
       "quality_score": 1
     },
     {
@@ -968,7 +896,7 @@
       "source_priority": "B",
       "source_priority_score": 2,
       "extraction_method": "site_rule",
-      "updated_at": "2026-05-23T20:11:58.774Z",
+      "updated_at": "2026-05-24T19:37:26.555Z",
       "quality_score": 0.71
     },
     {
@@ -992,7 +920,7 @@
       "source_priority": "S",
       "source_priority_score": 4,
       "extraction_method": "site_rule",
-      "updated_at": "2026-05-23T20:11:07.716Z",
+      "updated_at": "2026-05-24T19:36:35.986Z",
       "quality_score": 1
     },
     {
@@ -1016,7 +944,7 @@
       "source_priority": "S",
       "source_priority_score": 4,
       "extraction_method": "site_rule",
-      "updated_at": "2026-05-23T20:11:19.176Z",
+      "updated_at": "2026-05-24T19:36:49.275Z",
       "quality_score": 0.98
     },
     {
@@ -1040,7 +968,7 @@
       "source_priority": "S",
       "source_priority_score": 4,
       "extraction_method": "site_rule",
-      "updated_at": "2026-05-23T20:11:37.332Z",
+      "updated_at": "2026-05-24T19:37:05.035Z",
       "quality_score": 0.78
     },
     {
@@ -1064,7 +992,7 @@
       "source_priority": "S",
       "source_priority_score": 4,
       "extraction_method": "site_rule",
-      "updated_at": "2026-05-23T20:11:13.211Z",
+      "updated_at": "2026-05-24T19:36:40.540Z",
       "quality_score": 0.84
     },
     {
@@ -1088,7 +1016,7 @@
       "source_priority": "A",
       "source_priority_score": 3,
       "extraction_method": "site_rule",
-      "updated_at": "2026-05-23T20:11:36.399Z",
+      "updated_at": "2026-05-24T19:37:01.592Z",
       "quality_score": 0.81
     },
     {
@@ -1112,7 +1040,7 @@
       "source_priority": "S",
       "source_priority_score": 4,
       "extraction_method": "site_rule",
-      "updated_at": "2026-05-23T20:11:19.175Z",
+      "updated_at": "2026-05-24T19:36:49.274Z",
       "quality_score": 0.8
     },
     {
@@ -1136,7 +1064,7 @@
       "source_priority": "A",
       "source_priority_score": 3,
       "extraction_method": "site_rule",
-      "updated_at": "2026-05-23T20:11:36.400Z",
+      "updated_at": "2026-05-24T19:37:01.592Z",
       "quality_score": 0.77
     },
     {
@@ -1160,7 +1088,7 @@
       "source_priority": "S",
       "source_priority_score": 4,
       "extraction_method": "site_rule",
-      "updated_at": "2026-05-23T20:11:03.274Z",
+      "updated_at": "2026-05-24T19:36:30.368Z",
       "quality_score": 0.74
     },
     {
@@ -1184,7 +1112,7 @@
       "source_priority": "S",
       "source_priority_score": 4,
       "extraction_method": "site_rule",
-      "updated_at": "2026-05-23T20:11:09.327Z",
+      "updated_at": "2026-05-24T19:36:37.589Z",
       "quality_score": 0.74
     },
     {
@@ -1208,7 +1136,7 @@
       "source_priority": "S",
       "source_priority_score": 4,
       "extraction_method": "site_rule",
-      "updated_at": "2026-05-23T20:11:42.111Z",
+      "updated_at": "2026-05-24T19:36:57.096Z",
       "quality_score": 1
     },
     {
@@ -1232,7 +1160,7 @@
       "source_priority": "S",
       "source_priority_score": 4,
       "extraction_method": "site_rule",
-      "updated_at": "2026-05-23T20:11:42.111Z",
+      "updated_at": "2026-05-24T19:36:57.096Z",
       "quality_score": 1
     },
     {
@@ -1256,7 +1184,7 @@
       "source_priority": "S",
       "source_priority_score": 4,
       "extraction_method": "site_rule",
-      "updated_at": "2026-05-23T20:11:03.274Z",
+      "updated_at": "2026-05-24T19:36:30.368Z",
       "quality_score": 0.74
     },
     {
@@ -1280,7 +1208,7 @@
       "source_priority": "S",
       "source_priority_score": 4,
       "extraction_method": "site_rule",
-      "updated_at": "2026-05-23T20:11:19.178Z",
+      "updated_at": "2026-05-24T19:36:49.277Z",
       "quality_score": 0.98
     },
     {
@@ -1304,7 +1232,7 @@
       "source_priority": "A",
       "source_priority_score": 3,
       "extraction_method": "site_rule",
-      "updated_at": "2026-05-23T20:11:30.796Z",
+      "updated_at": "2026-05-24T19:36:55.026Z",
       "quality_score": 0.95
     },
     {
@@ -1328,7 +1256,7 @@
       "source_priority": "B",
       "source_priority_score": 2,
       "extraction_method": "site_rule",
-      "updated_at": "2026-05-23T20:12:02.643Z",
+      "updated_at": "2026-05-24T19:37:30.508Z",
       "quality_score": 0.71
     },
     {
@@ -1352,7 +1280,7 @@
       "source_priority": "S",
       "source_priority_score": 4,
       "extraction_method": "site_rule",
-      "updated_at": "2026-05-23T20:11:07.716Z",
+      "updated_at": "2026-05-24T19:36:35.987Z",
       "quality_score": 1
     },
     {
@@ -1376,7 +1304,7 @@
       "source_priority": "S",
       "source_priority_score": 4,
       "extraction_method": "site_rule",
-      "updated_at": "2026-05-23T20:11:03.274Z",
+      "updated_at": "2026-05-24T19:36:30.368Z",
       "quality_score": 0.78
     },
     {
@@ -1400,7 +1328,7 @@
       "source_priority": "S",
       "source_priority_score": 4,
       "extraction_method": "site_rule",
-      "updated_at": "2026-05-23T20:11:03.274Z",
+      "updated_at": "2026-05-24T19:36:30.369Z",
       "quality_score": 0.74
     },
     {
@@ -1424,7 +1352,7 @@
       "source_priority": "A",
       "source_priority_score": 3,
       "extraction_method": "site_rule",
-      "updated_at": "2026-05-23T20:11:36.400Z",
+      "updated_at": "2026-05-24T19:37:01.592Z",
       "quality_score": 0.81
     },
     {
@@ -1448,7 +1376,7 @@
       "source_priority": "A",
       "source_priority_score": 3,
       "extraction_method": "site_rule",
-      "updated_at": "2026-05-23T20:11:36.400Z",
+      "updated_at": "2026-05-24T19:37:01.592Z",
       "quality_score": 0.81
     },
     {
@@ -1472,7 +1400,7 @@
       "source_priority": "S",
       "source_priority_score": 4,
       "extraction_method": "site_rule",
-      "updated_at": "2026-05-23T20:11:13.211Z",
+      "updated_at": "2026-05-24T19:36:40.540Z",
       "quality_score": 0.8
     },
     {
@@ -1496,7 +1424,7 @@
       "source_priority": "A",
       "source_priority_score": 3,
       "extraction_method": "site_rule",
-      "updated_at": "2026-05-23T20:11:36.400Z",
+      "updated_at": "2026-05-24T19:37:01.592Z",
       "quality_score": 0.77
     },
     {
@@ -1520,7 +1448,7 @@
       "source_priority": "A",
       "source_priority_score": 3,
       "extraction_method": "site_rule",
-      "updated_at": "2026-05-23T20:11:41.817Z",
+      "updated_at": "2026-05-24T19:37:11.287Z",
       "quality_score": 0.77
     },
     {
@@ -1544,7 +1472,7 @@
       "source_priority": "A",
       "source_priority_score": 3,
       "extraction_method": "site_rule",
-      "updated_at": "2026-05-23T20:11:36.399Z",
+      "updated_at": "2026-05-24T19:37:01.592Z",
       "quality_score": 0.77
     },
     {
@@ -1568,7 +1496,7 @@
       "source_priority": "S",
       "source_priority_score": 4,
       "extraction_method": "site_rule",
-      "updated_at": "2026-05-23T20:11:19.177Z",
+      "updated_at": "2026-05-24T19:36:49.276Z",
       "quality_score": 0.76
     },
     {
@@ -1592,7 +1520,7 @@
       "source_priority": "A",
       "source_priority_score": 3,
       "extraction_method": "site_rule",
-      "updated_at": "2026-05-23T20:11:23.734Z",
+      "updated_at": "2026-05-24T19:37:04.835Z",
       "quality_score": 0.61
     },
     {
@@ -1616,7 +1544,7 @@
       "source_priority": "A",
       "source_priority_score": 3,
       "extraction_method": "site_rule",
-      "updated_at": "2026-05-23T20:11:32.242Z",
+      "updated_at": "2026-05-24T19:36:58.199Z",
       "quality_score": 0.57
     },
     {
@@ -1640,7 +1568,7 @@
       "source_priority": "S",
       "source_priority_score": 4,
       "extraction_method": "site_rule",
-      "updated_at": "2026-05-23T20:11:42.111Z",
+      "updated_at": "2026-05-24T19:36:57.096Z",
       "quality_score": 1
     },
     {
@@ -1664,7 +1592,7 @@
       "source_priority": "A",
       "source_priority_score": 3,
       "extraction_method": "site_rule",
-      "updated_at": "2026-05-23T20:11:30.796Z",
+      "updated_at": "2026-05-24T19:36:55.026Z",
       "quality_score": 0.95
     },
     {
@@ -1688,7 +1616,7 @@
       "source_priority": "S",
       "source_priority_score": 4,
       "extraction_method": "site_rule",
-      "updated_at": "2026-05-23T20:11:09.327Z",
+      "updated_at": "2026-05-24T19:36:37.589Z",
       "quality_score": 0.74
     },
     {
@@ -1712,7 +1640,7 @@
       "source_priority": "S",
       "source_priority_score": 4,
       "extraction_method": "site_rule",
-      "updated_at": "2026-05-23T20:11:42.112Z",
+      "updated_at": "2026-05-24T19:36:57.097Z",
       "quality_score": 1
     },
     {
@@ -1736,7 +1664,7 @@
       "source_priority": "S",
       "source_priority_score": 4,
       "extraction_method": "site_rule",
-      "updated_at": "2026-05-23T20:11:19.181Z",
+      "updated_at": "2026-05-24T19:36:49.280Z",
       "quality_score": 0.98
     },
     {
@@ -1760,7 +1688,7 @@
       "source_priority": "S",
       "source_priority_score": 4,
       "extraction_method": "site_rule",
-      "updated_at": "2026-05-23T20:11:03.274Z",
+      "updated_at": "2026-05-24T19:36:30.369Z",
       "quality_score": 0.74
     },
     {
@@ -1784,7 +1712,7 @@
       "source_priority": "S",
       "source_priority_score": 4,
       "extraction_method": "site_rule",
-      "updated_at": "2026-05-23T20:11:03.274Z",
+      "updated_at": "2026-05-24T19:36:30.369Z",
       "quality_score": 0.74
     },
     {
@@ -1808,7 +1736,7 @@
       "source_priority": "S",
       "source_priority_score": 4,
       "extraction_method": "site_rule",
-      "updated_at": "2026-05-23T20:11:07.717Z",
+      "updated_at": "2026-05-24T19:36:35.988Z",
       "quality_score": 1
     },
     {
@@ -1832,7 +1760,7 @@
       "source_priority": "S",
       "source_priority_score": 4,
       "extraction_method": "site_rule",
-      "updated_at": "2026-05-23T20:11:03.274Z",
+      "updated_at": "2026-05-24T19:36:30.369Z",
       "quality_score": 0.74
     },
     {
@@ -1856,7 +1784,7 @@
       "source_priority": "S",
       "source_priority_score": 4,
       "extraction_method": "site_rule",
-      "updated_at": "2026-05-23T20:11:03.274Z",
+      "updated_at": "2026-05-24T19:36:30.369Z",
       "quality_score": 0.74
     },
     {
@@ -1880,7 +1808,7 @@
       "source_priority": "S",
       "source_priority_score": 4,
       "extraction_method": "site_rule",
-      "updated_at": "2026-05-23T20:11:07.717Z",
+      "updated_at": "2026-05-24T19:36:35.988Z",
       "quality_score": 1
     },
     {
@@ -1904,7 +1832,7 @@
       "source_priority": "S",
       "source_priority_score": 4,
       "extraction_method": "site_rule",
-      "updated_at": "2026-05-23T20:11:19.179Z",
+      "updated_at": "2026-05-24T19:36:49.278Z",
       "quality_score": 0.76
     },
     {
@@ -1928,7 +1856,7 @@
       "source_priority": "S",
       "source_priority_score": 4,
       "extraction_method": "site_rule",
-      "updated_at": "2026-05-23T20:11:19.180Z",
+      "updated_at": "2026-05-24T19:36:49.279Z",
       "quality_score": 0.76
     },
     {
@@ -1952,7 +1880,7 @@
       "source_priority": "A",
       "source_priority_score": 3,
       "extraction_method": "site_rule",
-      "updated_at": "2026-05-23T20:11:23.734Z",
+      "updated_at": "2026-05-24T19:37:04.835Z",
       "quality_score": 0.61
     },
     {
@@ -1976,7 +1904,7 @@
       "source_priority": "S",
       "source_priority_score": 4,
       "extraction_method": "site_rule",
-      "updated_at": "2026-05-23T20:11:06.292Z",
+      "updated_at": "2026-05-24T19:36:33.698Z",
       "quality_score": 0.74
     },
     {
@@ -2000,7 +1928,7 @@
       "source_priority": "S",
       "source_priority_score": 4,
       "extraction_method": "site_rule",
-      "updated_at": "2026-05-23T20:11:19.182Z",
+      "updated_at": "2026-05-24T19:36:49.281Z",
       "quality_score": 0.8
     },
     {
@@ -2048,7 +1976,7 @@
       "source_priority": "A",
       "source_priority_score": 3,
       "extraction_method": "site_rule",
-      "updated_at": "2026-05-23T20:11:43.419Z",
+      "updated_at": "2026-05-24T19:37:08.504Z",
       "quality_score": 0.61
     },
     {
@@ -2072,7 +2000,7 @@
       "source_priority": "A",
       "source_priority_score": 3,
       "extraction_method": "site_rule",
-      "updated_at": "2026-05-23T20:11:32.242Z",
+      "updated_at": "2026-05-24T19:36:58.199Z",
       "quality_score": 0.57
     },
     {
@@ -2096,8 +2024,32 @@
       "source_priority": "A",
       "source_priority_score": 3,
       "extraction_method": "site_rule",
-      "updated_at": "2026-05-23T20:11:32.242Z",
+      "updated_at": "2026-05-24T19:36:58.199Z",
       "quality_score": 0.57
+    },
+    {
+      "id": "707ac0a19c079aa841ff",
+      "title": "第97回都市対抗野球大会 北海道地区2次予選",
+      "start_date": "2026-06-02",
+      "end_date": "",
+      "open_time": "",
+      "start_time": "10:00",
+      "end_time": "17:00",
+      "all_day": false,
+      "venue": "大和ハウス プレミストドーム",
+      "venue_address": "〒062-0045 札幌市豊平区羊ケ丘1番地",
+      "summary": "大和ハウス プレミストドーム 2026/06/02(火) のイベント情報、館内施設の営業予定をご紹介します。",
+      "flyer_image_url": "https://www.sapporo-dome.co.jp/ogp.jpg",
+      "detail_url": "https://www.sapporo-dome.co.jp/schedule/detail/?date=20260602",
+      "source_id": "www-sapporo-dome-co-jp-dome",
+      "source_name": "大和ハウス プレミストドーム",
+      "source_url": "https://www.sapporo-dome.co.jp/dome/",
+      "source_category": "大規模会場（会場公式）",
+      "source_priority": "S",
+      "source_priority_score": 4,
+      "extraction_method": "heuristic",
+      "updated_at": "2026-05-24T19:36:42.813Z",
+      "quality_score": 0.99
     },
     {
       "id": "bfdf6f8b75aa8fae5a50",
@@ -2144,7 +2096,7 @@
       "source_priority": "S",
       "source_priority_score": 4,
       "extraction_method": "site_rule",
-      "updated_at": "2026-05-23T20:11:13.212Z",
+      "updated_at": "2026-05-24T19:36:40.541Z",
       "quality_score": 0.8
     },
     {
@@ -2168,7 +2120,7 @@
       "source_priority": "S",
       "source_priority_score": 4,
       "extraction_method": "site_rule",
-      "updated_at": "2026-05-23T20:11:07.715Z",
+      "updated_at": "2026-05-24T19:36:35.986Z",
       "quality_score": 1
     },
     {
@@ -2192,7 +2144,7 @@
       "source_priority": "B",
       "source_priority_score": 2,
       "extraction_method": "site_rule",
-      "updated_at": "2026-05-23T20:12:02.644Z",
+      "updated_at": "2026-05-24T19:37:30.509Z",
       "quality_score": 0.71
     },
     {
@@ -2216,7 +2168,7 @@
       "source_priority": "S",
       "source_priority_score": 4,
       "extraction_method": "site_rule",
-      "updated_at": "2026-05-23T20:11:37.345Z",
+      "updated_at": "2026-05-24T19:37:05.047Z",
       "quality_score": 0.78
     },
     {
@@ -2240,7 +2192,7 @@
       "source_priority": "S",
       "source_priority_score": 4,
       "extraction_method": "site_rule",
-      "updated_at": "2026-05-23T20:11:06.292Z",
+      "updated_at": "2026-05-24T19:36:33.698Z",
       "quality_score": 0.74
     },
     {
@@ -2264,7 +2216,7 @@
       "source_priority": "S",
       "source_priority_score": 4,
       "extraction_method": "site_rule",
-      "updated_at": "2026-05-23T20:11:06.292Z",
+      "updated_at": "2026-05-24T19:36:33.698Z",
       "quality_score": 0.74
     },
     {
@@ -2288,7 +2240,7 @@
       "source_priority": "B",
       "source_priority_score": 2,
       "extraction_method": "site_rule",
-      "updated_at": "2026-05-23T20:12:02.645Z",
+      "updated_at": "2026-05-24T19:37:30.510Z",
       "quality_score": 0.71
     },
     {
@@ -2336,8 +2288,32 @@
       "source_priority": "S",
       "source_priority_score": 4,
       "extraction_method": "site_rule",
-      "updated_at": "2026-05-23T20:11:37.350Z",
+      "updated_at": "2026-05-24T19:37:05.053Z",
       "quality_score": 0.78
+    },
+    {
+      "id": "2b895dfa5a622bec70c5",
+      "title": "BLACK IRIS 「The Next Phase」HOKKAIDO＠PENNY LANE24",
+      "start_date": "2026-06-05",
+      "end_date": "",
+      "open_time": "19:00",
+      "start_time": "19:30",
+      "end_time": "",
+      "all_day": false,
+      "venue": "PENNY LANE24",
+      "venue_address": "",
+      "summary": "6月5日【金】 BLACK IRIS 「The Next Phase」HOKKAIDO＠PENNY LANE24 BLACK IRIS 開場 / 開演 19:00 / 19:30 チケット発売 Sチケット ¥6,000 前売券 ¥4,000 LivePocket https://livepocket.jp/e/9thum L-code/P-cod / イープラス /ドリンク代別途¥600 /３歳以上必要 / 他種チケットあり/ ◆注意…",
+      "flyer_image_url": "https://www.pl24.jp/img/schedule/26/0605.jpg",
+      "detail_url": "https://livepocket.jp/e/9thum",
+      "source_id": "www-pl24-jp-schedule-html",
+      "source_name": "PENNY LANE24",
+      "source_url": "https://www.pl24.jp/schedule.html",
+      "source_category": "ライブハウス（会場公式）",
+      "source_priority": "B",
+      "source_priority_score": 2,
+      "extraction_method": "site_rule",
+      "updated_at": "2026-05-24T19:37:24.443Z",
+      "quality_score": 0.71
     },
     {
       "id": "db7a60c89edc7693a6a0",
@@ -2360,7 +2336,7 @@
       "source_priority": "A",
       "source_priority_score": 3,
       "extraction_method": "site_rule",
-      "updated_at": "2026-05-23T20:11:30.796Z",
+      "updated_at": "2026-05-24T19:36:55.027Z",
       "quality_score": 0.95
     },
     {
@@ -2408,7 +2384,7 @@
       "source_priority": "S",
       "source_priority_score": 4,
       "extraction_method": "site_rule",
-      "updated_at": "2026-05-23T20:11:06.292Z",
+      "updated_at": "2026-05-24T19:36:33.698Z",
       "quality_score": 0.74
     },
     {
@@ -2456,7 +2432,7 @@
       "source_priority": "S",
       "source_priority_score": 4,
       "extraction_method": "site_rule",
-      "updated_at": "2026-05-23T20:11:06.292Z",
+      "updated_at": "2026-05-24T19:36:33.698Z",
       "quality_score": 0.74
     },
     {
@@ -2504,7 +2480,7 @@
       "source_priority": "B",
       "source_priority_score": 2,
       "extraction_method": "site_rule",
-      "updated_at": "2026-05-23T20:11:58.775Z",
+      "updated_at": "2026-05-24T19:37:26.555Z",
       "quality_score": 0.91
     },
     {
@@ -2517,7 +2493,7 @@
       "end_time": "",
       "all_day": false,
       "venue": "カナモトホール",
-      "venue_address": "札幌市中央区北1条西1丁目",
+      "venue_address": "",
       "summary": "WEB受付のみ",
       "flyer_image_url": "https://wess.jp/wp/wp-content/uploads/2025/10/oikawa_m-1.jpg",
       "detail_url": "https://wess.jp/oikawa_m/",
@@ -2528,7 +2504,7 @@
       "source_priority": "S",
       "source_priority_score": 4,
       "extraction_method": "site_rule",
-      "updated_at": "2026-05-23T20:11:06.292Z",
+      "updated_at": "2026-05-24T19:36:33.698Z",
       "quality_score": 0.74
     },
     {
@@ -2552,7 +2528,7 @@
       "source_priority": "S",
       "source_priority_score": 4,
       "extraction_method": "site_rule",
-      "updated_at": "2026-05-23T20:11:07.694Z",
+      "updated_at": "2026-05-24T19:36:35.965Z",
       "quality_score": 1
     },
     {
@@ -2576,7 +2552,7 @@
       "source_priority": "S",
       "source_priority_score": 4,
       "extraction_method": "site_rule",
-      "updated_at": "2026-05-23T20:11:06.292Z",
+      "updated_at": "2026-05-24T19:36:33.698Z",
       "quality_score": 0.74
     },
     {
@@ -2600,7 +2576,7 @@
       "source_priority": "S",
       "source_priority_score": 4,
       "extraction_method": "site_rule",
-      "updated_at": "2026-05-23T20:11:13.212Z",
+      "updated_at": "2026-05-24T19:36:40.541Z",
       "quality_score": 0.8
     },
     {
@@ -2624,7 +2600,7 @@
       "source_priority": "S",
       "source_priority_score": 4,
       "extraction_method": "site_rule",
-      "updated_at": "2026-05-23T20:11:13.212Z",
+      "updated_at": "2026-05-24T19:36:40.541Z",
       "quality_score": 0.8
     },
     {
@@ -2648,7 +2624,7 @@
       "source_priority": "A",
       "source_priority_score": 3,
       "extraction_method": "site_rule",
-      "updated_at": "2026-05-23T20:11:36.400Z",
+      "updated_at": "2026-05-24T19:37:01.593Z",
       "quality_score": 0.77
     },
     {
@@ -2672,7 +2648,7 @@
       "source_priority": "A",
       "source_priority_score": 3,
       "extraction_method": "site_rule",
-      "updated_at": "2026-05-23T20:11:33.957Z",
+      "updated_at": "2026-05-24T19:36:59.103Z",
       "quality_score": 0.69
     },
     {
@@ -2696,7 +2672,7 @@
       "source_priority": "A",
       "source_priority_score": 3,
       "extraction_method": "site_rule",
-      "updated_at": "2026-05-23T20:11:36.400Z",
+      "updated_at": "2026-05-24T19:37:01.593Z",
       "quality_score": 0.69
     },
     {
@@ -2744,7 +2720,7 @@
       "source_priority": "B",
       "source_priority_score": 2,
       "extraction_method": "site_rule",
-      "updated_at": "2026-05-23T20:11:58.775Z",
+      "updated_at": "2026-05-24T19:37:26.555Z",
       "quality_score": 0.91
     },
     {
@@ -2768,7 +2744,7 @@
       "source_priority": "S",
       "source_priority_score": 4,
       "extraction_method": "site_rule",
-      "updated_at": "2026-05-23T20:11:06.293Z",
+      "updated_at": "2026-05-24T19:36:33.698Z",
       "quality_score": 0.74
     },
     {
@@ -2816,7 +2792,7 @@
       "source_priority": "S",
       "source_priority_score": 4,
       "extraction_method": "site_rule",
-      "updated_at": "2026-05-23T20:11:06.293Z",
+      "updated_at": "2026-05-24T19:36:33.698Z",
       "quality_score": 0.74
     },
     {
@@ -2840,7 +2816,7 @@
       "source_priority": "S",
       "source_priority_score": 4,
       "extraction_method": "site_rule",
-      "updated_at": "2026-05-23T20:11:07.701Z",
+      "updated_at": "2026-05-24T19:36:35.971Z",
       "quality_score": 1
     },
     {
@@ -2864,7 +2840,7 @@
       "source_priority": "S",
       "source_priority_score": 4,
       "extraction_method": "site_rule",
-      "updated_at": "2026-05-23T20:11:06.293Z",
+      "updated_at": "2026-05-24T19:36:33.698Z",
       "quality_score": 0.74
     },
     {
@@ -2888,7 +2864,7 @@
       "source_priority": "S",
       "source_priority_score": 4,
       "extraction_method": "site_rule",
-      "updated_at": "2026-05-23T20:11:37.360Z",
+      "updated_at": "2026-05-24T19:37:05.062Z",
       "quality_score": 0.78
     },
     {
@@ -2912,7 +2888,7 @@
       "source_priority": "S",
       "source_priority_score": 4,
       "extraction_method": "site_rule",
-      "updated_at": "2026-05-23T20:11:19.183Z",
+      "updated_at": "2026-05-24T19:36:49.282Z",
       "quality_score": 0.8
     },
     {
@@ -2960,7 +2936,7 @@
       "source_priority": "A",
       "source_priority_score": 3,
       "extraction_method": "site_rule",
-      "updated_at": "2026-05-23T20:11:32.242Z",
+      "updated_at": "2026-05-24T19:36:58.199Z",
       "quality_score": 0.57
     },
     {
@@ -3008,7 +2984,7 @@
       "source_priority": "A",
       "source_priority_score": 3,
       "extraction_method": "site_rule",
-      "updated_at": "2026-05-23T20:11:32.242Z",
+      "updated_at": "2026-05-24T19:36:58.199Z",
       "quality_score": 0.57
     },
     {
@@ -3056,7 +3032,7 @@
       "source_priority": "S",
       "source_priority_score": 4,
       "extraction_method": "site_rule",
-      "updated_at": "2026-05-23T20:11:09.327Z",
+      "updated_at": "2026-05-24T19:36:37.590Z",
       "quality_score": 0.74
     },
     {
@@ -3104,7 +3080,7 @@
       "source_priority": "A",
       "source_priority_score": 3,
       "extraction_method": "site_rule",
-      "updated_at": "2026-05-23T20:11:32.242Z",
+      "updated_at": "2026-05-24T19:36:58.199Z",
       "quality_score": 0.57
     },
     {
@@ -3128,7 +3104,7 @@
       "source_priority": "S",
       "source_priority_score": 4,
       "extraction_method": "site_rule",
-      "updated_at": "2026-05-23T20:11:09.327Z",
+      "updated_at": "2026-05-24T19:36:37.590Z",
       "quality_score": 0.74
     },
     {
@@ -3141,7 +3117,7 @@
       "end_time": "",
       "all_day": false,
       "venue": "カナモトホール",
-      "venue_address": "札幌市中央区北1条西1丁目",
+      "venue_address": "",
       "summary": "WEB受付のみ",
       "flyer_image_url": "https://wess.jp/wp/wp-content/uploads/2026/01/imai_miki.jpg",
       "detail_url": "https://wess.jp/imai_miki/",
@@ -3152,7 +3128,7 @@
       "source_priority": "S",
       "source_priority_score": 4,
       "extraction_method": "site_rule",
-      "updated_at": "2026-05-23T20:11:06.293Z",
+      "updated_at": "2026-05-24T19:36:33.699Z",
       "quality_score": 0.74
     },
     {
@@ -3200,7 +3176,7 @@
       "source_priority": "S",
       "source_priority_score": 4,
       "extraction_method": "site_rule",
-      "updated_at": "2026-05-23T20:11:06.293Z",
+      "updated_at": "2026-05-24T19:36:33.699Z",
       "quality_score": 0.74
     },
     {
@@ -3248,7 +3224,7 @@
       "source_priority": "S",
       "source_priority_score": 4,
       "extraction_method": "site_rule",
-      "updated_at": "2026-05-23T20:11:13.212Z",
+      "updated_at": "2026-05-24T19:36:40.541Z",
       "quality_score": 0.8
     },
     {
@@ -3272,7 +3248,7 @@
       "source_priority": "A",
       "source_priority_score": 3,
       "extraction_method": "site_rule",
-      "updated_at": "2026-05-23T20:11:40.410Z",
+      "updated_at": "2026-05-24T19:37:05.382Z",
       "quality_score": 0.61
     },
     {
@@ -3296,7 +3272,7 @@
       "source_priority": "S",
       "source_priority_score": 4,
       "extraction_method": "site_rule",
-      "updated_at": "2026-05-23T20:11:09.327Z",
+      "updated_at": "2026-05-24T19:36:37.590Z",
       "quality_score": 0.74
     },
     {
@@ -3344,7 +3320,7 @@
       "source_priority": "S",
       "source_priority_score": 4,
       "extraction_method": "site_rule",
-      "updated_at": "2026-05-23T20:11:06.293Z",
+      "updated_at": "2026-05-24T19:36:33.699Z",
       "quality_score": 0.74
     },
     {
@@ -3368,7 +3344,7 @@
       "source_priority": "A",
       "source_priority_score": 3,
       "extraction_method": "heuristic",
-      "updated_at": "2026-05-23T20:11:50.159Z",
+      "updated_at": "2026-05-24T19:37:17.645Z",
       "quality_score": 0.81
     },
     {
@@ -3392,7 +3368,7 @@
       "source_priority": "S",
       "source_priority_score": 4,
       "extraction_method": "site_rule",
-      "updated_at": "2026-05-23T20:11:09.327Z",
+      "updated_at": "2026-05-24T19:36:37.590Z",
       "quality_score": 0.74
     },
     {
@@ -3416,7 +3392,7 @@
       "source_priority": "S",
       "source_priority_score": 4,
       "extraction_method": "site_rule",
-      "updated_at": "2026-05-23T20:11:07.714Z",
+      "updated_at": "2026-05-24T19:36:35.985Z",
       "quality_score": 1
     },
     {
@@ -3440,7 +3416,7 @@
       "source_priority": "S",
       "source_priority_score": 4,
       "extraction_method": "site_rule",
-      "updated_at": "2026-05-23T20:11:06.293Z",
+      "updated_at": "2026-05-24T19:36:33.699Z",
       "quality_score": 0.74
     },
     {
@@ -3512,7 +3488,7 @@
       "source_priority": "S",
       "source_priority_score": 4,
       "extraction_method": "site_rule",
-      "updated_at": "2026-05-23T20:11:37.365Z",
+      "updated_at": "2026-05-24T19:37:05.066Z",
       "quality_score": 0.78
     },
     {
@@ -3536,7 +3512,7 @@
       "source_priority": "S",
       "source_priority_score": 4,
       "extraction_method": "site_rule",
-      "updated_at": "2026-05-23T20:11:06.293Z",
+      "updated_at": "2026-05-24T19:36:33.699Z",
       "quality_score": 0.74
     },
     {
@@ -3560,7 +3536,7 @@
       "source_priority": "A",
       "source_priority_score": 3,
       "extraction_method": "site_rule",
-      "updated_at": "2026-05-23T20:11:32.242Z",
+      "updated_at": "2026-05-24T19:36:58.199Z",
       "quality_score": 0.57
     },
     {
@@ -3632,7 +3608,7 @@
       "source_priority": "S",
       "source_priority_score": 4,
       "extraction_method": "site_rule",
-      "updated_at": "2026-05-23T20:11:09.327Z",
+      "updated_at": "2026-05-24T19:36:37.590Z",
       "quality_score": 0.74
     },
     {
@@ -3656,7 +3632,7 @@
       "source_priority": "S",
       "source_priority_score": 4,
       "extraction_method": "site_rule",
-      "updated_at": "2026-05-23T20:11:37.369Z",
+      "updated_at": "2026-05-24T19:37:05.070Z",
       "quality_score": 0.78
     },
     {
@@ -3680,7 +3656,7 @@
       "source_priority": "S",
       "source_priority_score": 4,
       "extraction_method": "site_rule",
-      "updated_at": "2026-05-23T20:11:06.293Z",
+      "updated_at": "2026-05-24T19:36:33.700Z",
       "quality_score": 0.74
     },
     {
@@ -3704,7 +3680,7 @@
       "source_priority": "S",
       "source_priority_score": 4,
       "extraction_method": "site_rule",
-      "updated_at": "2026-05-23T20:11:06.293Z",
+      "updated_at": "2026-05-24T19:36:33.699Z",
       "quality_score": 0.74
     },
     {
@@ -3728,7 +3704,7 @@
       "source_priority": "S",
       "source_priority_score": 4,
       "extraction_method": "site_rule",
-      "updated_at": "2026-05-23T20:11:06.293Z",
+      "updated_at": "2026-05-24T19:36:33.699Z",
       "quality_score": 0.74
     },
     {
@@ -3752,7 +3728,7 @@
       "source_priority": "S",
       "source_priority_score": 4,
       "extraction_method": "site_rule",
-      "updated_at": "2026-05-23T20:11:06.293Z",
+      "updated_at": "2026-05-24T19:36:33.699Z",
       "quality_score": 0.74
     },
     {
@@ -3776,7 +3752,7 @@
       "source_priority": "B",
       "source_priority_score": 2,
       "extraction_method": "site_rule",
-      "updated_at": "2026-05-23T20:11:58.775Z",
+      "updated_at": "2026-05-24T19:37:26.556Z",
       "quality_score": 0.91
     },
     {
@@ -3800,7 +3776,7 @@
       "source_priority": "S",
       "source_priority_score": 4,
       "extraction_method": "site_rule",
-      "updated_at": "2026-05-23T20:11:06.293Z",
+      "updated_at": "2026-05-24T19:36:33.700Z",
       "quality_score": 0.74
     },
     {
@@ -3824,7 +3800,7 @@
       "source_priority": "A",
       "source_priority_score": 3,
       "extraction_method": "site_rule",
-      "updated_at": "2026-05-23T20:11:30.796Z",
+      "updated_at": "2026-05-24T19:36:55.027Z",
       "quality_score": 0.95
     },
     {
@@ -3848,7 +3824,7 @@
       "source_priority": "S",
       "source_priority_score": 4,
       "extraction_method": "site_rule",
-      "updated_at": "2026-05-23T20:11:06.293Z",
+      "updated_at": "2026-05-24T19:36:33.700Z",
       "quality_score": 0.74
     },
     {
@@ -3896,7 +3872,7 @@
       "source_priority": "A",
       "source_priority_score": 3,
       "extraction_method": "site_rule",
-      "updated_at": "2026-05-23T20:11:32.242Z",
+      "updated_at": "2026-05-24T19:36:58.199Z",
       "quality_score": 0.57
     },
     {
@@ -3920,7 +3896,7 @@
       "source_priority": "A",
       "source_priority_score": 3,
       "extraction_method": "site_rule",
-      "updated_at": "2026-05-23T20:11:32.242Z",
+      "updated_at": "2026-05-24T19:36:58.200Z",
       "quality_score": 0.57
     },
     {
@@ -3944,7 +3920,7 @@
       "source_priority": "A",
       "source_priority_score": 3,
       "extraction_method": "site_rule",
-      "updated_at": "2026-05-23T20:11:30.796Z",
+      "updated_at": "2026-05-24T19:36:55.027Z",
       "quality_score": 0.95
     },
     {
@@ -3968,7 +3944,7 @@
       "source_priority": "S",
       "source_priority_score": 4,
       "extraction_method": "site_rule",
-      "updated_at": "2026-05-23T20:11:09.327Z",
+      "updated_at": "2026-05-24T19:36:37.590Z",
       "quality_score": 0.74
     },
     {
@@ -3992,7 +3968,7 @@
       "source_priority": "A",
       "source_priority_score": 3,
       "extraction_method": "site_rule",
-      "updated_at": "2026-05-23T20:11:30.797Z",
+      "updated_at": "2026-05-24T19:36:55.027Z",
       "quality_score": 0.95
     },
     {
@@ -4016,7 +3992,7 @@
       "source_priority": "S",
       "source_priority_score": 4,
       "extraction_method": "site_rule",
-      "updated_at": "2026-05-23T20:11:06.294Z",
+      "updated_at": "2026-05-24T19:36:33.700Z",
       "quality_score": 0.74
     },
     {
@@ -4040,7 +4016,7 @@
       "source_priority": "S",
       "source_priority_score": 4,
       "extraction_method": "site_rule",
-      "updated_at": "2026-05-23T20:11:37.373Z",
+      "updated_at": "2026-05-24T19:37:05.074Z",
       "quality_score": 0.78
     },
     {
@@ -4064,7 +4040,7 @@
       "source_priority": "S",
       "source_priority_score": 4,
       "extraction_method": "site_rule",
-      "updated_at": "2026-05-23T20:11:06.294Z",
+      "updated_at": "2026-05-24T19:36:33.700Z",
       "quality_score": 0.74
     },
     {
@@ -4112,7 +4088,7 @@
       "source_priority": "S",
       "source_priority_score": 4,
       "extraction_method": "site_rule",
-      "updated_at": "2026-05-23T20:11:12.177Z",
+      "updated_at": "2026-05-24T19:36:38.267Z",
       "quality_score": 0.6
     },
     {
@@ -4160,7 +4136,7 @@
       "source_priority": "A",
       "source_priority_score": 3,
       "extraction_method": "site_rule",
-      "updated_at": "2026-05-23T20:11:33.450Z",
+      "updated_at": "2026-05-24T19:37:00.165Z",
       "quality_score": 0.57
     },
     {
@@ -4184,7 +4160,7 @@
       "source_priority": "A",
       "source_priority_score": 3,
       "extraction_method": "site_rule",
-      "updated_at": "2026-05-23T20:11:33.452Z",
+      "updated_at": "2026-05-24T19:37:00.166Z",
       "quality_score": 0.8
     },
     {
@@ -4208,7 +4184,7 @@
       "source_priority": "A",
       "source_priority_score": 3,
       "extraction_method": "heuristic",
-      "updated_at": "2026-05-23T20:11:50.176Z",
+      "updated_at": "2026-05-24T19:37:17.846Z",
       "quality_score": 0.81
     },
     {
@@ -4232,7 +4208,7 @@
       "source_priority": "S",
       "source_priority_score": 4,
       "extraction_method": "site_rule",
-      "updated_at": "2026-05-23T20:11:13.212Z",
+      "updated_at": "2026-05-24T19:36:40.541Z",
       "quality_score": 0.8
     },
     {
@@ -4284,6 +4260,30 @@
       "quality_score": 1
     },
     {
+      "id": "3afc33b0e5ade47c054a",
+      "title": "矢井田 瞳 25th Anniversary Acoustic live Tour『DOOR to DOORS』",
+      "start_date": "2026-06-17",
+      "end_date": "",
+      "open_time": "18:30",
+      "start_time": "19:00",
+      "end_time": "",
+      "all_day": false,
+      "venue": "PENNY LANE24",
+      "venue_address": "",
+      "summary": "6月17日【水】 矢井田 瞳 25th Anniversary Acoustic live Tour『DOOR to DOORS』 矢井田 瞳 開場 / 開演 18:30 / 19:00 チケット発売 2026/04/25 10:00 一般前売り ¥7,500 L-code/P-code ー / イープラス /全席指定/ドリンク代別途¥600/小学生以上のお子様からチケットが必要/ ◆未就学児童は保護者の膝上観覧可能ですが、周りのお客…",
+      "flyer_image_url": "https://www.pl24.jp/img/schedule/26/0617.jpg",
+      "detail_url": "http://www.mountalive.com/",
+      "source_id": "www-pl24-jp-schedule-html",
+      "source_name": "PENNY LANE24",
+      "source_url": "https://www.pl24.jp/schedule.html",
+      "source_category": "ライブハウス（会場公式）",
+      "source_priority": "B",
+      "source_priority_score": 2,
+      "extraction_method": "site_rule",
+      "updated_at": "2026-05-24T19:37:24.444Z",
+      "quality_score": 0.71
+    },
+    {
       "id": "91153ed7339b350af708",
       "title": "ＳＴＶ映画試写会",
       "start_date": "2026-06-17",
@@ -4304,7 +4304,7 @@
       "source_priority": "A",
       "source_priority_score": 3,
       "extraction_method": "heuristic",
-      "updated_at": "2026-05-23T20:11:50.661Z",
+      "updated_at": "2026-05-24T19:37:17.703Z",
       "quality_score": 0.69
     },
     {
@@ -4328,7 +4328,7 @@
       "source_priority": "A",
       "source_priority_score": 3,
       "extraction_method": "site_rule",
-      "updated_at": "2026-05-23T20:11:30.797Z",
+      "updated_at": "2026-05-24T19:36:55.027Z",
       "quality_score": 0.95
     },
     {
@@ -4341,9 +4341,9 @@
       "end_time": "",
       "all_day": false,
       "venue": "カナモトホール",
-      "venue_address": "札幌市中央区北1条西1丁目",
+      "venue_address": "",
       "summary": "6月18日(木) / 12:30開場/13:30開演 / カナモトホール / 販売中",
-      "flyer_image_url": "https://www.sapporo-shiminhall.org/files/seminar/2054/2026.06.18_%E7%B6%BE%E5%B0%8F%E8%B7%AF%E3%81%8D%E3%81%BF%E3%81%BE%E3%82%8D%EF%BC%88%E3%82%A8%E3%83%BC%E3%83%80%E3%83%83%E3%82%B7%E3%83%A5%EF%BC%89.pdf",
+      "flyer_image_url": "",
       "detail_url": "https://adash.jp/kimimaro2026-0614.html",
       "source_id": "www-hbc-co-jp-event",
       "source_name": "HBC北海道放送（イベント）",
@@ -4352,7 +4352,7 @@
       "source_priority": "A",
       "source_priority_score": 3,
       "extraction_method": "site_rule",
-      "updated_at": "2026-05-23T20:11:48.943Z",
+      "updated_at": "2026-05-24T19:37:17.176Z",
       "quality_score": 0.75
     },
     {
@@ -4378,6 +4378,30 @@
       "extraction_method": "site_rule",
       "updated_at": "2026-05-23T20:11:42.116Z",
       "quality_score": 1
+    },
+    {
+      "id": "b4672ab5d3597b35f58f",
+      "title": "♡DEMICK ~Six-month anniversary~",
+      "start_date": "2026-06-18",
+      "end_date": "",
+      "open_time": "17:20",
+      "start_time": "18:00",
+      "end_time": "",
+      "all_day": false,
+      "venue": "PENNY LANE24",
+      "venue_address": "",
+      "summary": "6月18日【木】 ♡DEMICK~Six-month anniversary~ ♡DEMICK 開場 / 開演 17:20 / 18:00 チケット発売 前方 ¥2,000 L-code/P-code / イープラス /ドリンク代別途¥600/チケット他種あり/ ◆詳しくは、オフィシャルサイトをご確認ください。 お問い合わせ ASOBI.STATION URL",
+      "flyer_image_url": "https://www.pl24.jp/img/schedule/26/0618.jpg",
+      "detail_url": "https://www.pl24.jp/schedule_n.html",
+      "source_id": "www-pl24-jp-schedule-html",
+      "source_name": "PENNY LANE24",
+      "source_url": "https://www.pl24.jp/schedule.html",
+      "source_category": "ライブハウス（会場公式）",
+      "source_priority": "B",
+      "source_priority_score": 2,
+      "extraction_method": "site_rule",
+      "updated_at": "2026-05-24T19:37:24.444Z",
+      "quality_score": 0.71
     },
     {
       "id": "978f2e77b8d222020b28",
@@ -4424,7 +4448,7 @@
       "source_priority": "A",
       "source_priority_score": 3,
       "extraction_method": "heuristic",
-      "updated_at": "2026-05-23T20:11:50.356Z",
+      "updated_at": "2026-05-24T19:37:19.244Z",
       "quality_score": 0.81
     },
     {
@@ -4448,7 +4472,7 @@
       "source_priority": "A",
       "source_priority_score": 3,
       "extraction_method": "site_rule",
-      "updated_at": "2026-05-23T20:11:32.242Z",
+      "updated_at": "2026-05-24T19:36:58.199Z",
       "quality_score": 0.57
     },
     {
@@ -4472,7 +4496,7 @@
       "source_priority": "A",
       "source_priority_score": 3,
       "extraction_method": "site_rule",
-      "updated_at": "2026-05-23T20:11:32.242Z",
+      "updated_at": "2026-05-24T19:36:58.200Z",
       "quality_score": 0.57
     },
     {
@@ -4496,7 +4520,7 @@
       "source_priority": "S",
       "source_priority_score": 4,
       "extraction_method": "site_rule",
-      "updated_at": "2026-05-23T20:11:09.327Z",
+      "updated_at": "2026-05-24T19:36:37.590Z",
       "quality_score": 0.7
     },
     {
@@ -4544,7 +4568,7 @@
       "source_priority": "S",
       "source_priority_score": 4,
       "extraction_method": "site_rule",
-      "updated_at": "2026-05-23T20:11:19.184Z",
+      "updated_at": "2026-05-24T19:36:49.283Z",
       "quality_score": 0.98
     },
     {
@@ -4568,7 +4592,7 @@
       "source_priority": "A",
       "source_priority_score": 3,
       "extraction_method": "site_rule",
-      "updated_at": "2026-05-23T20:11:48.943Z",
+      "updated_at": "2026-05-24T19:37:17.177Z",
       "quality_score": 0.75
     },
     {
@@ -4592,7 +4616,7 @@
       "source_priority": "S",
       "source_priority_score": 4,
       "extraction_method": "site_rule",
-      "updated_at": "2026-05-23T20:11:37.378Z",
+      "updated_at": "2026-05-24T19:37:05.081Z",
       "quality_score": 0.78
     },
     {
@@ -4616,8 +4640,32 @@
       "source_priority": "S",
       "source_priority_score": 4,
       "extraction_method": "site_rule",
-      "updated_at": "2026-05-23T20:11:06.294Z",
+      "updated_at": "2026-05-24T19:36:33.700Z",
       "quality_score": 0.74
+    },
+    {
+      "id": "5b3030ff20fb3fb8cb25",
+      "title": "阿部真央 ABE MAO LIVE HOUSE TOUR 2026",
+      "start_date": "2026-06-19",
+      "end_date": "",
+      "open_time": "18:15",
+      "start_time": "19:00",
+      "end_time": "",
+      "all_day": false,
+      "venue": "PENNY LANE24",
+      "venue_address": "",
+      "summary": "6月19日【金】 ABE MAO LIVE HOUSE TOUR 2026 阿部真央 開場 / 開演 18:15 / 19:00 チケット発売 一般前売り ¥7,700 L-code/P-code ー / イープラス ー /全自由/ドリンク代別途¥600/未就学児入場不可 / 小学生以上チケット必要/ ◆開場/開演時間/席種は変更となる可能性があります。 ◆詳しくは、マウントアライブ HPをご確認ください。 お問い合わせ マウントアラ…",
+      "flyer_image_url": "https://www.pl24.jp/img/schedule/26/0619.jpg",
+      "detail_url": "http://www.mountalive.com/",
+      "source_id": "www-pl24-jp-schedule-html",
+      "source_name": "PENNY LANE24",
+      "source_url": "https://www.pl24.jp/schedule.html",
+      "source_category": "ライブハウス（会場公式）",
+      "source_priority": "B",
+      "source_priority_score": 2,
+      "extraction_method": "site_rule",
+      "updated_at": "2026-05-24T19:37:24.444Z",
+      "quality_score": 0.71
     },
     {
       "id": "3b73efa4523da9cad4fe",
@@ -4688,7 +4736,7 @@
       "source_priority": "S",
       "source_priority_score": 4,
       "extraction_method": "site_rule",
-      "updated_at": "2026-05-23T20:11:06.294Z",
+      "updated_at": "2026-05-24T19:36:33.700Z",
       "quality_score": 0.74
     },
     {
@@ -4712,7 +4760,7 @@
       "source_priority": "S",
       "source_priority_score": 4,
       "extraction_method": "site_rule",
-      "updated_at": "2026-05-23T20:11:09.327Z",
+      "updated_at": "2026-05-24T19:36:37.590Z",
       "quality_score": 0.7
     },
     {
@@ -4736,7 +4784,7 @@
       "source_priority": "S",
       "source_priority_score": 4,
       "extraction_method": "site_rule",
-      "updated_at": "2026-05-23T20:11:06.294Z",
+      "updated_at": "2026-05-24T19:36:33.700Z",
       "quality_score": 0.74
     },
     {
@@ -4784,7 +4832,7 @@
       "source_priority": "S",
       "source_priority_score": 4,
       "extraction_method": "site_rule",
-      "updated_at": "2026-05-23T20:11:06.294Z",
+      "updated_at": "2026-05-24T19:36:33.700Z",
       "quality_score": 0.78
     },
     {
@@ -4808,8 +4856,32 @@
       "source_priority": "S",
       "source_priority_score": 4,
       "extraction_method": "site_rule",
-      "updated_at": "2026-05-23T20:11:07.713Z",
+      "updated_at": "2026-05-24T19:36:35.984Z",
       "quality_score": 1
+    },
+    {
+      "id": "e353f7326bc8d0dcea7d",
+      "title": "青春ヶ丘俊光 Concert Tour 2026 LOVE & WILD",
+      "start_date": "2026-06-20",
+      "end_date": "",
+      "open_time": "17:30",
+      "start_time": "18:00",
+      "end_time": "",
+      "all_day": false,
+      "venue": "PENNY LANE24",
+      "venue_address": "",
+      "summary": "2026年6月20日【土】 青春ヶ丘俊光 Concert Tour 2026 LOVE & WILD 青春ヶ丘俊光 開場 / 開演 17:30 / 18:00 チケット発売 一般前売り ¥7,500 L-code/P-code ー / イープラス ー /スタンディング/ドリンク代別途¥600/ ◆お問い合わせには順次お答えしていきますが、返答までにお時間をいただく場合があります。 ◆また、土・日・祝日および夜間にいただいた問い合わせへ…",
+      "flyer_image_url": "https://www.pl24.jp/img/schedule/26/0620.jpg",
+      "detail_url": "https://www.uuum.co.jp/inquiry_opinion",
+      "source_id": "www-pl24-jp-schedule-html",
+      "source_name": "PENNY LANE24",
+      "source_url": "https://www.pl24.jp/schedule.html",
+      "source_category": "ライブハウス（会場公式）",
+      "source_priority": "B",
+      "source_priority_score": 2,
+      "extraction_method": "site_rule",
+      "updated_at": "2026-05-24T19:37:24.444Z",
+      "quality_score": 0.71
     },
     {
       "id": "dc3bb08b064e8bb424fc",
@@ -4832,7 +4904,7 @@
       "source_priority": "A",
       "source_priority_score": 3,
       "extraction_method": "site_rule",
-      "updated_at": "2026-05-23T20:11:30.797Z",
+      "updated_at": "2026-05-24T19:36:55.027Z",
       "quality_score": 0.95
     },
     {
@@ -4856,7 +4928,7 @@
       "source_priority": "B",
       "source_priority_score": 2,
       "extraction_method": "site_rule",
-      "updated_at": "2026-05-23T20:11:58.775Z",
+      "updated_at": "2026-05-24T19:37:26.556Z",
       "quality_score": 0.71
     },
     {
@@ -4904,7 +4976,7 @@
       "source_priority": "S",
       "source_priority_score": 4,
       "extraction_method": "site_rule",
-      "updated_at": "2026-05-23T20:11:12.178Z",
+      "updated_at": "2026-05-24T19:36:38.267Z",
       "quality_score": 0.6
     },
     {
@@ -4928,7 +5000,7 @@
       "source_priority": "A",
       "source_priority_score": 3,
       "extraction_method": "site_rule",
-      "updated_at": "2026-05-23T20:11:32.242Z",
+      "updated_at": "2026-05-24T19:36:58.199Z",
       "quality_score": 0.57
     },
     {
@@ -4952,7 +5024,7 @@
       "source_priority": "S",
       "source_priority_score": 4,
       "extraction_method": "site_rule",
-      "updated_at": "2026-05-23T20:11:06.294Z",
+      "updated_at": "2026-05-24T19:36:33.701Z",
       "quality_score": 0.74
     },
     {
@@ -4976,7 +5048,7 @@
       "source_priority": "S",
       "source_priority_score": 4,
       "extraction_method": "site_rule",
-      "updated_at": "2026-05-23T20:11:09.327Z",
+      "updated_at": "2026-05-24T19:36:37.590Z",
       "quality_score": 0.7
     },
     {
@@ -5048,7 +5120,7 @@
       "source_priority": "S",
       "source_priority_score": 4,
       "extraction_method": "site_rule",
-      "updated_at": "2026-05-23T20:11:06.294Z",
+      "updated_at": "2026-05-24T19:36:33.700Z",
       "quality_score": 0.74
     },
     {
@@ -5072,7 +5144,7 @@
       "source_priority": "S",
       "source_priority_score": 4,
       "extraction_method": "site_rule",
-      "updated_at": "2026-05-23T20:11:37.389Z",
+      "updated_at": "2026-05-24T19:37:05.090Z",
       "quality_score": 0.78
     },
     {
@@ -5096,7 +5168,7 @@
       "source_priority": "S",
       "source_priority_score": 4,
       "extraction_method": "site_rule",
-      "updated_at": "2026-05-23T20:11:06.294Z",
+      "updated_at": "2026-05-24T19:36:33.700Z",
       "quality_score": 0.74
     },
     {
@@ -5120,7 +5192,7 @@
       "source_priority": "A",
       "source_priority_score": 3,
       "extraction_method": "site_rule",
-      "updated_at": "2026-05-23T20:11:36.400Z",
+      "updated_at": "2026-05-24T19:37:01.593Z",
       "quality_score": 0.77
     },
     {
@@ -5144,7 +5216,7 @@
       "source_priority": "A",
       "source_priority_score": 3,
       "extraction_method": "site_rule",
-      "updated_at": "2026-05-23T20:11:33.958Z",
+      "updated_at": "2026-05-24T19:36:59.103Z",
       "quality_score": 0.69
     },
     {
@@ -5192,7 +5264,7 @@
       "source_priority": "S",
       "source_priority_score": 4,
       "extraction_method": "site_rule",
-      "updated_at": "2026-05-23T20:11:12.178Z",
+      "updated_at": "2026-05-24T19:36:38.267Z",
       "quality_score": 0.6
     },
     {
@@ -5240,7 +5312,7 @@
       "source_priority": "S",
       "source_priority_score": 4,
       "extraction_method": "site_rule",
-      "updated_at": "2026-05-23T20:11:06.294Z",
+      "updated_at": "2026-05-24T19:36:33.701Z",
       "quality_score": 0.74
     },
     {
@@ -5264,7 +5336,7 @@
       "source_priority": "A",
       "source_priority_score": 3,
       "extraction_method": "site_rule",
-      "updated_at": "2026-05-23T20:11:33.451Z",
+      "updated_at": "2026-05-24T19:37:00.165Z",
       "quality_score": 0.57
     },
     {
@@ -5288,7 +5360,7 @@
       "source_priority": "S",
       "source_priority_score": 4,
       "extraction_method": "site_rule",
-      "updated_at": "2026-05-23T20:11:09.327Z",
+      "updated_at": "2026-05-24T19:36:37.590Z",
       "quality_score": 0.7
     },
     {
@@ -5312,7 +5384,7 @@
       "source_priority": "S",
       "source_priority_score": 4,
       "extraction_method": "site_rule",
-      "updated_at": "2026-05-23T20:11:07.711Z",
+      "updated_at": "2026-05-24T19:36:35.982Z",
       "quality_score": 1
     },
     {
@@ -5360,7 +5432,7 @@
       "source_priority": "S",
       "source_priority_score": 4,
       "extraction_method": "site_rule",
-      "updated_at": "2026-05-23T20:11:13.212Z",
+      "updated_at": "2026-05-24T19:36:40.541Z",
       "quality_score": 0.8
     },
     {
@@ -5408,7 +5480,7 @@
       "source_priority": "S",
       "source_priority_score": 4,
       "extraction_method": "site_rule",
-      "updated_at": "2026-05-23T20:11:09.327Z",
+      "updated_at": "2026-05-24T19:36:37.590Z",
       "quality_score": 0.7
     },
     {
@@ -5456,8 +5528,32 @@
       "source_priority": "A",
       "source_priority_score": 3,
       "extraction_method": "site_rule",
-      "updated_at": "2026-05-23T20:11:48.943Z",
+      "updated_at": "2026-05-24T19:37:17.177Z",
       "quality_score": 0.63
+    },
+    {
+      "id": "9ff542a3c4a33569af5a",
+      "title": "luv ASIA TOUR 2026 – EXTRA SHOWS IN JAPAN",
+      "start_date": "2026-06-24",
+      "end_date": "",
+      "open_time": "18:00",
+      "start_time": "19:00",
+      "end_time": "",
+      "all_day": false,
+      "venue": "PENNY LANE24",
+      "venue_address": "",
+      "summary": "2026年6月24日【水】 luv luv ASIA TOUR 2026 – EXTRA SHOWS IN JAPAN 開場 / 開演 18:00 / 19:00 チケット発売 2026/04/18 10:00 一般前売り ¥5,000 L-code/P-code / イープラス /スタンディング/ドリンク代別途¥600/未就学児入場不可 / 小学生以上チケット必要/ ◆詳しくは、スマッシュイースト HPをご確認ください。 お問い合わ…",
+      "flyer_image_url": "https://www.pl24.jp/img/schedule/26/0624.jpg",
+      "detail_url": "http://smash-east.com/",
+      "source_id": "www-pl24-jp-schedule-html",
+      "source_name": "PENNY LANE24",
+      "source_url": "https://www.pl24.jp/schedule.html",
+      "source_category": "ライブハウス（会場公式）",
+      "source_priority": "B",
+      "source_priority_score": 2,
+      "extraction_method": "site_rule",
+      "updated_at": "2026-05-24T19:37:24.444Z",
+      "quality_score": 0.71
     },
     {
       "id": "1bd01282923354c114a6",
@@ -5480,7 +5576,7 @@
       "source_priority": "A",
       "source_priority_score": 3,
       "extraction_method": "site_rule",
-      "updated_at": "2026-05-23T20:11:32.242Z",
+      "updated_at": "2026-05-24T19:36:58.199Z",
       "quality_score": 0.57
     },
     {
@@ -5528,8 +5624,32 @@
       "source_priority": "S",
       "source_priority_score": 4,
       "extraction_method": "site_rule",
-      "updated_at": "2026-05-23T20:11:06.294Z",
+      "updated_at": "2026-05-24T19:36:33.701Z",
       "quality_score": 0.74
+    },
+    {
+      "id": "38bc7e21d3e3d6007dbb",
+      "title": "KANA-BOON 47都道府県TOUR 2026",
+      "start_date": "2026-06-25",
+      "end_date": "",
+      "open_time": "18:00",
+      "start_time": "19:00",
+      "end_time": "",
+      "all_day": false,
+      "venue": "PENNY LANE24",
+      "venue_address": "",
+      "summary": "2026年6月25日【木】 KANA-BOON 47都道府県TOUR 2026 KANA-BOON 開場 / 開演 18:00 / 19:00 チケット発売 ¥5,800 L-code/P-code ー / イープラス ー /オールスタンディング/ドリンク代別途¥600/3歳以上チケット必要/ ◆詳しくは、マウントアライブ HPをご確認ください。 お問い合わせ マウントアライブ 011-623-5555 URL http://www.…",
+      "flyer_image_url": "https://www.pl24.jp/img/schedule/26/0625.jpg",
+      "detail_url": "http://www.mountalive.com/",
+      "source_id": "www-pl24-jp-schedule-html",
+      "source_name": "PENNY LANE24",
+      "source_url": "https://www.pl24.jp/schedule.html",
+      "source_category": "ライブハウス（会場公式）",
+      "source_priority": "B",
+      "source_priority_score": 2,
+      "extraction_method": "site_rule",
+      "updated_at": "2026-05-24T19:37:24.444Z",
+      "quality_score": 0.71
     },
     {
       "id": "cb89866ea9793b180880",
@@ -5552,7 +5672,7 @@
       "source_priority": "A",
       "source_priority_score": 3,
       "extraction_method": "heuristic",
-      "updated_at": "2026-05-23T20:11:50.559Z",
+      "updated_at": "2026-05-24T19:37:18.046Z",
       "quality_score": 0.81
     },
     {
@@ -5600,7 +5720,7 @@
       "source_priority": "S",
       "source_priority_score": 4,
       "extraction_method": "site_rule",
-      "updated_at": "2026-05-23T20:11:06.294Z",
+      "updated_at": "2026-05-24T19:36:33.701Z",
       "quality_score": 0.74
     },
     {
@@ -5648,8 +5768,32 @@
       "source_priority": "S",
       "source_priority_score": 4,
       "extraction_method": "site_rule",
-      "updated_at": "2026-05-23T20:11:06.294Z",
+      "updated_at": "2026-05-24T19:36:33.701Z",
       "quality_score": 0.74
+    },
+    {
+      "id": "3aa6238b1f24648141c1",
+      "title": "cero TOUR 2026 “Compartment\"",
+      "start_date": "2026-06-26",
+      "end_date": "",
+      "open_time": "18:00",
+      "start_time": "19:00",
+      "end_time": "",
+      "all_day": false,
+      "venue": "PENNY LANE24",
+      "venue_address": "",
+      "summary": "2026年6月26日【金】 TOUR 2026 “Compartment\" cero 開場 / 開演 18:00 / 19:00 チケット発売 一般前売り ¥6,000 U-23チケット ¥4,700 L-code/P-code ー / イープラス ー /スタンディング/ドリンク代別途¥600/小学生以上有料 / 未就学児童は無料(大人1名につき、子供1名まで入場可)/ ◆詳しくは、スマッシュイースト HPをご確認ください。 お問い合…",
+      "flyer_image_url": "https://www.pl24.jp/img/schedule/26/0626.jpg",
+      "detail_url": "http://smash-east.com/",
+      "source_id": "www-pl24-jp-schedule-html",
+      "source_name": "PENNY LANE24",
+      "source_url": "https://www.pl24.jp/schedule.html",
+      "source_category": "ライブハウス（会場公式）",
+      "source_priority": "B",
+      "source_priority_score": 2,
+      "extraction_method": "site_rule",
+      "updated_at": "2026-05-24T19:37:24.444Z",
+      "quality_score": 0.71
     },
     {
       "id": "6df3a667136b612d3ba7",
@@ -5672,7 +5816,7 @@
       "source_priority": "S",
       "source_priority_score": 4,
       "extraction_method": "site_rule",
-      "updated_at": "2026-05-23T20:11:06.294Z",
+      "updated_at": "2026-05-24T19:36:33.701Z",
       "quality_score": 0.74
     },
     {
@@ -5720,7 +5864,7 @@
       "source_priority": "A",
       "source_priority_score": 3,
       "extraction_method": "site_rule",
-      "updated_at": "2026-05-23T20:11:32.242Z",
+      "updated_at": "2026-05-24T19:36:58.199Z",
       "quality_score": 0.57
     },
     {
@@ -5744,7 +5888,7 @@
       "source_priority": "A",
       "source_priority_score": 3,
       "extraction_method": "heuristic",
-      "updated_at": "2026-05-23T20:11:53.728Z",
+      "updated_at": "2026-05-24T19:37:18.067Z",
       "quality_score": 0.76
     },
     {
@@ -5768,7 +5912,7 @@
       "source_priority": "S",
       "source_priority_score": 4,
       "extraction_method": "site_rule",
-      "updated_at": "2026-05-23T20:11:06.295Z",
+      "updated_at": "2026-05-24T19:36:33.701Z",
       "quality_score": 0.74
     },
     {
@@ -5792,7 +5936,7 @@
       "source_priority": "S",
       "source_priority_score": 4,
       "extraction_method": "site_rule",
-      "updated_at": "2026-05-23T20:11:37.398Z",
+      "updated_at": "2026-05-24T19:37:05.098Z",
       "quality_score": 0.78
     },
     {
@@ -5816,7 +5960,7 @@
       "source_priority": "S",
       "source_priority_score": 4,
       "extraction_method": "site_rule",
-      "updated_at": "2026-05-23T20:11:06.294Z",
+      "updated_at": "2026-05-24T19:36:33.701Z",
       "quality_score": 0.74
     },
     {
@@ -5840,7 +5984,7 @@
       "source_priority": "S",
       "source_priority_score": 4,
       "extraction_method": "site_rule",
-      "updated_at": "2026-05-23T20:11:06.294Z",
+      "updated_at": "2026-05-24T19:36:33.701Z",
       "quality_score": 0.74
     },
     {
@@ -5888,7 +6032,7 @@
       "source_priority": "B",
       "source_priority_score": 2,
       "extraction_method": "site_rule",
-      "updated_at": "2026-05-23T20:12:02.649Z",
+      "updated_at": "2026-05-24T19:37:30.514Z",
       "quality_score": 0.71
     },
     {
@@ -5912,7 +6056,7 @@
       "source_priority": "A",
       "source_priority_score": 3,
       "extraction_method": "site_rule",
-      "updated_at": "2026-05-23T20:11:36.401Z",
+      "updated_at": "2026-05-24T19:37:01.593Z",
       "quality_score": 0.77
     },
     {
@@ -6008,7 +6152,7 @@
       "source_priority": "S",
       "source_priority_score": 4,
       "extraction_method": "site_rule",
-      "updated_at": "2026-05-23T20:11:06.295Z",
+      "updated_at": "2026-05-24T19:36:33.701Z",
       "quality_score": 0.74
     },
     {
@@ -6032,7 +6176,7 @@
       "source_priority": "S",
       "source_priority_score": 4,
       "extraction_method": "site_rule",
-      "updated_at": "2026-05-23T20:11:06.295Z",
+      "updated_at": "2026-05-24T19:36:33.701Z",
       "quality_score": 0.74
     },
     {
@@ -6056,7 +6200,7 @@
       "source_priority": "A",
       "source_priority_score": 3,
       "extraction_method": "site_rule",
-      "updated_at": "2026-05-23T20:11:30.797Z",
+      "updated_at": "2026-05-24T19:36:55.027Z",
       "quality_score": 0.95
     },
     {
@@ -6080,7 +6224,7 @@
       "source_priority": "S",
       "source_priority_score": 4,
       "extraction_method": "site_rule",
-      "updated_at": "2026-05-23T20:11:06.295Z",
+      "updated_at": "2026-05-24T19:36:33.701Z",
       "quality_score": 0.74
     },
     {
@@ -6104,7 +6248,7 @@
       "source_priority": "S",
       "source_priority_score": 4,
       "extraction_method": "site_rule",
-      "updated_at": "2026-05-23T20:11:06.295Z",
+      "updated_at": "2026-05-24T19:36:33.701Z",
       "quality_score": 0.74
     },
     {
@@ -6152,7 +6296,7 @@
       "source_priority": "S",
       "source_priority_score": 4,
       "extraction_method": "site_rule",
-      "updated_at": "2026-05-23T20:11:37.403Z",
+      "updated_at": "2026-05-24T19:37:05.103Z",
       "quality_score": 0.78
     },
     {
@@ -6200,7 +6344,7 @@
       "source_priority": "B",
       "source_priority_score": 2,
       "extraction_method": "site_rule",
-      "updated_at": "2026-05-23T20:12:02.649Z",
+      "updated_at": "2026-05-24T19:37:30.514Z",
       "quality_score": 0.71
     },
     {
@@ -6248,7 +6392,7 @@
       "source_priority": "A",
       "source_priority_score": 3,
       "extraction_method": "site_rule",
-      "updated_at": "2026-05-23T20:11:32.242Z",
+      "updated_at": "2026-05-24T19:36:58.199Z",
       "quality_score": 0.57
     },
     {
@@ -6296,7 +6440,7 @@
       "source_priority": "S",
       "source_priority_score": 4,
       "extraction_method": "site_rule",
-      "updated_at": "2026-05-23T20:11:06.295Z",
+      "updated_at": "2026-05-24T19:36:33.701Z",
       "quality_score": 0.78
     },
     {
@@ -6344,7 +6488,7 @@
       "source_priority": "S",
       "source_priority_score": 4,
       "extraction_method": "site_rule",
-      "updated_at": "2026-05-23T20:11:09.327Z",
+      "updated_at": "2026-05-24T19:36:37.590Z",
       "quality_score": 0.7
     },
     {
@@ -6392,7 +6536,31 @@
       "source_priority": "B",
       "source_priority_score": 2,
       "extraction_method": "site_rule",
-      "updated_at": "2026-05-23T20:11:58.776Z",
+      "updated_at": "2026-05-24T19:37:26.556Z",
+      "quality_score": 0.71
+    },
+    {
+      "id": "ecedc8a08833d6af4836",
+      "title": "Supported by MUSIC LIFE CLUB THE BEATLES 来日記念60周年 記念公演",
+      "start_date": "2026-06-30",
+      "end_date": "",
+      "open_time": "18:00",
+      "start_time": "19:00",
+      "end_time": "",
+      "all_day": false,
+      "venue": "PENNY LANE24",
+      "venue_address": "",
+      "summary": "6月30日【火】 Supported by MUSIC LIFE CLUB THE BEATLES 来日記念60周年 記念公演 開場 / 開演 18:00 / 19:00 チケット発売 2026/03/14 10:00 一般前売り ¥5,000 L-code/P-cod 12648 / イープラス /ドリンク代別途¥600/ ◆詳しくは、ウエス HPをご確認ください。 お問い合わせ 合同会社オフィスたっち URL tachibana.…",
+      "flyer_image_url": "https://www.pl24.jp/img/schedule/26/0630.jpg",
+      "detail_url": "https://www.pl24.jp/schedule_n.html",
+      "source_id": "www-pl24-jp-schedule-html",
+      "source_name": "PENNY LANE24",
+      "source_url": "https://www.pl24.jp/schedule.html",
+      "source_category": "ライブハウス（会場公式）",
+      "source_priority": "B",
+      "source_priority_score": 2,
+      "extraction_method": "site_rule",
+      "updated_at": "2026-05-24T19:37:24.444Z",
       "quality_score": 0.71
     },
     {
@@ -6440,7 +6608,7 @@
       "source_priority": "A",
       "source_priority_score": 3,
       "extraction_method": "site_rule",
-      "updated_at": "2026-05-23T20:11:32.242Z",
+      "updated_at": "2026-05-24T19:36:58.199Z",
       "quality_score": 0.57
     },
     {
@@ -6464,7 +6632,7 @@
       "source_priority": "A",
       "source_priority_score": 3,
       "extraction_method": "site_rule",
-      "updated_at": "2026-05-23T20:11:32.243Z",
+      "updated_at": "2026-05-24T19:36:58.200Z",
       "quality_score": 0.57
     },
     {
@@ -6488,7 +6656,7 @@
       "source_priority": "S",
       "source_priority_score": 4,
       "extraction_method": "site_rule",
-      "updated_at": "2026-05-23T20:11:19.185Z",
+      "updated_at": "2026-05-24T19:36:49.283Z",
       "quality_score": 1
     },
     {
@@ -6512,7 +6680,7 @@
       "source_priority": "S",
       "source_priority_score": 4,
       "extraction_method": "site_rule",
-      "updated_at": "2026-05-23T20:11:09.328Z",
+      "updated_at": "2026-05-24T19:36:37.591Z",
       "quality_score": 0.7
     },
     {
@@ -6536,7 +6704,7 @@
       "source_priority": "S",
       "source_priority_score": 4,
       "extraction_method": "site_rule",
-      "updated_at": "2026-05-23T20:11:09.512Z",
+      "updated_at": "2026-05-24T19:36:37.382Z",
       "quality_score": 0.74
     },
     {
@@ -6584,7 +6752,7 @@
       "source_priority": "B",
       "source_priority_score": 2,
       "extraction_method": "site_rule",
-      "updated_at": "2026-05-23T20:11:58.776Z",
+      "updated_at": "2026-05-24T19:37:26.557Z",
       "quality_score": 0.71
     },
     {
@@ -6608,7 +6776,7 @@
       "source_priority": "S",
       "source_priority_score": 4,
       "extraction_method": "site_rule",
-      "updated_at": "2026-05-23T20:11:09.328Z",
+      "updated_at": "2026-05-24T19:36:37.591Z",
       "quality_score": 0.7
     },
     {
@@ -6632,7 +6800,7 @@
       "source_priority": "S",
       "source_priority_score": 4,
       "extraction_method": "site_rule",
-      "updated_at": "2026-05-23T20:11:09.512Z",
+      "updated_at": "2026-05-24T19:36:37.382Z",
       "quality_score": 0.78
     },
     {
@@ -6656,7 +6824,7 @@
       "source_priority": "S",
       "source_priority_score": 4,
       "extraction_method": "site_rule",
-      "updated_at": "2026-05-23T20:11:09.512Z",
+      "updated_at": "2026-05-24T19:36:37.382Z",
       "quality_score": 0.74
     },
     {
@@ -6680,7 +6848,7 @@
       "source_priority": "B",
       "source_priority_score": 2,
       "extraction_method": "site_rule",
-      "updated_at": "2026-05-23T20:11:58.776Z",
+      "updated_at": "2026-05-24T19:37:26.557Z",
       "quality_score": 0.71
     },
     {
@@ -6704,7 +6872,7 @@
       "source_priority": "S",
       "source_priority_score": 4,
       "extraction_method": "site_rule",
-      "updated_at": "2026-05-23T20:11:09.512Z",
+      "updated_at": "2026-05-24T19:36:37.382Z",
       "quality_score": 0.78
     },
     {
@@ -6728,7 +6896,7 @@
       "source_priority": "S",
       "source_priority_score": 4,
       "extraction_method": "site_rule",
-      "updated_at": "2026-05-23T20:11:07.719Z",
+      "updated_at": "2026-05-24T19:36:35.988Z",
       "quality_score": 1
     },
     {
@@ -6752,7 +6920,7 @@
       "source_priority": "S",
       "source_priority_score": 4,
       "extraction_method": "site_rule",
-      "updated_at": "2026-05-23T20:11:37.411Z",
+      "updated_at": "2026-05-24T19:37:05.113Z",
       "quality_score": 0.78
     },
     {
@@ -6800,7 +6968,7 @@
       "source_priority": "S",
       "source_priority_score": 4,
       "extraction_method": "site_rule",
-      "updated_at": "2026-05-23T20:11:09.513Z",
+      "updated_at": "2026-05-24T19:36:37.382Z",
       "quality_score": 0.74
     },
     {
@@ -6824,7 +6992,7 @@
       "source_priority": "S",
       "source_priority_score": 4,
       "extraction_method": "site_rule",
-      "updated_at": "2026-05-23T20:11:09.512Z",
+      "updated_at": "2026-05-24T19:36:37.382Z",
       "quality_score": 0.74
     },
     {
@@ -6848,7 +7016,7 @@
       "source_priority": "S",
       "source_priority_score": 4,
       "extraction_method": "site_rule",
-      "updated_at": "2026-05-23T20:11:37.418Z",
+      "updated_at": "2026-05-24T19:37:05.117Z",
       "quality_score": 0.78
     },
     {
@@ -6872,7 +7040,7 @@
       "source_priority": "S",
       "source_priority_score": 4,
       "extraction_method": "site_rule",
-      "updated_at": "2026-05-23T20:11:09.512Z",
+      "updated_at": "2026-05-24T19:36:37.382Z",
       "quality_score": 0.78
     },
     {
@@ -6896,7 +7064,7 @@
       "source_priority": "S",
       "source_priority_score": 4,
       "extraction_method": "site_rule",
-      "updated_at": "2026-05-23T20:11:09.513Z",
+      "updated_at": "2026-05-24T19:36:37.382Z",
       "quality_score": 0.74
     },
     {
@@ -6920,7 +7088,7 @@
       "source_priority": "S",
       "source_priority_score": 4,
       "extraction_method": "site_rule",
-      "updated_at": "2026-05-23T20:11:09.513Z",
+      "updated_at": "2026-05-24T19:36:37.382Z",
       "quality_score": 0.74
     },
     {
@@ -6944,7 +7112,7 @@
       "source_priority": "A",
       "source_priority_score": 3,
       "extraction_method": "site_rule",
-      "updated_at": "2026-05-23T20:11:36.401Z",
+      "updated_at": "2026-05-24T19:37:01.593Z",
       "quality_score": 0.81
     },
     {
@@ -6968,7 +7136,7 @@
       "source_priority": "S",
       "source_priority_score": 4,
       "extraction_method": "site_rule",
-      "updated_at": "2026-05-23T20:11:42.121Z",
+      "updated_at": "2026-05-24T19:36:57.097Z",
       "quality_score": 1
     },
     {
@@ -6992,7 +7160,7 @@
       "source_priority": "S",
       "source_priority_score": 4,
       "extraction_method": "site_rule",
-      "updated_at": "2026-05-23T20:11:42.121Z",
+      "updated_at": "2026-05-24T19:36:57.097Z",
       "quality_score": 1
     },
     {
@@ -7016,7 +7184,7 @@
       "source_priority": "S",
       "source_priority_score": 4,
       "extraction_method": "site_rule",
-      "updated_at": "2026-05-23T20:11:09.513Z",
+      "updated_at": "2026-05-24T19:36:37.382Z",
       "quality_score": 0.74
     },
     {
@@ -7040,7 +7208,7 @@
       "source_priority": "S",
       "source_priority_score": 4,
       "extraction_method": "site_rule",
-      "updated_at": "2026-05-23T20:11:07.720Z",
+      "updated_at": "2026-05-24T19:36:35.989Z",
       "quality_score": 0.9
     },
     {
@@ -7064,7 +7232,7 @@
       "source_priority": "S",
       "source_priority_score": 4,
       "extraction_method": "site_rule",
-      "updated_at": "2026-05-23T20:11:09.513Z",
+      "updated_at": "2026-05-24T19:36:37.382Z",
       "quality_score": 0.78
     },
     {
@@ -7088,7 +7256,7 @@
       "source_priority": "S",
       "source_priority_score": 4,
       "extraction_method": "site_rule",
-      "updated_at": "2026-05-23T20:11:09.513Z",
+      "updated_at": "2026-05-24T19:36:37.383Z",
       "quality_score": 0.74
     },
     {
@@ -7112,7 +7280,7 @@
       "source_priority": "S",
       "source_priority_score": 4,
       "extraction_method": "site_rule",
-      "updated_at": "2026-05-23T20:11:07.713Z",
+      "updated_at": "2026-05-24T19:36:35.984Z",
       "quality_score": 1
     },
     {
@@ -7136,7 +7304,7 @@
       "source_priority": "S",
       "source_priority_score": 4,
       "extraction_method": "site_rule",
-      "updated_at": "2026-05-23T20:11:37.422Z",
+      "updated_at": "2026-05-24T19:37:05.121Z",
       "quality_score": 0.78
     },
     {
@@ -7160,7 +7328,7 @@
       "source_priority": "S",
       "source_priority_score": 4,
       "extraction_method": "site_rule",
-      "updated_at": "2026-05-23T20:11:09.513Z",
+      "updated_at": "2026-05-24T19:36:37.382Z",
       "quality_score": 0.74
     },
     {
@@ -7184,7 +7352,7 @@
       "source_priority": "A",
       "source_priority_score": 3,
       "extraction_method": "heuristic",
-      "updated_at": "2026-05-23T20:11:53.086Z",
+      "updated_at": "2026-05-24T19:37:20.967Z",
       "quality_score": 0.81
     },
     {
@@ -7232,7 +7400,7 @@
       "source_priority": "S",
       "source_priority_score": 4,
       "extraction_method": "site_rule",
-      "updated_at": "2026-05-23T20:11:42.122Z",
+      "updated_at": "2026-05-24T19:36:57.097Z",
       "quality_score": 1
     },
     {
@@ -7256,7 +7424,7 @@
       "source_priority": "A",
       "source_priority_score": 3,
       "extraction_method": "site_rule",
-      "updated_at": "2026-05-23T20:11:48.944Z",
+      "updated_at": "2026-05-24T19:37:17.177Z",
       "quality_score": 0.75
     },
     {
@@ -7280,8 +7448,32 @@
       "source_priority": "S",
       "source_priority_score": 4,
       "extraction_method": "heuristic",
-      "updated_at": "2026-05-23T20:11:05.089Z",
+      "updated_at": "2026-05-24T19:36:29.410Z",
       "quality_score": 0.64
+    },
+    {
+      "id": "2a45582560d9330da2cc",
+      "title": "SiM THE EXPERiMENT TOUR 2026",
+      "start_date": "2026-07-08",
+      "end_date": "",
+      "open_time": "",
+      "start_time": "19:00",
+      "end_time": "",
+      "all_day": false,
+      "venue": "PENNY LANE24",
+      "venue_address": "",
+      "summary": "7月8日【水】 THE EXPERiMENT TOUR 2026 SiM 開場 / 開演 19:00 / 19: 30 チケット発売 2026/03/28 10:00 一般前売り ¥5,500 L-code/P-cod / イープラス /スタンディング/ドリンク代別途¥600/6歳以上有料(保護者1名につき6歳未満のお子様1名同伴可)/ ◆詳しくは、スマッシュイースト HPをご確認ください。 お問い合わせ SMASH EAST 011…",
+      "flyer_image_url": "https://www.pl24.jp/img/schedule/26/0708.jpg",
+      "detail_url": "https://www.chicoxxx.com/live/",
+      "source_id": "www-pl24-jp-schedule-html",
+      "source_name": "PENNY LANE24",
+      "source_url": "https://www.pl24.jp/schedule.html",
+      "source_category": "ライブハウス（会場公式）",
+      "source_priority": "B",
+      "source_priority_score": 2,
+      "extraction_method": "site_rule",
+      "updated_at": "2026-05-24T19:37:24.445Z",
+      "quality_score": 0.63
     },
     {
       "id": "f86386a0ba17d7cebd36",
@@ -7328,7 +7520,7 @@
       "source_priority": "S",
       "source_priority_score": 4,
       "extraction_method": "site_rule",
-      "updated_at": "2026-05-23T20:11:09.513Z",
+      "updated_at": "2026-05-24T19:36:37.383Z",
       "quality_score": 0.78
     },
     {
@@ -7352,7 +7544,7 @@
       "source_priority": "S",
       "source_priority_score": 4,
       "extraction_method": "site_rule",
-      "updated_at": "2026-05-23T20:11:42.122Z",
+      "updated_at": "2026-05-24T19:36:57.098Z",
       "quality_score": 1
     },
     {
@@ -7376,7 +7568,7 @@
       "source_priority": "S",
       "source_priority_score": 4,
       "extraction_method": "site_rule",
-      "updated_at": "2026-05-23T20:11:09.513Z",
+      "updated_at": "2026-05-24T19:36:37.383Z",
       "quality_score": 0.74
     },
     {
@@ -7424,7 +7616,7 @@
       "source_priority": "S",
       "source_priority_score": 4,
       "extraction_method": "site_rule",
-      "updated_at": "2026-05-23T20:11:09.513Z",
+      "updated_at": "2026-05-24T19:36:37.383Z",
       "quality_score": 0.74
     },
     {
@@ -7448,7 +7640,7 @@
       "source_priority": "S",
       "source_priority_score": 4,
       "extraction_method": "site_rule",
-      "updated_at": "2026-05-23T20:11:09.328Z",
+      "updated_at": "2026-05-24T19:36:37.591Z",
       "quality_score": 0.7
     },
     {
@@ -7472,7 +7664,7 @@
       "source_priority": "S",
       "source_priority_score": 4,
       "extraction_method": "site_rule",
-      "updated_at": "2026-05-23T20:11:09.513Z",
+      "updated_at": "2026-05-24T19:36:37.383Z",
       "quality_score": 0.74
     },
     {
@@ -7496,7 +7688,7 @@
       "source_priority": "S",
       "source_priority_score": 4,
       "extraction_method": "site_rule",
-      "updated_at": "2026-05-23T20:11:42.122Z",
+      "updated_at": "2026-05-24T19:36:57.098Z",
       "quality_score": 1
     },
     {
@@ -7520,7 +7712,7 @@
       "source_priority": "S",
       "source_priority_score": 4,
       "extraction_method": "site_rule",
-      "updated_at": "2026-05-23T20:11:09.513Z",
+      "updated_at": "2026-05-24T19:36:37.383Z",
       "quality_score": 0.74
     },
     {
@@ -7544,7 +7736,7 @@
       "source_priority": "S",
       "source_priority_score": 4,
       "extraction_method": "site_rule",
-      "updated_at": "2026-05-23T20:11:09.513Z",
+      "updated_at": "2026-05-24T19:36:37.383Z",
       "quality_score": 0.74
     },
     {
@@ -7568,7 +7760,7 @@
       "source_priority": "S",
       "source_priority_score": 4,
       "extraction_method": "site_rule",
-      "updated_at": "2026-05-23T20:11:09.328Z",
+      "updated_at": "2026-05-24T19:36:37.591Z",
       "quality_score": 0.7
     },
     {
@@ -7592,7 +7784,7 @@
       "source_priority": "S",
       "source_priority_score": 4,
       "extraction_method": "site_rule",
-      "updated_at": "2026-05-23T20:11:42.122Z",
+      "updated_at": "2026-05-24T19:36:57.098Z",
       "quality_score": 1
     },
     {
@@ -7616,7 +7808,7 @@
       "source_priority": "S",
       "source_priority_score": 4,
       "extraction_method": "site_rule",
-      "updated_at": "2026-05-23T20:11:09.513Z",
+      "updated_at": "2026-05-24T19:36:37.383Z",
       "quality_score": 0.74
     },
     {
@@ -7640,7 +7832,7 @@
       "source_priority": "S",
       "source_priority_score": 4,
       "extraction_method": "site_rule",
-      "updated_at": "2026-05-23T20:11:09.513Z",
+      "updated_at": "2026-05-24T19:36:37.383Z",
       "quality_score": 0.78
     },
     {
@@ -7664,7 +7856,7 @@
       "source_priority": "S",
       "source_priority_score": 4,
       "extraction_method": "site_rule",
-      "updated_at": "2026-05-23T20:11:37.431Z",
+      "updated_at": "2026-05-24T19:37:05.129Z",
       "quality_score": 0.78
     },
     {
@@ -7688,7 +7880,7 @@
       "source_priority": "A",
       "source_priority_score": 3,
       "extraction_method": "heuristic",
-      "updated_at": "2026-05-23T20:11:50.336Z",
+      "updated_at": "2026-05-24T19:37:18.445Z",
       "quality_score": 0.81
     },
     {
@@ -7712,7 +7904,7 @@
       "source_priority": "S",
       "source_priority_score": 4,
       "extraction_method": "site_rule",
-      "updated_at": "2026-05-23T20:11:09.328Z",
+      "updated_at": "2026-05-24T19:36:37.591Z",
       "quality_score": 0.7
     },
     {
@@ -7736,7 +7928,7 @@
       "source_priority": "S",
       "source_priority_score": 4,
       "extraction_method": "site_rule",
-      "updated_at": "2026-05-23T20:11:42.123Z",
+      "updated_at": "2026-05-24T19:36:57.099Z",
       "quality_score": 1
     },
     {
@@ -7760,7 +7952,7 @@
       "source_priority": "S",
       "source_priority_score": 4,
       "extraction_method": "site_rule",
-      "updated_at": "2026-05-23T20:11:09.514Z",
+      "updated_at": "2026-05-24T19:36:37.383Z",
       "quality_score": 0.78
     },
     {
@@ -7784,7 +7976,7 @@
       "source_priority": "S",
       "source_priority_score": 4,
       "extraction_method": "site_rule",
-      "updated_at": "2026-05-23T20:11:09.514Z",
+      "updated_at": "2026-05-24T19:36:37.383Z",
       "quality_score": 0.74
     },
     {
@@ -7808,7 +8000,7 @@
       "source_priority": "A",
       "source_priority_score": 3,
       "extraction_method": "site_rule",
-      "updated_at": "2026-05-23T20:11:36.401Z",
+      "updated_at": "2026-05-24T19:37:01.593Z",
       "quality_score": 0.77
     },
     {
@@ -7832,7 +8024,7 @@
       "source_priority": "S",
       "source_priority_score": 4,
       "extraction_method": "site_rule",
-      "updated_at": "2026-05-23T20:11:42.125Z",
+      "updated_at": "2026-05-24T19:36:57.099Z",
       "quality_score": 1
     },
     {
@@ -7856,7 +8048,7 @@
       "source_priority": "S",
       "source_priority_score": 4,
       "extraction_method": "site_rule",
-      "updated_at": "2026-05-23T20:11:09.514Z",
+      "updated_at": "2026-05-24T19:36:37.384Z",
       "quality_score": 0.78
     },
     {
@@ -7880,7 +8072,7 @@
       "source_priority": "S",
       "source_priority_score": 4,
       "extraction_method": "site_rule",
-      "updated_at": "2026-05-23T20:11:09.328Z",
+      "updated_at": "2026-05-24T19:36:37.591Z",
       "quality_score": 0.7
     },
     {
@@ -7904,7 +8096,7 @@
       "source_priority": "S",
       "source_priority_score": 4,
       "extraction_method": "site_rule",
-      "updated_at": "2026-05-23T20:11:09.514Z",
+      "updated_at": "2026-05-24T19:36:37.384Z",
       "quality_score": 0.74
     },
     {
@@ -7928,7 +8120,7 @@
       "source_priority": "S",
       "source_priority_score": 4,
       "extraction_method": "site_rule",
-      "updated_at": "2026-05-23T20:11:09.328Z",
+      "updated_at": "2026-05-24T19:36:37.591Z",
       "quality_score": 0.7
     },
     {
@@ -7952,7 +8144,7 @@
       "source_priority": "S",
       "source_priority_score": 4,
       "extraction_method": "site_rule",
-      "updated_at": "2026-05-23T20:11:42.125Z",
+      "updated_at": "2026-05-24T19:36:57.099Z",
       "quality_score": 1
     },
     {
@@ -7967,7 +8159,7 @@
       "venue": "清田区民センター 区民ホール",
       "venue_address": "",
       "summary": "2026-07-15 / 開場 18:30 / 開演 19:00 / 終演 20:30 / 清田区民センター 区民ホール",
-      "flyer_image_url": "https://www.pmf.or.jp/media/004/202412/mode3_w240_h240-pmf0719nf_0661.jpg",
+      "flyer_image_url": "https://www.pmf.or.jp/media/004/202412/mode3_w240_h240-pmf0719nf_0661.jpg?v=20241225135704",
       "detail_url": "https://www.pmf.or.jp/jp/schedule/chamber/2026-kiyota.html",
       "source_id": "www-pmf-or-jp-jp-schedule",
       "source_name": "PMF（パシフィック・ミュージック・フェスティバル札幌）",
@@ -7976,7 +8168,7 @@
       "source_priority": "A",
       "source_priority_score": 3,
       "extraction_method": "site_rule",
-      "updated_at": "2026-05-23T20:12:00.724Z",
+      "updated_at": "2026-05-24T19:37:23.403Z",
       "quality_score": 0.8
     },
     {
@@ -8024,7 +8216,7 @@
       "source_priority": "S",
       "source_priority_score": 4,
       "extraction_method": "site_rule",
-      "updated_at": "2026-05-23T20:11:09.328Z",
+      "updated_at": "2026-05-24T19:36:37.591Z",
       "quality_score": 0.7
     },
     {
@@ -8048,7 +8240,7 @@
       "source_priority": "S",
       "source_priority_score": 4,
       "extraction_method": "site_rule",
-      "updated_at": "2026-05-23T20:11:09.514Z",
+      "updated_at": "2026-05-24T19:36:37.384Z",
       "quality_score": 0.74
     },
     {
@@ -8063,7 +8255,7 @@
       "venue": "小樽芸術村 旧三井銀行小樽支店",
       "venue_address": "",
       "summary": "2026-07-16 / 開場 18:30 / 開演 19:00 / 終演 20:30 / 小樽芸術村 旧三井銀行小樽支店",
-      "flyer_image_url": "https://www.pmf.or.jp/media/005/202602/mode3_w240_h240-rs_0716_siz_OTARU-0635sq.jpg",
+      "flyer_image_url": "https://www.pmf.or.jp/media/005/202602/mode3_w240_h240-rs_0716_siz_OTARU-0635sq.jpg?v=20260205131449",
       "detail_url": "https://www.pmf.or.jp/jp/schedule/chamber/2026-otaru.html",
       "source_id": "www-pmf-or-jp-jp-schedule",
       "source_name": "PMF（パシフィック・ミュージック・フェスティバル札幌）",
@@ -8072,7 +8264,7 @@
       "source_priority": "A",
       "source_priority_score": 3,
       "extraction_method": "site_rule",
-      "updated_at": "2026-05-23T20:12:00.724Z",
+      "updated_at": "2026-05-24T19:37:23.404Z",
       "quality_score": 0.8
     },
     {
@@ -8096,7 +8288,7 @@
       "source_priority": "S",
       "source_priority_score": 4,
       "extraction_method": "site_rule",
-      "updated_at": "2026-05-23T20:11:09.514Z",
+      "updated_at": "2026-05-24T19:36:37.384Z",
       "quality_score": 0.78
     },
     {
@@ -8111,7 +8303,7 @@
       "venue": "豊平館（中島公園内）",
       "venue_address": "",
       "summary": "2026-07-17 / 開場 18:30 / 開演 19:00 / 終演 20:30 / 豊平館（中島公園内）",
-      "flyer_image_url": "https://www.pmf.or.jp/media/004/202001/mode3_w240_h240-19f3738c24b3b6a0b0d14859787fd087.jpg",
+      "flyer_image_url": "https://www.pmf.or.jp/media/004/202001/mode3_w240_h240-19f3738c24b3b6a0b0d14859787fd087.jpg?v=20200203192959",
       "detail_url": "https://www.pmf.or.jp/jp/schedule/chamber/2026-hoheikan.html",
       "source_id": "www-pmf-or-jp-jp-schedule",
       "source_name": "PMF（パシフィック・ミュージック・フェスティバル札幌）",
@@ -8120,7 +8312,7 @@
       "source_priority": "A",
       "source_priority_score": 3,
       "extraction_method": "site_rule",
-      "updated_at": "2026-05-23T20:12:00.724Z",
+      "updated_at": "2026-05-24T19:37:23.404Z",
       "quality_score": 0.8
     },
     {
@@ -8144,32 +8336,8 @@
       "source_priority": "S",
       "source_priority_score": 4,
       "extraction_method": "site_rule",
-      "updated_at": "2026-05-23T20:11:09.514Z",
+      "updated_at": "2026-05-24T19:36:37.384Z",
       "quality_score": 0.78
-    },
-    {
-      "id": "af1ca76158e5dcca88a7",
-      "title": "恐竜迷路 ジュラシックメイズ in SAPPORO",
-      "start_date": "2026-07-18",
-      "end_date": "2026-08-23",
-      "open_time": "",
-      "start_time": "10:00",
-      "end_time": "17:00",
-      "all_day": true,
-      "venue": "サッポロファクトリー西広場特設会場",
-      "venue_address": "札幌市中央区北2条東4丁目",
-      "summary": "2026年7月18日(土)～8月23日(日) / サッポロファクトリー西広場特設会場",
-      "flyer_image_url": "https://sapporofactory.jp/theme/sf/files/event/ID00000549-20260415_164327-img.jpg",
-      "detail_url": "https://sapporofactory.jp/event/detail/549",
-      "source_id": "sapporofactory-jp-event",
-      "source_name": "サッポロファクトリー（イベント）",
-      "source_url": "https://sapporofactory.jp/event/",
-      "source_category": "商業施設（一次）",
-      "source_priority": "A",
-      "source_priority_score": 3,
-      "extraction_method": "site_rule",
-      "updated_at": "2026-05-23T20:11:36.401Z",
-      "quality_score": 0.81
     },
     {
       "id": "3aae04685cc3d827aaa1",
@@ -8192,7 +8360,7 @@
       "source_priority": "S",
       "source_priority_score": 4,
       "extraction_method": "site_rule",
-      "updated_at": "2026-05-23T20:11:37.436Z",
+      "updated_at": "2026-05-24T19:37:05.134Z",
       "quality_score": 0.78
     },
     {
@@ -8216,7 +8384,7 @@
       "source_priority": "S",
       "source_priority_score": 4,
       "extraction_method": "site_rule",
-      "updated_at": "2026-05-23T20:11:09.514Z",
+      "updated_at": "2026-05-24T19:36:37.384Z",
       "quality_score": 0.74
     },
     {
@@ -8240,7 +8408,7 @@
       "source_priority": "S",
       "source_priority_score": 4,
       "extraction_method": "site_rule",
-      "updated_at": "2026-05-23T20:11:07.720Z",
+      "updated_at": "2026-05-24T19:36:35.989Z",
       "quality_score": 1
     },
     {
@@ -8264,12 +8432,36 @@
       "source_priority": "S",
       "source_priority_score": 4,
       "extraction_method": "site_rule",
-      "updated_at": "2026-05-23T20:11:09.514Z",
+      "updated_at": "2026-05-24T19:36:37.384Z",
       "quality_score": 0.74
     },
     {
+      "id": "af1ca76158e5dcca88a7",
+      "title": "恐竜迷路 ジュラシックメイズ in SAPPORO",
+      "start_date": "2026-07-18",
+      "end_date": "2026-08-23",
+      "open_time": "",
+      "start_time": "",
+      "end_time": "",
+      "all_day": true,
+      "venue": "サッポロファクトリー西広場特設会場",
+      "venue_address": "札幌市中央区北2条東4丁目",
+      "summary": "2026年7月18日(土)～8月23日(日) / サッポロファクトリー西広場特設会場",
+      "flyer_image_url": "https://sapporofactory.jp/theme/sf/files/event/ID00000549-20260415_164327-img.jpg",
+      "detail_url": "https://sapporofactory.jp/event/detail/549",
+      "source_id": "sapporofactory-jp-event",
+      "source_name": "サッポロファクトリー（イベント）",
+      "source_url": "https://sapporofactory.jp/event/",
+      "source_category": "商業施設（一次）",
+      "source_priority": "A",
+      "source_priority_score": 3,
+      "extraction_method": "site_rule",
+      "updated_at": "2026-05-24T19:37:01.593Z",
+      "quality_score": 0.81
+    },
+    {
       "id": "88d6cc5f6163f147e00c",
-      "title": "文化 芸術 大通周辺 7月 SAPPORO CITY JAZZ パークジャズライブ (土)～(日)",
+      "title": "SAPPORO CITY JAZZ パークジャズライブ",
       "start_date": "2026-07-18",
       "end_date": "",
       "open_time": "",
@@ -8288,7 +8480,7 @@
       "source_priority": "S",
       "source_priority_score": 4,
       "extraction_method": "heuristic",
-      "updated_at": "2026-05-23T20:11:05.078Z",
+      "updated_at": "2026-05-24T19:36:29.414Z",
       "quality_score": 0.64
     },
     {
@@ -8312,7 +8504,7 @@
       "source_priority": "A",
       "source_priority_score": 3,
       "extraction_method": "heuristic",
-      "updated_at": "2026-05-23T20:12:32.953Z",
+      "updated_at": "2026-05-24T19:38:00.613Z",
       "quality_score": 0.61
     },
     {
@@ -8336,7 +8528,7 @@
       "source_priority": "S",
       "source_priority_score": 4,
       "extraction_method": "site_rule",
-      "updated_at": "2026-05-23T20:11:42.125Z",
+      "updated_at": "2026-05-24T19:36:57.099Z",
       "quality_score": 1
     },
     {
@@ -8360,7 +8552,7 @@
       "source_priority": "S",
       "source_priority_score": 4,
       "extraction_method": "site_rule",
-      "updated_at": "2026-05-23T20:11:07.721Z",
+      "updated_at": "2026-05-24T19:36:35.990Z",
       "quality_score": 1
     },
     {
@@ -8384,7 +8576,7 @@
       "source_priority": "S",
       "source_priority_score": 4,
       "extraction_method": "site_rule",
-      "updated_at": "2026-05-23T20:11:09.514Z",
+      "updated_at": "2026-05-24T19:36:37.384Z",
       "quality_score": 0.74
     },
     {
@@ -8408,7 +8600,7 @@
       "source_priority": "S",
       "source_priority_score": 4,
       "extraction_method": "site_rule",
-      "updated_at": "2026-05-23T20:11:37.440Z",
+      "updated_at": "2026-05-24T19:37:05.140Z",
       "quality_score": 0.78
     },
     {
@@ -8432,7 +8624,7 @@
       "source_priority": "S",
       "source_priority_score": 4,
       "extraction_method": "site_rule",
-      "updated_at": "2026-05-23T20:11:42.125Z",
+      "updated_at": "2026-05-24T19:36:57.100Z",
       "quality_score": 1
     },
     {
@@ -8456,8 +8648,32 @@
       "source_priority": "S",
       "source_priority_score": 4,
       "extraction_method": "site_rule",
-      "updated_at": "2026-05-23T20:11:42.126Z",
+      "updated_at": "2026-05-24T19:36:57.100Z",
       "quality_score": 1
+    },
+    {
+      "id": "9fbadefafa6ecfcf55b5",
+      "title": "Ayumu Imazu The CLASSIC TOUR 2026",
+      "start_date": "2026-07-20",
+      "end_date": "",
+      "open_time": "15:15",
+      "start_time": "16:00",
+      "end_time": "",
+      "all_day": false,
+      "venue": "PENNY LANE24",
+      "venue_address": "",
+      "summary": "7月20日【月】 Ayumu Imazu The CLASSIC TOUR 2026 Ayumu Imazu 開場 / 開演 15:15 / 16:00 チケット発売 一般前売り ¥7,500 L-code/P-cod － / イープラス － /スタンディング/ドリンク代別途¥600/未就学児童は入場不可 / 小学生以上はチケット必要/ ◆注意事項等詳しくは、ミュージックファン HPをご確認ください。 お問い合わせ ミュージックファン…",
+      "flyer_image_url": "https://www.pl24.jp/img/schedule/26/0720.jpg",
+      "detail_url": "http://musicfun.co.jp/",
+      "source_id": "www-pl24-jp-schedule-html",
+      "source_name": "PENNY LANE24",
+      "source_url": "https://www.pl24.jp/schedule.html",
+      "source_category": "ライブハウス（会場公式）",
+      "source_priority": "B",
+      "source_priority_score": 2,
+      "extraction_method": "site_rule",
+      "updated_at": "2026-05-24T19:37:24.445Z",
+      "quality_score": 0.71
     },
     {
       "id": "60c5c348cfbf7a6ae935",
@@ -8480,7 +8696,7 @@
       "source_priority": "S",
       "source_priority_score": 4,
       "extraction_method": "site_rule",
-      "updated_at": "2026-05-23T20:11:09.514Z",
+      "updated_at": "2026-05-24T19:36:37.384Z",
       "quality_score": 0.74
     },
     {
@@ -8504,7 +8720,7 @@
       "source_priority": "S",
       "source_priority_score": 4,
       "extraction_method": "site_rule",
-      "updated_at": "2026-05-23T20:11:09.514Z",
+      "updated_at": "2026-05-24T19:36:37.384Z",
       "quality_score": 0.74
     },
     {
@@ -8528,7 +8744,7 @@
       "source_priority": "S",
       "source_priority_score": 4,
       "extraction_method": "site_rule",
-      "updated_at": "2026-05-23T20:11:09.514Z",
+      "updated_at": "2026-05-24T19:36:37.384Z",
       "quality_score": 0.74
     },
     {
@@ -8552,7 +8768,7 @@
       "source_priority": "A",
       "source_priority_score": 3,
       "extraction_method": "heuristic",
-      "updated_at": "2026-05-23T20:12:32.952Z",
+      "updated_at": "2026-05-24T19:38:00.612Z",
       "quality_score": 0.61
     },
     {
@@ -8576,7 +8792,7 @@
       "source_priority": "S",
       "source_priority_score": 4,
       "extraction_method": "site_rule",
-      "updated_at": "2026-05-23T20:11:42.126Z",
+      "updated_at": "2026-05-24T19:36:57.100Z",
       "quality_score": 1
     },
     {
@@ -8591,7 +8807,7 @@
       "venue": "江別市民文化ホール（えぽあホール）",
       "venue_address": "",
       "summary": "2026-07-21 / 開場 18:30 / 開演 19:00 / 終演 20:30 / 江別市民文化ホール（えぽあホール）",
-      "flyer_image_url": "https://www.pmf.or.jp/media/004/202602/mode3_w240_h240-0716_Ebetsu_NWN_1779_square.jpg",
+      "flyer_image_url": "https://www.pmf.or.jp/media/004/202602/mode3_w240_h240-0716_Ebetsu_NWN_1779_square.jpg?v=20260205093618",
       "detail_url": "https://www.pmf.or.jp/jp/schedule/chamber/2026-ebetsu.html",
       "source_id": "www-pmf-or-jp-jp-schedule",
       "source_name": "PMF（パシフィック・ミュージック・フェスティバル札幌）",
@@ -8600,7 +8816,7 @@
       "source_priority": "A",
       "source_priority_score": 3,
       "extraction_method": "site_rule",
-      "updated_at": "2026-05-23T20:12:00.725Z",
+      "updated_at": "2026-05-24T19:37:23.404Z",
       "quality_score": 0.8
     },
     {
@@ -8624,7 +8840,7 @@
       "source_priority": "S",
       "source_priority_score": 4,
       "extraction_method": "site_rule",
-      "updated_at": "2026-05-23T20:11:09.515Z",
+      "updated_at": "2026-05-24T19:36:37.384Z",
       "quality_score": 0.74
     },
     {
@@ -8648,7 +8864,7 @@
       "source_priority": "A",
       "source_priority_score": 3,
       "extraction_method": "site_rule",
-      "updated_at": "2026-05-23T20:11:30.797Z",
+      "updated_at": "2026-05-24T19:36:55.028Z",
       "quality_score": 0.91
     },
     {
@@ -8672,7 +8888,7 @@
       "source_priority": "S",
       "source_priority_score": 4,
       "extraction_method": "site_rule",
-      "updated_at": "2026-05-23T20:11:42.126Z",
+      "updated_at": "2026-05-24T19:36:57.100Z",
       "quality_score": 1
     },
     {
@@ -8696,7 +8912,7 @@
       "source_priority": "S",
       "source_priority_score": 4,
       "extraction_method": "site_rule",
-      "updated_at": "2026-05-23T20:11:09.515Z",
+      "updated_at": "2026-05-24T19:36:37.384Z",
       "quality_score": 0.74
     },
     {
@@ -8720,7 +8936,7 @@
       "source_priority": "A",
       "source_priority_score": 3,
       "extraction_method": "site_rule",
-      "updated_at": "2026-05-23T20:11:48.944Z",
+      "updated_at": "2026-05-24T19:37:17.177Z",
       "quality_score": 0.57
     },
     {
@@ -8744,7 +8960,7 @@
       "source_priority": "A",
       "source_priority_score": 3,
       "extraction_method": "site_rule",
-      "updated_at": "2026-05-23T20:11:48.944Z",
+      "updated_at": "2026-05-24T19:37:17.177Z",
       "quality_score": 0.75
     },
     {
@@ -8768,7 +8984,7 @@
       "source_priority": "S",
       "source_priority_score": 4,
       "extraction_method": "site_rule",
-      "updated_at": "2026-05-23T20:11:42.126Z",
+      "updated_at": "2026-05-24T19:36:57.100Z",
       "quality_score": 1
     },
     {
@@ -8792,7 +9008,7 @@
       "source_priority": "S",
       "source_priority_score": 4,
       "extraction_method": "site_rule",
-      "updated_at": "2026-05-23T20:11:37.446Z",
+      "updated_at": "2026-05-24T19:37:05.144Z",
       "quality_score": 0.78
     },
     {
@@ -8816,7 +9032,7 @@
       "source_priority": "A",
       "source_priority_score": 3,
       "extraction_method": "site_rule",
-      "updated_at": "2026-05-23T20:11:41.463Z",
+      "updated_at": "2026-05-24T19:37:09.903Z",
       "quality_score": 0.77
     },
     {
@@ -8864,7 +9080,7 @@
       "source_priority": "S",
       "source_priority_score": 4,
       "extraction_method": "site_rule",
-      "updated_at": "2026-05-23T20:11:37.450Z",
+      "updated_at": "2026-05-24T19:37:05.149Z",
       "quality_score": 0.78
     },
     {
@@ -8888,7 +9104,7 @@
       "source_priority": "B",
       "source_priority_score": 2,
       "extraction_method": "site_rule",
-      "updated_at": "2026-05-23T20:11:58.777Z",
+      "updated_at": "2026-05-24T19:37:26.558Z",
       "quality_score": 0.71
     },
     {
@@ -8903,7 +9119,7 @@
       "venue": "札幌芸術の森・野外ステージ",
       "venue_address": "",
       "summary": "2026-07-25 / 開場 11:00 / 開演 12:00 / 終演 15:30 / 札幌芸術の森・野外ステージ",
-      "flyer_image_url": "https://www.pmf.or.jp/media/004/202412/mode3_w240_h240-0729PicnicConcert_NOWON_watanabe_063_edited_rs-sq.jpg",
+      "flyer_image_url": "https://www.pmf.or.jp/media/004/202412/mode3_w240_h240-0729PicnicConcert_NOWON_watanabe_063_edited_rs-sq.jpg?v=20241226102738",
       "detail_url": "https://www.pmf.or.jp/jp/schedule/concert/2026-picnic.html",
       "source_id": "www-pmf-or-jp-jp-schedule",
       "source_name": "PMF（パシフィック・ミュージック・フェスティバル札幌）",
@@ -8912,7 +9128,7 @@
       "source_priority": "A",
       "source_priority_score": 3,
       "extraction_method": "site_rule",
-      "updated_at": "2026-05-23T20:12:00.725Z",
+      "updated_at": "2026-05-24T19:37:23.405Z",
       "quality_score": 0.8
     },
     {
@@ -8936,7 +9152,7 @@
       "source_priority": "S",
       "source_priority_score": 4,
       "extraction_method": "site_rule",
-      "updated_at": "2026-05-23T20:11:09.328Z",
+      "updated_at": "2026-05-24T19:36:37.591Z",
       "quality_score": 0.7
     },
     {
@@ -8960,7 +9176,7 @@
       "source_priority": "S",
       "source_priority_score": 4,
       "extraction_method": "site_rule",
-      "updated_at": "2026-05-23T20:11:07.708Z",
+      "updated_at": "2026-05-24T19:36:35.977Z",
       "quality_score": 1
     },
     {
@@ -8973,7 +9189,7 @@
       "end_time": "",
       "all_day": false,
       "venue": "カナモトホール",
-      "venue_address": "札幌市中央区北1条西1丁目",
+      "venue_address": "",
       "summary": "道新プレイガイド 購入は こちら ザ・カンパニー：03-3479-2245（平日・10時～18時）※4/20(月)より受付開始",
       "flyer_image_url": "https://wess.jp/wp/wp-content/uploads/2026/02/hayashibe_s.jpg",
       "detail_url": "https://wess.jp/hayashibe_s/",
@@ -8984,7 +9200,7 @@
       "source_priority": "S",
       "source_priority_score": 4,
       "extraction_method": "site_rule",
-      "updated_at": "2026-05-23T20:11:09.515Z",
+      "updated_at": "2026-05-24T19:36:37.384Z",
       "quality_score": 0.78
     },
     {
@@ -9008,7 +9224,7 @@
       "source_priority": "S",
       "source_priority_score": 4,
       "extraction_method": "site_rule",
-      "updated_at": "2026-05-23T20:11:37.454Z",
+      "updated_at": "2026-05-24T19:37:05.153Z",
       "quality_score": 0.78
     },
     {
@@ -9032,7 +9248,7 @@
       "source_priority": "S",
       "source_priority_score": 4,
       "extraction_method": "site_rule",
-      "updated_at": "2026-05-23T20:11:07.709Z",
+      "updated_at": "2026-05-24T19:36:35.978Z",
       "quality_score": 1
     },
     {
@@ -9056,7 +9272,7 @@
       "source_priority": "A",
       "source_priority_score": 3,
       "extraction_method": "site_rule",
-      "updated_at": "2026-05-23T20:11:55.590Z",
+      "updated_at": "2026-05-24T19:37:25.657Z",
       "quality_score": 0.57
     },
     {
@@ -9080,7 +9296,7 @@
       "source_priority": "S",
       "source_priority_score": 4,
       "extraction_method": "site_rule",
-      "updated_at": "2026-05-23T20:11:09.328Z",
+      "updated_at": "2026-05-24T19:36:37.591Z",
       "quality_score": 0.7
     },
     {
@@ -9104,7 +9320,7 @@
       "source_priority": "S",
       "source_priority_score": 4,
       "extraction_method": "site_rule",
-      "updated_at": "2026-05-23T20:11:42.127Z",
+      "updated_at": "2026-05-24T19:36:57.101Z",
       "quality_score": 1
     },
     {
@@ -9128,7 +9344,7 @@
       "source_priority": "S",
       "source_priority_score": 4,
       "extraction_method": "site_rule",
-      "updated_at": "2026-05-23T20:11:37.459Z",
+      "updated_at": "2026-05-24T19:37:05.157Z",
       "quality_score": 0.78
     },
     {
@@ -9152,7 +9368,7 @@
       "source_priority": "B",
       "source_priority_score": 2,
       "extraction_method": "site_rule",
-      "updated_at": "2026-05-23T20:11:58.777Z",
+      "updated_at": "2026-05-24T19:37:26.558Z",
       "quality_score": 0.71
     },
     {
@@ -9176,7 +9392,7 @@
       "source_priority": "S",
       "source_priority_score": 4,
       "extraction_method": "site_rule",
-      "updated_at": "2026-05-23T20:11:07.698Z",
+      "updated_at": "2026-05-24T19:36:35.968Z",
       "quality_score": 1
     },
     {
@@ -9200,7 +9416,7 @@
       "source_priority": "B",
       "source_priority_score": 2,
       "extraction_method": "site_rule",
-      "updated_at": "2026-05-23T20:11:58.777Z",
+      "updated_at": "2026-05-24T19:37:26.558Z",
       "quality_score": 0.91
     },
     {
@@ -9224,7 +9440,7 @@
       "source_priority": "S",
       "source_priority_score": 4,
       "extraction_method": "site_rule",
-      "updated_at": "2026-05-23T20:11:07.698Z",
+      "updated_at": "2026-05-24T19:36:35.969Z",
       "quality_score": 1
     },
     {
@@ -9248,7 +9464,7 @@
       "source_priority": "S",
       "source_priority_score": 4,
       "extraction_method": "site_rule",
-      "updated_at": "2026-05-23T20:11:42.127Z",
+      "updated_at": "2026-05-24T19:36:57.101Z",
       "quality_score": 0.68
     },
     {
@@ -9272,7 +9488,7 @@
       "source_priority": "S",
       "source_priority_score": 4,
       "extraction_method": "site_rule",
-      "updated_at": "2026-05-23T20:11:42.127Z",
+      "updated_at": "2026-05-24T19:36:57.101Z",
       "quality_score": 1
     },
     {
@@ -9296,7 +9512,7 @@
       "source_priority": "S",
       "source_priority_score": 4,
       "extraction_method": "site_rule",
-      "updated_at": "2026-05-23T20:11:42.127Z",
+      "updated_at": "2026-05-24T19:36:57.102Z",
       "quality_score": 1
     },
     {
@@ -9320,7 +9536,7 @@
       "source_priority": "S",
       "source_priority_score": 4,
       "extraction_method": "site_rule",
-      "updated_at": "2026-05-23T20:11:09.328Z",
+      "updated_at": "2026-05-24T19:36:37.591Z",
       "quality_score": 0.7
     },
     {
@@ -9344,7 +9560,7 @@
       "source_priority": "A",
       "source_priority_score": 3,
       "extraction_method": "site_rule",
-      "updated_at": "2026-05-23T20:11:48.944Z",
+      "updated_at": "2026-05-24T19:37:17.177Z",
       "quality_score": 0.75
     },
     {
@@ -9368,8 +9584,32 @@
       "source_priority": "S",
       "source_priority_score": 4,
       "extraction_method": "site_rule",
-      "updated_at": "2026-05-23T20:11:09.328Z",
+      "updated_at": "2026-05-24T19:36:37.591Z",
       "quality_score": 0.7
+    },
+    {
+      "id": "d3e11f8777914d60b120",
+      "title": "ベリーグッドマン メジャーデビュー10周年記念 ベリーグッドマン “Party Monster” TOUR 2026 〜応援歌もやるよ〜〜",
+      "start_date": "2026-08-01",
+      "end_date": "",
+      "open_time": "15:30",
+      "start_time": "16:00",
+      "end_time": "",
+      "all_day": false,
+      "venue": "PENNY LANE24",
+      "venue_address": "",
+      "summary": "2026年8月1日【土】 メジャーデビュー10周年記念 ベリーグッドマン “Party Monster” TOUR 2026 〜応援歌もやるよ〜〜 ベリーグッドマン 開場 / 開演 15:30 / 16:00 チケット発売 一般前売り ¥7,000 /スタンディング/ドリンク代別途¥600/ FC限定/一般前売り ¥6,700 /スタンディング/ドリンク代別途¥600/ L-code/P-code / イープラス /他種チケットあり …",
+      "flyer_image_url": "https://www.pl24.jp/img/schedule/26/0801.jpg",
+      "detail_url": "http://www.mountalive.com/",
+      "source_id": "www-pl24-jp-schedule-html",
+      "source_name": "PENNY LANE24",
+      "source_url": "https://www.pl24.jp/schedule.html",
+      "source_category": "ライブハウス（会場公式）",
+      "source_priority": "B",
+      "source_priority_score": 2,
+      "extraction_method": "site_rule",
+      "updated_at": "2026-05-24T19:37:24.446Z",
+      "quality_score": 0.71
     },
     {
       "id": "fd1cd3f4c2f442b46cde",
@@ -9392,7 +9632,7 @@
       "source_priority": "S",
       "source_priority_score": 4,
       "extraction_method": "site_rule",
-      "updated_at": "2026-05-23T20:11:37.472Z",
+      "updated_at": "2026-05-24T19:37:05.171Z",
       "quality_score": 0.78
     },
     {
@@ -9416,7 +9656,7 @@
       "source_priority": "S",
       "source_priority_score": 4,
       "extraction_method": "site_rule",
-      "updated_at": "2026-05-23T20:11:13.542Z",
+      "updated_at": "2026-05-24T19:36:41.268Z",
       "quality_score": 0.74
     },
     {
@@ -9464,7 +9704,7 @@
       "source_priority": "S",
       "source_priority_score": 4,
       "extraction_method": "site_rule",
-      "updated_at": "2026-05-23T20:11:09.328Z",
+      "updated_at": "2026-05-24T19:36:37.591Z",
       "quality_score": 0.7
     },
     {
@@ -9488,7 +9728,7 @@
       "source_priority": "S",
       "source_priority_score": 4,
       "extraction_method": "site_rule",
-      "updated_at": "2026-05-23T20:11:19.186Z",
+      "updated_at": "2026-05-24T19:36:49.284Z",
       "quality_score": 0.98
     },
     {
@@ -9512,7 +9752,7 @@
       "source_priority": "B",
       "source_priority_score": 2,
       "extraction_method": "site_rule",
-      "updated_at": "2026-05-23T20:11:58.778Z",
+      "updated_at": "2026-05-24T19:37:26.558Z",
       "quality_score": 0.71
     },
     {
@@ -9536,7 +9776,7 @@
       "source_priority": "S",
       "source_priority_score": 4,
       "extraction_method": "site_rule",
-      "updated_at": "2026-05-23T20:11:13.542Z",
+      "updated_at": "2026-05-24T19:36:41.268Z",
       "quality_score": 0.74
     },
     {
@@ -9560,7 +9800,7 @@
       "source_priority": "S",
       "source_priority_score": 4,
       "extraction_method": "site_rule",
-      "updated_at": "2026-05-23T20:11:07.712Z",
+      "updated_at": "2026-05-24T19:36:35.983Z",
       "quality_score": 1
     },
     {
@@ -9584,7 +9824,7 @@
       "source_priority": "A",
       "source_priority_score": 3,
       "extraction_method": "site_rule",
-      "updated_at": "2026-05-23T20:11:48.944Z",
+      "updated_at": "2026-05-24T19:37:17.177Z",
       "quality_score": 0.75
     },
     {
@@ -9608,7 +9848,7 @@
       "source_priority": "A",
       "source_priority_score": 3,
       "extraction_method": "site_rule",
-      "updated_at": "2026-05-23T20:11:30.797Z",
+      "updated_at": "2026-05-24T19:36:55.028Z",
       "quality_score": 0.73
     },
     {
@@ -9632,7 +9872,7 @@
       "source_priority": "S",
       "source_priority_score": 4,
       "extraction_method": "site_rule",
-      "updated_at": "2026-05-23T20:11:42.128Z",
+      "updated_at": "2026-05-24T19:36:57.102Z",
       "quality_score": 1
     },
     {
@@ -9656,7 +9896,7 @@
       "source_priority": "S",
       "source_priority_score": 4,
       "extraction_method": "site_rule",
-      "updated_at": "2026-05-23T20:11:13.542Z",
+      "updated_at": "2026-05-24T19:36:41.268Z",
       "quality_score": 0.78
     },
     {
@@ -9680,7 +9920,7 @@
       "source_priority": "S",
       "source_priority_score": 4,
       "extraction_method": "site_rule",
-      "updated_at": "2026-05-23T20:11:07.702Z",
+      "updated_at": "2026-05-24T19:36:35.973Z",
       "quality_score": 1
     },
     {
@@ -9704,7 +9944,7 @@
       "source_priority": "S",
       "source_priority_score": 4,
       "extraction_method": "site_rule",
-      "updated_at": "2026-05-23T20:11:42.128Z",
+      "updated_at": "2026-05-24T19:36:57.102Z",
       "quality_score": 1
     },
     {
@@ -9728,7 +9968,7 @@
       "source_priority": "A",
       "source_priority_score": 3,
       "extraction_method": "site_rule",
-      "updated_at": "2026-05-23T20:11:41.463Z",
+      "updated_at": "2026-05-24T19:37:09.903Z",
       "quality_score": 0.65
     },
     {
@@ -9752,7 +9992,7 @@
       "source_priority": "S",
       "source_priority_score": 4,
       "extraction_method": "site_rule",
-      "updated_at": "2026-05-23T20:11:13.542Z",
+      "updated_at": "2026-05-24T19:36:41.268Z",
       "quality_score": 0.78
     },
     {
@@ -9776,7 +10016,7 @@
       "source_priority": "S",
       "source_priority_score": 4,
       "extraction_method": "site_rule",
-      "updated_at": "2026-05-23T20:11:09.329Z",
+      "updated_at": "2026-05-24T19:36:37.591Z",
       "quality_score": 0.7
     },
     {
@@ -9800,7 +10040,7 @@
       "source_priority": "S",
       "source_priority_score": 4,
       "extraction_method": "site_rule",
-      "updated_at": "2026-05-23T20:11:42.128Z",
+      "updated_at": "2026-05-24T19:36:57.102Z",
       "quality_score": 1
     },
     {
@@ -9824,7 +10064,7 @@
       "source_priority": "A",
       "source_priority_score": 3,
       "extraction_method": "site_rule",
-      "updated_at": "2026-05-23T20:11:30.797Z",
+      "updated_at": "2026-05-24T19:36:55.028Z",
       "quality_score": 0.73
     },
     {
@@ -9848,7 +10088,7 @@
       "source_priority": "S",
       "source_priority_score": 4,
       "extraction_method": "site_rule",
-      "updated_at": "2026-05-23T20:11:19.187Z",
+      "updated_at": "2026-05-24T19:36:49.285Z",
       "quality_score": 0.98
     },
     {
@@ -9872,7 +10112,7 @@
       "source_priority": "S",
       "source_priority_score": 4,
       "extraction_method": "site_rule",
-      "updated_at": "2026-05-23T20:11:09.329Z",
+      "updated_at": "2026-05-24T19:36:37.591Z",
       "quality_score": 0.7
     },
     {
@@ -9896,7 +10136,7 @@
       "source_priority": "S",
       "source_priority_score": 4,
       "extraction_method": "site_rule",
-      "updated_at": "2026-05-23T20:11:42.129Z",
+      "updated_at": "2026-05-24T19:36:57.102Z",
       "quality_score": 1
     },
     {
@@ -9920,7 +10160,7 @@
       "source_priority": "S",
       "source_priority_score": 4,
       "extraction_method": "site_rule",
-      "updated_at": "2026-05-23T20:11:42.129Z",
+      "updated_at": "2026-05-24T19:36:57.103Z",
       "quality_score": 1
     },
     {
@@ -9944,7 +10184,7 @@
       "source_priority": "S",
       "source_priority_score": 4,
       "extraction_method": "site_rule",
-      "updated_at": "2026-05-23T20:11:09.329Z",
+      "updated_at": "2026-05-24T19:36:37.591Z",
       "quality_score": 0.7
     },
     {
@@ -9968,7 +10208,7 @@
       "source_priority": "S",
       "source_priority_score": 4,
       "extraction_method": "site_rule",
-      "updated_at": "2026-05-23T20:11:42.129Z",
+      "updated_at": "2026-05-24T19:36:57.103Z",
       "quality_score": 1
     },
     {
@@ -9992,7 +10232,7 @@
       "source_priority": "B",
       "source_priority_score": 2,
       "extraction_method": "site_rule",
-      "updated_at": "2026-05-23T20:11:58.778Z",
+      "updated_at": "2026-05-24T19:37:26.558Z",
       "quality_score": 0.91
     },
     {
@@ -10016,7 +10256,7 @@
       "source_priority": "S",
       "source_priority_score": 4,
       "extraction_method": "site_rule",
-      "updated_at": "2026-05-23T20:11:37.478Z",
+      "updated_at": "2026-05-24T19:37:05.176Z",
       "quality_score": 0.78
     },
     {
@@ -10040,7 +10280,7 @@
       "source_priority": "S",
       "source_priority_score": 4,
       "extraction_method": "site_rule",
-      "updated_at": "2026-05-23T20:11:13.542Z",
+      "updated_at": "2026-05-24T19:36:41.268Z",
       "quality_score": 0.74
     },
     {
@@ -10064,7 +10304,7 @@
       "source_priority": "S",
       "source_priority_score": 4,
       "extraction_method": "site_rule",
-      "updated_at": "2026-05-23T20:11:13.542Z",
+      "updated_at": "2026-05-24T19:36:41.268Z",
       "quality_score": 0.74
     },
     {
@@ -10088,7 +10328,7 @@
       "source_priority": "S",
       "source_priority_score": 4,
       "extraction_method": "site_rule",
-      "updated_at": "2026-05-23T20:11:42.129Z",
+      "updated_at": "2026-05-24T19:36:57.103Z",
       "quality_score": 1
     },
     {
@@ -10112,7 +10352,7 @@
       "source_priority": "S",
       "source_priority_score": 4,
       "extraction_method": "site_rule",
-      "updated_at": "2026-05-23T20:11:09.329Z",
+      "updated_at": "2026-05-24T19:36:37.591Z",
       "quality_score": 0.7
     },
     {
@@ -10136,7 +10376,7 @@
       "source_priority": "S",
       "source_priority_score": 4,
       "extraction_method": "site_rule",
-      "updated_at": "2026-05-23T20:11:42.129Z",
+      "updated_at": "2026-05-24T19:36:57.104Z",
       "quality_score": 1
     },
     {
@@ -10160,7 +10400,7 @@
       "source_priority": "S",
       "source_priority_score": 4,
       "extraction_method": "site_rule",
-      "updated_at": "2026-05-23T20:11:37.483Z",
+      "updated_at": "2026-05-24T19:37:05.180Z",
       "quality_score": 0.78
     },
     {
@@ -10184,7 +10424,7 @@
       "source_priority": "S",
       "source_priority_score": 4,
       "extraction_method": "site_rule",
-      "updated_at": "2026-05-23T20:11:42.130Z",
+      "updated_at": "2026-05-24T19:36:57.104Z",
       "quality_score": 1
     },
     {
@@ -10232,7 +10472,7 @@
       "source_priority": "S",
       "source_priority_score": 4,
       "extraction_method": "site_rule",
-      "updated_at": "2026-05-23T20:11:09.329Z",
+      "updated_at": "2026-05-24T19:36:37.591Z",
       "quality_score": 0.7
     },
     {
@@ -10256,7 +10496,7 @@
       "source_priority": "S",
       "source_priority_score": 4,
       "extraction_method": "site_rule",
-      "updated_at": "2026-05-23T20:11:13.543Z",
+      "updated_at": "2026-05-24T19:36:41.268Z",
       "quality_score": 0.78
     },
     {
@@ -10280,7 +10520,7 @@
       "source_priority": "S",
       "source_priority_score": 4,
       "extraction_method": "site_rule",
-      "updated_at": "2026-05-23T20:11:09.329Z",
+      "updated_at": "2026-05-24T19:36:37.591Z",
       "quality_score": 0.7
     },
     {
@@ -10304,7 +10544,7 @@
       "source_priority": "S",
       "source_priority_score": 4,
       "extraction_method": "site_rule",
-      "updated_at": "2026-05-23T20:11:13.543Z",
+      "updated_at": "2026-05-24T19:36:41.269Z",
       "quality_score": 0.78
     },
     {
@@ -10328,7 +10568,7 @@
       "source_priority": "A",
       "source_priority_score": 3,
       "extraction_method": "site_rule",
-      "updated_at": "2026-05-23T20:11:41.463Z",
+      "updated_at": "2026-05-24T19:37:09.903Z",
       "quality_score": 0.65
     },
     {
@@ -10352,7 +10592,7 @@
       "source_priority": "S",
       "source_priority_score": 4,
       "extraction_method": "site_rule",
-      "updated_at": "2026-05-23T20:11:13.543Z",
+      "updated_at": "2026-05-24T19:36:41.269Z",
       "quality_score": 0.74
     },
     {
@@ -10376,7 +10616,7 @@
       "source_priority": "S",
       "source_priority_score": 4,
       "extraction_method": "site_rule",
-      "updated_at": "2026-05-23T20:11:13.543Z",
+      "updated_at": "2026-05-24T19:36:41.269Z",
       "quality_score": 0.74
     },
     {
@@ -10400,7 +10640,7 @@
       "source_priority": "S",
       "source_priority_score": 4,
       "extraction_method": "site_rule",
-      "updated_at": "2026-05-23T20:11:42.130Z",
+      "updated_at": "2026-05-24T19:36:57.104Z",
       "quality_score": 1
     },
     {
@@ -10424,7 +10664,7 @@
       "source_priority": "S",
       "source_priority_score": 4,
       "extraction_method": "site_rule",
-      "updated_at": "2026-05-23T20:11:42.130Z",
+      "updated_at": "2026-05-24T19:36:57.104Z",
       "quality_score": 1
     },
     {
@@ -10448,7 +10688,7 @@
       "source_priority": "B",
       "source_priority_score": 2,
       "extraction_method": "site_rule",
-      "updated_at": "2026-05-23T20:11:58.778Z",
+      "updated_at": "2026-05-24T19:37:26.558Z",
       "quality_score": 0.71
     },
     {
@@ -10472,7 +10712,7 @@
       "source_priority": "S",
       "source_priority_score": 4,
       "extraction_method": "site_rule",
-      "updated_at": "2026-05-23T20:11:09.329Z",
+      "updated_at": "2026-05-24T19:36:37.591Z",
       "quality_score": 0.7
     },
     {
@@ -10496,7 +10736,7 @@
       "source_priority": "S",
       "source_priority_score": 4,
       "extraction_method": "site_rule",
-      "updated_at": "2026-05-23T20:11:42.130Z",
+      "updated_at": "2026-05-24T19:36:57.104Z",
       "quality_score": 1
     },
     {
@@ -10520,7 +10760,7 @@
       "source_priority": "S",
       "source_priority_score": 4,
       "extraction_method": "site_rule",
-      "updated_at": "2026-05-23T20:11:09.329Z",
+      "updated_at": "2026-05-24T19:36:37.592Z",
       "quality_score": 0.7
     },
     {
@@ -10544,7 +10784,7 @@
       "source_priority": "S",
       "source_priority_score": 4,
       "extraction_method": "site_rule",
-      "updated_at": "2026-05-23T20:11:09.329Z",
+      "updated_at": "2026-05-24T19:36:37.592Z",
       "quality_score": 0.7
     },
     {
@@ -10568,7 +10808,7 @@
       "source_priority": "S",
       "source_priority_score": 4,
       "extraction_method": "site_rule",
-      "updated_at": "2026-05-23T20:11:42.131Z",
+      "updated_at": "2026-05-24T19:36:57.105Z",
       "quality_score": 1
     },
     {
@@ -10592,7 +10832,7 @@
       "source_priority": "A",
       "source_priority_score": 3,
       "extraction_method": "site_rule",
-      "updated_at": "2026-05-23T20:11:50.810Z",
+      "updated_at": "2026-05-24T19:37:19.109Z",
       "quality_score": 0.79
     },
     {
@@ -10616,7 +10856,7 @@
       "source_priority": "S",
       "source_priority_score": 4,
       "extraction_method": "site_rule",
-      "updated_at": "2026-05-23T20:11:13.543Z",
+      "updated_at": "2026-05-24T19:36:41.269Z",
       "quality_score": 0.74
     },
     {
@@ -10640,8 +10880,32 @@
       "source_priority": "S",
       "source_priority_score": 4,
       "extraction_method": "site_rule",
-      "updated_at": "2026-05-23T20:11:13.543Z",
+      "updated_at": "2026-05-24T19:36:41.269Z",
       "quality_score": 0.74
+    },
+    {
+      "id": "2372514012d39efcedb0",
+      "title": "ReoNa Live Tour 2026 “De:TOUR -動脈-”",
+      "start_date": "2026-08-21",
+      "end_date": "",
+      "open_time": "18:15",
+      "start_time": "19:00",
+      "end_time": "",
+      "all_day": false,
+      "venue": "PENNY LANE24",
+      "venue_address": "",
+      "summary": "2026年8月21日【金】 ReoNa Live Tour 2026 “De:TOUR -動脈-” ReoNa 開場 / 開演 18:15 / 19:00 チケット発売 前売り ¥7,700 L-code/P-code － / イープラス － /スタンディング/ドリンク代別途¥600/6歳以上チケット必要 / 未就学児童入場不可/ ◆注意事項等 詳しくは、 マウントアライブ HPをご確認ください。 お問い合わせ マウントアライブ 01…",
+      "flyer_image_url": "https://www.pl24.jp/img/schedule/26/0821.jpg",
+      "detail_url": "http://www.mountalive.com/",
+      "source_id": "www-pl24-jp-schedule-html",
+      "source_name": "PENNY LANE24",
+      "source_url": "https://www.pl24.jp/schedule.html",
+      "source_category": "ライブハウス（会場公式）",
+      "source_priority": "B",
+      "source_priority_score": 2,
+      "extraction_method": "site_rule",
+      "updated_at": "2026-05-24T19:37:24.446Z",
+      "quality_score": 0.71
     },
     {
       "id": "cf30e9ee84ec7d30c1ce",
@@ -10688,7 +10952,7 @@
       "source_priority": "S",
       "source_priority_score": 4,
       "extraction_method": "site_rule",
-      "updated_at": "2026-05-23T20:11:42.131Z",
+      "updated_at": "2026-05-24T19:36:57.105Z",
       "quality_score": 1
     },
     {
@@ -10712,7 +10976,7 @@
       "source_priority": "S",
       "source_priority_score": 4,
       "extraction_method": "site_rule",
-      "updated_at": "2026-05-23T20:11:13.543Z",
+      "updated_at": "2026-05-24T19:36:41.269Z",
       "quality_score": 0.74
     },
     {
@@ -10736,7 +11000,7 @@
       "source_priority": "S",
       "source_priority_score": 4,
       "extraction_method": "site_rule",
-      "updated_at": "2026-05-23T20:11:42.131Z",
+      "updated_at": "2026-05-24T19:36:57.106Z",
       "quality_score": 1
     },
     {
@@ -10784,7 +11048,7 @@
       "source_priority": "S",
       "source_priority_score": 4,
       "extraction_method": "site_rule",
-      "updated_at": "2026-05-23T20:11:13.543Z",
+      "updated_at": "2026-05-24T19:36:41.269Z",
       "quality_score": 0.74
     },
     {
@@ -10808,7 +11072,7 @@
       "source_priority": "S",
       "source_priority_score": 4,
       "extraction_method": "site_rule",
-      "updated_at": "2026-05-23T20:11:13.543Z",
+      "updated_at": "2026-05-24T19:36:41.269Z",
       "quality_score": 0.74
     },
     {
@@ -10832,7 +11096,7 @@
       "source_priority": "S",
       "source_priority_score": 4,
       "extraction_method": "site_rule",
-      "updated_at": "2026-05-23T20:11:37.496Z",
+      "updated_at": "2026-05-24T19:37:05.193Z",
       "quality_score": 0.78
     },
     {
@@ -10856,7 +11120,7 @@
       "source_priority": "S",
       "source_priority_score": 4,
       "extraction_method": "site_rule",
-      "updated_at": "2026-05-23T20:11:42.131Z",
+      "updated_at": "2026-05-24T19:36:57.106Z",
       "quality_score": 1
     },
     {
@@ -10880,7 +11144,7 @@
       "source_priority": "S",
       "source_priority_score": 4,
       "extraction_method": "site_rule",
-      "updated_at": "2026-05-23T20:11:42.132Z",
+      "updated_at": "2026-05-24T19:36:57.107Z",
       "quality_score": 1
     },
     {
@@ -10904,7 +11168,7 @@
       "source_priority": "S",
       "source_priority_score": 4,
       "extraction_method": "site_rule",
-      "updated_at": "2026-05-23T20:11:13.543Z",
+      "updated_at": "2026-05-24T19:36:41.269Z",
       "quality_score": 0.78
     },
     {
@@ -10928,7 +11192,7 @@
       "source_priority": "S",
       "source_priority_score": 4,
       "extraction_method": "site_rule",
-      "updated_at": "2026-05-23T20:11:09.329Z",
+      "updated_at": "2026-05-24T19:36:37.592Z",
       "quality_score": 0.7
     },
     {
@@ -10952,7 +11216,7 @@
       "source_priority": "S",
       "source_priority_score": 4,
       "extraction_method": "site_rule",
-      "updated_at": "2026-05-23T20:11:13.543Z",
+      "updated_at": "2026-05-24T19:36:41.269Z",
       "quality_score": 0.78
     },
     {
@@ -10976,7 +11240,7 @@
       "source_priority": "S",
       "source_priority_score": 4,
       "extraction_method": "site_rule",
-      "updated_at": "2026-05-23T20:11:13.543Z",
+      "updated_at": "2026-05-24T19:36:41.269Z",
       "quality_score": 0.78
     },
     {
@@ -11000,7 +11264,7 @@
       "source_priority": "A",
       "source_priority_score": 3,
       "extraction_method": "site_rule",
-      "updated_at": "2026-05-23T20:11:43.413Z",
+      "updated_at": "2026-05-24T19:37:08.498Z",
       "quality_score": 0.79
     },
     {
@@ -11024,7 +11288,7 @@
       "source_priority": "S",
       "source_priority_score": 4,
       "extraction_method": "site_rule",
-      "updated_at": "2026-05-23T20:11:09.329Z",
+      "updated_at": "2026-05-24T19:36:37.592Z",
       "quality_score": 0.7
     },
     {
@@ -11048,7 +11312,7 @@
       "source_priority": "S",
       "source_priority_score": 4,
       "extraction_method": "site_rule",
-      "updated_at": "2026-05-23T20:11:13.544Z",
+      "updated_at": "2026-05-24T19:36:41.269Z",
       "quality_score": 0.78
     },
     {
@@ -11072,7 +11336,7 @@
       "source_priority": "S",
       "source_priority_score": 4,
       "extraction_method": "site_rule",
-      "updated_at": "2026-05-23T20:11:37.535Z",
+      "updated_at": "2026-05-24T19:37:05.227Z",
       "quality_score": 0.78
     },
     {
@@ -11096,7 +11360,7 @@
       "source_priority": "S",
       "source_priority_score": 4,
       "extraction_method": "site_rule",
-      "updated_at": "2026-05-23T20:11:13.544Z",
+      "updated_at": "2026-05-24T19:36:41.269Z",
       "quality_score": 0.74
     },
     {
@@ -11120,7 +11384,7 @@
       "source_priority": "S",
       "source_priority_score": 4,
       "extraction_method": "site_rule",
-      "updated_at": "2026-05-23T20:11:13.543Z",
+      "updated_at": "2026-05-24T19:36:41.269Z",
       "quality_score": 0.74
     },
     {
@@ -11144,7 +11408,7 @@
       "source_priority": "S",
       "source_priority_score": 4,
       "extraction_method": "site_rule",
-      "updated_at": "2026-05-23T20:11:09.329Z",
+      "updated_at": "2026-05-24T19:36:37.592Z",
       "quality_score": 0.7
     },
     {
@@ -11168,7 +11432,7 @@
       "source_priority": "S",
       "source_priority_score": 4,
       "extraction_method": "site_rule",
-      "updated_at": "2026-05-23T20:11:13.544Z",
+      "updated_at": "2026-05-24T19:36:41.270Z",
       "quality_score": 0.74
     },
     {
@@ -11192,7 +11456,7 @@
       "source_priority": "S",
       "source_priority_score": 4,
       "extraction_method": "site_rule",
-      "updated_at": "2026-05-23T20:11:37.540Z",
+      "updated_at": "2026-05-24T19:37:05.232Z",
       "quality_score": 0.78
     },
     {
@@ -11216,7 +11480,7 @@
       "source_priority": "S",
       "source_priority_score": 4,
       "extraction_method": "site_rule",
-      "updated_at": "2026-05-23T20:11:13.544Z",
+      "updated_at": "2026-05-24T19:36:41.270Z",
       "quality_score": 0.74
     },
     {
@@ -11240,7 +11504,7 @@
       "source_priority": "S",
       "source_priority_score": 4,
       "extraction_method": "site_rule",
-      "updated_at": "2026-05-23T20:11:13.544Z",
+      "updated_at": "2026-05-24T19:36:41.270Z",
       "quality_score": 0.74
     },
     {
@@ -11264,7 +11528,7 @@
       "source_priority": "A",
       "source_priority_score": 3,
       "extraction_method": "site_rule",
-      "updated_at": "2026-05-23T20:11:48.944Z",
+      "updated_at": "2026-05-24T19:37:17.177Z",
       "quality_score": 0.65
     },
     {
@@ -11288,7 +11552,7 @@
       "source_priority": "S",
       "source_priority_score": 4,
       "extraction_method": "site_rule",
-      "updated_at": "2026-05-23T20:11:13.544Z",
+      "updated_at": "2026-05-24T19:36:41.270Z",
       "quality_score": 0.74
     },
     {
@@ -11336,7 +11600,7 @@
       "source_priority": "S",
       "source_priority_score": 4,
       "extraction_method": "site_rule",
-      "updated_at": "2026-05-23T20:11:09.329Z",
+      "updated_at": "2026-05-24T19:36:37.592Z",
       "quality_score": 0.7
     },
     {
@@ -11360,8 +11624,32 @@
       "source_priority": "A",
       "source_priority_score": 3,
       "extraction_method": "site_rule",
-      "updated_at": "2026-05-23T20:11:48.944Z",
+      "updated_at": "2026-05-24T19:37:17.177Z",
       "quality_score": 0.75
+    },
+    {
+      "id": "7871d932d64d87a7b487",
+      "title": "SHANK 対バンあり THE TOUR 2026",
+      "start_date": "2026-09-01",
+      "end_date": "",
+      "open_time": "18:00",
+      "start_time": "19:00",
+      "end_time": "",
+      "all_day": false,
+      "venue": "PENNY LANE24",
+      "venue_address": "",
+      "summary": "2026年9月1日【火】 THE TOUR 2026 SHANK 対バンあり 開場 / 開演 18:00 / 19:00 チケット発売 一般前売り ¥4,800 L-code/P-code － / イープラス － /スタンディング/ドリンク代別途¥600/小学生以上チケット必要 / 未就学児入場不可/ ◆小学生以下の方は保護者同伴の上、後方でご観覧ください ◆詳しくは、スマッシュイースト HPをご確認ください。 お問い合わせ SMAS…",
+      "flyer_image_url": "https://www.pl24.jp/img/schedule/26/0901.jpg",
+      "detail_url": "http://smash-east.com/",
+      "source_id": "www-pl24-jp-schedule-html",
+      "source_name": "PENNY LANE24",
+      "source_url": "https://www.pl24.jp/schedule.html",
+      "source_category": "ライブハウス（会場公式）",
+      "source_priority": "B",
+      "source_priority_score": 2,
+      "extraction_method": "site_rule",
+      "updated_at": "2026-05-24T19:37:24.446Z",
+      "quality_score": 0.71
     },
     {
       "id": "bfbcba596828c9f921e1",
@@ -11384,7 +11672,7 @@
       "source_priority": "S",
       "source_priority_score": 4,
       "extraction_method": "site_rule",
-      "updated_at": "2026-05-23T20:11:20.713Z",
+      "updated_at": "2026-05-24T19:36:51.095Z",
       "quality_score": 0.74
     },
     {
@@ -11408,7 +11696,7 @@
       "source_priority": "S",
       "source_priority_score": 4,
       "extraction_method": "site_rule",
-      "updated_at": "2026-05-23T20:11:09.329Z",
+      "updated_at": "2026-05-24T19:36:37.592Z",
       "quality_score": 0.7
     },
     {
@@ -11432,7 +11720,7 @@
       "source_priority": "S",
       "source_priority_score": 4,
       "extraction_method": "site_rule",
-      "updated_at": "2026-05-23T20:11:20.713Z",
+      "updated_at": "2026-05-24T19:36:51.095Z",
       "quality_score": 0.74
     },
     {
@@ -11456,7 +11744,7 @@
       "source_priority": "S",
       "source_priority_score": 4,
       "extraction_method": "site_rule",
-      "updated_at": "2026-05-23T20:11:07.710Z",
+      "updated_at": "2026-05-24T19:36:35.979Z",
       "quality_score": 1
     },
     {
@@ -11504,7 +11792,7 @@
       "source_priority": "S",
       "source_priority_score": 4,
       "extraction_method": "site_rule",
-      "updated_at": "2026-05-23T20:11:20.713Z",
+      "updated_at": "2026-05-24T19:36:51.095Z",
       "quality_score": 0.74
     },
     {
@@ -11528,7 +11816,7 @@
       "source_priority": "S",
       "source_priority_score": 4,
       "extraction_method": "site_rule",
-      "updated_at": "2026-05-23T20:11:07.710Z",
+      "updated_at": "2026-05-24T19:36:35.981Z",
       "quality_score": 1
     },
     {
@@ -11552,7 +11840,7 @@
       "source_priority": "A",
       "source_priority_score": 3,
       "extraction_method": "heuristic",
-      "updated_at": "2026-05-23T20:11:50.759Z",
+      "updated_at": "2026-05-24T19:37:18.646Z",
       "quality_score": 0.81
     },
     {
@@ -11576,7 +11864,7 @@
       "source_priority": "S",
       "source_priority_score": 4,
       "extraction_method": "heuristic",
-      "updated_at": "2026-05-23T20:11:11.681Z",
+      "updated_at": "2026-05-24T19:36:40.995Z",
       "quality_score": 0.99
     },
     {
@@ -11600,7 +11888,7 @@
       "source_priority": "S",
       "source_priority_score": 4,
       "extraction_method": "site_rule",
-      "updated_at": "2026-05-23T20:11:20.713Z",
+      "updated_at": "2026-05-24T19:36:51.095Z",
       "quality_score": 0.74
     },
     {
@@ -11624,7 +11912,7 @@
       "source_priority": "S",
       "source_priority_score": 4,
       "extraction_method": "site_rule",
-      "updated_at": "2026-05-23T20:11:20.713Z",
+      "updated_at": "2026-05-24T19:36:51.096Z",
       "quality_score": 0.74
     },
     {
@@ -11672,7 +11960,7 @@
       "source_priority": "S",
       "source_priority_score": 4,
       "extraction_method": "site_rule",
-      "updated_at": "2026-05-23T20:11:20.714Z",
+      "updated_at": "2026-05-24T19:36:51.096Z",
       "quality_score": 0.74
     },
     {
@@ -11696,7 +11984,7 @@
       "source_priority": "S",
       "source_priority_score": 4,
       "extraction_method": "site_rule",
-      "updated_at": "2026-05-23T20:11:20.714Z",
+      "updated_at": "2026-05-24T19:36:51.096Z",
       "quality_score": 0.74
     },
     {
@@ -11720,7 +12008,7 @@
       "source_priority": "S",
       "source_priority_score": 4,
       "extraction_method": "site_rule",
-      "updated_at": "2026-05-23T20:11:20.713Z",
+      "updated_at": "2026-05-24T19:36:51.096Z",
       "quality_score": 0.74
     },
     {
@@ -11744,7 +12032,7 @@
       "source_priority": "S",
       "source_priority_score": 4,
       "extraction_method": "site_rule",
-      "updated_at": "2026-05-23T20:11:20.714Z",
+      "updated_at": "2026-05-24T19:36:51.096Z",
       "quality_score": 0.74
     },
     {
@@ -11768,7 +12056,7 @@
       "source_priority": "S",
       "source_priority_score": 4,
       "extraction_method": "site_rule",
-      "updated_at": "2026-05-23T20:11:20.714Z",
+      "updated_at": "2026-05-24T19:36:51.096Z",
       "quality_score": 0.74
     },
     {
@@ -11792,7 +12080,7 @@
       "source_priority": "A",
       "source_priority_score": 3,
       "extraction_method": "site_rule",
-      "updated_at": "2026-05-23T20:11:30.797Z",
+      "updated_at": "2026-05-24T19:36:55.028Z",
       "quality_score": 0.73
     },
     {
@@ -11816,7 +12104,7 @@
       "source_priority": "S",
       "source_priority_score": 4,
       "extraction_method": "site_rule",
-      "updated_at": "2026-05-23T20:11:20.714Z",
+      "updated_at": "2026-05-24T19:36:51.096Z",
       "quality_score": 0.74
     },
     {
@@ -11840,7 +12128,7 @@
       "source_priority": "S",
       "source_priority_score": 4,
       "extraction_method": "site_rule",
-      "updated_at": "2026-05-23T20:11:42.132Z",
+      "updated_at": "2026-05-24T19:36:57.107Z",
       "quality_score": 1
     },
     {
@@ -11864,7 +12152,7 @@
       "source_priority": "S",
       "source_priority_score": 4,
       "extraction_method": "site_rule",
-      "updated_at": "2026-05-23T20:11:20.714Z",
+      "updated_at": "2026-05-24T19:36:51.096Z",
       "quality_score": 0.78
     },
     {
@@ -11888,7 +12176,7 @@
       "source_priority": "S",
       "source_priority_score": 4,
       "extraction_method": "site_rule",
-      "updated_at": "2026-05-23T20:11:20.714Z",
+      "updated_at": "2026-05-24T19:36:51.096Z",
       "quality_score": 0.74
     },
     {
@@ -11912,7 +12200,7 @@
       "source_priority": "S",
       "source_priority_score": 4,
       "extraction_method": "site_rule",
-      "updated_at": "2026-05-23T20:11:42.132Z",
+      "updated_at": "2026-05-24T19:36:57.107Z",
       "quality_score": 1
     },
     {
@@ -11936,7 +12224,7 @@
       "source_priority": "S",
       "source_priority_score": 4,
       "extraction_method": "site_rule",
-      "updated_at": "2026-05-23T20:11:37.544Z",
+      "updated_at": "2026-05-24T19:37:05.236Z",
       "quality_score": 0.78
     },
     {
@@ -11960,7 +12248,7 @@
       "source_priority": "B",
       "source_priority_score": 2,
       "extraction_method": "site_rule",
-      "updated_at": "2026-05-23T20:11:58.778Z",
+      "updated_at": "2026-05-24T19:37:26.559Z",
       "quality_score": 0.91
     },
     {
@@ -11984,7 +12272,7 @@
       "source_priority": "S",
       "source_priority_score": 4,
       "extraction_method": "site_rule",
-      "updated_at": "2026-05-23T20:11:20.714Z",
+      "updated_at": "2026-05-24T19:36:51.096Z",
       "quality_score": 0.74
     },
     {
@@ -12008,7 +12296,7 @@
       "source_priority": "S",
       "source_priority_score": 4,
       "extraction_method": "site_rule",
-      "updated_at": "2026-05-23T20:11:42.132Z",
+      "updated_at": "2026-05-24T19:36:57.108Z",
       "quality_score": 1
     },
     {
@@ -12032,7 +12320,7 @@
       "source_priority": "S",
       "source_priority_score": 4,
       "extraction_method": "site_rule",
-      "updated_at": "2026-05-23T20:11:20.714Z",
+      "updated_at": "2026-05-24T19:36:51.096Z",
       "quality_score": 0.74
     },
     {
@@ -12056,7 +12344,7 @@
       "source_priority": "A",
       "source_priority_score": 3,
       "extraction_method": "site_rule",
-      "updated_at": "2026-05-23T20:11:41.559Z",
+      "updated_at": "2026-05-24T19:37:07.820Z",
       "quality_score": 0.61
     },
     {
@@ -12080,7 +12368,7 @@
       "source_priority": "S",
       "source_priority_score": 4,
       "extraction_method": "site_rule",
-      "updated_at": "2026-05-23T20:11:42.133Z",
+      "updated_at": "2026-05-24T19:36:57.108Z",
       "quality_score": 1
     },
     {
@@ -12104,7 +12392,7 @@
       "source_priority": "S",
       "source_priority_score": 4,
       "extraction_method": "site_rule",
-      "updated_at": "2026-05-23T20:11:20.714Z",
+      "updated_at": "2026-05-24T19:36:51.096Z",
       "quality_score": 0.74
     },
     {
@@ -12128,7 +12416,7 @@
       "source_priority": "A",
       "source_priority_score": 3,
       "extraction_method": "site_rule",
-      "updated_at": "2026-05-23T20:11:23.738Z",
+      "updated_at": "2026-05-24T19:37:04.835Z",
       "quality_score": 0.61
     },
     {
@@ -12152,7 +12440,7 @@
       "source_priority": "S",
       "source_priority_score": 4,
       "extraction_method": "site_rule",
-      "updated_at": "2026-05-23T20:11:42.133Z",
+      "updated_at": "2026-05-24T19:36:57.109Z",
       "quality_score": 1
     },
     {
@@ -12176,7 +12464,7 @@
       "source_priority": "A",
       "source_priority_score": 3,
       "extraction_method": "site_rule",
-      "updated_at": "2026-05-23T20:11:48.944Z",
+      "updated_at": "2026-05-24T19:37:17.178Z",
       "quality_score": 0.75
     },
     {
@@ -12200,7 +12488,7 @@
       "source_priority": "S",
       "source_priority_score": 4,
       "extraction_method": "site_rule",
-      "updated_at": "2026-05-23T20:11:09.329Z",
+      "updated_at": "2026-05-24T19:36:37.592Z",
       "quality_score": 0.7
     },
     {
@@ -12224,7 +12512,7 @@
       "source_priority": "A",
       "source_priority_score": 3,
       "extraction_method": "site_rule",
-      "updated_at": "2026-05-23T20:11:43.471Z",
+      "updated_at": "2026-05-24T19:37:11.808Z",
       "quality_score": 0.76
     },
     {
@@ -12248,7 +12536,7 @@
       "source_priority": "S",
       "source_priority_score": 4,
       "extraction_method": "site_rule",
-      "updated_at": "2026-05-23T20:11:42.133Z",
+      "updated_at": "2026-05-24T19:36:57.109Z",
       "quality_score": 1
     },
     {
@@ -12272,7 +12560,7 @@
       "source_priority": "S",
       "source_priority_score": 4,
       "extraction_method": "site_rule",
-      "updated_at": "2026-05-23T20:11:42.134Z",
+      "updated_at": "2026-05-24T19:36:57.109Z",
       "quality_score": 1
     },
     {
@@ -12296,7 +12584,7 @@
       "source_priority": "A",
       "source_priority_score": 3,
       "extraction_method": "site_rule",
-      "updated_at": "2026-05-23T20:11:48.944Z",
+      "updated_at": "2026-05-24T19:37:17.178Z",
       "quality_score": 0.75
     },
     {
@@ -12320,7 +12608,7 @@
       "source_priority": "S",
       "source_priority_score": 4,
       "extraction_method": "site_rule",
-      "updated_at": "2026-05-23T20:11:42.134Z",
+      "updated_at": "2026-05-24T19:36:57.110Z",
       "quality_score": 1
     },
     {
@@ -12344,7 +12632,7 @@
       "source_priority": "S",
       "source_priority_score": 4,
       "extraction_method": "site_rule",
-      "updated_at": "2026-05-23T20:11:09.329Z",
+      "updated_at": "2026-05-24T19:36:37.592Z",
       "quality_score": 0.7
     },
     {
@@ -12368,7 +12656,7 @@
       "source_priority": "S",
       "source_priority_score": 4,
       "extraction_method": "site_rule",
-      "updated_at": "2026-05-23T20:11:42.134Z",
+      "updated_at": "2026-05-24T19:36:57.109Z",
       "quality_score": 1
     },
     {
@@ -12392,8 +12680,32 @@
       "source_priority": "S",
       "source_priority_score": 4,
       "extraction_method": "site_rule",
-      "updated_at": "2026-05-23T20:11:42.134Z",
+      "updated_at": "2026-05-24T19:36:57.110Z",
       "quality_score": 1
+    },
+    {
+      "id": "2984c6e1471ffbc6ae5c",
+      "title": "No.18 What's the Number? Pt.2",
+      "start_date": "2026-09-18",
+      "end_date": "",
+      "open_time": "18:18",
+      "start_time": "19:18",
+      "end_time": "",
+      "all_day": false,
+      "venue": "PENNY LANE24",
+      "venue_address": "",
+      "summary": "2026年9月18日【金】 What's the Number? Pt.2 No.18 開場 / 開演 18:18 / 19:18 チケット発売 2026/04/18 18:18 一般前売り ¥2,800 L-code/P-code / イープラス /スタンディング/ドリンク代別途¥600/未就学児入場不可/ ◆注意事項等 詳しくは、スマッシュイースト HPをご確認ください。 お問い合わせ SMASH EAST 011-261-556…",
+      "flyer_image_url": "https://www.pl24.jp/img/schedule/26/0918.jpg",
+      "detail_url": "http://smash-east.com/",
+      "source_id": "www-pl24-jp-schedule-html",
+      "source_name": "PENNY LANE24",
+      "source_url": "https://www.pl24.jp/schedule.html",
+      "source_category": "ライブハウス（会場公式）",
+      "source_priority": "B",
+      "source_priority_score": 2,
+      "extraction_method": "site_rule",
+      "updated_at": "2026-05-24T19:37:24.446Z",
+      "quality_score": 0.71
     },
     {
       "id": "ac0da1098224c966fa32",
@@ -12416,7 +12728,7 @@
       "source_priority": "S",
       "source_priority_score": 4,
       "extraction_method": "site_rule",
-      "updated_at": "2026-05-23T20:11:37.548Z",
+      "updated_at": "2026-05-24T19:37:05.241Z",
       "quality_score": 0.6
     },
     {
@@ -12440,7 +12752,7 @@
       "source_priority": "S",
       "source_priority_score": 4,
       "extraction_method": "site_rule",
-      "updated_at": "2026-05-23T20:11:42.135Z",
+      "updated_at": "2026-05-24T19:36:57.110Z",
       "quality_score": 1
     },
     {
@@ -12464,7 +12776,7 @@
       "source_priority": "S",
       "source_priority_score": 4,
       "extraction_method": "site_rule",
-      "updated_at": "2026-05-23T20:11:09.329Z",
+      "updated_at": "2026-05-24T19:36:37.592Z",
       "quality_score": 0.7
     },
     {
@@ -12488,7 +12800,7 @@
       "source_priority": "S",
       "source_priority_score": 4,
       "extraction_method": "site_rule",
-      "updated_at": "2026-05-23T20:11:07.697Z",
+      "updated_at": "2026-05-24T19:36:35.968Z",
       "quality_score": 1
     },
     {
@@ -12512,7 +12824,7 @@
       "source_priority": "S",
       "source_priority_score": 4,
       "extraction_method": "site_rule",
-      "updated_at": "2026-05-23T20:11:20.714Z",
+      "updated_at": "2026-05-24T19:36:51.096Z",
       "quality_score": 0.78
     },
     {
@@ -12536,7 +12848,7 @@
       "source_priority": "S",
       "source_priority_score": 4,
       "extraction_method": "site_rule",
-      "updated_at": "2026-05-23T20:11:20.714Z",
+      "updated_at": "2026-05-24T19:36:51.096Z",
       "quality_score": 0.74
     },
     {
@@ -12560,7 +12872,7 @@
       "source_priority": "S",
       "source_priority_score": 4,
       "extraction_method": "site_rule",
-      "updated_at": "2026-05-23T20:11:20.714Z",
+      "updated_at": "2026-05-24T19:36:51.096Z",
       "quality_score": 0.74
     },
     {
@@ -12584,7 +12896,7 @@
       "source_priority": "S",
       "source_priority_score": 4,
       "extraction_method": "site_rule",
-      "updated_at": "2026-05-23T20:11:09.329Z",
+      "updated_at": "2026-05-24T19:36:37.592Z",
       "quality_score": 0.7
     },
     {
@@ -12608,7 +12920,7 @@
       "source_priority": "S",
       "source_priority_score": 4,
       "extraction_method": "site_rule",
-      "updated_at": "2026-05-23T20:11:20.714Z",
+      "updated_at": "2026-05-24T19:36:51.096Z",
       "quality_score": 0.74
     },
     {
@@ -12632,7 +12944,7 @@
       "source_priority": "S",
       "source_priority_score": 4,
       "extraction_method": "site_rule",
-      "updated_at": "2026-05-23T20:11:37.555Z",
+      "updated_at": "2026-05-24T19:37:05.247Z",
       "quality_score": 0.78
     },
     {
@@ -12656,7 +12968,7 @@
       "source_priority": "A",
       "source_priority_score": 3,
       "extraction_method": "site_rule",
-      "updated_at": "2026-05-23T20:11:48.944Z",
+      "updated_at": "2026-05-24T19:37:17.178Z",
       "quality_score": 0.75
     },
     {
@@ -12680,7 +12992,7 @@
       "source_priority": "S",
       "source_priority_score": 4,
       "extraction_method": "site_rule",
-      "updated_at": "2026-05-23T20:11:42.135Z",
+      "updated_at": "2026-05-24T19:36:57.111Z",
       "quality_score": 1
     },
     {
@@ -12704,7 +13016,7 @@
       "source_priority": "S",
       "source_priority_score": 4,
       "extraction_method": "site_rule",
-      "updated_at": "2026-05-23T20:11:09.329Z",
+      "updated_at": "2026-05-24T19:36:37.592Z",
       "quality_score": 0.7
     },
     {
@@ -12728,7 +13040,7 @@
       "source_priority": "S",
       "source_priority_score": 4,
       "extraction_method": "site_rule",
-      "updated_at": "2026-05-23T20:11:20.715Z",
+      "updated_at": "2026-05-24T19:36:51.097Z",
       "quality_score": 0.74
     },
     {
@@ -12752,7 +13064,7 @@
       "source_priority": "S",
       "source_priority_score": 4,
       "extraction_method": "site_rule",
-      "updated_at": "2026-05-23T20:11:20.715Z",
+      "updated_at": "2026-05-24T19:36:51.097Z",
       "quality_score": 0.74
     },
     {
@@ -12776,7 +13088,7 @@
       "source_priority": "S",
       "source_priority_score": 4,
       "extraction_method": "site_rule",
-      "updated_at": "2026-05-23T20:11:37.559Z",
+      "updated_at": "2026-05-24T19:37:05.251Z",
       "quality_score": 0.78
     },
     {
@@ -12800,7 +13112,7 @@
       "source_priority": "A",
       "source_priority_score": 3,
       "extraction_method": "site_rule",
-      "updated_at": "2026-05-23T20:11:48.945Z",
+      "updated_at": "2026-05-24T19:37:17.178Z",
       "quality_score": 0.75
     },
     {
@@ -12824,7 +13136,7 @@
       "source_priority": "S",
       "source_priority_score": 4,
       "extraction_method": "site_rule",
-      "updated_at": "2026-05-23T20:11:42.135Z",
+      "updated_at": "2026-05-24T19:36:57.111Z",
       "quality_score": 1
     },
     {
@@ -12848,7 +13160,7 @@
       "source_priority": "S",
       "source_priority_score": 4,
       "extraction_method": "site_rule",
-      "updated_at": "2026-05-23T20:11:37.564Z",
+      "updated_at": "2026-05-24T19:37:05.256Z",
       "quality_score": 0.78
     },
     {
@@ -12872,7 +13184,7 @@
       "source_priority": "A",
       "source_priority_score": 3,
       "extraction_method": "site_rule",
-      "updated_at": "2026-05-23T20:11:48.945Z",
+      "updated_at": "2026-05-24T19:37:17.178Z",
       "quality_score": 0.75
     },
     {
@@ -12896,7 +13208,7 @@
       "source_priority": "S",
       "source_priority_score": 4,
       "extraction_method": "site_rule",
-      "updated_at": "2026-05-23T20:11:09.329Z",
+      "updated_at": "2026-05-24T19:36:37.592Z",
       "quality_score": 0.7
     },
     {
@@ -12920,7 +13232,7 @@
       "source_priority": "A",
       "source_priority_score": 3,
       "extraction_method": "site_rule",
-      "updated_at": "2026-05-23T20:11:48.945Z",
+      "updated_at": "2026-05-24T19:37:17.178Z",
       "quality_score": 0.75
     },
     {
@@ -12944,7 +13256,7 @@
       "source_priority": "S",
       "source_priority_score": 4,
       "extraction_method": "site_rule",
-      "updated_at": "2026-05-23T20:11:37.568Z",
+      "updated_at": "2026-05-24T19:37:05.260Z",
       "quality_score": 0.78
     },
     {
@@ -12968,7 +13280,7 @@
       "source_priority": "S",
       "source_priority_score": 4,
       "extraction_method": "site_rule",
-      "updated_at": "2026-05-23T20:11:09.329Z",
+      "updated_at": "2026-05-24T19:36:37.592Z",
       "quality_score": 0.7
     },
     {
@@ -12992,7 +13304,7 @@
       "source_priority": "S",
       "source_priority_score": 4,
       "extraction_method": "site_rule",
-      "updated_at": "2026-05-23T20:11:09.329Z",
+      "updated_at": "2026-05-24T19:36:37.592Z",
       "quality_score": 0.7
     },
     {
@@ -13016,7 +13328,7 @@
       "source_priority": "S",
       "source_priority_score": 4,
       "extraction_method": "site_rule",
-      "updated_at": "2026-05-23T20:11:42.135Z",
+      "updated_at": "2026-05-24T19:36:57.111Z",
       "quality_score": 1
     },
     {
@@ -13040,7 +13352,7 @@
       "source_priority": "S",
       "source_priority_score": 4,
       "extraction_method": "site_rule",
-      "updated_at": "2026-05-23T20:11:20.715Z",
+      "updated_at": "2026-05-24T19:36:51.097Z",
       "quality_score": 0.74
     },
     {
@@ -13064,7 +13376,7 @@
       "source_priority": "S",
       "source_priority_score": 4,
       "extraction_method": "site_rule",
-      "updated_at": "2026-05-23T20:11:20.715Z",
+      "updated_at": "2026-05-24T19:36:51.097Z",
       "quality_score": 0.74
     },
     {
@@ -13088,7 +13400,7 @@
       "source_priority": "S",
       "source_priority_score": 4,
       "extraction_method": "site_rule",
-      "updated_at": "2026-05-23T20:11:20.715Z",
+      "updated_at": "2026-05-24T19:36:51.097Z",
       "quality_score": 0.74
     },
     {
@@ -13112,7 +13424,7 @@
       "source_priority": "A",
       "source_priority_score": 3,
       "extraction_method": "site_rule",
-      "updated_at": "2026-05-23T20:11:23.738Z",
+      "updated_at": "2026-05-24T19:37:04.835Z",
       "quality_score": 0.61
     },
     {
@@ -13136,7 +13448,7 @@
       "source_priority": "S",
       "source_priority_score": 4,
       "extraction_method": "site_rule",
-      "updated_at": "2026-05-23T20:11:42.136Z",
+      "updated_at": "2026-05-24T19:36:57.112Z",
       "quality_score": 1
     },
     {
@@ -13160,7 +13472,7 @@
       "source_priority": "S",
       "source_priority_score": 4,
       "extraction_method": "site_rule",
-      "updated_at": "2026-05-23T20:11:20.715Z",
+      "updated_at": "2026-05-24T19:36:51.097Z",
       "quality_score": 0.74
     },
     {
@@ -13184,7 +13496,7 @@
       "source_priority": "A",
       "source_priority_score": 3,
       "extraction_method": "site_rule",
-      "updated_at": "2026-05-23T20:11:34.504Z",
+      "updated_at": "2026-05-24T19:37:00.177Z",
       "quality_score": 0.61
     },
     {
@@ -13208,7 +13520,7 @@
       "source_priority": "S",
       "source_priority_score": 4,
       "extraction_method": "site_rule",
-      "updated_at": "2026-05-23T20:11:42.136Z",
+      "updated_at": "2026-05-24T19:36:57.112Z",
       "quality_score": 1
     },
     {
@@ -13232,7 +13544,7 @@
       "source_priority": "S",
       "source_priority_score": 4,
       "extraction_method": "site_rule",
-      "updated_at": "2026-05-23T20:11:20.715Z",
+      "updated_at": "2026-05-24T19:36:51.097Z",
       "quality_score": 0.74
     },
     {
@@ -13256,7 +13568,7 @@
       "source_priority": "S",
       "source_priority_score": 4,
       "extraction_method": "site_rule",
-      "updated_at": "2026-05-23T20:11:20.715Z",
+      "updated_at": "2026-05-24T19:36:51.097Z",
       "quality_score": 0.74
     },
     {
@@ -13280,7 +13592,7 @@
       "source_priority": "S",
       "source_priority_score": 4,
       "extraction_method": "site_rule",
-      "updated_at": "2026-05-23T20:11:37.572Z",
+      "updated_at": "2026-05-24T19:37:05.264Z",
       "quality_score": 0.78
     },
     {
@@ -13304,7 +13616,7 @@
       "source_priority": "S",
       "source_priority_score": 4,
       "extraction_method": "site_rule",
-      "updated_at": "2026-05-23T20:11:24.772Z",
+      "updated_at": "2026-05-24T19:36:55.884Z",
       "quality_score": 0.74
     },
     {
@@ -13328,7 +13640,7 @@
       "source_priority": "S",
       "source_priority_score": 4,
       "extraction_method": "site_rule",
-      "updated_at": "2026-05-23T20:11:37.577Z",
+      "updated_at": "2026-05-24T19:37:05.268Z",
       "quality_score": 0.78
     },
     {
@@ -13341,9 +13653,9 @@
       "end_time": "",
       "all_day": false,
       "venue": "カナモトホール",
-      "venue_address": "",
+      "venue_address": "札幌市中央区北1条西1丁目",
       "summary": "10月2日(金) / 18:00開場/18:30開演 / カナモトホール / 5月30日(土)10:00～ 一般販売",
-      "flyer_image_url": "",
+      "flyer_image_url": "https://www.sapporo-shiminhall.org/files/seminar/2108/2026.10.02_%E6%9D%A5%E7%94%9F%E3%81%9F%E3%81%8B%E3%81%8A%EF%BC%88%E3%82%A8%E3%83%BC%E3%83%80%E3%83%83%E3%82%B7%E3%83%A5%EF%BC%89.pdf",
       "detail_url": "https://adash.jp/kisugi2026-1002.html",
       "source_id": "www-hbc-co-jp-event",
       "source_name": "HBC北海道放送（イベント）",
@@ -13352,7 +13664,7 @@
       "source_priority": "A",
       "source_priority_score": 3,
       "extraction_method": "site_rule",
-      "updated_at": "2026-05-23T20:11:48.945Z",
+      "updated_at": "2026-05-24T19:37:17.178Z",
       "quality_score": 0.75
     },
     {
@@ -13376,7 +13688,7 @@
       "source_priority": "S",
       "source_priority_score": 4,
       "extraction_method": "site_rule",
-      "updated_at": "2026-05-23T20:11:24.773Z",
+      "updated_at": "2026-05-24T19:36:55.884Z",
       "quality_score": 0.74
     },
     {
@@ -13400,7 +13712,7 @@
       "source_priority": "A",
       "source_priority_score": 3,
       "extraction_method": "site_rule",
-      "updated_at": "2026-05-23T20:11:30.797Z",
+      "updated_at": "2026-05-24T19:36:55.028Z",
       "quality_score": 0.77
     },
     {
@@ -13424,7 +13736,7 @@
       "source_priority": "S",
       "source_priority_score": 4,
       "extraction_method": "site_rule",
-      "updated_at": "2026-05-23T20:11:07.696Z",
+      "updated_at": "2026-05-24T19:36:35.967Z",
       "quality_score": 1
     },
     {
@@ -13448,7 +13760,7 @@
       "source_priority": "S",
       "source_priority_score": 4,
       "extraction_method": "site_rule",
-      "updated_at": "2026-05-23T20:11:42.136Z",
+      "updated_at": "2026-05-24T19:36:57.112Z",
       "quality_score": 1
     },
     {
@@ -13472,7 +13784,7 @@
       "source_priority": "S",
       "source_priority_score": 4,
       "extraction_method": "site_rule",
-      "updated_at": "2026-05-23T20:11:07.696Z",
+      "updated_at": "2026-05-24T19:36:35.967Z",
       "quality_score": 1
     },
     {
@@ -13496,7 +13808,7 @@
       "source_priority": "S",
       "source_priority_score": 4,
       "extraction_method": "site_rule",
-      "updated_at": "2026-05-23T20:11:24.773Z",
+      "updated_at": "2026-05-24T19:36:55.885Z",
       "quality_score": 0.74
     },
     {
@@ -13520,7 +13832,7 @@
       "source_priority": "S",
       "source_priority_score": 4,
       "extraction_method": "site_rule",
-      "updated_at": "2026-05-23T20:11:03.368Z",
+      "updated_at": "2026-05-24T19:36:30.390Z",
       "quality_score": 0.79
     },
     {
@@ -13544,7 +13856,7 @@
       "source_priority": "S",
       "source_priority_score": 4,
       "extraction_method": "site_rule",
-      "updated_at": "2026-05-23T20:11:42.136Z",
+      "updated_at": "2026-05-24T19:36:57.113Z",
       "quality_score": 1
     },
     {
@@ -13568,7 +13880,7 @@
       "source_priority": "S",
       "source_priority_score": 4,
       "extraction_method": "site_rule",
-      "updated_at": "2026-05-23T20:11:42.137Z",
+      "updated_at": "2026-05-24T19:36:57.113Z",
       "quality_score": 1
     },
     {
@@ -13592,7 +13904,7 @@
       "source_priority": "S",
       "source_priority_score": 4,
       "extraction_method": "site_rule",
-      "updated_at": "2026-05-23T20:11:37.583Z",
+      "updated_at": "2026-05-24T19:37:05.274Z",
       "quality_score": 0.78
     },
     {
@@ -13616,7 +13928,7 @@
       "source_priority": "S",
       "source_priority_score": 4,
       "extraction_method": "site_rule",
-      "updated_at": "2026-05-23T20:11:24.773Z",
+      "updated_at": "2026-05-24T19:36:55.885Z",
       "quality_score": 0.74
     },
     {
@@ -13640,7 +13952,7 @@
       "source_priority": "S",
       "source_priority_score": 4,
       "extraction_method": "site_rule",
-      "updated_at": "2026-05-23T20:11:19.188Z",
+      "updated_at": "2026-05-24T19:36:49.286Z",
       "quality_score": 0.98
     },
     {
@@ -13664,7 +13976,7 @@
       "source_priority": "S",
       "source_priority_score": 4,
       "extraction_method": "site_rule",
-      "updated_at": "2026-05-23T20:11:24.773Z",
+      "updated_at": "2026-05-24T19:36:55.885Z",
       "quality_score": 0.74
     },
     {
@@ -13688,7 +14000,7 @@
       "source_priority": "S",
       "source_priority_score": 4,
       "extraction_method": "site_rule",
-      "updated_at": "2026-05-23T20:11:24.773Z",
+      "updated_at": "2026-05-24T19:36:55.885Z",
       "quality_score": 0.74
     },
     {
@@ -13712,7 +14024,7 @@
       "source_priority": "S",
       "source_priority_score": 4,
       "extraction_method": "site_rule",
-      "updated_at": "2026-05-23T20:11:24.773Z",
+      "updated_at": "2026-05-24T19:36:55.885Z",
       "quality_score": 0.74
     },
     {
@@ -13736,7 +14048,7 @@
       "source_priority": "S",
       "source_priority_score": 4,
       "extraction_method": "site_rule",
-      "updated_at": "2026-05-23T20:11:24.773Z",
+      "updated_at": "2026-05-24T19:36:55.885Z",
       "quality_score": 0.74
     },
     {
@@ -13760,7 +14072,7 @@
       "source_priority": "S",
       "source_priority_score": 4,
       "extraction_method": "site_rule",
-      "updated_at": "2026-05-23T20:11:24.773Z",
+      "updated_at": "2026-05-24T19:36:55.885Z",
       "quality_score": 0.74
     },
     {
@@ -13784,7 +14096,7 @@
       "source_priority": "S",
       "source_priority_score": 4,
       "extraction_method": "site_rule",
-      "updated_at": "2026-05-23T20:11:24.774Z",
+      "updated_at": "2026-05-24T19:36:55.886Z",
       "quality_score": 0.74
     },
     {
@@ -13808,7 +14120,7 @@
       "source_priority": "A",
       "source_priority_score": 3,
       "extraction_method": "site_rule",
-      "updated_at": "2026-05-23T20:11:23.738Z",
+      "updated_at": "2026-05-24T19:37:04.835Z",
       "quality_score": 0.61
     },
     {
@@ -13832,7 +14144,7 @@
       "source_priority": "S",
       "source_priority_score": 4,
       "extraction_method": "site_rule",
-      "updated_at": "2026-05-23T20:11:37.587Z",
+      "updated_at": "2026-05-24T19:37:05.278Z",
       "quality_score": 0.78
     },
     {
@@ -13856,7 +14168,7 @@
       "source_priority": "S",
       "source_priority_score": 4,
       "extraction_method": "site_rule",
-      "updated_at": "2026-05-23T20:11:24.774Z",
+      "updated_at": "2026-05-24T19:36:55.886Z",
       "quality_score": 0.74
     },
     {
@@ -13880,7 +14192,7 @@
       "source_priority": "S",
       "source_priority_score": 4,
       "extraction_method": "site_rule",
-      "updated_at": "2026-05-23T20:11:37.592Z",
+      "updated_at": "2026-05-24T19:37:05.283Z",
       "quality_score": 0.78
     },
     {
@@ -13904,7 +14216,7 @@
       "source_priority": "S",
       "source_priority_score": 4,
       "extraction_method": "site_rule",
-      "updated_at": "2026-05-23T20:11:24.774Z",
+      "updated_at": "2026-05-24T19:36:55.886Z",
       "quality_score": 0.74
     },
     {
@@ -13928,7 +14240,7 @@
       "source_priority": "S",
       "source_priority_score": 4,
       "extraction_method": "site_rule",
-      "updated_at": "2026-05-23T20:11:24.774Z",
+      "updated_at": "2026-05-24T19:36:55.886Z",
       "quality_score": 0.74
     },
     {
@@ -13952,7 +14264,7 @@
       "source_priority": "A",
       "source_priority_score": 3,
       "extraction_method": "heuristic",
-      "updated_at": "2026-05-23T20:11:50.319Z",
+      "updated_at": "2026-05-24T19:37:18.248Z",
       "quality_score": 0.81
     },
     {
@@ -13976,7 +14288,7 @@
       "source_priority": "S",
       "source_priority_score": 4,
       "extraction_method": "site_rule",
-      "updated_at": "2026-05-23T20:11:24.774Z",
+      "updated_at": "2026-05-24T19:36:55.886Z",
       "quality_score": 0.74
     },
     {
@@ -14000,7 +14312,7 @@
       "source_priority": "S",
       "source_priority_score": 4,
       "extraction_method": "site_rule",
-      "updated_at": "2026-05-23T20:11:37.596Z",
+      "updated_at": "2026-05-24T19:37:05.287Z",
       "quality_score": 0.78
     },
     {
@@ -14024,7 +14336,7 @@
       "source_priority": "S",
       "source_priority_score": 4,
       "extraction_method": "site_rule",
-      "updated_at": "2026-05-23T20:11:24.774Z",
+      "updated_at": "2026-05-24T19:36:55.886Z",
       "quality_score": 0.74
     },
     {
@@ -14048,7 +14360,7 @@
       "source_priority": "S",
       "source_priority_score": 4,
       "extraction_method": "site_rule",
-      "updated_at": "2026-05-23T20:11:24.774Z",
+      "updated_at": "2026-05-24T19:36:55.886Z",
       "quality_score": 0.74
     },
     {
@@ -14072,7 +14384,7 @@
       "source_priority": "S",
       "source_priority_score": 4,
       "extraction_method": "site_rule",
-      "updated_at": "2026-05-23T20:11:24.774Z",
+      "updated_at": "2026-05-24T19:36:55.886Z",
       "quality_score": 0.74
     },
     {
@@ -14096,7 +14408,7 @@
       "source_priority": "S",
       "source_priority_score": 4,
       "extraction_method": "site_rule",
-      "updated_at": "2026-05-23T20:11:42.137Z",
+      "updated_at": "2026-05-24T19:36:57.113Z",
       "quality_score": 1
     },
     {
@@ -14120,7 +14432,7 @@
       "source_priority": "S",
       "source_priority_score": 4,
       "extraction_method": "site_rule",
-      "updated_at": "2026-05-23T20:11:24.774Z",
+      "updated_at": "2026-05-24T19:36:55.886Z",
       "quality_score": 0.74
     },
     {
@@ -14144,7 +14456,7 @@
       "source_priority": "S",
       "source_priority_score": 4,
       "extraction_method": "site_rule",
-      "updated_at": "2026-05-23T20:11:24.774Z",
+      "updated_at": "2026-05-24T19:36:55.886Z",
       "quality_score": 0.74
     },
     {
@@ -14168,7 +14480,7 @@
       "source_priority": "B",
       "source_priority_score": 2,
       "extraction_method": "site_rule",
-      "updated_at": "2026-05-23T20:11:58.779Z",
+      "updated_at": "2026-05-24T19:37:26.560Z",
       "quality_score": 0.71
     },
     {
@@ -14192,7 +14504,7 @@
       "source_priority": "S",
       "source_priority_score": 4,
       "extraction_method": "site_rule",
-      "updated_at": "2026-05-23T20:11:37.600Z",
+      "updated_at": "2026-05-24T19:37:05.291Z",
       "quality_score": 0.78
     },
     {
@@ -14216,7 +14528,7 @@
       "source_priority": "S",
       "source_priority_score": 4,
       "extraction_method": "site_rule",
-      "updated_at": "2026-05-23T20:11:32.617Z",
+      "updated_at": "2026-05-24T19:36:58.237Z",
       "quality_score": 0.74
     },
     {
@@ -14240,7 +14552,7 @@
       "source_priority": "S",
       "source_priority_score": 4,
       "extraction_method": "site_rule",
-      "updated_at": "2026-05-23T20:11:32.617Z",
+      "updated_at": "2026-05-24T19:36:58.237Z",
       "quality_score": 0.74
     },
     {
@@ -14264,7 +14576,7 @@
       "source_priority": "A",
       "source_priority_score": 3,
       "extraction_method": "site_rule",
-      "updated_at": "2026-05-23T20:11:30.797Z",
+      "updated_at": "2026-05-24T19:36:55.028Z",
       "quality_score": 0.77
     },
     {
@@ -14288,7 +14600,7 @@
       "source_priority": "S",
       "source_priority_score": 4,
       "extraction_method": "site_rule",
-      "updated_at": "2026-05-23T20:11:37.605Z",
+      "updated_at": "2026-05-24T19:37:05.295Z",
       "quality_score": 0.78
     },
     {
@@ -14312,7 +14624,7 @@
       "source_priority": "S",
       "source_priority_score": 4,
       "extraction_method": "site_rule",
-      "updated_at": "2026-05-23T20:11:32.617Z",
+      "updated_at": "2026-05-24T19:36:58.237Z",
       "quality_score": 0.74
     },
     {
@@ -14336,7 +14648,7 @@
       "source_priority": "S",
       "source_priority_score": 4,
       "extraction_method": "site_rule",
-      "updated_at": "2026-05-23T20:11:37.610Z",
+      "updated_at": "2026-05-24T19:37:05.300Z",
       "quality_score": 0.78
     },
     {
@@ -14360,7 +14672,7 @@
       "source_priority": "S",
       "source_priority_score": 4,
       "extraction_method": "site_rule",
-      "updated_at": "2026-05-23T20:11:37.616Z",
+      "updated_at": "2026-05-24T19:37:05.306Z",
       "quality_score": 0.78
     },
     {
@@ -14384,7 +14696,7 @@
       "source_priority": "S",
       "source_priority_score": 4,
       "extraction_method": "site_rule",
-      "updated_at": "2026-05-23T20:11:37.628Z",
+      "updated_at": "2026-05-24T19:37:05.317Z",
       "quality_score": 0.78
     },
     {
@@ -14408,7 +14720,7 @@
       "source_priority": "S",
       "source_priority_score": 4,
       "extraction_method": "site_rule",
-      "updated_at": "2026-05-23T20:11:32.617Z",
+      "updated_at": "2026-05-24T19:36:58.238Z",
       "quality_score": 0.74
     },
     {
@@ -14432,7 +14744,7 @@
       "source_priority": "S",
       "source_priority_score": 4,
       "extraction_method": "site_rule",
-      "updated_at": "2026-05-23T20:11:32.617Z",
+      "updated_at": "2026-05-24T19:36:58.238Z",
       "quality_score": 0.74
     },
     {
@@ -14456,7 +14768,7 @@
       "source_priority": "B",
       "source_priority_score": 2,
       "extraction_method": "site_rule",
-      "updated_at": "2026-05-23T20:11:58.779Z",
+      "updated_at": "2026-05-24T19:37:26.560Z",
       "quality_score": 0.91
     },
     {
@@ -14480,7 +14792,7 @@
       "source_priority": "S",
       "source_priority_score": 4,
       "extraction_method": "site_rule",
-      "updated_at": "2026-05-23T20:11:32.617Z",
+      "updated_at": "2026-05-24T19:36:58.238Z",
       "quality_score": 0.74
     },
     {
@@ -14504,7 +14816,7 @@
       "source_priority": "S",
       "source_priority_score": 4,
       "extraction_method": "site_rule",
-      "updated_at": "2026-05-23T20:11:32.617Z",
+      "updated_at": "2026-05-24T19:36:58.238Z",
       "quality_score": 0.74
     },
     {
@@ -14528,7 +14840,7 @@
       "source_priority": "S",
       "source_priority_score": 4,
       "extraction_method": "site_rule",
-      "updated_at": "2026-05-23T20:11:32.618Z",
+      "updated_at": "2026-05-24T19:36:58.238Z",
       "quality_score": 0.78
     },
     {
@@ -14552,7 +14864,7 @@
       "source_priority": "S",
       "source_priority_score": 4,
       "extraction_method": "site_rule",
-      "updated_at": "2026-05-23T20:11:32.617Z",
+      "updated_at": "2026-05-24T19:36:58.238Z",
       "quality_score": 0.74
     },
     {
@@ -14576,7 +14888,7 @@
       "source_priority": "S",
       "source_priority_score": 4,
       "extraction_method": "site_rule",
-      "updated_at": "2026-05-23T20:11:32.618Z",
+      "updated_at": "2026-05-24T19:36:58.238Z",
       "quality_score": 0.74
     },
     {
@@ -14600,7 +14912,7 @@
       "source_priority": "S",
       "source_priority_score": 4,
       "extraction_method": "site_rule",
-      "updated_at": "2026-05-23T20:11:32.618Z",
+      "updated_at": "2026-05-24T19:36:58.238Z",
       "quality_score": 0.74
     },
     {
@@ -14624,7 +14936,7 @@
       "source_priority": "S",
       "source_priority_score": 4,
       "extraction_method": "site_rule",
-      "updated_at": "2026-05-23T20:11:37.634Z",
+      "updated_at": "2026-05-24T19:37:05.324Z",
       "quality_score": 0.78
     },
     {
@@ -14648,7 +14960,7 @@
       "source_priority": "S",
       "source_priority_score": 4,
       "extraction_method": "site_rule",
-      "updated_at": "2026-05-23T20:11:32.618Z",
+      "updated_at": "2026-05-24T19:36:58.238Z",
       "quality_score": 0.74
     },
     {
@@ -14672,7 +14984,7 @@
       "source_priority": "A",
       "source_priority_score": 3,
       "extraction_method": "site_rule",
-      "updated_at": "2026-05-23T20:11:41.599Z",
+      "updated_at": "2026-05-24T19:37:10.494Z",
       "quality_score": 0.81
     },
     {
@@ -14696,7 +15008,7 @@
       "source_priority": "A",
       "source_priority_score": 3,
       "extraction_method": "site_rule",
-      "updated_at": "2026-05-23T20:11:23.739Z",
+      "updated_at": "2026-05-24T19:37:04.836Z",
       "quality_score": 0.61
     },
     {
@@ -14720,7 +15032,7 @@
       "source_priority": "S",
       "source_priority_score": 4,
       "extraction_method": "site_rule",
-      "updated_at": "2026-05-23T20:11:42.137Z",
+      "updated_at": "2026-05-24T19:36:57.114Z",
       "quality_score": 1
     },
     {
@@ -14744,7 +15056,7 @@
       "source_priority": "S",
       "source_priority_score": 4,
       "extraction_method": "site_rule",
-      "updated_at": "2026-05-23T20:11:37.639Z",
+      "updated_at": "2026-05-24T19:37:05.329Z",
       "quality_score": 0.78
     },
     {
@@ -14768,7 +15080,7 @@
       "source_priority": "S",
       "source_priority_score": 4,
       "extraction_method": "site_rule",
-      "updated_at": "2026-05-23T20:11:37.643Z",
+      "updated_at": "2026-05-24T19:37:05.333Z",
       "quality_score": 0.78
     },
     {
@@ -14792,32 +15104,8 @@
       "source_priority": "S",
       "source_priority_score": 4,
       "extraction_method": "site_rule",
-      "updated_at": "2026-05-23T20:11:32.618Z",
+      "updated_at": "2026-05-24T19:36:58.238Z",
       "quality_score": 0.74
-    },
-    {
-      "id": "e5a5c1be99f4edc3d8d6",
-      "title": "北海道最大のハンドメイドフェスティバルサッポロ モノ ヴィレッジ 2026 秋",
-      "start_date": "2026-11-22",
-      "end_date": "",
-      "open_time": "",
-      "start_time": "",
-      "end_time": "",
-      "all_day": true,
-      "venue": "大和ハウス プレミストドーム",
-      "venue_address": "〒062-0045 札幌市豊平区羊ケ丘1番地",
-      "summary": "大和ハウス プレミストドーム 2026/11/22(日) のイベント情報、館内施設の営業予定をご紹介します。",
-      "flyer_image_url": "https://www.sapporo-dome.co.jp/ogp.jpg",
-      "detail_url": "https://www.sapporo-dome.co.jp/schedule/detail/?date=20261122",
-      "source_id": "www-sapporo-dome-co-jp-dome",
-      "source_name": "大和ハウス プレミストドーム",
-      "source_url": "https://www.sapporo-dome.co.jp/dome/",
-      "source_category": "大規模会場（会場公式）",
-      "source_priority": "S",
-      "source_priority_score": 4,
-      "extraction_method": "heuristic",
-      "updated_at": "2026-05-23T20:11:12.804Z",
-      "quality_score": 0.84
     },
     {
       "id": "4c1b02677b376290ae31",
@@ -14840,32 +15128,8 @@
       "source_priority": "S",
       "source_priority_score": 4,
       "extraction_method": "site_rule",
-      "updated_at": "2026-05-23T20:11:32.618Z",
+      "updated_at": "2026-05-24T19:36:58.238Z",
       "quality_score": 0.78
-    },
-    {
-      "id": "9d5962d8d6ec683ea87c",
-      "title": "北海道最大のハンドメイドフェスティバルサッポロ モノ ヴィレッジ 2026 秋",
-      "start_date": "2026-11-23",
-      "end_date": "",
-      "open_time": "",
-      "start_time": "",
-      "end_time": "",
-      "all_day": true,
-      "venue": "大和ハウス プレミストドーム",
-      "venue_address": "〒062-0045 札幌市豊平区羊ケ丘1番地",
-      "summary": "大和ハウス プレミストドーム 2026/11/23(月・祝) のイベント情報、館内施設の営業予定をご紹介します。",
-      "flyer_image_url": "https://www.sapporo-dome.co.jp/ogp.jpg",
-      "detail_url": "https://www.sapporo-dome.co.jp/schedule/detail/?date=20261123",
-      "source_id": "www-sapporo-dome-co-jp-dome",
-      "source_name": "大和ハウス プレミストドーム",
-      "source_url": "https://www.sapporo-dome.co.jp/dome/",
-      "source_category": "大規模会場（会場公式）",
-      "source_priority": "S",
-      "source_priority_score": 4,
-      "extraction_method": "heuristic",
-      "updated_at": "2026-05-23T20:11:12.890Z",
-      "quality_score": 0.84
     },
     {
       "id": "5d187d418d8cb237b760",
@@ -14888,7 +15152,7 @@
       "source_priority": "S",
       "source_priority_score": 4,
       "extraction_method": "site_rule",
-      "updated_at": "2026-05-23T20:11:32.618Z",
+      "updated_at": "2026-05-24T19:36:58.239Z",
       "quality_score": 0.74
     },
     {
@@ -14912,7 +15176,7 @@
       "source_priority": "S",
       "source_priority_score": 4,
       "extraction_method": "site_rule",
-      "updated_at": "2026-05-23T20:11:42.137Z",
+      "updated_at": "2026-05-24T19:36:57.114Z",
       "quality_score": 1
     },
     {
@@ -14936,7 +15200,7 @@
       "source_priority": "A",
       "source_priority_score": 3,
       "extraction_method": "site_rule",
-      "updated_at": "2026-05-23T20:11:23.739Z",
+      "updated_at": "2026-05-24T19:37:04.836Z",
       "quality_score": 0.61
     },
     {
@@ -14960,7 +15224,7 @@
       "source_priority": "A",
       "source_priority_score": 3,
       "extraction_method": "site_rule",
-      "updated_at": "2026-05-23T20:11:23.739Z",
+      "updated_at": "2026-05-24T19:37:04.836Z",
       "quality_score": 0.61
     },
     {
@@ -14984,7 +15248,7 @@
       "source_priority": "S",
       "source_priority_score": 4,
       "extraction_method": "site_rule",
-      "updated_at": "2026-05-23T20:11:34.924Z",
+      "updated_at": "2026-05-24T19:37:00.414Z",
       "quality_score": 0.74
     },
     {
@@ -15008,7 +15272,7 @@
       "source_priority": "S",
       "source_priority_score": 4,
       "extraction_method": "site_rule",
-      "updated_at": "2026-05-23T20:11:42.138Z",
+      "updated_at": "2026-05-24T19:36:57.114Z",
       "quality_score": 1
     },
     {
@@ -15032,7 +15296,7 @@
       "source_priority": "S",
       "source_priority_score": 4,
       "extraction_method": "site_rule",
-      "updated_at": "2026-05-23T20:11:34.924Z",
+      "updated_at": "2026-05-24T19:37:00.415Z",
       "quality_score": 0.74
     },
     {
@@ -15056,7 +15320,7 @@
       "source_priority": "S",
       "source_priority_score": 4,
       "extraction_method": "site_rule",
-      "updated_at": "2026-05-23T20:11:42.138Z",
+      "updated_at": "2026-05-24T19:36:57.115Z",
       "quality_score": 1
     },
     {
@@ -15080,7 +15344,7 @@
       "source_priority": "S",
       "source_priority_score": 4,
       "extraction_method": "site_rule",
-      "updated_at": "2026-05-23T20:11:34.924Z",
+      "updated_at": "2026-05-24T19:37:00.415Z",
       "quality_score": 0.78
     },
     {
@@ -15104,7 +15368,7 @@
       "source_priority": "S",
       "source_priority_score": 4,
       "extraction_method": "site_rule",
-      "updated_at": "2026-05-23T20:11:34.924Z",
+      "updated_at": "2026-05-24T19:37:00.415Z",
       "quality_score": 0.78
     },
     {
@@ -15128,7 +15392,7 @@
       "source_priority": "A",
       "source_priority_score": 3,
       "extraction_method": "site_rule",
-      "updated_at": "2026-05-23T20:11:30.798Z",
+      "updated_at": "2026-05-24T19:36:55.028Z",
       "quality_score": 0.61
     },
     {
@@ -15152,7 +15416,7 @@
       "source_priority": "S",
       "source_priority_score": 4,
       "extraction_method": "site_rule",
-      "updated_at": "2026-05-23T20:11:34.924Z",
+      "updated_at": "2026-05-24T19:37:00.415Z",
       "quality_score": 0.74
     },
     {
@@ -15176,7 +15440,7 @@
       "source_priority": "S",
       "source_priority_score": 4,
       "extraction_method": "site_rule",
-      "updated_at": "2026-05-23T20:11:34.924Z",
+      "updated_at": "2026-05-24T19:37:00.415Z",
       "quality_score": 0.74
     },
     {
@@ -15200,7 +15464,7 @@
       "source_priority": "S",
       "source_priority_score": 4,
       "extraction_method": "site_rule",
-      "updated_at": "2026-05-23T20:11:34.924Z",
+      "updated_at": "2026-05-24T19:37:00.415Z",
       "quality_score": 0.74
     },
     {
@@ -15224,7 +15488,7 @@
       "source_priority": "S",
       "source_priority_score": 4,
       "extraction_method": "site_rule",
-      "updated_at": "2026-05-23T20:11:19.189Z",
+      "updated_at": "2026-05-24T19:36:49.286Z",
       "quality_score": 0.8
     },
     {
@@ -15248,7 +15512,7 @@
       "source_priority": "A",
       "source_priority_score": 3,
       "extraction_method": "site_rule",
-      "updated_at": "2026-05-23T20:11:37.844Z",
+      "updated_at": "2026-05-24T19:37:04.944Z",
       "quality_score": 0.57
     },
     {
@@ -15272,7 +15536,7 @@
       "source_priority": "S",
       "source_priority_score": 4,
       "extraction_method": "site_rule",
-      "updated_at": "2026-05-23T20:11:38.202Z",
+      "updated_at": "2026-05-24T19:37:03.529Z",
       "quality_score": 0.56
     },
     {
@@ -15296,7 +15560,7 @@
       "source_priority": "S",
       "source_priority_score": 4,
       "extraction_method": "site_rule",
-      "updated_at": "2026-05-23T20:11:38.202Z",
+      "updated_at": "2026-05-24T19:37:03.530Z",
       "quality_score": 0.56
     },
     {
@@ -15320,7 +15584,7 @@
       "source_priority": "S",
       "source_priority_score": 4,
       "extraction_method": "site_rule",
-      "updated_at": "2026-05-23T20:11:19.190Z",
+      "updated_at": "2026-05-24T19:36:49.287Z",
       "quality_score": 0.76
     },
     {
@@ -15344,7 +15608,7 @@
       "source_priority": "S",
       "source_priority_score": 4,
       "extraction_method": "site_rule",
-      "updated_at": "2026-05-23T20:11:38.202Z",
+      "updated_at": "2026-05-24T19:37:03.530Z",
       "quality_score": 0.56
     },
     {
@@ -15368,7 +15632,7 @@
       "source_priority": "S",
       "source_priority_score": 4,
       "extraction_method": "site_rule",
-      "updated_at": "2026-05-23T20:11:40.101Z",
+      "updated_at": "2026-05-24T19:37:04.777Z",
       "quality_score": 0.74
     },
     {
@@ -15392,7 +15656,7 @@
       "source_priority": "S",
       "source_priority_score": 4,
       "extraction_method": "site_rule",
-      "updated_at": "2026-05-23T20:11:40.101Z",
+      "updated_at": "2026-05-24T19:37:04.777Z",
       "quality_score": 0.74
     },
     {
@@ -15416,7 +15680,7 @@
       "source_priority": "S",
       "source_priority_score": 4,
       "extraction_method": "site_rule",
-      "updated_at": "2026-05-23T20:11:40.101Z",
+      "updated_at": "2026-05-24T19:37:04.777Z",
       "quality_score": 0.74
     },
     {
@@ -15440,7 +15704,7 @@
       "source_priority": "B",
       "source_priority_score": 2,
       "extraction_method": "site_rule",
-      "updated_at": "2026-05-23T20:11:56.655Z",
+      "updated_at": "2026-05-24T19:37:23.273Z",
       "quality_score": 0.57
     },
     {
@@ -15464,7 +15728,7 @@
       "source_priority": "S",
       "source_priority_score": 4,
       "extraction_method": "site_rule",
-      "updated_at": "2026-05-23T20:11:37.648Z",
+      "updated_at": "2026-05-24T19:37:05.337Z",
       "quality_score": 0.78
     }
   ]
