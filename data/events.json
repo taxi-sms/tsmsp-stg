@@ -1,280 +1,16 @@
 {
   "schema_version": 1,
-  "generated_at": "2026-08-10T19:09:57.482Z",
+  "generated_at": "2026-08-11T19:14:56.892Z",
   "timezone": "Asia/Tokyo",
   "mode": "delta",
   "source_total": 47,
   "source_crawled": 47,
-  "crawl_error_sources": 0,
-  "event_total": 641,
-  "event_today": 16,
+  "crawl_error_sources": 1,
+  "event_total": 638,
+  "event_today": 8,
   "quality_threshold": 0.56,
   "quality_threshold_heuristic": 0.58,
   "events": [
-    {
-      "id": "4830c5ecda6b15d64819",
-      "title": "木野 雅之 ヴァイオリンの魅力 Vol.12",
-      "start_date": "2026-08-09",
-      "end_date": "",
-      "open_time": "12:30",
-      "start_time": "13:00",
-      "end_time": "14:50",
-      "all_day": false,
-      "venue": "札幌コンサートホール Kitara 小ホール",
-      "venue_address": "札幌市中央区中島公園1番15号",
-      "summary": "小ホール 2026年8月9日(日曜日) 12:30開場 13:00開演 14:50終演予定",
-      "flyer_image_url": "https://www.kitara-sapporo.or.jp/og-image.jpg",
-      "detail_url": "https://www.kitara-sapporo.or.jp/event/event_detail.php?num=7219",
-      "source_id": "www-kitara-sapporo-or-jp-event",
-      "source_name": "札幌コンサートホール Kitara",
-      "source_url": "https://www.kitara-sapporo.or.jp/event/",
-      "source_category": "コンサートホール（会場公式）",
-      "source_priority": "S",
-      "source_priority_score": 4,
-      "extraction_method": "site_rule",
-      "updated_at": "2026-08-08T19:42:15.906Z",
-      "quality_score": 1
-    },
-    {
-      "id": "ab8f39024b5bff7560ee",
-      "title": "北海道日本ハムファイターズ ホームゲーム",
-      "start_date": "2026-08-09",
-      "end_date": "",
-      "open_time": "",
-      "start_time": "14:00",
-      "end_time": "",
-      "all_day": false,
-      "venue": "エスコンフィールド",
-      "venue_address": "北海道北広島市Fビレッジ1番地",
-      "summary": "ホームゲーム / エスコンフィールド / 開始 14:00",
-      "flyer_image_url": "",
-      "detail_url": "https://www.fighters.co.jp/gamelive/result/2026080901/",
-      "source_id": "www-fighters-co-jp-game-calendar",
-      "source_name": "北海道日本ハムファイターズ 試合日程・結果カレンダー",
-      "source_url": "https://www.fighters.co.jp/game/calendar/",
-      "source_category": "スポーツ興行（一次）",
-      "source_priority": "S",
-      "source_priority_score": 4,
-      "extraction_method": "site_rule",
-      "updated_at": "2026-08-08T19:41:40.292Z",
-      "quality_score": 0.7
-    },
-    {
-      "id": "0aacb6a43ae79afa81ab",
-      "title": "HBCジュニアオーケストラ 2026サマーコンサート",
-      "start_date": "2026-08-09",
-      "end_date": "",
-      "open_time": "14:00",
-      "start_time": "15:00",
-      "end_time": "17:30",
-      "all_day": false,
-      "venue": "札幌コンサートホール Kitara 大ホール",
-      "venue_address": "札幌市中央区中島公園1番15号",
-      "summary": "大ホール 2026年8月9日(日曜日) 14:00開場 15:00開演 17:30終演予定",
-      "flyer_image_url": "https://www.kitara-sapporo.or.jp/og-image.jpg",
-      "detail_url": "https://www.kitara-sapporo.or.jp/event/event_detail.php?num=7222",
-      "source_id": "www-kitara-sapporo-or-jp-event",
-      "source_name": "札幌コンサートホール Kitara",
-      "source_url": "https://www.kitara-sapporo.or.jp/event/",
-      "source_category": "コンサートホール（会場公式）",
-      "source_priority": "S",
-      "source_priority_score": 4,
-      "extraction_method": "site_rule",
-      "updated_at": "2026-08-08T19:42:15.905Z",
-      "quality_score": 1
-    },
-    {
-      "id": "c33c6ff321f53333b998",
-      "title": "やさしいひとたち。FC TOUR 2026 いとしいひとたちへ。",
-      "start_date": "2026-08-09",
-      "end_date": "",
-      "open_time": "16:30",
-      "start_time": "17:00",
-      "end_time": "",
-      "all_day": false,
-      "venue": "SPiCE",
-      "venue_address": "札幌市中央区南8条西4丁目422 オリエンタルホテルB1F",
-      "summary": "OPEN 16:30 START 17:00",
-      "flyer_image_url": "https://spice-sapporo.jp/wp/wp-content/uploads/2022/08/ogp.jpg",
-      "detail_url": "https://spice-sapporo.jp/event/9159/",
-      "source_id": "spice-sapporo-jp-schedule",
-      "source_name": "SPiCE",
-      "source_url": "https://spice-sapporo.jp/schedule/",
-      "source_category": "ライブハウス（会場公式）",
-      "source_priority": "B",
-      "source_priority_score": 2,
-      "extraction_method": "site_rule",
-      "updated_at": "2026-08-08T19:42:35.512Z",
-      "quality_score": 0.71
-    },
-    {
-      "id": "af758915e370fb48b94d",
-      "title": "WHITE JAM Zepp Tour 2026 \"磁石\" 〜 初のゼップツアー・5大都市 〜",
-      "start_date": "2026-08-09",
-      "end_date": "",
-      "open_time": "17:00",
-      "start_time": "18:00",
-      "end_time": "",
-      "all_day": false,
-      "venue": "Zepp Sapporo",
-      "venue_address": "札幌市中央区南9条西4丁目4",
-      "summary": "Mount Alive[株式会社マウントアライブ]オフィシャルサイト｜イベント情報詳細 アーティスト名：WHITE JAM｜日程：2026年8月9日公演｜イベント名：WHITE JAM Zepp Tour 2026 \"磁石\" 〜 初のゼップツアー・5大都市 〜｜会場名：Zepp Sapporo：札幌市中央区南9条西4丁目4｜チケット発売：2026年6月27日｜お問い合わせ TEL：011-623-5555",
-      "flyer_image_url": "http://mountalive.com/data/schedule_img/xxl/20260326103541_0.jpg",
-      "detail_url": "https://www.mountalive.com/schedule/more.php?no=4013",
-      "source_id": "www-mountalive-com-schedule",
-      "source_name": "Mount Alive",
-      "source_url": "https://www.mountalive.com/schedule/",
-      "source_category": "Mount Alive",
-      "source_priority": "S",
-      "source_priority_score": 4,
-      "extraction_method": "site_rule",
-      "updated_at": "2026-08-08T19:41:38.361Z",
-      "quality_score": 1
-    },
-    {
-      "id": "aa17d5fa4c7eb1ef2af7",
-      "title": "TRACK15 ONE MAN Tour 北海道編",
-      "start_date": "2026-08-09",
-      "end_date": "",
-      "open_time": "17:30",
-      "start_time": "18:00",
-      "end_time": "",
-      "all_day": false,
-      "venue": "cube garden",
-      "venue_address": "",
-      "summary": "9 sun TRACK15 ONE MAN Tour 北海道編 music 開催日 2026.08.09 sun 出演 TRACK15 開場開演 OPEN 17:30 / START 18:00 チケット チケット詳細はこちら ﾜﾝﾄﾞﾘﾝｸ別途¥600 お問合せ マウントアライブ 011-623-5555",
-      "flyer_image_url": "https://www.cube-garden.com/img_up/260809.jpg?update=20191111",
-      "detail_url": "https://www.mountalive.com/schedule/more.php?no=3969",
-      "source_id": "www-cube-garden-com-live-php",
-      "source_name": "cube garden",
-      "source_url": "https://www.cube-garden.com/live.php",
-      "source_category": "ライブハウス（会場公式）",
-      "source_priority": "B",
-      "source_priority_score": 2,
-      "extraction_method": "site_rule",
-      "updated_at": "2026-08-10T19:09:50.028Z",
-      "quality_score": 0.91
-    },
-    {
-      "id": "f0a2cecca46f88debe12",
-      "title": "bacho 湧水 Tour",
-      "start_date": "2026-08-09",
-      "end_date": "",
-      "open_time": "17:30",
-      "start_time": "18:00",
-      "end_time": "",
-      "all_day": false,
-      "venue": "KLUB COUNTER ACTION",
-      "venue_address": "",
-      "summary": "",
-      "flyer_image_url": "https://wess.jp/wp/wp-content/uploads/2024/09/bacho.jpg",
-      "detail_url": "https://wess.jp/bacho/",
-      "source_id": "wess-jp-concert-schedule",
-      "source_name": "WESS",
-      "source_url": "https://wess.jp/concert-schedule/",
-      "source_category": "WESS",
-      "source_priority": "S",
-      "source_priority_score": 4,
-      "extraction_method": "site_rule",
-      "updated_at": "2026-08-08T19:41:34.839Z",
-      "quality_score": 0.74
-    },
-    {
-      "id": "c988bca3621b57cbeff5",
-      "title": "梅田サイファー ONE MAN LIVE TOUR “RETURN OF THE 13”",
-      "start_date": "2026-08-09",
-      "end_date": "",
-      "open_time": "17:15",
-      "start_time": "18:00",
-      "end_time": "",
-      "all_day": false,
-      "venue": "PENNY LANE24",
-      "venue_address": "",
-      "summary": "整理番号付き／入場時別途ドリンク代必要 3歳以上有料",
-      "flyer_image_url": "https://wess.jp/wp/wp-content/uploads/2026/04/umedacypher.jpg",
-      "detail_url": "https://wess.jp/umedacypher/",
-      "source_id": "wess-jp-concert-schedule",
-      "source_name": "WESS",
-      "source_url": "https://wess.jp/concert-schedule/",
-      "source_category": "WESS",
-      "source_priority": "S",
-      "source_priority_score": 4,
-      "extraction_method": "site_rule",
-      "updated_at": "2026-08-08T19:41:34.839Z",
-      "quality_score": 0.74
-    },
-    {
-      "id": "0eb9b836ab3001563e47",
-      "title": "North thriving",
-      "start_date": "2026-08-09",
-      "end_date": "",
-      "open_time": "",
-      "start_time": "",
-      "end_time": "",
-      "all_day": true,
-      "venue": "アクセスサッポロ",
-      "venue_address": "札幌市白石区流通センター4丁目3-55",
-      "summary": "North thriving",
-      "flyer_image_url": "",
-      "detail_url": "https://www.axes.or.jp/event_calendar/event_detail.php?input[event_id]=465",
-      "source_id": "www-axes-or-jp",
-      "source_name": "アクセスサッポロ",
-      "source_url": "https://www.axes.or.jp/",
-      "source_category": "展示会場（会場公式）",
-      "source_priority": "S",
-      "source_priority_score": 4,
-      "extraction_method": "site_rule",
-      "updated_at": "2026-08-10T19:09:07.254Z",
-      "quality_score": 0.8
-    },
-    {
-      "id": "33971b43b323a815643e",
-      "title": "第55回全道少年野球大会 ランニングコース・トレーニング室 終日利用不可",
-      "start_date": "2026-08-09",
-      "end_date": "",
-      "open_time": "",
-      "start_time": "",
-      "end_time": "",
-      "all_day": true,
-      "venue": "つどーむ",
-      "venue_address": "札幌市東区栄町885番地1",
-      "summary": "第55回全道少年野球大会 ランニングコース・トレーニング室 終日利用不可",
-      "flyer_image_url": "",
-      "detail_url": "https://www.sapporo-sport.jp/tsudome/calendar/?ty=2026&tm=8#d9",
-      "source_id": "www-sapporo-sport-jp-tsudome-calendar",
-      "source_name": "つどーむ（札幌市スポーツ協会）",
-      "source_url": "https://www.sapporo-sport.jp/tsudome/calendar/",
-      "source_category": "市スポーツ施設（会場公式）",
-      "source_priority": "S",
-      "source_priority_score": 4,
-      "extraction_method": "site_rule",
-      "updated_at": "2026-08-10T19:09:05.885Z",
-      "quality_score": 0.64
-    },
-    {
-      "id": "f49526f5a879ae37f9d5",
-      "title": "HIROMITSU KITAYAMA LIVE TOUR 2026「ULTRActi:on」",
-      "start_date": "2026-08-09",
-      "end_date": "",
-      "open_time": "",
-      "start_time": "",
-      "end_time": "",
-      "all_day": true,
-      "venue": "カナモトホール",
-      "venue_address": "札幌市中央区北1条西1丁目",
-      "summary": "17:00 / 18:00 / 株式会社ミュージックファン 011-799-1000 ( 平日12:00～17:00) https://musicfun.co.jp",
-      "flyer_image_url": "",
-      "detail_url": "https://www.sapporo-shiminhall.org/event/?ymd=2026/08/01#event2126-9",
-      "source_id": "www-sapporo-shiminhall-org",
-      "source_name": "カナモトホール（札幌市民ホール）",
-      "source_url": "https://www.sapporo-shiminhall.org/",
-      "source_category": "市民ホール（会場公式）",
-      "source_priority": "A",
-      "source_priority_score": 3,
-      "extraction_method": "site_rule",
-      "updated_at": "2026-08-10T19:09:30.600Z",
-      "quality_score": 0.61
-    },
     {
       "id": "1540172906b449296ac6",
       "title": "アートななめ読み「神様がいっぱい！楽しすぎるギリシア神話」",
@@ -368,7 +104,7 @@
       "source_priority": "S",
       "source_priority_score": 4,
       "extraction_method": "site_rule",
-      "updated_at": "2026-08-10T19:09:17.869Z",
+      "updated_at": "2026-08-11T19:14:16.913Z",
       "quality_score": 0.8
     },
     {
@@ -392,7 +128,7 @@
       "source_priority": "S",
       "source_priority_score": 4,
       "extraction_method": "site_rule",
-      "updated_at": "2026-08-10T19:09:05.885Z",
+      "updated_at": "2026-08-11T19:14:07.475Z",
       "quality_score": 0.64
     },
     {
@@ -560,7 +296,7 @@
       "source_priority": "S",
       "source_priority_score": 4,
       "extraction_method": "site_rule",
-      "updated_at": "2026-08-10T19:09:33.714Z",
+      "updated_at": "2026-08-11T19:14:34.479Z",
       "quality_score": 0.78
     },
     {
@@ -728,7 +464,7 @@
       "source_priority": "S",
       "source_priority_score": 4,
       "extraction_method": "site_rule",
-      "updated_at": "2026-08-10T19:09:05.885Z",
+      "updated_at": "2026-08-11T19:14:07.475Z",
       "quality_score": 0.64
     },
     {
@@ -752,7 +488,7 @@
       "source_priority": "A",
       "source_priority_score": 3,
       "extraction_method": "site_rule",
-      "updated_at": "2026-08-10T19:09:30.600Z",
+      "updated_at": "2026-08-11T19:14:30.012Z",
       "quality_score": 0.61
     },
     {
@@ -776,7 +512,7 @@
       "source_priority": "A",
       "source_priority_score": 3,
       "extraction_method": "site_rule",
-      "updated_at": "2026-08-10T19:09:41.937Z",
+      "updated_at": "2026-08-11T19:14:45.718Z",
       "quality_score": 0.61
     },
     {
@@ -800,7 +536,7 @@
       "source_priority": "S",
       "source_priority_score": 4,
       "extraction_method": "site_rule",
-      "updated_at": "2026-08-10T19:09:30.069Z",
+      "updated_at": "2026-08-11T19:14:33.168Z",
       "quality_score": 1
     },
     {
@@ -824,7 +560,7 @@
       "source_priority": "B",
       "source_priority_score": 2,
       "extraction_method": "site_rule",
-      "updated_at": "2026-08-10T19:09:57.432Z",
+      "updated_at": "2026-08-11T19:14:54.986Z",
       "quality_score": 0.71
     },
     {
@@ -848,7 +584,7 @@
       "source_priority": "S",
       "source_priority_score": 4,
       "extraction_method": "site_rule",
-      "updated_at": "2026-08-10T19:09:05.227Z",
+      "updated_at": "2026-08-11T19:14:04.789Z",
       "quality_score": 0.7
     },
     {
@@ -872,7 +608,7 @@
       "source_priority": "S",
       "source_priority_score": 4,
       "extraction_method": "site_rule",
-      "updated_at": "2026-08-10T19:08:56.690Z",
+      "updated_at": "2026-08-11T19:13:57.265Z",
       "quality_score": 0.78
     },
     {
@@ -896,7 +632,7 @@
       "source_priority": "S",
       "source_priority_score": 4,
       "extraction_method": "site_rule",
-      "updated_at": "2026-08-10T19:09:30.069Z",
+      "updated_at": "2026-08-11T19:14:33.167Z",
       "quality_score": 0.68
     },
     {
@@ -920,7 +656,7 @@
       "source_priority": "S",
       "source_priority_score": 4,
       "extraction_method": "site_rule",
-      "updated_at": "2026-08-10T19:09:05.885Z",
+      "updated_at": "2026-08-11T19:14:07.475Z",
       "quality_score": 0.64
     },
     {
@@ -944,7 +680,7 @@
       "source_priority": "A",
       "source_priority_score": 3,
       "extraction_method": "site_rule",
-      "updated_at": "2026-08-10T19:09:30.600Z",
+      "updated_at": "2026-08-11T19:14:30.012Z",
       "quality_score": 0.61
     },
     {
@@ -968,7 +704,7 @@
       "source_priority": "S",
       "source_priority_score": 4,
       "extraction_method": "site_rule",
-      "updated_at": "2026-08-10T19:09:30.069Z",
+      "updated_at": "2026-08-11T19:14:33.169Z",
       "quality_score": 1
     },
     {
@@ -992,7 +728,7 @@
       "source_priority": "S",
       "source_priority_score": 4,
       "extraction_method": "site_rule",
-      "updated_at": "2026-08-10T19:09:05.227Z",
+      "updated_at": "2026-08-11T19:14:04.789Z",
       "quality_score": 0.7
     },
     {
@@ -1016,7 +752,7 @@
       "source_priority": "S",
       "source_priority_score": 4,
       "extraction_method": "site_rule",
-      "updated_at": "2026-08-10T19:08:56.690Z",
+      "updated_at": "2026-08-11T19:13:57.266Z",
       "quality_score": 0.78
     },
     {
@@ -1040,7 +776,7 @@
       "source_priority": "B",
       "source_priority_score": 2,
       "extraction_method": "site_rule",
-      "updated_at": "2026-08-10T19:09:50.029Z",
+      "updated_at": "2026-08-11T19:14:52.951Z",
       "quality_score": 0.71
     },
     {
@@ -1064,7 +800,7 @@
       "source_priority": "A",
       "source_priority_score": 3,
       "extraction_method": "site_rule",
-      "updated_at": "2026-08-10T19:09:24.782Z",
+      "updated_at": "2026-08-11T19:14:19.377Z",
       "quality_score": 0.77
     },
     {
@@ -1088,7 +824,7 @@
       "source_priority": "A",
       "source_priority_score": 3,
       "extraction_method": "site_rule",
-      "updated_at": "2026-08-10T19:09:36.027Z",
+      "updated_at": "2026-08-11T19:14:37.846Z",
       "quality_score": 0.65
     },
     {
@@ -1112,7 +848,7 @@
       "source_priority": "S",
       "source_priority_score": 4,
       "extraction_method": "site_rule",
-      "updated_at": "2026-08-10T19:09:05.885Z",
+      "updated_at": "2026-08-11T19:14:07.475Z",
       "quality_score": 0.64
     },
     {
@@ -1136,7 +872,7 @@
       "source_priority": "A",
       "source_priority_score": 3,
       "extraction_method": "site_rule",
-      "updated_at": "2026-08-10T19:09:30.600Z",
+      "updated_at": "2026-08-11T19:14:30.012Z",
       "quality_score": 0.61
     },
     {
@@ -1160,7 +896,7 @@
       "source_priority": "S",
       "source_priority_score": 4,
       "extraction_method": "site_rule",
-      "updated_at": "2026-08-10T19:08:56.690Z",
+      "updated_at": "2026-08-11T19:13:57.266Z",
       "quality_score": 0.74
     },
     {
@@ -1184,7 +920,7 @@
       "source_priority": "S",
       "source_priority_score": 4,
       "extraction_method": "site_rule",
-      "updated_at": "2026-08-10T19:09:17.876Z",
+      "updated_at": "2026-08-11T19:14:16.918Z",
       "quality_score": 0.98
     },
     {
@@ -1232,7 +968,7 @@
       "source_priority": "A",
       "source_priority_score": 3,
       "extraction_method": "site_rule",
-      "updated_at": "2026-08-10T19:09:31.611Z",
+      "updated_at": "2026-08-11T19:14:32.589Z",
       "quality_score": 0.81
     },
     {
@@ -1256,7 +992,7 @@
       "source_priority": "S",
       "source_priority_score": 4,
       "extraction_method": "site_rule",
-      "updated_at": "2026-08-10T19:09:17.875Z",
+      "updated_at": "2026-08-11T19:14:16.917Z",
       "quality_score": 0.8
     },
     {
@@ -1280,7 +1016,7 @@
       "source_priority": "S",
       "source_priority_score": 4,
       "extraction_method": "site_rule",
-      "updated_at": "2026-08-10T19:08:56.690Z",
+      "updated_at": "2026-08-11T19:13:57.266Z",
       "quality_score": 0.74
     },
     {
@@ -1304,7 +1040,7 @@
       "source_priority": "B",
       "source_priority_score": 2,
       "extraction_method": "site_rule",
-      "updated_at": "2026-08-10T19:09:50.029Z",
+      "updated_at": "2026-08-11T19:14:52.952Z",
       "quality_score": 0.71
     },
     {
@@ -1376,7 +1112,7 @@
       "source_priority": "S",
       "source_priority_score": 4,
       "extraction_method": "site_rule",
-      "updated_at": "2026-08-10T19:09:30.070Z",
+      "updated_at": "2026-08-11T19:14:33.169Z",
       "quality_score": 1
     },
     {
@@ -1400,7 +1136,7 @@
       "source_priority": "A",
       "source_priority_score": 3,
       "extraction_method": "site_rule",
-      "updated_at": "2026-08-10T19:09:24.782Z",
+      "updated_at": "2026-08-11T19:14:19.378Z",
       "quality_score": 0.87
     },
     {
@@ -1424,7 +1160,7 @@
       "source_priority": "S",
       "source_priority_score": 4,
       "extraction_method": "site_rule",
-      "updated_at": "2026-08-10T19:09:33.731Z",
+      "updated_at": "2026-08-11T19:14:34.494Z",
       "quality_score": 0.78
     },
     {
@@ -1448,7 +1184,7 @@
       "source_priority": "A",
       "source_priority_score": 3,
       "extraction_method": "site_rule",
-      "updated_at": "2026-08-10T19:09:31.611Z",
+      "updated_at": "2026-08-11T19:14:32.589Z",
       "quality_score": 0.81
     },
     {
@@ -1472,7 +1208,7 @@
       "source_priority": "A",
       "source_priority_score": 3,
       "extraction_method": "site_rule",
-      "updated_at": "2026-08-10T19:09:31.611Z",
+      "updated_at": "2026-08-11T19:14:32.588Z",
       "quality_score": 0.81
     },
     {
@@ -1496,7 +1232,7 @@
       "source_priority": "S",
       "source_priority_score": 4,
       "extraction_method": "site_rule",
-      "updated_at": "2026-08-10T19:09:07.254Z",
+      "updated_at": "2026-08-11T19:14:07.555Z",
       "quality_score": 0.8
     },
     {
@@ -1520,7 +1256,7 @@
       "source_priority": "S",
       "source_priority_score": 4,
       "extraction_method": "site_rule",
-      "updated_at": "2026-08-10T19:09:30.070Z",
+      "updated_at": "2026-08-11T19:14:33.169Z",
       "quality_score": 1
     },
     {
@@ -1544,7 +1280,7 @@
       "source_priority": "S",
       "source_priority_score": 4,
       "extraction_method": "site_rule",
-      "updated_at": "2026-08-10T19:09:30.070Z",
+      "updated_at": "2026-08-11T19:14:33.170Z",
       "quality_score": 1
     },
     {
@@ -1568,7 +1304,7 @@
       "source_priority": "S",
       "source_priority_score": 4,
       "extraction_method": "site_rule",
-      "updated_at": "2026-08-10T19:09:17.878Z",
+      "updated_at": "2026-08-11T19:14:16.919Z",
       "quality_score": 0.98
     },
     {
@@ -1592,7 +1328,7 @@
       "source_priority": "S",
       "source_priority_score": 4,
       "extraction_method": "site_rule",
-      "updated_at": "2026-08-10T19:09:33.735Z",
+      "updated_at": "2026-08-11T19:14:34.498Z",
       "quality_score": 0.78
     },
     {
@@ -1616,7 +1352,7 @@
       "source_priority": "A",
       "source_priority_score": 3,
       "extraction_method": "heuristic",
-      "updated_at": "2026-08-10T19:09:45.665Z",
+      "updated_at": "2026-08-11T19:14:48.426Z",
       "quality_score": 0.87
     },
     {
@@ -1640,7 +1376,7 @@
       "source_priority": "S",
       "source_priority_score": 4,
       "extraction_method": "site_rule",
-      "updated_at": "2026-08-10T19:08:56.690Z",
+      "updated_at": "2026-08-11T19:13:57.266Z",
       "quality_score": 0.78
     },
     {
@@ -1664,7 +1400,7 @@
       "source_priority": "S",
       "source_priority_score": 4,
       "extraction_method": "site_rule",
-      "updated_at": "2026-08-10T19:09:17.880Z",
+      "updated_at": "2026-08-11T19:14:16.920Z",
       "quality_score": 0.98
     },
     {
@@ -1688,7 +1424,7 @@
       "source_priority": "A",
       "source_priority_score": 3,
       "extraction_method": "site_rule",
-      "updated_at": "2026-08-10T19:09:30.600Z",
+      "updated_at": "2026-08-11T19:14:30.012Z",
       "quality_score": 0.61
     },
     {
@@ -1712,7 +1448,7 @@
       "source_priority": "A",
       "source_priority_score": 3,
       "extraction_method": "site_rule",
-      "updated_at": "2026-08-10T19:09:28.314Z",
+      "updated_at": "2026-08-11T19:14:30.378Z",
       "quality_score": 0.57
     },
     {
@@ -1736,7 +1472,7 @@
       "source_priority": "S",
       "source_priority_score": 4,
       "extraction_method": "site_rule",
-      "updated_at": "2026-08-10T19:09:33.740Z",
+      "updated_at": "2026-08-11T19:14:34.502Z",
       "quality_score": 0.78
     },
     {
@@ -1760,7 +1496,7 @@
       "source_priority": "A",
       "source_priority_score": 3,
       "extraction_method": "site_rule",
-      "updated_at": "2026-08-10T19:09:24.782Z",
+      "updated_at": "2026-08-11T19:14:19.378Z",
       "quality_score": 0.87
     },
     {
@@ -1784,7 +1520,7 @@
       "source_priority": "B",
       "source_priority_score": 2,
       "extraction_method": "site_rule",
-      "updated_at": "2026-08-10T19:09:50.029Z",
+      "updated_at": "2026-08-11T19:14:52.952Z",
       "quality_score": 0.71
     },
     {
@@ -1808,7 +1544,7 @@
       "source_priority": "S",
       "source_priority_score": 4,
       "extraction_method": "site_rule",
-      "updated_at": "2026-08-10T19:09:30.070Z",
+      "updated_at": "2026-08-11T19:14:33.170Z",
       "quality_score": 1
     },
     {
@@ -1832,7 +1568,7 @@
       "source_priority": "S",
       "source_priority_score": 4,
       "extraction_method": "site_rule",
-      "updated_at": "2026-08-10T19:09:05.227Z",
+      "updated_at": "2026-08-11T19:14:04.789Z",
       "quality_score": 0.7
     },
     {
@@ -1856,7 +1592,7 @@
       "source_priority": "S",
       "source_priority_score": 4,
       "extraction_method": "site_rule",
-      "updated_at": "2026-08-10T19:09:30.071Z",
+      "updated_at": "2026-08-11T19:14:33.170Z",
       "quality_score": 1
     },
     {
@@ -1880,7 +1616,7 @@
       "source_priority": "A",
       "source_priority_score": 3,
       "extraction_method": "site_rule",
-      "updated_at": "2026-08-10T19:09:24.782Z",
+      "updated_at": "2026-08-11T19:14:19.379Z",
       "quality_score": 0.95
     },
     {
@@ -1904,7 +1640,7 @@
       "source_priority": "B",
       "source_priority_score": 2,
       "extraction_method": "site_rule",
-      "updated_at": "2026-08-10T19:09:50.029Z",
+      "updated_at": "2026-08-11T19:14:52.952Z",
       "quality_score": 0.71
     },
     {
@@ -1928,7 +1664,7 @@
       "source_priority": "S",
       "source_priority_score": 4,
       "extraction_method": "heuristic",
-      "updated_at": "2026-08-10T19:09:05.251Z",
+      "updated_at": "2026-08-11T19:14:07.212Z",
       "quality_score": 0.99
     },
     {
@@ -1952,7 +1688,7 @@
       "source_priority": "S",
       "source_priority_score": 4,
       "extraction_method": "site_rule",
-      "updated_at": "2026-08-10T19:09:17.882Z",
+      "updated_at": "2026-08-11T19:14:16.924Z",
       "quality_score": 0.98
     },
     {
@@ -1976,7 +1712,7 @@
       "source_priority": "S",
       "source_priority_score": 4,
       "extraction_method": "site_rule",
-      "updated_at": "2026-08-10T19:09:05.227Z",
+      "updated_at": "2026-08-11T19:14:04.789Z",
       "quality_score": 0.7
     },
     {
@@ -2000,7 +1736,7 @@
       "source_priority": "S",
       "source_priority_score": 4,
       "extraction_method": "site_rule",
-      "updated_at": "2026-08-10T19:09:30.071Z",
+      "updated_at": "2026-08-11T19:14:33.171Z",
       "quality_score": 1
     },
     {
@@ -2024,7 +1760,7 @@
       "source_priority": "S",
       "source_priority_score": 4,
       "extraction_method": "site_rule",
-      "updated_at": "2026-08-10T19:09:33.745Z",
+      "updated_at": "2026-08-11T19:14:34.506Z",
       "quality_score": 0.78
     },
     {
@@ -2048,7 +1784,31 @@
       "source_priority": "S",
       "source_priority_score": 4,
       "extraction_method": "site_rule",
-      "updated_at": "2026-08-10T19:09:17.882Z",
+      "updated_at": "2026-08-11T19:14:16.922Z",
+      "quality_score": 0.8
+    },
+    {
+      "id": "4cdd3250233f630d0192",
+      "title": "リアン(絆)マルシェ",
+      "start_date": "2026-08-19",
+      "end_date": "",
+      "open_time": "",
+      "start_time": "",
+      "end_time": "",
+      "all_day": true,
+      "venue": "SCARTSモールB",
+      "venue_address": "",
+      "summary": "2026年8月19日（水）～ 21日（金） 10:00 ～ 20:00",
+      "flyer_image_url": "https://www.sapporo-community-plaza.jp/img/plaza_ogp_ss.png",
+      "detail_url": "https://www.sapporo-community-plaza.jp/event.php?num=5177",
+      "source_id": "www-sapporo-community-plaza-jp-event-php",
+      "source_name": "札幌市民交流プラザ",
+      "source_url": "https://www.sapporo-community-plaza.jp/event.php",
+      "source_category": "文化複合施設（会場公式）",
+      "source_priority": "S",
+      "source_priority_score": 4,
+      "extraction_method": "site_rule",
+      "updated_at": "2026-08-11T19:14:16.923Z",
       "quality_score": 0.8
     },
     {
@@ -2072,7 +1832,7 @@
       "source_priority": "S",
       "source_priority_score": 4,
       "extraction_method": "site_rule",
-      "updated_at": "2026-08-10T19:09:07.254Z",
+      "updated_at": "2026-08-11T19:14:07.555Z",
       "quality_score": 0.8
     },
     {
@@ -2096,7 +1856,7 @@
       "source_priority": "A",
       "source_priority_score": 3,
       "extraction_method": "site_rule",
-      "updated_at": "2026-08-10T19:09:24.782Z",
+      "updated_at": "2026-08-11T19:14:19.379Z",
       "quality_score": 0.77
     },
     {
@@ -2120,7 +1880,7 @@
       "source_priority": "S",
       "source_priority_score": 4,
       "extraction_method": "site_rule",
-      "updated_at": "2026-08-10T19:09:05.885Z",
+      "updated_at": "2026-08-11T19:14:07.475Z",
       "quality_score": 0.64
     },
     {
@@ -2144,7 +1904,7 @@
       "source_priority": "S",
       "source_priority_score": 4,
       "extraction_method": "heuristic",
-      "updated_at": "2026-08-10T19:09:05.791Z",
+      "updated_at": "2026-08-11T19:14:07.598Z",
       "quality_score": 0.99
     },
     {
@@ -2168,7 +1928,7 @@
       "source_priority": "S",
       "source_priority_score": 4,
       "extraction_method": "site_rule",
-      "updated_at": "2026-08-10T19:09:17.885Z",
+      "updated_at": "2026-08-11T19:14:16.925Z",
       "quality_score": 0.98
     },
     {
@@ -2192,7 +1952,7 @@
       "source_priority": "S",
       "source_priority_score": 4,
       "extraction_method": "site_rule",
-      "updated_at": "2026-08-10T19:09:05.227Z",
+      "updated_at": "2026-08-11T19:14:04.789Z",
       "quality_score": 0.7
     },
     {
@@ -2216,7 +1976,7 @@
       "source_priority": "S",
       "source_priority_score": 4,
       "extraction_method": "site_rule",
-      "updated_at": "2026-08-10T19:09:30.071Z",
+      "updated_at": "2026-08-11T19:14:33.171Z",
       "quality_score": 1
     },
     {
@@ -2240,7 +2000,7 @@
       "source_priority": "A",
       "source_priority_score": 3,
       "extraction_method": "site_rule",
-      "updated_at": "2026-08-10T19:09:45.014Z",
+      "updated_at": "2026-08-11T19:14:47.326Z",
       "quality_score": 0.79
     },
     {
@@ -2288,7 +2048,7 @@
       "source_priority": "S",
       "source_priority_score": 4,
       "extraction_method": "heuristic",
-      "updated_at": "2026-08-10T19:09:06.153Z",
+      "updated_at": "2026-08-11T19:14:07.825Z",
       "quality_score": 0.99
     },
     {
@@ -2312,7 +2072,7 @@
       "source_priority": "S",
       "source_priority_score": 4,
       "extraction_method": "site_rule",
-      "updated_at": "2026-08-10T19:09:17.887Z",
+      "updated_at": "2026-08-11T19:14:16.927Z",
       "quality_score": 0.98
     },
     {
@@ -2336,7 +2096,7 @@
       "source_priority": "S",
       "source_priority_score": 4,
       "extraction_method": "site_rule",
-      "updated_at": "2026-08-10T19:09:30.072Z",
+      "updated_at": "2026-08-11T19:14:33.171Z",
       "quality_score": 1
     },
     {
@@ -2384,7 +2144,7 @@
       "source_priority": "S",
       "source_priority_score": 4,
       "extraction_method": "site_rule",
-      "updated_at": "2026-08-10T19:09:30.072Z",
+      "updated_at": "2026-08-11T19:14:33.172Z",
       "quality_score": 1
     },
     {
@@ -2408,7 +2168,7 @@
       "source_priority": "S",
       "source_priority_score": 4,
       "extraction_method": "site_rule",
-      "updated_at": "2026-08-10T19:09:17.886Z",
+      "updated_at": "2026-08-11T19:14:16.926Z",
       "quality_score": 0.98
     },
     {
@@ -2432,7 +2192,7 @@
       "source_priority": "S",
       "source_priority_score": 4,
       "extraction_method": "site_rule",
-      "updated_at": "2026-08-10T19:09:33.749Z",
+      "updated_at": "2026-08-11T19:14:34.510Z",
       "quality_score": 0.78
     },
     {
@@ -2456,7 +2216,7 @@
       "source_priority": "S",
       "source_priority_score": 4,
       "extraction_method": "site_rule",
-      "updated_at": "2026-08-10T19:08:56.691Z",
+      "updated_at": "2026-08-11T19:13:57.267Z",
       "quality_score": 0.74
     },
     {
@@ -2480,7 +2240,7 @@
       "source_priority": "S",
       "source_priority_score": 4,
       "extraction_method": "site_rule",
-      "updated_at": "2026-08-10T19:08:56.691Z",
+      "updated_at": "2026-08-11T19:13:57.267Z",
       "quality_score": 0.74
     },
     {
@@ -2528,7 +2288,7 @@
       "source_priority": "A",
       "source_priority_score": 3,
       "extraction_method": "site_rule",
-      "updated_at": "2026-08-10T19:09:31.611Z",
+      "updated_at": "2026-08-11T19:14:32.589Z",
       "quality_score": 0.69
     },
     {
@@ -2552,7 +2312,7 @@
       "source_priority": "A",
       "source_priority_score": 3,
       "extraction_method": "site_rule",
-      "updated_at": "2026-08-10T19:09:30.601Z",
+      "updated_at": "2026-08-11T19:14:30.013Z",
       "quality_score": 0.61
     },
     {
@@ -2576,7 +2336,7 @@
       "source_priority": "S",
       "source_priority_score": 4,
       "extraction_method": "site_rule",
-      "updated_at": "2026-08-10T19:09:17.888Z",
+      "updated_at": "2026-08-11T19:14:16.927Z",
       "quality_score": 0.83
     },
     {
@@ -2600,7 +2360,7 @@
       "source_priority": "S",
       "source_priority_score": 4,
       "extraction_method": "site_rule",
-      "updated_at": "2026-08-10T19:09:33.757Z",
+      "updated_at": "2026-08-11T19:14:34.517Z",
       "quality_score": 0.78
     },
     {
@@ -2624,7 +2384,7 @@
       "source_priority": "S",
       "source_priority_score": 4,
       "extraction_method": "site_rule",
-      "updated_at": "2026-08-10T19:09:30.072Z",
+      "updated_at": "2026-08-11T19:14:33.172Z",
       "quality_score": 1
     },
     {
@@ -2648,7 +2408,7 @@
       "source_priority": "A",
       "source_priority_score": 3,
       "extraction_method": "site_rule",
-      "updated_at": "2026-08-10T19:09:24.782Z",
+      "updated_at": "2026-08-11T19:14:19.379Z",
       "quality_score": 0.95
     },
     {
@@ -2672,7 +2432,7 @@
       "source_priority": "S",
       "source_priority_score": 4,
       "extraction_method": "site_rule",
-      "updated_at": "2026-08-10T19:09:30.072Z",
+      "updated_at": "2026-08-11T19:14:33.172Z",
       "quality_score": 1
     },
     {
@@ -2744,7 +2504,7 @@
       "source_priority": "S",
       "source_priority_score": 4,
       "extraction_method": "site_rule",
-      "updated_at": "2026-08-10T19:09:17.890Z",
+      "updated_at": "2026-08-11T19:14:16.929Z",
       "quality_score": 0.98
     },
     {
@@ -2768,7 +2528,7 @@
       "source_priority": "S",
       "source_priority_score": 4,
       "extraction_method": "site_rule",
-      "updated_at": "2026-08-10T19:09:17.889Z",
+      "updated_at": "2026-08-11T19:14:16.928Z",
       "quality_score": 0.98
     },
     {
@@ -2816,7 +2576,7 @@
       "source_priority": "S",
       "source_priority_score": 4,
       "extraction_method": "site_rule",
-      "updated_at": "2026-08-10T19:09:30.073Z",
+      "updated_at": "2026-08-11T19:14:33.172Z",
       "quality_score": 1
     },
     {
@@ -2840,7 +2600,7 @@
       "source_priority": "S",
       "source_priority_score": 4,
       "extraction_method": "site_rule",
-      "updated_at": "2026-08-10T19:09:07.254Z",
+      "updated_at": "2026-08-11T19:14:07.555Z",
       "quality_score": 0.8
     },
     {
@@ -2864,7 +2624,7 @@
       "source_priority": "S",
       "source_priority_score": 4,
       "extraction_method": "site_rule",
-      "updated_at": "2026-08-10T19:09:17.891Z",
+      "updated_at": "2026-08-11T19:14:16.930Z",
       "quality_score": 0.76
     },
     {
@@ -2888,7 +2648,7 @@
       "source_priority": "S",
       "source_priority_score": 4,
       "extraction_method": "site_rule",
-      "updated_at": "2026-08-10T19:09:05.885Z",
+      "updated_at": "2026-08-11T19:14:07.475Z",
       "quality_score": 0.64
     },
     {
@@ -2912,7 +2672,7 @@
       "source_priority": "A",
       "source_priority_score": 3,
       "extraction_method": "site_rule",
-      "updated_at": "2026-08-10T19:09:30.601Z",
+      "updated_at": "2026-08-11T19:14:30.013Z",
       "quality_score": 0.61
     },
     {
@@ -2936,7 +2696,7 @@
       "source_priority": "S",
       "source_priority_score": 4,
       "extraction_method": "heuristic",
-      "updated_at": "2026-08-10T19:09:05.956Z",
+      "updated_at": "2026-08-11T19:14:07.959Z",
       "quality_score": 0.99
     },
     {
@@ -2960,7 +2720,7 @@
       "source_priority": "A",
       "source_priority_score": 3,
       "extraction_method": "site_rule",
-      "updated_at": "2026-08-10T19:09:24.782Z",
+      "updated_at": "2026-08-11T19:14:19.379Z",
       "quality_score": 0.95
     },
     {
@@ -2984,7 +2744,7 @@
       "source_priority": "S",
       "source_priority_score": 4,
       "extraction_method": "site_rule",
-      "updated_at": "2026-08-10T19:09:30.073Z",
+      "updated_at": "2026-08-11T19:14:33.173Z",
       "quality_score": 1
     },
     {
@@ -3008,7 +2768,7 @@
       "source_priority": "S",
       "source_priority_score": 4,
       "extraction_method": "site_rule",
-      "updated_at": "2026-08-10T19:08:56.691Z",
+      "updated_at": "2026-08-11T19:13:57.267Z",
       "quality_score": 0.74
     },
     {
@@ -3032,7 +2792,7 @@
       "source_priority": "S",
       "source_priority_score": 4,
       "extraction_method": "site_rule",
-      "updated_at": "2026-08-10T19:09:30.073Z",
+      "updated_at": "2026-08-11T19:14:33.173Z",
       "quality_score": 1
     },
     {
@@ -3056,7 +2816,7 @@
       "source_priority": "S",
       "source_priority_score": 4,
       "extraction_method": "site_rule",
-      "updated_at": "2026-08-10T19:09:17.893Z",
+      "updated_at": "2026-08-11T19:14:16.931Z",
       "quality_score": 0.98
     },
     {
@@ -3080,7 +2840,7 @@
       "source_priority": "S",
       "source_priority_score": 4,
       "extraction_method": "site_rule",
-      "updated_at": "2026-08-10T19:08:56.691Z",
+      "updated_at": "2026-08-11T19:13:57.267Z",
       "quality_score": 0.74
     },
     {
@@ -3104,7 +2864,7 @@
       "source_priority": "S",
       "source_priority_score": 4,
       "extraction_method": "site_rule",
-      "updated_at": "2026-08-10T19:09:33.761Z",
+      "updated_at": "2026-08-11T19:14:34.521Z",
       "quality_score": 0.78
     },
     {
@@ -3128,7 +2888,7 @@
       "source_priority": "B",
       "source_priority_score": 2,
       "extraction_method": "site_rule",
-      "updated_at": "2026-08-10T19:09:57.433Z",
+      "updated_at": "2026-08-11T19:14:54.988Z",
       "quality_score": 0.71
     },
     {
@@ -3152,7 +2912,7 @@
       "source_priority": "S",
       "source_priority_score": 4,
       "extraction_method": "site_rule",
-      "updated_at": "2026-08-10T19:09:17.892Z",
+      "updated_at": "2026-08-11T19:14:16.930Z",
       "quality_score": 0.76
     },
     {
@@ -3176,7 +2936,7 @@
       "source_priority": "A",
       "source_priority_score": 3,
       "extraction_method": "site_rule",
-      "updated_at": "2026-08-10T19:09:30.601Z",
+      "updated_at": "2026-08-11T19:14:30.013Z",
       "quality_score": 0.61
     },
     {
@@ -3200,7 +2960,7 @@
       "source_priority": "S",
       "source_priority_score": 4,
       "extraction_method": "site_rule",
-      "updated_at": "2026-08-10T19:09:17.893Z",
+      "updated_at": "2026-08-11T19:14:16.932Z",
       "quality_score": 0.95
     },
     {
@@ -3224,7 +2984,7 @@
       "source_priority": "S",
       "source_priority_score": 4,
       "extraction_method": "site_rule",
-      "updated_at": "2026-08-10T19:09:30.073Z",
+      "updated_at": "2026-08-11T19:14:33.173Z",
       "quality_score": 1
     },
     {
@@ -3248,7 +3008,7 @@
       "source_priority": "S",
       "source_priority_score": 4,
       "extraction_method": "site_rule",
-      "updated_at": "2026-08-10T19:09:17.895Z",
+      "updated_at": "2026-08-11T19:14:16.933Z",
       "quality_score": 0.98
     },
     {
@@ -3272,7 +3032,7 @@
       "source_priority": "A",
       "source_priority_score": 3,
       "extraction_method": "site_rule",
-      "updated_at": "2026-08-10T19:09:30.601Z",
+      "updated_at": "2026-08-11T19:14:30.013Z",
       "quality_score": 0.61
     },
     {
@@ -3296,7 +3056,7 @@
       "source_priority": "S",
       "source_priority_score": 4,
       "extraction_method": "site_rule",
-      "updated_at": "2026-08-10T19:09:05.885Z",
+      "updated_at": "2026-08-11T19:14:07.475Z",
       "quality_score": 0.6
     },
     {
@@ -3320,7 +3080,7 @@
       "source_priority": "S",
       "source_priority_score": 4,
       "extraction_method": "site_rule",
-      "updated_at": "2026-08-10T19:09:30.074Z",
+      "updated_at": "2026-08-11T19:14:33.174Z",
       "quality_score": 1
     },
     {
@@ -3344,7 +3104,7 @@
       "source_priority": "S",
       "source_priority_score": 4,
       "extraction_method": "site_rule",
-      "updated_at": "2026-08-10T19:09:33.766Z",
+      "updated_at": "2026-08-11T19:14:34.525Z",
       "quality_score": 0.78
     },
     {
@@ -3368,7 +3128,7 @@
       "source_priority": "A",
       "source_priority_score": 3,
       "extraction_method": "heuristic",
-      "updated_at": "2026-08-10T19:09:42.016Z",
+      "updated_at": "2026-08-11T19:14:46.360Z",
       "quality_score": 0.81
     },
     {
@@ -3392,7 +3152,7 @@
       "source_priority": "S",
       "source_priority_score": 4,
       "extraction_method": "site_rule",
-      "updated_at": "2026-08-10T19:09:17.897Z",
+      "updated_at": "2026-08-11T19:14:16.935Z",
       "quality_score": 0.8
     },
     {
@@ -3416,7 +3176,7 @@
       "source_priority": "S",
       "source_priority_score": 4,
       "extraction_method": "site_rule",
-      "updated_at": "2026-08-10T19:09:30.074Z",
+      "updated_at": "2026-08-11T19:14:33.174Z",
       "quality_score": 0.68
     },
     {
@@ -3440,7 +3200,7 @@
       "source_priority": "S",
       "source_priority_score": 4,
       "extraction_method": "site_rule",
-      "updated_at": "2026-08-10T19:09:05.885Z",
+      "updated_at": "2026-08-11T19:14:07.475Z",
       "quality_score": 0.64
     },
     {
@@ -3464,7 +3224,7 @@
       "source_priority": "S",
       "source_priority_score": 4,
       "extraction_method": "site_rule",
-      "updated_at": "2026-08-10T19:09:30.074Z",
+      "updated_at": "2026-08-11T19:14:33.174Z",
       "quality_score": 1
     },
     {
@@ -3488,7 +3248,7 @@
       "source_priority": "S",
       "source_priority_score": 4,
       "extraction_method": "site_rule",
-      "updated_at": "2026-08-10T19:09:30.074Z",
+      "updated_at": "2026-08-11T19:14:33.175Z",
       "quality_score": 1
     },
     {
@@ -3536,7 +3296,7 @@
       "source_priority": "A",
       "source_priority_score": 3,
       "extraction_method": "site_rule",
-      "updated_at": "2026-08-10T19:09:24.783Z",
+      "updated_at": "2026-08-11T19:14:19.379Z",
       "quality_score": 0.95
     },
     {
@@ -3560,7 +3320,7 @@
       "source_priority": "S",
       "source_priority_score": 4,
       "extraction_method": "site_rule",
-      "updated_at": "2026-08-10T19:08:56.691Z",
+      "updated_at": "2026-08-11T19:13:57.267Z",
       "quality_score": 0.78
     },
     {
@@ -3584,7 +3344,7 @@
       "source_priority": "S",
       "source_priority_score": 4,
       "extraction_method": "site_rule",
-      "updated_at": "2026-08-10T19:09:05.885Z",
+      "updated_at": "2026-08-11T19:14:07.475Z",
       "quality_score": 0.64
     },
     {
@@ -3608,7 +3368,7 @@
       "source_priority": "S",
       "source_priority_score": 4,
       "extraction_method": "site_rule",
-      "updated_at": "2026-08-10T19:09:30.075Z",
+      "updated_at": "2026-08-11T19:14:33.175Z",
       "quality_score": 1
     },
     {
@@ -3632,7 +3392,7 @@
       "source_priority": "S",
       "source_priority_score": 4,
       "extraction_method": "site_rule",
-      "updated_at": "2026-08-10T19:09:05.227Z",
+      "updated_at": "2026-08-11T19:14:04.789Z",
       "quality_score": 0.7
     },
     {
@@ -3656,7 +3416,7 @@
       "source_priority": "S",
       "source_priority_score": 4,
       "extraction_method": "site_rule",
-      "updated_at": "2026-08-10T19:08:56.691Z",
+      "updated_at": "2026-08-11T19:13:57.267Z",
       "quality_score": 0.78
     },
     {
@@ -3680,7 +3440,7 @@
       "source_priority": "S",
       "source_priority_score": 4,
       "extraction_method": "site_rule",
-      "updated_at": "2026-08-10T19:08:56.691Z",
+      "updated_at": "2026-08-11T19:13:57.267Z",
       "quality_score": 0.78
     },
     {
@@ -3704,7 +3464,7 @@
       "source_priority": "A",
       "source_priority_score": 3,
       "extraction_method": "site_rule",
-      "updated_at": "2026-08-10T19:09:31.611Z",
+      "updated_at": "2026-08-11T19:14:32.589Z",
       "quality_score": 0.81
     },
     {
@@ -3728,7 +3488,7 @@
       "source_priority": "A",
       "source_priority_score": 3,
       "extraction_method": "site_rule",
-      "updated_at": "2026-08-10T19:09:31.611Z",
+      "updated_at": "2026-08-11T19:14:32.588Z",
       "quality_score": 0.81
     },
     {
@@ -3752,7 +3512,7 @@
       "source_priority": "S",
       "source_priority_score": 4,
       "extraction_method": "site_rule",
-      "updated_at": "2026-08-10T19:09:17.899Z",
+      "updated_at": "2026-08-11T19:14:16.936Z",
       "quality_score": 0.76
     },
     {
@@ -3776,7 +3536,7 @@
       "source_priority": "A",
       "source_priority_score": 3,
       "extraction_method": "site_rule",
-      "updated_at": "2026-08-10T19:09:30.601Z",
+      "updated_at": "2026-08-11T19:14:30.013Z",
       "quality_score": 0.61
     },
     {
@@ -3800,7 +3560,7 @@
       "source_priority": "A",
       "source_priority_score": 3,
       "extraction_method": "site_rule",
-      "updated_at": "2026-08-10T19:09:24.783Z",
+      "updated_at": "2026-08-11T19:14:19.379Z",
       "quality_score": 0.95
     },
     {
@@ -3824,7 +3584,7 @@
       "source_priority": "S",
       "source_priority_score": 4,
       "extraction_method": "site_rule",
-      "updated_at": "2026-08-10T19:09:30.075Z",
+      "updated_at": "2026-08-11T19:14:33.175Z",
       "quality_score": 1
     },
     {
@@ -3848,7 +3608,7 @@
       "source_priority": "S",
       "source_priority_score": 4,
       "extraction_method": "site_rule",
-      "updated_at": "2026-08-10T19:09:17.901Z",
+      "updated_at": "2026-08-11T19:14:16.938Z",
       "quality_score": 0.98
     },
     {
@@ -3872,7 +3632,7 @@
       "source_priority": "A",
       "source_priority_score": 3,
       "extraction_method": "site_rule",
-      "updated_at": "2026-08-10T19:09:37.678Z",
+      "updated_at": "2026-08-11T19:14:39.498Z",
       "quality_score": 0.79
     },
     {
@@ -3896,7 +3656,7 @@
       "source_priority": "S",
       "source_priority_score": 4,
       "extraction_method": "site_rule",
-      "updated_at": "2026-08-10T19:09:05.227Z",
+      "updated_at": "2026-08-11T19:14:04.790Z",
       "quality_score": 0.7
     },
     {
@@ -3920,7 +3680,7 @@
       "source_priority": "S",
       "source_priority_score": 4,
       "extraction_method": "site_rule",
-      "updated_at": "2026-08-10T19:09:30.075Z",
+      "updated_at": "2026-08-11T19:14:33.175Z",
       "quality_score": 1
     },
     {
@@ -3944,7 +3704,7 @@
       "source_priority": "S",
       "source_priority_score": 4,
       "extraction_method": "site_rule",
-      "updated_at": "2026-08-10T19:08:56.691Z",
+      "updated_at": "2026-08-11T19:13:57.268Z",
       "quality_score": 0.78
     },
     {
@@ -3968,7 +3728,7 @@
       "source_priority": "S",
       "source_priority_score": 4,
       "extraction_method": "site_rule",
-      "updated_at": "2026-08-10T19:09:17.900Z",
+      "updated_at": "2026-08-11T19:14:16.937Z",
       "quality_score": 0.98
     },
     {
@@ -3992,7 +3752,7 @@
       "source_priority": "S",
       "source_priority_score": 4,
       "extraction_method": "site_rule",
-      "updated_at": "2026-08-10T19:09:33.804Z",
+      "updated_at": "2026-08-11T19:14:34.560Z",
       "quality_score": 0.78
     },
     {
@@ -4016,7 +3776,7 @@
       "source_priority": "S",
       "source_priority_score": 4,
       "extraction_method": "site_rule",
-      "updated_at": "2026-08-10T19:08:56.691Z",
+      "updated_at": "2026-08-11T19:13:57.268Z",
       "quality_score": 0.74
     },
     {
@@ -4040,7 +3800,7 @@
       "source_priority": "S",
       "source_priority_score": 4,
       "extraction_method": "site_rule",
-      "updated_at": "2026-08-10T19:09:07.254Z",
+      "updated_at": "2026-08-11T19:14:07.555Z",
       "quality_score": 0.8
     },
     {
@@ -4064,7 +3824,7 @@
       "source_priority": "S",
       "source_priority_score": 4,
       "extraction_method": "site_rule",
-      "updated_at": "2026-08-10T19:09:17.902Z",
+      "updated_at": "2026-08-11T19:14:16.939Z",
       "quality_score": 0.76
     },
     {
@@ -4088,7 +3848,7 @@
       "source_priority": "S",
       "source_priority_score": 4,
       "extraction_method": "site_rule",
-      "updated_at": "2026-08-10T19:09:17.903Z",
+      "updated_at": "2026-08-11T19:14:16.939Z",
       "quality_score": 0.76
     },
     {
@@ -4112,7 +3872,7 @@
       "source_priority": "A",
       "source_priority_score": 3,
       "extraction_method": "heuristic",
-      "updated_at": "2026-08-10T19:09:45.725Z",
+      "updated_at": "2026-08-11T19:14:48.897Z",
       "quality_score": 0.61
     },
     {
@@ -4136,7 +3896,7 @@
       "source_priority": "A",
       "source_priority_score": 3,
       "extraction_method": "heuristic",
-      "updated_at": "2026-08-10T19:09:37.705Z",
+      "updated_at": "2026-08-11T19:14:39.523Z",
       "quality_score": 0.61
     },
     {
@@ -4160,7 +3920,7 @@
       "source_priority": "A",
       "source_priority_score": 3,
       "extraction_method": "heuristic",
-      "updated_at": "2026-08-10T19:09:30.558Z",
+      "updated_at": "2026-08-11T19:14:31.384Z",
       "quality_score": 0.61
     },
     {
@@ -4184,7 +3944,7 @@
       "source_priority": "A",
       "source_priority_score": 3,
       "extraction_method": "heuristic",
-      "updated_at": "2026-08-10T19:09:37.693Z",
+      "updated_at": "2026-08-11T19:14:39.513Z",
       "quality_score": 0.61
     },
     {
@@ -4208,7 +3968,7 @@
       "source_priority": "S",
       "source_priority_score": 4,
       "extraction_method": "site_rule",
-      "updated_at": "2026-08-10T19:09:05.885Z",
+      "updated_at": "2026-08-11T19:14:07.475Z",
       "quality_score": 0.6
     },
     {
@@ -4232,7 +3992,7 @@
       "source_priority": "S",
       "source_priority_score": 4,
       "extraction_method": "site_rule",
-      "updated_at": "2026-08-10T19:09:30.075Z",
+      "updated_at": "2026-08-11T19:14:33.175Z",
       "quality_score": 1
     },
     {
@@ -4256,7 +4016,7 @@
       "source_priority": "S",
       "source_priority_score": 4,
       "extraction_method": "site_rule",
-      "updated_at": "2026-08-10T19:09:05.227Z",
+      "updated_at": "2026-08-11T19:14:04.790Z",
       "quality_score": 0.7
     },
     {
@@ -4280,7 +4040,7 @@
       "source_priority": "S",
       "source_priority_score": 4,
       "extraction_method": "site_rule",
-      "updated_at": "2026-08-10T19:08:56.692Z",
+      "updated_at": "2026-08-11T19:13:57.268Z",
       "quality_score": 0.74
     },
     {
@@ -4328,7 +4088,7 @@
       "source_priority": "S",
       "source_priority_score": 4,
       "extraction_method": "site_rule",
-      "updated_at": "2026-08-10T19:08:56.692Z",
+      "updated_at": "2026-08-11T19:13:57.268Z",
       "quality_score": 0.78
     },
     {
@@ -4352,7 +4112,7 @@
       "source_priority": "S",
       "source_priority_score": 4,
       "extraction_method": "site_rule",
-      "updated_at": "2026-08-10T19:08:56.691Z",
+      "updated_at": "2026-08-11T19:13:57.268Z",
       "quality_score": 0.74
     },
     {
@@ -4376,7 +4136,7 @@
       "source_priority": "A",
       "source_priority_score": 3,
       "extraction_method": "site_rule",
-      "updated_at": "2026-08-10T19:09:31.611Z",
+      "updated_at": "2026-08-11T19:14:32.588Z",
       "quality_score": 0.81
     },
     {
@@ -4400,7 +4160,7 @@
       "source_priority": "S",
       "source_priority_score": 4,
       "extraction_method": "site_rule",
-      "updated_at": "2026-08-10T19:09:17.904Z",
+      "updated_at": "2026-08-11T19:14:16.940Z",
       "quality_score": 0.8
     },
     {
@@ -4424,7 +4184,7 @@
       "source_priority": "S",
       "source_priority_score": 4,
       "extraction_method": "site_rule",
-      "updated_at": "2026-08-10T19:09:17.905Z",
+      "updated_at": "2026-08-11T19:14:16.941Z",
       "quality_score": 0.76
     },
     {
@@ -4448,7 +4208,7 @@
       "source_priority": "A",
       "source_priority_score": 3,
       "extraction_method": "site_rule",
-      "updated_at": "2026-08-10T19:09:44.242Z",
+      "updated_at": "2026-08-11T19:14:45.579Z",
       "quality_score": 0.65
     },
     {
@@ -4472,7 +4232,7 @@
       "source_priority": "B",
       "source_priority_score": 2,
       "extraction_method": "site_rule",
-      "updated_at": "2026-08-10T19:09:48.783Z",
+      "updated_at": "2026-08-11T19:14:52.512Z",
       "quality_score": 0.57
     },
     {
@@ -4496,7 +4256,7 @@
       "source_priority": "S",
       "source_priority_score": 4,
       "extraction_method": "site_rule",
-      "updated_at": "2026-08-10T19:08:56.692Z",
+      "updated_at": "2026-08-11T19:13:57.268Z",
       "quality_score": 0.74
     },
     {
@@ -4520,7 +4280,7 @@
       "source_priority": "B",
       "source_priority_score": 2,
       "extraction_method": "site_rule",
-      "updated_at": "2026-08-10T19:09:48.334Z",
+      "updated_at": "2026-08-11T19:14:50.880Z",
       "quality_score": 0.71
     },
     {
@@ -4544,7 +4304,7 @@
       "source_priority": "A",
       "source_priority_score": 3,
       "extraction_method": "site_rule",
-      "updated_at": "2026-08-10T19:09:30.602Z",
+      "updated_at": "2026-08-11T19:14:30.014Z",
       "quality_score": 0.61
     },
     {
@@ -4568,7 +4328,7 @@
       "source_priority": "S",
       "source_priority_score": 4,
       "extraction_method": "site_rule",
-      "updated_at": "2026-08-10T19:09:05.885Z",
+      "updated_at": "2026-08-11T19:14:07.475Z",
       "quality_score": 0.6
     },
     {
@@ -4592,7 +4352,7 @@
       "source_priority": "S",
       "source_priority_score": 4,
       "extraction_method": "site_rule",
-      "updated_at": "2026-08-10T19:09:05.227Z",
+      "updated_at": "2026-08-11T19:14:04.790Z",
       "quality_score": 0.7
     },
     {
@@ -4616,7 +4376,7 @@
       "source_priority": "A",
       "source_priority_score": 3,
       "extraction_method": "site_rule",
-      "updated_at": "2026-08-10T19:09:44.242Z",
+      "updated_at": "2026-08-11T19:14:45.579Z",
       "quality_score": 0.75
     },
     {
@@ -4640,7 +4400,7 @@
       "source_priority": "B",
       "source_priority_score": 2,
       "extraction_method": "site_rule",
-      "updated_at": "2026-08-10T19:09:48.334Z",
+      "updated_at": "2026-08-11T19:14:50.880Z",
       "quality_score": 0.71
     },
     {
@@ -4664,7 +4424,7 @@
       "source_priority": "A",
       "source_priority_score": 3,
       "extraction_method": "site_rule",
-      "updated_at": "2026-08-10T19:09:24.783Z",
+      "updated_at": "2026-08-11T19:14:19.380Z",
       "quality_score": 0.95
     },
     {
@@ -4688,7 +4448,7 @@
       "source_priority": "A",
       "source_priority_score": 3,
       "extraction_method": "site_rule",
-      "updated_at": "2026-08-10T19:09:24.783Z",
+      "updated_at": "2026-08-11T19:14:19.380Z",
       "quality_score": 0.95
     },
     {
@@ -4712,7 +4472,7 @@
       "source_priority": "S",
       "source_priority_score": 4,
       "extraction_method": "site_rule",
-      "updated_at": "2026-08-10T19:08:59.638Z",
+      "updated_at": "2026-08-11T19:14:00.553Z",
       "quality_score": 0.74
     },
     {
@@ -4736,7 +4496,7 @@
       "source_priority": "S",
       "source_priority_score": 4,
       "extraction_method": "site_rule",
-      "updated_at": "2026-08-10T19:09:05.228Z",
+      "updated_at": "2026-08-11T19:14:04.790Z",
       "quality_score": 0.7
     },
     {
@@ -4760,7 +4520,7 @@
       "source_priority": "S",
       "source_priority_score": 4,
       "extraction_method": "site_rule",
-      "updated_at": "2026-08-10T19:09:07.254Z",
+      "updated_at": "2026-08-11T19:14:07.556Z",
       "quality_score": 0.8
     },
     {
@@ -4784,7 +4544,7 @@
       "source_priority": "A",
       "source_priority_score": 3,
       "extraction_method": "site_rule",
-      "updated_at": "2026-08-10T19:09:30.602Z",
+      "updated_at": "2026-08-11T19:14:30.014Z",
       "quality_score": 0.61
     },
     {
@@ -4808,7 +4568,7 @@
       "source_priority": "S",
       "source_priority_score": 4,
       "extraction_method": "site_rule",
-      "updated_at": "2026-08-10T19:08:59.638Z",
+      "updated_at": "2026-08-11T19:14:00.553Z",
       "quality_score": 0.74
     },
     {
@@ -4832,7 +4592,7 @@
       "source_priority": "A",
       "source_priority_score": 3,
       "extraction_method": "site_rule",
-      "updated_at": "2026-08-10T19:09:24.783Z",
+      "updated_at": "2026-08-11T19:14:19.380Z",
       "quality_score": 0.95
     },
     {
@@ -4856,7 +4616,7 @@
       "source_priority": "A",
       "source_priority_score": 3,
       "extraction_method": "site_rule",
-      "updated_at": "2026-08-10T19:09:30.602Z",
+      "updated_at": "2026-08-11T19:14:30.014Z",
       "quality_score": 0.61
     },
     {
@@ -4880,7 +4640,7 @@
       "source_priority": "S",
       "source_priority_score": 4,
       "extraction_method": "heuristic",
-      "updated_at": "2026-08-10T19:09:06.365Z",
+      "updated_at": "2026-08-11T19:14:08.163Z",
       "quality_score": 0.99
     },
     {
@@ -4904,7 +4664,7 @@
       "source_priority": "A",
       "source_priority_score": 3,
       "extraction_method": "heuristic",
-      "updated_at": "2026-08-10T19:09:45.803Z",
+      "updated_at": "2026-08-11T19:14:48.582Z",
       "quality_score": 0.96
     },
     {
@@ -4928,7 +4688,7 @@
       "source_priority": "A",
       "source_priority_score": 3,
       "extraction_method": "site_rule",
-      "updated_at": "2026-08-10T19:09:24.783Z",
+      "updated_at": "2026-08-11T19:14:19.380Z",
       "quality_score": 0.95
     },
     {
@@ -4952,7 +4712,7 @@
       "source_priority": "S",
       "source_priority_score": 4,
       "extraction_method": "site_rule",
-      "updated_at": "2026-08-10T19:08:59.638Z",
+      "updated_at": "2026-08-11T19:14:00.553Z",
       "quality_score": 0.74
     },
     {
@@ -4976,7 +4736,7 @@
       "source_priority": "S",
       "source_priority_score": 4,
       "extraction_method": "site_rule",
-      "updated_at": "2026-08-10T19:09:30.076Z",
+      "updated_at": "2026-08-11T19:14:33.176Z",
       "quality_score": 1
     },
     {
@@ -5000,7 +4760,7 @@
       "source_priority": "S",
       "source_priority_score": 4,
       "extraction_method": "site_rule",
-      "updated_at": "2026-08-10T19:08:59.638Z",
+      "updated_at": "2026-08-11T19:14:00.553Z",
       "quality_score": 0.74
     },
     {
@@ -5024,7 +4784,7 @@
       "source_priority": "B",
       "source_priority_score": 2,
       "extraction_method": "site_rule",
-      "updated_at": "2026-08-10T19:09:48.334Z",
+      "updated_at": "2026-08-11T19:14:50.880Z",
       "quality_score": 0.71
     },
     {
@@ -5048,7 +4808,7 @@
       "source_priority": "A",
       "source_priority_score": 3,
       "extraction_method": "heuristic",
-      "updated_at": "2026-08-10T19:09:43.015Z",
+      "updated_at": "2026-08-11T19:14:45.759Z",
       "quality_score": 0.81
     },
     {
@@ -5072,7 +4832,7 @@
       "source_priority": "S",
       "source_priority_score": 4,
       "extraction_method": "heuristic",
-      "updated_at": "2026-08-10T19:09:05.418Z",
+      "updated_at": "2026-08-11T19:14:07.034Z",
       "quality_score": 0.99
     },
     {
@@ -5096,7 +4856,7 @@
       "source_priority": "S",
       "source_priority_score": 4,
       "extraction_method": "site_rule",
-      "updated_at": "2026-08-10T19:09:30.076Z",
+      "updated_at": "2026-08-11T19:14:33.176Z",
       "quality_score": 1
     },
     {
@@ -5120,7 +4880,7 @@
       "source_priority": "B",
       "source_priority_score": 2,
       "extraction_method": "site_rule",
-      "updated_at": "2026-08-10T19:09:48.335Z",
+      "updated_at": "2026-08-11T19:14:50.880Z",
       "quality_score": 0.71
     },
     {
@@ -5144,7 +4904,7 @@
       "source_priority": "S",
       "source_priority_score": 4,
       "extraction_method": "site_rule",
-      "updated_at": "2026-08-10T19:08:59.638Z",
+      "updated_at": "2026-08-11T19:14:00.553Z",
       "quality_score": 0.74
     },
     {
@@ -5168,7 +4928,7 @@
       "source_priority": "A",
       "source_priority_score": 3,
       "extraction_method": "site_rule",
-      "updated_at": "2026-08-10T19:09:24.783Z",
+      "updated_at": "2026-08-11T19:14:19.380Z",
       "quality_score": 0.87
     },
     {
@@ -5192,7 +4952,7 @@
       "source_priority": "S",
       "source_priority_score": 4,
       "extraction_method": "site_rule",
-      "updated_at": "2026-08-10T19:08:59.638Z",
+      "updated_at": "2026-08-11T19:14:00.553Z",
       "quality_score": 0.78
     },
     {
@@ -5216,7 +4976,7 @@
       "source_priority": "A",
       "source_priority_score": 3,
       "extraction_method": "site_rule",
-      "updated_at": "2026-08-10T19:09:31.612Z",
+      "updated_at": "2026-08-11T19:14:32.589Z",
       "quality_score": 0.81
     },
     {
@@ -5240,7 +5000,7 @@
       "source_priority": "A",
       "source_priority_score": 3,
       "extraction_method": "site_rule",
-      "updated_at": "2026-08-10T19:09:30.602Z",
+      "updated_at": "2026-08-11T19:14:30.014Z",
       "quality_score": 0.61
     },
     {
@@ -5264,7 +5024,7 @@
       "source_priority": "S",
       "source_priority_score": 4,
       "extraction_method": "heuristic",
-      "updated_at": "2026-08-10T19:09:06.685Z",
+      "updated_at": "2026-08-11T19:14:08.410Z",
       "quality_score": 0.99
     },
     {
@@ -5288,7 +5048,7 @@
       "source_priority": "S",
       "source_priority_score": 4,
       "extraction_method": "site_rule",
-      "updated_at": "2026-08-10T19:09:30.076Z",
+      "updated_at": "2026-08-11T19:14:33.176Z",
       "quality_score": 1
     },
     {
@@ -5312,7 +5072,7 @@
       "source_priority": "A",
       "source_priority_score": 3,
       "extraction_method": "site_rule",
-      "updated_at": "2026-08-10T19:09:24.783Z",
+      "updated_at": "2026-08-11T19:14:19.380Z",
       "quality_score": 0.95
     },
     {
@@ -5336,7 +5096,7 @@
       "source_priority": "S",
       "source_priority_score": 4,
       "extraction_method": "site_rule",
-      "updated_at": "2026-08-10T19:08:59.639Z",
+      "updated_at": "2026-08-11T19:14:00.554Z",
       "quality_score": 0.78
     },
     {
@@ -5360,7 +5120,7 @@
       "source_priority": "S",
       "source_priority_score": 4,
       "extraction_method": "site_rule",
-      "updated_at": "2026-08-10T19:08:59.638Z",
+      "updated_at": "2026-08-11T19:14:00.553Z",
       "quality_score": 0.74
     },
     {
@@ -5384,7 +5144,7 @@
       "source_priority": "S",
       "source_priority_score": 4,
       "extraction_method": "site_rule",
-      "updated_at": "2026-08-10T19:08:59.638Z",
+      "updated_at": "2026-08-11T19:14:00.553Z",
       "quality_score": 0.74
     },
     {
@@ -5408,7 +5168,7 @@
       "source_priority": "S",
       "source_priority_score": 4,
       "extraction_method": "site_rule",
-      "updated_at": "2026-08-10T19:08:59.639Z",
+      "updated_at": "2026-08-11T19:14:00.554Z",
       "quality_score": 0.74
     },
     {
@@ -5432,7 +5192,7 @@
       "source_priority": "A",
       "source_priority_score": 3,
       "extraction_method": "site_rule",
-      "updated_at": "2026-08-10T19:09:30.603Z",
+      "updated_at": "2026-08-11T19:14:30.015Z",
       "quality_score": 0.61
     },
     {
@@ -5456,7 +5216,7 @@
       "source_priority": "A",
       "source_priority_score": 3,
       "extraction_method": "site_rule",
-      "updated_at": "2026-08-10T19:09:44.242Z",
+      "updated_at": "2026-08-11T19:14:45.579Z",
       "quality_score": 0.75
     },
     {
@@ -5480,7 +5240,7 @@
       "source_priority": "A",
       "source_priority_score": 3,
       "extraction_method": "site_rule",
-      "updated_at": "2026-08-10T19:09:24.783Z",
+      "updated_at": "2026-08-11T19:14:19.380Z",
       "quality_score": 0.95
     },
     {
@@ -5504,7 +5264,7 @@
       "source_priority": "S",
       "source_priority_score": 4,
       "extraction_method": "site_rule",
-      "updated_at": "2026-08-10T19:09:30.076Z",
+      "updated_at": "2026-08-11T19:14:33.176Z",
       "quality_score": 0.68
     },
     {
@@ -5528,7 +5288,7 @@
       "source_priority": "A",
       "source_priority_score": 3,
       "extraction_method": "site_rule",
-      "updated_at": "2026-08-10T19:09:30.603Z",
+      "updated_at": "2026-08-11T19:14:30.015Z",
       "quality_score": 0.61
     },
     {
@@ -5552,7 +5312,7 @@
       "source_priority": "S",
       "source_priority_score": 4,
       "extraction_method": "site_rule",
-      "updated_at": "2026-08-10T19:08:59.639Z",
+      "updated_at": "2026-08-11T19:14:00.554Z",
       "quality_score": 0.56
     },
     {
@@ -5576,7 +5336,7 @@
       "source_priority": "A",
       "source_priority_score": 3,
       "extraction_method": "site_rule",
-      "updated_at": "2026-08-10T19:09:24.784Z",
+      "updated_at": "2026-08-11T19:14:19.380Z",
       "quality_score": 0.73
     },
     {
@@ -5600,7 +5360,7 @@
       "source_priority": "S",
       "source_priority_score": 4,
       "extraction_method": "site_rule",
-      "updated_at": "2026-08-10T19:08:59.639Z",
+      "updated_at": "2026-08-11T19:14:00.554Z",
       "quality_score": 0.74
     },
     {
@@ -5624,7 +5384,7 @@
       "source_priority": "S",
       "source_priority_score": 4,
       "extraction_method": "site_rule",
-      "updated_at": "2026-08-10T19:09:30.077Z",
+      "updated_at": "2026-08-11T19:14:33.177Z",
       "quality_score": 1
     },
     {
@@ -5648,7 +5408,7 @@
       "source_priority": "B",
       "source_priority_score": 2,
       "extraction_method": "site_rule",
-      "updated_at": "2026-08-10T19:09:50.030Z",
+      "updated_at": "2026-08-11T19:14:52.953Z",
       "quality_score": 0.91
     },
     {
@@ -5672,7 +5432,7 @@
       "source_priority": "S",
       "source_priority_score": 4,
       "extraction_method": "site_rule",
-      "updated_at": "2026-08-10T19:08:59.639Z",
+      "updated_at": "2026-08-11T19:14:00.554Z",
       "quality_score": 0.78
     },
     {
@@ -5696,7 +5456,7 @@
       "source_priority": "S",
       "source_priority_score": 4,
       "extraction_method": "site_rule",
-      "updated_at": "2026-08-10T19:08:59.639Z",
+      "updated_at": "2026-08-11T19:14:00.554Z",
       "quality_score": 0.74
     },
     {
@@ -5720,7 +5480,7 @@
       "source_priority": "S",
       "source_priority_score": 4,
       "extraction_method": "site_rule",
-      "updated_at": "2026-08-10T19:09:30.077Z",
+      "updated_at": "2026-08-11T19:14:33.177Z",
       "quality_score": 1
     },
     {
@@ -5744,7 +5504,7 @@
       "source_priority": "S",
       "source_priority_score": 4,
       "extraction_method": "site_rule",
-      "updated_at": "2026-08-10T19:09:33.816Z",
+      "updated_at": "2026-08-11T19:14:34.571Z",
       "quality_score": 0.78
     },
     {
@@ -5768,7 +5528,7 @@
       "source_priority": "S",
       "source_priority_score": 4,
       "extraction_method": "site_rule",
-      "updated_at": "2026-08-10T19:09:07.254Z",
+      "updated_at": "2026-08-11T19:14:07.556Z",
       "quality_score": 0.8
     },
     {
@@ -5792,7 +5552,7 @@
       "source_priority": "S",
       "source_priority_score": 4,
       "extraction_method": "heuristic",
-      "updated_at": "2026-08-10T19:08:55.575Z",
+      "updated_at": "2026-08-11T19:13:55.969Z",
       "quality_score": 0.64
     },
     {
@@ -5816,21 +5576,21 @@
       "source_priority": "A",
       "source_priority_score": 3,
       "extraction_method": "heuristic",
-      "updated_at": "2026-08-10T19:09:42.842Z",
+      "updated_at": "2026-08-11T19:14:46.605Z",
       "quality_score": 0.76
     },
     {
-      "id": "1509bc5801e1af171ab0",
+      "id": "1673f96f380338210588",
       "title": "オカリーナの魅力 Viva!! Ocarina 北海道の仲間たちによる演奏 vol.11",
       "start_date": "2026-09-12",
       "end_date": "",
       "open_time": "12:00",
       "start_time": "12:30",
-      "end_time": "15:15",
+      "end_time": "15:05",
       "all_day": false,
       "venue": "札幌コンサートホール Kitara 小ホール",
       "venue_address": "札幌市中央区中島公園1番15号",
-      "summary": "小ホール 2026年9月12日(土曜日) 12:00開場 12:30開演 15:15終演予定",
+      "summary": "小ホール 2026年9月12日(土曜日) 12:00開場 12:30開演 15:05終演予定",
       "flyer_image_url": "https://www.kitara-sapporo.or.jp/og-image.jpg",
       "detail_url": "https://www.kitara-sapporo.or.jp/event/event_detail.php?num=7244",
       "source_id": "www-kitara-sapporo-or-jp-event",
@@ -5840,7 +5600,7 @@
       "source_priority": "S",
       "source_priority_score": 4,
       "extraction_method": "site_rule",
-      "updated_at": "2026-08-10T19:09:30.077Z",
+      "updated_at": "2026-08-11T19:14:33.178Z",
       "quality_score": 1
     },
     {
@@ -5864,7 +5624,7 @@
       "source_priority": "A",
       "source_priority_score": 3,
       "extraction_method": "site_rule",
-      "updated_at": "2026-08-10T19:09:24.784Z",
+      "updated_at": "2026-08-11T19:14:19.380Z",
       "quality_score": 0.95
     },
     {
@@ -5888,7 +5648,7 @@
       "source_priority": "S",
       "source_priority_score": 4,
       "extraction_method": "site_rule",
-      "updated_at": "2026-08-10T19:08:59.639Z",
+      "updated_at": "2026-08-11T19:14:00.554Z",
       "quality_score": 0.74
     },
     {
@@ -5912,7 +5672,7 @@
       "source_priority": "B",
       "source_priority_score": 2,
       "extraction_method": "site_rule",
-      "updated_at": "2026-08-10T19:09:50.030Z",
+      "updated_at": "2026-08-11T19:14:52.953Z",
       "quality_score": 0.91
     },
     {
@@ -5936,7 +5696,7 @@
       "source_priority": "S",
       "source_priority_score": 4,
       "extraction_method": "site_rule",
-      "updated_at": "2026-08-10T19:08:59.639Z",
+      "updated_at": "2026-08-11T19:14:00.554Z",
       "quality_score": 0.74
     },
     {
@@ -5984,7 +5744,7 @@
       "source_priority": "S",
       "source_priority_score": 4,
       "extraction_method": "site_rule",
-      "updated_at": "2026-08-10T19:09:30.077Z",
+      "updated_at": "2026-08-11T19:14:33.177Z",
       "quality_score": 1
     },
     {
@@ -6008,7 +5768,7 @@
       "source_priority": "S",
       "source_priority_score": 4,
       "extraction_method": "site_rule",
-      "updated_at": "2026-08-10T19:08:59.639Z",
+      "updated_at": "2026-08-11T19:14:00.554Z",
       "quality_score": 0.74
     },
     {
@@ -6032,7 +5792,7 @@
       "source_priority": "A",
       "source_priority_score": 3,
       "extraction_method": "site_rule",
-      "updated_at": "2026-08-10T19:09:31.612Z",
+      "updated_at": "2026-08-11T19:14:32.589Z",
       "quality_score": 0.81
     },
     {
@@ -6056,7 +5816,7 @@
       "source_priority": "A",
       "source_priority_score": 3,
       "extraction_method": "site_rule",
-      "updated_at": "2026-08-10T19:09:31.612Z",
+      "updated_at": "2026-08-11T19:14:32.589Z",
       "quality_score": 0.81
     },
     {
@@ -6080,7 +5840,7 @@
       "source_priority": "S",
       "source_priority_score": 4,
       "extraction_method": "site_rule",
-      "updated_at": "2026-08-10T19:09:07.254Z",
+      "updated_at": "2026-08-11T19:14:07.556Z",
       "quality_score": 0.8
     },
     {
@@ -6104,7 +5864,7 @@
       "source_priority": "A",
       "source_priority_score": 3,
       "extraction_method": "site_rule",
-      "updated_at": "2026-08-10T19:09:30.603Z",
+      "updated_at": "2026-08-11T19:14:30.015Z",
       "quality_score": 0.61
     },
     {
@@ -6128,7 +5888,7 @@
       "source_priority": "S",
       "source_priority_score": 4,
       "extraction_method": "site_rule",
-      "updated_at": "2026-08-10T19:09:30.077Z",
+      "updated_at": "2026-08-11T19:14:33.178Z",
       "quality_score": 1
     },
     {
@@ -6152,7 +5912,7 @@
       "source_priority": "A",
       "source_priority_score": 3,
       "extraction_method": "site_rule",
-      "updated_at": "2026-08-10T19:09:24.784Z",
+      "updated_at": "2026-08-11T19:14:19.381Z",
       "quality_score": 0.95
     },
     {
@@ -6176,7 +5936,7 @@
       "source_priority": "S",
       "source_priority_score": 4,
       "extraction_method": "site_rule",
-      "updated_at": "2026-08-10T19:08:59.639Z",
+      "updated_at": "2026-08-11T19:14:00.554Z",
       "quality_score": 0.74
     },
     {
@@ -6200,7 +5960,7 @@
       "source_priority": "S",
       "source_priority_score": 4,
       "extraction_method": "site_rule",
-      "updated_at": "2026-08-10T19:08:59.639Z",
+      "updated_at": "2026-08-11T19:14:00.554Z",
       "quality_score": 0.74
     },
     {
@@ -6224,7 +5984,7 @@
       "source_priority": "S",
       "source_priority_score": 4,
       "extraction_method": "site_rule",
-      "updated_at": "2026-08-10T19:08:59.639Z",
+      "updated_at": "2026-08-11T19:14:00.554Z",
       "quality_score": 0.74
     },
     {
@@ -6248,7 +6008,7 @@
       "source_priority": "S",
       "source_priority_score": 4,
       "extraction_method": "site_rule",
-      "updated_at": "2026-08-10T19:09:30.078Z",
+      "updated_at": "2026-08-11T19:14:33.178Z",
       "quality_score": 1
     },
     {
@@ -6272,7 +6032,7 @@
       "source_priority": "A",
       "source_priority_score": 3,
       "extraction_method": "site_rule",
-      "updated_at": "2026-08-10T19:09:24.784Z",
+      "updated_at": "2026-08-11T19:14:19.381Z",
       "quality_score": 0.73
     },
     {
@@ -6296,7 +6056,7 @@
       "source_priority": "A",
       "source_priority_score": 3,
       "extraction_method": "site_rule",
-      "updated_at": "2026-08-10T19:09:30.603Z",
+      "updated_at": "2026-08-11T19:14:30.015Z",
       "quality_score": 0.61
     },
     {
@@ -6320,7 +6080,7 @@
       "source_priority": "S",
       "source_priority_score": 4,
       "extraction_method": "site_rule",
-      "updated_at": "2026-08-10T19:09:30.078Z",
+      "updated_at": "2026-08-11T19:14:33.178Z",
       "quality_score": 1
     },
     {
@@ -6344,7 +6104,7 @@
       "source_priority": "A",
       "source_priority_score": 3,
       "extraction_method": "site_rule",
-      "updated_at": "2026-08-10T19:09:44.243Z",
+      "updated_at": "2026-08-11T19:14:45.580Z",
       "quality_score": 0.75
     },
     {
@@ -6368,7 +6128,7 @@
       "source_priority": "B",
       "source_priority_score": 2,
       "extraction_method": "site_rule",
-      "updated_at": "2026-08-10T19:09:50.030Z",
+      "updated_at": "2026-08-11T19:14:52.953Z",
       "quality_score": 0.71
     },
     {
@@ -6416,7 +6176,7 @@
       "source_priority": "S",
       "source_priority_score": 4,
       "extraction_method": "site_rule",
-      "updated_at": "2026-08-10T19:09:30.079Z",
+      "updated_at": "2026-08-11T19:14:33.179Z",
       "quality_score": 1
     },
     {
@@ -6440,7 +6200,7 @@
       "source_priority": "A",
       "source_priority_score": 3,
       "extraction_method": "heuristic",
-      "updated_at": "2026-08-10T19:09:42.217Z",
+      "updated_at": "2026-08-11T19:14:44.762Z",
       "quality_score": 0.81
     },
     {
@@ -6464,7 +6224,7 @@
       "source_priority": "S",
       "source_priority_score": 4,
       "extraction_method": "site_rule",
-      "updated_at": "2026-08-10T19:09:05.228Z",
+      "updated_at": "2026-08-11T19:14:04.790Z",
       "quality_score": 0.7
     },
     {
@@ -6512,7 +6272,7 @@
       "source_priority": "S",
       "source_priority_score": 4,
       "extraction_method": "site_rule",
-      "updated_at": "2026-08-10T19:09:30.079Z",
+      "updated_at": "2026-08-11T19:14:33.179Z",
       "quality_score": 1
     },
     {
@@ -6549,8 +6309,8 @@
       "end_time": "",
       "all_day": false,
       "venue": "ＳＴＶホール（札幌市中央区北1条西8丁目）",
-      "venue_address": "札幌市×STV 夏休みSDGs親子映画上映会『ＦＬＹ！／フライ！』",
-      "summary": "ＳＴＶ映画試写会 ｜ イベント ｜ ＳＴＶ札幌テレビ ＳＴＶ札幌テレビ スマートフォン版 メニュー テレビ ラジオ ニュース 防災・災害 アナウンサー イベント 天気・気象 ライブカメラ ショッピング どさんこ動画＋ 検索 検索 イベント ＳＴＶ映画試写会 ページ内目次 STVホール試写会『ママがもうこの世界にいなくても 私の命の日記』 札幌市×STV 夏休みSDGs親子映画上映会『ＦＬＹ！／フライ！』 STVホール試写会『ママがもう…",
+      "venue_address": "札幌市中央区北1条西8丁目）",
+      "summary": "ＳＴＶ映画試写会 ｜ イベント ｜ ＳＴＶ札幌テレビ ＳＴＶ札幌テレビ スマートフォン版 メニュー テレビ ラジオ ニュース 防災・災害 アナウンサー イベント 天気・気象 ライブカメラ ショッピング どさんこ動画＋ 検索 検索 イベント ＳＴＶ映画試写会 ページ内目次 STVホール試写会『ママがもうこの世界にいなくても 私の命の日記』 STVホール試写会『ママがもうこの世界にいなくても 私の命の日記』 ©遠藤和／小学館 ©2026「…",
       "flyer_image_url": "https://www.stv.jp/m569cn000000008j-img/m569cn00000001u6.png",
       "detail_url": "https://www.stv.jp/event/premovie/index.html",
       "source_id": "www-stv-jp-event-index-html",
@@ -6560,7 +6320,7 @@
       "source_priority": "A",
       "source_priority_score": 3,
       "extraction_method": "heuristic",
-      "updated_at": "2026-08-10T19:09:42.845Z",
+      "updated_at": "2026-08-11T19:14:46.607Z",
       "quality_score": 0.69
     },
     {
@@ -6584,7 +6344,7 @@
       "source_priority": "A",
       "source_priority_score": 3,
       "extraction_method": "site_rule",
-      "updated_at": "2026-08-10T19:09:30.603Z",
+      "updated_at": "2026-08-11T19:14:30.015Z",
       "quality_score": 0.61
     },
     {
@@ -6632,7 +6392,7 @@
       "source_priority": "S",
       "source_priority_score": 4,
       "extraction_method": "site_rule",
-      "updated_at": "2026-08-10T19:09:30.079Z",
+      "updated_at": "2026-08-11T19:14:33.179Z",
       "quality_score": 1
     },
     {
@@ -6656,7 +6416,7 @@
       "source_priority": "S",
       "source_priority_score": 4,
       "extraction_method": "site_rule",
-      "updated_at": "2026-08-10T19:09:07.254Z",
+      "updated_at": "2026-08-11T19:14:07.556Z",
       "quality_score": 0.8
     },
     {
@@ -6680,7 +6440,7 @@
       "source_priority": "A",
       "source_priority_score": 3,
       "extraction_method": "site_rule",
-      "updated_at": "2026-08-10T19:09:24.784Z",
+      "updated_at": "2026-08-11T19:14:19.381Z",
       "quality_score": 0.95
     },
     {
@@ -6704,7 +6464,7 @@
       "source_priority": "S",
       "source_priority_score": 4,
       "extraction_method": "site_rule",
-      "updated_at": "2026-08-10T19:09:30.080Z",
+      "updated_at": "2026-08-11T19:14:33.180Z",
       "quality_score": 1
     },
     {
@@ -6728,7 +6488,7 @@
       "source_priority": "A",
       "source_priority_score": 3,
       "extraction_method": "site_rule",
-      "updated_at": "2026-08-10T19:09:44.243Z",
+      "updated_at": "2026-08-11T19:14:45.580Z",
       "quality_score": 0.75
     },
     {
@@ -6752,7 +6512,7 @@
       "source_priority": "S",
       "source_priority_score": 4,
       "extraction_method": "site_rule",
-      "updated_at": "2026-08-10T19:09:30.080Z",
+      "updated_at": "2026-08-11T19:14:33.180Z",
       "quality_score": 1
     },
     {
@@ -6776,7 +6536,7 @@
       "source_priority": "S",
       "source_priority_score": 4,
       "extraction_method": "site_rule",
-      "updated_at": "2026-08-10T19:09:05.228Z",
+      "updated_at": "2026-08-11T19:14:04.790Z",
       "quality_score": 0.7
     },
     {
@@ -6800,7 +6560,7 @@
       "source_priority": "S",
       "source_priority_score": 4,
       "extraction_method": "site_rule",
-      "updated_at": "2026-08-10T19:09:30.080Z",
+      "updated_at": "2026-08-11T19:14:33.180Z",
       "quality_score": 1
     },
     {
@@ -6824,7 +6584,7 @@
       "source_priority": "A",
       "source_priority_score": 3,
       "extraction_method": "site_rule",
-      "updated_at": "2026-08-10T19:09:30.603Z",
+      "updated_at": "2026-08-11T19:14:30.015Z",
       "quality_score": 0.61
     },
     {
@@ -6848,7 +6608,7 @@
       "source_priority": "S",
       "source_priority_score": 4,
       "extraction_method": "site_rule",
-      "updated_at": "2026-08-10T19:09:33.825Z",
+      "updated_at": "2026-08-11T19:14:34.579Z",
       "quality_score": 0.78
     },
     {
@@ -6872,7 +6632,7 @@
       "source_priority": "S",
       "source_priority_score": 4,
       "extraction_method": "site_rule",
-      "updated_at": "2026-08-10T19:09:30.081Z",
+      "updated_at": "2026-08-11T19:14:33.181Z",
       "quality_score": 1
     },
     {
@@ -6896,7 +6656,7 @@
       "source_priority": "S",
       "source_priority_score": 4,
       "extraction_method": "site_rule",
-      "updated_at": "2026-08-10T19:09:30.081Z",
+      "updated_at": "2026-08-11T19:14:33.181Z",
       "quality_score": 1
     },
     {
@@ -6920,7 +6680,7 @@
       "source_priority": "B",
       "source_priority_score": 2,
       "extraction_method": "site_rule",
-      "updated_at": "2026-08-10T19:09:48.335Z",
+      "updated_at": "2026-08-11T19:14:50.880Z",
       "quality_score": 0.71
     },
     {
@@ -6944,7 +6704,7 @@
       "source_priority": "A",
       "source_priority_score": 3,
       "extraction_method": "site_rule",
-      "updated_at": "2026-08-10T19:09:30.603Z",
+      "updated_at": "2026-08-11T19:14:30.015Z",
       "quality_score": 0.61
     },
     {
@@ -6968,7 +6728,7 @@
       "source_priority": "S",
       "source_priority_score": 4,
       "extraction_method": "site_rule",
-      "updated_at": "2026-08-10T19:09:30.082Z",
+      "updated_at": "2026-08-11T19:14:33.182Z",
       "quality_score": 1
     },
     {
@@ -6992,7 +6752,7 @@
       "source_priority": "S",
       "source_priority_score": 4,
       "extraction_method": "site_rule",
-      "updated_at": "2026-08-10T19:09:17.908Z",
+      "updated_at": "2026-08-11T19:14:16.944Z",
       "quality_score": 0.95
     },
     {
@@ -7016,7 +6776,7 @@
       "source_priority": "S",
       "source_priority_score": 4,
       "extraction_method": "site_rule",
-      "updated_at": "2026-08-10T19:09:30.081Z",
+      "updated_at": "2026-08-11T19:14:33.181Z",
       "quality_score": 1
     },
     {
@@ -7040,7 +6800,7 @@
       "source_priority": "S",
       "source_priority_score": 4,
       "extraction_method": "site_rule",
-      "updated_at": "2026-08-10T19:09:05.228Z",
+      "updated_at": "2026-08-11T19:14:04.790Z",
       "quality_score": 0.7
     },
     {
@@ -7064,7 +6824,7 @@
       "source_priority": "S",
       "source_priority_score": 4,
       "extraction_method": "site_rule",
-      "updated_at": "2026-08-10T19:09:17.908Z",
+      "updated_at": "2026-08-11T19:14:16.944Z",
       "quality_score": 0.95
     },
     {
@@ -7088,7 +6848,7 @@
       "source_priority": "S",
       "source_priority_score": 4,
       "extraction_method": "site_rule",
-      "updated_at": "2026-08-10T19:08:59.640Z",
+      "updated_at": "2026-08-11T19:14:00.555Z",
       "quality_score": 0.78
     },
     {
@@ -7112,7 +6872,7 @@
       "source_priority": "A",
       "source_priority_score": 3,
       "extraction_method": "site_rule",
-      "updated_at": "2026-08-10T19:09:24.784Z",
+      "updated_at": "2026-08-11T19:14:19.381Z",
       "quality_score": 0.95
     },
     {
@@ -7136,7 +6896,7 @@
       "source_priority": "S",
       "source_priority_score": 4,
       "extraction_method": "site_rule",
-      "updated_at": "2026-08-10T19:09:33.845Z",
+      "updated_at": "2026-08-11T19:14:34.596Z",
       "quality_score": 0.78
     },
     {
@@ -7160,7 +6920,7 @@
       "source_priority": "S",
       "source_priority_score": 4,
       "extraction_method": "site_rule",
-      "updated_at": "2026-08-10T19:08:59.639Z",
+      "updated_at": "2026-08-11T19:14:00.555Z",
       "quality_score": 0.74
     },
     {
@@ -7184,7 +6944,7 @@
       "source_priority": "S",
       "source_priority_score": 4,
       "extraction_method": "site_rule",
-      "updated_at": "2026-08-10T19:08:59.640Z",
+      "updated_at": "2026-08-11T19:14:00.555Z",
       "quality_score": 0.74
     },
     {
@@ -7208,7 +6968,7 @@
       "source_priority": "S",
       "source_priority_score": 4,
       "extraction_method": "site_rule",
-      "updated_at": "2026-08-10T19:09:17.907Z",
+      "updated_at": "2026-08-11T19:14:16.943Z",
       "quality_score": 0.8
     },
     {
@@ -7232,7 +6992,7 @@
       "source_priority": "S",
       "source_priority_score": 4,
       "extraction_method": "site_rule",
-      "updated_at": "2026-08-10T19:09:17.910Z",
+      "updated_at": "2026-08-11T19:14:16.946Z",
       "quality_score": 0.95
     },
     {
@@ -7256,7 +7016,7 @@
       "source_priority": "A",
       "source_priority_score": 3,
       "extraction_method": "site_rule",
-      "updated_at": "2026-08-10T19:09:24.784Z",
+      "updated_at": "2026-08-11T19:14:19.381Z",
       "quality_score": 0.95
     },
     {
@@ -7280,7 +7040,7 @@
       "source_priority": "S",
       "source_priority_score": 4,
       "extraction_method": "site_rule",
-      "updated_at": "2026-08-10T19:09:17.909Z",
+      "updated_at": "2026-08-11T19:14:16.945Z",
       "quality_score": 0.95
     },
     {
@@ -7304,7 +7064,7 @@
       "source_priority": "A",
       "source_priority_score": 3,
       "extraction_method": "site_rule",
-      "updated_at": "2026-08-10T19:09:24.784Z",
+      "updated_at": "2026-08-11T19:14:19.381Z",
       "quality_score": 0.95
     },
     {
@@ -7328,7 +7088,7 @@
       "source_priority": "S",
       "source_priority_score": 4,
       "extraction_method": "site_rule",
-      "updated_at": "2026-08-10T19:09:05.228Z",
+      "updated_at": "2026-08-11T19:14:04.790Z",
       "quality_score": 0.7
     },
     {
@@ -7352,7 +7112,7 @@
       "source_priority": "S",
       "source_priority_score": 4,
       "extraction_method": "site_rule",
-      "updated_at": "2026-08-10T19:09:30.082Z",
+      "updated_at": "2026-08-11T19:14:33.182Z",
       "quality_score": 1
     },
     {
@@ -7376,7 +7136,7 @@
       "source_priority": "S",
       "source_priority_score": 4,
       "extraction_method": "site_rule",
-      "updated_at": "2026-08-10T19:08:59.640Z",
+      "updated_at": "2026-08-11T19:14:00.555Z",
       "quality_score": 0.74
     },
     {
@@ -7400,7 +7160,7 @@
       "source_priority": "S",
       "source_priority_score": 4,
       "extraction_method": "site_rule",
-      "updated_at": "2026-08-10T19:09:33.850Z",
+      "updated_at": "2026-08-11T19:14:34.601Z",
       "quality_score": 0.78
     },
     {
@@ -7424,7 +7184,7 @@
       "source_priority": "S",
       "source_priority_score": 4,
       "extraction_method": "site_rule",
-      "updated_at": "2026-08-10T19:09:30.082Z",
+      "updated_at": "2026-08-11T19:14:33.182Z",
       "quality_score": 1
     },
     {
@@ -7448,7 +7208,7 @@
       "source_priority": "A",
       "source_priority_score": 3,
       "extraction_method": "site_rule",
-      "updated_at": "2026-08-10T19:09:30.603Z",
+      "updated_at": "2026-08-11T19:14:30.015Z",
       "quality_score": 0.61
     },
     {
@@ -7472,7 +7232,7 @@
       "source_priority": "S",
       "source_priority_score": 4,
       "extraction_method": "site_rule",
-      "updated_at": "2026-08-10T19:09:30.083Z",
+      "updated_at": "2026-08-11T19:14:33.183Z",
       "quality_score": 1
     },
     {
@@ -7496,7 +7256,7 @@
       "source_priority": "A",
       "source_priority_score": 3,
       "extraction_method": "site_rule",
-      "updated_at": "2026-08-10T19:09:24.784Z",
+      "updated_at": "2026-08-11T19:14:19.381Z",
       "quality_score": 0.95
     },
     {
@@ -7520,7 +7280,7 @@
       "source_priority": "A",
       "source_priority_score": 3,
       "extraction_method": "site_rule",
-      "updated_at": "2026-08-10T19:09:44.243Z",
+      "updated_at": "2026-08-11T19:14:45.580Z",
       "quality_score": 0.75
     },
     {
@@ -7544,7 +7304,7 @@
       "source_priority": "S",
       "source_priority_score": 4,
       "extraction_method": "site_rule",
-      "updated_at": "2026-08-10T19:09:30.083Z",
+      "updated_at": "2026-08-11T19:14:33.183Z",
       "quality_score": 1
     },
     {
@@ -7568,7 +7328,7 @@
       "source_priority": "S",
       "source_priority_score": 4,
       "extraction_method": "site_rule",
-      "updated_at": "2026-08-10T19:09:05.228Z",
+      "updated_at": "2026-08-11T19:14:04.790Z",
       "quality_score": 0.7
     },
     {
@@ -7592,7 +7352,7 @@
       "source_priority": "B",
       "source_priority_score": 2,
       "extraction_method": "site_rule",
-      "updated_at": "2026-08-10T19:09:50.030Z",
+      "updated_at": "2026-08-11T19:14:52.953Z",
       "quality_score": 0.91
     },
     {
@@ -7616,7 +7376,7 @@
       "source_priority": "S",
       "source_priority_score": 4,
       "extraction_method": "site_rule",
-      "updated_at": "2026-08-10T19:08:59.640Z",
+      "updated_at": "2026-08-11T19:14:00.555Z",
       "quality_score": 0.74
     },
     {
@@ -7640,7 +7400,7 @@
       "source_priority": "S",
       "source_priority_score": 4,
       "extraction_method": "site_rule",
-      "updated_at": "2026-08-10T19:08:59.640Z",
+      "updated_at": "2026-08-11T19:14:00.555Z",
       "quality_score": 0.74
     },
     {
@@ -7664,7 +7424,7 @@
       "source_priority": "S",
       "source_priority_score": 4,
       "extraction_method": "site_rule",
-      "updated_at": "2026-08-10T19:08:59.640Z",
+      "updated_at": "2026-08-11T19:14:00.555Z",
       "quality_score": 0.78
     },
     {
@@ -7688,7 +7448,7 @@
       "source_priority": "A",
       "source_priority_score": 3,
       "extraction_method": "site_rule",
-      "updated_at": "2026-08-10T19:09:30.603Z",
+      "updated_at": "2026-08-11T19:14:30.015Z",
       "quality_score": 0.61
     },
     {
@@ -7712,7 +7472,7 @@
       "source_priority": "A",
       "source_priority_score": 3,
       "extraction_method": "site_rule",
-      "updated_at": "2026-08-10T19:09:44.243Z",
+      "updated_at": "2026-08-11T19:14:45.580Z",
       "quality_score": 0.75
     },
     {
@@ -7736,7 +7496,7 @@
       "source_priority": "S",
       "source_priority_score": 4,
       "extraction_method": "site_rule",
-      "updated_at": "2026-08-10T19:09:30.084Z",
+      "updated_at": "2026-08-11T19:14:33.184Z",
       "quality_score": 1
     },
     {
@@ -7760,7 +7520,7 @@
       "source_priority": "A",
       "source_priority_score": 3,
       "extraction_method": "site_rule",
-      "updated_at": "2026-08-10T19:09:24.784Z",
+      "updated_at": "2026-08-11T19:14:19.381Z",
       "quality_score": 0.95
     },
     {
@@ -7784,7 +7544,7 @@
       "source_priority": "S",
       "source_priority_score": 4,
       "extraction_method": "site_rule",
-      "updated_at": "2026-08-10T19:09:30.083Z",
+      "updated_at": "2026-08-11T19:14:33.183Z",
       "quality_score": 1
     },
     {
@@ -7808,7 +7568,7 @@
       "source_priority": "S",
       "source_priority_score": 4,
       "extraction_method": "site_rule",
-      "updated_at": "2026-08-10T19:09:33.862Z",
+      "updated_at": "2026-08-11T19:14:34.611Z",
       "quality_score": 0.78
     },
     {
@@ -7832,7 +7592,7 @@
       "source_priority": "A",
       "source_priority_score": 3,
       "extraction_method": "site_rule",
-      "updated_at": "2026-08-10T19:09:44.243Z",
+      "updated_at": "2026-08-11T19:14:45.580Z",
       "quality_score": 0.75
     },
     {
@@ -7856,7 +7616,7 @@
       "source_priority": "S",
       "source_priority_score": 4,
       "extraction_method": "site_rule",
-      "updated_at": "2026-08-10T19:09:05.228Z",
+      "updated_at": "2026-08-11T19:14:04.790Z",
       "quality_score": 0.7
     },
     {
@@ -7880,7 +7640,7 @@
       "source_priority": "A",
       "source_priority_score": 3,
       "extraction_method": "site_rule",
-      "updated_at": "2026-08-10T19:09:30.603Z",
+      "updated_at": "2026-08-11T19:14:30.015Z",
       "quality_score": 0.61
     },
     {
@@ -7904,7 +7664,7 @@
       "source_priority": "B",
       "source_priority_score": 2,
       "extraction_method": "site_rule",
-      "updated_at": "2026-08-10T19:09:48.335Z",
+      "updated_at": "2026-08-11T19:14:50.880Z",
       "quality_score": 0.71
     },
     {
@@ -7952,7 +7712,7 @@
       "source_priority": "A",
       "source_priority_score": 3,
       "extraction_method": "site_rule",
-      "updated_at": "2026-08-10T19:09:44.243Z",
+      "updated_at": "2026-08-11T19:14:45.580Z",
       "quality_score": 0.75
     },
     {
@@ -7976,7 +7736,7 @@
       "source_priority": "S",
       "source_priority_score": 4,
       "extraction_method": "site_rule",
-      "updated_at": "2026-08-10T19:09:33.866Z",
+      "updated_at": "2026-08-11T19:14:34.615Z",
       "quality_score": 0.78
     },
     {
@@ -8000,7 +7760,7 @@
       "source_priority": "S",
       "source_priority_score": 4,
       "extraction_method": "site_rule",
-      "updated_at": "2026-08-10T19:09:05.228Z",
+      "updated_at": "2026-08-11T19:14:04.790Z",
       "quality_score": 0.7
     },
     {
@@ -8024,7 +7784,7 @@
       "source_priority": "A",
       "source_priority_score": 3,
       "extraction_method": "site_rule",
-      "updated_at": "2026-08-10T19:09:30.603Z",
+      "updated_at": "2026-08-11T19:14:30.015Z",
       "quality_score": 0.61
     },
     {
@@ -8048,7 +7808,7 @@
       "source_priority": "S",
       "source_priority_score": 4,
       "extraction_method": "site_rule",
-      "updated_at": "2026-08-10T19:09:05.228Z",
+      "updated_at": "2026-08-11T19:14:04.790Z",
       "quality_score": 0.7
     },
     {
@@ -8096,7 +7856,7 @@
       "source_priority": "A",
       "source_priority_score": 3,
       "extraction_method": "site_rule",
-      "updated_at": "2026-08-10T19:09:30.603Z",
+      "updated_at": "2026-08-11T19:14:30.015Z",
       "quality_score": 0.61
     },
     {
@@ -8144,7 +7904,7 @@
       "source_priority": "S",
       "source_priority_score": 4,
       "extraction_method": "site_rule",
-      "updated_at": "2026-08-10T19:09:30.084Z",
+      "updated_at": "2026-08-11T19:14:33.184Z",
       "quality_score": 1
     },
     {
@@ -8168,7 +7928,7 @@
       "source_priority": "S",
       "source_priority_score": 4,
       "extraction_method": "site_rule",
-      "updated_at": "2026-08-10T19:09:30.084Z",
+      "updated_at": "2026-08-11T19:14:33.184Z",
       "quality_score": 1
     },
     {
@@ -8192,7 +7952,7 @@
       "source_priority": "S",
       "source_priority_score": 4,
       "extraction_method": "site_rule",
-      "updated_at": "2026-08-10T19:08:59.640Z",
+      "updated_at": "2026-08-11T19:14:00.556Z",
       "quality_score": 0.78
     },
     {
@@ -8216,7 +7976,7 @@
       "source_priority": "A",
       "source_priority_score": 3,
       "extraction_method": "site_rule",
-      "updated_at": "2026-08-10T19:09:30.604Z",
+      "updated_at": "2026-08-11T19:14:30.015Z",
       "quality_score": 0.61
     },
     {
@@ -8240,7 +8000,7 @@
       "source_priority": "A",
       "source_priority_score": 3,
       "extraction_method": "site_rule",
-      "updated_at": "2026-08-10T19:09:24.784Z",
+      "updated_at": "2026-08-11T19:14:19.381Z",
       "quality_score": 0.95
     },
     {
@@ -8264,7 +8024,7 @@
       "source_priority": "S",
       "source_priority_score": 4,
       "extraction_method": "site_rule",
-      "updated_at": "2026-08-10T19:08:59.641Z",
+      "updated_at": "2026-08-11T19:14:00.556Z",
       "quality_score": 0.74
     },
     {
@@ -8288,7 +8048,7 @@
       "source_priority": "S",
       "source_priority_score": 4,
       "extraction_method": "site_rule",
-      "updated_at": "2026-08-10T19:08:59.640Z",
+      "updated_at": "2026-08-11T19:14:00.556Z",
       "quality_score": 0.74
     },
     {
@@ -8312,7 +8072,7 @@
       "source_priority": "S",
       "source_priority_score": 4,
       "extraction_method": "site_rule",
-      "updated_at": "2026-08-10T19:08:59.640Z",
+      "updated_at": "2026-08-11T19:14:00.556Z",
       "quality_score": 0.74
     },
     {
@@ -8336,7 +8096,7 @@
       "source_priority": "S",
       "source_priority_score": 4,
       "extraction_method": "site_rule",
-      "updated_at": "2026-08-10T19:09:30.085Z",
+      "updated_at": "2026-08-11T19:14:33.185Z",
       "quality_score": 1
     },
     {
@@ -8360,7 +8120,7 @@
       "source_priority": "S",
       "source_priority_score": 4,
       "extraction_method": "site_rule",
-      "updated_at": "2026-08-10T19:08:59.641Z",
+      "updated_at": "2026-08-11T19:14:00.556Z",
       "quality_score": 0.74
     },
     {
@@ -8408,7 +8168,7 @@
       "source_priority": "A",
       "source_priority_score": 3,
       "extraction_method": "site_rule",
-      "updated_at": "2026-08-10T19:09:30.604Z",
+      "updated_at": "2026-08-11T19:14:30.016Z",
       "quality_score": 0.61
     },
     {
@@ -8432,7 +8192,7 @@
       "source_priority": "S",
       "source_priority_score": 4,
       "extraction_method": "site_rule",
-      "updated_at": "2026-08-10T19:09:30.085Z",
+      "updated_at": "2026-08-11T19:14:33.186Z",
       "quality_score": 1
     },
     {
@@ -8456,7 +8216,7 @@
       "source_priority": "S",
       "source_priority_score": 4,
       "extraction_method": "site_rule",
-      "updated_at": "2026-08-10T19:09:33.875Z",
+      "updated_at": "2026-08-11T19:14:34.624Z",
       "quality_score": 0.78
     },
     {
@@ -8480,7 +8240,7 @@
       "source_priority": "S",
       "source_priority_score": 4,
       "extraction_method": "site_rule",
-      "updated_at": "2026-08-10T19:09:30.085Z",
+      "updated_at": "2026-08-11T19:14:33.185Z",
       "quality_score": 1
     },
     {
@@ -8504,7 +8264,7 @@
       "source_priority": "S",
       "source_priority_score": 4,
       "extraction_method": "site_rule",
-      "updated_at": "2026-08-10T19:08:59.641Z",
+      "updated_at": "2026-08-11T19:14:00.556Z",
       "quality_score": 0.74
     },
     {
@@ -8528,7 +8288,7 @@
       "source_priority": "S",
       "source_priority_score": 4,
       "extraction_method": "site_rule",
-      "updated_at": "2026-08-10T19:08:59.641Z",
+      "updated_at": "2026-08-11T19:14:00.556Z",
       "quality_score": 0.74
     },
     {
@@ -8552,7 +8312,7 @@
       "source_priority": "A",
       "source_priority_score": 3,
       "extraction_method": "site_rule",
-      "updated_at": "2026-08-10T19:09:37.681Z",
+      "updated_at": "2026-08-11T19:14:39.501Z",
       "quality_score": 0.61
     },
     {
@@ -8576,7 +8336,7 @@
       "source_priority": "S",
       "source_priority_score": 4,
       "extraction_method": "site_rule",
-      "updated_at": "2026-08-10T19:09:30.086Z",
+      "updated_at": "2026-08-11T19:14:33.186Z",
       "quality_score": 1
     },
     {
@@ -8600,7 +8360,7 @@
       "source_priority": "A",
       "source_priority_score": 3,
       "extraction_method": "site_rule",
-      "updated_at": "2026-08-10T19:09:44.243Z",
+      "updated_at": "2026-08-11T19:14:45.581Z",
       "quality_score": 0.75
     },
     {
@@ -8624,7 +8384,7 @@
       "source_priority": "S",
       "source_priority_score": 4,
       "extraction_method": "site_rule",
-      "updated_at": "2026-08-10T19:09:30.086Z",
+      "updated_at": "2026-08-11T19:14:33.186Z",
       "quality_score": 1
     },
     {
@@ -8648,7 +8408,7 @@
       "source_priority": "S",
       "source_priority_score": 4,
       "extraction_method": "site_rule",
-      "updated_at": "2026-08-10T19:09:33.880Z",
+      "updated_at": "2026-08-11T19:14:34.628Z",
       "quality_score": 0.7
     },
     {
@@ -8672,7 +8432,7 @@
       "source_priority": "S",
       "source_priority_score": 4,
       "extraction_method": "site_rule",
-      "updated_at": "2026-08-10T19:09:30.086Z",
+      "updated_at": "2026-08-11T19:14:33.186Z",
       "quality_score": 1
     },
     {
@@ -8696,7 +8456,7 @@
       "source_priority": "S",
       "source_priority_score": 4,
       "extraction_method": "site_rule",
-      "updated_at": "2026-08-10T19:08:59.641Z",
+      "updated_at": "2026-08-11T19:14:00.557Z",
       "quality_score": 0.74
     },
     {
@@ -8720,7 +8480,7 @@
       "source_priority": "S",
       "source_priority_score": 4,
       "extraction_method": "site_rule",
-      "updated_at": "2026-08-10T19:08:59.641Z",
+      "updated_at": "2026-08-11T19:14:00.557Z",
       "quality_score": 0.74
     },
     {
@@ -8744,7 +8504,7 @@
       "source_priority": "S",
       "source_priority_score": 4,
       "extraction_method": "site_rule",
-      "updated_at": "2026-08-10T19:09:30.087Z",
+      "updated_at": "2026-08-11T19:14:33.187Z",
       "quality_score": 1
     },
     {
@@ -8768,7 +8528,7 @@
       "source_priority": "S",
       "source_priority_score": 4,
       "extraction_method": "site_rule",
-      "updated_at": "2026-08-10T19:09:33.885Z",
+      "updated_at": "2026-08-11T19:14:34.632Z",
       "quality_score": 0.7
     },
     {
@@ -8792,7 +8552,7 @@
       "source_priority": "S",
       "source_priority_score": 4,
       "extraction_method": "site_rule",
-      "updated_at": "2026-08-10T19:08:59.641Z",
+      "updated_at": "2026-08-11T19:14:00.557Z",
       "quality_score": 0.74
     },
     {
@@ -8816,7 +8576,7 @@
       "source_priority": "B",
       "source_priority_score": 2,
       "extraction_method": "site_rule",
-      "updated_at": "2026-08-10T19:09:48.335Z",
+      "updated_at": "2026-08-11T19:14:50.881Z",
       "quality_score": 0.71
     },
     {
@@ -8840,7 +8600,7 @@
       "source_priority": "S",
       "source_priority_score": 4,
       "extraction_method": "site_rule",
-      "updated_at": "2026-08-10T19:09:33.889Z",
+      "updated_at": "2026-08-11T19:14:34.636Z",
       "quality_score": 0.78
     },
     {
@@ -8864,7 +8624,7 @@
       "source_priority": "S",
       "source_priority_score": 4,
       "extraction_method": "site_rule",
-      "updated_at": "2026-08-10T19:09:02.759Z",
+      "updated_at": "2026-08-11T19:14:03.831Z",
       "quality_score": 0.74
     },
     {
@@ -8888,7 +8648,7 @@
       "source_priority": "S",
       "source_priority_score": 4,
       "extraction_method": "site_rule",
-      "updated_at": "2026-08-10T19:09:33.896Z",
+      "updated_at": "2026-08-11T19:14:34.642Z",
       "quality_score": 0.78
     },
     {
@@ -8901,9 +8661,9 @@
       "end_time": "",
       "all_day": false,
       "venue": "カナモトホール",
-      "venue_address": "",
+      "venue_address": "札幌市中央区北1条西1丁目",
       "summary": "10月2日(金) / 18:00開場/18:30開演 / カナモトホール / 販売中",
-      "flyer_image_url": "",
+      "flyer_image_url": "https://www.sapporo-shiminhall.org/files/seminar/2108/2026.10.02_%E6%9D%A5%E7%94%9F%E3%81%9F%E3%81%8B%E3%81%8A%EF%BC%88%E3%82%A8%E3%83%BC%E3%83%80%E3%83%83%E3%82%B7%E3%83%A5%EF%BC%89.pdf",
       "detail_url": "https://adash.jp/kisugi2026-1002.html",
       "source_id": "www-hbc-co-jp-event",
       "source_name": "HBC北海道放送（イベント）",
@@ -8912,7 +8672,7 @@
       "source_priority": "A",
       "source_priority_score": 3,
       "extraction_method": "site_rule",
-      "updated_at": "2026-08-10T19:09:44.243Z",
+      "updated_at": "2026-08-11T19:14:45.581Z",
       "quality_score": 0.75
     },
     {
@@ -8936,7 +8696,7 @@
       "source_priority": "S",
       "source_priority_score": 4,
       "extraction_method": "site_rule",
-      "updated_at": "2026-08-10T19:09:02.760Z",
+      "updated_at": "2026-08-11T19:14:03.831Z",
       "quality_score": 0.74
     },
     {
@@ -8960,7 +8720,7 @@
       "source_priority": "S",
       "source_priority_score": 4,
       "extraction_method": "site_rule",
-      "updated_at": "2026-08-10T19:09:02.759Z",
+      "updated_at": "2026-08-11T19:14:03.831Z",
       "quality_score": 0.74
     },
     {
@@ -8984,7 +8744,7 @@
       "source_priority": "S",
       "source_priority_score": 4,
       "extraction_method": "site_rule",
-      "updated_at": "2026-08-10T19:09:02.760Z",
+      "updated_at": "2026-08-11T19:14:03.831Z",
       "quality_score": 0.74
     },
     {
@@ -9008,7 +8768,7 @@
       "source_priority": "A",
       "source_priority_score": 3,
       "extraction_method": "site_rule",
-      "updated_at": "2026-08-10T19:09:24.784Z",
+      "updated_at": "2026-08-11T19:14:19.382Z",
       "quality_score": 0.77
     },
     {
@@ -9056,7 +8816,7 @@
       "source_priority": "B",
       "source_priority_score": 2,
       "extraction_method": "site_rule",
-      "updated_at": "2026-08-10T19:09:50.031Z",
+      "updated_at": "2026-08-11T19:14:52.954Z",
       "quality_score": 0.91
     },
     {
@@ -9080,7 +8840,7 @@
       "source_priority": "S",
       "source_priority_score": 4,
       "extraction_method": "site_rule",
-      "updated_at": "2026-08-10T19:09:02.760Z",
+      "updated_at": "2026-08-11T19:14:03.831Z",
       "quality_score": 0.74
     },
     {
@@ -9104,7 +8864,7 @@
       "source_priority": "B",
       "source_priority_score": 2,
       "extraction_method": "site_rule",
-      "updated_at": "2026-08-10T19:09:48.335Z",
+      "updated_at": "2026-08-11T19:14:50.881Z",
       "quality_score": 0.71
     },
     {
@@ -9152,7 +8912,7 @@
       "source_priority": "S",
       "source_priority_score": 4,
       "extraction_method": "site_rule",
-      "updated_at": "2026-08-10T19:09:02.760Z",
+      "updated_at": "2026-08-11T19:14:03.831Z",
       "quality_score": 0.74
     },
     {
@@ -9176,7 +8936,7 @@
       "source_priority": "S",
       "source_priority_score": 4,
       "extraction_method": "site_rule",
-      "updated_at": "2026-08-10T19:09:02.760Z",
+      "updated_at": "2026-08-11T19:14:03.832Z",
       "quality_score": 0.74
     },
     {
@@ -9200,7 +8960,7 @@
       "source_priority": "B",
       "source_priority_score": 2,
       "extraction_method": "site_rule",
-      "updated_at": "2026-08-10T19:09:48.335Z",
+      "updated_at": "2026-08-11T19:14:50.881Z",
       "quality_score": 0.71
     },
     {
@@ -9224,7 +8984,7 @@
       "source_priority": "S",
       "source_priority_score": 4,
       "extraction_method": "site_rule",
-      "updated_at": "2026-08-10T19:09:02.760Z",
+      "updated_at": "2026-08-11T19:14:03.831Z",
       "quality_score": 0.74
     },
     {
@@ -9248,7 +9008,7 @@
       "source_priority": "A",
       "source_priority_score": 3,
       "extraction_method": "site_rule",
-      "updated_at": "2026-08-09T18:54:25.218Z",
+      "updated_at": "2026-08-11T19:14:30.016Z",
       "quality_score": 0.61
     },
     {
@@ -9272,7 +9032,7 @@
       "source_priority": "A",
       "source_priority_score": 3,
       "extraction_method": "heuristic",
-      "updated_at": "2026-08-10T19:09:42.982Z",
+      "updated_at": "2026-08-11T19:14:46.160Z",
       "quality_score": 0.96
     },
     {
@@ -9320,7 +9080,7 @@
       "source_priority": "S",
       "source_priority_score": 4,
       "extraction_method": "site_rule",
-      "updated_at": "2026-08-10T19:09:07.254Z",
+      "updated_at": "2026-08-11T19:14:07.556Z",
       "quality_score": 0.8
     },
     {
@@ -9344,7 +9104,7 @@
       "source_priority": "S",
       "source_priority_score": 4,
       "extraction_method": "site_rule",
-      "updated_at": "2026-08-10T19:09:07.254Z",
+      "updated_at": "2026-08-11T19:14:07.556Z",
       "quality_score": 0.8
     },
     {
@@ -9368,7 +9128,7 @@
       "source_priority": "S",
       "source_priority_score": 4,
       "extraction_method": "site_rule",
-      "updated_at": "2026-08-10T19:09:07.254Z",
+      "updated_at": "2026-08-11T19:14:07.556Z",
       "quality_score": 0.8
     },
     {
@@ -9392,7 +9152,7 @@
       "source_priority": "S",
       "source_priority_score": 4,
       "extraction_method": "site_rule",
-      "updated_at": "2026-08-10T19:09:07.254Z",
+      "updated_at": "2026-08-11T19:14:07.556Z",
       "quality_score": 0.8
     },
     {
@@ -9416,7 +9176,7 @@
       "source_priority": "S",
       "source_priority_score": 4,
       "extraction_method": "site_rule",
-      "updated_at": "2026-08-10T19:09:07.254Z",
+      "updated_at": "2026-08-11T19:14:07.556Z",
       "quality_score": 0.8
     },
     {
@@ -9440,7 +9200,7 @@
       "source_priority": "S",
       "source_priority_score": 4,
       "extraction_method": "site_rule",
-      "updated_at": "2026-08-10T19:09:07.254Z",
+      "updated_at": "2026-08-11T19:14:07.556Z",
       "quality_score": 0.8
     },
     {
@@ -9512,7 +9272,7 @@
       "source_priority": "A",
       "source_priority_score": 3,
       "extraction_method": "heuristic",
-      "updated_at": "2026-08-10T19:09:43.216Z",
+      "updated_at": "2026-08-11T19:14:45.959Z",
       "quality_score": 0.81
     },
     {
@@ -9560,7 +9320,7 @@
       "source_priority": "S",
       "source_priority_score": 4,
       "extraction_method": "site_rule",
-      "updated_at": "2026-08-10T19:09:33.901Z",
+      "updated_at": "2026-08-11T19:14:34.646Z",
       "quality_score": 0.78
     },
     {
@@ -9584,7 +9344,7 @@
       "source_priority": "S",
       "source_priority_score": 4,
       "extraction_method": "site_rule",
-      "updated_at": "2026-08-10T19:09:02.760Z",
+      "updated_at": "2026-08-11T19:14:03.832Z",
       "quality_score": 0.74
     },
     {
@@ -9608,7 +9368,7 @@
       "source_priority": "S",
       "source_priority_score": 4,
       "extraction_method": "site_rule",
-      "updated_at": "2026-08-10T19:09:17.911Z",
+      "updated_at": "2026-08-11T19:14:16.947Z",
       "quality_score": 0.98
     },
     {
@@ -9656,7 +9416,7 @@
       "source_priority": "S",
       "source_priority_score": 4,
       "extraction_method": "site_rule",
-      "updated_at": "2026-08-10T19:09:02.760Z",
+      "updated_at": "2026-08-11T19:14:03.832Z",
       "quality_score": 0.78
     },
     {
@@ -9680,7 +9440,7 @@
       "source_priority": "S",
       "source_priority_score": 4,
       "extraction_method": "site_rule",
-      "updated_at": "2026-08-10T19:09:02.760Z",
+      "updated_at": "2026-08-11T19:14:03.832Z",
       "quality_score": 0.74
     },
     {
@@ -9704,7 +9464,7 @@
       "source_priority": "S",
       "source_priority_score": 4,
       "extraction_method": "site_rule",
-      "updated_at": "2026-08-10T19:09:02.760Z",
+      "updated_at": "2026-08-11T19:14:03.832Z",
       "quality_score": 0.74
     },
     {
@@ -9728,7 +9488,7 @@
       "source_priority": "S",
       "source_priority_score": 4,
       "extraction_method": "site_rule",
-      "updated_at": "2026-08-10T19:09:02.760Z",
+      "updated_at": "2026-08-11T19:14:03.832Z",
       "quality_score": 0.74
     },
     {
@@ -9752,7 +9512,7 @@
       "source_priority": "A",
       "source_priority_score": 3,
       "extraction_method": "site_rule",
-      "updated_at": "2026-08-10T19:09:37.690Z",
+      "updated_at": "2026-08-11T19:14:39.510Z",
       "quality_score": 0.61
     },
     {
@@ -9776,7 +9536,7 @@
       "source_priority": "S",
       "source_priority_score": 4,
       "extraction_method": "site_rule",
-      "updated_at": "2026-08-10T19:09:02.761Z",
+      "updated_at": "2026-08-11T19:14:03.832Z",
       "quality_score": 0.74
     },
     {
@@ -9800,7 +9560,7 @@
       "source_priority": "S",
       "source_priority_score": 4,
       "extraction_method": "site_rule",
-      "updated_at": "2026-08-10T19:09:02.761Z",
+      "updated_at": "2026-08-11T19:14:03.832Z",
       "quality_score": 0.74
     },
     {
@@ -9848,7 +9608,7 @@
       "source_priority": "S",
       "source_priority_score": 4,
       "extraction_method": "site_rule",
-      "updated_at": "2026-08-10T19:09:02.761Z",
+      "updated_at": "2026-08-11T19:14:03.832Z",
       "quality_score": 0.74
     },
     {
@@ -9872,7 +9632,7 @@
       "source_priority": "S",
       "source_priority_score": 4,
       "extraction_method": "site_rule",
-      "updated_at": "2026-08-10T19:09:02.761Z",
+      "updated_at": "2026-08-11T19:14:03.833Z",
       "quality_score": 0.74
     },
     {
@@ -9896,7 +9656,7 @@
       "source_priority": "S",
       "source_priority_score": 4,
       "extraction_method": "site_rule",
-      "updated_at": "2026-08-10T19:09:02.761Z",
+      "updated_at": "2026-08-11T19:14:03.833Z",
       "quality_score": 0.74
     },
     {
@@ -9920,7 +9680,7 @@
       "source_priority": "S",
       "source_priority_score": 4,
       "extraction_method": "site_rule",
-      "updated_at": "2026-08-10T19:09:02.761Z",
+      "updated_at": "2026-08-11T19:14:03.833Z",
       "quality_score": 0.74
     },
     {
@@ -9944,7 +9704,7 @@
       "source_priority": "A",
       "source_priority_score": 3,
       "extraction_method": "site_rule",
-      "updated_at": "2026-08-09T18:54:25.218Z",
+      "updated_at": "2026-08-11T19:14:30.016Z",
       "quality_score": 0.61
     },
     {
@@ -9968,7 +9728,7 @@
       "source_priority": "A",
       "source_priority_score": 3,
       "extraction_method": "site_rule",
-      "updated_at": "2026-08-10T19:09:44.243Z",
+      "updated_at": "2026-08-11T19:14:45.581Z",
       "quality_score": 0.57
     },
     {
@@ -9992,7 +9752,7 @@
       "source_priority": "A",
       "source_priority_score": 3,
       "extraction_method": "site_rule",
-      "updated_at": "2026-08-10T19:09:44.243Z",
+      "updated_at": "2026-08-11T19:14:45.581Z",
       "quality_score": 0.75
     },
     {
@@ -10088,7 +9848,7 @@
       "source_priority": "A",
       "source_priority_score": 3,
       "extraction_method": "site_rule",
-      "updated_at": "2026-08-10T19:09:44.243Z",
+      "updated_at": "2026-08-11T19:14:45.581Z",
       "quality_score": 0.75
     },
     {
@@ -10112,7 +9872,7 @@
       "source_priority": "S",
       "source_priority_score": 4,
       "extraction_method": "site_rule",
-      "updated_at": "2026-08-10T19:09:02.761Z",
+      "updated_at": "2026-08-11T19:14:03.833Z",
       "quality_score": 0.74
     },
     {
@@ -10136,7 +9896,7 @@
       "source_priority": "S",
       "source_priority_score": 4,
       "extraction_method": "site_rule",
-      "updated_at": "2026-08-10T19:09:02.761Z",
+      "updated_at": "2026-08-11T19:14:03.833Z",
       "quality_score": 0.74
     },
     {
@@ -10160,7 +9920,7 @@
       "source_priority": "B",
       "source_priority_score": 2,
       "extraction_method": "site_rule",
-      "updated_at": "2026-08-10T19:09:50.031Z",
+      "updated_at": "2026-08-11T19:14:52.954Z",
       "quality_score": 0.71
     },
     {
@@ -10208,7 +9968,7 @@
       "source_priority": "S",
       "source_priority_score": 4,
       "extraction_method": "site_rule",
-      "updated_at": "2026-08-10T19:09:02.761Z",
+      "updated_at": "2026-08-11T19:14:03.833Z",
       "quality_score": 0.74
     },
     {
@@ -10232,7 +9992,7 @@
       "source_priority": "S",
       "source_priority_score": 4,
       "extraction_method": "site_rule",
-      "updated_at": "2026-08-10T19:09:02.761Z",
+      "updated_at": "2026-08-11T19:14:03.833Z",
       "quality_score": 0.74
     },
     {
@@ -10256,7 +10016,7 @@
       "source_priority": "S",
       "source_priority_score": 4,
       "extraction_method": "site_rule",
-      "updated_at": "2026-08-10T19:09:02.761Z",
+      "updated_at": "2026-08-11T19:14:03.833Z",
       "quality_score": 0.74
     },
     {
@@ -10280,7 +10040,7 @@
       "source_priority": "S",
       "source_priority_score": 4,
       "extraction_method": "site_rule",
-      "updated_at": "2026-08-10T19:09:02.761Z",
+      "updated_at": "2026-08-11T19:14:03.833Z",
       "quality_score": 0.74
     },
     {
@@ -10304,7 +10064,7 @@
       "source_priority": "S",
       "source_priority_score": 4,
       "extraction_method": "site_rule",
-      "updated_at": "2026-08-10T19:09:07.254Z",
+      "updated_at": "2026-08-11T19:14:07.556Z",
       "quality_score": 0.8
     },
     {
@@ -10328,7 +10088,7 @@
       "source_priority": "S",
       "source_priority_score": 4,
       "extraction_method": "site_rule",
-      "updated_at": "2026-08-10T19:09:02.761Z",
+      "updated_at": "2026-08-11T19:14:03.833Z",
       "quality_score": 0.74
     },
     {
@@ -10352,7 +10112,7 @@
       "source_priority": "S",
       "source_priority_score": 4,
       "extraction_method": "site_rule",
-      "updated_at": "2026-08-10T19:09:02.761Z",
+      "updated_at": "2026-08-11T19:14:03.833Z",
       "quality_score": 0.74
     },
     {
@@ -10376,7 +10136,7 @@
       "source_priority": "S",
       "source_priority_score": 4,
       "extraction_method": "site_rule",
-      "updated_at": "2026-08-10T19:09:02.761Z",
+      "updated_at": "2026-08-11T19:14:03.833Z",
       "quality_score": 0.74
     },
     {
@@ -10400,7 +10160,7 @@
       "source_priority": "S",
       "source_priority_score": 4,
       "extraction_method": "site_rule",
-      "updated_at": "2026-08-10T19:09:02.761Z",
+      "updated_at": "2026-08-11T19:14:03.833Z",
       "quality_score": 0.74
     },
     {
@@ -10448,7 +10208,7 @@
       "source_priority": "S",
       "source_priority_score": 4,
       "extraction_method": "site_rule",
-      "updated_at": "2026-08-10T19:09:02.761Z",
+      "updated_at": "2026-08-11T19:14:03.833Z",
       "quality_score": 0.74
     },
     {
@@ -10472,7 +10232,7 @@
       "source_priority": "A",
       "source_priority_score": 3,
       "extraction_method": "heuristic",
-      "updated_at": "2026-08-10T19:09:42.801Z",
+      "updated_at": "2026-08-11T19:14:44.958Z",
       "quality_score": 0.81
     },
     {
@@ -10496,7 +10256,7 @@
       "source_priority": "S",
       "source_priority_score": 4,
       "extraction_method": "site_rule",
-      "updated_at": "2026-08-10T19:09:02.761Z",
+      "updated_at": "2026-08-11T19:14:03.833Z",
       "quality_score": 0.74
     },
     {
@@ -10544,7 +10304,7 @@
       "source_priority": "A",
       "source_priority_score": 3,
       "extraction_method": "site_rule",
-      "updated_at": "2026-08-10T19:09:24.785Z",
+      "updated_at": "2026-08-11T19:14:19.382Z",
       "quality_score": 0.95
     },
     {
@@ -10592,7 +10352,7 @@
       "source_priority": "S",
       "source_priority_score": 4,
       "extraction_method": "site_rule",
-      "updated_at": "2026-08-10T19:09:02.761Z",
+      "updated_at": "2026-08-11T19:14:03.834Z",
       "quality_score": 0.74
     },
     {
@@ -10640,7 +10400,7 @@
       "source_priority": "S",
       "source_priority_score": 4,
       "extraction_method": "site_rule",
-      "updated_at": "2026-08-10T19:09:02.761Z",
+      "updated_at": "2026-08-11T19:14:03.834Z",
       "quality_score": 0.74
     },
     {
@@ -10688,7 +10448,7 @@
       "source_priority": "S",
       "source_priority_score": 4,
       "extraction_method": "site_rule",
-      "updated_at": "2026-08-10T19:09:02.762Z",
+      "updated_at": "2026-08-11T19:14:03.834Z",
       "quality_score": 0.74
     },
     {
@@ -10712,7 +10472,7 @@
       "source_priority": "S",
       "source_priority_score": 4,
       "extraction_method": "site_rule",
-      "updated_at": "2026-08-10T19:09:02.761Z",
+      "updated_at": "2026-08-11T19:14:03.834Z",
       "quality_score": 0.74
     },
     {
@@ -10736,7 +10496,7 @@
       "source_priority": "S",
       "source_priority_score": 4,
       "extraction_method": "site_rule",
-      "updated_at": "2026-08-10T19:09:33.915Z",
+      "updated_at": "2026-08-11T19:14:34.658Z",
       "quality_score": 0.78
     },
     {
@@ -10760,7 +10520,31 @@
       "source_priority": "S",
       "source_priority_score": 4,
       "extraction_method": "site_rule",
-      "updated_at": "2026-08-10T19:09:02.761Z",
+      "updated_at": "2026-08-11T19:14:03.834Z",
+      "quality_score": 0.74
+    },
+    {
+      "id": "7c8f21acc0811845d66d",
+      "title": "ロージークロニクル ライブツアー2026秋 ～Blueprint～",
+      "start_date": "2026-10-24",
+      "end_date": "",
+      "open_time": "12:45",
+      "start_time": "13:15",
+      "end_time": "",
+      "all_day": false,
+      "venue": "小樽 GOLDSTONE",
+      "venue_address": "",
+      "summary": "詳細は、後日ご案内致します",
+      "flyer_image_url": "https://wess.jp/wp/wp-content/uploads/2026/02/rosychronicle.jpg",
+      "detail_url": "https://wess.jp/rosychronicle/",
+      "source_id": "wess-jp-concert-schedule",
+      "source_name": "WESS",
+      "source_url": "https://wess.jp/concert-schedule/",
+      "source_category": "WESS",
+      "source_priority": "S",
+      "source_priority_score": 4,
+      "extraction_method": "site_rule",
+      "updated_at": "2026-08-11T19:14:03.834Z",
       "quality_score": 0.74
     },
     {
@@ -10808,7 +10592,7 @@
       "source_priority": "S",
       "source_priority_score": 4,
       "extraction_method": "site_rule",
-      "updated_at": "2026-08-10T19:09:02.762Z",
+      "updated_at": "2026-08-11T19:14:03.834Z",
       "quality_score": 0.74
     },
     {
@@ -10832,7 +10616,7 @@
       "source_priority": "S",
       "source_priority_score": 4,
       "extraction_method": "site_rule",
-      "updated_at": "2026-08-10T19:09:02.762Z",
+      "updated_at": "2026-08-11T19:14:03.834Z",
       "quality_score": 0.74
     },
     {
@@ -10856,7 +10640,7 @@
       "source_priority": "S",
       "source_priority_score": 4,
       "extraction_method": "site_rule",
-      "updated_at": "2026-08-10T19:09:02.762Z",
+      "updated_at": "2026-08-11T19:14:03.834Z",
       "quality_score": 0.74
     },
     {
@@ -10880,7 +10664,7 @@
       "source_priority": "S",
       "source_priority_score": 4,
       "extraction_method": "site_rule",
-      "updated_at": "2026-08-10T19:09:02.762Z",
+      "updated_at": "2026-08-11T19:14:03.834Z",
       "quality_score": 0.74
     },
     {
@@ -10904,7 +10688,7 @@
       "source_priority": "S",
       "source_priority_score": 4,
       "extraction_method": "heuristic",
-      "updated_at": "2026-08-10T19:09:06.710Z",
+      "updated_at": "2026-08-11T19:14:08.526Z",
       "quality_score": 0.84
     },
     {
@@ -10952,7 +10736,7 @@
       "source_priority": "S",
       "source_priority_score": 4,
       "extraction_method": "site_rule",
-      "updated_at": "2026-08-10T19:09:02.762Z",
+      "updated_at": "2026-08-11T19:14:03.835Z",
       "quality_score": 0.74
     },
     {
@@ -10976,7 +10760,7 @@
       "source_priority": "S",
       "source_priority_score": 4,
       "extraction_method": "site_rule",
-      "updated_at": "2026-08-10T19:09:02.762Z",
+      "updated_at": "2026-08-11T19:14:03.834Z",
       "quality_score": 0.74
     },
     {
@@ -11000,7 +10784,7 @@
       "source_priority": "S",
       "source_priority_score": 4,
       "extraction_method": "site_rule",
-      "updated_at": "2026-08-10T19:09:02.762Z",
+      "updated_at": "2026-08-11T19:14:03.834Z",
       "quality_score": 0.74
     },
     {
@@ -11048,7 +10832,7 @@
       "source_priority": "A",
       "source_priority_score": 3,
       "extraction_method": "heuristic",
-      "updated_at": "2026-08-10T19:09:42.815Z",
+      "updated_at": "2026-08-11T19:14:45.559Z",
       "quality_score": 0.81
     },
     {
@@ -11085,7 +10869,7 @@
       "end_time": "",
       "all_day": false,
       "venue": "カナモトホール",
-      "venue_address": "",
+      "venue_address": "札幌市中央区北1条西1丁目",
       "summary": "",
       "flyer_image_url": "https://wess.jp/wp/wp-content/uploads/2026/01/natori-1.jpg",
       "detail_url": "https://wess.jp/natori/",
@@ -11096,7 +10880,31 @@
       "source_priority": "S",
       "source_priority_score": 4,
       "extraction_method": "site_rule",
-      "updated_at": "2026-08-10T19:09:02.762Z",
+      "updated_at": "2026-08-11T19:14:03.835Z",
+      "quality_score": 0.74
+    },
+    {
+      "id": "21f0c1f98f5c19477bfc",
+      "title": "Soala Live Tour 2026 ~Link~",
+      "start_date": "2026-10-29",
+      "end_date": "",
+      "open_time": "18:00",
+      "start_time": "18:30",
+      "end_time": "",
+      "all_day": false,
+      "venue": "cube garden",
+      "venue_address": "",
+      "summary": "詳細は、後日ご案内致します",
+      "flyer_image_url": "https://wess.jp/wp/wp-content/uploads/2026/08/soala.jpg",
+      "detail_url": "https://wess.jp/soala/",
+      "source_id": "wess-jp-concert-schedule",
+      "source_name": "WESS",
+      "source_url": "https://wess.jp/concert-schedule/",
+      "source_category": "WESS",
+      "source_priority": "S",
+      "source_priority_score": 4,
+      "extraction_method": "site_rule",
+      "updated_at": "2026-08-11T19:14:03.835Z",
       "quality_score": 0.74
     },
     {
@@ -11120,7 +10928,7 @@
       "source_priority": "S",
       "source_priority_score": 4,
       "extraction_method": "site_rule",
-      "updated_at": "2026-08-10T19:09:02.762Z",
+      "updated_at": "2026-08-11T19:14:03.835Z",
       "quality_score": 0.74
     },
     {
@@ -11168,7 +10976,7 @@
       "source_priority": "S",
       "source_priority_score": 4,
       "extraction_method": "site_rule",
-      "updated_at": "2026-08-10T19:09:02.762Z",
+      "updated_at": "2026-08-11T19:14:03.835Z",
       "quality_score": 0.74
     },
     {
@@ -11192,7 +11000,7 @@
       "source_priority": "S",
       "source_priority_score": 4,
       "extraction_method": "site_rule",
-      "updated_at": "2026-08-10T19:09:33.919Z",
+      "updated_at": "2026-08-11T19:14:34.662Z",
       "quality_score": 0.78
     },
     {
@@ -11216,7 +11024,7 @@
       "source_priority": "S",
       "source_priority_score": 4,
       "extraction_method": "site_rule",
-      "updated_at": "2026-08-10T19:09:02.762Z",
+      "updated_at": "2026-08-11T19:14:03.835Z",
       "quality_score": 0.74
     },
     {
@@ -11264,7 +11072,7 @@
       "source_priority": "S",
       "source_priority_score": 4,
       "extraction_method": "site_rule",
-      "updated_at": "2026-08-10T19:09:02.762Z",
+      "updated_at": "2026-08-11T19:14:03.835Z",
       "quality_score": 0.74
     },
     {
@@ -11360,7 +11168,7 @@
       "source_priority": "S",
       "source_priority_score": 4,
       "extraction_method": "site_rule",
-      "updated_at": "2026-08-10T19:09:02.762Z",
+      "updated_at": "2026-08-11T19:14:03.835Z",
       "quality_score": 0.74
     },
     {
@@ -11384,7 +11192,7 @@
       "source_priority": "S",
       "source_priority_score": 4,
       "extraction_method": "site_rule",
-      "updated_at": "2026-08-10T19:09:33.924Z",
+      "updated_at": "2026-08-11T19:14:34.666Z",
       "quality_score": 0.78
     },
     {
@@ -11408,7 +11216,7 @@
       "source_priority": "S",
       "source_priority_score": 4,
       "extraction_method": "site_rule",
-      "updated_at": "2026-08-10T19:09:02.762Z",
+      "updated_at": "2026-08-11T19:14:03.835Z",
       "quality_score": 0.78
     },
     {
@@ -11432,7 +11240,7 @@
       "source_priority": "S",
       "source_priority_score": 4,
       "extraction_method": "site_rule",
-      "updated_at": "2026-08-10T19:09:02.762Z",
+      "updated_at": "2026-08-11T19:14:03.835Z",
       "quality_score": 0.74
     },
     {
@@ -11456,7 +11264,7 @@
       "source_priority": "S",
       "source_priority_score": 4,
       "extraction_method": "site_rule",
-      "updated_at": "2026-08-10T19:09:02.762Z",
+      "updated_at": "2026-08-11T19:14:03.835Z",
       "quality_score": 0.74
     },
     {
@@ -11480,7 +11288,7 @@
       "source_priority": "B",
       "source_priority_score": 2,
       "extraction_method": "site_rule",
-      "updated_at": "2026-08-10T19:09:50.031Z",
+      "updated_at": "2026-08-11T19:14:52.955Z",
       "quality_score": 0.71
     },
     {
@@ -11528,7 +11336,7 @@
       "source_priority": "S",
       "source_priority_score": 4,
       "extraction_method": "site_rule",
-      "updated_at": "2026-08-10T19:09:33.931Z",
+      "updated_at": "2026-08-11T19:14:34.672Z",
       "quality_score": 0.78
     },
     {
@@ -11552,7 +11360,7 @@
       "source_priority": "S",
       "source_priority_score": 4,
       "extraction_method": "site_rule",
-      "updated_at": "2026-08-10T19:09:07.084Z",
+      "updated_at": "2026-08-11T19:14:07.343Z",
       "quality_score": 0.74
     },
     {
@@ -11576,7 +11384,7 @@
       "source_priority": "S",
       "source_priority_score": 4,
       "extraction_method": "site_rule",
-      "updated_at": "2026-08-10T19:09:07.084Z",
+      "updated_at": "2026-08-11T19:14:07.343Z",
       "quality_score": 0.74
     },
     {
@@ -11600,7 +11408,7 @@
       "source_priority": "S",
       "source_priority_score": 4,
       "extraction_method": "site_rule",
-      "updated_at": "2026-08-10T19:09:07.084Z",
+      "updated_at": "2026-08-11T19:14:07.343Z",
       "quality_score": 0.74
     },
     {
@@ -11624,7 +11432,7 @@
       "source_priority": "S",
       "source_priority_score": 4,
       "extraction_method": "site_rule",
-      "updated_at": "2026-08-10T19:09:07.084Z",
+      "updated_at": "2026-08-11T19:14:07.343Z",
       "quality_score": 0.74
     },
     {
@@ -11648,7 +11456,7 @@
       "source_priority": "A",
       "source_priority_score": 3,
       "extraction_method": "site_rule",
-      "updated_at": "2026-08-10T19:09:24.785Z",
+      "updated_at": "2026-08-11T19:14:19.382Z",
       "quality_score": 0.77
     },
     {
@@ -11672,7 +11480,7 @@
       "source_priority": "S",
       "source_priority_score": 4,
       "extraction_method": "site_rule",
-      "updated_at": "2026-08-10T19:09:33.935Z",
+      "updated_at": "2026-08-11T19:14:34.676Z",
       "quality_score": 0.78
     },
     {
@@ -11696,7 +11504,7 @@
       "source_priority": "S",
       "source_priority_score": 4,
       "extraction_method": "site_rule",
-      "updated_at": "2026-08-10T19:09:07.084Z",
+      "updated_at": "2026-08-11T19:14:07.343Z",
       "quality_score": 0.74
     },
     {
@@ -11720,7 +11528,7 @@
       "source_priority": "S",
       "source_priority_score": 4,
       "extraction_method": "site_rule",
-      "updated_at": "2026-08-10T19:09:07.084Z",
+      "updated_at": "2026-08-11T19:14:07.343Z",
       "quality_score": 0.74
     },
     {
@@ -11744,7 +11552,7 @@
       "source_priority": "S",
       "source_priority_score": 4,
       "extraction_method": "site_rule",
-      "updated_at": "2026-08-10T19:09:07.084Z",
+      "updated_at": "2026-08-11T19:14:07.343Z",
       "quality_score": 0.78
     },
     {
@@ -11768,7 +11576,7 @@
       "source_priority": "S",
       "source_priority_score": 4,
       "extraction_method": "site_rule",
-      "updated_at": "2026-08-10T19:09:07.084Z",
+      "updated_at": "2026-08-11T19:14:07.343Z",
       "quality_score": 0.74
     },
     {
@@ -11816,7 +11624,7 @@
       "source_priority": "S",
       "source_priority_score": 4,
       "extraction_method": "site_rule",
-      "updated_at": "2026-08-10T19:09:07.084Z",
+      "updated_at": "2026-08-11T19:14:07.343Z",
       "quality_score": 0.74
     },
     {
@@ -11840,7 +11648,7 @@
       "source_priority": "S",
       "source_priority_score": 4,
       "extraction_method": "site_rule",
-      "updated_at": "2026-08-10T19:09:07.084Z",
+      "updated_at": "2026-08-11T19:14:07.343Z",
       "quality_score": 0.74
     },
     {
@@ -11864,7 +11672,31 @@
       "source_priority": "S",
       "source_priority_score": 4,
       "extraction_method": "site_rule",
-      "updated_at": "2026-08-10T19:09:30.094Z",
+      "updated_at": "2026-08-11T19:14:33.188Z",
+      "quality_score": 1
+    },
+    {
+      "id": "38bd07a35eea579d1924",
+      "title": "サッポロシンフォニックバンド第54回定期演奏会 ～吹奏楽の夕べ～",
+      "start_date": "2026-11-03",
+      "end_date": "",
+      "open_time": "18:15",
+      "start_time": "18:45",
+      "end_time": "20:45",
+      "all_day": false,
+      "venue": "札幌コンサートホール Kitara 大ホール",
+      "venue_address": "札幌市中央区中島公園1番15号",
+      "summary": "大ホール 2026年11月3日(火曜日・祝日) 18:15開場 18:45開演 20:45終演予定",
+      "flyer_image_url": "https://www.kitara-sapporo.or.jp/og-image.jpg",
+      "detail_url": "https://www.kitara-sapporo.or.jp/event/event_detail.php?num=7374",
+      "source_id": "www-kitara-sapporo-or-jp-event",
+      "source_name": "札幌コンサートホール Kitara",
+      "source_url": "https://www.kitara-sapporo.or.jp/event/",
+      "source_category": "コンサートホール（会場公式）",
+      "source_priority": "S",
+      "source_priority_score": 4,
+      "extraction_method": "site_rule",
+      "updated_at": "2026-08-11T19:14:33.187Z",
       "quality_score": 1
     },
     {
@@ -11888,7 +11720,7 @@
       "source_priority": "S",
       "source_priority_score": 4,
       "extraction_method": "site_rule",
-      "updated_at": "2026-08-10T19:09:07.084Z",
+      "updated_at": "2026-08-11T19:14:07.343Z",
       "quality_score": 0.78
     },
     {
@@ -11912,7 +11744,7 @@
       "source_priority": "S",
       "source_priority_score": 4,
       "extraction_method": "site_rule",
-      "updated_at": "2026-08-10T19:09:33.945Z",
+      "updated_at": "2026-08-11T19:14:34.685Z",
       "quality_score": 0.78
     },
     {
@@ -11936,7 +11768,7 @@
       "source_priority": "A",
       "source_priority_score": 3,
       "extraction_method": "heuristic",
-      "updated_at": "2026-08-10T19:09:42.615Z",
+      "updated_at": "2026-08-11T19:14:45.358Z",
       "quality_score": 0.81
     },
     {
@@ -11960,7 +11792,7 @@
       "source_priority": "S",
       "source_priority_score": 4,
       "extraction_method": "site_rule",
-      "updated_at": "2026-08-10T19:09:17.912Z",
+      "updated_at": "2026-08-11T19:14:16.948Z",
       "quality_score": 1
     },
     {
@@ -11984,7 +11816,7 @@
       "source_priority": "S",
       "source_priority_score": 4,
       "extraction_method": "site_rule",
-      "updated_at": "2026-08-10T19:09:33.950Z",
+      "updated_at": "2026-08-11T19:14:34.689Z",
       "quality_score": 0.78
     },
     {
@@ -12008,7 +11840,7 @@
       "source_priority": "S",
       "source_priority_score": 4,
       "extraction_method": "site_rule",
-      "updated_at": "2026-08-10T19:09:07.084Z",
+      "updated_at": "2026-08-11T19:14:07.343Z",
       "quality_score": 0.74
     },
     {
@@ -12032,7 +11864,7 @@
       "source_priority": "S",
       "source_priority_score": 4,
       "extraction_method": "site_rule",
-      "updated_at": "2026-08-10T19:09:07.084Z",
+      "updated_at": "2026-08-11T19:14:07.343Z",
       "quality_score": 0.74
     },
     {
@@ -12080,7 +11912,7 @@
       "source_priority": "S",
       "source_priority_score": 4,
       "extraction_method": "site_rule",
-      "updated_at": "2026-08-10T19:09:33.964Z",
+      "updated_at": "2026-08-11T19:14:34.702Z",
       "quality_score": 0.78
     },
     {
@@ -12104,7 +11936,7 @@
       "source_priority": "S",
       "source_priority_score": 4,
       "extraction_method": "site_rule",
-      "updated_at": "2026-08-10T19:09:07.084Z",
+      "updated_at": "2026-08-11T19:14:07.344Z",
       "quality_score": 0.74
     },
     {
@@ -12128,7 +11960,7 @@
       "source_priority": "S",
       "source_priority_score": 4,
       "extraction_method": "site_rule",
-      "updated_at": "2026-08-10T19:09:07.084Z",
+      "updated_at": "2026-08-11T19:14:07.344Z",
       "quality_score": 0.74
     },
     {
@@ -12152,7 +11984,7 @@
       "source_priority": "S",
       "source_priority_score": 4,
       "extraction_method": "site_rule",
-      "updated_at": "2026-08-10T19:09:07.084Z",
+      "updated_at": "2026-08-11T19:14:07.344Z",
       "quality_score": 0.74
     },
     {
@@ -12176,7 +12008,7 @@
       "source_priority": "S",
       "source_priority_score": 4,
       "extraction_method": "site_rule",
-      "updated_at": "2026-08-10T19:09:07.084Z",
+      "updated_at": "2026-08-11T19:14:07.344Z",
       "quality_score": 0.74
     },
     {
@@ -12200,7 +12032,7 @@
       "source_priority": "A",
       "source_priority_score": 3,
       "extraction_method": "site_rule",
-      "updated_at": "2026-08-10T19:09:44.243Z",
+      "updated_at": "2026-08-11T19:14:45.581Z",
       "quality_score": 0.95
     },
     {
@@ -12224,7 +12056,7 @@
       "source_priority": "S",
       "source_priority_score": 4,
       "extraction_method": "site_rule",
-      "updated_at": "2026-08-10T19:09:07.085Z",
+      "updated_at": "2026-08-11T19:14:07.344Z",
       "quality_score": 0.74
     },
     {
@@ -12248,7 +12080,7 @@
       "source_priority": "S",
       "source_priority_score": 4,
       "extraction_method": "site_rule",
-      "updated_at": "2026-08-10T19:09:07.085Z",
+      "updated_at": "2026-08-11T19:14:07.344Z",
       "quality_score": 0.74
     },
     {
@@ -12272,7 +12104,7 @@
       "source_priority": "B",
       "source_priority_score": 2,
       "extraction_method": "site_rule",
-      "updated_at": "2026-08-10T19:09:50.032Z",
+      "updated_at": "2026-08-11T19:14:52.955Z",
       "quality_score": 0.91
     },
     {
@@ -12296,7 +12128,7 @@
       "source_priority": "A",
       "source_priority_score": 3,
       "extraction_method": "site_rule",
-      "updated_at": "2026-08-10T19:09:44.243Z",
+      "updated_at": "2026-08-11T19:14:45.582Z",
       "quality_score": 0.75
     },
     {
@@ -12320,7 +12152,7 @@
       "source_priority": "S",
       "source_priority_score": 4,
       "extraction_method": "site_rule",
-      "updated_at": "2026-08-10T19:09:30.094Z",
+      "updated_at": "2026-08-11T19:14:33.188Z",
       "quality_score": 1
     },
     {
@@ -12344,7 +12176,7 @@
       "source_priority": "S",
       "source_priority_score": 4,
       "extraction_method": "site_rule",
-      "updated_at": "2026-08-10T19:09:07.085Z",
+      "updated_at": "2026-08-11T19:14:07.344Z",
       "quality_score": 0.74
     },
     {
@@ -12368,7 +12200,7 @@
       "source_priority": "S",
       "source_priority_score": 4,
       "extraction_method": "site_rule",
-      "updated_at": "2026-08-10T19:09:07.085Z",
+      "updated_at": "2026-08-11T19:14:07.345Z",
       "quality_score": 0.74
     },
     {
@@ -12392,7 +12224,7 @@
       "source_priority": "S",
       "source_priority_score": 4,
       "extraction_method": "site_rule",
-      "updated_at": "2026-08-10T19:09:07.085Z",
+      "updated_at": "2026-08-11T19:14:07.345Z",
       "quality_score": 0.74
     },
     {
@@ -12416,7 +12248,7 @@
       "source_priority": "S",
       "source_priority_score": 4,
       "extraction_method": "site_rule",
-      "updated_at": "2026-08-10T19:09:33.969Z",
+      "updated_at": "2026-08-11T19:14:34.707Z",
       "quality_score": 0.78
     },
     {
@@ -12440,7 +12272,7 @@
       "source_priority": "S",
       "source_priority_score": 4,
       "extraction_method": "site_rule",
-      "updated_at": "2026-08-10T19:09:07.085Z",
+      "updated_at": "2026-08-11T19:14:07.345Z",
       "quality_score": 0.74
     },
     {
@@ -12464,7 +12296,7 @@
       "source_priority": "S",
       "source_priority_score": 4,
       "extraction_method": "site_rule",
-      "updated_at": "2026-08-10T19:09:07.085Z",
+      "updated_at": "2026-08-11T19:14:07.345Z",
       "quality_score": 0.74
     },
     {
@@ -12488,7 +12320,7 @@
       "source_priority": "S",
       "source_priority_score": 4,
       "extraction_method": "site_rule",
-      "updated_at": "2026-08-10T19:09:07.085Z",
+      "updated_at": "2026-08-11T19:14:07.345Z",
       "quality_score": 0.74
     },
     {
@@ -12512,7 +12344,7 @@
       "source_priority": "S",
       "source_priority_score": 4,
       "extraction_method": "site_rule",
-      "updated_at": "2026-08-10T19:09:07.085Z",
+      "updated_at": "2026-08-11T19:14:07.345Z",
       "quality_score": 0.78
     },
     {
@@ -12536,7 +12368,7 @@
       "source_priority": "S",
       "source_priority_score": 4,
       "extraction_method": "site_rule",
-      "updated_at": "2026-08-10T19:09:07.085Z",
+      "updated_at": "2026-08-11T19:14:07.345Z",
       "quality_score": 0.74
     },
     {
@@ -12560,7 +12392,7 @@
       "source_priority": "B",
       "source_priority_score": 2,
       "extraction_method": "site_rule",
-      "updated_at": "2026-08-10T19:09:48.336Z",
+      "updated_at": "2026-08-11T19:14:50.882Z",
       "quality_score": 0.71
     },
     {
@@ -12584,7 +12416,7 @@
       "source_priority": "S",
       "source_priority_score": 4,
       "extraction_method": "site_rule",
-      "updated_at": "2026-08-10T19:09:33.977Z",
+      "updated_at": "2026-08-11T19:14:34.713Z",
       "quality_score": 0.78
     },
     {
@@ -12608,7 +12440,7 @@
       "source_priority": "S",
       "source_priority_score": 4,
       "extraction_method": "site_rule",
-      "updated_at": "2026-08-10T19:09:07.085Z",
+      "updated_at": "2026-08-11T19:14:07.346Z",
       "quality_score": 0.74
     },
     {
@@ -12632,7 +12464,7 @@
       "source_priority": "S",
       "source_priority_score": 4,
       "extraction_method": "site_rule",
-      "updated_at": "2026-08-10T19:09:30.094Z",
+      "updated_at": "2026-08-11T19:14:33.188Z",
       "quality_score": 1
     },
     {
@@ -12656,7 +12488,7 @@
       "source_priority": "B",
       "source_priority_score": 2,
       "extraction_method": "site_rule",
-      "updated_at": "2026-08-10T19:09:48.336Z",
+      "updated_at": "2026-08-11T19:14:50.882Z",
       "quality_score": 0.71
     },
     {
@@ -12680,7 +12512,7 @@
       "source_priority": "S",
       "source_priority_score": 4,
       "extraction_method": "site_rule",
-      "updated_at": "2026-08-10T19:09:07.085Z",
+      "updated_at": "2026-08-11T19:14:07.345Z",
       "quality_score": 0.74
     },
     {
@@ -12704,7 +12536,7 @@
       "source_priority": "S",
       "source_priority_score": 4,
       "extraction_method": "site_rule",
-      "updated_at": "2026-08-10T19:09:07.085Z",
+      "updated_at": "2026-08-11T19:14:07.346Z",
       "quality_score": 0.74
     },
     {
@@ -12728,7 +12560,7 @@
       "source_priority": "S",
       "source_priority_score": 4,
       "extraction_method": "site_rule",
-      "updated_at": "2026-08-10T19:09:30.096Z",
+      "updated_at": "2026-08-11T19:14:33.189Z",
       "quality_score": 1
     },
     {
@@ -12752,7 +12584,7 @@
       "source_priority": "B",
       "source_priority_score": 2,
       "extraction_method": "site_rule",
-      "updated_at": "2026-08-10T19:09:50.032Z",
+      "updated_at": "2026-08-11T19:14:52.955Z",
       "quality_score": 0.71
     },
     {
@@ -12776,7 +12608,7 @@
       "source_priority": "A",
       "source_priority_score": 3,
       "extraction_method": "site_rule",
-      "updated_at": "2026-08-10T19:09:24.785Z",
+      "updated_at": "2026-08-11T19:14:19.382Z",
       "quality_score": 0.77
     },
     {
@@ -12800,7 +12632,7 @@
       "source_priority": "S",
       "source_priority_score": 4,
       "extraction_method": "site_rule",
-      "updated_at": "2026-08-10T19:09:30.096Z",
+      "updated_at": "2026-08-11T19:14:33.189Z",
       "quality_score": 1
     },
     {
@@ -12824,7 +12656,7 @@
       "source_priority": "S",
       "source_priority_score": 4,
       "extraction_method": "site_rule",
-      "updated_at": "2026-08-10T19:09:07.085Z",
+      "updated_at": "2026-08-11T19:14:07.346Z",
       "quality_score": 0.74
     },
     {
@@ -12848,7 +12680,7 @@
       "source_priority": "S",
       "source_priority_score": 4,
       "extraction_method": "site_rule",
-      "updated_at": "2026-08-10T19:09:30.096Z",
+      "updated_at": "2026-08-11T19:14:33.189Z",
       "quality_score": 1
     },
     {
@@ -12872,7 +12704,7 @@
       "source_priority": "S",
       "source_priority_score": 4,
       "extraction_method": "site_rule",
-      "updated_at": "2026-08-10T19:09:07.085Z",
+      "updated_at": "2026-08-11T19:14:07.346Z",
       "quality_score": 0.78
     },
     {
@@ -12896,7 +12728,7 @@
       "source_priority": "A",
       "source_priority_score": 3,
       "extraction_method": "site_rule",
-      "updated_at": "2026-08-10T19:09:31.612Z",
+      "updated_at": "2026-08-11T19:14:32.589Z",
       "quality_score": 0.77
     },
     {
@@ -12920,7 +12752,7 @@
       "source_priority": "S",
       "source_priority_score": 4,
       "extraction_method": "site_rule",
-      "updated_at": "2026-08-10T19:09:07.085Z",
+      "updated_at": "2026-08-11T19:14:07.346Z",
       "quality_score": 0.74
     },
     {
@@ -12944,7 +12776,7 @@
       "source_priority": "S",
       "source_priority_score": 4,
       "extraction_method": "site_rule",
-      "updated_at": "2026-08-10T19:09:07.085Z",
+      "updated_at": "2026-08-11T19:14:07.346Z",
       "quality_score": 0.74
     },
     {
@@ -12968,7 +12800,7 @@
       "source_priority": "A",
       "source_priority_score": 3,
       "extraction_method": "site_rule",
-      "updated_at": "2026-08-10T19:09:36.571Z",
+      "updated_at": "2026-08-11T19:14:38.631Z",
       "quality_score": 0.81
     },
     {
@@ -12992,7 +12824,7 @@
       "source_priority": "S",
       "source_priority_score": 4,
       "extraction_method": "site_rule",
-      "updated_at": "2026-08-10T19:09:07.254Z",
+      "updated_at": "2026-08-11T19:14:07.556Z",
       "quality_score": 0.8
     },
     {
@@ -13016,7 +12848,7 @@
       "source_priority": "A",
       "source_priority_score": 3,
       "extraction_method": "site_rule",
-      "updated_at": "2026-08-10T19:09:30.604Z",
+      "updated_at": "2026-08-11T19:14:30.016Z",
       "quality_score": 0.61
     },
     {
@@ -13040,7 +12872,7 @@
       "source_priority": "S",
       "source_priority_score": 4,
       "extraction_method": "site_rule",
-      "updated_at": "2026-08-10T19:09:30.096Z",
+      "updated_at": "2026-08-11T19:14:33.190Z",
       "quality_score": 1
     },
     {
@@ -13088,7 +12920,7 @@
       "source_priority": "S",
       "source_priority_score": 4,
       "extraction_method": "site_rule",
-      "updated_at": "2026-08-10T19:09:07.085Z",
+      "updated_at": "2026-08-11T19:14:07.346Z",
       "quality_score": 0.74
     },
     {
@@ -13112,7 +12944,7 @@
       "source_priority": "S",
       "source_priority_score": 4,
       "extraction_method": "site_rule",
-      "updated_at": "2026-08-10T19:09:07.085Z",
+      "updated_at": "2026-08-11T19:14:07.346Z",
       "quality_score": 0.78
     },
     {
@@ -13136,7 +12968,7 @@
       "source_priority": "S",
       "source_priority_score": 4,
       "extraction_method": "heuristic",
-      "updated_at": "2026-08-10T19:09:07.224Z",
+      "updated_at": "2026-08-11T19:14:09.076Z",
       "quality_score": 0.89
     },
     {
@@ -13160,7 +12992,7 @@
       "source_priority": "S",
       "source_priority_score": 4,
       "extraction_method": "site_rule",
-      "updated_at": "2026-08-10T19:09:33.992Z",
+      "updated_at": "2026-08-11T19:14:34.727Z",
       "quality_score": 0.78
     },
     {
@@ -13184,7 +13016,7 @@
       "source_priority": "S",
       "source_priority_score": 4,
       "extraction_method": "site_rule",
-      "updated_at": "2026-08-10T19:09:07.086Z",
+      "updated_at": "2026-08-11T19:14:07.347Z",
       "quality_score": 0.74
     },
     {
@@ -13208,7 +13040,7 @@
       "source_priority": "S",
       "source_priority_score": 4,
       "extraction_method": "site_rule",
-      "updated_at": "2026-08-10T19:09:07.086Z",
+      "updated_at": "2026-08-11T19:14:07.347Z",
       "quality_score": 0.74
     },
     {
@@ -13232,7 +13064,7 @@
       "source_priority": "S",
       "source_priority_score": 4,
       "extraction_method": "site_rule",
-      "updated_at": "2026-08-10T19:09:07.085Z",
+      "updated_at": "2026-08-11T19:14:07.347Z",
       "quality_score": 0.74
     },
     {
@@ -13260,6 +13092,30 @@
       "quality_score": 0.89
     },
     {
+      "id": "d2ced738b3d543e5e786",
+      "title": "プレットロノルディコ 第32回定期演奏会",
+      "start_date": "2026-11-23",
+      "end_date": "",
+      "open_time": "13:00",
+      "start_time": "13:30",
+      "end_time": "15:15",
+      "all_day": false,
+      "venue": "札幌コンサートホール Kitara 小ホール",
+      "venue_address": "札幌市中央区中島公園1番15号",
+      "summary": "小ホール 2026年11月23日(月曜日・祝日) 13:00開場 13:30開演 15:15終演予定",
+      "flyer_image_url": "https://www.kitara-sapporo.or.jp/og-image.jpg",
+      "detail_url": "https://www.kitara-sapporo.or.jp/event/event_detail.php?num=7345",
+      "source_id": "www-kitara-sapporo-or-jp-event",
+      "source_name": "札幌コンサートホール Kitara",
+      "source_url": "https://www.kitara-sapporo.or.jp/event/",
+      "source_category": "コンサートホール（会場公式）",
+      "source_priority": "S",
+      "source_priority_score": 4,
+      "extraction_method": "site_rule",
+      "updated_at": "2026-08-11T19:14:33.190Z",
+      "quality_score": 1
+    },
+    {
       "id": "4c1b02677b376290ae31",
       "title": "コレサワ HALL TOUR 2026 THE PINK",
       "start_date": "2026-11-23",
@@ -13280,7 +13136,7 @@
       "source_priority": "S",
       "source_priority_score": 4,
       "extraction_method": "site_rule",
-      "updated_at": "2026-08-10T19:09:07.086Z",
+      "updated_at": "2026-08-11T19:14:07.347Z",
       "quality_score": 0.78
     },
     {
@@ -13304,7 +13160,7 @@
       "source_priority": "S",
       "source_priority_score": 4,
       "extraction_method": "site_rule",
-      "updated_at": "2026-08-10T19:09:07.086Z",
+      "updated_at": "2026-08-11T19:14:07.347Z",
       "quality_score": 0.74
     },
     {
@@ -13328,7 +13184,7 @@
       "source_priority": "S",
       "source_priority_score": 4,
       "extraction_method": "site_rule",
-      "updated_at": "2026-08-10T19:09:07.086Z",
+      "updated_at": "2026-08-11T19:14:07.347Z",
       "quality_score": 0.74
     },
     {
@@ -13352,7 +13208,7 @@
       "source_priority": "S",
       "source_priority_score": 4,
       "extraction_method": "site_rule",
-      "updated_at": "2026-08-10T19:09:07.086Z",
+      "updated_at": "2026-08-11T19:14:07.347Z",
       "quality_score": 0.74
     },
     {
@@ -13400,7 +13256,7 @@
       "source_priority": "A",
       "source_priority_score": 3,
       "extraction_method": "site_rule",
-      "updated_at": "2026-08-10T19:09:30.604Z",
+      "updated_at": "2026-08-11T19:14:30.017Z",
       "quality_score": 0.61
     },
     {
@@ -13424,7 +13280,7 @@
       "source_priority": "S",
       "source_priority_score": 4,
       "extraction_method": "site_rule",
-      "updated_at": "2026-08-10T19:09:30.097Z",
+      "updated_at": "2026-08-11T19:14:33.190Z",
       "quality_score": 1
     },
     {
@@ -13448,7 +13304,7 @@
       "source_priority": "B",
       "source_priority_score": 2,
       "extraction_method": "site_rule",
-      "updated_at": "2026-08-10T19:09:48.336Z",
+      "updated_at": "2026-08-11T19:14:50.882Z",
       "quality_score": 0.71
     },
     {
@@ -13472,7 +13328,7 @@
       "source_priority": "S",
       "source_priority_score": 4,
       "extraction_method": "site_rule",
-      "updated_at": "2026-08-10T19:09:07.086Z",
+      "updated_at": "2026-08-11T19:14:07.347Z",
       "quality_score": 0.74
     },
     {
@@ -13496,7 +13352,7 @@
       "source_priority": "S",
       "source_priority_score": 4,
       "extraction_method": "site_rule",
-      "updated_at": "2026-08-10T19:09:30.097Z",
+      "updated_at": "2026-08-11T19:14:33.190Z",
       "quality_score": 1
     },
     {
@@ -13520,7 +13376,7 @@
       "source_priority": "S",
       "source_priority_score": 4,
       "extraction_method": "site_rule",
-      "updated_at": "2026-08-10T19:09:07.086Z",
+      "updated_at": "2026-08-11T19:14:07.347Z",
       "quality_score": 0.74
     },
     {
@@ -13544,7 +13400,7 @@
       "source_priority": "S",
       "source_priority_score": 4,
       "extraction_method": "site_rule",
-      "updated_at": "2026-08-10T19:09:07.086Z",
+      "updated_at": "2026-08-11T19:14:07.348Z",
       "quality_score": 0.74
     },
     {
@@ -13568,7 +13424,7 @@
       "source_priority": "B",
       "source_priority_score": 2,
       "extraction_method": "site_rule",
-      "updated_at": "2026-08-10T19:09:48.336Z",
+      "updated_at": "2026-08-11T19:14:50.882Z",
       "quality_score": 0.71
     },
     {
@@ -13592,7 +13448,7 @@
       "source_priority": "A",
       "source_priority_score": 3,
       "extraction_method": "heuristic",
-      "updated_at": "2026-08-10T19:09:45.716Z",
+      "updated_at": "2026-08-11T19:14:48.890Z",
       "quality_score": 0.61
     },
     {
@@ -13616,7 +13472,7 @@
       "source_priority": "A",
       "source_priority_score": 3,
       "extraction_method": "heuristic",
-      "updated_at": "2026-08-10T19:09:45.729Z",
+      "updated_at": "2026-08-11T19:14:48.901Z",
       "quality_score": 0.61
     },
     {
@@ -13640,7 +13496,7 @@
       "source_priority": "S",
       "source_priority_score": 4,
       "extraction_method": "site_rule",
-      "updated_at": "2026-08-10T19:09:07.086Z",
+      "updated_at": "2026-08-11T19:14:07.348Z",
       "quality_score": 0.74
     },
     {
@@ -13664,7 +13520,7 @@
       "source_priority": "S",
       "source_priority_score": 4,
       "extraction_method": "site_rule",
-      "updated_at": "2026-08-10T19:09:07.086Z",
+      "updated_at": "2026-08-11T19:14:07.348Z",
       "quality_score": 0.74
     },
     {
@@ -13688,7 +13544,7 @@
       "source_priority": "S",
       "source_priority_score": 4,
       "extraction_method": "site_rule",
-      "updated_at": "2026-08-10T19:09:07.086Z",
+      "updated_at": "2026-08-11T19:14:07.348Z",
       "quality_score": 0.74
     },
     {
@@ -13712,7 +13568,7 @@
       "source_priority": "S",
       "source_priority_score": 4,
       "extraction_method": "site_rule",
-      "updated_at": "2026-08-10T19:09:07.086Z",
+      "updated_at": "2026-08-11T19:14:07.348Z",
       "quality_score": 0.74
     },
     {
@@ -13736,7 +13592,7 @@
       "source_priority": "S",
       "source_priority_score": 4,
       "extraction_method": "site_rule",
-      "updated_at": "2026-08-10T19:09:07.086Z",
+      "updated_at": "2026-08-11T19:14:07.348Z",
       "quality_score": 0.74
     },
     {
@@ -13760,7 +13616,7 @@
       "source_priority": "A",
       "source_priority_score": 3,
       "extraction_method": "site_rule",
-      "updated_at": "2026-08-10T19:09:24.785Z",
+      "updated_at": "2026-08-11T19:14:19.382Z",
       "quality_score": 0.77
     },
     {
@@ -13784,7 +13640,7 @@
       "source_priority": "A",
       "source_priority_score": 3,
       "extraction_method": "site_rule",
-      "updated_at": "2026-08-10T19:09:30.604Z",
+      "updated_at": "2026-08-11T19:14:30.017Z",
       "quality_score": 0.61
     },
     {
@@ -13808,7 +13664,7 @@
       "source_priority": "S",
       "source_priority_score": 4,
       "extraction_method": "site_rule",
-      "updated_at": "2026-08-10T19:09:30.097Z",
+      "updated_at": "2026-08-11T19:14:33.191Z",
       "quality_score": 1
     },
     {
@@ -13832,7 +13688,7 @@
       "source_priority": "S",
       "source_priority_score": 4,
       "extraction_method": "site_rule",
-      "updated_at": "2026-08-10T19:09:17.928Z",
+      "updated_at": "2026-08-11T19:14:10.156Z",
       "quality_score": 0.74
     },
     {
@@ -13856,7 +13712,7 @@
       "source_priority": "A",
       "source_priority_score": 3,
       "extraction_method": "site_rule",
-      "updated_at": "2026-08-10T19:09:30.604Z",
+      "updated_at": "2026-08-11T19:14:30.017Z",
       "quality_score": 0.61
     },
     {
@@ -13880,7 +13736,7 @@
       "source_priority": "S",
       "source_priority_score": 4,
       "extraction_method": "site_rule",
-      "updated_at": "2026-08-10T19:09:33.996Z",
+      "updated_at": "2026-08-11T19:14:34.731Z",
       "quality_score": 0.78
     },
     {
@@ -13904,7 +13760,7 @@
       "source_priority": "A",
       "source_priority_score": 3,
       "extraction_method": "site_rule",
-      "updated_at": "2026-08-10T19:09:30.604Z",
+      "updated_at": "2026-08-11T19:14:30.017Z",
       "quality_score": 0.61
     },
     {
@@ -13928,7 +13784,7 @@
       "source_priority": "S",
       "source_priority_score": 4,
       "extraction_method": "site_rule",
-      "updated_at": "2026-08-10T19:09:17.929Z",
+      "updated_at": "2026-08-11T19:14:10.156Z",
       "quality_score": 0.74
     },
     {
@@ -13952,7 +13808,7 @@
       "source_priority": "S",
       "source_priority_score": 4,
       "extraction_method": "site_rule",
-      "updated_at": "2026-08-10T19:09:34.001Z",
+      "updated_at": "2026-08-11T19:14:34.735Z",
       "quality_score": 0.78
     },
     {
@@ -13976,7 +13832,7 @@
       "source_priority": "S",
       "source_priority_score": 4,
       "extraction_method": "site_rule",
-      "updated_at": "2026-08-10T19:09:17.929Z",
+      "updated_at": "2026-08-11T19:14:10.156Z",
       "quality_score": 0.74
     },
     {
@@ -14000,7 +13856,7 @@
       "source_priority": "S",
       "source_priority_score": 4,
       "extraction_method": "site_rule",
-      "updated_at": "2026-08-10T19:09:17.929Z",
+      "updated_at": "2026-08-11T19:14:10.156Z",
       "quality_score": 0.56
     },
     {
@@ -14024,7 +13880,7 @@
       "source_priority": "S",
       "source_priority_score": 4,
       "extraction_method": "site_rule",
-      "updated_at": "2026-08-10T19:09:30.097Z",
+      "updated_at": "2026-08-11T19:14:33.191Z",
       "quality_score": 1
     },
     {
@@ -14048,7 +13904,7 @@
       "source_priority": "S",
       "source_priority_score": 4,
       "extraction_method": "site_rule",
-      "updated_at": "2026-08-10T19:09:17.929Z",
+      "updated_at": "2026-08-11T19:14:10.157Z",
       "quality_score": 0.74
     },
     {
@@ -14072,7 +13928,7 @@
       "source_priority": "S",
       "source_priority_score": 4,
       "extraction_method": "site_rule",
-      "updated_at": "2026-08-10T19:09:17.929Z",
+      "updated_at": "2026-08-11T19:14:10.157Z",
       "quality_score": 0.74
     },
     {
@@ -14096,7 +13952,7 @@
       "source_priority": "S",
       "source_priority_score": 4,
       "extraction_method": "site_rule",
-      "updated_at": "2026-08-10T19:09:17.929Z",
+      "updated_at": "2026-08-11T19:14:10.157Z",
       "quality_score": 0.74
     },
     {
@@ -14120,7 +13976,7 @@
       "source_priority": "S",
       "source_priority_score": 4,
       "extraction_method": "site_rule",
-      "updated_at": "2026-08-10T19:09:30.098Z",
+      "updated_at": "2026-08-11T19:14:33.191Z",
       "quality_score": 1
     },
     {
@@ -14144,7 +14000,7 @@
       "source_priority": "S",
       "source_priority_score": 4,
       "extraction_method": "site_rule",
-      "updated_at": "2026-08-10T19:09:34.008Z",
+      "updated_at": "2026-08-11T19:14:34.741Z",
       "quality_score": 0.78
     },
     {
@@ -14168,7 +14024,7 @@
       "source_priority": "S",
       "source_priority_score": 4,
       "extraction_method": "site_rule",
-      "updated_at": "2026-08-10T19:09:17.929Z",
+      "updated_at": "2026-08-11T19:14:10.157Z",
       "quality_score": 0.78
     },
     {
@@ -14192,7 +14048,7 @@
       "source_priority": "S",
       "source_priority_score": 4,
       "extraction_method": "site_rule",
-      "updated_at": "2026-08-10T19:09:17.929Z",
+      "updated_at": "2026-08-11T19:14:10.157Z",
       "quality_score": 0.74
     },
     {
@@ -14216,7 +14072,7 @@
       "source_priority": "B",
       "source_priority_score": 2,
       "extraction_method": "site_rule",
-      "updated_at": "2026-08-10T19:09:48.337Z",
+      "updated_at": "2026-08-11T19:14:50.882Z",
       "quality_score": 0.71
     },
     {
@@ -14240,7 +14096,7 @@
       "source_priority": "S",
       "source_priority_score": 4,
       "extraction_method": "site_rule",
-      "updated_at": "2026-08-10T19:09:17.929Z",
+      "updated_at": "2026-08-11T19:14:10.157Z",
       "quality_score": 0.78
     },
     {
@@ -14264,7 +14120,7 @@
       "source_priority": "S",
       "source_priority_score": 4,
       "extraction_method": "site_rule",
-      "updated_at": "2026-08-10T19:09:17.929Z",
+      "updated_at": "2026-08-11T19:14:10.157Z",
       "quality_score": 0.74
     },
     {
@@ -14288,7 +14144,7 @@
       "source_priority": "S",
       "source_priority_score": 4,
       "extraction_method": "site_rule",
-      "updated_at": "2026-08-10T19:09:17.929Z",
+      "updated_at": "2026-08-11T19:14:10.157Z",
       "quality_score": 0.74
     },
     {
@@ -14312,7 +14168,7 @@
       "source_priority": "S",
       "source_priority_score": 4,
       "extraction_method": "site_rule",
-      "updated_at": "2026-08-10T19:09:17.929Z",
+      "updated_at": "2026-08-11T19:14:10.157Z",
       "quality_score": 0.74
     },
     {
@@ -14336,7 +14192,7 @@
       "source_priority": "S",
       "source_priority_score": 4,
       "extraction_method": "site_rule",
-      "updated_at": "2026-08-10T19:09:17.929Z",
+      "updated_at": "2026-08-11T19:14:10.157Z",
       "quality_score": 0.78
     },
     {
@@ -14360,7 +14216,7 @@
       "source_priority": "S",
       "source_priority_score": 4,
       "extraction_method": "site_rule",
-      "updated_at": "2026-08-10T19:09:17.929Z",
+      "updated_at": "2026-08-11T19:14:10.157Z",
       "quality_score": 0.74
     },
     {
@@ -14384,7 +14240,7 @@
       "source_priority": "S",
       "source_priority_score": 4,
       "extraction_method": "site_rule",
-      "updated_at": "2026-08-10T19:09:30.098Z",
+      "updated_at": "2026-08-11T19:14:33.192Z",
       "quality_score": 1
     },
     {
@@ -14408,7 +14264,7 @@
       "source_priority": "S",
       "source_priority_score": 4,
       "extraction_method": "site_rule",
-      "updated_at": "2026-08-10T19:09:17.929Z",
+      "updated_at": "2026-08-11T19:14:10.157Z",
       "quality_score": 0.78
     },
     {
@@ -14432,7 +14288,7 @@
       "source_priority": "S",
       "source_priority_score": 4,
       "extraction_method": "site_rule",
-      "updated_at": "2026-08-10T19:09:17.929Z",
+      "updated_at": "2026-08-11T19:14:10.157Z",
       "quality_score": 0.78
     },
     {
@@ -14456,7 +14312,7 @@
       "source_priority": "S",
       "source_priority_score": 4,
       "extraction_method": "site_rule",
-      "updated_at": "2026-08-10T19:09:30.098Z",
+      "updated_at": "2026-08-11T19:14:33.192Z",
       "quality_score": 1
     },
     {
@@ -14480,7 +14336,7 @@
       "source_priority": "S",
       "source_priority_score": 4,
       "extraction_method": "site_rule",
-      "updated_at": "2026-08-10T19:09:17.929Z",
+      "updated_at": "2026-08-11T19:14:10.157Z",
       "quality_score": 0.74
     },
     {
@@ -14504,7 +14360,7 @@
       "source_priority": "S",
       "source_priority_score": 4,
       "extraction_method": "site_rule",
-      "updated_at": "2026-08-10T19:09:17.930Z",
+      "updated_at": "2026-08-11T19:14:10.157Z",
       "quality_score": 0.74
     },
     {
@@ -14528,7 +14384,7 @@
       "source_priority": "S",
       "source_priority_score": 4,
       "extraction_method": "site_rule",
-      "updated_at": "2026-08-10T19:09:17.930Z",
+      "updated_at": "2026-08-11T19:14:10.157Z",
       "quality_score": 0.74
     },
     {
@@ -14552,7 +14408,7 @@
       "source_priority": "A",
       "source_priority_score": 3,
       "extraction_method": "site_rule",
-      "updated_at": "2026-08-10T19:09:24.785Z",
+      "updated_at": "2026-08-11T19:14:19.382Z",
       "quality_score": 0.61
     },
     {
@@ -14576,7 +14432,7 @@
       "source_priority": "S",
       "source_priority_score": 4,
       "extraction_method": "site_rule",
-      "updated_at": "2026-08-10T19:09:17.930Z",
+      "updated_at": "2026-08-11T19:14:10.157Z",
       "quality_score": 0.74
     },
     {
@@ -14600,7 +14456,7 @@
       "source_priority": "S",
       "source_priority_score": 4,
       "extraction_method": "site_rule",
-      "updated_at": "2026-08-10T19:09:17.930Z",
+      "updated_at": "2026-08-11T19:14:10.157Z",
       "quality_score": 0.74
     },
     {
@@ -14624,7 +14480,7 @@
       "source_priority": "S",
       "source_priority_score": 4,
       "extraction_method": "site_rule",
-      "updated_at": "2026-08-10T19:09:17.930Z",
+      "updated_at": "2026-08-11T19:14:10.158Z",
       "quality_score": 0.74
     },
     {
@@ -14648,7 +14504,7 @@
       "source_priority": "S",
       "source_priority_score": 4,
       "extraction_method": "site_rule",
-      "updated_at": "2026-08-10T19:09:17.930Z",
+      "updated_at": "2026-08-11T19:14:10.158Z",
       "quality_score": 0.74
     },
     {
@@ -14672,7 +14528,7 @@
       "source_priority": "A",
       "source_priority_score": 3,
       "extraction_method": "site_rule",
-      "updated_at": "2026-08-10T19:09:24.787Z",
+      "updated_at": "2026-08-11T19:14:19.383Z",
       "quality_score": 0.77
     },
     {
@@ -14696,7 +14552,7 @@
       "source_priority": "S",
       "source_priority_score": 4,
       "extraction_method": "site_rule",
-      "updated_at": "2026-08-10T19:09:20.357Z",
+      "updated_at": "2026-08-11T19:14:18.401Z",
       "quality_score": 0.74
     },
     {
@@ -14720,7 +14576,7 @@
       "source_priority": "S",
       "source_priority_score": 4,
       "extraction_method": "site_rule",
-      "updated_at": "2026-08-10T19:09:17.913Z",
+      "updated_at": "2026-08-11T19:14:16.948Z",
       "quality_score": 0.8
     },
     {
@@ -14744,7 +14600,7 @@
       "source_priority": "S",
       "source_priority_score": 4,
       "extraction_method": "site_rule",
-      "updated_at": "2026-08-10T19:09:34.012Z",
+      "updated_at": "2026-08-11T19:14:34.745Z",
       "quality_score": 0.6
     },
     {
@@ -14768,7 +14624,7 @@
       "source_priority": "S",
       "source_priority_score": 4,
       "extraction_method": "site_rule",
-      "updated_at": "2026-08-10T19:09:20.357Z",
+      "updated_at": "2026-08-11T19:14:18.401Z",
       "quality_score": 0.74
     },
     {
@@ -14792,7 +14648,7 @@
       "source_priority": "S",
       "source_priority_score": 4,
       "extraction_method": "site_rule",
-      "updated_at": "2026-08-10T19:09:20.357Z",
+      "updated_at": "2026-08-11T19:14:18.401Z",
       "quality_score": 0.74
     },
     {
@@ -14816,7 +14672,7 @@
       "source_priority": "A",
       "source_priority_score": 3,
       "extraction_method": "site_rule",
-      "updated_at": "2026-08-10T19:09:24.787Z",
+      "updated_at": "2026-08-11T19:14:19.383Z",
       "quality_score": 0.77
     },
     {
@@ -14840,8 +14696,32 @@
       "source_priority": "S",
       "source_priority_score": 4,
       "extraction_method": "site_rule",
-      "updated_at": "2026-08-10T19:09:22.946Z",
+      "updated_at": "2026-08-11T19:14:20.664Z",
       "quality_score": 0.56
+    },
+    {
+      "id": "8e2580188fea874ae7dc",
+      "title": "TAGRIGHT ZEPP TOUR 2026-2027",
+      "start_date": "2027-02-13",
+      "end_date": "",
+      "open_time": "14:30",
+      "start_time": "15:30",
+      "end_time": "",
+      "all_day": false,
+      "venue": "Zepp Sapporo",
+      "venue_address": "",
+      "summary": "詳細は、後日ご案内致します",
+      "flyer_image_url": "https://wess.jp/wp/wp-content/uploads/2015/12/COMING-SOON.jpg",
+      "detail_url": "https://wess.jp/tagright/",
+      "source_id": "wess-jp-concert-schedule",
+      "source_name": "WESS",
+      "source_url": "https://wess.jp/concert-schedule/",
+      "source_category": "WESS",
+      "source_priority": "S",
+      "source_priority_score": 4,
+      "extraction_method": "site_rule",
+      "updated_at": "2026-08-11T19:14:20.664Z",
+      "quality_score": 0.74
     },
     {
       "id": "c038febb9dbf7c4e15dc",
@@ -14864,7 +14744,7 @@
       "source_priority": "S",
       "source_priority_score": 4,
       "extraction_method": "site_rule",
-      "updated_at": "2026-08-10T19:09:22.946Z",
+      "updated_at": "2026-08-11T19:14:20.664Z",
       "quality_score": 0.56
     },
     {
@@ -14888,7 +14768,7 @@
       "source_priority": "S",
       "source_priority_score": 4,
       "extraction_method": "site_rule",
-      "updated_at": "2026-08-10T19:09:22.946Z",
+      "updated_at": "2026-08-11T19:14:20.664Z",
       "quality_score": 0.56
     },
     {
@@ -14912,7 +14792,7 @@
       "source_priority": "S",
       "source_priority_score": 4,
       "extraction_method": "site_rule",
-      "updated_at": "2026-08-10T19:09:22.946Z",
+      "updated_at": "2026-08-11T19:14:20.664Z",
       "quality_score": 0.56
     },
     {
@@ -14936,7 +14816,7 @@
       "source_priority": "S",
       "source_priority_score": 4,
       "extraction_method": "site_rule",
-      "updated_at": "2026-08-10T19:09:22.946Z",
+      "updated_at": "2026-08-11T19:14:20.664Z",
       "quality_score": 0.74
     },
     {
@@ -14960,7 +14840,7 @@
       "source_priority": "S",
       "source_priority_score": 4,
       "extraction_method": "site_rule",
-      "updated_at": "2026-08-10T19:09:17.913Z",
+      "updated_at": "2026-08-11T19:14:16.949Z",
       "quality_score": 0.76
     },
     {
@@ -14984,7 +14864,7 @@
       "source_priority": "S",
       "source_priority_score": 4,
       "extraction_method": "site_rule",
-      "updated_at": "2026-08-10T19:09:22.946Z",
+      "updated_at": "2026-08-11T19:14:20.664Z",
       "quality_score": 0.56
     },
     {
@@ -15008,7 +14888,7 @@
       "source_priority": "A",
       "source_priority_score": 3,
       "extraction_method": "site_rule",
-      "updated_at": "2026-08-10T19:09:24.787Z",
+      "updated_at": "2026-08-11T19:14:19.383Z",
       "quality_score": 0.77
     },
     {
@@ -15032,7 +14912,7 @@
       "source_priority": "S",
       "source_priority_score": 4,
       "extraction_method": "site_rule",
-      "updated_at": "2026-08-10T19:09:26.779Z",
+      "updated_at": "2026-08-11T19:14:22.472Z",
       "quality_score": 0.74
     },
     {
@@ -15056,7 +14936,7 @@
       "source_priority": "S",
       "source_priority_score": 4,
       "extraction_method": "site_rule",
-      "updated_at": "2026-08-10T19:09:26.779Z",
+      "updated_at": "2026-08-11T19:14:22.472Z",
       "quality_score": 0.74
     },
     {
@@ -15080,7 +14960,7 @@
       "source_priority": "S",
       "source_priority_score": 4,
       "extraction_method": "site_rule",
-      "updated_at": "2026-08-10T19:09:26.779Z",
+      "updated_at": "2026-08-11T19:14:22.472Z",
       "quality_score": 0.74
     },
     {
@@ -15104,7 +14984,7 @@
       "source_priority": "S",
       "source_priority_score": 4,
       "extraction_method": "site_rule",
-      "updated_at": "2026-08-10T19:09:26.779Z",
+      "updated_at": "2026-08-11T19:14:22.472Z",
       "quality_score": 0.74
     },
     {
@@ -15128,7 +15008,55 @@
       "source_priority": "S",
       "source_priority_score": 4,
       "extraction_method": "site_rule",
-      "updated_at": "2026-08-10T19:09:26.779Z",
+      "updated_at": "2026-08-11T19:14:22.472Z",
+      "quality_score": 0.74
+    },
+    {
+      "id": "28ee5e328dc5ebefde25",
+      "title": "yama the meaning of life TOUR 2027",
+      "start_date": "2027-03-13",
+      "end_date": "",
+      "open_time": "17:00",
+      "start_time": "18:00",
+      "end_time": "",
+      "all_day": false,
+      "venue": "PENNY LANE24",
+      "venue_address": "",
+      "summary": "詳細は、後日ご案内致します",
+      "flyer_image_url": "https://wess.jp/wp/wp-content/uploads/2025/11/yama.jpg",
+      "detail_url": "https://wess.jp/yama/",
+      "source_id": "wess-jp-concert-schedule",
+      "source_name": "WESS",
+      "source_url": "https://wess.jp/concert-schedule/",
+      "source_category": "WESS",
+      "source_priority": "S",
+      "source_priority_score": 4,
+      "extraction_method": "site_rule",
+      "updated_at": "2026-08-11T19:14:22.472Z",
+      "quality_score": 0.74
+    },
+    {
+      "id": "71d8ac0081ed7e38b619",
+      "title": "yama the meaning of life TOUR 2027",
+      "start_date": "2027-03-14",
+      "end_date": "",
+      "open_time": "15:00",
+      "start_time": "16:00",
+      "end_time": "",
+      "all_day": false,
+      "venue": "PENNY LANE24",
+      "venue_address": "",
+      "summary": "詳細は、後日ご案内致します",
+      "flyer_image_url": "https://wess.jp/wp/wp-content/uploads/2025/11/yama.jpg",
+      "detail_url": "https://wess.jp/yama2/",
+      "source_id": "wess-jp-concert-schedule",
+      "source_name": "WESS",
+      "source_url": "https://wess.jp/concert-schedule/",
+      "source_category": "WESS",
+      "source_priority": "S",
+      "source_priority_score": 4,
+      "extraction_method": "site_rule",
+      "updated_at": "2026-08-11T19:14:22.472Z",
       "quality_score": 0.74
     },
     {
@@ -15152,7 +15080,7 @@
       "source_priority": "S",
       "source_priority_score": 4,
       "extraction_method": "site_rule",
-      "updated_at": "2026-08-10T19:09:26.779Z",
+      "updated_at": "2026-08-11T19:14:22.472Z",
       "quality_score": 0.74
     },
     {
@@ -15176,7 +15104,7 @@
       "source_priority": "B",
       "source_priority_score": 2,
       "extraction_method": "site_rule",
-      "updated_at": "2026-08-10T19:09:48.795Z",
+      "updated_at": "2026-08-11T19:14:52.522Z",
       "quality_score": 0.57
     },
     {
@@ -15200,7 +15128,7 @@
       "source_priority": "S",
       "source_priority_score": 4,
       "extraction_method": "site_rule",
-      "updated_at": "2026-08-10T19:09:34.017Z",
+      "updated_at": "2026-08-11T19:14:34.749Z",
       "quality_score": 0.78
     },
     {
@@ -15224,7 +15152,7 @@
       "source_priority": "S",
       "source_priority_score": 4,
       "extraction_method": "site_rule",
-      "updated_at": "2026-08-10T19:09:28.024Z",
+      "updated_at": "2026-08-11T19:14:31.052Z",
       "quality_score": 0.74
     },
     {
@@ -15248,7 +15176,7 @@
       "source_priority": "S",
       "source_priority_score": 4,
       "extraction_method": "site_rule",
-      "updated_at": "2026-08-10T19:09:28.024Z",
+      "updated_at": "2026-08-11T19:14:31.052Z",
       "quality_score": 0.74
     },
     {
@@ -15272,7 +15200,7 @@
       "source_priority": "S",
       "source_priority_score": 4,
       "extraction_method": "site_rule",
-      "updated_at": "2026-08-10T19:09:29.231Z",
+      "updated_at": "2026-08-11T19:14:32.228Z",
       "quality_score": 0.56
     },
     {
@@ -15296,7 +15224,7 @@
       "source_priority": "S",
       "source_priority_score": 4,
       "extraction_method": "site_rule",
-      "updated_at": "2026-08-10T19:09:29.231Z",
+      "updated_at": "2026-08-11T19:14:32.228Z",
       "quality_score": 0.56
     },
     {
@@ -15320,7 +15248,7 @@
       "source_priority": "S",
       "source_priority_score": 4,
       "extraction_method": "site_rule",
-      "updated_at": "2026-08-10T19:09:29.231Z",
+      "updated_at": "2026-08-11T19:14:32.228Z",
       "quality_score": 0.74
     },
     {
@@ -15344,7 +15272,7 @@
       "source_priority": "S",
       "source_priority_score": 4,
       "extraction_method": "site_rule",
-      "updated_at": "2026-08-10T19:09:34.021Z",
+      "updated_at": "2026-08-11T19:14:34.753Z",
       "quality_score": 0.78
     },
     {
@@ -15368,7 +15296,7 @@
       "source_priority": "S",
       "source_priority_score": 4,
       "extraction_method": "site_rule",
-      "updated_at": "2026-08-10T19:09:34.026Z",
+      "updated_at": "2026-08-11T19:14:34.757Z",
       "quality_score": 0.78
     },
     {
@@ -15392,7 +15320,7 @@
       "source_priority": "S",
       "source_priority_score": 4,
       "extraction_method": "site_rule",
-      "updated_at": "2026-08-10T19:09:31.451Z",
+      "updated_at": "2026-08-11T19:14:34.760Z",
       "quality_score": 0.74
     }
   ]
