@@ -1,568 +1,16 @@
 {
   "schema_version": 1,
-  "generated_at": "2026-10-19T22:16:55.676Z",
+  "generated_at": "2026-10-20T21:32:20.192Z",
   "timezone": "Asia/Tokyo",
   "mode": "delta",
   "source_total": 47,
   "source_crawled": 47,
   "crawl_error_sources": 0,
-  "event_total": 551,
-  "event_today": 6,
+  "event_total": 563,
+  "event_today": 5,
   "quality_threshold": 0.56,
   "quality_threshold_heuristic": 0.58,
   "events": [
-    {
-      "id": "3bb0d38855b547a25dc2",
-      "title": "第80回 全日本学生音楽コンクール北海道大会（3日目）",
-      "start_date": "2026-10-18",
-      "end_date": "",
-      "open_time": "09:30",
-      "start_time": "10:00",
-      "end_time": "17:50",
-      "all_day": false,
-      "venue": "札幌コンサートホール Kitara 小ホール",
-      "venue_address": "札幌市中央区中島公園1番15号",
-      "summary": "小ホール 2026年10月18日(日曜日) 9:30開場 10:00開演 17:50終演予定",
-      "flyer_image_url": "https://www.kitara-sapporo.or.jp/og-image.jpg",
-      "detail_url": "https://www.kitara-sapporo.or.jp/event/event_detail.php?num=7339",
-      "source_id": "www-kitara-sapporo-or-jp-event",
-      "source_name": "札幌コンサートホール Kitara",
-      "source_url": "https://www.kitara-sapporo.or.jp/event/",
-      "source_category": "コンサートホール（会場公式）",
-      "source_priority": "S",
-      "source_priority_score": 4,
-      "extraction_method": "site_rule",
-      "updated_at": "2026-10-17T21:25:28.289Z",
-      "quality_score": 1
-    },
-    {
-      "id": "26993531255b3ae1ab84",
-      "title": "令和8年度札幌市民芸術祭 市民合唱祭第1部",
-      "start_date": "2026-10-18",
-      "end_date": "",
-      "open_time": "09:30",
-      "start_time": "10:00",
-      "end_time": "",
-      "all_day": false,
-      "venue": "札幌市教育文化会館 大ホール",
-      "venue_address": "",
-      "summary": "2026年10月18日（日） 【開場】9:30 【開演】10:00",
-      "flyer_image_url": "",
-      "detail_url": "https://www.kyobun.org/event_schedule.html?id=12083&k=lst&ym=202610",
-      "source_id": "www-kyobun-org-event-schedule-html",
-      "source_name": "札幌市教育文化会館",
-      "source_url": "https://www.kyobun.org/event_schedule.html",
-      "source_category": "公共ホール（会場公式）",
-      "source_priority": "A",
-      "source_priority_score": 3,
-      "extraction_method": "site_rule",
-      "updated_at": "2026-10-17T21:25:28.082Z",
-      "quality_score": 0.95
-    },
-    {
-      "id": "e977197f8943b5513c94",
-      "title": "札幌交響楽団 第680回定期演奏会（13時公演）",
-      "start_date": "2026-10-18",
-      "end_date": "",
-      "open_time": "12:20",
-      "start_time": "13:00",
-      "end_time": "15:00",
-      "all_day": false,
-      "venue": "札幌コンサートホール Kitara 大ホール",
-      "venue_address": "札幌市中央区中島公園1番15号",
-      "summary": "大ホール 2026年10月18日(日曜日) 12:20開場 13:00開演 15:00終演予定",
-      "flyer_image_url": "https://www.kitara-sapporo.or.jp/og-image.jpg",
-      "detail_url": "https://www.kitara-sapporo.or.jp/event/event_detail.php?num=7413",
-      "source_id": "www-kitara-sapporo-or-jp-event",
-      "source_name": "札幌コンサートホール Kitara",
-      "source_url": "https://www.kitara-sapporo.or.jp/event/",
-      "source_category": "コンサートホール（会場公式）",
-      "source_priority": "S",
-      "source_priority_score": 4,
-      "extraction_method": "site_rule",
-      "updated_at": "2026-10-17T21:25:28.288Z",
-      "quality_score": 1
-    },
-    {
-      "id": "a346533028a85720378f",
-      "title": "くまげら木琴音楽会 第37回さっぽろマリンバクラブ発表会",
-      "start_date": "2026-10-18",
-      "end_date": "",
-      "open_time": "13:15",
-      "start_time": "13:45",
-      "end_time": "",
-      "all_day": false,
-      "venue": "SCARTSコート",
-      "venue_address": "",
-      "summary": "2026年10月18日（日） 開演 13:45（13:15開場）",
-      "flyer_image_url": "https://www.sapporo-community-plaza.jp/img/plaza_ogp_ss.png",
-      "detail_url": "https://www.sapporo-community-plaza.jp/event.php?num=5446",
-      "source_id": "www-sapporo-community-plaza-jp-event-php",
-      "source_name": "札幌市民交流プラザ",
-      "source_url": "https://www.sapporo-community-plaza.jp/event.php",
-      "source_category": "文化複合施設（会場公式）",
-      "source_priority": "S",
-      "source_priority_score": 4,
-      "extraction_method": "site_rule",
-      "updated_at": "2026-10-17T21:25:25.512Z",
-      "quality_score": 0.98
-    },
-    {
-      "id": "beb98418059be7d21831",
-      "title": "第149回 サイエンス・カフェ札幌 「土でつながる、未来へつなげる――微生物(キンコンキン)との共生から学ぶ、これからの農業――」",
-      "start_date": "2026-10-18",
-      "end_date": "",
-      "open_time": "13:30",
-      "start_time": "14:00",
-      "end_time": "",
-      "all_day": false,
-      "venue": "SCARTSモールC",
-      "venue_address": "",
-      "summary": "2026年10月18日（日） 開演 14:00（13:30開場）",
-      "flyer_image_url": "https://www.sapporo-community-plaza.jp/upimg/20261003091850-1.jpg",
-      "detail_url": "https://www.sapporo-community-plaza.jp/event.php?num=5589",
-      "source_id": "www-sapporo-community-plaza-jp-event-php",
-      "source_name": "札幌市民交流プラザ",
-      "source_url": "https://www.sapporo-community-plaza.jp/event.php",
-      "source_category": "文化複合施設（会場公式）",
-      "source_priority": "S",
-      "source_priority_score": 4,
-      "extraction_method": "site_rule",
-      "updated_at": "2026-10-17T21:25:25.512Z",
-      "quality_score": 0.98
-    },
-    {
-      "id": "f6bb6c2c5259eda85a4b",
-      "title": "第27期札幌ジュニアジャズスクール定期演奏会",
-      "start_date": "2026-10-18",
-      "end_date": "",
-      "open_time": "13:30",
-      "start_time": "14:00",
-      "end_time": "",
-      "all_day": false,
-      "venue": "札幌市教育文化会館 小ホール",
-      "venue_address": "",
-      "summary": "2026年10月18日（日） 【開場】13:30 【開演】14:00",
-      "flyer_image_url": "https://www.kyobun.org/upimg/e20261015092735_2.jpg",
-      "detail_url": "https://www.kyobun.org/event_schedule.html?id=12096&k=lst&ym=202610",
-      "source_id": "www-kyobun-org-event-schedule-html",
-      "source_name": "札幌市教育文化会館",
-      "source_url": "https://www.kyobun.org/event_schedule.html",
-      "source_category": "公共ホール（会場公式）",
-      "source_priority": "A",
-      "source_priority_score": 3,
-      "extraction_method": "site_rule",
-      "updated_at": "2026-10-17T21:25:28.084Z",
-      "quality_score": 0.95
-    },
-    {
-      "id": "18e5f9eee12692059f91",
-      "title": "yosugala tour2026",
-      "start_date": "2026-10-18",
-      "end_date": "",
-      "open_time": "14:30",
-      "start_time": "15:00",
-      "end_time": "",
-      "all_day": false,
-      "venue": "PENNY LANE24",
-      "venue_address": "",
-      "summary": "WEB受付のみ",
-      "flyer_image_url": "https://wess.jp/wp/wp-content/uploads/2026/06/yosugala-1.jpg",
-      "detail_url": "https://wess.jp/yosugala/",
-      "source_id": "wess-jp-concert-schedule",
-      "source_name": "WESS",
-      "source_url": "https://wess.jp/concert-schedule/",
-      "source_category": "WESS",
-      "source_priority": "S",
-      "source_priority_score": 4,
-      "extraction_method": "site_rule",
-      "updated_at": "2026-10-17T21:25:14.130Z",
-      "quality_score": 0.74
-    },
-    {
-      "id": "2deeeb4be5c9b74eccb1",
-      "title": "kein TOUR 2026「Iustitia sine misericordia」",
-      "start_date": "2026-10-18",
-      "end_date": "",
-      "open_time": "16:00",
-      "start_time": "16:30",
-      "end_time": "",
-      "all_day": false,
-      "venue": "BESSIE HALL",
-      "venue_address": "",
-      "summary": "WEB受付のみ",
-      "flyer_image_url": "https://wess.jp/wp/wp-content/uploads/2026/07/kein.jpg",
-      "detail_url": "https://wess.jp/kein2/",
-      "source_id": "wess-jp-concert-schedule",
-      "source_name": "WESS",
-      "source_url": "https://wess.jp/concert-schedule/",
-      "source_category": "WESS",
-      "source_priority": "S",
-      "source_priority_score": 4,
-      "extraction_method": "site_rule",
-      "updated_at": "2026-10-17T21:25:14.131Z",
-      "quality_score": 0.74
-    },
-    {
-      "id": "d57d305a46bd1d659ffe",
-      "title": "リーガルリリー “Dawn”",
-      "start_date": "2026-10-18",
-      "end_date": "",
-      "open_time": "16:30",
-      "start_time": "17:00",
-      "end_time": "",
-      "all_day": false,
-      "venue": "cube garden",
-      "venue_address": "",
-      "summary": "",
-      "flyer_image_url": "https://wess.jp/wp/wp-content/uploads/2026/05/regallily.jpg",
-      "detail_url": "https://wess.jp/regallily/",
-      "source_id": "wess-jp-concert-schedule",
-      "source_name": "WESS",
-      "source_url": "https://wess.jp/concert-schedule/",
-      "source_category": "WESS",
-      "source_priority": "S",
-      "source_priority_score": 4,
-      "extraction_method": "site_rule",
-      "updated_at": "2026-10-17T21:25:14.130Z",
-      "quality_score": 0.74
-    },
-    {
-      "id": "934ee6f2cd730edec880",
-      "title": "日食なつこ 未発表曲ツアー「エリア未来2 “ブラックホール”」",
-      "start_date": "2026-10-18",
-      "end_date": "",
-      "open_time": "16:45",
-      "start_time": "17:30",
-      "end_time": "",
-      "all_day": false,
-      "venue": "Zepp Sapporo",
-      "venue_address": "札幌市中央区南9条西4丁目4",
-      "summary": "Mount Alive[株式会社マウントアライブ]オフィシャルサイト｜イベント情報詳細 アーティスト名：日食なつこ｜日程：2026年10月18日公演｜イベント名：日食なつこ 未発表曲ツアー「エリア未来2 “ブラックホール”」｜会場名：Zepp Sapporo：札幌市中央区南9条西4丁目4｜チケット発売：2026年8月29日｜お問い合わせ TEL：011-623-5555",
-      "flyer_image_url": "http://mountalive.com/data/schedule_img/xxl/20260515191459_0.jpg",
-      "detail_url": "https://www.mountalive.com/schedule/more.php?no=4041",
-      "source_id": "www-mountalive-com-schedule",
-      "source_name": "Mount Alive",
-      "source_url": "https://www.mountalive.com/schedule/",
-      "source_category": "Mount Alive",
-      "source_priority": "S",
-      "source_priority_score": 4,
-      "extraction_method": "site_rule",
-      "updated_at": "2026-10-17T21:25:18.123Z",
-      "quality_score": 1
-    },
-    {
-      "id": "0c9da79c2a9ba6da02c3",
-      "title": "川越守記念北海道交響楽団 第101回演奏会",
-      "start_date": "2026-10-18",
-      "end_date": "",
-      "open_time": "18:30",
-      "start_time": "19:00",
-      "end_time": "21:00",
-      "all_day": false,
-      "venue": "札幌コンサートホール Kitara 大ホール",
-      "venue_address": "札幌市中央区中島公園1番15号",
-      "summary": "大ホール 2026年10月18日(日曜日) 18:30開場 19:00開演 21:00終演予定",
-      "flyer_image_url": "https://www.kitara-sapporo.or.jp/og-image.jpg",
-      "detail_url": "https://www.kitara-sapporo.or.jp/event/event_detail.php?num=7341",
-      "source_id": "www-kitara-sapporo-or-jp-event",
-      "source_name": "札幌コンサートホール Kitara",
-      "source_url": "https://www.kitara-sapporo.or.jp/event/",
-      "source_category": "コンサートホール（会場公式）",
-      "source_priority": "S",
-      "source_priority_score": 4,
-      "extraction_method": "site_rule",
-      "updated_at": "2026-10-17T21:25:28.289Z",
-      "quality_score": 1
-    },
-    {
-      "id": "228805a73895cf890611",
-      "title": "Myra Saxophone Quartet FIRST CONCERT",
-      "start_date": "2026-10-18",
-      "end_date": "",
-      "open_time": "18:30",
-      "start_time": "19:00",
-      "end_time": "",
-      "all_day": false,
-      "venue": "SCARTSコート",
-      "venue_address": "",
-      "summary": "2026年10月18日（日） 開演 19:00（18:30開場）",
-      "flyer_image_url": "https://www.sapporo-community-plaza.jp/img/plaza_ogp_ss.png",
-      "detail_url": "https://www.sapporo-community-plaza.jp/event.php?num=5359",
-      "source_id": "www-sapporo-community-plaza-jp-event-php",
-      "source_name": "札幌市民交流プラザ",
-      "source_url": "https://www.sapporo-community-plaza.jp/event.php",
-      "source_category": "文化複合施設（会場公式）",
-      "source_priority": "S",
-      "source_priority_score": 4,
-      "extraction_method": "site_rule",
-      "updated_at": "2026-10-17T21:25:25.513Z",
-      "quality_score": 0.98
-    },
-    {
-      "id": "7c87f4868a74da9c67f8",
-      "title": "BUMP OF CHICKEN TOUR 2026-2027 Ratio Clavis",
-      "start_date": "2026-10-18",
-      "end_date": "",
-      "open_time": "",
-      "start_time": "",
-      "end_time": "",
-      "all_day": true,
-      "venue": "北海道立総合体育センター 北海きたえーる",
-      "venue_address": "札幌市豊平区豊平5条11丁目1-1",
-      "summary": "Mount Alive[株式会社マウントアライブ]オフィシャルサイト｜イベント情報詳細 アーティスト名：BUMP OF CHICKEN｜日程：2026年10月18日公演｜イベント名：BUMP OF CHICKEN TOUR 2026-2027 Ratio Clavis｜会場名：北海道立総合体育センター 北海きたえーる：札幌市豊平区豊平5条11丁目1-1｜チケット発売：年月日｜お問い合わせ TEL：011-623-5555",
-      "flyer_image_url": "http://mountalive.com/data/schedule_img/xxl/20260212105120_0.jpg",
-      "detail_url": "https://www.mountalive.com/schedule/more.php?no=3926",
-      "source_id": "www-mountalive-com-schedule",
-      "source_name": "Mount Alive",
-      "source_url": "https://www.mountalive.com/schedule/",
-      "source_category": "Mount Alive",
-      "source_priority": "S",
-      "source_priority_score": 4,
-      "extraction_method": "site_rule",
-      "updated_at": "2026-10-17T21:25:18.123Z",
-      "quality_score": 0.84
-    },
-    {
-      "id": "d01e37f51f8024db08f3",
-      "title": "SAPPORO GIRLS FLIGHT vol.19 ~サッポロファクトリーアトリウムSP~",
-      "start_date": "2026-10-18",
-      "end_date": "",
-      "open_time": "",
-      "start_time": "",
-      "end_time": "",
-      "all_day": true,
-      "venue": "アトリウム",
-      "venue_address": "札幌市中央区北2条東4丁目",
-      "summary": "2026年10月18日(日) / アトリウム",
-      "flyer_image_url": "https://sapporofactory.jp/theme/sf/files/event/ID00000647-20260922_125547-img.jpg",
-      "detail_url": "https://sapporofactory.jp/event/detail/647",
-      "source_id": "sapporofactory-jp-event",
-      "source_name": "サッポロファクトリー（イベント）",
-      "source_url": "https://sapporofactory.jp/event/",
-      "source_category": "商業施設（一次）",
-      "source_priority": "A",
-      "source_priority_score": 3,
-      "extraction_method": "site_rule",
-      "updated_at": "2026-10-17T21:25:31.832Z",
-      "quality_score": 0.77
-    },
-    {
-      "id": "3f84edc7b806828410ea",
-      "title": "SAPPORO BIKAKU EXPO Lv3",
-      "start_date": "2026-10-18",
-      "end_date": "",
-      "open_time": "",
-      "start_time": "",
-      "end_time": "",
-      "all_day": true,
-      "venue": "SCARTSスタジオ1 SCARTSスタジオ2",
-      "venue_address": "",
-      "summary": "2026年10月18日（日） 11:00 ～ 18:00",
-      "flyer_image_url": "https://www.sapporo-community-plaza.jp/img/plaza_ogp_ss.png",
-      "detail_url": "https://www.sapporo-community-plaza.jp/event.php?num=5358",
-      "source_id": "www-sapporo-community-plaza-jp-event-php",
-      "source_name": "札幌市民交流プラザ",
-      "source_url": "https://www.sapporo-community-plaza.jp/event.php",
-      "source_category": "文化複合施設（会場公式）",
-      "source_priority": "S",
-      "source_priority_score": 4,
-      "extraction_method": "site_rule",
-      "updated_at": "2026-10-17T21:25:25.511Z",
-      "quality_score": 0.76
-    },
-    {
-      "id": "af57fca4bc78eb6e9708",
-      "title": "スケジュール ドームカレンダー",
-      "start_date": "2026-10-18",
-      "end_date": "",
-      "open_time": "",
-      "start_time": "",
-      "end_time": "",
-      "all_day": true,
-      "venue": "大和ハウス プレミストドーム",
-      "venue_address": "〒062-0045 札幌市豊平区羊ケ丘1番地",
-      "summary": "北海道コンサドーレ札幌の試合スケジュールのほか、コンサートやインベントの開催日程、トレーニングルームなど館内施設の営業日程をご紹介します。",
-      "flyer_image_url": "https://www.sapporo-dome.co.jp/ogp.jpg",
-      "detail_url": "https://www.sapporo-dome.co.jp/schedule/",
-      "source_id": "www-sapporo-dome-co-jp-dome",
-      "source_name": "大和ハウス プレミストドーム",
-      "source_url": "https://www.sapporo-dome.co.jp/dome/",
-      "source_category": "大規模会場（会場公式）",
-      "source_priority": "S",
-      "source_priority_score": 4,
-      "extraction_method": "heuristic",
-      "updated_at": "2026-10-18T20:31:42.066Z",
-      "quality_score": 0.64
-    },
-    {
-      "id": "ddd35d13f71a8dad517e",
-      "title": "パークゴルフ場休場 トレーニング室・ランニングコース利用不可 ひがしく健康スポーツまつり",
-      "start_date": "2026-10-18",
-      "end_date": "",
-      "open_time": "",
-      "start_time": "",
-      "end_time": "",
-      "all_day": true,
-      "venue": "つどーむ",
-      "venue_address": "札幌市東区栄町885番地1",
-      "summary": "パークゴルフ場休場 トレーニング室・ランニングコース利用不可（9:00～17:00） ひがしく健康スポーツまつり",
-      "flyer_image_url": "",
-      "detail_url": "https://www.sapporo-sport.jp/tsudome/calendar/?ty=2026&tm=10#d18",
-      "source_id": "www-sapporo-sport-jp-tsudome-calendar",
-      "source_name": "つどーむ（札幌市スポーツ協会）",
-      "source_url": "https://www.sapporo-sport.jp/tsudome/calendar/",
-      "source_category": "市スポーツ施設（会場公式）",
-      "source_priority": "S",
-      "source_priority_score": 4,
-      "extraction_method": "site_rule",
-      "updated_at": "2026-10-19T22:16:08.283Z",
-      "quality_score": 0.64
-    },
-    {
-      "id": "3cc19945f25937aa9077",
-      "title": "2026高橋佳子講演会",
-      "start_date": "2026-10-18",
-      "end_date": "",
-      "open_time": "",
-      "start_time": "",
-      "end_time": "",
-      "all_day": true,
-      "venue": "カナモトホール",
-      "venue_address": "札幌市中央区北1条西1丁目",
-      "summary": "12:00 / 13:00 / 高橋佳子講演会実行委員会 03-5828-1587 10時～17時（土・日・祝日除く） https://www.keikotakahashi-lecture.jp/",
-      "flyer_image_url": "https://www.sapporo-shiminhall.org/files/seminar/2155/2026.10.18_2026%20%E9%AB%98%E6%A9%8B%E4%BD%B3%E5%AD%90%E8%AC%9B%E6%BC%94%E4%BC%9A%EF%BC%88%E9%AB%98%E6%A9%8B%E4%BD%B3%E5%AD%90%E8%AC%9B%E6%BC%94%E4%BC%9A%E5%AE%9F%E8%A1%8C%E5%A7%94%E5%93%A1%E4%BC%9A%EF%BC%89.pdf",
-      "detail_url": "https://www.sapporo-shiminhall.org/event/?ymd=2026/10/01#event2155-18",
-      "source_id": "www-sapporo-shiminhall-org",
-      "source_name": "カナモトホール（札幌市民ホール）",
-      "source_url": "https://www.sapporo-shiminhall.org/",
-      "source_category": "市民ホール（会場公式）",
-      "source_priority": "A",
-      "source_priority_score": 3,
-      "extraction_method": "site_rule",
-      "updated_at": "2026-10-19T22:16:30.377Z",
-      "quality_score": 0.61
-    },
-    {
-      "id": "53138a0dac47b8553da7",
-      "title": "2026年10月子りす工房を開催しました！",
-      "start_date": "2026-10-18",
-      "end_date": "",
-      "open_time": "",
-      "start_time": "",
-      "end_time": "",
-      "all_day": true,
-      "venue": "豊平公園 中島公園 西岡公園 西岡中央公園 農試公園 発寒西陵公園 平岡公園 平岡樹芸センター",
-      "venue_address": "札幌市豊平区西岡４８７番地",
-      "summary": "2026年10月の子りす工房を開催しました！ 本日のメインは「ヒンメリ」でした。 子りす工房では、テーマ以外のものを作ることが出来ます。 ヒンメリは、いつもより少し難しいものに挑...",
-      "flyer_image_url": "https://www.sapporo-park.or.jp/nishioka/wp-content/uploads/2026/09/5f4f26d83b72c545c0b8ce7f387bb1d9-208x300.jpg",
-      "detail_url": "https://www.sapporo-park.or.jp/nishioka/?p=37156",
-      "source_id": "odori-park-jp",
-      "source_name": "大通公園",
-      "source_url": "https://odori-park.jp/",
-      "source_category": "地域公式（公園運営）",
-      "source_priority": "A",
-      "source_priority_score": 3,
-      "extraction_method": "heuristic",
-      "updated_at": "2026-10-18T20:31:57.956Z",
-      "quality_score": 0.61
-    },
-    {
-      "id": "f3bed4bf7cbfa98b926e",
-      "title": "秋のベンチ塗装を行いました",
-      "start_date": "2026-10-18",
-      "end_date": "2026-10-18",
-      "open_time": "",
-      "start_time": "",
-      "end_time": "",
-      "all_day": true,
-      "venue": "豊平公園 中島公園 西岡公園 西岡中央公園 農試公園 発寒西陵公園 平岡公園 平岡樹芸センター",
-      "venue_address": "札幌市公園緑化協会",
-      "summary": "秋のベンチ塗装を行いました | 大通公園 -公益 財団法人 札幌市公園緑化協会 日本語 English 簡体字 繁体字 韓国語 ホーム お知らせ 大通公園とは 公園案内 イベント情報 アクセス Instagram 大通公園 Sapporo Odori Park ホーム お知らせ 大通公園とは 公園案内 イベント情報 アクセス 日本語 English 簡体字 繁体字 韓国語 HOME &raquo; お知らせ &raquo; 秋のベンチ…",
-      "flyer_image_url": "https://odori-park.jp/",
-      "detail_url": "https://odori-park.jp/news/%e7%a7%8b%e3%81%ae%e3%83%99%e3%83%b3%e3%83%81%e5%a1%97%e8%a3%85%e3%82%92%e8%a1%8c%e3%81%84%e3%81%be%e3%81%97%e3%81%9f/",
-      "source_id": "odori-park-jp",
-      "source_name": "大通公園",
-      "source_url": "https://odori-park.jp/",
-      "source_category": "地域公式（公園運営）",
-      "source_priority": "A",
-      "source_priority_score": 3,
-      "extraction_method": "heuristic",
-      "updated_at": "2026-10-19T22:16:30.728Z",
-      "quality_score": 0.61
-    },
-    {
-      "id": "7fbf6d90854df2970bbe",
-      "title": "大通公園 -公益 財団法人 札幌市公園緑化協会",
-      "start_date": "2026-10-18",
-      "end_date": "2026-10-18",
-      "open_time": "",
-      "start_time": "",
-      "end_time": "",
-      "all_day": true,
-      "venue": "大通公園インフォメーションセンター",
-      "venue_address": "札幌市公園緑化協会",
-      "summary": "大通公園 -公益 財団法人 札幌市公園緑化協会 日本語 English 簡体字 繁体字 韓国語 ホーム お知らせ 大通公園とは 公園案内 イベント情報 アクセス Instagram 大通公園 Sapporo Odori Park ホーム お知らせ 大通公園とは 公園案内 イベント情報 アクセス 日本語 English 簡体字 繁体字 韓国語 大通公園は、札幌市の中心部に位置し、大通西1丁目から大通西12丁目までの長さ約1.5Km、面積…",
-      "flyer_image_url": "https://odori-park.jp/",
-      "detail_url": "https://odori-park.jp/",
-      "source_id": "odori-park-jp",
-      "source_name": "大通公園",
-      "source_url": "https://odori-park.jp/",
-      "source_category": "地域公式（公園運営）",
-      "source_priority": "A",
-      "source_priority_score": 3,
-      "extraction_method": "heuristic",
-      "updated_at": "2026-10-18T20:31:55.226Z",
-      "quality_score": 0.61
-    },
-    {
-      "id": "3ba819d8cd27a6c5e12f",
-      "title": "大通公園であそぶか～いを開催しました",
-      "start_date": "2026-10-18",
-      "end_date": "",
-      "open_time": "",
-      "start_time": "",
-      "end_time": "",
-      "all_day": true,
-      "venue": "豊平公園 中島公園 西岡公園 西岡中央公園 農試公園 発寒西陵公園 平岡公園 平岡樹芸センター",
-      "venue_address": "札幌市公園緑化協会",
-      "summary": "大通公園であそぶか～いを開催しました | 大通公園 -公益 財団法人 札幌市公園緑化協会 日本語 English 簡体字 繁体字 韓国語 ホーム お知らせ 大通公園とは 公園案内 イベント情報 アクセス Instagram 大通公園 Sapporo Odori Park ホーム お知らせ 大通公園とは 公園案内 イベント情報 アクセス 日本語 English 簡体字 繁体字 韓国語 HOME &raquo; お知らせ &raquo; …",
-      "flyer_image_url": "https://odori-park.jp/",
-      "detail_url": "https://odori-park.jp/news/%e5%a4%a7%e9%80%9a%e5%85%ac%e5%9c%92%e3%81%a7%e3%81%82%e3%81%9d%e3%81%b6%e3%81%8b%ef%bd%9e%e3%81%84%e3%82%92%e9%96%8b%e5%82%ac%e3%81%97%e3%81%be%e3%81%97%e3%81%9f/",
-      "source_id": "odori-park-jp",
-      "source_name": "大通公園",
-      "source_url": "https://odori-park.jp/",
-      "source_category": "地域公式（公園運営）",
-      "source_priority": "A",
-      "source_priority_score": 3,
-      "extraction_method": "heuristic",
-      "updated_at": "2026-10-19T22:16:30.722Z",
-      "quality_score": 0.61
-    },
-    {
-      "id": "0c6bab0e98bf02b84495",
-      "title": "夜の本気ダンス OKIBARI",
-      "start_date": "2026-10-18",
-      "end_date": "",
-      "open_time": "",
-      "start_time": "",
-      "end_time": "",
-      "all_day": true,
-      "venue": "札幌近松",
-      "venue_address": "",
-      "summary": "",
-      "flyer_image_url": "https://wess.jp/wp/wp-content/uploads/2025/11/yorudan.jpg",
-      "detail_url": "https://wess.jp/yorudan/",
-      "source_id": "wess-jp-concert-schedule",
-      "source_name": "WESS",
-      "source_url": "https://wess.jp/concert-schedule/",
-      "source_category": "WESS",
-      "source_priority": "S",
-      "source_priority_score": 4,
-      "extraction_method": "site_rule",
-      "updated_at": "2026-10-17T21:25:14.130Z",
-      "quality_score": 0.56
-    },
     {
       "id": "68c57a1a266f3cb589f7",
       "title": "朗読会 はまなす Vol.61",
@@ -656,7 +104,7 @@
       "source_priority": "A",
       "source_priority_score": 3,
       "extraction_method": "heuristic",
-      "updated_at": "2026-10-19T22:16:40.475Z",
+      "updated_at": "2026-10-20T21:32:09.351Z",
       "quality_score": 0.81
     },
     {
@@ -680,7 +128,7 @@
       "source_priority": "S",
       "source_priority_score": 4,
       "extraction_method": "site_rule",
-      "updated_at": "2026-10-19T22:16:11.626Z",
+      "updated_at": "2026-10-20T21:31:47.318Z",
       "quality_score": 0.8
     },
     {
@@ -800,7 +248,7 @@
       "source_priority": "A",
       "source_priority_score": 3,
       "extraction_method": "site_rule",
-      "updated_at": "2026-10-19T22:16:25.056Z",
+      "updated_at": "2026-10-20T21:31:49.114Z",
       "quality_score": 0.95
     },
     {
@@ -824,7 +272,7 @@
       "source_priority": "B",
       "source_priority_score": 2,
       "extraction_method": "site_rule",
-      "updated_at": "2026-10-19T22:16:51.249Z",
+      "updated_at": "2026-10-20T21:32:14.727Z",
       "quality_score": 0.71
     },
     {
@@ -848,7 +296,7 @@
       "source_priority": "B",
       "source_priority_score": 2,
       "extraction_method": "site_rule",
-      "updated_at": "2026-10-19T22:16:52.569Z",
+      "updated_at": "2026-10-20T21:32:16.841Z",
       "quality_score": 0.71
     },
     {
@@ -872,7 +320,7 @@
       "source_priority": "S",
       "source_priority_score": 4,
       "extraction_method": "site_rule",
-      "updated_at": "2026-10-19T22:16:04.822Z",
+      "updated_at": "2026-10-20T21:31:37.519Z",
       "quality_score": 1
     },
     {
@@ -896,7 +344,7 @@
       "source_priority": "S",
       "source_priority_score": 4,
       "extraction_method": "site_rule",
-      "updated_at": "2026-10-19T22:15:57.019Z",
+      "updated_at": "2026-10-20T21:31:32.422Z",
       "quality_score": 0.74
     },
     {
@@ -920,7 +368,7 @@
       "source_priority": "S",
       "source_priority_score": 4,
       "extraction_method": "site_rule",
-      "updated_at": "2026-10-19T22:16:14.285Z",
+      "updated_at": "2026-10-20T21:31:49.900Z",
       "quality_score": 1
     },
     {
@@ -944,7 +392,7 @@
       "source_priority": "S",
       "source_priority_score": 4,
       "extraction_method": "site_rule",
-      "updated_at": "2026-10-19T22:15:57.019Z",
+      "updated_at": "2026-10-20T21:31:32.422Z",
       "quality_score": 0.78
     },
     {
@@ -968,7 +416,7 @@
       "source_priority": "S",
       "source_priority_score": 4,
       "extraction_method": "site_rule",
-      "updated_at": "2026-10-19T22:15:57.019Z",
+      "updated_at": "2026-10-20T21:31:32.422Z",
       "quality_score": 0.74
     },
     {
@@ -992,7 +440,7 @@
       "source_priority": "B",
       "source_priority_score": 2,
       "extraction_method": "site_rule",
-      "updated_at": "2026-10-19T22:16:51.249Z",
+      "updated_at": "2026-10-20T21:32:14.727Z",
       "quality_score": 0.71
     },
     {
@@ -1016,7 +464,7 @@
       "source_priority": "S",
       "source_priority_score": 4,
       "extraction_method": "site_rule",
-      "updated_at": "2026-10-19T22:16:08.283Z",
+      "updated_at": "2026-10-20T21:31:43.554Z",
       "quality_score": 0.64
     },
     {
@@ -1040,7 +488,7 @@
       "source_priority": "A",
       "source_priority_score": 3,
       "extraction_method": "heuristic",
-      "updated_at": "2026-10-19T22:16:43.891Z",
+      "updated_at": "2026-10-20T21:32:11.214Z",
       "quality_score": 0.61
     },
     {
@@ -1064,7 +512,7 @@
       "source_priority": "A",
       "source_priority_score": 3,
       "extraction_method": "heuristic",
-      "updated_at": "2026-10-19T22:16:43.907Z",
+      "updated_at": "2026-10-20T21:32:11.236Z",
       "quality_score": 0.61
     },
     {
@@ -1088,7 +536,7 @@
       "source_priority": "S",
       "source_priority_score": 4,
       "extraction_method": "site_rule",
-      "updated_at": "2026-10-19T22:16:14.285Z",
+      "updated_at": "2026-10-20T21:31:49.900Z",
       "quality_score": 1
     },
     {
@@ -1112,7 +560,7 @@
       "source_priority": "S",
       "source_priority_score": 4,
       "extraction_method": "site_rule",
-      "updated_at": "2026-10-19T22:15:57.019Z",
+      "updated_at": "2026-10-20T21:31:32.422Z",
       "quality_score": 0.74
     },
     {
@@ -1136,7 +584,7 @@
       "source_priority": "S",
       "source_priority_score": 4,
       "extraction_method": "site_rule",
-      "updated_at": "2026-10-19T22:15:57.019Z",
+      "updated_at": "2026-10-20T21:31:32.422Z",
       "quality_score": 0.74
     },
     {
@@ -1160,7 +608,7 @@
       "source_priority": "B",
       "source_priority_score": 2,
       "extraction_method": "site_rule",
-      "updated_at": "2026-10-19T22:16:51.249Z",
+      "updated_at": "2026-10-20T21:32:14.727Z",
       "quality_score": 0.71
     },
     {
@@ -1184,7 +632,7 @@
       "source_priority": "S",
       "source_priority_score": 4,
       "extraction_method": "site_rule",
-      "updated_at": "2026-10-19T22:16:04.823Z",
+      "updated_at": "2026-10-20T21:31:37.520Z",
       "quality_score": 1
     },
     {
@@ -1208,7 +656,7 @@
       "source_priority": "S",
       "source_priority_score": 4,
       "extraction_method": "site_rule",
-      "updated_at": "2026-10-19T22:15:57.019Z",
+      "updated_at": "2026-10-20T21:31:32.422Z",
       "quality_score": 0.74
     },
     {
@@ -1232,7 +680,7 @@
       "source_priority": "A",
       "source_priority_score": 3,
       "extraction_method": "site_rule",
-      "updated_at": "2026-10-19T22:16:28.896Z",
+      "updated_at": "2026-10-20T21:31:53.798Z",
       "quality_score": 0.81
     },
     {
@@ -1256,7 +704,7 @@
       "source_priority": "A",
       "source_priority_score": 3,
       "extraction_method": "site_rule",
-      "updated_at": "2026-10-19T22:16:28.896Z",
+      "updated_at": "2026-10-20T21:31:53.798Z",
       "quality_score": 0.81
     },
     {
@@ -1280,7 +728,7 @@
       "source_priority": "A",
       "source_priority_score": 3,
       "extraction_method": "site_rule",
-      "updated_at": "2026-10-19T22:16:28.896Z",
+      "updated_at": "2026-10-20T21:31:53.798Z",
       "quality_score": 0.81
     },
     {
@@ -1304,7 +752,7 @@
       "source_priority": "S",
       "source_priority_score": 4,
       "extraction_method": "site_rule",
-      "updated_at": "2026-10-19T22:16:11.628Z",
+      "updated_at": "2026-10-20T21:31:47.320Z",
       "quality_score": 0.76
     },
     {
@@ -1328,7 +776,7 @@
       "source_priority": "S",
       "source_priority_score": 4,
       "extraction_method": "site_rule",
-      "updated_at": "2026-10-19T22:16:08.283Z",
+      "updated_at": "2026-10-20T21:31:43.554Z",
       "quality_score": 0.64
     },
     {
@@ -1352,7 +800,7 @@
       "source_priority": "S",
       "source_priority_score": 4,
       "extraction_method": "site_rule",
-      "updated_at": "2026-10-19T22:16:11.631Z",
+      "updated_at": "2026-10-20T21:31:47.322Z",
       "quality_score": 0.95
     },
     {
@@ -1376,7 +824,7 @@
       "source_priority": "S",
       "source_priority_score": 4,
       "extraction_method": "site_rule",
-      "updated_at": "2026-10-19T22:15:57.020Z",
+      "updated_at": "2026-10-20T21:31:32.423Z",
       "quality_score": 0.74
     },
     {
@@ -1400,7 +848,7 @@
       "source_priority": "S",
       "source_priority_score": 4,
       "extraction_method": "site_rule",
-      "updated_at": "2026-10-19T22:16:14.285Z",
+      "updated_at": "2026-10-20T21:31:49.901Z",
       "quality_score": 1
     },
     {
@@ -1424,7 +872,7 @@
       "source_priority": "S",
       "source_priority_score": 4,
       "extraction_method": "heuristic",
-      "updated_at": "2026-10-19T22:16:08.661Z",
+      "updated_at": "2026-10-20T21:31:42.054Z",
       "quality_score": 0.94
     },
     {
@@ -1448,7 +896,7 @@
       "source_priority": "S",
       "source_priority_score": 4,
       "extraction_method": "site_rule",
-      "updated_at": "2026-10-19T22:16:11.632Z",
+      "updated_at": "2026-10-20T21:31:47.323Z",
       "quality_score": 0.98
     },
     {
@@ -1472,7 +920,7 @@
       "source_priority": "S",
       "source_priority_score": 4,
       "extraction_method": "site_rule",
-      "updated_at": "2026-10-19T22:16:04.823Z",
+      "updated_at": "2026-10-20T21:31:37.520Z",
       "quality_score": 1
     },
     {
@@ -1496,7 +944,7 @@
       "source_priority": "S",
       "source_priority_score": 4,
       "extraction_method": "site_rule",
-      "updated_at": "2026-10-19T22:15:57.019Z",
+      "updated_at": "2026-10-20T21:31:32.423Z",
       "quality_score": 0.74
     },
     {
@@ -1520,7 +968,7 @@
       "source_priority": "S",
       "source_priority_score": 4,
       "extraction_method": "site_rule",
-      "updated_at": "2026-10-19T22:15:57.019Z",
+      "updated_at": "2026-10-20T21:31:32.423Z",
       "quality_score": 0.74
     },
     {
@@ -1544,7 +992,7 @@
       "source_priority": "S",
       "source_priority_score": 4,
       "extraction_method": "site_rule",
-      "updated_at": "2026-10-19T22:16:11.630Z",
+      "updated_at": "2026-10-20T21:31:47.321Z",
       "quality_score": 0.98
     },
     {
@@ -1568,7 +1016,7 @@
       "source_priority": "S",
       "source_priority_score": 4,
       "extraction_method": "site_rule",
-      "updated_at": "2026-10-19T22:15:57.019Z",
+      "updated_at": "2026-10-20T21:31:32.423Z",
       "quality_score": 0.74
     },
     {
@@ -1592,7 +1040,7 @@
       "source_priority": "S",
       "source_priority_score": 4,
       "extraction_method": "site_rule",
-      "updated_at": "2026-10-19T22:16:04.823Z",
+      "updated_at": "2026-10-20T21:31:37.521Z",
       "quality_score": 1
     },
     {
@@ -1616,7 +1064,7 @@
       "source_priority": "S",
       "source_priority_score": 4,
       "extraction_method": "site_rule",
-      "updated_at": "2026-10-19T22:16:29.308Z",
+      "updated_at": "2026-10-20T21:32:04.221Z",
       "quality_score": 0.78
     },
     {
@@ -1640,7 +1088,7 @@
       "source_priority": "S",
       "source_priority_score": 4,
       "extraction_method": "site_rule",
-      "updated_at": "2026-10-19T22:15:57.019Z",
+      "updated_at": "2026-10-20T21:31:32.423Z",
       "quality_score": 0.74
     },
     {
@@ -1664,7 +1112,7 @@
       "source_priority": "S",
       "source_priority_score": 4,
       "extraction_method": "site_rule",
-      "updated_at": "2026-10-19T22:16:11.631Z",
+      "updated_at": "2026-10-20T21:31:47.322Z",
       "quality_score": 0.8
     },
     {
@@ -1688,7 +1136,7 @@
       "source_priority": "S",
       "source_priority_score": 4,
       "extraction_method": "heuristic",
-      "updated_at": "2026-10-19T22:16:07.888Z",
+      "updated_at": "2026-10-20T21:31:41.184Z",
       "quality_score": 0.64
     },
     {
@@ -1712,7 +1160,7 @@
       "source_priority": "S",
       "source_priority_score": 4,
       "extraction_method": "site_rule",
-      "updated_at": "2026-10-19T22:16:08.283Z",
+      "updated_at": "2026-10-20T21:31:43.554Z",
       "quality_score": 0.64
     },
     {
@@ -1736,7 +1184,7 @@
       "source_priority": "A",
       "source_priority_score": 3,
       "extraction_method": "heuristic",
-      "updated_at": "2026-10-19T22:16:43.728Z",
+      "updated_at": "2026-10-20T21:32:12.584Z",
       "quality_score": 1
     },
     {
@@ -1760,7 +1208,7 @@
       "source_priority": "S",
       "source_priority_score": 4,
       "extraction_method": "site_rule",
-      "updated_at": "2026-10-19T22:16:14.286Z",
+      "updated_at": "2026-10-20T21:31:49.902Z",
       "quality_score": 1
     },
     {
@@ -1784,7 +1232,7 @@
       "source_priority": "S",
       "source_priority_score": 4,
       "extraction_method": "site_rule",
-      "updated_at": "2026-10-19T22:16:14.286Z",
+      "updated_at": "2026-10-20T21:31:49.901Z",
       "quality_score": 1
     },
     {
@@ -1808,7 +1256,7 @@
       "source_priority": "S",
       "source_priority_score": 4,
       "extraction_method": "site_rule",
-      "updated_at": "2026-10-19T22:16:11.634Z",
+      "updated_at": "2026-10-20T21:31:47.325Z",
       "quality_score": 0.98
     },
     {
@@ -1832,7 +1280,7 @@
       "source_priority": "A",
       "source_priority_score": 3,
       "extraction_method": "site_rule",
-      "updated_at": "2026-10-19T22:16:25.056Z",
+      "updated_at": "2026-10-20T21:31:49.114Z",
       "quality_score": 0.95
     },
     {
@@ -1856,7 +1304,7 @@
       "source_priority": "S",
       "source_priority_score": 4,
       "extraction_method": "site_rule",
-      "updated_at": "2026-10-19T22:16:11.634Z",
+      "updated_at": "2026-10-20T21:31:47.326Z",
       "quality_score": 0.98
     },
     {
@@ -1880,7 +1328,7 @@
       "source_priority": "S",
       "source_priority_score": 4,
       "extraction_method": "site_rule",
-      "updated_at": "2026-10-19T22:16:11.633Z",
+      "updated_at": "2026-10-20T21:31:47.324Z",
       "quality_score": 0.98
     },
     {
@@ -1904,7 +1352,7 @@
       "source_priority": "S",
       "source_priority_score": 4,
       "extraction_method": "site_rule",
-      "updated_at": "2026-10-19T22:15:57.020Z",
+      "updated_at": "2026-10-20T21:31:32.423Z",
       "quality_score": 0.74
     },
     {
@@ -1928,7 +1376,7 @@
       "source_priority": "S",
       "source_priority_score": 4,
       "extraction_method": "site_rule",
-      "updated_at": "2026-10-19T22:16:04.824Z",
+      "updated_at": "2026-10-20T21:31:37.522Z",
       "quality_score": 1
     },
     {
@@ -1952,7 +1400,7 @@
       "source_priority": "S",
       "source_priority_score": 4,
       "extraction_method": "site_rule",
-      "updated_at": "2026-10-19T22:15:57.020Z",
+      "updated_at": "2026-10-20T21:31:32.423Z",
       "quality_score": 0.74
     },
     {
@@ -1976,7 +1424,7 @@
       "source_priority": "A",
       "source_priority_score": 3,
       "extraction_method": "site_rule",
-      "updated_at": "2026-10-19T22:16:25.056Z",
+      "updated_at": "2026-10-20T21:31:49.115Z",
       "quality_score": 0.95
     },
     {
@@ -2000,7 +1448,7 @@
       "source_priority": "S",
       "source_priority_score": 4,
       "extraction_method": "site_rule",
-      "updated_at": "2026-10-19T22:16:29.311Z",
+      "updated_at": "2026-10-20T21:32:04.226Z",
       "quality_score": 0.78
     },
     {
@@ -2024,7 +1472,7 @@
       "source_priority": "S",
       "source_priority_score": 4,
       "extraction_method": "site_rule",
-      "updated_at": "2026-10-19T22:15:57.020Z",
+      "updated_at": "2026-10-20T21:31:32.423Z",
       "quality_score": 0.74
     },
     {
@@ -2048,7 +1496,7 @@
       "source_priority": "B",
       "source_priority_score": 2,
       "extraction_method": "site_rule",
-      "updated_at": "2026-10-19T22:16:55.503Z",
+      "updated_at": "2026-10-20T21:32:20.152Z",
       "quality_score": 0.71
     },
     {
@@ -2072,7 +1520,7 @@
       "source_priority": "S",
       "source_priority_score": 4,
       "extraction_method": "site_rule",
-      "updated_at": "2026-10-19T22:16:14.286Z",
+      "updated_at": "2026-10-20T21:31:49.902Z",
       "quality_score": 1
     },
     {
@@ -2096,7 +1544,7 @@
       "source_priority": "S",
       "source_priority_score": 4,
       "extraction_method": "site_rule",
-      "updated_at": "2026-10-19T22:16:11.635Z",
+      "updated_at": "2026-10-20T21:31:47.326Z",
       "quality_score": 0.98
     },
     {
@@ -2120,7 +1568,7 @@
       "source_priority": "S",
       "source_priority_score": 4,
       "extraction_method": "site_rule",
-      "updated_at": "2026-10-19T22:16:11.635Z",
+      "updated_at": "2026-10-20T21:31:47.327Z",
       "quality_score": 0.98
     },
     {
@@ -2144,7 +1592,7 @@
       "source_priority": "S",
       "source_priority_score": 4,
       "extraction_method": "site_rule",
-      "updated_at": "2026-10-19T22:16:08.283Z",
+      "updated_at": "2026-10-20T21:31:43.554Z",
       "quality_score": 0.64
     },
     {
@@ -2168,7 +1616,7 @@
       "source_priority": "A",
       "source_priority_score": 3,
       "extraction_method": "site_rule",
-      "updated_at": "2026-10-19T22:16:30.378Z",
+      "updated_at": "2026-10-20T21:32:02.169Z",
       "quality_score": 0.61
     },
     {
@@ -2192,7 +1640,7 @@
       "source_priority": "S",
       "source_priority_score": 4,
       "extraction_method": "site_rule",
-      "updated_at": "2026-10-19T22:16:04.825Z",
+      "updated_at": "2026-10-20T21:31:37.525Z",
       "quality_score": 1
     },
     {
@@ -2216,7 +1664,7 @@
       "source_priority": "A",
       "source_priority_score": 3,
       "extraction_method": "heuristic",
-      "updated_at": "2026-10-19T22:16:38.877Z",
+      "updated_at": "2026-10-20T21:32:07.790Z",
       "quality_score": 0.81
     },
     {
@@ -2240,7 +1688,7 @@
       "source_priority": "S",
       "source_priority_score": 4,
       "extraction_method": "site_rule",
-      "updated_at": "2026-10-19T22:16:11.636Z",
+      "updated_at": "2026-10-20T21:31:47.328Z",
       "quality_score": 0.8
     },
     {
@@ -2264,7 +1712,7 @@
       "source_priority": "S",
       "source_priority_score": 4,
       "extraction_method": "site_rule",
-      "updated_at": "2026-10-19T22:16:11.635Z",
+      "updated_at": "2026-10-20T21:31:47.327Z",
       "quality_score": 0.8
     },
     {
@@ -2288,7 +1736,7 @@
       "source_priority": "S",
       "source_priority_score": 4,
       "extraction_method": "site_rule",
-      "updated_at": "2026-10-19T22:16:08.283Z",
+      "updated_at": "2026-10-20T21:31:43.554Z",
       "quality_score": 0.64
     },
     {
@@ -2312,7 +1760,7 @@
       "source_priority": "S",
       "source_priority_score": 4,
       "extraction_method": "site_rule",
-      "updated_at": "2026-10-19T22:16:11.637Z",
+      "updated_at": "2026-10-20T21:31:47.331Z",
       "quality_score": 0.98
     },
     {
@@ -2336,7 +1784,7 @@
       "source_priority": "A",
       "source_priority_score": 3,
       "extraction_method": "site_rule",
-      "updated_at": "2026-10-19T22:16:25.056Z",
+      "updated_at": "2026-10-20T21:31:49.115Z",
       "quality_score": 0.95
     },
     {
@@ -2360,7 +1808,7 @@
       "source_priority": "S",
       "source_priority_score": 4,
       "extraction_method": "site_rule",
-      "updated_at": "2026-10-19T22:15:57.020Z",
+      "updated_at": "2026-10-20T21:31:32.423Z",
       "quality_score": 0.74
     },
     {
@@ -2384,7 +1832,7 @@
       "source_priority": "S",
       "source_priority_score": 4,
       "extraction_method": "site_rule",
-      "updated_at": "2026-10-19T22:16:14.286Z",
+      "updated_at": "2026-10-20T21:31:49.902Z",
       "quality_score": 1
     },
     {
@@ -2408,7 +1856,7 @@
       "source_priority": "S",
       "source_priority_score": 4,
       "extraction_method": "site_rule",
-      "updated_at": "2026-10-19T22:16:11.637Z",
+      "updated_at": "2026-10-20T21:31:47.331Z",
       "quality_score": 0.88
     },
     {
@@ -2432,7 +1880,7 @@
       "source_priority": "S",
       "source_priority_score": 4,
       "extraction_method": "site_rule",
-      "updated_at": "2026-10-19T22:16:08.283Z",
+      "updated_at": "2026-10-20T21:31:43.554Z",
       "quality_score": 0.64
     },
     {
@@ -2456,7 +1904,7 @@
       "source_priority": "B",
       "source_priority_score": 2,
       "extraction_method": "site_rule",
-      "updated_at": "2026-10-19T22:16:52.569Z",
+      "updated_at": "2026-10-20T21:32:16.842Z",
       "quality_score": 0.71
     },
     {
@@ -2480,7 +1928,7 @@
       "source_priority": "S",
       "source_priority_score": 4,
       "extraction_method": "site_rule",
-      "updated_at": "2026-10-19T22:16:14.286Z",
+      "updated_at": "2026-10-20T21:31:49.902Z",
       "quality_score": 1
     },
     {
@@ -2504,7 +1952,7 @@
       "source_priority": "S",
       "source_priority_score": 4,
       "extraction_method": "site_rule",
-      "updated_at": "2026-10-19T22:16:29.314Z",
+      "updated_at": "2026-10-20T21:32:04.230Z",
       "quality_score": 0.78
     },
     {
@@ -2528,7 +1976,7 @@
       "source_priority": "S",
       "source_priority_score": 4,
       "extraction_method": "site_rule",
-      "updated_at": "2026-10-19T22:15:57.020Z",
+      "updated_at": "2026-10-20T21:31:32.423Z",
       "quality_score": 0.74
     },
     {
@@ -2552,7 +2000,7 @@
       "source_priority": "B",
       "source_priority_score": 2,
       "extraction_method": "site_rule",
-      "updated_at": "2026-10-19T22:16:55.504Z",
+      "updated_at": "2026-10-20T21:32:20.153Z",
       "quality_score": 0.71
     },
     {
@@ -2576,7 +2024,7 @@
       "source_priority": "S",
       "source_priority_score": 4,
       "extraction_method": "site_rule",
-      "updated_at": "2026-10-19T22:16:11.637Z",
+      "updated_at": "2026-10-20T21:31:47.332Z",
       "quality_score": 0.8
     },
     {
@@ -2600,7 +2048,7 @@
       "source_priority": "S",
       "source_priority_score": 4,
       "extraction_method": "site_rule",
-      "updated_at": "2026-10-19T22:16:09.308Z",
+      "updated_at": "2026-10-20T21:31:44.700Z",
       "quality_score": 0.8
     },
     {
@@ -2624,7 +2072,7 @@
       "source_priority": "B",
       "source_priority_score": 2,
       "extraction_method": "site_rule",
-      "updated_at": "2026-10-19T22:16:51.073Z",
+      "updated_at": "2026-10-20T21:32:16.129Z",
       "quality_score": 0.65
     },
     {
@@ -2648,7 +2096,7 @@
       "source_priority": "S",
       "source_priority_score": 4,
       "extraction_method": "site_rule",
-      "updated_at": "2026-10-19T22:16:08.283Z",
+      "updated_at": "2026-10-20T21:31:43.554Z",
       "quality_score": 0.6
     },
     {
@@ -2672,7 +2120,7 @@
       "source_priority": "A",
       "source_priority_score": 3,
       "extraction_method": "site_rule",
-      "updated_at": "2026-10-19T22:16:25.056Z",
+      "updated_at": "2026-10-20T21:31:49.115Z",
       "quality_score": 0.83
     },
     {
@@ -2696,7 +2144,7 @@
       "source_priority": "S",
       "source_priority_score": 4,
       "extraction_method": "site_rule",
-      "updated_at": "2026-10-19T22:16:11.638Z",
+      "updated_at": "2026-10-20T21:31:47.333Z",
       "quality_score": 0.98
     },
     {
@@ -2720,7 +2168,7 @@
       "source_priority": "A",
       "source_priority_score": 3,
       "extraction_method": "site_rule",
-      "updated_at": "2026-10-19T22:16:25.056Z",
+      "updated_at": "2026-10-20T21:31:49.115Z",
       "quality_score": 0.95
     },
     {
@@ -2744,7 +2192,7 @@
       "source_priority": "S",
       "source_priority_score": 4,
       "extraction_method": "site_rule",
-      "updated_at": "2026-10-19T22:15:57.020Z",
+      "updated_at": "2026-10-20T21:31:32.423Z",
       "quality_score": 0.74
     },
     {
@@ -2768,7 +2216,7 @@
       "source_priority": "B",
       "source_priority_score": 2,
       "extraction_method": "site_rule",
-      "updated_at": "2026-10-19T22:16:55.505Z",
+      "updated_at": "2026-10-20T21:32:20.154Z",
       "quality_score": 0.71
     },
     {
@@ -2792,7 +2240,7 @@
       "source_priority": "S",
       "source_priority_score": 4,
       "extraction_method": "site_rule",
-      "updated_at": "2026-10-19T22:16:14.286Z",
+      "updated_at": "2026-10-20T21:31:49.903Z",
       "quality_score": 1
     },
     {
@@ -2816,7 +2264,7 @@
       "source_priority": "S",
       "source_priority_score": 4,
       "extraction_method": "site_rule",
-      "updated_at": "2026-10-19T22:15:57.020Z",
+      "updated_at": "2026-10-20T21:31:32.423Z",
       "quality_score": 0.74
     },
     {
@@ -2840,7 +2288,7 @@
       "source_priority": "S",
       "source_priority_score": 4,
       "extraction_method": "site_rule",
-      "updated_at": "2026-10-19T22:16:11.638Z",
+      "updated_at": "2026-10-20T21:31:47.333Z",
       "quality_score": 0.88
     },
     {
@@ -2864,7 +2312,7 @@
       "source_priority": "S",
       "source_priority_score": 4,
       "extraction_method": "site_rule",
-      "updated_at": "2026-10-19T22:16:08.283Z",
+      "updated_at": "2026-10-20T21:31:43.554Z",
       "quality_score": 0.64
     },
     {
@@ -2888,7 +2336,7 @@
       "source_priority": "S",
       "source_priority_score": 4,
       "extraction_method": "site_rule",
-      "updated_at": "2026-10-19T22:16:11.638Z",
+      "updated_at": "2026-10-20T21:31:47.334Z",
       "quality_score": 0.95
     },
     {
@@ -2912,7 +2360,7 @@
       "source_priority": "B",
       "source_priority_score": 2,
       "extraction_method": "site_rule",
-      "updated_at": "2026-10-19T22:16:55.505Z",
+      "updated_at": "2026-10-20T21:32:20.154Z",
       "quality_score": 0.71
     },
     {
@@ -2936,7 +2384,7 @@
       "source_priority": "S",
       "source_priority_score": 4,
       "extraction_method": "site_rule",
-      "updated_at": "2026-10-19T22:15:57.020Z",
+      "updated_at": "2026-10-20T21:31:32.424Z",
       "quality_score": 0.78
     },
     {
@@ -2960,7 +2408,7 @@
       "source_priority": "S",
       "source_priority_score": 4,
       "extraction_method": "site_rule",
-      "updated_at": "2026-10-19T22:16:29.318Z",
+      "updated_at": "2026-10-20T21:32:04.234Z",
       "quality_score": 0.78
     },
     {
@@ -2984,7 +2432,7 @@
       "source_priority": "S",
       "source_priority_score": 4,
       "extraction_method": "site_rule",
-      "updated_at": "2026-10-19T22:16:14.286Z",
+      "updated_at": "2026-10-20T21:31:49.903Z",
       "quality_score": 1
     },
     {
@@ -3008,7 +2456,7 @@
       "source_priority": "S",
       "source_priority_score": 4,
       "extraction_method": "site_rule",
-      "updated_at": "2026-10-19T22:15:57.020Z",
+      "updated_at": "2026-10-20T21:31:32.423Z",
       "quality_score": 0.74
     },
     {
@@ -3032,7 +2480,7 @@
       "source_priority": "B",
       "source_priority_score": 2,
       "extraction_method": "site_rule",
-      "updated_at": "2026-10-19T22:16:52.569Z",
+      "updated_at": "2026-10-20T21:32:16.842Z",
       "quality_score": 0.71
     },
     {
@@ -3056,7 +2504,7 @@
       "source_priority": "S",
       "source_priority_score": 4,
       "extraction_method": "site_rule",
-      "updated_at": "2026-10-19T22:16:08.283Z",
+      "updated_at": "2026-10-20T21:31:43.554Z",
       "quality_score": 0.64
     },
     {
@@ -3104,7 +2552,7 @@
       "source_priority": "S",
       "source_priority_score": 4,
       "extraction_method": "site_rule",
-      "updated_at": "2026-10-19T22:16:14.286Z",
+      "updated_at": "2026-10-20T21:31:49.903Z",
       "quality_score": 1
     },
     {
@@ -3128,7 +2576,7 @@
       "source_priority": "A",
       "source_priority_score": 3,
       "extraction_method": "site_rule",
-      "updated_at": "2026-10-19T22:16:25.056Z",
+      "updated_at": "2026-10-20T21:31:49.115Z",
       "quality_score": 0.95
     },
     {
@@ -3152,7 +2600,7 @@
       "source_priority": "S",
       "source_priority_score": 4,
       "extraction_method": "site_rule",
-      "updated_at": "2026-10-19T22:16:14.287Z",
+      "updated_at": "2026-10-20T21:31:49.904Z",
       "quality_score": 1
     },
     {
@@ -3176,7 +2624,7 @@
       "source_priority": "S",
       "source_priority_score": 4,
       "extraction_method": "site_rule",
-      "updated_at": "2026-10-19T22:15:57.020Z",
+      "updated_at": "2026-10-20T21:31:32.424Z",
       "quality_score": 0.74
     },
     {
@@ -3200,7 +2648,7 @@
       "source_priority": "S",
       "source_priority_score": 4,
       "extraction_method": "site_rule",
-      "updated_at": "2026-10-19T22:16:29.321Z",
+      "updated_at": "2026-10-20T21:32:04.238Z",
       "quality_score": 0.78
     },
     {
@@ -3224,7 +2672,7 @@
       "source_priority": "S",
       "source_priority_score": 4,
       "extraction_method": "site_rule",
-      "updated_at": "2026-10-19T22:16:04.826Z",
+      "updated_at": "2026-10-20T21:31:37.526Z",
       "quality_score": 1
     },
     {
@@ -3248,7 +2696,7 @@
       "source_priority": "S",
       "source_priority_score": 4,
       "extraction_method": "site_rule",
-      "updated_at": "2026-10-19T22:15:57.020Z",
+      "updated_at": "2026-10-20T21:31:32.424Z",
       "quality_score": 0.78
     },
     {
@@ -3272,7 +2720,7 @@
       "source_priority": "S",
       "source_priority_score": 4,
       "extraction_method": "site_rule",
-      "updated_at": "2026-10-19T22:15:57.020Z",
+      "updated_at": "2026-10-20T21:31:32.424Z",
       "quality_score": 0.78
     },
     {
@@ -3296,7 +2744,7 @@
       "source_priority": "S",
       "source_priority_score": 4,
       "extraction_method": "site_rule",
-      "updated_at": "2026-10-19T22:15:57.020Z",
+      "updated_at": "2026-10-20T21:31:32.424Z",
       "quality_score": 0.74
     },
     {
@@ -3320,7 +2768,7 @@
       "source_priority": "S",
       "source_priority_score": 4,
       "extraction_method": "site_rule",
-      "updated_at": "2026-10-19T22:15:57.021Z",
+      "updated_at": "2026-10-20T21:31:32.424Z",
       "quality_score": 0.74
     },
     {
@@ -3344,7 +2792,7 @@
       "source_priority": "B",
       "source_priority_score": 2,
       "extraction_method": "site_rule",
-      "updated_at": "2026-10-19T22:16:52.570Z",
+      "updated_at": "2026-10-20T21:32:16.842Z",
       "quality_score": 0.71
     },
     {
@@ -3368,7 +2816,7 @@
       "source_priority": "S",
       "source_priority_score": 4,
       "extraction_method": "site_rule",
-      "updated_at": "2026-10-19T22:16:04.826Z",
+      "updated_at": "2026-10-20T21:31:37.525Z",
       "quality_score": 1
     },
     {
@@ -3392,7 +2840,7 @@
       "source_priority": "S",
       "source_priority_score": 4,
       "extraction_method": "site_rule",
-      "updated_at": "2026-10-19T22:16:11.639Z",
+      "updated_at": "2026-10-20T21:31:47.335Z",
       "quality_score": 0.9
     },
     {
@@ -3416,7 +2864,7 @@
       "source_priority": "S",
       "source_priority_score": 4,
       "extraction_method": "site_rule",
-      "updated_at": "2026-10-19T22:16:11.639Z",
+      "updated_at": "2026-10-20T21:31:47.335Z",
       "quality_score": 0.98
     },
     {
@@ -3440,7 +2888,7 @@
       "source_priority": "S",
       "source_priority_score": 4,
       "extraction_method": "site_rule",
-      "updated_at": "2026-10-19T22:16:11.642Z",
+      "updated_at": "2026-10-20T21:31:47.337Z",
       "quality_score": 0.88
     },
     {
@@ -3464,7 +2912,7 @@
       "source_priority": "A",
       "source_priority_score": 3,
       "extraction_method": "site_rule",
-      "updated_at": "2026-10-19T22:16:28.896Z",
+      "updated_at": "2026-10-20T21:31:53.798Z",
       "quality_score": 0.81
     },
     {
@@ -3488,7 +2936,7 @@
       "source_priority": "S",
       "source_priority_score": 4,
       "extraction_method": "site_rule",
-      "updated_at": "2026-10-19T22:16:09.308Z",
+      "updated_at": "2026-10-20T21:31:44.700Z",
       "quality_score": 0.8
     },
     {
@@ -3512,7 +2960,7 @@
       "source_priority": "S",
       "source_priority_score": 4,
       "extraction_method": "site_rule",
-      "updated_at": "2026-10-19T22:16:11.640Z",
+      "updated_at": "2026-10-20T21:31:47.336Z",
       "quality_score": 0.8
     },
     {
@@ -3536,7 +2984,7 @@
       "source_priority": "S",
       "source_priority_score": 4,
       "extraction_method": "site_rule",
-      "updated_at": "2026-10-19T22:16:08.283Z",
+      "updated_at": "2026-10-20T21:31:43.554Z",
       "quality_score": 0.64
     },
     {
@@ -3560,7 +3008,7 @@
       "source_priority": "A",
       "source_priority_score": 3,
       "extraction_method": "site_rule",
-      "updated_at": "2026-10-19T22:16:25.057Z",
+      "updated_at": "2026-10-20T21:31:49.115Z",
       "quality_score": 0.83
     },
     {
@@ -3584,7 +3032,7 @@
       "source_priority": "A",
       "source_priority_score": 3,
       "extraction_method": "site_rule",
-      "updated_at": "2026-10-19T22:16:25.057Z",
+      "updated_at": "2026-10-20T21:31:49.115Z",
       "quality_score": 0.95
     },
     {
@@ -3608,7 +3056,7 @@
       "source_priority": "S",
       "source_priority_score": 4,
       "extraction_method": "site_rule",
-      "updated_at": "2026-10-19T22:16:14.287Z",
+      "updated_at": "2026-10-20T21:31:49.904Z",
       "quality_score": 1
     },
     {
@@ -3632,7 +3080,7 @@
       "source_priority": "S",
       "source_priority_score": 4,
       "extraction_method": "site_rule",
-      "updated_at": "2026-10-19T22:16:14.287Z",
+      "updated_at": "2026-10-20T21:31:49.904Z",
       "quality_score": 1
     },
     {
@@ -3656,7 +3104,7 @@
       "source_priority": "S",
       "source_priority_score": 4,
       "extraction_method": "site_rule",
-      "updated_at": "2026-10-19T22:16:29.324Z",
+      "updated_at": "2026-10-20T21:32:04.244Z",
       "quality_score": 0.78
     },
     {
@@ -3680,7 +3128,7 @@
       "source_priority": "S",
       "source_priority_score": 4,
       "extraction_method": "site_rule",
-      "updated_at": "2026-10-19T22:16:03.316Z",
+      "updated_at": "2026-10-20T21:31:36.043Z",
       "quality_score": 0.74
     },
     {
@@ -3704,7 +3152,7 @@
       "source_priority": "B",
       "source_priority_score": 2,
       "extraction_method": "site_rule",
-      "updated_at": "2026-10-19T22:16:52.570Z",
+      "updated_at": "2026-10-20T21:32:16.842Z",
       "quality_score": 0.91
     },
     {
@@ -3728,7 +3176,7 @@
       "source_priority": "S",
       "source_priority_score": 4,
       "extraction_method": "site_rule",
-      "updated_at": "2026-10-19T22:16:03.316Z",
+      "updated_at": "2026-10-20T21:31:36.043Z",
       "quality_score": 0.74
     },
     {
@@ -3752,7 +3200,7 @@
       "source_priority": "S",
       "source_priority_score": 4,
       "extraction_method": "site_rule",
-      "updated_at": "2026-10-19T22:16:03.316Z",
+      "updated_at": "2026-10-20T21:31:36.043Z",
       "quality_score": 0.74
     },
     {
@@ -3776,7 +3224,7 @@
       "source_priority": "S",
       "source_priority_score": 4,
       "extraction_method": "site_rule",
-      "updated_at": "2026-10-19T22:16:03.316Z",
+      "updated_at": "2026-10-20T21:31:36.043Z",
       "quality_score": 0.74
     },
     {
@@ -3800,7 +3248,7 @@
       "source_priority": "S",
       "source_priority_score": 4,
       "extraction_method": "site_rule",
-      "updated_at": "2026-10-19T22:16:09.308Z",
+      "updated_at": "2026-10-20T21:31:44.700Z",
       "quality_score": 0.8
     },
     {
@@ -3824,8 +3272,32 @@
       "source_priority": "A",
       "source_priority_score": 3,
       "extraction_method": "site_rule",
-      "updated_at": "2026-10-19T22:16:28.896Z",
+      "updated_at": "2026-10-20T21:31:53.798Z",
       "quality_score": 0.77
+    },
+    {
+      "id": "940d96ade4d0032b1761",
+      "title": "トレーニング室・ランニングコース利用不可 JU札幌中古車ダイナミックフェア",
+      "start_date": "2026-11-01",
+      "end_date": "",
+      "open_time": "",
+      "start_time": "",
+      "end_time": "",
+      "all_day": true,
+      "venue": "つどーむ",
+      "venue_address": "札幌市東区栄町885番地1",
+      "summary": "トレーニング室・ランニングコース利用不可（9:00～10:00）（17:00～21:00） JU札幌中古車ダイナミックフェア",
+      "flyer_image_url": "",
+      "detail_url": "https://www.sapporo-sport.jp/tsudome/calendar/?ty=2026&tm=11#d1",
+      "source_id": "www-sapporo-sport-jp-tsudome-calendar",
+      "source_name": "つどーむ（札幌市スポーツ協会）",
+      "source_url": "https://www.sapporo-sport.jp/tsudome/calendar/",
+      "source_category": "市スポーツ施設（会場公式）",
+      "source_priority": "S",
+      "source_priority_score": 4,
+      "extraction_method": "site_rule",
+      "updated_at": "2026-10-20T21:31:43.555Z",
+      "quality_score": 0.64
     },
     {
       "id": "23108c647993c0bf0a98",
@@ -3848,7 +3320,7 @@
       "source_priority": "S",
       "source_priority_score": 4,
       "extraction_method": "site_rule",
-      "updated_at": "2026-10-19T22:16:29.329Z",
+      "updated_at": "2026-10-20T21:32:04.248Z",
       "quality_score": 0.78
     },
     {
@@ -3872,7 +3344,7 @@
       "source_priority": "S",
       "source_priority_score": 4,
       "extraction_method": "site_rule",
-      "updated_at": "2026-10-19T22:16:03.316Z",
+      "updated_at": "2026-10-20T21:31:36.043Z",
       "quality_score": 0.74
     },
     {
@@ -3896,7 +3368,7 @@
       "source_priority": "S",
       "source_priority_score": 4,
       "extraction_method": "site_rule",
-      "updated_at": "2026-10-19T22:16:03.316Z",
+      "updated_at": "2026-10-20T21:31:36.043Z",
       "quality_score": 0.74
     },
     {
@@ -3920,7 +3392,7 @@
       "source_priority": "A",
       "source_priority_score": 3,
       "extraction_method": "site_rule",
-      "updated_at": "2026-10-19T22:16:25.057Z",
+      "updated_at": "2026-10-20T21:31:49.115Z",
       "quality_score": 0.95
     },
     {
@@ -3944,7 +3416,7 @@
       "source_priority": "A",
       "source_priority_score": 3,
       "extraction_method": "site_rule",
-      "updated_at": "2026-10-19T22:16:25.057Z",
+      "updated_at": "2026-10-20T21:31:49.115Z",
       "quality_score": 0.95
     },
     {
@@ -3968,7 +3440,7 @@
       "source_priority": "S",
       "source_priority_score": 4,
       "extraction_method": "site_rule",
-      "updated_at": "2026-10-19T22:16:14.287Z",
+      "updated_at": "2026-10-20T21:31:49.905Z",
       "quality_score": 1
     },
     {
@@ -3992,7 +3464,7 @@
       "source_priority": "S",
       "source_priority_score": 4,
       "extraction_method": "site_rule",
-      "updated_at": "2026-10-19T22:16:14.287Z",
+      "updated_at": "2026-10-20T21:31:49.904Z",
       "quality_score": 1
     },
     {
@@ -4016,7 +3488,7 @@
       "source_priority": "S",
       "source_priority_score": 4,
       "extraction_method": "site_rule",
-      "updated_at": "2026-10-19T22:16:29.332Z",
+      "updated_at": "2026-10-20T21:32:04.252Z",
       "quality_score": 0.78
     },
     {
@@ -4040,7 +3512,7 @@
       "source_priority": "S",
       "source_priority_score": 4,
       "extraction_method": "site_rule",
-      "updated_at": "2026-10-19T22:16:03.316Z",
+      "updated_at": "2026-10-20T21:31:36.043Z",
       "quality_score": 0.74
     },
     {
@@ -4055,7 +3527,7 @@
       "venue": "PENNY LANE24",
       "venue_address": "",
       "summary": "",
-      "flyer_image_url": "https://wess.jp/wp/wp-content/uploads/2025/11/galileogalilei-1.jpg",
+      "flyer_image_url": "https://wess.jp/wp/wp-content/uploads/2026/05/galileogalilei.jpg",
       "detail_url": "https://wess.jp/galileogalilei/",
       "source_id": "wess-jp-concert-schedule",
       "source_name": "WESS",
@@ -4064,7 +3536,7 @@
       "source_priority": "S",
       "source_priority_score": 4,
       "extraction_method": "site_rule",
-      "updated_at": "2026-10-19T22:16:03.316Z",
+      "updated_at": "2026-10-20T21:31:36.043Z",
       "quality_score": 0.74
     },
     {
@@ -4088,7 +3560,7 @@
       "source_priority": "S",
       "source_priority_score": 4,
       "extraction_method": "site_rule",
-      "updated_at": "2026-10-19T22:16:03.316Z",
+      "updated_at": "2026-10-20T21:31:36.043Z",
       "quality_score": 0.74
     },
     {
@@ -4112,7 +3584,7 @@
       "source_priority": "S",
       "source_priority_score": 4,
       "extraction_method": "site_rule",
-      "updated_at": "2026-10-19T22:16:14.287Z",
+      "updated_at": "2026-10-20T21:31:49.905Z",
       "quality_score": 1
     },
     {
@@ -4136,7 +3608,7 @@
       "source_priority": "S",
       "source_priority_score": 4,
       "extraction_method": "site_rule",
-      "updated_at": "2026-10-19T22:16:14.287Z",
+      "updated_at": "2026-10-20T21:31:49.904Z",
       "quality_score": 1
     },
     {
@@ -4160,7 +3632,7 @@
       "source_priority": "B",
       "source_priority_score": 2,
       "extraction_method": "site_rule",
-      "updated_at": "2026-10-19T22:16:55.506Z",
+      "updated_at": "2026-10-20T21:32:20.156Z",
       "quality_score": 0.71
     },
     {
@@ -4184,7 +3656,7 @@
       "source_priority": "A",
       "source_priority_score": 3,
       "extraction_method": "site_rule",
-      "updated_at": "2026-10-19T22:16:30.378Z",
+      "updated_at": "2026-10-20T21:32:02.171Z",
       "quality_score": 0.61
     },
     {
@@ -4208,7 +3680,7 @@
       "source_priority": "S",
       "source_priority_score": 4,
       "extraction_method": "site_rule",
-      "updated_at": "2026-10-19T22:16:29.336Z",
+      "updated_at": "2026-10-20T21:32:04.257Z",
       "quality_score": 0.78
     },
     {
@@ -4236,6 +3708,30 @@
       "quality_score": 0.71
     },
     {
+      "id": "dde2e1e19580727fc92b",
+      "title": "パークゴルフ場休場",
+      "start_date": "2026-11-04",
+      "end_date": "",
+      "open_time": "",
+      "start_time": "",
+      "end_time": "",
+      "all_day": true,
+      "venue": "つどーむ",
+      "venue_address": "札幌市東区栄町885番地1",
+      "summary": "パークゴルフ場休場",
+      "flyer_image_url": "",
+      "detail_url": "https://www.sapporo-sport.jp/tsudome/calendar/?ty=2026&tm=11#d4",
+      "source_id": "www-sapporo-sport-jp-tsudome-calendar",
+      "source_name": "つどーむ（札幌市スポーツ協会）",
+      "source_url": "https://www.sapporo-sport.jp/tsudome/calendar/",
+      "source_category": "市スポーツ施設（会場公式）",
+      "source_priority": "S",
+      "source_priority_score": 4,
+      "extraction_method": "site_rule",
+      "updated_at": "2026-10-20T21:31:43.555Z",
+      "quality_score": 0.6
+    },
+    {
       "id": "bcbdbbb1827633f91621",
       "title": "令和８年度健やか親子２１全国大会(母子保健家族計画全国大会）",
       "start_date": "2026-11-05",
@@ -4256,7 +3752,7 @@
       "source_priority": "A",
       "source_priority_score": 3,
       "extraction_method": "site_rule",
-      "updated_at": "2026-10-19T22:16:25.057Z",
+      "updated_at": "2026-10-20T21:31:49.115Z",
       "quality_score": 0.95
     },
     {
@@ -4280,7 +3776,7 @@
       "source_priority": "A",
       "source_priority_score": 3,
       "extraction_method": "site_rule",
-      "updated_at": "2026-10-19T22:16:25.057Z",
+      "updated_at": "2026-10-20T21:31:49.115Z",
       "quality_score": 0.95
     },
     {
@@ -4304,7 +3800,7 @@
       "source_priority": "S",
       "source_priority_score": 4,
       "extraction_method": "site_rule",
-      "updated_at": "2026-10-19T22:16:14.288Z",
+      "updated_at": "2026-10-20T21:31:49.906Z",
       "quality_score": 1
     },
     {
@@ -4328,7 +3824,7 @@
       "source_priority": "S",
       "source_priority_score": 4,
       "extraction_method": "site_rule",
-      "updated_at": "2026-10-19T22:16:29.339Z",
+      "updated_at": "2026-10-20T21:32:04.262Z",
       "quality_score": 0.78
     },
     {
@@ -4352,7 +3848,7 @@
       "source_priority": "S",
       "source_priority_score": 4,
       "extraction_method": "site_rule",
-      "updated_at": "2026-10-19T22:16:03.316Z",
+      "updated_at": "2026-10-20T21:31:36.043Z",
       "quality_score": 0.74
     },
     {
@@ -4376,7 +3872,7 @@
       "source_priority": "B",
       "source_priority_score": 2,
       "extraction_method": "site_rule",
-      "updated_at": "2026-10-19T22:16:51.250Z",
+      "updated_at": "2026-10-20T21:32:14.729Z",
       "quality_score": 0.71
     },
     {
@@ -4400,8 +3896,32 @@
       "source_priority": "A",
       "source_priority_score": 3,
       "extraction_method": "heuristic",
-      "updated_at": "2026-10-19T22:16:39.277Z",
+      "updated_at": "2026-10-20T21:32:08.190Z",
       "quality_score": 0.81
+    },
+    {
+      "id": "0a05628f645e9117612b",
+      "title": "ランニングコース利用不可 パークゴルフ場休場",
+      "start_date": "2026-11-05",
+      "end_date": "",
+      "open_time": "",
+      "start_time": "",
+      "end_time": "",
+      "all_day": true,
+      "venue": "つどーむ",
+      "venue_address": "札幌市東区栄町885番地1",
+      "summary": "ランニングコース（17:00～21:00）利用不可 パークゴルフ場休場",
+      "flyer_image_url": "",
+      "detail_url": "https://www.sapporo-sport.jp/tsudome/calendar/?ty=2026&tm=11#d5",
+      "source_id": "www-sapporo-sport-jp-tsudome-calendar",
+      "source_name": "つどーむ（札幌市スポーツ協会）",
+      "source_url": "https://www.sapporo-sport.jp/tsudome/calendar/",
+      "source_category": "市スポーツ施設（会場公式）",
+      "source_priority": "S",
+      "source_priority_score": 4,
+      "extraction_method": "site_rule",
+      "updated_at": "2026-10-20T21:31:43.555Z",
+      "quality_score": 0.64
     },
     {
       "id": "5b20d172c01943ea3a04",
@@ -4424,7 +3944,7 @@
       "source_priority": "S",
       "source_priority_score": 4,
       "extraction_method": "site_rule",
-      "updated_at": "2026-10-19T22:16:03.316Z",
+      "updated_at": "2026-10-20T21:31:36.043Z",
       "quality_score": 0.74
     },
     {
@@ -4448,7 +3968,7 @@
       "source_priority": "S",
       "source_priority_score": 4,
       "extraction_method": "site_rule",
-      "updated_at": "2026-10-19T22:16:11.642Z",
+      "updated_at": "2026-10-20T21:31:47.338Z",
       "quality_score": 1
     },
     {
@@ -4472,7 +3992,7 @@
       "source_priority": "S",
       "source_priority_score": 4,
       "extraction_method": "site_rule",
-      "updated_at": "2026-10-19T22:16:04.813Z",
+      "updated_at": "2026-10-20T21:31:37.506Z",
       "quality_score": 1
     },
     {
@@ -4496,7 +4016,7 @@
       "source_priority": "S",
       "source_priority_score": 4,
       "extraction_method": "site_rule",
-      "updated_at": "2026-10-19T22:16:29.342Z",
+      "updated_at": "2026-10-20T21:32:04.267Z",
       "quality_score": 0.78
     },
     {
@@ -4520,7 +4040,7 @@
       "source_priority": "S",
       "source_priority_score": 4,
       "extraction_method": "site_rule",
-      "updated_at": "2026-10-19T22:16:03.316Z",
+      "updated_at": "2026-10-20T21:31:36.043Z",
       "quality_score": 0.74
     },
     {
@@ -4533,7 +4053,7 @@
       "end_time": "",
       "all_day": false,
       "venue": "SPiCE",
-      "venue_address": "",
+      "venue_address": "札幌市中央区南8条西4丁目422 オリエンタルホテルB1F",
       "summary": "",
       "flyer_image_url": "https://wess.jp/wp/wp-content/uploads/2025/02/cidergirl.jpg",
       "detail_url": "https://wess.jp/cidergirl/",
@@ -4544,8 +4064,32 @@
       "source_priority": "S",
       "source_priority_score": 4,
       "extraction_method": "site_rule",
-      "updated_at": "2026-10-19T22:16:03.316Z",
+      "updated_at": "2026-10-20T21:31:36.043Z",
       "quality_score": 0.74
+    },
+    {
+      "id": "724bf75a3b689e8e75f1",
+      "title": "パークゴルフ場休場 トレーニング室・ランニングコース利用不可",
+      "start_date": "2026-11-06",
+      "end_date": "",
+      "open_time": "",
+      "start_time": "",
+      "end_time": "",
+      "all_day": true,
+      "venue": "つどーむ",
+      "venue_address": "札幌市東区栄町885番地1",
+      "summary": "パークゴルフ場休場 トレーニング室・ランニングコース利用不可（9:00～17:00）",
+      "flyer_image_url": "",
+      "detail_url": "https://www.sapporo-sport.jp/tsudome/calendar/?ty=2026&tm=11#d6",
+      "source_id": "www-sapporo-sport-jp-tsudome-calendar",
+      "source_name": "つどーむ（札幌市スポーツ協会）",
+      "source_url": "https://www.sapporo-sport.jp/tsudome/calendar/",
+      "source_category": "市スポーツ施設（会場公式）",
+      "source_priority": "S",
+      "source_priority_score": 4,
+      "extraction_method": "site_rule",
+      "updated_at": "2026-10-20T21:31:43.555Z",
+      "quality_score": 0.64
     },
     {
       "id": "016b7195ce0cb8cadac6",
@@ -4568,7 +4112,7 @@
       "source_priority": "A",
       "source_priority_score": 3,
       "extraction_method": "site_rule",
-      "updated_at": "2026-10-19T22:16:30.378Z",
+      "updated_at": "2026-10-20T21:32:02.171Z",
       "quality_score": 0.61
     },
     {
@@ -4592,7 +4136,7 @@
       "source_priority": "A",
       "source_priority_score": 3,
       "extraction_method": "heuristic",
-      "updated_at": "2026-10-19T22:16:42.369Z",
+      "updated_at": "2026-10-20T21:32:09.637Z",
       "quality_score": 0.76
     },
     {
@@ -4616,7 +4160,7 @@
       "source_priority": "A",
       "source_priority_score": 3,
       "extraction_method": "site_rule",
-      "updated_at": "2026-10-19T22:16:25.057Z",
+      "updated_at": "2026-10-20T21:31:49.115Z",
       "quality_score": 0.95
     },
     {
@@ -4640,7 +4184,7 @@
       "source_priority": "S",
       "source_priority_score": 4,
       "extraction_method": "site_rule",
-      "updated_at": "2026-10-19T22:16:14.288Z",
+      "updated_at": "2026-10-20T21:31:49.906Z",
       "quality_score": 1
     },
     {
@@ -4664,7 +4208,7 @@
       "source_priority": "A",
       "source_priority_score": 3,
       "extraction_method": "site_rule",
-      "updated_at": "2026-10-19T22:16:25.057Z",
+      "updated_at": "2026-10-20T21:31:49.115Z",
       "quality_score": 0.87
     },
     {
@@ -4688,7 +4232,7 @@
       "source_priority": "S",
       "source_priority_score": 4,
       "extraction_method": "site_rule",
-      "updated_at": "2026-10-19T22:16:29.353Z",
+      "updated_at": "2026-10-20T21:32:04.279Z",
       "quality_score": 0.78
     },
     {
@@ -4712,7 +4256,7 @@
       "source_priority": "S",
       "source_priority_score": 4,
       "extraction_method": "site_rule",
-      "updated_at": "2026-10-19T22:16:03.317Z",
+      "updated_at": "2026-10-20T21:31:36.046Z",
       "quality_score": 0.74
     },
     {
@@ -4736,7 +4280,7 @@
       "source_priority": "S",
       "source_priority_score": 4,
       "extraction_method": "site_rule",
-      "updated_at": "2026-10-19T22:16:03.316Z",
+      "updated_at": "2026-10-20T21:31:36.043Z",
       "quality_score": 0.74
     },
     {
@@ -4760,7 +4304,7 @@
       "source_priority": "S",
       "source_priority_score": 4,
       "extraction_method": "site_rule",
-      "updated_at": "2026-10-19T22:16:14.288Z",
+      "updated_at": "2026-10-20T21:31:49.906Z",
       "quality_score": 1
     },
     {
@@ -4784,7 +4328,7 @@
       "source_priority": "S",
       "source_priority_score": 4,
       "extraction_method": "site_rule",
-      "updated_at": "2026-10-19T22:16:03.316Z",
+      "updated_at": "2026-10-20T21:31:36.046Z",
       "quality_score": 0.74
     },
     {
@@ -4808,7 +4352,7 @@
       "source_priority": "S",
       "source_priority_score": 4,
       "extraction_method": "site_rule",
-      "updated_at": "2026-10-19T22:16:03.316Z",
+      "updated_at": "2026-10-20T21:31:36.046Z",
       "quality_score": 0.74
     },
     {
@@ -4832,7 +4376,7 @@
       "source_priority": "A",
       "source_priority_score": 3,
       "extraction_method": "site_rule",
-      "updated_at": "2026-10-19T22:16:25.057Z",
+      "updated_at": "2026-10-20T21:31:49.115Z",
       "quality_score": 0.95
     },
     {
@@ -4856,7 +4400,7 @@
       "source_priority": "A",
       "source_priority_score": 3,
       "extraction_method": "site_rule",
-      "updated_at": "2026-10-19T22:16:30.378Z",
+      "updated_at": "2026-10-20T21:32:02.171Z",
       "quality_score": 0.61
     },
     {
@@ -4880,7 +4424,31 @@
       "source_priority": "S",
       "source_priority_score": 4,
       "extraction_method": "site_rule",
-      "updated_at": "2026-10-19T22:16:03.316Z",
+      "updated_at": "2026-10-20T21:31:36.046Z",
+      "quality_score": 0.6
+    },
+    {
+      "id": "50d5ad4ee4dab985b1bd",
+      "title": "パークゴルフ場休場",
+      "start_date": "2026-11-07",
+      "end_date": "",
+      "open_time": "",
+      "start_time": "",
+      "end_time": "",
+      "all_day": true,
+      "venue": "つどーむ",
+      "venue_address": "札幌市東区栄町885番地1",
+      "summary": "パークゴルフ場休場",
+      "flyer_image_url": "",
+      "detail_url": "https://www.sapporo-sport.jp/tsudome/calendar/?ty=2026&tm=11#d7",
+      "source_id": "www-sapporo-sport-jp-tsudome-calendar",
+      "source_name": "つどーむ（札幌市スポーツ協会）",
+      "source_url": "https://www.sapporo-sport.jp/tsudome/calendar/",
+      "source_category": "市スポーツ施設（会場公式）",
+      "source_priority": "S",
+      "source_priority_score": 4,
+      "extraction_method": "site_rule",
+      "updated_at": "2026-10-20T21:31:43.555Z",
       "quality_score": 0.6
     },
     {
@@ -4904,7 +4472,7 @@
       "source_priority": "A",
       "source_priority_score": 3,
       "extraction_method": "site_rule",
-      "updated_at": "2026-10-19T22:16:30.378Z",
+      "updated_at": "2026-10-20T21:32:02.171Z",
       "quality_score": 0.57
     },
     {
@@ -4928,7 +4496,7 @@
       "source_priority": "S",
       "source_priority_score": 4,
       "extraction_method": "site_rule",
-      "updated_at": "2026-10-19T22:16:14.288Z",
+      "updated_at": "2026-10-20T21:31:49.906Z",
       "quality_score": 1
     },
     {
@@ -4952,7 +4520,7 @@
       "source_priority": "A",
       "source_priority_score": 3,
       "extraction_method": "site_rule",
-      "updated_at": "2026-10-19T22:16:25.057Z",
+      "updated_at": "2026-10-20T21:31:49.116Z",
       "quality_score": 0.95
     },
     {
@@ -4976,7 +4544,7 @@
       "source_priority": "A",
       "source_priority_score": 3,
       "extraction_method": "site_rule",
-      "updated_at": "2026-10-19T22:16:42.045Z",
+      "updated_at": "2026-10-20T21:32:08.776Z",
       "quality_score": 0.95
     },
     {
@@ -5000,7 +4568,7 @@
       "source_priority": "S",
       "source_priority_score": 4,
       "extraction_method": "site_rule",
-      "updated_at": "2026-10-19T22:16:04.814Z",
+      "updated_at": "2026-10-20T21:31:37.508Z",
       "quality_score": 1
     },
     {
@@ -5024,7 +4592,7 @@
       "source_priority": "S",
       "source_priority_score": 4,
       "extraction_method": "site_rule",
-      "updated_at": "2026-10-19T22:16:03.317Z",
+      "updated_at": "2026-10-20T21:31:36.047Z",
       "quality_score": 0.74
     },
     {
@@ -5048,7 +4616,7 @@
       "source_priority": "S",
       "source_priority_score": 4,
       "extraction_method": "site_rule",
-      "updated_at": "2026-10-19T22:16:03.317Z",
+      "updated_at": "2026-10-20T21:31:36.047Z",
       "quality_score": 0.74
     },
     {
@@ -5072,7 +4640,7 @@
       "source_priority": "A",
       "source_priority_score": 3,
       "extraction_method": "heuristic",
-      "updated_at": "2026-10-19T22:16:42.370Z",
+      "updated_at": "2026-10-20T21:32:09.637Z",
       "quality_score": 0.61
     },
     {
@@ -5096,8 +4664,32 @@
       "source_priority": "A",
       "source_priority_score": 3,
       "extraction_method": "site_rule",
-      "updated_at": "2026-10-19T22:16:30.378Z",
+      "updated_at": "2026-10-20T21:32:02.171Z",
       "quality_score": 0.61
+    },
+    {
+      "id": "b5439ae818b43fa35d06",
+      "title": "パークゴルフ場休場",
+      "start_date": "2026-11-08",
+      "end_date": "",
+      "open_time": "",
+      "start_time": "",
+      "end_time": "",
+      "all_day": true,
+      "venue": "つどーむ",
+      "venue_address": "札幌市東区栄町885番地1",
+      "summary": "パークゴルフ場休場",
+      "flyer_image_url": "",
+      "detail_url": "https://www.sapporo-sport.jp/tsudome/calendar/?ty=2026&tm=11#d8",
+      "source_id": "www-sapporo-sport-jp-tsudome-calendar",
+      "source_name": "つどーむ（札幌市スポーツ協会）",
+      "source_url": "https://www.sapporo-sport.jp/tsudome/calendar/",
+      "source_category": "市スポーツ施設（会場公式）",
+      "source_priority": "S",
+      "source_priority_score": 4,
+      "extraction_method": "site_rule",
+      "updated_at": "2026-10-20T21:31:43.555Z",
+      "quality_score": 0.6
     },
     {
       "id": "5049da41d634b39d1e3a",
@@ -5120,7 +4712,7 @@
       "source_priority": "B",
       "source_priority_score": 2,
       "extraction_method": "site_rule",
-      "updated_at": "2026-10-19T22:16:52.570Z",
+      "updated_at": "2026-10-20T21:32:16.842Z",
       "quality_score": 0.91
     },
     {
@@ -5144,7 +4736,7 @@
       "source_priority": "B",
       "source_priority_score": 2,
       "extraction_method": "site_rule",
-      "updated_at": "2026-10-19T22:16:51.250Z",
+      "updated_at": "2026-10-20T21:32:14.729Z",
       "quality_score": 0.71
     },
     {
@@ -5168,8 +4760,32 @@
       "source_priority": "A",
       "source_priority_score": 3,
       "extraction_method": "site_rule",
-      "updated_at": "2026-10-19T22:16:30.379Z",
+      "updated_at": "2026-10-20T21:32:02.171Z",
       "quality_score": 0.61
+    },
+    {
+      "id": "e65212002cc802839778",
+      "title": "パークゴルフ場休場",
+      "start_date": "2026-11-09",
+      "end_date": "",
+      "open_time": "",
+      "start_time": "",
+      "end_time": "",
+      "all_day": true,
+      "venue": "つどーむ",
+      "venue_address": "札幌市東区栄町885番地1",
+      "summary": "パークゴルフ場休場",
+      "flyer_image_url": "",
+      "detail_url": "https://www.sapporo-sport.jp/tsudome/calendar/?ty=2026&tm=11#d9",
+      "source_id": "www-sapporo-sport-jp-tsudome-calendar",
+      "source_name": "つどーむ（札幌市スポーツ協会）",
+      "source_url": "https://www.sapporo-sport.jp/tsudome/calendar/",
+      "source_category": "市スポーツ施設（会場公式）",
+      "source_priority": "S",
+      "source_priority_score": 4,
+      "extraction_method": "site_rule",
+      "updated_at": "2026-10-20T21:31:43.555Z",
+      "quality_score": 0.6
     },
     {
       "id": "1baedb27f27d536b1789",
@@ -5192,7 +4808,7 @@
       "source_priority": "A",
       "source_priority_score": 3,
       "extraction_method": "heuristic",
-      "updated_at": "2026-10-19T22:16:40.875Z",
+      "updated_at": "2026-10-20T21:32:10.760Z",
       "quality_score": 0.96
     },
     {
@@ -5216,7 +4832,7 @@
       "source_priority": "A",
       "source_priority_score": 3,
       "extraction_method": "site_rule",
-      "updated_at": "2026-10-19T22:16:25.057Z",
+      "updated_at": "2026-10-20T21:31:49.116Z",
       "quality_score": 0.95
     },
     {
@@ -5240,7 +4856,7 @@
       "source_priority": "A",
       "source_priority_score": 3,
       "extraction_method": "site_rule",
-      "updated_at": "2026-10-19T22:16:25.057Z",
+      "updated_at": "2026-10-20T21:31:49.116Z",
       "quality_score": 0.95
     },
     {
@@ -5264,7 +4880,7 @@
       "source_priority": "A",
       "source_priority_score": 3,
       "extraction_method": "site_rule",
-      "updated_at": "2026-10-19T22:16:42.045Z",
+      "updated_at": "2026-10-20T21:32:08.776Z",
       "quality_score": 0.75
     },
     {
@@ -5288,7 +4904,7 @@
       "source_priority": "S",
       "source_priority_score": 4,
       "extraction_method": "site_rule",
-      "updated_at": "2026-10-19T22:16:14.288Z",
+      "updated_at": "2026-10-20T21:31:49.907Z",
       "quality_score": 1
     },
     {
@@ -5312,7 +4928,7 @@
       "source_priority": "S",
       "source_priority_score": 4,
       "extraction_method": "site_rule",
-      "updated_at": "2026-10-19T22:16:03.317Z",
+      "updated_at": "2026-10-20T21:31:36.047Z",
       "quality_score": 0.74
     },
     {
@@ -5336,7 +4952,7 @@
       "source_priority": "S",
       "source_priority_score": 4,
       "extraction_method": "site_rule",
-      "updated_at": "2026-10-19T22:16:29.356Z",
+      "updated_at": "2026-10-20T21:32:04.283Z",
       "quality_score": 0.6
     },
     {
@@ -5360,7 +4976,7 @@
       "source_priority": "A",
       "source_priority_score": 3,
       "extraction_method": "site_rule",
-      "updated_at": "2026-10-19T22:16:25.057Z",
+      "updated_at": "2026-10-20T21:31:49.116Z",
       "quality_score": 0.95
     },
     {
@@ -5384,7 +5000,7 @@
       "source_priority": "S",
       "source_priority_score": 4,
       "extraction_method": "site_rule",
-      "updated_at": "2026-10-19T22:16:03.317Z",
+      "updated_at": "2026-10-20T21:31:36.047Z",
       "quality_score": 0.74
     },
     {
@@ -5408,8 +5024,32 @@
       "source_priority": "S",
       "source_priority_score": 4,
       "extraction_method": "site_rule",
-      "updated_at": "2026-10-19T22:16:03.317Z",
+      "updated_at": "2026-10-20T21:31:36.047Z",
       "quality_score": 0.74
+    },
+    {
+      "id": "99c3d5f365bf3011bcc3",
+      "title": "パークゴルフ場休場",
+      "start_date": "2026-11-11",
+      "end_date": "",
+      "open_time": "",
+      "start_time": "",
+      "end_time": "",
+      "all_day": true,
+      "venue": "つどーむ",
+      "venue_address": "札幌市東区栄町885番地1",
+      "summary": "パークゴルフ場休場",
+      "flyer_image_url": "",
+      "detail_url": "https://www.sapporo-sport.jp/tsudome/calendar/?ty=2026&tm=11#d11",
+      "source_id": "www-sapporo-sport-jp-tsudome-calendar",
+      "source_name": "つどーむ（札幌市スポーツ協会）",
+      "source_url": "https://www.sapporo-sport.jp/tsudome/calendar/",
+      "source_category": "市スポーツ施設（会場公式）",
+      "source_priority": "S",
+      "source_priority_score": 4,
+      "extraction_method": "site_rule",
+      "updated_at": "2026-10-20T21:31:43.555Z",
+      "quality_score": 0.6
     },
     {
       "id": "d5cb11d59d73c22201c9",
@@ -5432,7 +5072,7 @@
       "source_priority": "S",
       "source_priority_score": 4,
       "extraction_method": "site_rule",
-      "updated_at": "2026-10-19T22:16:29.361Z",
+      "updated_at": "2026-10-20T21:32:04.289Z",
       "quality_score": 0.6
     },
     {
@@ -5456,7 +5096,7 @@
       "source_priority": "A",
       "source_priority_score": 3,
       "extraction_method": "site_rule",
-      "updated_at": "2026-10-19T22:16:25.057Z",
+      "updated_at": "2026-10-20T21:31:49.116Z",
       "quality_score": 0.95
     },
     {
@@ -5480,7 +5120,7 @@
       "source_priority": "S",
       "source_priority_score": 4,
       "extraction_method": "site_rule",
-      "updated_at": "2026-10-19T22:16:03.317Z",
+      "updated_at": "2026-10-20T21:31:36.047Z",
       "quality_score": 0.74
     },
     {
@@ -5504,7 +5144,7 @@
       "source_priority": "B",
       "source_priority_score": 2,
       "extraction_method": "site_rule",
-      "updated_at": "2026-10-19T22:16:51.250Z",
+      "updated_at": "2026-10-20T21:32:14.729Z",
       "quality_score": 0.71
     },
     {
@@ -5528,8 +5168,32 @@
       "source_priority": "S",
       "source_priority_score": 4,
       "extraction_method": "site_rule",
-      "updated_at": "2026-10-19T22:16:04.813Z",
+      "updated_at": "2026-10-20T21:31:37.506Z",
       "quality_score": 1
+    },
+    {
+      "id": "3755f02912f669e985ce",
+      "title": "パークゴルフ場休場 トレーニング室・ランニングコース利用不可",
+      "start_date": "2026-11-12",
+      "end_date": "",
+      "open_time": "",
+      "start_time": "",
+      "end_time": "",
+      "all_day": true,
+      "venue": "つどーむ",
+      "venue_address": "札幌市東区栄町885番地1",
+      "summary": "パークゴルフ場休場 トレーニング室・ランニングコース利用不可（9:00～17:00）",
+      "flyer_image_url": "",
+      "detail_url": "https://www.sapporo-sport.jp/tsudome/calendar/?ty=2026&tm=11#d12",
+      "source_id": "www-sapporo-sport-jp-tsudome-calendar",
+      "source_name": "つどーむ（札幌市スポーツ協会）",
+      "source_url": "https://www.sapporo-sport.jp/tsudome/calendar/",
+      "source_category": "市スポーツ施設（会場公式）",
+      "source_priority": "S",
+      "source_priority_score": 4,
+      "extraction_method": "site_rule",
+      "updated_at": "2026-10-20T21:31:43.555Z",
+      "quality_score": 0.64
     },
     {
       "id": "e99810dfc760fd9ca2cf",
@@ -5552,7 +5216,7 @@
       "source_priority": "S",
       "source_priority_score": 4,
       "extraction_method": "site_rule",
-      "updated_at": "2026-10-19T22:16:14.288Z",
+      "updated_at": "2026-10-20T21:31:49.907Z",
       "quality_score": 1
     },
     {
@@ -5576,7 +5240,7 @@
       "source_priority": "A",
       "source_priority_score": 3,
       "extraction_method": "site_rule",
-      "updated_at": "2026-10-19T22:16:25.057Z",
+      "updated_at": "2026-10-20T21:31:49.116Z",
       "quality_score": 0.95
     },
     {
@@ -5600,7 +5264,7 @@
       "source_priority": "S",
       "source_priority_score": 4,
       "extraction_method": "site_rule",
-      "updated_at": "2026-10-19T22:16:03.317Z",
+      "updated_at": "2026-10-20T21:31:36.047Z",
       "quality_score": 0.78
     },
     {
@@ -5624,7 +5288,7 @@
       "source_priority": "S",
       "source_priority_score": 4,
       "extraction_method": "site_rule",
-      "updated_at": "2026-10-19T22:16:29.368Z",
+      "updated_at": "2026-10-20T21:32:04.298Z",
       "quality_score": 0.78
     },
     {
@@ -5648,7 +5312,7 @@
       "source_priority": "S",
       "source_priority_score": 4,
       "extraction_method": "site_rule",
-      "updated_at": "2026-10-19T22:16:04.814Z",
+      "updated_at": "2026-10-20T21:31:37.507Z",
       "quality_score": 1
     },
     {
@@ -5672,7 +5336,7 @@
       "source_priority": "S",
       "source_priority_score": 4,
       "extraction_method": "site_rule",
-      "updated_at": "2026-10-19T22:16:03.317Z",
+      "updated_at": "2026-10-20T21:31:36.047Z",
       "quality_score": 0.74
     },
     {
@@ -5696,7 +5360,7 @@
       "source_priority": "S",
       "source_priority_score": 4,
       "extraction_method": "site_rule",
-      "updated_at": "2026-10-19T22:16:03.317Z",
+      "updated_at": "2026-10-20T21:31:36.047Z",
       "quality_score": 0.74
     },
     {
@@ -5720,7 +5384,7 @@
       "source_priority": "S",
       "source_priority_score": 4,
       "extraction_method": "site_rule",
-      "updated_at": "2026-10-19T22:16:03.317Z",
+      "updated_at": "2026-10-20T21:31:36.047Z",
       "quality_score": 0.74
     },
     {
@@ -5744,7 +5408,7 @@
       "source_priority": "S",
       "source_priority_score": 4,
       "extraction_method": "site_rule",
-      "updated_at": "2026-10-19T22:16:14.289Z",
+      "updated_at": "2026-10-20T21:31:49.907Z",
       "quality_score": 1
     },
     {
@@ -5768,7 +5432,7 @@
       "source_priority": "A",
       "source_priority_score": 3,
       "extraction_method": "site_rule",
-      "updated_at": "2026-10-19T22:16:28.896Z",
+      "updated_at": "2026-10-20T21:31:53.798Z",
       "quality_score": 0.69
     },
     {
@@ -5792,8 +5456,32 @@
       "source_priority": "A",
       "source_priority_score": 3,
       "extraction_method": "site_rule",
-      "updated_at": "2026-10-19T22:16:30.379Z",
+      "updated_at": "2026-10-20T21:32:02.171Z",
       "quality_score": 0.61
+    },
+    {
+      "id": "88aad4385f163fa7e2f9",
+      "title": "パークゴルフ場休場",
+      "start_date": "2026-11-13",
+      "end_date": "",
+      "open_time": "",
+      "start_time": "",
+      "end_time": "",
+      "all_day": true,
+      "venue": "つどーむ",
+      "venue_address": "札幌市東区栄町885番地1",
+      "summary": "パークゴルフ場休場",
+      "flyer_image_url": "",
+      "detail_url": "https://www.sapporo-sport.jp/tsudome/calendar/?ty=2026&tm=11#d13",
+      "source_id": "www-sapporo-sport-jp-tsudome-calendar",
+      "source_name": "つどーむ（札幌市スポーツ協会）",
+      "source_url": "https://www.sapporo-sport.jp/tsudome/calendar/",
+      "source_category": "市スポーツ施設（会場公式）",
+      "source_priority": "S",
+      "source_priority_score": 4,
+      "extraction_method": "site_rule",
+      "updated_at": "2026-10-20T21:31:43.555Z",
+      "quality_score": 0.6
     },
     {
       "id": "ef7b3351c2ebd53aab1f",
@@ -5816,7 +5504,7 @@
       "source_priority": "S",
       "source_priority_score": 4,
       "extraction_method": "site_rule",
-      "updated_at": "2026-10-19T22:16:14.289Z",
+      "updated_at": "2026-10-20T21:31:49.908Z",
       "quality_score": 1
     },
     {
@@ -5840,7 +5528,7 @@
       "source_priority": "S",
       "source_priority_score": 4,
       "extraction_method": "site_rule",
-      "updated_at": "2026-10-19T22:16:14.289Z",
+      "updated_at": "2026-10-20T21:31:49.907Z",
       "quality_score": 1
     },
     {
@@ -5864,7 +5552,7 @@
       "source_priority": "A",
       "source_priority_score": 3,
       "extraction_method": "site_rule",
-      "updated_at": "2026-10-19T22:16:25.057Z",
+      "updated_at": "2026-10-20T21:31:49.116Z",
       "quality_score": 0.95
     },
     {
@@ -5888,7 +5576,31 @@
       "source_priority": "S",
       "source_priority_score": 4,
       "extraction_method": "site_rule",
-      "updated_at": "2026-10-19T22:16:03.317Z",
+      "updated_at": "2026-10-20T21:31:36.047Z",
+      "quality_score": 0.78
+    },
+    {
+      "id": "d4fbbed14b69941993b1",
+      "title": "浅葱／ASAGI 20th Anniversary Year chapter III",
+      "start_date": "2026-11-14",
+      "end_date": "",
+      "open_time": "17:00",
+      "start_time": "17:30",
+      "end_time": "",
+      "all_day": false,
+      "venue": "SPiCE",
+      "venue_address": "",
+      "summary": "ASAGI Gu.HIRO Gu.ギル Ba.亜季 Dr.HIROKI",
+      "flyer_image_url": "https://wess.jp/wp/wp-content/uploads/2026/10/asagi.jpg",
+      "detail_url": "https://wess.jp/asagi/",
+      "source_id": "wess-jp-concert-schedule",
+      "source_name": "WESS",
+      "source_url": "https://wess.jp/concert-schedule/",
+      "source_category": "WESS",
+      "source_priority": "S",
+      "source_priority_score": 4,
+      "extraction_method": "site_rule",
+      "updated_at": "2026-10-20T21:31:36.047Z",
       "quality_score": 0.78
     },
     {
@@ -5912,7 +5624,7 @@
       "source_priority": "A",
       "source_priority_score": 3,
       "extraction_method": "site_rule",
-      "updated_at": "2026-10-19T22:16:42.045Z",
+      "updated_at": "2026-10-20T21:32:08.777Z",
       "quality_score": 0.75
     },
     {
@@ -5936,7 +5648,7 @@
       "source_priority": "B",
       "source_priority_score": 2,
       "extraction_method": "site_rule",
-      "updated_at": "2026-10-19T22:16:51.250Z",
+      "updated_at": "2026-10-20T21:32:14.729Z",
       "quality_score": 0.71
     },
     {
@@ -5960,8 +5672,32 @@
       "source_priority": "S",
       "source_priority_score": 4,
       "extraction_method": "site_rule",
-      "updated_at": "2026-10-19T22:16:29.371Z",
+      "updated_at": "2026-10-20T21:32:04.302Z",
       "quality_score": 0.78
+    },
+    {
+      "id": "2671d2d970584270c73d",
+      "title": "ランニングコース利用不可 パークゴルフ場休場",
+      "start_date": "2026-11-14",
+      "end_date": "",
+      "open_time": "",
+      "start_time": "",
+      "end_time": "",
+      "all_day": true,
+      "venue": "つどーむ",
+      "venue_address": "札幌市東区栄町885番地1",
+      "summary": "ランニングコース（9:00～12:00）利用不可 パークゴルフ場休場",
+      "flyer_image_url": "",
+      "detail_url": "https://www.sapporo-sport.jp/tsudome/calendar/?ty=2026&tm=11#d14",
+      "source_id": "www-sapporo-sport-jp-tsudome-calendar",
+      "source_name": "つどーむ（札幌市スポーツ協会）",
+      "source_url": "https://www.sapporo-sport.jp/tsudome/calendar/",
+      "source_category": "市スポーツ施設（会場公式）",
+      "source_priority": "S",
+      "source_priority_score": 4,
+      "extraction_method": "site_rule",
+      "updated_at": "2026-10-20T21:31:43.555Z",
+      "quality_score": 0.64
     },
     {
       "id": "c1b98f9f7913180c688e",
@@ -5984,7 +5720,7 @@
       "source_priority": "A",
       "source_priority_score": 3,
       "extraction_method": "site_rule",
-      "updated_at": "2026-10-19T22:16:30.379Z",
+      "updated_at": "2026-10-20T21:32:02.171Z",
       "quality_score": 0.61
     },
     {
@@ -6008,7 +5744,7 @@
       "source_priority": "A",
       "source_priority_score": 3,
       "extraction_method": "site_rule",
-      "updated_at": "2026-10-19T22:16:25.057Z",
+      "updated_at": "2026-10-20T21:31:49.116Z",
       "quality_score": 0.95
     },
     {
@@ -6032,7 +5768,7 @@
       "source_priority": "A",
       "source_priority_score": 3,
       "extraction_method": "site_rule",
-      "updated_at": "2026-10-19T22:16:25.057Z",
+      "updated_at": "2026-10-20T21:31:49.116Z",
       "quality_score": 0.95
     },
     {
@@ -6056,7 +5792,7 @@
       "source_priority": "S",
       "source_priority_score": 4,
       "extraction_method": "site_rule",
-      "updated_at": "2026-10-19T22:16:03.317Z",
+      "updated_at": "2026-10-20T21:31:36.047Z",
       "quality_score": 0.74
     },
     {
@@ -6080,7 +5816,7 @@
       "source_priority": "S",
       "source_priority_score": 4,
       "extraction_method": "site_rule",
-      "updated_at": "2026-10-19T22:16:14.289Z",
+      "updated_at": "2026-10-20T21:31:49.908Z",
       "quality_score": 1
     },
     {
@@ -6104,7 +5840,7 @@
       "source_priority": "S",
       "source_priority_score": 4,
       "extraction_method": "site_rule",
-      "updated_at": "2026-10-19T22:16:14.289Z",
+      "updated_at": "2026-10-20T21:31:49.908Z",
       "quality_score": 1
     },
     {
@@ -6128,7 +5864,7 @@
       "source_priority": "B",
       "source_priority_score": 2,
       "extraction_method": "site_rule",
-      "updated_at": "2026-10-19T22:16:51.250Z",
+      "updated_at": "2026-10-20T21:32:14.729Z",
       "quality_score": 0.71
     },
     {
@@ -6152,8 +5888,32 @@
       "source_priority": "A",
       "source_priority_score": 3,
       "extraction_method": "site_rule",
-      "updated_at": "2026-10-19T22:16:42.045Z",
+      "updated_at": "2026-10-20T21:32:08.777Z",
       "quality_score": 0.75
+    },
+    {
+      "id": "b6d859ec34bbc80be9f3",
+      "title": "浅葱／ASAGI 20th Anniversary Year chapter III",
+      "start_date": "2026-11-15",
+      "end_date": "",
+      "open_time": "17:00",
+      "start_time": "17:30",
+      "end_time": "",
+      "all_day": false,
+      "venue": "SPiCE",
+      "venue_address": "",
+      "summary": "ASAGI Gu.HIRO Gu.ギル Ba.亜季 Dr.HIROKI",
+      "flyer_image_url": "https://wess.jp/wp/wp-content/uploads/2026/10/asagi2.jpg",
+      "detail_url": "https://wess.jp/asagi2/",
+      "source_id": "wess-jp-concert-schedule",
+      "source_name": "WESS",
+      "source_url": "https://wess.jp/concert-schedule/",
+      "source_category": "WESS",
+      "source_priority": "S",
+      "source_priority_score": 4,
+      "extraction_method": "site_rule",
+      "updated_at": "2026-10-20T21:31:36.047Z",
+      "quality_score": 0.78
     },
     {
       "id": "ae97be1845517b52486b",
@@ -6176,7 +5936,7 @@
       "source_priority": "S",
       "source_priority_score": 4,
       "extraction_method": "site_rule",
-      "updated_at": "2026-10-19T22:16:03.317Z",
+      "updated_at": "2026-10-20T21:31:36.047Z",
       "quality_score": 0.74
     },
     {
@@ -6200,7 +5960,7 @@
       "source_priority": "S",
       "source_priority_score": 4,
       "extraction_method": "site_rule",
-      "updated_at": "2026-10-19T22:16:14.289Z",
+      "updated_at": "2026-10-20T21:31:49.908Z",
       "quality_score": 1
     },
     {
@@ -6224,7 +5984,7 @@
       "source_priority": "S",
       "source_priority_score": 4,
       "extraction_method": "site_rule",
-      "updated_at": "2026-10-19T22:16:29.374Z",
+      "updated_at": "2026-10-20T21:32:04.306Z",
       "quality_score": 0.78
     },
     {
@@ -6248,8 +6008,32 @@
       "source_priority": "A",
       "source_priority_score": 3,
       "extraction_method": "site_rule",
-      "updated_at": "2026-10-19T22:16:30.379Z",
+      "updated_at": "2026-10-20T21:32:02.171Z",
       "quality_score": 0.61
+    },
+    {
+      "id": "f87c435e85014a61e7ee",
+      "title": "パークゴルフ場休場",
+      "start_date": "2026-11-15",
+      "end_date": "",
+      "open_time": "",
+      "start_time": "",
+      "end_time": "",
+      "all_day": true,
+      "venue": "つどーむ",
+      "venue_address": "札幌市東区栄町885番地1",
+      "summary": "パークゴルフ場休場",
+      "flyer_image_url": "",
+      "detail_url": "https://www.sapporo-sport.jp/tsudome/calendar/?ty=2026&tm=11#d15",
+      "source_id": "www-sapporo-sport-jp-tsudome-calendar",
+      "source_name": "つどーむ（札幌市スポーツ協会）",
+      "source_url": "https://www.sapporo-sport.jp/tsudome/calendar/",
+      "source_category": "市スポーツ施設（会場公式）",
+      "source_priority": "S",
+      "source_priority_score": 4,
+      "extraction_method": "site_rule",
+      "updated_at": "2026-10-20T21:31:43.555Z",
+      "quality_score": 0.6
     },
     {
       "id": "110beb2ba5adbbc79e1e",
@@ -6272,7 +6056,7 @@
       "source_priority": "A",
       "source_priority_score": 3,
       "extraction_method": "site_rule",
-      "updated_at": "2026-10-19T22:16:25.057Z",
+      "updated_at": "2026-10-20T21:31:49.116Z",
       "quality_score": 0.95
     },
     {
@@ -6296,7 +6080,7 @@
       "source_priority": "S",
       "source_priority_score": 4,
       "extraction_method": "site_rule",
-      "updated_at": "2026-10-19T22:16:29.377Z",
+      "updated_at": "2026-10-20T21:32:04.312Z",
       "quality_score": 0.78
     },
     {
@@ -6320,7 +6104,7 @@
       "source_priority": "B",
       "source_priority_score": 2,
       "extraction_method": "site_rule",
-      "updated_at": "2026-10-19T22:16:52.570Z",
+      "updated_at": "2026-10-20T21:32:16.843Z",
       "quality_score": 0.71
     },
     {
@@ -6344,7 +6128,7 @@
       "source_priority": "A",
       "source_priority_score": 3,
       "extraction_method": "site_rule",
-      "updated_at": "2026-10-19T22:16:25.057Z",
+      "updated_at": "2026-10-20T21:31:49.116Z",
       "quality_score": 0.77
     },
     {
@@ -6368,7 +6152,7 @@
       "source_priority": "S",
       "source_priority_score": 4,
       "extraction_method": "site_rule",
-      "updated_at": "2026-10-19T22:16:14.289Z",
+      "updated_at": "2026-10-20T21:31:49.908Z",
       "quality_score": 1
     },
     {
@@ -6392,7 +6176,7 @@
       "source_priority": "S",
       "source_priority_score": 4,
       "extraction_method": "site_rule",
-      "updated_at": "2026-10-19T22:16:14.289Z",
+      "updated_at": "2026-10-20T21:31:49.909Z",
       "quality_score": 1
     },
     {
@@ -6416,8 +6200,32 @@
       "source_priority": "S",
       "source_priority_score": 4,
       "extraction_method": "site_rule",
-      "updated_at": "2026-10-19T22:16:29.382Z",
+      "updated_at": "2026-10-20T21:32:04.316Z",
       "quality_score": 0.78
+    },
+    {
+      "id": "68a7e0c39196c2c5b045",
+      "title": "パークゴルフ場休場",
+      "start_date": "2026-11-18",
+      "end_date": "",
+      "open_time": "",
+      "start_time": "",
+      "end_time": "",
+      "all_day": true,
+      "venue": "つどーむ",
+      "venue_address": "札幌市東区栄町885番地1",
+      "summary": "パークゴルフ場休場",
+      "flyer_image_url": "",
+      "detail_url": "https://www.sapporo-sport.jp/tsudome/calendar/?ty=2026&tm=11#d18",
+      "source_id": "www-sapporo-sport-jp-tsudome-calendar",
+      "source_name": "つどーむ（札幌市スポーツ協会）",
+      "source_url": "https://www.sapporo-sport.jp/tsudome/calendar/",
+      "source_category": "市スポーツ施設（会場公式）",
+      "source_priority": "S",
+      "source_priority_score": 4,
+      "extraction_method": "site_rule",
+      "updated_at": "2026-10-20T21:31:43.555Z",
+      "quality_score": 0.6
     },
     {
       "id": "cd6d42c473a6290270f0",
@@ -6440,7 +6248,7 @@
       "source_priority": "A",
       "source_priority_score": 3,
       "extraction_method": "site_rule",
-      "updated_at": "2026-10-19T22:16:25.057Z",
+      "updated_at": "2026-10-20T21:31:49.116Z",
       "quality_score": 0.95
     },
     {
@@ -6464,7 +6272,7 @@
       "source_priority": "S",
       "source_priority_score": 4,
       "extraction_method": "site_rule",
-      "updated_at": "2026-10-19T22:16:03.318Z",
+      "updated_at": "2026-10-20T21:31:36.048Z",
       "quality_score": 0.74
     },
     {
@@ -6488,7 +6296,7 @@
       "source_priority": "S",
       "source_priority_score": 4,
       "extraction_method": "site_rule",
-      "updated_at": "2026-10-19T22:16:04.813Z",
+      "updated_at": "2026-10-20T21:31:37.507Z",
       "quality_score": 1
     },
     {
@@ -6512,8 +6320,32 @@
       "source_priority": "S",
       "source_priority_score": 4,
       "extraction_method": "site_rule",
-      "updated_at": "2026-10-19T22:16:14.291Z",
+      "updated_at": "2026-10-20T21:31:49.909Z",
       "quality_score": 1
+    },
+    {
+      "id": "d73fe428bb1b17ccb98e",
+      "title": "パークゴルフ場休場 トレーニング室・ランニングコース利用不可",
+      "start_date": "2026-11-19",
+      "end_date": "",
+      "open_time": "",
+      "start_time": "",
+      "end_time": "",
+      "all_day": true,
+      "venue": "つどーむ",
+      "venue_address": "札幌市東区栄町885番地1",
+      "summary": "パークゴルフ場休場 トレーニング室・ランニングコース利用不可（9:00～17:00）",
+      "flyer_image_url": "",
+      "detail_url": "https://www.sapporo-sport.jp/tsudome/calendar/?ty=2026&tm=11#d19",
+      "source_id": "www-sapporo-sport-jp-tsudome-calendar",
+      "source_name": "つどーむ（札幌市スポーツ協会）",
+      "source_url": "https://www.sapporo-sport.jp/tsudome/calendar/",
+      "source_category": "市スポーツ施設（会場公式）",
+      "source_priority": "S",
+      "source_priority_score": 4,
+      "extraction_method": "site_rule",
+      "updated_at": "2026-10-20T21:31:43.555Z",
+      "quality_score": 0.64
     },
     {
       "id": "4dc6f4f48c1465454adb",
@@ -6536,7 +6368,7 @@
       "source_priority": "A",
       "source_priority_score": 3,
       "extraction_method": "site_rule",
-      "updated_at": "2026-10-19T22:16:25.057Z",
+      "updated_at": "2026-10-20T21:31:49.116Z",
       "quality_score": 0.95
     },
     {
@@ -6560,7 +6392,7 @@
       "source_priority": "S",
       "source_priority_score": 4,
       "extraction_method": "site_rule",
-      "updated_at": "2026-10-19T22:16:14.291Z",
+      "updated_at": "2026-10-20T21:31:49.909Z",
       "quality_score": 1
     },
     {
@@ -6584,7 +6416,7 @@
       "source_priority": "S",
       "source_priority_score": 4,
       "extraction_method": "site_rule",
-      "updated_at": "2026-10-19T22:16:03.318Z",
+      "updated_at": "2026-10-20T21:31:36.048Z",
       "quality_score": 0.78
     },
     {
@@ -6608,7 +6440,7 @@
       "source_priority": "A",
       "source_priority_score": 3,
       "extraction_method": "site_rule",
-      "updated_at": "2026-10-19T22:16:28.896Z",
+      "updated_at": "2026-10-20T21:31:53.798Z",
       "quality_score": 0.77
     },
     {
@@ -6632,7 +6464,7 @@
       "source_priority": "S",
       "source_priority_score": 4,
       "extraction_method": "site_rule",
-      "updated_at": "2026-10-19T22:16:03.318Z",
+      "updated_at": "2026-10-20T21:31:36.048Z",
       "quality_score": 0.74
     },
     {
@@ -6656,7 +6488,7 @@
       "source_priority": "S",
       "source_priority_score": 4,
       "extraction_method": "site_rule",
-      "updated_at": "2026-10-19T22:16:03.318Z",
+      "updated_at": "2026-10-20T21:31:36.048Z",
       "quality_score": 0.74
     },
     {
@@ -6680,7 +6512,7 @@
       "source_priority": "S",
       "source_priority_score": 4,
       "extraction_method": "heuristic",
-      "updated_at": "2026-10-19T22:16:09.281Z",
+      "updated_at": "2026-10-20T21:31:43.031Z",
       "quality_score": 0.89
     },
     {
@@ -6704,7 +6536,7 @@
       "source_priority": "A",
       "source_priority_score": 3,
       "extraction_method": "site_rule",
-      "updated_at": "2026-10-19T22:16:35.080Z",
+      "updated_at": "2026-10-20T21:32:02.300Z",
       "quality_score": 0.81
     },
     {
@@ -6728,8 +6560,32 @@
       "source_priority": "S",
       "source_priority_score": 4,
       "extraction_method": "site_rule",
-      "updated_at": "2026-10-19T22:16:09.308Z",
+      "updated_at": "2026-10-20T21:31:44.700Z",
       "quality_score": 0.8
+    },
+    {
+      "id": "6924100b27ec718eddb3",
+      "title": "パークゴルフ場休場 トレーニング室・ランニングコース利用不可",
+      "start_date": "2026-11-20",
+      "end_date": "",
+      "open_time": "",
+      "start_time": "",
+      "end_time": "",
+      "all_day": true,
+      "venue": "つどーむ",
+      "venue_address": "札幌市東区栄町885番地1",
+      "summary": "パークゴルフ場休場 トレーニング室・ランニングコース利用不可（9:00～17:00）",
+      "flyer_image_url": "",
+      "detail_url": "https://www.sapporo-sport.jp/tsudome/calendar/?ty=2026&tm=11#d20",
+      "source_id": "www-sapporo-sport-jp-tsudome-calendar",
+      "source_name": "つどーむ（札幌市スポーツ協会）",
+      "source_url": "https://www.sapporo-sport.jp/tsudome/calendar/",
+      "source_category": "市スポーツ施設（会場公式）",
+      "source_priority": "S",
+      "source_priority_score": 4,
+      "extraction_method": "site_rule",
+      "updated_at": "2026-10-20T21:31:43.555Z",
+      "quality_score": 0.64
     },
     {
       "id": "f552a91f378517ca5e92",
@@ -6752,7 +6608,7 @@
       "source_priority": "A",
       "source_priority_score": 3,
       "extraction_method": "site_rule",
-      "updated_at": "2026-10-19T22:16:30.379Z",
+      "updated_at": "2026-10-20T21:32:02.171Z",
       "quality_score": 0.61
     },
     {
@@ -6776,7 +6632,7 @@
       "source_priority": "A",
       "source_priority_score": 3,
       "extraction_method": "site_rule",
-      "updated_at": "2026-10-19T22:16:25.057Z",
+      "updated_at": "2026-10-20T21:31:49.116Z",
       "quality_score": 0.95
     },
     {
@@ -6800,7 +6656,7 @@
       "source_priority": "S",
       "source_priority_score": 4,
       "extraction_method": "site_rule",
-      "updated_at": "2026-10-19T22:16:14.292Z",
+      "updated_at": "2026-10-20T21:31:49.909Z",
       "quality_score": 1
     },
     {
@@ -6824,7 +6680,7 @@
       "source_priority": "S",
       "source_priority_score": 4,
       "extraction_method": "site_rule",
-      "updated_at": "2026-10-19T22:16:14.291Z",
+      "updated_at": "2026-10-20T21:31:49.909Z",
       "quality_score": 1
     },
     {
@@ -6848,7 +6704,7 @@
       "source_priority": "S",
       "source_priority_score": 4,
       "extraction_method": "site_rule",
-      "updated_at": "2026-10-19T22:16:03.318Z",
+      "updated_at": "2026-10-20T21:31:36.048Z",
       "quality_score": 0.74
     },
     {
@@ -6872,7 +6728,7 @@
       "source_priority": "S",
       "source_priority_score": 4,
       "extraction_method": "site_rule",
-      "updated_at": "2026-10-19T22:16:03.318Z",
+      "updated_at": "2026-10-20T21:31:36.048Z",
       "quality_score": 0.74
     },
     {
@@ -6896,7 +6752,7 @@
       "source_priority": "S",
       "source_priority_score": 4,
       "extraction_method": "site_rule",
-      "updated_at": "2026-10-19T22:16:03.318Z",
+      "updated_at": "2026-10-20T21:31:36.048Z",
       "quality_score": 0.78
     },
     {
@@ -6920,7 +6776,7 @@
       "source_priority": "S",
       "source_priority_score": 4,
       "extraction_method": "heuristic",
-      "updated_at": "2026-10-19T22:16:08.510Z",
+      "updated_at": "2026-10-20T21:31:42.200Z",
       "quality_score": 0.89
     },
     {
@@ -6944,8 +6800,32 @@
       "source_priority": "A",
       "source_priority_score": 3,
       "extraction_method": "site_rule",
-      "updated_at": "2026-10-19T22:16:28.896Z",
+      "updated_at": "2026-10-20T21:31:53.798Z",
       "quality_score": 0.81
+    },
+    {
+      "id": "1f32fa9718f547f9fca3",
+      "title": "ランニングコース利用不可 パークゴルフ場休場",
+      "start_date": "2026-11-21",
+      "end_date": "",
+      "open_time": "",
+      "start_time": "",
+      "end_time": "",
+      "all_day": true,
+      "venue": "つどーむ",
+      "venue_address": "札幌市東区栄町885番地1",
+      "summary": "ランニングコース（9:00～21:00）利用不可 パークゴルフ場休場",
+      "flyer_image_url": "",
+      "detail_url": "https://www.sapporo-sport.jp/tsudome/calendar/?ty=2026&tm=11#d21",
+      "source_id": "www-sapporo-sport-jp-tsudome-calendar",
+      "source_name": "つどーむ（札幌市スポーツ協会）",
+      "source_url": "https://www.sapporo-sport.jp/tsudome/calendar/",
+      "source_category": "市スポーツ施設（会場公式）",
+      "source_priority": "S",
+      "source_priority_score": 4,
+      "extraction_method": "site_rule",
+      "updated_at": "2026-10-20T21:31:43.555Z",
+      "quality_score": 0.64
     },
     {
       "id": "d23be90d84d65a1334ac",
@@ -6968,7 +6848,7 @@
       "source_priority": "S",
       "source_priority_score": 4,
       "extraction_method": "site_rule",
-      "updated_at": "2026-10-19T22:16:14.292Z",
+      "updated_at": "2026-10-20T21:31:49.910Z",
       "quality_score": 1
     },
     {
@@ -6992,7 +6872,7 @@
       "source_priority": "A",
       "source_priority_score": 3,
       "extraction_method": "site_rule",
-      "updated_at": "2026-10-19T22:16:25.058Z",
+      "updated_at": "2026-10-20T21:31:49.116Z",
       "quality_score": 0.95
     },
     {
@@ -7016,7 +6896,7 @@
       "source_priority": "A",
       "source_priority_score": 3,
       "extraction_method": "site_rule",
-      "updated_at": "2026-10-19T22:16:25.057Z",
+      "updated_at": "2026-10-20T21:31:49.116Z",
       "quality_score": 0.95
     },
     {
@@ -7040,7 +6920,7 @@
       "source_priority": "S",
       "source_priority_score": 4,
       "extraction_method": "site_rule",
-      "updated_at": "2026-10-19T22:16:14.292Z",
+      "updated_at": "2026-10-20T21:31:49.910Z",
       "quality_score": 1
     },
     {
@@ -7064,7 +6944,7 @@
       "source_priority": "S",
       "source_priority_score": 4,
       "extraction_method": "site_rule",
-      "updated_at": "2026-10-19T22:16:29.393Z",
+      "updated_at": "2026-10-20T21:32:04.330Z",
       "quality_score": 0.78
     },
     {
@@ -7088,7 +6968,7 @@
       "source_priority": "S",
       "source_priority_score": 4,
       "extraction_method": "site_rule",
-      "updated_at": "2026-10-19T22:16:03.318Z",
+      "updated_at": "2026-10-20T21:31:36.048Z",
       "quality_score": 0.74
     },
     {
@@ -7112,7 +6992,7 @@
       "source_priority": "S",
       "source_priority_score": 4,
       "extraction_method": "site_rule",
-      "updated_at": "2026-10-19T22:16:03.318Z",
+      "updated_at": "2026-10-20T21:31:36.048Z",
       "quality_score": 0.74
     },
     {
@@ -7136,7 +7016,7 @@
       "source_priority": "S",
       "source_priority_score": 4,
       "extraction_method": "site_rule",
-      "updated_at": "2026-10-19T22:16:11.643Z",
+      "updated_at": "2026-10-20T21:31:47.338Z",
       "quality_score": 1
     },
     {
@@ -7160,7 +7040,7 @@
       "source_priority": "S",
       "source_priority_score": 4,
       "extraction_method": "site_rule",
-      "updated_at": "2026-10-19T22:16:03.318Z",
+      "updated_at": "2026-10-20T21:31:36.048Z",
       "quality_score": 0.74
     },
     {
@@ -7184,8 +7064,56 @@
       "source_priority": "S",
       "source_priority_score": 4,
       "extraction_method": "heuristic",
-      "updated_at": "2026-10-19T22:16:08.906Z",
+      "updated_at": "2026-10-20T21:31:42.137Z",
       "quality_score": 0.89
+    },
+    {
+      "id": "dcbde438b82f10cf6778",
+      "title": "ランニングコース利用不可 パークゴルフ場休場",
+      "start_date": "2026-11-22",
+      "end_date": "",
+      "open_time": "",
+      "start_time": "",
+      "end_time": "",
+      "all_day": true,
+      "venue": "つどーむ",
+      "venue_address": "札幌市東区栄町885番地1",
+      "summary": "ランニングコース（9:00～17:30）利用不可 パークゴルフ場休場",
+      "flyer_image_url": "",
+      "detail_url": "https://www.sapporo-sport.jp/tsudome/calendar/?ty=2026&tm=11#d22",
+      "source_id": "www-sapporo-sport-jp-tsudome-calendar",
+      "source_name": "つどーむ（札幌市スポーツ協会）",
+      "source_url": "https://www.sapporo-sport.jp/tsudome/calendar/",
+      "source_category": "市スポーツ施設（会場公式）",
+      "source_priority": "S",
+      "source_priority_score": 4,
+      "extraction_method": "site_rule",
+      "updated_at": "2026-10-20T21:31:43.555Z",
+      "quality_score": 0.64
+    },
+    {
+      "id": "eb38d1cd89d446c5c82a",
+      "title": "北海道大学交響楽団 第152回定期演奏会",
+      "start_date": "2026-11-22",
+      "end_date": "",
+      "open_time": "",
+      "start_time": "",
+      "end_time": "",
+      "all_day": true,
+      "venue": "カナモトホール",
+      "venue_address": "札幌市中央区北1条西1丁目",
+      "summary": "16:15 / 17:00 / 北海道大学交響楽団 090-9778-3754 https://hokudai-orch.jp",
+      "flyer_image_url": "https://www.sapporo-shiminhall.org/files/seminar/2194/2026.11.22_%E5%8C%97%E6%B5%B7%E9%81%93%E5%A4%A7%E5%AD%A6%E4%BA%A4%E9%9F%BF%E6%A5%BD%E5%9B%A3%EF%BC%88%E7%AC%AC152%E5%9B%9E%E5%AE%9A%E6%9C%9F%E6%BC%94%E5%A5%8F%E4%BC%9A%EF%BC%89.pdf",
+      "detail_url": "https://www.sapporo-shiminhall.org/event/?ymd=2026/11/01#event2194-22",
+      "source_id": "www-sapporo-shiminhall-org",
+      "source_name": "カナモトホール（札幌市民ホール）",
+      "source_url": "https://www.sapporo-shiminhall.org/",
+      "source_category": "市民ホール（会場公式）",
+      "source_priority": "A",
+      "source_priority_score": 3,
+      "extraction_method": "site_rule",
+      "updated_at": "2026-10-20T21:32:02.171Z",
+      "quality_score": 0.61
     },
     {
       "id": "fa0ff576ce6ff977f755",
@@ -7208,7 +7136,7 @@
       "source_priority": "S",
       "source_priority_score": 4,
       "extraction_method": "site_rule",
-      "updated_at": "2026-10-19T22:16:14.292Z",
+      "updated_at": "2026-10-20T21:31:49.910Z",
       "quality_score": 1
     },
     {
@@ -7232,7 +7160,7 @@
       "source_priority": "A",
       "source_priority_score": 3,
       "extraction_method": "site_rule",
-      "updated_at": "2026-10-19T22:16:25.058Z",
+      "updated_at": "2026-10-20T21:31:49.116Z",
       "quality_score": 0.95
     },
     {
@@ -7256,7 +7184,7 @@
       "source_priority": "S",
       "source_priority_score": 4,
       "extraction_method": "site_rule",
-      "updated_at": "2026-10-19T22:16:14.292Z",
+      "updated_at": "2026-10-20T21:31:49.910Z",
       "quality_score": 1
     },
     {
@@ -7280,7 +7208,7 @@
       "source_priority": "S",
       "source_priority_score": 4,
       "extraction_method": "site_rule",
-      "updated_at": "2026-10-19T22:16:03.318Z",
+      "updated_at": "2026-10-20T21:31:36.048Z",
       "quality_score": 0.78
     },
     {
@@ -7304,7 +7232,7 @@
       "source_priority": "S",
       "source_priority_score": 4,
       "extraction_method": "site_rule",
-      "updated_at": "2026-10-19T22:16:29.396Z",
+      "updated_at": "2026-10-20T21:32:04.335Z",
       "quality_score": 0.78
     },
     {
@@ -7328,7 +7256,7 @@
       "source_priority": "S",
       "source_priority_score": 4,
       "extraction_method": "site_rule",
-      "updated_at": "2026-10-19T22:16:03.318Z",
+      "updated_at": "2026-10-20T21:31:36.048Z",
       "quality_score": 0.74
     },
     {
@@ -7352,7 +7280,7 @@
       "source_priority": "S",
       "source_priority_score": 4,
       "extraction_method": "site_rule",
-      "updated_at": "2026-10-19T22:16:03.318Z",
+      "updated_at": "2026-10-20T21:31:36.048Z",
       "quality_score": 0.74
     },
     {
@@ -7376,7 +7304,7 @@
       "source_priority": "S",
       "source_priority_score": 4,
       "extraction_method": "site_rule",
-      "updated_at": "2026-10-19T22:16:03.318Z",
+      "updated_at": "2026-10-20T21:31:36.048Z",
       "quality_score": 0.74
     },
     {
@@ -7400,7 +7328,7 @@
       "source_priority": "B",
       "source_priority_score": 2,
       "extraction_method": "site_rule",
-      "updated_at": "2026-10-19T22:16:51.250Z",
+      "updated_at": "2026-10-20T21:32:14.729Z",
       "quality_score": 0.71
     },
     {
@@ -7448,8 +7376,32 @@
       "source_priority": "A",
       "source_priority_score": 3,
       "extraction_method": "site_rule",
-      "updated_at": "2026-10-19T22:16:30.379Z",
+      "updated_at": "2026-10-20T21:32:02.171Z",
       "quality_score": 0.61
+    },
+    {
+      "id": "309a1f70ba2d618ab2f8",
+      "title": "パークゴルフ場休場",
+      "start_date": "2026-11-23",
+      "end_date": "",
+      "open_time": "",
+      "start_time": "",
+      "end_time": "",
+      "all_day": true,
+      "venue": "つどーむ",
+      "venue_address": "札幌市東区栄町885番地1",
+      "summary": "パークゴルフ場休場",
+      "flyer_image_url": "",
+      "detail_url": "https://www.sapporo-sport.jp/tsudome/calendar/?ty=2026&tm=11#d23",
+      "source_id": "www-sapporo-sport-jp-tsudome-calendar",
+      "source_name": "つどーむ（札幌市スポーツ協会）",
+      "source_url": "https://www.sapporo-sport.jp/tsudome/calendar/",
+      "source_category": "市スポーツ施設（会場公式）",
+      "source_priority": "S",
+      "source_priority_score": 4,
+      "extraction_method": "site_rule",
+      "updated_at": "2026-10-20T21:31:43.555Z",
+      "quality_score": 0.6
     },
     {
       "id": "f30d51b4491091c144ac",
@@ -7472,7 +7424,7 @@
       "source_priority": "S",
       "source_priority_score": 4,
       "extraction_method": "site_rule",
-      "updated_at": "2026-10-19T22:16:14.292Z",
+      "updated_at": "2026-10-20T21:31:49.910Z",
       "quality_score": 1
     },
     {
@@ -7496,8 +7448,32 @@
       "source_priority": "B",
       "source_priority_score": 2,
       "extraction_method": "site_rule",
-      "updated_at": "2026-10-19T22:16:51.250Z",
+      "updated_at": "2026-10-20T21:32:14.730Z",
       "quality_score": 0.71
+    },
+    {
+      "id": "969b22ea5db1841b3cd0",
+      "title": "パークゴルフ場休場",
+      "start_date": "2026-11-24",
+      "end_date": "",
+      "open_time": "",
+      "start_time": "",
+      "end_time": "",
+      "all_day": true,
+      "venue": "つどーむ",
+      "venue_address": "札幌市東区栄町885番地1",
+      "summary": "パークゴルフ場休場",
+      "flyer_image_url": "",
+      "detail_url": "https://www.sapporo-sport.jp/tsudome/calendar/?ty=2026&tm=11#d24",
+      "source_id": "www-sapporo-sport-jp-tsudome-calendar",
+      "source_name": "つどーむ（札幌市スポーツ協会）",
+      "source_url": "https://www.sapporo-sport.jp/tsudome/calendar/",
+      "source_category": "市スポーツ施設（会場公式）",
+      "source_priority": "S",
+      "source_priority_score": 4,
+      "extraction_method": "site_rule",
+      "updated_at": "2026-10-20T21:31:43.555Z",
+      "quality_score": 0.6
     },
     {
       "id": "5d187d418d8cb237b760",
@@ -7520,8 +7496,32 @@
       "source_priority": "S",
       "source_priority_score": 4,
       "extraction_method": "site_rule",
-      "updated_at": "2026-10-19T22:16:03.318Z",
+      "updated_at": "2026-10-20T21:31:36.048Z",
       "quality_score": 0.74
+    },
+    {
+      "id": "5fb6866704482de8f4f7",
+      "title": "ランニングコーススピード練習 パークゴルフ場休場",
+      "start_date": "2026-11-25",
+      "end_date": "",
+      "open_time": "",
+      "start_time": "",
+      "end_time": "",
+      "all_day": true,
+      "venue": "つどーむ",
+      "venue_address": "札幌市東区栄町885番地1",
+      "summary": "ランニングコーススピード練習（18:00～21:00） パークゴルフ場休場",
+      "flyer_image_url": "",
+      "detail_url": "https://www.sapporo-sport.jp/tsudome/calendar/?ty=2026&tm=11#d25",
+      "source_id": "www-sapporo-sport-jp-tsudome-calendar",
+      "source_name": "つどーむ（札幌市スポーツ協会）",
+      "source_url": "https://www.sapporo-sport.jp/tsudome/calendar/",
+      "source_category": "市スポーツ施設（会場公式）",
+      "source_priority": "S",
+      "source_priority_score": 4,
+      "extraction_method": "site_rule",
+      "updated_at": "2026-10-20T21:31:43.555Z",
+      "quality_score": 0.64
     },
     {
       "id": "597f83105c02261dfaf8",
@@ -7544,7 +7544,7 @@
       "source_priority": "S",
       "source_priority_score": 4,
       "extraction_method": "site_rule",
-      "updated_at": "2026-10-19T22:16:29.402Z",
+      "updated_at": "2026-10-20T21:32:04.341Z",
       "quality_score": 0.78
     },
     {
@@ -7568,8 +7568,32 @@
       "source_priority": "S",
       "source_priority_score": 4,
       "extraction_method": "site_rule",
-      "updated_at": "2026-10-19T22:16:14.293Z",
+      "updated_at": "2026-10-20T21:31:49.911Z",
       "quality_score": 1
+    },
+    {
+      "id": "960408aeb59dbf210fd7",
+      "title": "パークゴルフ場休場",
+      "start_date": "2026-11-26",
+      "end_date": "",
+      "open_time": "",
+      "start_time": "",
+      "end_time": "",
+      "all_day": true,
+      "venue": "つどーむ",
+      "venue_address": "札幌市東区栄町885番地1",
+      "summary": "パークゴルフ場休場",
+      "flyer_image_url": "",
+      "detail_url": "https://www.sapporo-sport.jp/tsudome/calendar/?ty=2026&tm=11#d26",
+      "source_id": "www-sapporo-sport-jp-tsudome-calendar",
+      "source_name": "つどーむ（札幌市スポーツ協会）",
+      "source_url": "https://www.sapporo-sport.jp/tsudome/calendar/",
+      "source_category": "市スポーツ施設（会場公式）",
+      "source_priority": "S",
+      "source_priority_score": 4,
+      "extraction_method": "site_rule",
+      "updated_at": "2026-10-20T21:31:43.555Z",
+      "quality_score": 0.6
     },
     {
       "id": "bd3618ec61507f98bf69",
@@ -7592,7 +7616,7 @@
       "source_priority": "S",
       "source_priority_score": 4,
       "extraction_method": "site_rule",
-      "updated_at": "2026-10-19T22:16:04.816Z",
+      "updated_at": "2026-10-20T21:31:37.511Z",
       "quality_score": 1
     },
     {
@@ -7616,7 +7640,7 @@
       "source_priority": "S",
       "source_priority_score": 4,
       "extraction_method": "site_rule",
-      "updated_at": "2026-10-19T22:16:29.405Z",
+      "updated_at": "2026-10-20T21:32:04.345Z",
       "quality_score": 0.78
     },
     {
@@ -7640,7 +7664,7 @@
       "source_priority": "S",
       "source_priority_score": 4,
       "extraction_method": "site_rule",
-      "updated_at": "2026-10-19T22:16:03.319Z",
+      "updated_at": "2026-10-20T21:31:36.048Z",
       "quality_score": 0.74
     },
     {
@@ -7664,7 +7688,7 @@
       "source_priority": "S",
       "source_priority_score": 4,
       "extraction_method": "site_rule",
-      "updated_at": "2026-10-19T22:16:03.319Z",
+      "updated_at": "2026-10-20T21:31:36.048Z",
       "quality_score": 0.74
     },
     {
@@ -7688,8 +7712,32 @@
       "source_priority": "B",
       "source_priority_score": 2,
       "extraction_method": "site_rule",
-      "updated_at": "2026-10-19T22:16:51.250Z",
+      "updated_at": "2026-10-20T21:32:14.730Z",
       "quality_score": 0.71
+    },
+    {
+      "id": "84cd8b4d3114e249a6c4",
+      "title": "ランニングコース・トレーニング室利用不可 パークゴルフ場休場",
+      "start_date": "2026-11-27",
+      "end_date": "",
+      "open_time": "",
+      "start_time": "",
+      "end_time": "",
+      "all_day": true,
+      "venue": "つどーむ",
+      "venue_address": "札幌市東区栄町885番地1",
+      "summary": "ランニングコース・トレーニング室（13:00～17:00）利用不可 パークゴルフ場休場",
+      "flyer_image_url": "",
+      "detail_url": "https://www.sapporo-sport.jp/tsudome/calendar/?ty=2026&tm=11#d27",
+      "source_id": "www-sapporo-sport-jp-tsudome-calendar",
+      "source_name": "つどーむ（札幌市スポーツ協会）",
+      "source_url": "https://www.sapporo-sport.jp/tsudome/calendar/",
+      "source_category": "市スポーツ施設（会場公式）",
+      "source_priority": "S",
+      "source_priority_score": 4,
+      "extraction_method": "site_rule",
+      "updated_at": "2026-10-20T21:31:43.555Z",
+      "quality_score": 0.64
     },
     {
       "id": "d07f08f934f7885e6bd0",
@@ -7712,7 +7760,7 @@
       "source_priority": "A",
       "source_priority_score": 3,
       "extraction_method": "heuristic",
-      "updated_at": "2026-10-19T22:16:43.898Z",
+      "updated_at": "2026-10-20T21:32:11.224Z",
       "quality_score": 0.61
     },
     {
@@ -7736,7 +7784,7 @@
       "source_priority": "A",
       "source_priority_score": 3,
       "extraction_method": "site_rule",
-      "updated_at": "2026-10-19T22:16:26.751Z",
+      "updated_at": "2026-10-20T21:31:50.979Z",
       "quality_score": 0.57
     },
     {
@@ -7760,7 +7808,7 @@
       "source_priority": "S",
       "source_priority_score": 4,
       "extraction_method": "site_rule",
-      "updated_at": "2026-10-19T22:16:14.293Z",
+      "updated_at": "2026-10-20T21:31:49.911Z",
       "quality_score": 1
     },
     {
@@ -7784,7 +7832,7 @@
       "source_priority": "A",
       "source_priority_score": 3,
       "extraction_method": "site_rule",
-      "updated_at": "2026-10-19T22:16:25.058Z",
+      "updated_at": "2026-10-20T21:31:49.116Z",
       "quality_score": 0.95
     },
     {
@@ -7808,7 +7856,7 @@
       "source_priority": "S",
       "source_priority_score": 4,
       "extraction_method": "site_rule",
-      "updated_at": "2026-10-19T22:16:03.319Z",
+      "updated_at": "2026-10-20T21:31:36.049Z",
       "quality_score": 0.74
     },
     {
@@ -7832,7 +7880,7 @@
       "source_priority": "S",
       "source_priority_score": 4,
       "extraction_method": "site_rule",
-      "updated_at": "2026-10-19T22:16:03.319Z",
+      "updated_at": "2026-10-20T21:31:36.049Z",
       "quality_score": 0.74
     },
     {
@@ -7856,7 +7904,7 @@
       "source_priority": "B",
       "source_priority_score": 2,
       "extraction_method": "site_rule",
-      "updated_at": "2026-10-19T22:16:52.570Z",
+      "updated_at": "2026-10-20T21:32:16.843Z",
       "quality_score": 0.71
     },
     {
@@ -7880,7 +7928,7 @@
       "source_priority": "S",
       "source_priority_score": 4,
       "extraction_method": "site_rule",
-      "updated_at": "2026-10-19T22:16:04.822Z",
+      "updated_at": "2026-10-20T21:31:37.519Z",
       "quality_score": 1
     },
     {
@@ -7904,7 +7952,7 @@
       "source_priority": "S",
       "source_priority_score": 4,
       "extraction_method": "site_rule",
-      "updated_at": "2026-10-19T22:16:03.319Z",
+      "updated_at": "2026-10-20T21:31:36.048Z",
       "quality_score": 0.78
     },
     {
@@ -7928,7 +7976,7 @@
       "source_priority": "S",
       "source_priority_score": 4,
       "extraction_method": "site_rule",
-      "updated_at": "2026-10-19T22:16:03.319Z",
+      "updated_at": "2026-10-20T21:31:36.048Z",
       "quality_score": 0.78
     },
     {
@@ -7952,8 +8000,32 @@
       "source_priority": "A",
       "source_priority_score": 3,
       "extraction_method": "site_rule",
-      "updated_at": "2026-10-19T22:16:25.058Z",
+      "updated_at": "2026-10-20T21:31:49.116Z",
       "quality_score": 0.73
+    },
+    {
+      "id": "611cd472708c71ad2ff0",
+      "title": "ランニングコース利用不可 パークゴルフ場休場",
+      "start_date": "2026-11-28",
+      "end_date": "",
+      "open_time": "",
+      "start_time": "",
+      "end_time": "",
+      "all_day": true,
+      "venue": "つどーむ",
+      "venue_address": "札幌市東区栄町885番地1",
+      "summary": "ランニングコース（9:00～21:00）利用不可 パークゴルフ場休場",
+      "flyer_image_url": "",
+      "detail_url": "https://www.sapporo-sport.jp/tsudome/calendar/?ty=2026&tm=11#d28",
+      "source_id": "www-sapporo-sport-jp-tsudome-calendar",
+      "source_name": "つどーむ（札幌市スポーツ協会）",
+      "source_url": "https://www.sapporo-sport.jp/tsudome/calendar/",
+      "source_category": "市スポーツ施設（会場公式）",
+      "source_priority": "S",
+      "source_priority_score": 4,
+      "extraction_method": "site_rule",
+      "updated_at": "2026-10-20T21:31:43.555Z",
+      "quality_score": 0.64
     },
     {
       "id": "7c34bbe4ff2fc8a78d5c",
@@ -7976,7 +8048,7 @@
       "source_priority": "S",
       "source_priority_score": 4,
       "extraction_method": "site_rule",
-      "updated_at": "2026-10-19T22:16:14.293Z",
+      "updated_at": "2026-10-20T21:31:49.911Z",
       "quality_score": 1
     },
     {
@@ -8000,7 +8072,7 @@
       "source_priority": "S",
       "source_priority_score": 4,
       "extraction_method": "site_rule",
-      "updated_at": "2026-10-19T22:16:03.319Z",
+      "updated_at": "2026-10-20T21:31:36.049Z",
       "quality_score": 0.74
     },
     {
@@ -8024,7 +8096,7 @@
       "source_priority": "S",
       "source_priority_score": 4,
       "extraction_method": "site_rule",
-      "updated_at": "2026-10-19T22:16:03.319Z",
+      "updated_at": "2026-10-20T21:31:36.049Z",
       "quality_score": 0.74
     },
     {
@@ -8048,7 +8120,7 @@
       "source_priority": "B",
       "source_priority_score": 2,
       "extraction_method": "site_rule",
-      "updated_at": "2026-10-19T22:16:52.570Z",
+      "updated_at": "2026-10-20T21:32:16.843Z",
       "quality_score": 0.71
     },
     {
@@ -8072,8 +8144,32 @@
       "source_priority": "S",
       "source_priority_score": 4,
       "extraction_method": "site_rule",
-      "updated_at": "2026-10-19T22:16:03.319Z",
+      "updated_at": "2026-10-20T21:31:36.049Z",
       "quality_score": 0.74
+    },
+    {
+      "id": "d5adc88717b5c8ed74cc",
+      "title": "ランニングコース利用不可 パークゴルフ場休場",
+      "start_date": "2026-11-29",
+      "end_date": "",
+      "open_time": "",
+      "start_time": "",
+      "end_time": "",
+      "all_day": true,
+      "venue": "つどーむ",
+      "venue_address": "札幌市東区栄町885番地1",
+      "summary": "ランニングコース（9:00～21:00）利用不可 パークゴルフ場休場",
+      "flyer_image_url": "",
+      "detail_url": "https://www.sapporo-sport.jp/tsudome/calendar/?ty=2026&tm=11#d29",
+      "source_id": "www-sapporo-sport-jp-tsudome-calendar",
+      "source_name": "つどーむ（札幌市スポーツ協会）",
+      "source_url": "https://www.sapporo-sport.jp/tsudome/calendar/",
+      "source_category": "市スポーツ施設（会場公式）",
+      "source_priority": "S",
+      "source_priority_score": 4,
+      "extraction_method": "site_rule",
+      "updated_at": "2026-10-20T21:31:43.555Z",
+      "quality_score": 0.64
     },
     {
       "id": "675b66bbeb5430a41bbe",
@@ -8096,7 +8192,7 @@
       "source_priority": "A",
       "source_priority_score": 3,
       "extraction_method": "heuristic",
-      "updated_at": "2026-10-19T22:16:43.909Z",
+      "updated_at": "2026-10-20T21:32:11.238Z",
       "quality_score": 0.61
     },
     {
@@ -8120,7 +8216,7 @@
       "source_priority": "A",
       "source_priority_score": 3,
       "extraction_method": "site_rule",
-      "updated_at": "2026-10-19T22:16:30.379Z",
+      "updated_at": "2026-10-20T21:32:02.171Z",
       "quality_score": 0.61
     },
     {
@@ -8144,7 +8240,7 @@
       "source_priority": "A",
       "source_priority_score": 3,
       "extraction_method": "site_rule",
-      "updated_at": "2026-10-19T22:16:25.058Z",
+      "updated_at": "2026-10-20T21:31:49.116Z",
       "quality_score": 0.95
     },
     {
@@ -8168,8 +8264,32 @@
       "source_priority": "S",
       "source_priority_score": 4,
       "extraction_method": "site_rule",
-      "updated_at": "2026-10-19T22:16:03.319Z",
+      "updated_at": "2026-10-20T21:31:36.049Z",
       "quality_score": 0.74
+    },
+    {
+      "id": "874c491b48bf6304fe35",
+      "title": "パークゴルフ場休場",
+      "start_date": "2026-11-30",
+      "end_date": "",
+      "open_time": "",
+      "start_time": "",
+      "end_time": "",
+      "all_day": true,
+      "venue": "つどーむ",
+      "venue_address": "札幌市東区栄町885番地1",
+      "summary": "パークゴルフ場休場",
+      "flyer_image_url": "",
+      "detail_url": "https://www.sapporo-sport.jp/tsudome/calendar/?ty=2026&tm=11#d30",
+      "source_id": "www-sapporo-sport-jp-tsudome-calendar",
+      "source_name": "つどーむ（札幌市スポーツ協会）",
+      "source_url": "https://www.sapporo-sport.jp/tsudome/calendar/",
+      "source_category": "市スポーツ施設（会場公式）",
+      "source_priority": "S",
+      "source_priority_score": 4,
+      "extraction_method": "site_rule",
+      "updated_at": "2026-10-20T21:31:43.555Z",
+      "quality_score": 0.6
     },
     {
       "id": "4c4c4f346926e2f428ed",
@@ -8192,7 +8312,7 @@
       "source_priority": "S",
       "source_priority_score": 4,
       "extraction_method": "site_rule",
-      "updated_at": "2026-10-19T22:16:14.293Z",
+      "updated_at": "2026-10-20T21:31:49.912Z",
       "quality_score": 1
     },
     {
@@ -8216,7 +8336,7 @@
       "source_priority": "A",
       "source_priority_score": 3,
       "extraction_method": "site_rule",
-      "updated_at": "2026-10-18T20:31:49.984Z",
+      "updated_at": "2026-10-20T21:31:49.117Z",
       "quality_score": 0.77
     },
     {
@@ -8240,7 +8360,7 @@
       "source_priority": "A",
       "source_priority_score": 3,
       "extraction_method": "site_rule",
-      "updated_at": "2026-10-19T22:16:30.379Z",
+      "updated_at": "2026-10-20T21:32:02.172Z",
       "quality_score": 0.61
     },
     {
@@ -8264,7 +8384,7 @@
       "source_priority": "S",
       "source_priority_score": 4,
       "extraction_method": "site_rule",
-      "updated_at": "2026-10-19T22:16:14.293Z",
+      "updated_at": "2026-10-20T21:31:49.912Z",
       "quality_score": 1
     },
     {
@@ -8288,7 +8408,7 @@
       "source_priority": "B",
       "source_priority_score": 2,
       "extraction_method": "site_rule",
-      "updated_at": "2026-10-19T22:16:51.251Z",
+      "updated_at": "2026-10-20T21:32:14.730Z",
       "quality_score": 0.71
     },
     {
@@ -8312,7 +8432,7 @@
       "source_priority": "S",
       "source_priority_score": 4,
       "extraction_method": "site_rule",
-      "updated_at": "2026-10-19T22:16:29.408Z",
+      "updated_at": "2026-10-20T21:32:04.350Z",
       "quality_score": 0.78
     },
     {
@@ -8336,7 +8456,7 @@
       "source_priority": "S",
       "source_priority_score": 4,
       "extraction_method": "site_rule",
-      "updated_at": "2026-10-19T22:16:04.816Z",
+      "updated_at": "2026-10-20T21:31:37.510Z",
       "quality_score": 1
     },
     {
@@ -8360,7 +8480,7 @@
       "source_priority": "S",
       "source_priority_score": 4,
       "extraction_method": "site_rule",
-      "updated_at": "2026-10-19T22:16:14.293Z",
+      "updated_at": "2026-10-20T21:31:49.912Z",
       "quality_score": 1
     },
     {
@@ -8384,7 +8504,7 @@
       "source_priority": "S",
       "source_priority_score": 4,
       "extraction_method": "site_rule",
-      "updated_at": "2026-10-19T22:16:06.880Z",
+      "updated_at": "2026-10-20T21:31:39.208Z",
       "quality_score": 0.74
     },
     {
@@ -8408,7 +8528,7 @@
       "source_priority": "A",
       "source_priority_score": 3,
       "extraction_method": "site_rule",
-      "updated_at": "2026-10-19T22:16:42.045Z",
+      "updated_at": "2026-10-20T21:32:08.777Z",
       "quality_score": 0.65
     },
     {
@@ -8432,7 +8552,7 @@
       "source_priority": "A",
       "source_priority_score": 3,
       "extraction_method": "site_rule",
-      "updated_at": "2026-10-19T22:16:30.379Z",
+      "updated_at": "2026-10-20T21:32:02.172Z",
       "quality_score": 0.61
     },
     {
@@ -8456,7 +8576,7 @@
       "source_priority": "S",
       "source_priority_score": 4,
       "extraction_method": "site_rule",
-      "updated_at": "2026-10-19T22:16:11.643Z",
+      "updated_at": "2026-10-20T21:31:47.339Z",
       "quality_score": 0.98
     },
     {
@@ -8480,7 +8600,7 @@
       "source_priority": "S",
       "source_priority_score": 4,
       "extraction_method": "site_rule",
-      "updated_at": "2026-10-19T22:16:14.293Z",
+      "updated_at": "2026-10-20T21:31:49.913Z",
       "quality_score": 1
     },
     {
@@ -8504,7 +8624,7 @@
       "source_priority": "S",
       "source_priority_score": 4,
       "extraction_method": "site_rule",
-      "updated_at": "2026-10-19T22:16:14.293Z",
+      "updated_at": "2026-10-20T21:31:49.913Z",
       "quality_score": 1
     },
     {
@@ -8528,7 +8648,7 @@
       "source_priority": "S",
       "source_priority_score": 4,
       "extraction_method": "site_rule",
-      "updated_at": "2026-10-19T22:16:29.415Z",
+      "updated_at": "2026-10-20T21:32:04.359Z",
       "quality_score": 0.78
     },
     {
@@ -8552,7 +8672,7 @@
       "source_priority": "S",
       "source_priority_score": 4,
       "extraction_method": "site_rule",
-      "updated_at": "2026-10-19T22:16:06.880Z",
+      "updated_at": "2026-10-20T21:31:39.208Z",
       "quality_score": 0.74
     },
     {
@@ -8576,7 +8696,7 @@
       "source_priority": "A",
       "source_priority_score": 3,
       "extraction_method": "site_rule",
-      "updated_at": "2026-10-19T22:16:28.896Z",
+      "updated_at": "2026-10-20T21:31:53.799Z",
       "quality_score": 0.81
     },
     {
@@ -8600,7 +8720,7 @@
       "source_priority": "A",
       "source_priority_score": 3,
       "extraction_method": "site_rule",
-      "updated_at": "2026-10-19T22:16:42.045Z",
+      "updated_at": "2026-10-20T21:32:08.777Z",
       "quality_score": 0.65
     },
     {
@@ -8624,7 +8744,7 @@
       "source_priority": "A",
       "source_priority_score": 3,
       "extraction_method": "site_rule",
-      "updated_at": "2026-10-19T22:16:30.379Z",
+      "updated_at": "2026-10-20T21:32:02.172Z",
       "quality_score": 0.61
     },
     {
@@ -8648,7 +8768,7 @@
       "source_priority": "S",
       "source_priority_score": 4,
       "extraction_method": "site_rule",
-      "updated_at": "2026-10-19T22:16:14.293Z",
+      "updated_at": "2026-10-20T21:31:49.913Z",
       "quality_score": 1
     },
     {
@@ -8672,7 +8792,7 @@
       "source_priority": "S",
       "source_priority_score": 4,
       "extraction_method": "site_rule",
-      "updated_at": "2026-10-19T22:16:06.880Z",
+      "updated_at": "2026-10-20T21:31:39.208Z",
       "quality_score": 0.78
     },
     {
@@ -8696,7 +8816,7 @@
       "source_priority": "S",
       "source_priority_score": 4,
       "extraction_method": "site_rule",
-      "updated_at": "2026-10-19T22:16:29.418Z",
+      "updated_at": "2026-10-20T21:32:04.364Z",
       "quality_score": 0.78
     },
     {
@@ -8720,7 +8840,7 @@
       "source_priority": "S",
       "source_priority_score": 4,
       "extraction_method": "site_rule",
-      "updated_at": "2026-10-19T22:16:06.880Z",
+      "updated_at": "2026-10-20T21:31:39.208Z",
       "quality_score": 0.74
     },
     {
@@ -8744,7 +8864,7 @@
       "source_priority": "B",
       "source_priority_score": 2,
       "extraction_method": "site_rule",
-      "updated_at": "2026-10-19T22:16:52.570Z",
+      "updated_at": "2026-10-20T21:32:16.843Z",
       "quality_score": 0.71
     },
     {
@@ -8768,7 +8888,7 @@
       "source_priority": "S",
       "source_priority_score": 4,
       "extraction_method": "site_rule",
-      "updated_at": "2026-10-19T22:16:14.293Z",
+      "updated_at": "2026-10-20T21:31:49.914Z",
       "quality_score": 1
     },
     {
@@ -8792,7 +8912,7 @@
       "source_priority": "A",
       "source_priority_score": 3,
       "extraction_method": "site_rule",
-      "updated_at": "2026-10-19T22:16:42.045Z",
+      "updated_at": "2026-10-20T21:32:08.777Z",
       "quality_score": 0.65
     },
     {
@@ -8816,7 +8936,7 @@
       "source_priority": "A",
       "source_priority_score": 3,
       "extraction_method": "site_rule",
-      "updated_at": "2026-10-19T22:16:42.045Z",
+      "updated_at": "2026-10-20T21:32:08.777Z",
       "quality_score": 0.65
     },
     {
@@ -8840,7 +8960,7 @@
       "source_priority": "S",
       "source_priority_score": 4,
       "extraction_method": "site_rule",
-      "updated_at": "2026-10-19T22:16:06.880Z",
+      "updated_at": "2026-10-20T21:31:39.209Z",
       "quality_score": 0.56
     },
     {
@@ -8864,7 +8984,7 @@
       "source_priority": "S",
       "source_priority_score": 4,
       "extraction_method": "site_rule",
-      "updated_at": "2026-10-19T22:16:14.294Z",
+      "updated_at": "2026-10-20T21:31:49.914Z",
       "quality_score": 1
     },
     {
@@ -8888,7 +9008,7 @@
       "source_priority": "S",
       "source_priority_score": 4,
       "extraction_method": "site_rule",
-      "updated_at": "2026-10-19T22:16:14.294Z",
+      "updated_at": "2026-10-20T21:31:49.914Z",
       "quality_score": 1
     },
     {
@@ -8912,7 +9032,7 @@
       "source_priority": "S",
       "source_priority_score": 4,
       "extraction_method": "site_rule",
-      "updated_at": "2026-10-19T22:16:14.294Z",
+      "updated_at": "2026-10-20T21:31:49.915Z",
       "quality_score": 1
     },
     {
@@ -8936,7 +9056,7 @@
       "source_priority": "S",
       "source_priority_score": 4,
       "extraction_method": "site_rule",
-      "updated_at": "2026-10-19T22:16:06.880Z",
+      "updated_at": "2026-10-20T21:31:39.209Z",
       "quality_score": 0.74
     },
     {
@@ -8960,7 +9080,7 @@
       "source_priority": "S",
       "source_priority_score": 4,
       "extraction_method": "site_rule",
-      "updated_at": "2026-10-19T22:16:06.880Z",
+      "updated_at": "2026-10-20T21:31:39.209Z",
       "quality_score": 0.74
     },
     {
@@ -8984,7 +9104,7 @@
       "source_priority": "S",
       "source_priority_score": 4,
       "extraction_method": "heuristic",
-      "updated_at": "2026-10-19T22:16:09.013Z",
+      "updated_at": "2026-10-20T21:31:42.772Z",
       "quality_score": 0.99
     },
     {
@@ -9008,7 +9128,7 @@
       "source_priority": "S",
       "source_priority_score": 4,
       "extraction_method": "site_rule",
-      "updated_at": "2026-10-19T22:16:06.880Z",
+      "updated_at": "2026-10-20T21:31:39.209Z",
       "quality_score": 0.74
     },
     {
@@ -9032,7 +9152,7 @@
       "source_priority": "S",
       "source_priority_score": 4,
       "extraction_method": "site_rule",
-      "updated_at": "2026-10-19T22:16:04.825Z",
+      "updated_at": "2026-10-20T21:31:37.523Z",
       "quality_score": 1
     },
     {
@@ -9056,7 +9176,7 @@
       "source_priority": "S",
       "source_priority_score": 4,
       "extraction_method": "site_rule",
-      "updated_at": "2026-10-19T22:16:06.880Z",
+      "updated_at": "2026-10-20T21:31:39.209Z",
       "quality_score": 0.56
     },
     {
@@ -9080,7 +9200,7 @@
       "source_priority": "A",
       "source_priority_score": 3,
       "extraction_method": "site_rule",
-      "updated_at": "2026-10-19T22:16:27.042Z",
+      "updated_at": "2026-10-20T21:31:51.135Z",
       "quality_score": 0.8
     },
     {
@@ -9104,7 +9224,7 @@
       "source_priority": "S",
       "source_priority_score": 4,
       "extraction_method": "site_rule",
-      "updated_at": "2026-10-19T22:16:14.294Z",
+      "updated_at": "2026-10-20T21:31:49.915Z",
       "quality_score": 1
     },
     {
@@ -9128,7 +9248,7 @@
       "source_priority": "S",
       "source_priority_score": 4,
       "extraction_method": "site_rule",
-      "updated_at": "2026-10-19T22:16:29.423Z",
+      "updated_at": "2026-10-20T21:32:04.369Z",
       "quality_score": 0.78
     },
     {
@@ -9152,7 +9272,7 @@
       "source_priority": "S",
       "source_priority_score": 4,
       "extraction_method": "site_rule",
-      "updated_at": "2026-10-19T22:16:06.880Z",
+      "updated_at": "2026-10-20T21:31:39.209Z",
       "quality_score": 0.78
     },
     {
@@ -9176,7 +9296,7 @@
       "source_priority": "S",
       "source_priority_score": 4,
       "extraction_method": "site_rule",
-      "updated_at": "2026-10-19T22:16:06.880Z",
+      "updated_at": "2026-10-20T21:31:39.209Z",
       "quality_score": 0.74
     },
     {
@@ -9200,7 +9320,7 @@
       "source_priority": "B",
       "source_priority_score": 2,
       "extraction_method": "site_rule",
-      "updated_at": "2026-10-19T22:16:52.571Z",
+      "updated_at": "2026-10-20T21:32:16.843Z",
       "quality_score": 0.91
     },
     {
@@ -9224,7 +9344,7 @@
       "source_priority": "S",
       "source_priority_score": 4,
       "extraction_method": "site_rule",
-      "updated_at": "2026-10-19T22:16:06.880Z",
+      "updated_at": "2026-10-20T21:31:39.209Z",
       "quality_score": 0.74
     },
     {
@@ -9248,7 +9368,7 @@
       "source_priority": "B",
       "source_priority_score": 2,
       "extraction_method": "site_rule",
-      "updated_at": "2026-10-19T22:16:51.251Z",
+      "updated_at": "2026-10-20T21:32:14.730Z",
       "quality_score": 0.71
     },
     {
@@ -9272,7 +9392,7 @@
       "source_priority": "A",
       "source_priority_score": 3,
       "extraction_method": "site_rule",
-      "updated_at": "2026-10-19T22:16:30.379Z",
+      "updated_at": "2026-10-20T21:32:02.172Z",
       "quality_score": 0.61
     },
     {
@@ -9296,7 +9416,7 @@
       "source_priority": "S",
       "source_priority_score": 4,
       "extraction_method": "site_rule",
-      "updated_at": "2026-10-19T22:16:04.827Z",
+      "updated_at": "2026-10-20T21:31:37.527Z",
       "quality_score": 1
     },
     {
@@ -9320,7 +9440,7 @@
       "source_priority": "S",
       "source_priority_score": 4,
       "extraction_method": "site_rule",
-      "updated_at": "2026-10-19T22:16:06.880Z",
+      "updated_at": "2026-10-20T21:31:39.209Z",
       "quality_score": 0.78
     },
     {
@@ -9344,7 +9464,7 @@
       "source_priority": "S",
       "source_priority_score": 4,
       "extraction_method": "site_rule",
-      "updated_at": "2026-10-19T22:16:14.294Z",
+      "updated_at": "2026-10-20T21:31:49.915Z",
       "quality_score": 1
     },
     {
@@ -9368,7 +9488,7 @@
       "source_priority": "B",
       "source_priority_score": 2,
       "extraction_method": "site_rule",
-      "updated_at": "2026-10-19T22:16:52.571Z",
+      "updated_at": "2026-10-20T21:32:16.843Z",
       "quality_score": 0.91
     },
     {
@@ -9392,7 +9512,7 @@
       "source_priority": "S",
       "source_priority_score": 4,
       "extraction_method": "site_rule",
-      "updated_at": "2026-10-19T22:16:06.880Z",
+      "updated_at": "2026-10-20T21:31:39.209Z",
       "quality_score": 0.74
     },
     {
@@ -9416,7 +9536,7 @@
       "source_priority": "S",
       "source_priority_score": 4,
       "extraction_method": "site_rule",
-      "updated_at": "2026-10-19T22:16:06.880Z",
+      "updated_at": "2026-10-20T21:31:39.209Z",
       "quality_score": 0.74
     },
     {
@@ -9440,7 +9560,7 @@
       "source_priority": "S",
       "source_priority_score": 4,
       "extraction_method": "site_rule",
-      "updated_at": "2026-10-19T22:16:29.426Z",
+      "updated_at": "2026-10-20T21:32:04.373Z",
       "quality_score": 0.78
     },
     {
@@ -9464,7 +9584,7 @@
       "source_priority": "A",
       "source_priority_score": 3,
       "extraction_method": "site_rule",
-      "updated_at": "2026-10-19T22:16:42.045Z",
+      "updated_at": "2026-10-20T21:32:08.777Z",
       "quality_score": 0.65
     },
     {
@@ -9488,7 +9608,7 @@
       "source_priority": "S",
       "source_priority_score": 4,
       "extraction_method": "site_rule",
-      "updated_at": "2026-10-19T22:16:06.880Z",
+      "updated_at": "2026-10-20T21:31:39.209Z",
       "quality_score": 0.74
     },
     {
@@ -9512,8 +9632,32 @@
       "source_priority": "A",
       "source_priority_score": 3,
       "extraction_method": "site_rule",
-      "updated_at": "2026-10-19T22:16:30.379Z",
+      "updated_at": "2026-10-20T21:32:02.172Z",
       "quality_score": 0.61
+    },
+    {
+      "id": "ed72149a2611e6d82bd0",
+      "title": "令和8年度 北海道教育大学岩見沢校 芸術・スポーツ文化学科音楽文化専攻 定期演奏会",
+      "start_date": "2026-12-15",
+      "end_date": "",
+      "open_time": "17:30",
+      "start_time": "18:00",
+      "end_time": "20:30",
+      "all_day": false,
+      "venue": "札幌コンサートホール Kitara 大ホール",
+      "venue_address": "札幌市中央区中島公園1番15号",
+      "summary": "大ホール 2026年12月15日(火曜日) 17:30開場 18:00開演 20:30終演予定",
+      "flyer_image_url": "https://www.kitara-sapporo.or.jp/og-image.jpg",
+      "detail_url": "https://www.kitara-sapporo.or.jp/event/event_detail.php?num=7517",
+      "source_id": "www-kitara-sapporo-or-jp-event",
+      "source_name": "札幌コンサートホール Kitara",
+      "source_url": "https://www.kitara-sapporo.or.jp/event/",
+      "source_category": "コンサートホール（会場公式）",
+      "source_priority": "S",
+      "source_priority_score": 4,
+      "extraction_method": "site_rule",
+      "updated_at": "2026-10-20T21:31:49.915Z",
+      "quality_score": 1
     },
     {
       "id": "c0028ff23981d446c3b5",
@@ -9536,7 +9680,7 @@
       "source_priority": "B",
       "source_priority_score": 2,
       "extraction_method": "site_rule",
-      "updated_at": "2026-10-19T22:16:52.571Z",
+      "updated_at": "2026-10-20T21:32:16.843Z",
       "quality_score": 0.91
     },
     {
@@ -9560,7 +9704,7 @@
       "source_priority": "S",
       "source_priority_score": 4,
       "extraction_method": "site_rule",
-      "updated_at": "2026-10-19T22:16:06.880Z",
+      "updated_at": "2026-10-20T21:31:39.209Z",
       "quality_score": 0.74
     },
     {
@@ -9584,7 +9728,7 @@
       "source_priority": "S",
       "source_priority_score": 4,
       "extraction_method": "site_rule",
-      "updated_at": "2026-10-19T22:16:06.881Z",
+      "updated_at": "2026-10-20T21:31:39.209Z",
       "quality_score": 0.74
     },
     {
@@ -9608,7 +9752,7 @@
       "source_priority": "S",
       "source_priority_score": 4,
       "extraction_method": "site_rule",
-      "updated_at": "2026-10-19T22:16:06.880Z",
+      "updated_at": "2026-10-20T21:31:39.209Z",
       "quality_score": 0.78
     },
     {
@@ -9632,7 +9776,7 @@
       "source_priority": "S",
       "source_priority_score": 4,
       "extraction_method": "site_rule",
-      "updated_at": "2026-10-19T22:16:06.880Z",
+      "updated_at": "2026-10-20T21:31:39.209Z",
       "quality_score": 0.74
     },
     {
@@ -9656,7 +9800,7 @@
       "source_priority": "A",
       "source_priority_score": 3,
       "extraction_method": "site_rule",
-      "updated_at": "2026-10-19T22:16:30.379Z",
+      "updated_at": "2026-10-20T21:32:02.172Z",
       "quality_score": 0.61
     },
     {
@@ -9680,7 +9824,7 @@
       "source_priority": "S",
       "source_priority_score": 4,
       "extraction_method": "heuristic",
-      "updated_at": "2026-10-19T22:16:09.463Z",
+      "updated_at": "2026-10-20T21:31:43.198Z",
       "quality_score": 0.99
     },
     {
@@ -9704,7 +9848,7 @@
       "source_priority": "S",
       "source_priority_score": 4,
       "extraction_method": "site_rule",
-      "updated_at": "2026-10-19T22:16:14.294Z",
+      "updated_at": "2026-10-20T21:31:49.916Z",
       "quality_score": 1
     },
     {
@@ -9728,7 +9872,7 @@
       "source_priority": "B",
       "source_priority_score": 2,
       "extraction_method": "site_rule",
-      "updated_at": "2026-10-19T22:16:52.571Z",
+      "updated_at": "2026-10-20T21:32:16.844Z",
       "quality_score": 0.71
     },
     {
@@ -9752,7 +9896,7 @@
       "source_priority": "S",
       "source_priority_score": 4,
       "extraction_method": "site_rule",
-      "updated_at": "2026-10-19T22:16:14.294Z",
+      "updated_at": "2026-10-20T21:31:49.916Z",
       "quality_score": 1
     },
     {
@@ -9776,7 +9920,7 @@
       "source_priority": "S",
       "source_priority_score": 4,
       "extraction_method": "site_rule",
-      "updated_at": "2026-10-19T22:16:06.881Z",
+      "updated_at": "2026-10-20T21:31:39.209Z",
       "quality_score": 0.78
     },
     {
@@ -9800,7 +9944,7 @@
       "source_priority": "S",
       "source_priority_score": 4,
       "extraction_method": "site_rule",
-      "updated_at": "2026-10-19T22:16:06.881Z",
+      "updated_at": "2026-10-20T21:31:39.209Z",
       "quality_score": 0.78
     },
     {
@@ -9824,7 +9968,7 @@
       "source_priority": "S",
       "source_priority_score": 4,
       "extraction_method": "site_rule",
-      "updated_at": "2026-10-19T22:16:06.881Z",
+      "updated_at": "2026-10-20T21:31:39.209Z",
       "quality_score": 0.78
     },
     {
@@ -9872,7 +10016,7 @@
       "source_priority": "S",
       "source_priority_score": 4,
       "extraction_method": "site_rule",
-      "updated_at": "2026-10-19T22:16:14.295Z",
+      "updated_at": "2026-10-20T21:31:49.916Z",
       "quality_score": 1
     },
     {
@@ -9896,7 +10040,7 @@
       "source_priority": "S",
       "source_priority_score": 4,
       "extraction_method": "site_rule",
-      "updated_at": "2026-10-19T22:16:04.827Z",
+      "updated_at": "2026-10-20T21:31:37.526Z",
       "quality_score": 1
     },
     {
@@ -9920,7 +10064,7 @@
       "source_priority": "S",
       "source_priority_score": 4,
       "extraction_method": "site_rule",
-      "updated_at": "2026-10-19T22:16:14.294Z",
+      "updated_at": "2026-10-20T21:31:49.916Z",
       "quality_score": 1
     },
     {
@@ -9944,7 +10088,7 @@
       "source_priority": "S",
       "source_priority_score": 4,
       "extraction_method": "site_rule",
-      "updated_at": "2026-10-19T22:16:06.881Z",
+      "updated_at": "2026-10-20T21:31:39.210Z",
       "quality_score": 0.78
     },
     {
@@ -9968,7 +10112,7 @@
       "source_priority": "S",
       "source_priority_score": 4,
       "extraction_method": "site_rule",
-      "updated_at": "2026-10-19T22:16:29.429Z",
+      "updated_at": "2026-10-20T21:32:04.377Z",
       "quality_score": 0.78
     },
     {
@@ -9992,7 +10136,7 @@
       "source_priority": "S",
       "source_priority_score": 4,
       "extraction_method": "site_rule",
-      "updated_at": "2026-10-19T22:16:06.881Z",
+      "updated_at": "2026-10-20T21:31:39.210Z",
       "quality_score": 0.74
     },
     {
@@ -10016,7 +10160,7 @@
       "source_priority": "S",
       "source_priority_score": 4,
       "extraction_method": "site_rule",
-      "updated_at": "2026-10-19T22:16:06.881Z",
+      "updated_at": "2026-10-20T21:31:39.210Z",
       "quality_score": 0.74
     },
     {
@@ -10040,7 +10184,7 @@
       "source_priority": "S",
       "source_priority_score": 4,
       "extraction_method": "site_rule",
-      "updated_at": "2026-10-19T22:16:06.881Z",
+      "updated_at": "2026-10-20T21:31:39.210Z",
       "quality_score": 0.74
     },
     {
@@ -10064,7 +10208,7 @@
       "source_priority": "B",
       "source_priority_score": 2,
       "extraction_method": "site_rule",
-      "updated_at": "2026-10-19T22:16:52.571Z",
+      "updated_at": "2026-10-20T21:32:16.844Z",
       "quality_score": 0.71
     },
     {
@@ -10088,7 +10232,7 @@
       "source_priority": "S",
       "source_priority_score": 4,
       "extraction_method": "site_rule",
-      "updated_at": "2026-10-19T22:16:06.881Z",
+      "updated_at": "2026-10-20T21:31:39.210Z",
       "quality_score": 0.74
     },
     {
@@ -10112,7 +10256,7 @@
       "source_priority": "S",
       "source_priority_score": 4,
       "extraction_method": "site_rule",
-      "updated_at": "2026-10-19T22:16:14.295Z",
+      "updated_at": "2026-10-20T21:31:49.916Z",
       "quality_score": 1
     },
     {
@@ -10136,7 +10280,7 @@
       "source_priority": "S",
       "source_priority_score": 4,
       "extraction_method": "site_rule",
-      "updated_at": "2026-10-19T22:16:06.881Z",
+      "updated_at": "2026-10-20T21:31:39.210Z",
       "quality_score": 0.78
     },
     {
@@ -10160,7 +10304,7 @@
       "source_priority": "B",
       "source_priority_score": 2,
       "extraction_method": "site_rule",
-      "updated_at": "2026-10-19T22:16:52.571Z",
+      "updated_at": "2026-10-20T21:32:16.844Z",
       "quality_score": 0.91
     },
     {
@@ -10184,7 +10328,7 @@
       "source_priority": "S",
       "source_priority_score": 4,
       "extraction_method": "site_rule",
-      "updated_at": "2026-10-19T22:16:14.295Z",
+      "updated_at": "2026-10-20T21:31:49.917Z",
       "quality_score": 1
     },
     {
@@ -10208,7 +10352,7 @@
       "source_priority": "S",
       "source_priority_score": 4,
       "extraction_method": "site_rule",
-      "updated_at": "2026-10-19T22:16:06.881Z",
+      "updated_at": "2026-10-20T21:31:39.210Z",
       "quality_score": 0.78
     },
     {
@@ -10232,7 +10376,7 @@
       "source_priority": "S",
       "source_priority_score": 4,
       "extraction_method": "site_rule",
-      "updated_at": "2026-10-19T22:16:06.881Z",
+      "updated_at": "2026-10-20T21:31:39.210Z",
       "quality_score": 0.74
     },
     {
@@ -10256,7 +10400,7 @@
       "source_priority": "A",
       "source_priority_score": 3,
       "extraction_method": "site_rule",
-      "updated_at": "2026-10-19T22:16:30.379Z",
+      "updated_at": "2026-10-20T21:32:02.172Z",
       "quality_score": 0.61
     },
     {
@@ -10280,7 +10424,7 @@
       "source_priority": "S",
       "source_priority_score": 4,
       "extraction_method": "site_rule",
-      "updated_at": "2026-10-19T22:16:14.295Z",
+      "updated_at": "2026-10-20T21:31:49.917Z",
       "quality_score": 1
     },
     {
@@ -10304,7 +10448,7 @@
       "source_priority": "S",
       "source_priority_score": 4,
       "extraction_method": "site_rule",
-      "updated_at": "2026-10-19T22:16:06.881Z",
+      "updated_at": "2026-10-20T21:31:39.210Z",
       "quality_score": 0.78
     },
     {
@@ -10328,7 +10472,7 @@
       "source_priority": "A",
       "source_priority_score": 3,
       "extraction_method": "site_rule",
-      "updated_at": "2026-10-19T22:16:30.379Z",
+      "updated_at": "2026-10-20T21:32:02.172Z",
       "quality_score": 0.61
     },
     {
@@ -10352,7 +10496,7 @@
       "source_priority": "S",
       "source_priority_score": 4,
       "extraction_method": "site_rule",
-      "updated_at": "2026-10-19T22:16:14.295Z",
+      "updated_at": "2026-10-20T21:31:49.917Z",
       "quality_score": 1
     },
     {
@@ -10376,7 +10520,7 @@
       "source_priority": "S",
       "source_priority_score": 4,
       "extraction_method": "site_rule",
-      "updated_at": "2026-10-19T22:16:04.811Z",
+      "updated_at": "2026-10-20T21:31:37.503Z",
       "quality_score": 1
     },
     {
@@ -10424,7 +10568,7 @@
       "source_priority": "S",
       "source_priority_score": 4,
       "extraction_method": "site_rule",
-      "updated_at": "2026-10-19T22:16:14.295Z",
+      "updated_at": "2026-10-20T21:31:49.917Z",
       "quality_score": 1
     },
     {
@@ -10448,7 +10592,7 @@
       "source_priority": "S",
       "source_priority_score": 4,
       "extraction_method": "site_rule",
-      "updated_at": "2026-10-19T22:16:06.881Z",
+      "updated_at": "2026-10-20T21:31:39.210Z",
       "quality_score": 0.78
     },
     {
@@ -10472,7 +10616,7 @@
       "source_priority": "A",
       "source_priority_score": 3,
       "extraction_method": "site_rule",
-      "updated_at": "2026-10-19T22:16:30.379Z",
+      "updated_at": "2026-10-20T21:32:02.172Z",
       "quality_score": 0.61
     },
     {
@@ -10496,7 +10640,7 @@
       "source_priority": "S",
       "source_priority_score": 4,
       "extraction_method": "site_rule",
-      "updated_at": "2026-10-19T22:16:06.881Z",
+      "updated_at": "2026-10-20T21:31:39.210Z",
       "quality_score": 0.74
     },
     {
@@ -10520,7 +10664,7 @@
       "source_priority": "S",
       "source_priority_score": 4,
       "extraction_method": "site_rule",
-      "updated_at": "2026-10-19T22:16:14.295Z",
+      "updated_at": "2026-10-20T21:31:49.917Z",
       "quality_score": 1
     },
     {
@@ -10544,7 +10688,7 @@
       "source_priority": "S",
       "source_priority_score": 4,
       "extraction_method": "site_rule",
-      "updated_at": "2026-10-19T22:16:11.644Z",
+      "updated_at": "2026-10-20T21:31:47.340Z",
       "quality_score": 0.98
     },
     {
@@ -10568,7 +10712,7 @@
       "source_priority": "A",
       "source_priority_score": 3,
       "extraction_method": "site_rule",
-      "updated_at": "2026-10-18T20:31:49.985Z",
+      "updated_at": "2026-10-20T21:31:49.117Z",
       "quality_score": 0.77
     },
     {
@@ -10592,7 +10736,7 @@
       "source_priority": "S",
       "source_priority_score": 4,
       "extraction_method": "site_rule",
-      "updated_at": "2026-10-19T22:16:14.295Z",
+      "updated_at": "2026-10-20T21:31:49.918Z",
       "quality_score": 1
     },
     {
@@ -10616,7 +10760,7 @@
       "source_priority": "A",
       "source_priority_score": 3,
       "extraction_method": "site_rule",
-      "updated_at": "2026-10-18T20:31:49.985Z",
+      "updated_at": "2026-10-20T21:31:49.117Z",
       "quality_score": 0.77
     },
     {
@@ -10640,7 +10784,7 @@
       "source_priority": "S",
       "source_priority_score": 4,
       "extraction_method": "site_rule",
-      "updated_at": "2026-10-19T22:16:14.295Z",
+      "updated_at": "2026-10-20T21:31:49.918Z",
       "quality_score": 1
     },
     {
@@ -10664,7 +10808,7 @@
       "source_priority": "S",
       "source_priority_score": 4,
       "extraction_method": "site_rule",
-      "updated_at": "2026-10-19T22:16:04.821Z",
+      "updated_at": "2026-10-20T21:31:37.518Z",
       "quality_score": 1
     },
     {
@@ -10688,7 +10832,7 @@
       "source_priority": "S",
       "source_priority_score": 4,
       "extraction_method": "site_rule",
-      "updated_at": "2026-10-19T22:16:29.432Z",
+      "updated_at": "2026-10-20T21:32:04.381Z",
       "quality_score": 0.78
     },
     {
@@ -10712,7 +10856,7 @@
       "source_priority": "S",
       "source_priority_score": 4,
       "extraction_method": "site_rule",
-      "updated_at": "2026-10-19T22:16:08.533Z",
+      "updated_at": "2026-10-20T21:31:41.521Z",
       "quality_score": 0.74
     },
     {
@@ -10736,7 +10880,7 @@
       "source_priority": "S",
       "source_priority_score": 4,
       "extraction_method": "site_rule",
-      "updated_at": "2026-10-19T22:16:08.533Z",
+      "updated_at": "2026-10-20T21:31:41.521Z",
       "quality_score": 0.74
     },
     {
@@ -10760,7 +10904,7 @@
       "source_priority": "S",
       "source_priority_score": 4,
       "extraction_method": "site_rule",
-      "updated_at": "2026-10-19T22:16:08.533Z",
+      "updated_at": "2026-10-20T21:31:41.521Z",
       "quality_score": 0.78
     },
     {
@@ -10784,7 +10928,7 @@
       "source_priority": "S",
       "source_priority_score": 4,
       "extraction_method": "site_rule",
-      "updated_at": "2026-10-19T22:16:14.296Z",
+      "updated_at": "2026-10-20T21:31:49.918Z",
       "quality_score": 1
     },
     {
@@ -10808,7 +10952,7 @@
       "source_priority": "S",
       "source_priority_score": 4,
       "extraction_method": "site_rule",
-      "updated_at": "2026-10-19T22:16:14.296Z",
+      "updated_at": "2026-10-20T21:31:49.918Z",
       "quality_score": 1
     },
     {
@@ -10832,7 +10976,7 @@
       "source_priority": "S",
       "source_priority_score": 4,
       "extraction_method": "site_rule",
-      "updated_at": "2026-10-19T22:16:04.825Z",
+      "updated_at": "2026-10-20T21:31:37.523Z",
       "quality_score": 1
     },
     {
@@ -10856,7 +11000,7 @@
       "source_priority": "B",
       "source_priority_score": 2,
       "extraction_method": "site_rule",
-      "updated_at": "2026-10-19T22:16:51.251Z",
+      "updated_at": "2026-10-20T21:32:14.731Z",
       "quality_score": 0.71
     },
     {
@@ -10880,7 +11024,7 @@
       "source_priority": "S",
       "source_priority_score": 4,
       "extraction_method": "site_rule",
-      "updated_at": "2026-10-19T22:16:08.533Z",
+      "updated_at": "2026-10-20T21:31:41.521Z",
       "quality_score": 0.74
     },
     {
@@ -10904,7 +11048,7 @@
       "source_priority": "S",
       "source_priority_score": 4,
       "extraction_method": "site_rule",
-      "updated_at": "2026-10-19T22:16:14.296Z",
+      "updated_at": "2026-10-20T21:31:49.918Z",
       "quality_score": 1
     },
     {
@@ -10928,7 +11072,7 @@
       "source_priority": "S",
       "source_priority_score": 4,
       "extraction_method": "site_rule",
-      "updated_at": "2026-10-19T22:16:14.296Z",
+      "updated_at": "2026-10-20T21:31:49.919Z",
       "quality_score": 1
     },
     {
@@ -10952,7 +11096,7 @@
       "source_priority": "S",
       "source_priority_score": 4,
       "extraction_method": "site_rule",
-      "updated_at": "2026-10-19T22:16:29.436Z",
+      "updated_at": "2026-10-20T21:32:04.385Z",
       "quality_score": 0.78
     },
     {
@@ -10976,7 +11120,7 @@
       "source_priority": "S",
       "source_priority_score": 4,
       "extraction_method": "site_rule",
-      "updated_at": "2026-10-19T22:16:11.644Z",
+      "updated_at": "2026-10-20T21:31:47.340Z",
       "quality_score": 0.8
     },
     {
@@ -11000,7 +11144,7 @@
       "source_priority": "A",
       "source_priority_score": 3,
       "extraction_method": "site_rule",
-      "updated_at": "2026-10-19T22:16:30.380Z",
+      "updated_at": "2026-10-20T21:32:02.172Z",
       "quality_score": 0.61
     },
     {
@@ -11024,7 +11168,7 @@
       "source_priority": "A",
       "source_priority_score": 3,
       "extraction_method": "heuristic",
-      "updated_at": "2026-10-19T22:16:40.139Z",
+      "updated_at": "2026-10-20T21:32:09.191Z",
       "quality_score": 0.81
     },
     {
@@ -11052,6 +11196,30 @@
       "quality_score": 0.81
     },
     {
+      "id": "c139b973aef02f753ac2",
+      "title": "SIRUP LIVE TOUR 2027 \"Now Landing...\"",
+      "start_date": "2027-01-23",
+      "end_date": "",
+      "open_time": "17:00",
+      "start_time": "18:00",
+      "end_time": "",
+      "all_day": false,
+      "venue": "Zepp Sapporo",
+      "venue_address": "",
+      "summary": "詳細は、後日ご案内致します",
+      "flyer_image_url": "https://wess.jp/wp/wp-content/uploads/2026/10/sirup.jpg",
+      "detail_url": "https://wess.jp/sirup/",
+      "source_id": "wess-jp-concert-schedule",
+      "source_name": "WESS",
+      "source_url": "https://wess.jp/concert-schedule/",
+      "source_category": "WESS",
+      "source_priority": "S",
+      "source_priority_score": 4,
+      "extraction_method": "site_rule",
+      "updated_at": "2026-10-20T21:31:41.521Z",
+      "quality_score": 0.74
+    },
+    {
       "id": "49f89252f1f836dd8e83",
       "title": "the cabs tour 2026-27 \"Anemoica\"",
       "start_date": "2027-01-23",
@@ -11072,7 +11240,7 @@
       "source_priority": "S",
       "source_priority_score": 4,
       "extraction_method": "site_rule",
-      "updated_at": "2026-10-19T22:16:08.533Z",
+      "updated_at": "2026-10-20T21:31:41.521Z",
       "quality_score": 0.74
     },
     {
@@ -11096,7 +11264,7 @@
       "source_priority": "S",
       "source_priority_score": 4,
       "extraction_method": "site_rule",
-      "updated_at": "2026-10-19T22:16:14.296Z",
+      "updated_at": "2026-10-20T21:31:49.919Z",
       "quality_score": 1
     },
     {
@@ -11120,7 +11288,7 @@
       "source_priority": "S",
       "source_priority_score": 4,
       "extraction_method": "site_rule",
-      "updated_at": "2026-10-19T22:16:14.296Z",
+      "updated_at": "2026-10-20T21:31:49.919Z",
       "quality_score": 1
     },
     {
@@ -11144,7 +11312,7 @@
       "source_priority": "B",
       "source_priority_score": 2,
       "extraction_method": "site_rule",
-      "updated_at": "2026-10-19T22:16:51.251Z",
+      "updated_at": "2026-10-20T21:32:14.731Z",
       "quality_score": 0.71
     },
     {
@@ -11168,7 +11336,7 @@
       "source_priority": "S",
       "source_priority_score": 4,
       "extraction_method": "site_rule",
-      "updated_at": "2026-10-19T22:16:08.533Z",
+      "updated_at": "2026-10-20T21:31:41.521Z",
       "quality_score": 0.74
     },
     {
@@ -11192,7 +11360,7 @@
       "source_priority": "A",
       "source_priority_score": 3,
       "extraction_method": "site_rule",
-      "updated_at": "2026-10-18T20:31:49.985Z",
+      "updated_at": "2026-10-20T21:31:49.117Z",
       "quality_score": 0.95
     },
     {
@@ -11216,7 +11384,7 @@
       "source_priority": "S",
       "source_priority_score": 4,
       "extraction_method": "site_rule",
-      "updated_at": "2026-10-19T22:16:14.296Z",
+      "updated_at": "2026-10-20T21:31:49.919Z",
       "quality_score": 1
     },
     {
@@ -11240,7 +11408,7 @@
       "source_priority": "S",
       "source_priority_score": 4,
       "extraction_method": "site_rule",
-      "updated_at": "2026-10-19T22:16:29.439Z",
+      "updated_at": "2026-10-20T21:32:04.389Z",
       "quality_score": 0.78
     },
     {
@@ -11264,7 +11432,7 @@
       "source_priority": "S",
       "source_priority_score": 4,
       "extraction_method": "site_rule",
-      "updated_at": "2026-10-19T22:16:08.533Z",
+      "updated_at": "2026-10-20T21:31:41.521Z",
       "quality_score": 0.74
     },
     {
@@ -11288,7 +11456,7 @@
       "source_priority": "S",
       "source_priority_score": 4,
       "extraction_method": "site_rule",
-      "updated_at": "2026-10-19T22:16:08.533Z",
+      "updated_at": "2026-10-20T21:31:41.521Z",
       "quality_score": 0.74
     },
     {
@@ -11312,7 +11480,7 @@
       "source_priority": "S",
       "source_priority_score": 4,
       "extraction_method": "site_rule",
-      "updated_at": "2026-10-19T22:16:14.296Z",
+      "updated_at": "2026-10-20T21:31:49.919Z",
       "quality_score": 1
     },
     {
@@ -11336,7 +11504,7 @@
       "source_priority": "A",
       "source_priority_score": 3,
       "extraction_method": "site_rule",
-      "updated_at": "2026-10-19T22:16:25.058Z",
+      "updated_at": "2026-10-20T21:31:49.117Z",
       "quality_score": 0.77
     },
     {
@@ -11360,7 +11528,7 @@
       "source_priority": "S",
       "source_priority_score": 4,
       "extraction_method": "site_rule",
-      "updated_at": "2026-10-19T22:16:14.296Z",
+      "updated_at": "2026-10-20T21:31:49.920Z",
       "quality_score": 1
     },
     {
@@ -11384,7 +11552,7 @@
       "source_priority": "S",
       "source_priority_score": 4,
       "extraction_method": "site_rule",
-      "updated_at": "2026-10-19T22:16:11.002Z",
+      "updated_at": "2026-10-20T21:31:44.520Z",
       "quality_score": 0.56
     },
     {
@@ -11408,7 +11576,7 @@
       "source_priority": "S",
       "source_priority_score": 4,
       "extraction_method": "site_rule",
-      "updated_at": "2026-10-19T22:16:29.442Z",
+      "updated_at": "2026-10-20T21:32:04.395Z",
       "quality_score": 0.78
     },
     {
@@ -11432,7 +11600,7 @@
       "source_priority": "S",
       "source_priority_score": 4,
       "extraction_method": "site_rule",
-      "updated_at": "2026-10-19T22:16:29.447Z",
+      "updated_at": "2026-10-20T21:32:04.399Z",
       "quality_score": 0.78
     },
     {
@@ -11456,7 +11624,7 @@
       "source_priority": "S",
       "source_priority_score": 4,
       "extraction_method": "site_rule",
-      "updated_at": "2026-10-19T22:16:11.002Z",
+      "updated_at": "2026-10-20T21:31:44.521Z",
       "quality_score": 0.56
     },
     {
@@ -11480,7 +11648,7 @@
       "source_priority": "S",
       "source_priority_score": 4,
       "extraction_method": "site_rule",
-      "updated_at": "2026-10-19T22:16:04.812Z",
+      "updated_at": "2026-10-20T21:31:37.505Z",
       "quality_score": 1
     },
     {
@@ -11504,7 +11672,7 @@
       "source_priority": "S",
       "source_priority_score": 4,
       "extraction_method": "site_rule",
-      "updated_at": "2026-10-19T22:16:11.002Z",
+      "updated_at": "2026-10-20T21:31:44.521Z",
       "quality_score": 0.74
     },
     {
@@ -11528,7 +11696,7 @@
       "source_priority": "S",
       "source_priority_score": 4,
       "extraction_method": "site_rule",
-      "updated_at": "2026-10-19T22:16:29.450Z",
+      "updated_at": "2026-10-20T21:32:04.404Z",
       "quality_score": 0.6
     },
     {
@@ -11552,7 +11720,7 @@
       "source_priority": "S",
       "source_priority_score": 4,
       "extraction_method": "site_rule",
-      "updated_at": "2026-10-19T22:16:14.297Z",
+      "updated_at": "2026-10-20T21:31:49.920Z",
       "quality_score": 1
     },
     {
@@ -11576,7 +11744,7 @@
       "source_priority": "S",
       "source_priority_score": 4,
       "extraction_method": "site_rule",
-      "updated_at": "2026-10-19T22:16:14.297Z",
+      "updated_at": "2026-10-20T21:31:49.920Z",
       "quality_score": 1
     },
     {
@@ -11600,7 +11768,7 @@
       "source_priority": "S",
       "source_priority_score": 4,
       "extraction_method": "site_rule",
-      "updated_at": "2026-10-19T22:16:11.002Z",
+      "updated_at": "2026-10-20T21:31:44.521Z",
       "quality_score": 0.74
     },
     {
@@ -11624,7 +11792,7 @@
       "source_priority": "S",
       "source_priority_score": 4,
       "extraction_method": "site_rule",
-      "updated_at": "2026-10-19T22:16:11.002Z",
+      "updated_at": "2026-10-20T21:31:44.521Z",
       "quality_score": 0.74
     },
     {
@@ -11648,7 +11816,7 @@
       "source_priority": "S",
       "source_priority_score": 4,
       "extraction_method": "site_rule",
-      "updated_at": "2026-10-19T22:16:11.645Z",
+      "updated_at": "2026-10-20T21:31:47.341Z",
       "quality_score": 0.98
     },
     {
@@ -11672,7 +11840,7 @@
       "source_priority": "S",
       "source_priority_score": 4,
       "extraction_method": "site_rule",
-      "updated_at": "2026-10-19T22:16:11.002Z",
+      "updated_at": "2026-10-20T21:31:44.521Z",
       "quality_score": 0.74
     },
     {
@@ -11696,7 +11864,7 @@
       "source_priority": "S",
       "source_priority_score": 4,
       "extraction_method": "site_rule",
-      "updated_at": "2026-10-19T22:16:14.297Z",
+      "updated_at": "2026-10-20T21:31:49.920Z",
       "quality_score": 1
     },
     {
@@ -11720,7 +11888,7 @@
       "source_priority": "S",
       "source_priority_score": 4,
       "extraction_method": "site_rule",
-      "updated_at": "2026-10-19T22:16:11.002Z",
+      "updated_at": "2026-10-20T21:31:44.521Z",
       "quality_score": 0.74
     },
     {
@@ -11744,7 +11912,7 @@
       "source_priority": "S",
       "source_priority_score": 4,
       "extraction_method": "site_rule",
-      "updated_at": "2026-10-19T22:16:11.002Z",
+      "updated_at": "2026-10-20T21:31:44.521Z",
       "quality_score": 0.74
     },
     {
@@ -11768,7 +11936,7 @@
       "source_priority": "A",
       "source_priority_score": 3,
       "extraction_method": "site_rule",
-      "updated_at": "2026-10-19T22:16:25.058Z",
+      "updated_at": "2026-10-20T21:31:49.117Z",
       "quality_score": 0.77
     },
     {
@@ -11792,7 +11960,7 @@
       "source_priority": "S",
       "source_priority_score": 4,
       "extraction_method": "site_rule",
-      "updated_at": "2026-10-19T22:16:13.008Z",
+      "updated_at": "2026-10-20T21:31:46.656Z",
       "quality_score": 0.74
     },
     {
@@ -11816,7 +11984,7 @@
       "source_priority": "S",
       "source_priority_score": 4,
       "extraction_method": "site_rule",
-      "updated_at": "2026-10-19T22:16:13.008Z",
+      "updated_at": "2026-10-20T21:31:46.656Z",
       "quality_score": 0.74
     },
     {
@@ -11840,7 +12008,7 @@
       "source_priority": "S",
       "source_priority_score": 4,
       "extraction_method": "site_rule",
-      "updated_at": "2026-10-19T22:16:13.008Z",
+      "updated_at": "2026-10-20T21:31:46.656Z",
       "quality_score": 0.74
     },
     {
@@ -11864,7 +12032,7 @@
       "source_priority": "S",
       "source_priority_score": 4,
       "extraction_method": "site_rule",
-      "updated_at": "2026-10-19T22:16:14.297Z",
+      "updated_at": "2026-10-20T21:31:49.920Z",
       "quality_score": 1
     },
     {
@@ -11888,7 +12056,7 @@
       "source_priority": "S",
       "source_priority_score": 4,
       "extraction_method": "site_rule",
-      "updated_at": "2026-10-19T22:16:13.008Z",
+      "updated_at": "2026-10-20T21:31:46.656Z",
       "quality_score": 0.74
     },
     {
@@ -11912,7 +12080,7 @@
       "source_priority": "S",
       "source_priority_score": 4,
       "extraction_method": "site_rule",
-      "updated_at": "2026-10-19T22:16:14.297Z",
+      "updated_at": "2026-10-20T21:31:49.921Z",
       "quality_score": 1
     },
     {
@@ -11936,7 +12104,7 @@
       "source_priority": "S",
       "source_priority_score": 4,
       "extraction_method": "site_rule",
-      "updated_at": "2026-10-19T22:16:13.009Z",
+      "updated_at": "2026-10-20T21:31:46.657Z",
       "quality_score": 0.74
     },
     {
@@ -11960,7 +12128,7 @@
       "source_priority": "S",
       "source_priority_score": 4,
       "extraction_method": "site_rule",
-      "updated_at": "2026-10-19T22:16:13.009Z",
+      "updated_at": "2026-10-20T21:31:46.657Z",
       "quality_score": 0.74
     },
     {
@@ -11984,7 +12152,7 @@
       "source_priority": "S",
       "source_priority_score": 4,
       "extraction_method": "site_rule",
-      "updated_at": "2026-10-19T22:16:14.297Z",
+      "updated_at": "2026-10-20T21:31:49.921Z",
       "quality_score": 1
     },
     {
@@ -12008,7 +12176,7 @@
       "source_priority": "S",
       "source_priority_score": 4,
       "extraction_method": "site_rule",
-      "updated_at": "2026-10-19T22:16:13.009Z",
+      "updated_at": "2026-10-20T21:31:46.657Z",
       "quality_score": 0.74
     },
     {
@@ -12032,7 +12200,7 @@
       "source_priority": "S",
       "source_priority_score": 4,
       "extraction_method": "site_rule",
-      "updated_at": "2026-10-19T22:16:13.009Z",
+      "updated_at": "2026-10-20T21:31:46.657Z",
       "quality_score": 0.74
     },
     {
@@ -12056,7 +12224,7 @@
       "source_priority": "S",
       "source_priority_score": 4,
       "extraction_method": "site_rule",
-      "updated_at": "2026-10-19T22:16:13.009Z",
+      "updated_at": "2026-10-20T21:31:46.657Z",
       "quality_score": 0.74
     },
     {
@@ -12080,7 +12248,7 @@
       "source_priority": "S",
       "source_priority_score": 4,
       "extraction_method": "site_rule",
-      "updated_at": "2026-10-19T22:16:13.009Z",
+      "updated_at": "2026-10-20T21:31:46.657Z",
       "quality_score": 0.74
     },
     {
@@ -12104,7 +12272,7 @@
       "source_priority": "S",
       "source_priority_score": 4,
       "extraction_method": "site_rule",
-      "updated_at": "2026-10-19T22:16:13.009Z",
+      "updated_at": "2026-10-20T21:31:46.657Z",
       "quality_score": 0.74
     },
     {
@@ -12128,7 +12296,7 @@
       "source_priority": "B",
       "source_priority_score": 2,
       "extraction_method": "site_rule",
-      "updated_at": "2026-10-19T22:16:49.913Z",
+      "updated_at": "2026-10-20T21:32:15.558Z",
       "quality_score": 0.57
     },
     {
@@ -12152,7 +12320,7 @@
       "source_priority": "S",
       "source_priority_score": 4,
       "extraction_method": "site_rule",
-      "updated_at": "2026-10-19T22:16:13.009Z",
+      "updated_at": "2026-10-20T21:31:46.657Z",
       "quality_score": 0.74
     },
     {
@@ -12176,7 +12344,7 @@
       "source_priority": "S",
       "source_priority_score": 4,
       "extraction_method": "site_rule",
-      "updated_at": "2026-10-19T22:16:13.009Z",
+      "updated_at": "2026-10-20T21:31:46.657Z",
       "quality_score": 0.74
     },
     {
@@ -12200,7 +12368,7 @@
       "source_priority": "S",
       "source_priority_score": 4,
       "extraction_method": "site_rule",
-      "updated_at": "2026-10-19T22:16:29.453Z",
+      "updated_at": "2026-10-20T21:32:04.408Z",
       "quality_score": 0.6
     },
     {
@@ -12224,7 +12392,7 @@
       "source_priority": "S",
       "source_priority_score": 4,
       "extraction_method": "site_rule",
-      "updated_at": "2026-10-19T22:16:13.009Z",
+      "updated_at": "2026-10-20T21:31:46.657Z",
       "quality_score": 0.56
     },
     {
@@ -12248,7 +12416,7 @@
       "source_priority": "S",
       "source_priority_score": 4,
       "extraction_method": "site_rule",
-      "updated_at": "2026-10-19T22:16:13.009Z",
+      "updated_at": "2026-10-20T21:31:46.657Z",
       "quality_score": 0.56
     },
     {
@@ -12272,8 +12440,56 @@
       "source_priority": "S",
       "source_priority_score": 4,
       "extraction_method": "site_rule",
-      "updated_at": "2026-10-19T22:16:14.297Z",
+      "updated_at": "2026-10-20T21:31:49.922Z",
       "quality_score": 1
+    },
+    {
+      "id": "33488dbcbf54883a460d",
+      "title": "ザ・クロマニヨンズ ツアー Hola! Leopardo 2027",
+      "start_date": "2027-04-01",
+      "end_date": "",
+      "open_time": "18:15",
+      "start_time": "19:00",
+      "end_time": "",
+      "all_day": false,
+      "venue": "PENNY LANE24",
+      "venue_address": "",
+      "summary": "最速先行受付(2027年2月4日〜4月2日公演) 受付期間：10月20日（火）12：00〜10月28日（水）23：59 受付URL： https://eplus.jp/cromagnons27/ 枚数制限：2枚まで 最速先行受付(2027年4月8日〜6月26日公演) 受付期間：12月16日（水）12：00〜12月23日（水）23：59 受付URL： https://eplus.jp/cromagnons27/ 枚数制限：4枚まで ◇リ…",
+      "flyer_image_url": "https://wess.jp/wp/wp-content/uploads/2026/10/cromagnons.jpg",
+      "detail_url": "https://wess.jp/cromagnons/",
+      "source_id": "wess-jp-concert-schedule",
+      "source_name": "WESS",
+      "source_url": "https://wess.jp/concert-schedule/",
+      "source_category": "WESS",
+      "source_priority": "S",
+      "source_priority_score": 4,
+      "extraction_method": "site_rule",
+      "updated_at": "2026-10-20T21:31:48.619Z",
+      "quality_score": 0.78
+    },
+    {
+      "id": "7d6cfda37ac4d3715c87",
+      "title": "ザ・クロマニヨンズ ツアー Hola! Leopardo 2027",
+      "start_date": "2027-04-02",
+      "end_date": "",
+      "open_time": "18:15",
+      "start_time": "19:00",
+      "end_time": "",
+      "all_day": false,
+      "venue": "PENNY LANE24",
+      "venue_address": "",
+      "summary": "最速先行受付(2027年2月4日〜4月2日公演) 受付期間：10月20日（火）12：00〜10月28日（水）23：59 受付URL： https://eplus.jp/cromagnons27/ 枚数制限：2枚まで 最速先行受付(2027年4月8日〜6月26日公演) 受付期間：12月16日（水）12：00〜12月23日（水）23：59 受付URL： https://eplus.jp/cromagnons27/ 枚数制限：4枚まで ◇リ…",
+      "flyer_image_url": "https://wess.jp/wp/wp-content/uploads/2026/10/cromagnons.jpg",
+      "detail_url": "https://wess.jp/cromagnons2/",
+      "source_id": "wess-jp-concert-schedule",
+      "source_name": "WESS",
+      "source_url": "https://wess.jp/concert-schedule/",
+      "source_category": "WESS",
+      "source_priority": "S",
+      "source_priority_score": 4,
+      "extraction_method": "site_rule",
+      "updated_at": "2026-10-20T21:31:48.619Z",
+      "quality_score": 0.78
     },
     {
       "id": "d863131d42ae27ec218a",
@@ -12296,7 +12512,7 @@
       "source_priority": "S",
       "source_priority_score": 4,
       "extraction_method": "site_rule",
-      "updated_at": "2026-10-19T22:16:17.889Z",
+      "updated_at": "2026-10-20T21:31:48.619Z",
       "quality_score": 0.74
     },
     {
@@ -12320,7 +12536,7 @@
       "source_priority": "S",
       "source_priority_score": 4,
       "extraction_method": "site_rule",
-      "updated_at": "2026-10-19T22:16:14.297Z",
+      "updated_at": "2026-10-20T21:31:49.922Z",
       "quality_score": 1
     },
     {
@@ -12344,7 +12560,7 @@
       "source_priority": "A",
       "source_priority_score": 3,
       "extraction_method": "site_rule",
-      "updated_at": "2026-10-19T22:16:42.045Z",
+      "updated_at": "2026-10-20T21:32:08.777Z",
       "quality_score": 0.75
     },
     {
@@ -12368,7 +12584,7 @@
       "source_priority": "S",
       "source_priority_score": 4,
       "extraction_method": "site_rule",
-      "updated_at": "2026-10-19T22:16:29.456Z",
+      "updated_at": "2026-10-20T21:32:04.412Z",
       "quality_score": 0.78
     },
     {
@@ -12392,7 +12608,7 @@
       "source_priority": "S",
       "source_priority_score": 4,
       "extraction_method": "site_rule",
-      "updated_at": "2026-10-19T22:16:17.889Z",
+      "updated_at": "2026-10-20T21:31:48.619Z",
       "quality_score": 0.74
     },
     {
@@ -12416,7 +12632,7 @@
       "source_priority": "S",
       "source_priority_score": 4,
       "extraction_method": "site_rule",
-      "updated_at": "2026-10-19T22:16:14.297Z",
+      "updated_at": "2026-10-20T21:31:49.923Z",
       "quality_score": 1
     },
     {
@@ -12440,7 +12656,7 @@
       "source_priority": "S",
       "source_priority_score": 4,
       "extraction_method": "site_rule",
-      "updated_at": "2026-10-19T22:16:17.889Z",
+      "updated_at": "2026-10-20T21:31:48.619Z",
       "quality_score": 0.74
     },
     {
@@ -12464,7 +12680,7 @@
       "source_priority": "S",
       "source_priority_score": 4,
       "extraction_method": "site_rule",
-      "updated_at": "2026-10-19T22:16:17.889Z",
+      "updated_at": "2026-10-20T21:31:48.619Z",
       "quality_score": 0.74
     },
     {
@@ -12488,7 +12704,7 @@
       "source_priority": "S",
       "source_priority_score": 4,
       "extraction_method": "site_rule",
-      "updated_at": "2026-10-19T22:16:29.459Z",
+      "updated_at": "2026-10-20T21:32:04.416Z",
       "quality_score": 0.78
     },
     {
@@ -12512,7 +12728,7 @@
       "source_priority": "S",
       "source_priority_score": 4,
       "extraction_method": "site_rule",
-      "updated_at": "2026-10-19T22:16:17.889Z",
+      "updated_at": "2026-10-20T21:31:48.619Z",
       "quality_score": 0.74
     },
     {
@@ -12536,7 +12752,7 @@
       "source_priority": "S",
       "source_priority_score": 4,
       "extraction_method": "site_rule",
-      "updated_at": "2026-10-19T22:16:17.889Z",
+      "updated_at": "2026-10-20T21:31:48.620Z",
       "quality_score": 0.74
     },
     {
@@ -12560,7 +12776,7 @@
       "source_priority": "S",
       "source_priority_score": 4,
       "extraction_method": "site_rule",
-      "updated_at": "2026-10-19T22:16:17.889Z",
+      "updated_at": "2026-10-20T21:31:48.620Z",
       "quality_score": 0.74
     },
     {
@@ -12584,7 +12800,7 @@
       "source_priority": "S",
       "source_priority_score": 4,
       "extraction_method": "site_rule",
-      "updated_at": "2026-10-19T22:16:17.889Z",
+      "updated_at": "2026-10-20T21:31:48.620Z",
       "quality_score": 0.74
     },
     {
@@ -12608,8 +12824,32 @@
       "source_priority": "S",
       "source_priority_score": 4,
       "extraction_method": "site_rule",
-      "updated_at": "2026-10-19T22:16:17.889Z",
+      "updated_at": "2026-10-20T21:31:48.620Z",
       "quality_score": 0.74
+    },
+    {
+      "id": "e02ca60fa4889aff6e6c",
+      "title": "亀井聖矢ピアノリサイタルツアー2027 Supported by MUFG Wealth Management",
+      "start_date": "2027-04-24",
+      "end_date": "",
+      "open_time": "12:15",
+      "start_time": "13:00",
+      "end_time": "15:30",
+      "all_day": false,
+      "venue": "札幌コンサートホール Kitara 大ホール",
+      "venue_address": "札幌市中央区中島公園1番15号",
+      "summary": "大ホール 2027年4月24日(土曜日) 12:15開場 13:00開演 15:30終演予定",
+      "flyer_image_url": "https://www.kitara-sapporo.or.jp/og-image.jpg",
+      "detail_url": "https://www.kitara-sapporo.or.jp/event/event_detail.php?num=7462",
+      "source_id": "www-kitara-sapporo-or-jp-event",
+      "source_name": "札幌コンサートホール Kitara",
+      "source_url": "https://www.kitara-sapporo.or.jp/event/",
+      "source_category": "コンサートホール（会場公式）",
+      "source_priority": "S",
+      "source_priority_score": 4,
+      "extraction_method": "site_rule",
+      "updated_at": "2026-10-20T21:31:49.923Z",
+      "quality_score": 1
     },
     {
       "id": "a5ac978d9c983576dfaf",
@@ -12632,7 +12872,7 @@
       "source_priority": "A",
       "source_priority_score": 3,
       "extraction_method": "site_rule",
-      "updated_at": "2026-10-19T22:16:42.045Z",
+      "updated_at": "2026-10-20T21:32:08.777Z",
       "quality_score": 0.75
     },
     {
@@ -12656,7 +12896,7 @@
       "source_priority": "S",
       "source_priority_score": 4,
       "extraction_method": "site_rule",
-      "updated_at": "2026-10-19T22:16:17.889Z",
+      "updated_at": "2026-10-20T21:31:48.620Z",
       "quality_score": 0.74
     },
     {
@@ -12680,7 +12920,7 @@
       "source_priority": "A",
       "source_priority_score": 3,
       "extraction_method": "site_rule",
-      "updated_at": "2026-10-19T22:16:42.046Z",
+      "updated_at": "2026-10-20T21:32:08.777Z",
       "quality_score": 0.75
     },
     {
@@ -12704,7 +12944,7 @@
       "source_priority": "S",
       "source_priority_score": 4,
       "extraction_method": "site_rule",
-      "updated_at": "2026-10-19T22:16:17.889Z",
+      "updated_at": "2026-10-20T21:31:48.620Z",
       "quality_score": 0.56
     },
     {
@@ -12728,7 +12968,7 @@
       "source_priority": "S",
       "source_priority_score": 4,
       "extraction_method": "site_rule",
-      "updated_at": "2026-10-19T22:16:17.889Z",
+      "updated_at": "2026-10-20T21:31:48.620Z",
       "quality_score": 0.74
     },
     {
@@ -12752,7 +12992,7 @@
       "source_priority": "S",
       "source_priority_score": 4,
       "extraction_method": "site_rule",
-      "updated_at": "2026-10-19T22:16:17.890Z",
+      "updated_at": "2026-10-20T21:31:48.620Z",
       "quality_score": 0.74
     },
     {
@@ -12776,7 +13016,7 @@
       "source_priority": "S",
       "source_priority_score": 4,
       "extraction_method": "site_rule",
-      "updated_at": "2026-10-19T22:16:29.462Z",
+      "updated_at": "2026-10-20T21:32:04.420Z",
       "quality_score": 0.78
     },
     {
@@ -12800,7 +13040,7 @@
       "source_priority": "S",
       "source_priority_score": 4,
       "extraction_method": "site_rule",
-      "updated_at": "2026-10-19T22:16:25.908Z",
+      "updated_at": "2026-10-20T21:31:50.216Z",
       "quality_score": 0.74
     },
     {
@@ -12824,7 +13064,7 @@
       "source_priority": "S",
       "source_priority_score": 4,
       "extraction_method": "site_rule",
-      "updated_at": "2026-10-19T22:16:29.467Z",
+      "updated_at": "2026-10-20T21:32:04.426Z",
       "quality_score": 0.78
     },
     {
@@ -12848,7 +13088,7 @@
       "source_priority": "S",
       "source_priority_score": 4,
       "extraction_method": "site_rule",
-      "updated_at": "2026-10-19T22:16:25.908Z",
+      "updated_at": "2026-10-20T21:31:50.216Z",
       "quality_score": 0.74
     },
     {
@@ -12872,7 +13112,7 @@
       "source_priority": "S",
       "source_priority_score": 4,
       "extraction_method": "site_rule",
-      "updated_at": "2026-10-19T22:16:25.908Z",
+      "updated_at": "2026-10-20T21:31:50.216Z",
       "quality_score": 0.74
     },
     {
@@ -12896,7 +13136,7 @@
       "source_priority": "S",
       "source_priority_score": 4,
       "extraction_method": "site_rule",
-      "updated_at": "2026-10-19T22:16:29.471Z",
+      "updated_at": "2026-10-20T21:32:04.430Z",
       "quality_score": 0.78
     },
     {
@@ -12920,7 +13160,7 @@
       "source_priority": "S",
       "source_priority_score": 4,
       "extraction_method": "site_rule",
-      "updated_at": "2026-10-19T22:16:25.908Z",
+      "updated_at": "2026-10-20T21:31:50.216Z",
       "quality_score": 0.74
     },
     {
@@ -12944,8 +13184,32 @@
       "source_priority": "S",
       "source_priority_score": 4,
       "extraction_method": "site_rule",
-      "updated_at": "2026-10-19T22:16:25.908Z",
+      "updated_at": "2026-10-20T21:31:50.216Z",
       "quality_score": 0.74
+    },
+    {
+      "id": "e72d357fbaee774f9167",
+      "title": "浅井健一 TOUR 2027",
+      "start_date": "2027-05-21",
+      "end_date": "",
+      "open_time": "18:15",
+      "start_time": "19:00",
+      "end_time": "",
+      "all_day": false,
+      "venue": "PENNY LANE24",
+      "venue_address": "札幌市西区二十四軒4条5丁目5-21 W",
+      "summary": "Mount Alive[株式会社マウントアライブ]オフィシャルサイト｜イベント情報詳細 アーティスト名：浅井健一｜日程：2027年5月21日公演｜イベント名：浅井健一 TOUR 2027｜会場名：PENNY LANE 24：札幌市西区二十四軒4条5丁目5-21 W",
+      "flyer_image_url": "http://mountalive.com/data/schedule_img/xxl/20260706112507_0.jpg",
+      "detail_url": "https://www.mountalive.com/schedule/more.php?no=4179",
+      "source_id": "www-mountalive-com-schedule",
+      "source_name": "Mount Alive",
+      "source_url": "https://www.mountalive.com/schedule/",
+      "source_category": "Mount Alive",
+      "source_priority": "S",
+      "source_priority_score": 4,
+      "extraction_method": "site_rule",
+      "updated_at": "2026-10-20T21:31:37.524Z",
+      "quality_score": 1
     },
     {
       "id": "f43254ab52dbfbd1ee4e",
@@ -12968,7 +13232,7 @@
       "source_priority": "S",
       "source_priority_score": 4,
       "extraction_method": "site_rule",
-      "updated_at": "2026-10-19T22:16:29.474Z",
+      "updated_at": "2026-10-20T21:32:04.434Z",
       "quality_score": 0.78
     },
     {
@@ -12992,7 +13256,7 @@
       "source_priority": "S",
       "source_priority_score": 4,
       "extraction_method": "site_rule",
-      "updated_at": "2026-10-19T22:16:25.908Z",
+      "updated_at": "2026-10-20T21:31:50.216Z",
       "quality_score": 0.74
     },
     {
@@ -13016,7 +13280,7 @@
       "source_priority": "S",
       "source_priority_score": 4,
       "extraction_method": "site_rule",
-      "updated_at": "2026-10-19T22:16:25.908Z",
+      "updated_at": "2026-10-20T21:31:50.216Z",
       "quality_score": 0.56
     },
     {
@@ -13040,7 +13304,7 @@
       "source_priority": "S",
       "source_priority_score": 4,
       "extraction_method": "site_rule",
-      "updated_at": "2026-10-19T22:16:25.908Z",
+      "updated_at": "2026-10-20T21:31:50.216Z",
       "quality_score": 0.56
     },
     {
@@ -13064,7 +13328,7 @@
       "source_priority": "S",
       "source_priority_score": 4,
       "extraction_method": "site_rule",
-      "updated_at": "2026-10-19T22:16:29.477Z",
+      "updated_at": "2026-10-20T21:32:04.439Z",
       "quality_score": 0.78
     },
     {
@@ -13088,7 +13352,7 @@
       "source_priority": "S",
       "source_priority_score": 4,
       "extraction_method": "site_rule",
-      "updated_at": "2026-10-19T22:16:29.480Z",
+      "updated_at": "2026-10-20T21:32:04.443Z",
       "quality_score": 0.78
     },
     {
@@ -13112,7 +13376,7 @@
       "source_priority": "S",
       "source_priority_score": 4,
       "extraction_method": "site_rule",
-      "updated_at": "2026-10-19T22:16:29.483Z",
+      "updated_at": "2026-10-20T21:32:04.447Z",
       "quality_score": 0.78
     },
     {
@@ -13136,7 +13400,7 @@
       "source_priority": "S",
       "source_priority_score": 4,
       "extraction_method": "site_rule",
-      "updated_at": "2026-10-19T22:16:29.195Z",
+      "updated_at": "2026-10-20T21:31:53.119Z",
       "quality_score": 0.74
     },
     {
@@ -13160,7 +13424,7 @@
       "source_priority": "S",
       "source_priority_score": 4,
       "extraction_method": "site_rule",
-      "updated_at": "2026-10-19T22:16:29.195Z",
+      "updated_at": "2026-10-20T21:31:53.119Z",
       "quality_score": 0.74
     },
     {
@@ -13184,8 +13448,32 @@
       "source_priority": "S",
       "source_priority_score": 4,
       "extraction_method": "site_rule",
-      "updated_at": "2026-10-19T22:16:29.487Z",
+      "updated_at": "2026-10-20T21:32:04.452Z",
       "quality_score": 0.78
+    },
+    {
+      "id": "64844d2945006357673d",
+      "title": "ソナーポケット 全国ツアー2027 〜Promise〜",
+      "start_date": "2027-09-12",
+      "end_date": "",
+      "open_time": "",
+      "start_time": "",
+      "end_time": "",
+      "all_day": true,
+      "venue": "PENNY LANE24",
+      "venue_address": "",
+      "summary": "詳細は、後日ご案内致します",
+      "flyer_image_url": "https://wess.jp/wp/wp-content/uploads/2015/12/COMING-SOON.jpg",
+      "detail_url": "https://wess.jp/sonapoke/",
+      "source_id": "wess-jp-concert-schedule",
+      "source_name": "WESS",
+      "source_url": "https://wess.jp/concert-schedule/",
+      "source_category": "WESS",
+      "source_priority": "S",
+      "source_priority_score": 4,
+      "extraction_method": "site_rule",
+      "updated_at": "2026-10-20T21:31:55.524Z",
+      "quality_score": 0.56
     },
     {
       "id": "f14f64183d759d2f5dd8",
@@ -13208,7 +13496,7 @@
       "source_priority": "S",
       "source_priority_score": 4,
       "extraction_method": "site_rule",
-      "updated_at": "2026-10-19T22:16:31.322Z",
+      "updated_at": "2026-10-20T21:31:55.524Z",
       "quality_score": 0.78
     },
     {
@@ -13232,7 +13520,7 @@
       "source_priority": "S",
       "source_priority_score": 4,
       "extraction_method": "site_rule",
-      "updated_at": "2026-10-19T22:16:31.322Z",
+      "updated_at": "2026-10-20T21:31:55.524Z",
       "quality_score": 0.78
     }
   ]
